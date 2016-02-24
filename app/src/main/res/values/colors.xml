@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splashscreen">#DDDDDD</color>
+    <color name="rem_bal">#DBDBDB</color>
+    <color name="reg_2">#5E5D5E</color>
+    <color name="reg">#CC0000</color>
+    <color name="reg_nonfocus">#B1B1B1</color>
+    <color name="details_background">#F3F3F3</color>
+    <color name="menu_fragment_background">#B3000000</color>
+    <color name="def_text_color">#157DFB</color>
+    <color name="def_divider_color">#CCCDD0</color>
+    <color name="def_bg_color">#E9EAEA</color>
+    <color name="def_bg_h_color">#CACBCB</color>
+    <color name="dark_red">#5D0000</color>
+    <color name="text_color">#B3FFFFFF</color>
+    <color name="bg_color">#F44336</color>
+    <color name="bg_color_h">#D32F2F</color>
+    <color name="black">#000000</color>
+</resources>

@@ -1,0 +1,418 @@
+[
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_logout_red.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_logout_red.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_otp.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_otp.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\arrow_right.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\arrow_right.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\white_color.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\white_color.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_alone_default.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_alone_default.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_setortunai.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_setortunai.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_check_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_btn_check_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\success_xml.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\success_xml.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_tutuprekening.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_tutuprekening.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back_contact.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_back_contact.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_banklain.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_banklain.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\layoutbackground.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\layoutbackground.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\success.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\success.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_transfer.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_transfer.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dark_red.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\dark_red.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_phone.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_phone.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_mobile.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_mobile.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\right_arrow.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\right_arrow.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\color_cement.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\color_cement.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_tab_indicator_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_round_corner.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\background_round_corner.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_bottom_default.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_bottom_default.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\light_blue_color.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\light_blue_color.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_tarik_tunayi.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_tarik_tunayi.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\title_bg.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\title_bg.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_referral.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_referral.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_center.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_center.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\alert_back.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\alert_back.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_top.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_top.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\line.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\line.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_bayarpakaiqr.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_bayarpakaiqr.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\green_color.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\green_color.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\user.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\user.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_lakupandai.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_lakupandai.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_cab_background_top_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\homepage4.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\homepage4.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_infosaldo.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_infosaldo.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edittext_background.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\edittext_background.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_bottom.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_bottom.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\camera.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\camera.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\down_arrow_reg.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\down_arrow_reg.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\registration_color_blue.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\registration_color_blue.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back_register.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_back_register.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\rp_text.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\rp_text.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\datefieldcorners.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\datefieldcorners.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dottedlines.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\dottedlines.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_full_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_ratingbar_full_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_light.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_dialog_material_background_light.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\contact_us.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\contact_us.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_mutasi.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_mutasi.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_transaksi.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_transaksi.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\logout.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\logout.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\white_logout.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\white_logout.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_mpin.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_mpin.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_dark.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_bottom_pressed.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_bottom_pressed.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_mpin.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_mpin.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\akun.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\akun.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\circle_success.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\circle_success.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_bsim.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_bsim.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\login_color_red.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\login_color_red.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_bukarekening.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_bukarekening.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_pembayaran.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_pembayaran.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_back.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_back.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\number_switching_logout.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\number_switching_logout.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\number_switching_arrow.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\number_switching_arrow.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\selected.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\selected.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_search.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_search.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_menuback.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_menuback.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_dialog_material_background_dark.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_dialog_material_background_dark.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_center_default.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_center_default.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\app_icon.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\app_icon.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_pembelian.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_pembelian.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dwnselected.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\dwnselected.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\back_ground.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\back_ground.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\img_greencheck_small.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\img_greencheck_small.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_top_default.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_top_default.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_alone.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_alone.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dwnunselected.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\dwnunselected.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\seperater.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\seperater.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edit_text_alert_background.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\edit_text_alert_background.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\plus.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\plus.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_center_pressed.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_center_pressed.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_top_pressed.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_top_pressed.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\download.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\download.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_calendar.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\ic_calendar.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_alone_pressed.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\item_alone_pressed.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_btn_borderless_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_rekening.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\btn_rekening.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\color_unknown.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\color_unknown.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_internal_bg.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_cab_background_internal_bg.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\bank_simarmas.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\bank_simarmas.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\color_gray.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\drawable\\color_gray.xml"
+    }
+]
