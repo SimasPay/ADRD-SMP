@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\login_screen.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\login_screen.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\agent_simaspay_user.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\agent_simaspay_user.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\transferhome.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\transferhome.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\agent_home.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\agent_home.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\common_layout.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\common_layout.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\transferdetails.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\transferdetails.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\simas_pay_home.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\layout-hdpi\\simas_pay_home.xml"
+    }
+]

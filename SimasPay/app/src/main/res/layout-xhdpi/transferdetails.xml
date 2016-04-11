@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/reg"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/back_layout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp">
+
+            <ImageView
+                android:id="@+id/btnBacke"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/btn_back_register" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/titled"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Transfer - Bank Sinarmas"
+            android:textColor="@android:color/white"
+            android:textSize="23dp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/details_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/handphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nomor Rekening Tujuan"
+                android:textColor="@android:color/black"
+                android:textSize="13dp" />
+
+            <EditText
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:inputType="number"
+                android:digits="1234567890"
+                android:singleLine="true"
+                android:background="@drawable/edittext_background"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/jumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jumlah"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="13dp" />
+
+            <EditText
+                android:id="@+id/amount"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:background="@drawable/edittext_background"
+                android:textColor="@android:color/black"
+                android:inputType="number"
+                android:digits="1234567890Rp"
+                android:drawablePadding="10dp"
+                android:textSize="16dp"
+               />
+
+            <TextView
+                android:id="@+id/mPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="mPIN"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:textSize="13dp" />
+
+            <EditText
+                android:id="@+id/pin"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:password="true"
+                android:inputType="number"
+                android:digits="1234567890"
+                android:background="@drawable/edittext_background"
+                android:textColor="@android:color/black"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="220dp"
+                android:layout_height="56dp"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"
+                android:text="Lanjut"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/login_color_red"
+                android:textAllCaps="false"
+                />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

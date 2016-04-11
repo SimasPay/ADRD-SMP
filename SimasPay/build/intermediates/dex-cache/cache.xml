@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\SimasPay\PayByQR\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="85bc07c31804829fbed2cb83f74f5b8a37f55439">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\SimasPay-PayByQR-unspecified_bb8d69245f0b4f6395ea2fa84111fde8d2e0973f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nagendra P\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.5\686c608d1805b6d4d425ec4459e88164ffc85870\gson-2.5.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="686c608d1805b6d4d425ec4459e88164ffc85870">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\gson-2.5_eb3afb2accdd80e9a253cd851f3434f5f43f44eb.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\libs\internal_impl-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="607a3d0b8013b4ccbfeb0b7cb293351994e021fb">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\internal_impl-23.2.1_e211b084831701da35543ef9417472e6757ed876.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nagendra P\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.2.1\support-annotations-23.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ccb693bc0774fcb637246f7360de25b4af7df318">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\support-annotations-23.2.1_0ef17ff557c64274bc48fd4ec985522d27be0bfd.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.journeyapps\zxing-android-embedded\3.0.3\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="eccf1a2cb72813a3099bc2618ea9d6430b92f0fc">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.journeyapps-zxing-android-embedded-3.0.3_1d4eb360083393c6c6c27ccae9e7ddbd67a46679.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\libs\mobileapplibrary2_8.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="04c258d6094f78b0a8dd0a70baa8580687f3fba1">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\mobileapplibrary2_8_d48ad1218d358e35398f7f2fc8eb04e1118d3286.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e3885783ff8926ed9e2fdcd16816c2e1e73e7aee">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-recyclerview-v7-23.2.1_9aa77b2d82668d3eed4520cd7a7d627b7665da7b.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e4d0cbb0b999604b349062f0214a0a228a7fd151">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.2.1_d2c2630d3fde2317cd6ccd16d3400a33a3c42ab2.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3469cb457f10f74c28cbc05f069b6c894f6cbdd0">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-animated-vector-drawable-23.2.1_1c5f5471cc513bd9c7dfa53b504f96d630dfbb4c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nagendra P\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.1\2287494d4f5f9f3a9a2bb6980e3f32053721b315\core-3.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\core-3.2.1_e53794334829097cd75d14f9fe21b175dcfa2bf2.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\percent\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ce16cf844ef6f424adb546dd8f9b07cb03c5bf52">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-percent-23.2.1_7805f0fe445114f8ef09b185911d3d5b65096783.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="673d77a5bbddd766037f088e775df525c46407f0">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-support-vector-drawable-23.2.1_a96ef8c1b3245620b9d734944ec992e3743b41dd.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\libs\kxml-min.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c1b06b8ed125bd0acd3303aeb635c6f35252962c">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\kxml-min_572efc8fd468ef76ec83d9f4aea5f28f0105b772.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nagendra P\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\library-2.4.0_3463d10e196c6fb1d77d44f90b5849f35759de66.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\SimasPay\datetimepicker-library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c83b7e9b8747f52c78aba2979b824c6c58555d3">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\SimasPay-datetimepicker-library-unspecified_b3e0ca051309879754644144af84221da34195fd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Nagendra P\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.9\9ce04e34240f674bc72680f8b843b1457383161a\commons-codec-1.9.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\commons-codec-1.9_5c9e12f9aa4bfdb20b9bc775f9469f54619ffc0b.jar" />
+    </item>
+    <item
+        jar="F:\SimasPay\Coding\SimasPay\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.2.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3be474b1b21b31cf2fa93fe6bd641ae108d96452">
+        <dex dex="F:\SimasPay\Coding\SimasPay\app\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.2.1_8bc83d9c70b48d243688ff55228be049b4e63170.jar" />
+    </item>
+
+</items>
