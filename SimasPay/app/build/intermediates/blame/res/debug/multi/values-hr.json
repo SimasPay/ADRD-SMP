@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\values-hr\\values-hr.xml",
+        "outputFile": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\values-hr\\values-hr.xml",
         "map": [
             {
                 "to": {
@@ -11,13 +11,13 @@
                     "endOffset": 205
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 291,
+                        "startOffset": 55,
                         "endColumn": 104,
-                        "endOffset": 391
+                        "endOffset": 155
                     }
                 }
             },
@@ -26,17 +26,17 @@
                     "startLine": 3,
                     "startColumn": 4,
                     "startOffset": 210,
-                    "endColumn": 96,
-                    "endOffset": 302
+                    "endColumn": 107,
+                    "endOffset": 313
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 5,
+                        "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 396,
-                        "endColumn": 96,
-                        "endOffset": 488
+                        "startOffset": 160,
+                        "endColumn": 107,
+                        "endOffset": 263
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 307,
-                    "endColumn": 109,
-                    "endOffset": 412
+                    "startOffset": 318,
+                    "endColumn": 122,
+                    "endOffset": 436
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 6,
+                        "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 493,
-                        "endColumn": 109,
-                        "endOffset": 598
+                        "startOffset": 268,
+                        "endColumn": 122,
+                        "endOffset": 386
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 417,
-                    "endColumn": 85,
-                    "endOffset": 498
+                    "startOffset": 441,
+                    "endColumn": 96,
+                    "endOffset": 533
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 7,
+                        "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 603,
-                        "endColumn": 85,
-                        "endOffset": 684
+                        "startOffset": 391,
+                        "endColumn": 96,
+                        "endOffset": 483
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 503,
-                    "endColumn": 103,
-                    "endOffset": 602
+                    "startOffset": 538,
+                    "endColumn": 109,
+                    "endOffset": 643
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 8,
+                        "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 689,
-                        "endColumn": 103,
-                        "endOffset": 788
+                        "startOffset": 488,
+                        "endColumn": 109,
+                        "endOffset": 593
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 607,
-                    "endColumn": 118,
-                    "endOffset": 721
+                    "startOffset": 648,
+                    "endColumn": 85,
+                    "endOffset": 729
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 793,
-                        "endColumn": 118,
-                        "endOffset": 907
+                        "startOffset": 598,
+                        "endColumn": 85,
+                        "endOffset": 679
                     }
                 }
             },
@@ -120,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 726,
+                    "startOffset": 734,
                     "endColumn": 103,
-                    "endOffset": 825
+                    "endOffset": 833
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 10,
+                        "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 912,
+                        "startOffset": 684,
                         "endColumn": 103,
-                        "endOffset": 1011
+                        "endOffset": 783
                     }
                 }
             },
@@ -139,18 +139,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 830,
-                    "endColumn": 112,
-                    "endOffset": 938
+                    "startOffset": 838,
+                    "endColumn": 118,
+                    "endOffset": 952
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 11,
+                        "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 1016,
-                        "endColumn": 112,
-                        "endOffset": 1124
+                        "startOffset": 788,
+                        "endColumn": 118,
+                        "endOffset": 902
                     }
                 }
             },
@@ -158,18 +158,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 943,
-                    "endColumn": 105,
-                    "endOffset": 1044
+                    "startOffset": 957,
+                    "endColumn": 83,
+                    "endOffset": 1036
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 12,
+                        "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 1129,
-                        "endColumn": 105,
-                        "endOffset": 1230
+                        "startOffset": 907,
+                        "endColumn": 83,
+                        "endOffset": 986
                     }
                 }
             },
@@ -177,18 +177,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 1049,
-                    "endColumn": 104,
-                    "endOffset": 1149
+                    "startOffset": 1041,
+                    "endColumn": 82,
+                    "endOffset": 1119
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 13,
+                        "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1235,
-                        "endColumn": 104,
-                        "endOffset": 1335
+                        "startOffset": 991,
+                        "endColumn": 82,
+                        "endOffset": 1069
                     }
                 }
             },
@@ -196,18 +196,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 1154,
-                    "endColumn": 112,
-                    "endOffset": 1262
+                    "startOffset": 1124,
+                    "endColumn": 85,
+                    "endOffset": 1205
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 14,
+                        "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1340,
-                        "endColumn": 112,
-                        "endOffset": 1448
+                        "startOffset": 1074,
+                        "endColumn": 85,
+                        "endOffset": 1155
                     }
                 }
             },
@@ -215,18 +215,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1267,
-                    "endColumn": 106,
-                    "endOffset": 1369
+                    "startOffset": 1210,
+                    "endColumn": 103,
+                    "endOffset": 1309
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 15,
+                        "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1453,
-                        "endColumn": 106,
-                        "endOffset": 1555
+                        "startOffset": 1160,
+                        "endColumn": 103,
+                        "endOffset": 1259
                     }
                 }
             },
@@ -234,18 +234,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1374,
-                    "endColumn": 122,
-                    "endOffset": 1492
+                    "startOffset": 1314,
+                    "endColumn": 112,
+                    "endOffset": 1422
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
                     "position": {
-                        "startLine": 16,
+                        "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1560,
-                        "endColumn": 122,
-                        "endOffset": 1678
+                        "startOffset": 1264,
+                        "endColumn": 112,
+                        "endOffset": 1372
                     }
                 }
             },
@@ -253,12 +253,126 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1497,
-                    "endColumn": 101,
-                    "endOffset": 1594
+                    "startOffset": 1427,
+                    "endColumn": 105,
+                    "endOffset": 1528
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1377,
+                        "endColumn": 105,
+                        "endOffset": 1478
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1533,
+                    "endColumn": 104,
+                    "endOffset": 1633
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1483,
+                        "endColumn": 104,
+                        "endOffset": 1583
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1638,
+                    "endColumn": 112,
+                    "endOffset": 1746
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1588,
+                        "endColumn": 112,
+                        "endOffset": 1696
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1751,
+                    "endColumn": 106,
+                    "endOffset": 1853
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1701,
+                        "endColumn": 106,
+                        "endOffset": 1803
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1858,
+                    "endColumn": 122,
+                    "endOffset": 1976
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1808,
+                        "endColumn": 122,
+                        "endOffset": 1926
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1981,
+                    "endColumn": 96,
+                    "endOffset": 2073
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1931,
+                        "endColumn": 96,
+                        "endOffset": 2023
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2078,
+                    "endColumn": 101,
+                    "endOffset": 2175
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -270,14 +384,14 @@
             },
             {
                 "to": {
-                    "startLine": 16,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 1599,
+                    "startOffset": 2180,
                     "endColumn": 115,
-                    "endOffset": 1710
+                    "endOffset": 2291
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -289,14 +403,14 @@
             },
             {
                 "to": {
-                    "startLine": 17,
+                    "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 1715,
+                    "startOffset": 2296,
                     "endColumn": 75,
-                    "endOffset": 1786
+                    "endOffset": 2367
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -308,14 +422,14 @@
             },
             {
                 "to": {
-                    "startLine": 18,
+                    "startLine": 24,
                     "startColumn": 4,
-                    "startOffset": 1791,
+                    "startOffset": 2372,
                     "endColumn": 100,
-                    "endOffset": 1887
+                    "endOffset": 2468
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -327,14 +441,14 @@
             },
             {
                 "to": {
-                    "startLine": 19,
+                    "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 1892,
+                    "startOffset": 2473,
                     "endColumn": 123,
-                    "endOffset": 2011
+                    "endOffset": 2592
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -346,14 +460,14 @@
             },
             {
                 "to": {
-                    "startLine": 20,
+                    "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 2016,
+                    "startOffset": 2597,
                     "endColumn": 104,
-                    "endOffset": 2116
+                    "endOffset": 2697
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -365,14 +479,14 @@
             },
             {
                 "to": {
-                    "startLine": 21,
+                    "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 2121,
+                    "startOffset": 2702,
                     "endColumn": 91,
-                    "endOffset": 2208
+                    "endOffset": 2789
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -384,14 +498,14 @@
             },
             {
                 "to": {
-                    "startLine": 22,
+                    "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 2213,
+                    "startOffset": 2794,
                     "endColumn": 85,
-                    "endOffset": 2294
+                    "endOffset": 2875
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -403,14 +517,14 @@
             },
             {
                 "to": {
-                    "startLine": 23,
+                    "startLine": 29,
                     "startColumn": 4,
-                    "startOffset": 2299,
+                    "startOffset": 2880,
                     "endColumn": 89,
-                    "endOffset": 2384
+                    "endOffset": 2965
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -422,14 +536,14 @@
             },
             {
                 "to": {
-                    "startLine": 24,
+                    "startLine": 30,
                     "startColumn": 4,
-                    "startOffset": 2389,
+                    "startOffset": 2970,
                     "endColumn": 86,
-                    "endOffset": 2471
+                    "endOffset": 3052
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -441,14 +555,33 @@
             },
             {
                 "to": {
-                    "startLine": 25,
+                    "startLine": 31,
                     "startColumn": 4,
-                    "startOffset": 2476,
-                    "endColumn": 94,
-                    "endOffset": 2566
+                    "startOffset": 3057,
+                    "endColumn": 100,
+                    "endOffset": 3153
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-hr\\values-hr.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2028,
+                        "endColumn": 100,
+                        "endOffset": 2124
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 3158,
+                    "endColumn": 94,
+                    "endOffset": 3248
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-hr\\values-hr.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,

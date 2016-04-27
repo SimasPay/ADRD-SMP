@@ -65,17 +65,17 @@
     <string name="abs__searchview_description_voice">Voice search</string>
     <string name="app_name">SimasPay</string>
     <string name="shared_prefvalue">SimasPay</string>
-    <string name="number_less7">Nomor Handphone harus lebih dari 6 angka</string>
-    <string name="number_grater14">Nomor Handphone Lebih Dari 14 Angka</string>
+    <string name="number_less7">Nomor Handphone harus lebih dari 10 angka</string>
+    <string name="number_grater14">Nomor Handphone harus kurang dari 14 angka</string>
     <string name="Loading">Loading</string>
     <string name="dailog_heading">SimasPay</string>
-    <string name="BahasaSmsData">Kode Simobi Anda </string>
-    <string name="EnglishSmsData">Your Simobi Code is </string>
+    <string name="BahasaSmsData">Kode OTP Simaspay anda</string>
+    <string name="EnglishSmsData">Your Simaspay code is </string>
     <string name="app_version" />
     <string name="app_ok">OK</string>
     <string name="app_yes">Yes</string>
     <string name="app_no">No</string>
-     <string name="dimo">Dimo</string>
+    <string name="dimo">Dimo</string>
     <string name="app_validate">Validate</string>
     <string name="app_loading_error">Error</string>
     <string name="app_confirm">Confirm</string>
@@ -199,6 +199,15 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="regSuccessContent2">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Nikmati kemududahan bertransaksi dimana saja menggunakan telepon genggam &lt;/body> &lt;/html></string>
     <string name="regSuccessContent3">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selanjutnya, silahkan mengisi saldo SIMASPAY terlebih dahulu &lt;/body> &lt;/html></string>
     <string name="flashiz_tc">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:white;font-size:15px;> &lt;p>&lt;B>SYARAT DAN KETENTUAN PEMBAYARAN QR&lt;/B>&lt;br /> &lt;br /> Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan bahwa saya telah menerima dan menyetujui untuk tunduk dan terikat pada ketentuan-ketentuan sebagai berikut:&lt;br /> &lt;br /> 1. Pembayaran QR hanya dapat dilakukan pada merchant-merchant atau outlet-outlet yang berpartisipasi.&lt;/p> &lt;p>2. Pembayaran QR ini menggunakan teknologi FLASHiZ.&lt;/p> &lt;p>3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY.&lt;/p> &lt;/body> &lt;/html></string>
+   <string name="benef">
+        <html>
+        <head></head>
+        <body style="text-align:justify;color:gray;background-color:black;">
+         "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
+ </body>
+</html>
+
+</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="saving_image">Saving image</string>

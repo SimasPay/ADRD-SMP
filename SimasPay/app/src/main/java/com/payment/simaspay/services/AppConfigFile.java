@@ -27,16 +27,16 @@ public class AppConfigFile {
 	
 	
 //	UAT
-		 public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
+		 /*public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrlFiles="http://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrl ="http://54.255.194.95:8443/webapi/sdynamic";
 		 public static String pfdDownLoadURL = "http://54.255.194.95:8443/webapi/";
-		 public static String promoImageURLPath = "http://54.255.194.95:8443/";
+		 public static String promoImageURLPath = "http://54.255.194.95:8443/";*/
 
 	
 	// SmartFren Production
 
-	  /*public static String requestUrl="https://uangku.smartfren.com/swebapi30/sdynamic"; 
+	  /*public static String requestUrl="https://uangku.smartfren.com/swebapi30/sdynamic";
 	  public static String webAPIUrlFiles ="https://uangku.smartfren.com/swebapi30/sdynamic"; 
 	  public static String webAPIUrl = "https://uangku.smartfren.com/swebapi30/sdynamic"; 
 	  public static String pfdDownLoadURL = "https://uangku.smartfren.com/swebapi30/";
@@ -46,17 +46,13 @@ public class AppConfigFile {
 	
 	// SimasPay QA Team
 
-	/*public static String requestUrl = "https://175.101.5.72:8444/webapi/sdynamic";
+	public static String requestUrl = "https://175.101.5.72:8444/webapi/sdynamic";
 	public static String webAPIUrlFiles = "https://175.101.5.72:8444/webapi/sdynamic";
 	public static String webAPIUrl = "https://175.101.5.72:8444/webapi/sdynamic";
 	public static String pfdDownLoadURL = "https://175.101.5.72:8444/webapi/";
-	public static String promoImageURLPath = "http://175.101.5.72:8443/";*/
+	public static String promoImageURLPath = "http://175.101.5.72:8443/";
 
-	/*public static String requestUrl = "https://192.168.2.20:8443/webapi/sdynamic";
-	public static String webAPIUrlFiles = "https://192.168.2.20:8443/webapi/sdynamic";
-	public static String webAPIUrl = "https://192.168.2.20:8443/webapi/sdynamic";
-	public static String pfdDownLoadURL = "https://192.168.2.20:8443/webapi/";
-	public static String promoImageURLPath = "http://192.168.2.20:8443/";*/
+
 	
 	
 	// Multi Tenant Dev Team

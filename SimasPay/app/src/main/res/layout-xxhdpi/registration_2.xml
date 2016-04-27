@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="kode OTP dari Simaspay"
+                android:text="kode aktivasi dari Simaspay"
                 android:textColor="@color/reg_2"
                 android:textSize="18dp" />
 

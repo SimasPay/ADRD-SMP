@@ -176,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:src="@drawable/white_logout" />
+            android:src="@drawable/logout_number" />
 
         <TextView
             android:id="@+id/lagout_text"

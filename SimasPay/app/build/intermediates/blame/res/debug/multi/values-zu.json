@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\values-zu\\values-zu.xml",
+        "outputFile": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\values-zu\\values-zu.xml",
         "map": [
             {
                 "to": {
@@ -11,13 +11,13 @@
                     "endOffset": 208
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 4,
+                        "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 291,
+                        "startOffset": 55,
                         "endColumn": 107,
-                        "endOffset": 394
+                        "endOffset": 158
                     }
                 }
             },
@@ -26,17 +26,17 @@
                     "startLine": 3,
                     "startColumn": 4,
                     "startOffset": 213,
-                    "endColumn": 106,
-                    "endOffset": 315
+                    "endColumn": 107,
+                    "endOffset": 316
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 5,
+                        "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 399,
-                        "endColumn": 106,
-                        "endOffset": 501
+                        "startOffset": 163,
+                        "endColumn": 107,
+                        "endOffset": 266
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 320,
-                    "endColumn": 113,
-                    "endOffset": 429
+                    "startOffset": 321,
+                    "endColumn": 122,
+                    "endOffset": 439
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 6,
+                        "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 506,
-                        "endColumn": 113,
-                        "endOffset": 615
+                        "startOffset": 271,
+                        "endColumn": 122,
+                        "endOffset": 389
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 434,
-                    "endColumn": 87,
-                    "endOffset": 517
+                    "startOffset": 444,
+                    "endColumn": 106,
+                    "endOffset": 546
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 7,
+                        "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 620,
-                        "endColumn": 87,
-                        "endOffset": 703
+                        "startOffset": 394,
+                        "endColumn": 106,
+                        "endOffset": 496
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 522,
-                    "endColumn": 102,
-                    "endOffset": 620
+                    "startOffset": 551,
+                    "endColumn": 113,
+                    "endOffset": 660
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 8,
+                        "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 708,
-                        "endColumn": 102,
-                        "endOffset": 806
+                        "startOffset": 501,
+                        "endColumn": 113,
+                        "endOffset": 610
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 625,
-                    "endColumn": 126,
-                    "endOffset": 747
+                    "startOffset": 665,
+                    "endColumn": 87,
+                    "endOffset": 748
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 9,
+                        "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 811,
-                        "endColumn": 126,
-                        "endOffset": 933
+                        "startOffset": 615,
+                        "endColumn": 87,
+                        "endOffset": 698
                     }
                 }
             },
@@ -120,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 752,
-                    "endColumn": 103,
+                    "startOffset": 753,
+                    "endColumn": 102,
                     "endOffset": 851
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 10,
+                        "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 938,
-                        "endColumn": 103,
-                        "endOffset": 1037
+                        "startOffset": 703,
+                        "endColumn": 102,
+                        "endOffset": 801
                     }
                 }
             },
@@ -140,17 +140,17 @@
                     "startLine": 9,
                     "startColumn": 4,
                     "startOffset": 856,
-                    "endColumn": 105,
-                    "endOffset": 957
+                    "endColumn": 126,
+                    "endOffset": 978
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 11,
+                        "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 1042,
-                        "endColumn": 105,
-                        "endOffset": 1143
+                        "startOffset": 806,
+                        "endColumn": 126,
+                        "endOffset": 928
                     }
                 }
             },
@@ -158,18 +158,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 962,
-                    "endColumn": 97,
-                    "endOffset": 1055
+                    "startOffset": 983,
+                    "endColumn": 79,
+                    "endOffset": 1058
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 12,
+                        "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 1148,
-                        "endColumn": 97,
-                        "endOffset": 1241
+                        "startOffset": 933,
+                        "endColumn": 79,
+                        "endOffset": 1008
                     }
                 }
             },
@@ -177,18 +177,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 1060,
-                    "endColumn": 106,
-                    "endOffset": 1162
+                    "startOffset": 1063,
+                    "endColumn": 79,
+                    "endOffset": 1138
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 13,
+                        "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 1246,
-                        "endColumn": 106,
-                        "endOffset": 1348
+                        "startOffset": 1013,
+                        "endColumn": 79,
+                        "endOffset": 1088
                     }
                 }
             },
@@ -196,18 +196,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 1167,
-                    "endColumn": 105,
-                    "endOffset": 1268
+                    "startOffset": 1143,
+                    "endColumn": 85,
+                    "endOffset": 1224
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 14,
+                        "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 1353,
-                        "endColumn": 105,
-                        "endOffset": 1454
+                        "startOffset": 1093,
+                        "endColumn": 85,
+                        "endOffset": 1174
                     }
                 }
             },
@@ -215,18 +215,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 1273,
-                    "endColumn": 105,
-                    "endOffset": 1374
+                    "startOffset": 1229,
+                    "endColumn": 103,
+                    "endOffset": 1328
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 15,
+                        "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 1459,
-                        "endColumn": 105,
-                        "endOffset": 1560
+                        "startOffset": 1179,
+                        "endColumn": 103,
+                        "endOffset": 1278
                     }
                 }
             },
@@ -234,18 +234,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 1379,
-                    "endColumn": 119,
-                    "endOffset": 1494
+                    "startOffset": 1333,
+                    "endColumn": 105,
+                    "endOffset": 1434
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\22.2.0\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
                     "position": {
-                        "startLine": 16,
+                        "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 1565,
-                        "endColumn": 119,
-                        "endOffset": 1680
+                        "startOffset": 1283,
+                        "endColumn": 105,
+                        "endOffset": 1384
                     }
                 }
             },
@@ -253,12 +253,126 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 1499,
-                    "endColumn": 106,
-                    "endOffset": 1601
+                    "startOffset": 1439,
+                    "endColumn": 97,
+                    "endOffset": 1532
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 1389,
+                        "endColumn": 97,
+                        "endOffset": 1482
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 1537,
+                    "endColumn": 106,
+                    "endOffset": 1639
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 1487,
+                        "endColumn": 106,
+                        "endOffset": 1589
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 1644,
+                    "endColumn": 105,
+                    "endOffset": 1745
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 1594,
+                        "endColumn": 105,
+                        "endOffset": 1695
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 1750,
+                    "endColumn": 105,
+                    "endOffset": 1851
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 1700,
+                        "endColumn": 105,
+                        "endOffset": 1801
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1856,
+                    "endColumn": 119,
+                    "endOffset": 1971
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 1806,
+                        "endColumn": 119,
+                        "endOffset": 1921
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1976,
+                    "endColumn": 95,
+                    "endOffset": 2067
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1926,
+                        "endColumn": 95,
+                        "endOffset": 2017
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 2072,
+                    "endColumn": 106,
+                    "endOffset": 2174
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -270,14 +384,14 @@
             },
             {
                 "to": {
-                    "startLine": 16,
+                    "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 1606,
+                    "startOffset": 2179,
                     "endColumn": 108,
-                    "endOffset": 1710
+                    "endOffset": 2283
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -289,14 +403,14 @@
             },
             {
                 "to": {
-                    "startLine": 17,
+                    "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 1715,
+                    "startOffset": 2288,
                     "endColumn": 77,
-                    "endOffset": 1788
+                    "endOffset": 2361
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -308,14 +422,14 @@
             },
             {
                 "to": {
-                    "startLine": 18,
+                    "startLine": 24,
                     "startColumn": 4,
-                    "startOffset": 1793,
+                    "startOffset": 2366,
                     "endColumn": 115,
-                    "endOffset": 1904
+                    "endOffset": 2477
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -327,14 +441,14 @@
             },
             {
                 "to": {
-                    "startLine": 19,
+                    "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 1909,
+                    "startOffset": 2482,
                     "endColumn": 116,
-                    "endOffset": 2021
+                    "endOffset": 2594
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
@@ -346,14 +460,14 @@
             },
             {
                 "to": {
-                    "startLine": 20,
+                    "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 2026,
+                    "startOffset": 2599,
                     "endColumn": 120,
-                    "endOffset": 2142
+                    "endOffset": 2715
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -365,14 +479,14 @@
             },
             {
                 "to": {
-                    "startLine": 21,
+                    "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 2147,
+                    "startOffset": 2720,
                     "endColumn": 90,
-                    "endOffset": 2233
+                    "endOffset": 2806
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
@@ -384,14 +498,14 @@
             },
             {
                 "to": {
-                    "startLine": 22,
+                    "startLine": 28,
                     "startColumn": 4,
-                    "startOffset": 2238,
+                    "startOffset": 2811,
                     "endColumn": 85,
-                    "endOffset": 2319
+                    "endOffset": 2892
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
@@ -403,14 +517,14 @@
             },
             {
                 "to": {
-                    "startLine": 23,
+                    "startLine": 29,
                     "startColumn": 4,
-                    "startOffset": 2324,
+                    "startOffset": 2897,
                     "endColumn": 90,
-                    "endOffset": 2410
+                    "endOffset": 2983
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -422,14 +536,14 @@
             },
             {
                 "to": {
-                    "startLine": 24,
+                    "startLine": 30,
                     "startColumn": 4,
-                    "startOffset": 2415,
+                    "startOffset": 2988,
                     "endColumn": 83,
-                    "endOffset": 2494
+                    "endOffset": 3067
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -441,14 +555,33 @@
             },
             {
                 "to": {
-                    "startLine": 25,
+                    "startLine": 31,
                     "startColumn": 4,
-                    "startOffset": 2499,
-                    "endColumn": 94,
-                    "endOffset": 2589
+                    "startOffset": 3072,
+                    "endColumn": 100,
+                    "endOffset": 3168
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-zu\\values-zu.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 2022,
+                        "endColumn": 100,
+                        "endOffset": 2118
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 32,
+                    "startColumn": 4,
+                    "startOffset": 3173,
+                    "endColumn": 94,
+                    "endOffset": 3263
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\datetimepicker-library\\unspecified\\res\\values-zu\\values-zu.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,

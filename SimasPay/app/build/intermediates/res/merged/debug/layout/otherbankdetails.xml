@@ -88,6 +88,8 @@
                 android:background="@drawable/edittext_background"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:inputType="number"
+                android:digits="1234567890"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textSize="16dp" />
@@ -134,6 +136,9 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
+                android:password="true"
+                android:inputType="number"
+                android:digits="1234567890"
                 android:textColor="@android:color/black"
                 android:textSize="16dp" />
 

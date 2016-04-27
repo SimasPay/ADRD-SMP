@@ -52,6 +52,8 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:elevation="10dp"
+        android:stateListAnimator="@anim/button_state_list_animator"
         android:background="@drawable/background_round_corner"
         android:gravity="center"
         android:orientation="vertical">
@@ -70,7 +72,7 @@
             android:inputType="number"
             android:paddingLeft="10dp"
             android:singleLine="true"
-
+            android:text=""
             />
 
         <View
@@ -89,8 +91,10 @@
             android:hint="mPIN"
             android:drawableLeft="@drawable/ic_mpin"
             android:drawablePadding="15dp"
-            android:inputType="numberPassword"
+            android:password="true"
+            android:inputType="number"
             android:maxLength="6"
+            android:text=""
             android:paddingLeft="10dp"
             android:singleLine="true"
 
@@ -110,6 +114,8 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/login_color_red"
         android:text="Login"
+        android:elevation="10dp"
+        android:stateListAnimator="@anim/button_state_list_animator"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="20dp" />
@@ -128,7 +134,6 @@
             android:layout_height="0.5dp"
             android:layout_marginLeft="30dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
             android:background="@color/background_floating_material_dark"
             />
 
@@ -138,8 +143,8 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:gravity="center"
-
             android:layout_marginLeft="5dp"
+            android:layout_marginBottom="2dp"
             android:textColor="@color/background_floating_material_dark"
             android:layout_marginRight="5dp"
             android:textSize="20dp"
@@ -151,7 +156,6 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
             android:layout_marginRight="30dp"
             android:background="@color/background_floating_material_dark"></View>
     </LinearLayout>
@@ -168,6 +172,8 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/color_gray"
         android:text="Aktivasi Akun"
+        android:elevation="10dp"
+        android:stateListAnimator="@anim/button_state_list_animator"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:textSize="20dp" />
@@ -179,7 +185,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Hubungi Kami"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="#5b5b5b"
         android:textSize="20dp" />
 
 

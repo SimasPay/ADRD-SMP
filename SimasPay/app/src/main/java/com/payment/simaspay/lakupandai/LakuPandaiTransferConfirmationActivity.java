@@ -1,5 +1,6 @@
 package com.payment.simaspay.lakupandai;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,11 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +28,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -53,46 +57,35 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
 
     String otpValue = "", sctl;
 
+    void Cancel(){
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            handlerforTimer.removeCallbacks(runnableforExit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent1 = getIntent();
+        setResult(10, intent1);
+        finish();
+    }
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String body = intent.getExtras().getString("message");
-                if (body.contains("Kode Simobi Anda")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Kode Simobi Anda ")
-                                            + new String(
-                                            "Kode Simobi Anda ")
-                                            .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
-                } else if (body.contains("Your Simobi Code is ")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Your Simobi Code is ")
-                                            + new String(
-                                            "Your Simobi Code is ")
-                                            .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
+                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                    Cancel();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                    otpValue = intent.getExtras().getString("otpValue");
+                    new InterBankLakuPandaiAsynTask().execute();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",LakuPandaiTransferConfirmationActivity.this);
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),LakuPandaiTransferConfirmationActivity.this);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -137,7 +130,21 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
+        registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                handlerforTimer.removeCallbacks(runnableforExit);
+                TimerCount timerCount=new TimerCount(LakuPandaiTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                timerCount.SMSAlert("");
+            } else {
+
+            }
+        }
     }
 
     @Override
@@ -230,14 +237,23 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
                     if (Timervalueout) {
                         Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
                     } else {
-                        if (otpValue.equals("")) {
-                            progressDialog.show();
-                        } else {
-                            if (dialogCustomWish.isShowing()) {
-                                new InterBankLakuPandaiAsynTask().execute();
+                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) {
+
+                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                        109);
                             } else {
-                                dialogCustomWish.show();
+                                handlerforTimer.removeCallbacks(runnableforExit);
+                                TimerCount timerCount=new TimerCount(LakuPandaiTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                                timerCount.SMSAlert("");
                             }
+                        } else {
+                            handlerforTimer.removeCallbacks(runnableforExit);
+                            TimerCount timerCount=new TimerCount(LakuPandaiTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                            timerCount.SMSAlert("");
                         }
                     }
                 } else {
@@ -308,7 +324,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
     Context context;
     Dialog dialogCustomWish;
 
-    public void SMSAlert(final String string) {
+   /* public void SMSAlert(final String string) {
 
         dialogCustomWish = new Dialog(context);
         dialogCustomWish.setCancelable(false);
@@ -359,7 +375,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
         dialogCustomWish.show();
 
 
-    }
+    }*/
 
     Handler handler12 = new Handler();
     Runnable runnable12 = new Runnable() {
@@ -379,14 +395,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-            try {
-                OTP = CryptoService.encryptWithPublicKey(module, exponent,
-                        otpValue.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
@@ -402,6 +411,14 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                String module = sharedPreferences.getString("MODULE", "NONE");
+                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+                try {
+                    OTP = CryptoService.encryptWithPublicKey(module, exponent,
+                            otpValue.getBytes());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, OTP);
             } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
@@ -465,7 +482,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
                     }
                     Intent intent = new Intent(LakuPandaiTransferConfirmationActivity.this, SessionTimeOutActivity.class);
                     startActivityForResult(intent, 40);
-                } else if (msgCode == 293 || msgCode == 81) {
+                } else if (msgCode == 293 || msgCode == 81 || msgCode==305) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }

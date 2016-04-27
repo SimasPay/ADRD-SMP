@@ -96,10 +96,10 @@ public class LakupandaiTransferDetailsActivity extends Activity {
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Nomor Handphone Tujuan", LakupandaiTransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), LakupandaiTransferDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                    Utility.displayDialog("Nomor Handphone Agen harus lebih dari 10 angka", LakupandaiTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Nomor Handphone Agen harus kurang dari 14 angka", LakupandaiTransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Jumlah", LakupandaiTransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
@@ -200,11 +200,11 @@ public class LakupandaiTransferDetailsActivity extends Activity {
 
             if(sharedPreferences.getInt("userType",-1)==0){
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, "");
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME,Constants.SERVICE_BANK);
             }else if(sharedPreferences.getInt("userType",-1)==1){
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, "");
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME,Constants.SERVICE_WALLET);
             }else if(sharedPreferences.getInt("userType",-1)==2) {
                 if(sharedPreferences.getInt("AgentUsing",-1)==1){

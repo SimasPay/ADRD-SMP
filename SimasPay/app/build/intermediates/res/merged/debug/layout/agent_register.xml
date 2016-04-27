@@ -288,6 +288,7 @@
                             android:inputType="number"
                             android:padding="10dp"
                             android:singleLine="true"
+                            android:maxLength="16"
                             android:textSize="16dp"></EditText>
 
                         <LinearLayout
@@ -421,6 +422,7 @@
                             android:background="@drawable/edittext_background"
                             android:digits="1234567890"
                             android:hint=""
+                            android:maxLength="14"
                             android:inputType="number"
                             android:padding="10dp"
                             android:singleLine="true"
@@ -433,7 +435,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -904,15 +906,14 @@
                                 android:id="@+id/stage2_different_alamat_sesuai_ktp_edit"
                                 android:layout_width="match_parent"
                                 android:layout_height="96dp"
-
+                                android:imeOptions="actionDone"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittext_background"
                                 android:gravity="top|left"
-                                android:hint="Sesuai KTP"
+                                android:hint="Jl./Gg./Perum./Komp./Ged. beserta nomor"
                                 android:padding="10dp"
-                                android:text="Jl./Gg./Perum./Komp./Ged. beserta nomor"
                                 android:textColor="#ceced2"
                                 android:textSize="16dp"></EditText>
 
@@ -1068,10 +1069,10 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
                                 android:layout_marginTop="15dp"
-                                android:layout_marginBottom="10dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
@@ -1104,7 +1105,11 @@
                                             android:background="@drawable/white_color"
                                             android:gravity="left|center"
                                             android:hint=""
+                                            android:imeOptions="actionNext"
+                                            android:inputType="number"
+                                            android:digits="1234567890"
                                             android:paddingLeft="10dp"
+                                            android:singleLine="true"
                                             android:textSize="16dp" />
                                     </LinearLayout>
 
@@ -1129,10 +1134,14 @@
                                             android:layout_gravity="left|center"
                                             android:layout_marginRight="5dp"
                                             android:layout_marginTop="5dp"
+                                            android:inputType="number"
+                                            android:digits="1234567890"
+                                            android:imeOptions="actionNext"
                                             android:background="@drawable/white_color"
                                             android:gravity="left|center"
                                             android:hint=""
                                             android:paddingLeft="10dp"
+                                            android:singleLine="true"
                                             android:textSize="16dp" />
                                     </LinearLayout>
                                 </LinearLayout>
@@ -1159,10 +1168,14 @@
                                         android:layout_gravity="left|center"
                                         android:layout_marginRight="5dp"
                                         android:layout_marginTop="5dp"
+                                        android:imeOptions="actionDone"
                                         android:background="@drawable/white_color"
                                         android:gravity="left|center"
                                         android:hint=""
+                                        android:inputType="number"
+                                        android:digits="1234567890"
                                         android:paddingLeft="10dp"
+                                        android:singleLine="true"
                                         android:textSize="16dp" />
                                 </LinearLayout>
 
@@ -1177,7 +1190,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
 
 
                         <LinearLayout
@@ -1277,10 +1290,11 @@
                                 android:drawableRight="@drawable/down_arrow_reg"
                                 android:gravity="left|center"
                                 android:hint="Lainnya"
-                                android:textColorHint="#000000"
                                 android:paddingLeft="10dp"
+                                android:textAllCaps="false"
                                 android:paddingRight="10dp"
                                 android:textColor="@android:color/black"
+                                android:textColorHint="#000000"
                                 android:textSize="16dp" />
 
                             <EditText
@@ -1294,6 +1308,10 @@
                                 android:gravity="left|center"
                                 android:hint="Sebutkan"
                                 android:paddingLeft="10dp"
+                                android:singleLine="true"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:textColor="@android:color/black"
                                 android:textColorHint="#DDDBD7"
                                 android:textSize="16dp" />
@@ -1326,6 +1344,9 @@
                                 android:background="@drawable/white_color"
                                 android:gravity="left|center"
                                 android:hint="Rp"
+                                android:inputType="number"
+                                android:singleLine="true"
+                                android:digits="1234567890 "
                                 android:paddingLeft="10dp"
                                 android:textColor="@android:color/black"
                                 android:textSize="16dp" />
@@ -1358,6 +1379,8 @@
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/white_color"
                                 android:gravity="left|center"
+                                android:singleLine="true"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:paddingLeft="10dp"
                                 android:textColor="@android:color/black"
                                 android:textSize="16dp" />
@@ -1392,6 +1415,8 @@
                                 android:background="@drawable/white_color"
                                 android:gravity="left|center"
                                 android:paddingLeft="10dp"
+                                android:singleLine="true"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:textColor="@android:color/black"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1404,8 +1429,8 @@
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:gravity="left|center"
-                            android:visibility="gone"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/stage3_textview7"
@@ -1426,6 +1451,8 @@
                                 android:background="@drawable/white_color"
                                 android:gravity="left|center"
                                 android:paddingLeft="10dp"
+                                android:singleLine="true"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:textColor="@android:color/black"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1459,6 +1486,8 @@
                                 android:background="@drawable/white_color"
                                 android:gravity="left|center"
                                 android:paddingLeft="10dp"
+                                android:singleLine="true"
+                                android:inputType="textEmailAddress"
                                 android:textColor="@android:color/black"
                                 android:textSize="16dp" />
                         </LinearLayout>
@@ -1508,20 +1537,23 @@
                                         android:layout_height="match_parent">
 
                                         <ImageView
+                                            android:id="@+id/document_image_1"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:padding="2dp"
                                             android:scaleType="fitXY"
-                                            android:src="@drawable/app_icon" />
+                                            android:src="@drawable/app_icon"
+                                            android:visibility="gone" />
 
 
                                         <LinearLayout
+                                            android:id="@+id/document_1_linearlayout"
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:layout_gravity="center"
                                             android:gravity="center"
                                             android:orientation="vertical"
-                                            android:visibility="gone">
+                                            android:visibility="visible">
 
                                             <ImageView
                                                 android:layout_width="wrap_content"
@@ -1549,6 +1581,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/document_2"
                                     android:layout_width="match_parent"
                                     android:layout_height="90dp"
                                     android:layout_gravity="center"
@@ -1559,30 +1592,56 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/camera" />
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
 
-                                    <TextView
-                                        android:id="@+id/textview2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="Upload"
-                                        android:textColor="#8e8e93"
-                                        android:textSize="12dp" />
+                                        <ImageView
+                                            android:id="@+id/document_image_2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="2dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/app_icon"
+                                            android:visibility="gone" />
 
-                                    <TextView
-                                        android:id="@+id/textview3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Formulir*"
-                                        android:textColor="#8e8e93"
-                                        android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:id="@+id/document_2_linearlayout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:visibility="visible">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/camera" />
+
+                                            <TextView
+                                                android:id="@+id/textview2"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:text="Upload"
+                                                android:textColor="#8e8e93"
+                                                android:textSize="12dp" />
+
+                                            <TextView
+                                                android:id="@+id/textview3"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="Formulir*"
+                                                android:textColor="#8e8e93"
+                                                android:textSize="12dp" />
+                                        </LinearLayout>
+                                    </RelativeLayout>
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:id="@+id/document_3"
                                     android:layout_width="match_parent"
                                     android:layout_height="90dp"
                                     android:layout_gravity="center"
@@ -1592,27 +1651,52 @@
                                     android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:src="@drawable/plus" />
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent">
 
-                                    <TextView
-                                        android:id="@+id/textview4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="8dp"
-                                        android:text="Dokumen Lain"
-                                        android:textColor="#8e8e93"
-                                        android:textSize="12dp" />
+                                        <ImageView
+                                            android:id="@+id/document_image_3"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:padding="2dp"
+                                            android:scaleType="fitXY"
+                                            android:src="@drawable/app_icon"
+                                            android:visibility="gone" />
 
-                                    <TextView
-                                        android:id="@+id/textview5"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="(bila ada)"
-                                        android:textColor="#8e8e93"
-                                        android:textSize="12dp" />
+
+                                        <LinearLayout
+                                            android:id="@+id/document_3_linearlayout"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:orientation="vertical"
+                                            android:visibility="visible">
+
+                                            <ImageView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:src="@drawable/plus" />
+
+                                            <TextView
+                                                android:id="@+id/textview4"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="8dp"
+                                                android:text="Dokumen Lain"
+                                                android:textColor="#8e8e93"
+                                                android:textSize="12dp" />
+
+                                            <TextView
+                                                android:id="@+id/textview5"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="(bila ada)"
+                                                android:textColor="#8e8e93"
+                                                android:textSize="12dp" />
+                                        </LinearLayout>
+                                    </RelativeLayout>
                                 </LinearLayout>
                             </LinearLayout>
 

@@ -1,13 +1,16 @@
 package com.payment.simaspay.FlashizSDK;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,6 +21,7 @@ import com.dimo.PayByQR.UserAPIKeyListener;
 import com.dimo.PayByQR.model.InvoiceModel;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
@@ -66,19 +70,15 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             try {
                 String body = intent.getExtras().getString("message");
 
-                if (body.contains(getResources().getString(R.string.BahasaSmsData))
+                if (body.contains("Kode OTP Simaspay anda")
                         && body.contains(idnumber)) {
                     otpValue = body
                             .substring(
-                                    body.indexOf(getResources().getString(R.string.BahasaSmsData))
+                                    body.indexOf("Kode OTP Simaspay anda : ")
                                             + new String(
-                                            getResources().getString(R.string.BahasaSmsData))
+                                            "Kode OTP Simaspay anda : ")
                                             .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
                     otp = otpValue;
                     handler.removeCallbacks(runnable);
                     handler1.postDelayed(runnable1,1000);
@@ -93,11 +93,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                             + new String(
                                             getResources().getString(R.string.EnglishSmsData))
                                             .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
+
                     otp = otpValue;
                     handler.removeCallbacks(runnable);
                     handler1.postDelayed(runnable1,1000);
@@ -203,7 +200,22 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         invoiceID = invoiceModel1.invoiceID;
         invoiceModel = invoiceModel1;
-        new PaymentInquiryAsyn().execute(invoiceModel1);
+
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                        109);
+            } else {
+                new PaymentInquiryAsyn().execute(invoiceModel1);
+            }
+        } else {
+            new PaymentInquiryAsyn().execute(invoiceModel1);
+        }
+
     }
 
     @Override
@@ -313,6 +325,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
 
     String inqueryResponse, mfa, otp, parentTxnId, txnId;
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                new PaymentInquiryAsyn().execute(invoiceModel);
+            } else {
+
+            }
+        }
+    }
 
 
     class PaymentInquiryAsyn extends AsyncTask<Object, Void, Void> {

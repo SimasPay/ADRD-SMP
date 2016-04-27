@@ -121,10 +121,10 @@ public class CashOutDetailsActivity extends Activity {
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Nomor Handphone Agen", CashOutDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), CashOutDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                    Utility.displayDialog("Nomor Handphone Agen harus lebih dari 10 angka", CashOutDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), CashOutDetailsActivity.this);
+                    Utility.displayDialog("Nomor Handphone Agen harus kurang dari 14 angka", CashOutDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Jumlah", CashOutDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {

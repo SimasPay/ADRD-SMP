@@ -1,14 +1,22 @@
 package simaspay.payment.com.simaspay;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +26,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -51,13 +60,21 @@ public class SplashScreenActivity extends Activity {
         textView = (TextView) findViewById(R.id.text);
         textView.setTypeface(Utility.LightTextFormat(this));
 
-        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // fetch data
+            Log.e("--------","========================Connected");
+        } else {
+            // display error
+            Log.e("--------","====================== Not==Connected");
+        }
 
-        TelephonyManager tm = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        String device_id = tm.getDeviceId();
-        Log.e("=======","====="+device_id);
-        rsaEncryption = new RSAEncryption();
-        rsaEncryption.execute();
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        checkPermission();
+
+
 
     }
 
@@ -106,6 +123,13 @@ public class SplashScreenActivity extends Activity {
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SplashScreenActivity.this);
+
+            Log.e("--------","----------"+checkWriteExternalPermission());
+
+
+           /* JSONParser jsonParser=new JSONParser();
+
+            response=jsonParser.getDataFromUrl("http://54.255.194.95:8080/webapi/dynamic?txnName=GetPublicKey&service=Account&channelID=7&institutionID=&mspID=1&accountType=");*/
 
             response = webServiceHttp.getResponseSSLCertificatation();
 
@@ -174,6 +198,51 @@ public class SplashScreenActivity extends Activity {
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
             }
+        }
+    }
+
+    private boolean checkWriteExternalPermission()
+    {
+
+        String permission = "java.io.Writer";
+        int res = checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
+
+
+    private void checkPermission() {
+        if (ContextCompat.checkSelfPermission(SplashScreenActivity.this,
+                Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SplashScreenActivity.this,
+                    Manifest.permission.READ_PHONE_STATE)) {
+                rsaEncryption = new RSAEncryption();
+                rsaEncryption.execute();
+            } else {
+                ActivityCompat.requestPermissions(SplashScreenActivity.this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        109);
+            }
+        }else{
+            rsaEncryption = new RSAEncryption();
+            rsaEncryption.execute();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 109: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    rsaEncryption = new RSAEncryption();
+                    rsaEncryption.execute();
+                } else {
+                }
+                return;
+            }
+
         }
     }
 }

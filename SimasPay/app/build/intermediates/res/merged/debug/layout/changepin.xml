@@ -73,7 +73,8 @@
                 android:hint=""
                 android:textSize="16dp"
                 android:maxLength="6"
-                android:inputType="numberPassword"
+                android:password="true"
+                android:inputType="number"
                 android:padding="10dp"
                 android:singleLine="true"></EditText>
 
@@ -96,7 +97,8 @@
                 android:digits="1234567890"
                 android:hint=""
                 android:maxLength="6"
-                android:inputType="numberPassword"
+                android:password="true"
+                android:inputType="number"
                 android:textSize="16dp"
                 android:padding="10dp"
                 android:singleLine="true"></EditText>
@@ -120,7 +122,8 @@
                 android:digits="1234567890"
                 android:hint=""
                 android:maxLength="6"
-                android:inputType="numberPassword"
+                android:password="true"
+                android:inputType="number"
                 android:textSize="16dp"
                 android:padding="10dp"
                 android:singleLine="true"></EditText>

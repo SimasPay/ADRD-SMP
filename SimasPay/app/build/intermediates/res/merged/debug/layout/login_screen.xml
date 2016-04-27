@@ -104,7 +104,7 @@
 
         android:id="@+id/login"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_gravity="center"
@@ -138,7 +138,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:gravity="center"
-
+            android:layout_marginBottom="2dp"
             android:layout_marginLeft="5dp"
             android:textColor="@color/background_floating_material_dark"
             android:layout_marginRight="5dp"
@@ -160,7 +160,7 @@
 
         android:id="@+id/activation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="30dp"
@@ -178,7 +178,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Hubungi Kami"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="#5b5b5b"
         android:textSize="20dp" />
 
 

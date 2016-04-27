@@ -302,7 +302,7 @@ public class CloseAccountConfirmationActivity extends Activity {
             }
         }
     }
-
+    TextView textView1;
     public void SMSAlert(final String string) {
 
         dialogCustomWish = new Dialog(context);
@@ -323,6 +323,9 @@ public class CloseAccountConfirmationActivity extends Activity {
         button1.setTypeface(Utility.RegularTextFormat(context));
         textView.setTypeface(Utility.RegularTextFormat(context));
         textView_1.setTypeface(Utility.Robot_Regular(context));
+
+        textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
+        textView1.setVisibility(View.GONE);
 
         textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor "+getIntent().getExtras().getString("DestMDN")+" Masukkan kode tersebut atau akses link yang tersedia.");
 
@@ -380,12 +383,7 @@ public class CloseAccountConfirmationActivity extends Activity {
 
             String module = sharedPreferences.getString("MODULE", "NONE");
             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-            try {
-                encryptedmfaOTP = CryptoService.encryptWithPublicKey(module, exponent,
-                       otpValue.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+
             try {
                 encryptedOTP = CryptoService.encryptWithPublicKey(module, exponent,
                         otp.getBytes());
@@ -405,6 +403,12 @@ public class CloseAccountConfirmationActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_DEST_MDN, getIntent().getExtras().getString("DestMDN"));
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, getIntent().getExtras().getString("SctlID"));
             if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")){
+                try {
+                    encryptedmfaOTP = CryptoService.encryptWithPublicKey(module, exponent,
+                            otpValue.getBytes());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, encryptedmfaOTP);
             }else{
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");

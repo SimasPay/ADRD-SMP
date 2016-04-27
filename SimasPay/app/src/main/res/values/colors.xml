@@ -13,7 +13,9 @@
     <color name="def_bg_h_color">#CACBCB</color>
     <color name="dark_red">#5D0000</color>
     <color name="text_color">#B3FFFFFF</color>
+    <color name="ok_disablecolor">#727272</color>
     <color name="bg_color">#F44336</color>
     <color name="bg_color_h">#D32F2F</color>
+    <color name="timer_color">#727272</color>
     <color name="black">#000000</color>
 </resources>

@@ -1,11 +1,13 @@
 package com.payment.simaspay.agentdetails;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,13 +17,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,6 @@ import android.widget.Toast;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.payment.simaspay.PojoClasses.ArealData;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -93,14 +93,13 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     String ktpDocument, supportingDocument, subscriberFormDocument;
 
 
-
     int documnetSelection = 0;
 
     Intent intent;
 
     ImageView manual_selection_checkbox, manual_selection_checkbox2;
 
-    String Subrscriber_work_otherThanlainnya,subscriberwork, incomeAmount, openingAccount, sourceFund, emailId;
+    String Subrscriber_work_otherThanlainnya, subscriberwork, incomeAmount, openingAccount, sourceFund, emailId;
 
 
     TextView stage2_textView, stage2_textView1, stage2_textView2, stage2_textView3, stage2_textView4, stage2_textView5, stage2_textView6, stage2_textView7, stage2_textView8, stage2_textView9, stage2_textView10, stage2_textView11, stage2_textView12, stage2_textView13, stage2_textView14, stage2_textView15, stage2_textView16, stage2_textView17, stage2_textView18, stage2_textView19, stage2_textView20, stage2_textView21, stage2_textView22;
@@ -149,7 +148,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     Calendar calendar;
     DatePickerDialog datePickerDialog, datePickerDialog_1;
 
-    public String areasString, otherLocationsString,workString;
+    public String areasString, otherLocationsString, workString;
 
     public static final String DATEPICKER_TAG = "datepicker";
     public static final String TIMEPICKER_TAG = "timepicker";
@@ -161,7 +160,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
     ImageView document_image_1, document_image_2, document_image_3;
 
-    SharedPreferences sharedPreferences,transferData;
+    SharedPreferences sharedPreferences, transferData;
 
 
     public String ktp_bithPlace, ktp_Name, ktp_AddressCode, ktp_Provinsi, ktp_City, ktp_district, ktp_village, ktp_rt, ktp_rw, ktp_postalcode, diff_AddressCode, diff_Province, diff_City, diff_disctrict, diff_village, diff_Rt, diff_Rw, diff_PostalCode;
@@ -173,7 +172,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         calendar = Calendar.getInstance();
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        transferData=getSharedPreferences("transferData",MODE_PRIVATE);
+        transferData = getSharedPreferences("transferData", MODE_PRIVATE);
 
         datePickerDialog = DatePickerDialog.newInstance(AgentRegistrationActivity.this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), false);
         datePickerDialog_1 = DatePickerDialog.newInstance(AgentRegistrationActivity.this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), false);
@@ -282,10 +281,12 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             @Override
             public void onClick(View view) {
                 dob_or_limit = true;
-                datePickerDialog.setVibrate(false);
-                datePickerDialog.setYearRange(1930, calendar.get(Calendar.YEAR));
-                datePickerDialog.setCloseOnSingleTapDay(true);
-                datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                if (!datePickerDialog.isAdded()) {
+                    datePickerDialog.setVibrate(false);
+                    datePickerDialog.setYearRange(1930, calendar.get(Calendar.YEAR));
+                    datePickerDialog.setCloseOnSingleTapDay(true);
+                    datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                }
             }
         });
 
@@ -294,10 +295,12 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             @Override
             public void onClick(View view) {
                 dob_or_limit = false;
-                datePickerDialog_1.setVibrate(false);
-                datePickerDialog_1.setYearRange(calendar.get(Calendar.YEAR), 2050);
-                datePickerDialog_1.setCloseOnSingleTapDay(true);
-                datePickerDialog_1.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                if (!datePickerDialog_1.isAdded()) {
+                    datePickerDialog_1.setVibrate(false);
+                    datePickerDialog_1.setYearRange(calendar.get(Calendar.YEAR), 2050);
+                    datePickerDialog_1.setCloseOnSingleTapDay(true);
+                    datePickerDialog_1.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                }
             }
         });
         limited_period = true;
@@ -320,6 +323,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 limited_period = false;
                 stage1_date.setClickable(false);
                 stage1_date.setFocusable(false);
+//                stage1_date.setText("");
+                stage1_date.setText("DD-MM-YYYY");
                 manual_selection_checkbox.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 manual_selection_checkbox2.setImageDrawable(getResources().getDrawable(R.drawable.selected));
             }
@@ -591,7 +596,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage3_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    new UserWorkAsynTask().execute();
+                new UserWorkAsynTask().execute();
             }
         });
 
@@ -655,13 +660,27 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
-                                if (itemIndex == 0) {
+                                if (itemIndex == 1) {
                                     Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                     startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
-                                } else if (itemIndex == 1) {
-                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    startActivityForResult(intent, REQUEST_CAMERA);
+                                } else if (itemIndex == 0) {
+                                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                        if (checkCallingOrSelfPermission(android.Manifest.permission.CAMERA)
+                                                != PackageManager.PERMISSION_GRANTED) {
+
+                                            requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    109);
+                                        } else {
+                                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                            startActivityForResult(intent, REQUEST_CAMERA);
+                                        }
+                                    } else {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, REQUEST_CAMERA);
+                                    }
+
                                 }
                             } else if (groupIndex == 1) {
                                 if (itemIndex == 0) {
@@ -697,13 +716,27 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
-                                if (itemIndex == 0) {
+                                if (itemIndex == 1) {
                                     Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                     startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
-                                } else if (itemIndex == 1) {
-                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    startActivityForResult(intent, REQUEST_CAMERA);
+                                } else if (itemIndex == 0) {
+                                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                        if (checkCallingOrSelfPermission(android.Manifest.permission.CAMERA)
+                                                != PackageManager.PERMISSION_GRANTED) {
+
+                                            requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    109);
+                                        } else {
+                                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                            startActivityForResult(intent, REQUEST_CAMERA);
+                                        }
+                                    } else {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, REQUEST_CAMERA);
+                                    }
+
                                 }
                             } else if (groupIndex == 1) {
                                 if (itemIndex == 0) {
@@ -740,13 +773,27 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
-                                if (itemIndex == 0) {
+                                if (itemIndex == 1) {
                                     Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                     startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
-                                } else if (itemIndex == 1) {
-                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                    startActivityForResult(intent, REQUEST_CAMERA);
+                                } else if (itemIndex == 0) {
+                                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                                        if (checkCallingOrSelfPermission(android.Manifest.permission.CAMERA)
+                                                != PackageManager.PERMISSION_GRANTED) {
+
+                                            requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                    109);
+                                        } else {
+                                            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                            startActivityForResult(intent, REQUEST_CAMERA);
+                                        }
+                                    } else {
+                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        startActivityForResult(intent, REQUEST_CAMERA);
+                                    }
+
                                 }
                             } else if (groupIndex == 1) {
                                 if (itemIndex == 0) {
@@ -816,7 +863,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage1_tanggal.setBackgroundResource(R.drawable.edit_text_alert_background);
                         stage1_textView7.setVisibility(View.GONE);
                         stage1_Name.setBackgroundResource(R.drawable.edittext_background);
-                    } else if (stage1_number.getText().toString().replace(" ", "").length() < 6) {
+                    } /*else if (stage1_number.getText().toString().replace(" ", "").length() < 6) {
                         stage1_textView7.setVisibility(View.GONE);
                         stage1_Name.setBackgroundResource(R.drawable.edittext_background);
                         stage1_textView14.setVisibility(View.GONE);
@@ -824,7 +871,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage1_textView9.setVisibility(View.VISIBLE);
                         stage1_number.setBackgroundResource(R.drawable.edit_text_alert_background);
 
-                    } else if (stage1_number.getText().toString().replace(" ", "").length() > 14) {
+                    }*/ else if (stage1_number.getText().toString().replace(" ", "").length() != 16) {
                         stage1_textView7.setVisibility(View.GONE);
                         stage1_Name.setBackgroundResource(R.drawable.edittext_background);
                         stage1_textView14.setVisibility(View.GONE);
@@ -843,7 +890,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage1_date.setBackgroundResource(R.drawable.edit_text_alert_background);
 
 
-                    } else if (stage1_nomorHp.getText().toString().replace(" ", "").length() < 6) {
+                    } else if (stage1_nomorHp.getText().toString().replace(" ", "").length() < 10) {
                         stage1_textView7.setVisibility(View.GONE);
                         stage1_Name.setBackgroundResource(R.drawable.edittext_background);
                         stage1_textView14.setVisibility(View.GONE);
@@ -970,15 +1017,15 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     }
 
                 } else if (i == 2) {
-                    Subrscriber_work_otherThanlainnya=stage3_button1.getText().toString();
+                    Subrscriber_work_otherThanlainnya = stage3_button1.getText().toString();
                     subscriberwork = stage3_editText1.getText().toString();
                     incomeAmount = stage3_editText2.getText().toString().replace("Rp ", "");
                     openingAccount = stage3_editText3.getText().toString();
                     sourceFund = stage3_editText4.getText().toString();
                     emailId = stage3_editText6.getText().toString();
-                    if(Subrscriber_work_otherThanlainnya.length()<=0){
+                    if (Subrscriber_work_otherThanlainnya.length() <= 0) {
                         stage3_button1.setBackgroundResource(R.drawable.edit_text_alert_background);
-                    }else if((Subrscriber_work_otherThanlainnya.equalsIgnoreCase("Lainnya")&& subscriberwork.length()<=0)){
+                    } else if ((Subrscriber_work_otherThanlainnya.equalsIgnoreCase("Lainnya") && subscriberwork.length() <= 0)) {
                         stage3_button1.setBackgroundResource(R.drawable.edittext_background);
                         stage3_editText1.setBackgroundResource(R.drawable.edit_text_alert_background);
                         stage3_editText2.setBackgroundResource(R.drawable.edittext_background);
@@ -1003,7 +1050,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage3_editText2.setBackgroundResource(R.drawable.edittext_background);
                         stage3_editText3.setBackgroundResource(R.drawable.edittext_background);
                         stage3_editText4.setBackgroundResource(R.drawable.edit_text_alert_background);
-                    }*/ else if (!(emailId.length()<=0 || Utility.emailValidator(emailId))) {
+                    }*/ else if (!(emailId.length() <= 0 || Utility.emailValidator(emailId))) {
                         stage3_button1.setBackgroundResource(R.drawable.edittext_background);
                         stage3_editText1.setBackgroundResource(R.drawable.edittext_background);
                         stage3_editText2.setBackgroundResource(R.drawable.edittext_background);
@@ -1058,9 +1105,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         mapContainer.put(Constants.PARAMETER_INCOME, incomeAmount);
                         mapContainer.put(Constants.PARAMETER_OPENINGACCOUNT, openingAccount);
                         mapContainer.put(Constants.PARAMETER_EMAIL, emailId);
-                        if(Subrscriber_work_otherThanlainnya.equalsIgnoreCase("Lainnya")){
+                        if (Subrscriber_work_otherThanlainnya.equalsIgnoreCase("Lainnya")) {
                             mapContainer.put(Constants.PARAMETER_WORK, subscriberwork);
-                        }else {
+                        } else {
                             mapContainer.put(Constants.PARAMETER_WORK, Subrscriber_work_otherThanlainnya);
                         }
                         mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_SUBSCRIBERREGISTRATION);
@@ -1081,7 +1128,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             mapContainer.put(Constants.PARAMETER_KTPSTATE, ktp_district);
                             mapContainer.put(Constants.PARAMETER_KTPZIPCODE, ktp_postalcode);
                             mapContainer.put(Constants.PARAMETER_KTPCITY, ktp_City);
-                            mapContainer.put(Constants.PARAMETER_KTPSUBSTATE,ktp_village);
+                            mapContainer.put(Constants.PARAMETER_KTPSUBSTATE, ktp_village);
                             mapContainer.put(Constants.PARAMETER_KTPCOUNTRY, "");
 
                             mapContainer.put(Constants.PARAMETER_DIFF_STATE, diff_disctrict);
@@ -1090,7 +1137,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             mapContainer.put(Constants.PARAMETER_DIFF_COUNTRY, "");
                             mapContainer.put(Constants.PARAMETER_DIFF_RT, diff_Rt);
                             mapContainer.put(Constants.PARAMETER_DIFF_RW, diff_Rw);
-                            mapContainer.put(Constants.PARAMETER_DIFF_SUB_STATE,diff_village);
+                            mapContainer.put(Constants.PARAMETER_DIFF_SUB_STATE, diff_village);
                             mapContainer.put(Constants.PARAMETER_DIFF_LINE1, diff_AddressCode);
                             mapContainer.put(Constants.PARAMETER_DIFF_REGIONNAME, diff_Province);
 
@@ -1103,13 +1150,13 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         editor.putString("My_map", jsonString);
                         editor.commit();
                         if (ktpDocument == null) {
-                            editor.putString("ktpBitmap","");
+                            editor.putString("ktpBitmap", "");
                         } else {
-                            editor.putString("ktpBitmap",(ktpDocument));
+                            editor.putString("ktpBitmap", (ktpDocument));
 
                         }
                         if (subscriberFormDocument == null) {
-                            editor.putString("subscriberBitmap","");
+                            editor.putString("subscriberBitmap", "");
                         } else {
                             editor.putString("subscriberBitmap", (subscriberFormDocument));
                         }
@@ -1119,9 +1166,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             editor.putString("supportedBitmap", (supportingDocument));
                         }
                         editor.commit();
-                        intent.putExtra("KTPName",stage1_Name.getText().toString());
-                        intent.putExtra("birthplace",ktp_bithPlace);
-                        intent.putExtra("ktp_addressline",stage2_alamat_sesuai_ktp_edit.getText().toString());
+                        intent.putExtra("KTPName", stage1_Name.getText().toString());
+                        intent.putExtra("birthplace", ktp_bithPlace);
+                        intent.putExtra("ktp_addressline", stage2_alamat_sesuai_ktp_edit.getText().toString());
                         startActivityForResult(intent, 10);
                     }
 
@@ -1134,6 +1181,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     }
 
 
+    private int mYear;
+    private int mMonth;
+    private int mDay;
 
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
@@ -1147,17 +1197,27 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         if (month < 9) {
             showMonth = "0" + month;
         } else {
-            showDay = "" + month;
+            showMonth = "" + month;
         }
         if (dob_or_limit) {
             long milli = milliseconds(year + "-" + month + "-" + showDay);
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
             int ageValue = getAge(milli);
 //            if (ageValue < 18) {
 //                Toast.makeText(AgentRegistrationActivity.this, "Age should not be less than 18 years", Toast.LENGTH_LONG).show();
 //            } else {
-                stage1_tanggal.setText(showDay + "-" + showMonth + "-" + year);
 //            }
-
+            Log.e("=====" + mYear + "----" + mMonth + "=====" + mDay, "=====" + year + "=====" + month + "-----" + day);
+            if ((mYear > year)
+                    || (((mMonth + 1) > month) && (mYear == year))
+                    || ((mDay >= day) && (mYear == year) && ((mMonth + 1) == month))) {
+                stage1_tanggal.setText(showDay + "-" + showMonth + "-" + year);
+            } else {
+                Toast.makeText(AgentRegistrationActivity.this, "Silakan pilih tanggal yang valid", Toast.LENGTH_LONG).show();
+            }
 
         } else {
             stage1_date.setText(showDay + "-" + showMonth + "-" + year);
@@ -1286,7 +1346,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             if (otherLocationsString != null) {
                 Log.e("========", "======" + otherLocationsString);
 
-                if(otherLocationsString.startsWith("<?xml")){
+                if (otherLocationsString.startsWith("<?xml")) {
                     XMLParser obj = new XMLParser();
                     EncryptedResponseDataContainer responseContainer = null;
                     try {
@@ -1301,7 +1361,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         msgCode = 0;
                     }
                     Utility.networkDisplayDialog(responseContainer.getMsg(), AgentRegistrationActivity.this);
-                }else {
+                } else {
                     JSONObject jsonObject = null;
                     try {
                         jsonObject = new JSONObject(otherLocationsString);
@@ -1401,7 +1461,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     }
 
 
-    ArrayList<ArealData> arrayList=new ArrayList<ArealData>();
+    ArrayList<ArealData> arrayList = new ArrayList<ArealData>();
 
     class UserWorkAsynTask extends AsyncTask<Void, Void, Void> {
 
@@ -1425,7 +1485,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 //            JSONParser jParser = new JSONParser();
 //            workString =  jParser.getJsonData("https://dl.dropboxusercontent.com/u/93708740/b%20(1).json");
 
-            Log.e("=====","====="+workString);
+            Log.e("=====", "=====" + workString);
             return null;
         }
 
@@ -1436,7 +1496,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 if (workString.startsWith("<")) {
 
                 } else {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     JSONObject jsonObject = null;
@@ -1472,8 +1532,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         }
 
 
-
-                    }else{
+                    } else {
                         Utility.networkDisplayDialog(sharedPreferences.getString(
                                 "ErrorMessage",
                                 getResources().getString(
@@ -1486,7 +1545,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if(!progressDialog.isShowing()){
+            if (!progressDialog.isShowing()) {
                 progressDialog.show();
             }
         }
@@ -1525,8 +1584,6 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         });
 
 
-
-
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1543,11 +1600,11 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
                 if (selected_region != -1) {
                     stage3_button1.setText(arrayList.get(selected_region).getWork());
-                    if(arrayList.get(selected_region).getWork().equals("Lainnya")){
+                    if (arrayList.get(selected_region).getWork().equals("Lainnya")) {
                         stage3_editText1.setFocusableInTouchMode(true);
                         stage3_editText1.setClickable(true);
                         stage3_editText1.setFocusable(true);
-                    }else{
+                    } else {
                         stage3_editText1.setText("");
                         stage3_editText1.setClickable(false);
                         stage3_editText1.setFocusable(false);
@@ -1605,7 +1662,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     ProgressDialog progressDialog;
     int msgCode;
 
-    Bitmap ktpBitmap,subscriberBitmap,supportedBitmap;
+    Bitmap ktpBitmap, subscriberBitmap, supportedBitmap;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1618,7 +1675,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             if (pubDialogFragment != null) {
                 pubDialogFragment.dismiss();
             }
-            if(data!=null) {
+            if (data != null) {
 
                 Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -1630,14 +1687,14 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     imgDecodableString = cursor.getString(columnIndex);
                     cursor.close();
 
-                    File imgFile = new  File(imgDecodableString);
-                    if((imgFile.length()/1024)<80) {
+                    File imgFile = new File(imgDecodableString);
+                    if ((imgFile.length() / 1024) < 80) {
                         document_image_1.setVisibility(View.VISIBLE);
                         findViewById(R.id.document_1_linearlayout).setVisibility(View.GONE);
                         document_image_1.setImageBitmap(BitmapFactory
                                 .decodeFile(imgDecodableString));
                         ktpDocument = imgDecodableString;
-                    }else{
+                    } else {
                         document_image_1.setVisibility(View.GONE);
                         findViewById(R.id.document_1_linearlayout).setVisibility(View.VISIBLE);
                         Toast.makeText(AgentRegistrationActivity.this, "Iamge Size Should be  lessthan 80 KB", Toast.LENGTH_SHORT).show();
@@ -1647,15 +1704,15 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     imgDecodableString = cursor.getString(columnIndex);
                     cursor.close();
 
-                    File imgFile = new  File(imgDecodableString);
-                    Log.e("=====", "=====" + imgFile.length()/1024);
-                    if((imgFile.length()/1024)<80) {
+                    File imgFile = new File(imgDecodableString);
+                    Log.e("=====", "=====" + imgFile.length() / 1024);
+                    if ((imgFile.length() / 1024) < 80) {
                         document_image_2.setVisibility(View.VISIBLE);
                         findViewById(R.id.document_2_linearlayout).setVisibility(View.GONE);
                         document_image_2.setImageBitmap(BitmapFactory
                                 .decodeFile(imgDecodableString));
                         subscriberFormDocument = imgDecodableString;
-                    }else{
+                    } else {
                         document_image_2.setVisibility(View.GONE);
                         findViewById(R.id.document_2_linearlayout).setVisibility(View.VISIBLE);
                         Toast.makeText(AgentRegistrationActivity.this, "Iamge Size Should be  lessthan 80 KB", Toast.LENGTH_SHORT).show();
@@ -1666,19 +1723,19 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     imgDecodableString = cursor.getString(columnIndex);
                     cursor.close();
 
-                    File imgFile = new  File(imgDecodableString);
-                    Log.e("=====", "=====" + imgFile.length()/1024);
-                    if((imgFile.length()/1024)<80) {
+                    File imgFile = new File(imgDecodableString);
+                    Log.e("=====", "=====" + imgFile.length() / 1024);
+                    if ((imgFile.length() / 1024) < 80) {
                         document_image_3.setVisibility(View.VISIBLE);
                         findViewById(R.id.document_3_linearlayout).setVisibility(View.GONE);
                         document_image_3.setImageBitmap(BitmapFactory
                                 .decodeFile(imgDecodableString));
                         supportingDocument = imgDecodableString;
                         Log.e("=====", "=====" + supportingDocument);
-                    }else{
+                    } else {
                         document_image_3.setVisibility(View.GONE);
                         findViewById(R.id.document_3_linearlayout).setVisibility(View.VISIBLE);
-                        supportingDocument="";
+                        supportingDocument = "";
                         Toast.makeText(AgentRegistrationActivity.this, "Iamge Size Should be  lessthan 80 KB", Toast.LENGTH_SHORT).show();
                     }
 
@@ -1688,7 +1745,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             if (pubDialogFragment != null) {
                 pubDialogFragment.dismiss();
             }
-            if(data!=null) {
+
+            if (data != null && data.getExtras() != null) {
                 if (documnetSelection == 1) {
                     Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
                     ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -1759,6 +1817,22 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         }
     }
+
+    public Uri getPhotoFileUri(String fileName) {
+        if (isExternalStorageAvailable()) {
+            File mediaStorageDir = new File(
+                    getExternalFilesDir(Environment.DIRECTORY_PICTURES), "SimasPay");
+            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+                Log.d("SimasPay", "failed to create directory");
+            }
+            return Uri.fromFile(new File(mediaStorageDir.getPath() + File.separator + fileName));
+        }
+        return null;
+    }
+    private boolean isExternalStorageAvailable() {
+        String state = Environment.getExternalStorageState();
+        return state.equals(Environment.MEDIA_MOUNTED);
+    }
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
@@ -1772,6 +1846,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
     }
+
     String Name, destNumber, ktpID, dateofbirth = "", uptoValid = "";
 
     class AgentRegistrationAsynTask_1 extends AsyncTask<Void, Void, Void> {
@@ -1874,7 +1949,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
                     stage2_kode_pos_1.setClickable(false);
                     stage2_kode_pos_1.setFocusable(false);
-                    ktp_bithPlace=responseContainer.getBirthPlace();
+                    ktp_bithPlace = responseContainer.getBirthPlace();
                     stage2_tempat_edit.setText(ktp_bithPlace);
                     stage2_tempat_edit.setClickable(false);
                     stage2_tempat_edit.setFocusable(false);
@@ -2058,7 +2133,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         textView.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
 
         if (value == 1) {
-            textView.setText("Provinsi");
+            textView.setText("Kota/Kabupaten");
             regionsAdapter = new RegionsAdapter();
             listView.setAdapter(regionsAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -2071,7 +2146,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 }
             });
         } else if (value == 2) {
-            textView.setText("Kota/Kabupaten");
+            textView.setText("Kecamatan");
             districtsAdapter = new DistrictsAdapter();
             listView.setAdapter(districtsAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -2083,7 +2158,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 }
             });
         } else if (value == 3) {
-            textView.setText("Kecamatan");
+            textView.setText("Desa/Kelurahan");
             villagesAdapter = new VillagesAdapter();
             listView.setAdapter(villagesAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -2094,7 +2169,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 }
             });
         } else {
-            textView.setText("Desa/Kelurahan");
+            textView.setText("Provinsi");
             locationsAdapter = new LocationsAdapter();
             listView.setAdapter(locationsAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -2146,8 +2221,6 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
 
     }
-
-
 
 
     LocationsAdapter locationsAdapter;
@@ -2331,6 +2404,19 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         }
 
         return 0;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, REQUEST_CAMERA);
+            } else {
+
+            }
+        }
     }
 
     /*public static String encodeTobase64(Bitmap image) {

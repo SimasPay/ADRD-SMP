@@ -50,7 +50,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class ContactUs_Activity extends Activity {
 
-    TextView mobile_number_1, mobile_number_2, e_mail, website, textView, textView1, textView2, title1, title2, heading;
+    TextView mobile_number_1, mobile_number_2, e_mail, website, textView, textView1, textView2,heading;
 
     ImageView mobile_1, mobile_2;
     Dialog dialogCustomWish;
@@ -83,8 +83,7 @@ public class ContactUs_Activity extends Activity {
         textView = (TextView) findViewById(R.id.textview);
         textView1 = (TextView) findViewById(R.id.textview2);
         textView2 = (TextView) findViewById(R.id.textview3);
-        title1 = (TextView) findViewById(R.id.call_text_1);
-        title2 = (TextView) findViewById(R.id.call_text_2);
+
         heading = (TextView) findViewById(R.id.titled);
 
         mobile_1 = (ImageView) findViewById(R.id.image_1);
@@ -105,8 +104,6 @@ public class ContactUs_Activity extends Activity {
         textView.setTypeface(Utility.Robot_Regular(ContactUs_Activity.this));
         textView1.setTypeface(Utility.Robot_Regular(ContactUs_Activity.this));
         textView2.setTypeface(Utility.Robot_Regular(ContactUs_Activity.this));
-        title1.setTypeface(Utility.BoldTextFormat(ContactUs_Activity.this));
-        title2.setTypeface(Utility.BoldTextFormat(ContactUs_Activity.this));
         heading.setTypeface(Utility.Robot_Regular(ContactUs_Activity.this));
 
         new ContactUsAsyntask().execute();

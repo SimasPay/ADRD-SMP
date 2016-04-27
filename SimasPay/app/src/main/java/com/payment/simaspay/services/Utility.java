@@ -13,11 +13,13 @@ import android.content.res.Resources.NotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -683,6 +685,7 @@ public class Utility {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.resend_otp_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
         TextView TextView1 = (TextView) dialog.findViewById(R.id.number_1);
         TextView1.setText(msg);
@@ -763,6 +766,7 @@ public class Utility {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.resend_otp_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
         TextView TextView1 = (TextView) dialog.findViewById(R.id.number_1);
         TextView1.setText(msg);
@@ -780,6 +784,39 @@ public class Utility {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+        dialog.show();
+
+    }
+
+    public static void TransactionsdisplayDialog(String msg, Context ctx) {
+        context=ctx;
+
+        final Dialog dialog = new Dialog(ctx);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.resend_otp_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        TextView TextView1 = (TextView) dialog.findViewById(R.id.number_1);
+        TextView1.setText(msg);
+
+        TextView textView=(TextView)dialog.findViewById(R.id.number);
+
+        textView.setTypeface(Utility.Robot_Regular(ctx));
+        TextView1.setTypeface(Utility.Robot_Light(ctx));
+
+        textView.setText(ctx.getResources().getString(R.string.dailog_heading));
+
+
+        Button okay = (Button) dialog.findViewById(R.id.OK);
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent intent1 =  ((Activity) context).getIntent();
+                ((Activity) context).setResult(10, intent1);
+                ((Activity) context).finish();
             }
         });
         dialog.show();

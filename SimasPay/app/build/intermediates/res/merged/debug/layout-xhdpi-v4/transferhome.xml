@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:src="@mipmap/logo_simaspay" />
 
             <TextView
@@ -66,7 +66,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -212,7 +212,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:background="@android:color/white"
         android:orientation="horizontal">
 
@@ -261,12 +261,12 @@
                 android:id="@+id/gantiAkun_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="13dp"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:src="@drawable/user" />
@@ -289,8 +289,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:src="@drawable/white_logout" />
@@ -302,7 +302,7 @@
                     android:layout_gravity="center"
                     android:text="Log Out"
                     android:textColor="#5F060A"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

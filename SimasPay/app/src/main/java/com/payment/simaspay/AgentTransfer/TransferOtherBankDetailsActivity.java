@@ -98,9 +98,9 @@ public class TransferOtherBankDetailsActivity extends Activity {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Nomor Rekening Tujuan", TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("Nomor Rekening Tujuan harus lebih dari 10 angka", TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("Nomor Rekening Tujuan Lebih Dari 14 Angka", TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Jumlah", TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
@@ -115,7 +115,8 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+//                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new transferOtherBankAsynTask().execute();
 
@@ -279,7 +280,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     intent.putExtra("ParentId", responseContainer.getEncryptedParentTxnId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", responseContainer.getCustName());
-                    intent.putExtra("BankName", getIntent().getExtras().getString("BankName"));
+                    intent.putExtra("BankName", responseContainer.getDestBank());
                     intent.putExtra("BankCode", getIntent().getExtras().getString("BankCode"));
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     startActivityForResult(intent, 10);

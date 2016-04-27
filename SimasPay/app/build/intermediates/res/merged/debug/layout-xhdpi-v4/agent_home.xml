@@ -262,6 +262,9 @@
                 android:layout_gravity="left"
                 android:gravity="left"
                 android:text="Bayu Santoso"
+                android:maxLength="15"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textColor="@android:color/white"
                 android:textSize="17dp" />
 

@@ -288,6 +288,7 @@
                             android:inputType="number"
                             android:padding="10dp"
                             android:singleLine="true"
+                            android:maxLength="16"
                             android:textSize="16dp"></EditText>
 
                         <LinearLayout
@@ -421,6 +422,7 @@
                             android:background="@drawable/edittext_background"
                             android:digits="1234567890"
                             android:hint=""
+                            android:maxLength="14"
                             android:inputType="number"
                             android:padding="10dp"
                             android:singleLine="true"

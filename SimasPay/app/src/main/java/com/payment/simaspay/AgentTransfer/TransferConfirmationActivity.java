@@ -1,5 +1,6 @@
 package com.payment.simaspay.AgentTransfer;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,11 +9,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +27,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,49 +63,52 @@ public class TransferConfirmationActivity extends Activity {
 
     String otpValue = "", sctl;
 
+    public void displayDialog(String msg, Context ctx) {
+
+
+        final Dialog dialog = new Dialog(TransferConfirmationActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.resend_otp_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        TextView TextView1 = (TextView) dialog.findViewById(R.id.number_1);
+        TextView1.setText(msg);
+
+        TextView textView=(TextView)dialog.findViewById(R.id.number);
+
+        textView.setTypeface(Utility.Robot_Regular(ctx));
+        TextView1.setTypeface(Utility.Robot_Light(ctx));
+
+        textView.setText(ctx.getResources().getString(R.string.dailog_heading));
+
+
+        Button okay = (Button) dialog.findViewById(R.id.OK);
+        okay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Cancel();
+            }
+        });
+        dialog.show();
+
+    }
+
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String body = intent.getExtras().getString("message");
-                if (body.contains("Kode Simobi Anda")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Kode Simobi Anda ")
-                                            + new String(
-                                            "Kode Simobi Anda ")
-                                            .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
-
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
-                } else if (body.contains("Your Simobi Code is ")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Your Simobi Code is ")
-                                            + new String(
-                                            "Your Simobi Code is ")
-                                            .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
-
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
+                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                    Cancel();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                    otpValue = intent.getExtras().getString("otpValue");
+                    new InterBankBankSinarmasAsynTask().execute();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",TransferConfirmationActivity.this);
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),TransferConfirmationActivity.this);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -104,6 +116,22 @@ public class TransferConfirmationActivity extends Activity {
     };
 
 
+
+    void Cancel(){
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            handlerforTimer.removeCallbacks(runnableforExit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent1 = getIntent();
+        setResult(10, intent1);
+        finish();
+    }
     Handler handlerforTimer = new Handler();
 
     @Override
@@ -140,7 +168,7 @@ public class TransferConfirmationActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
+        registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
     }
 
 
@@ -227,22 +255,26 @@ public class TransferConfirmationActivity extends Activity {
         confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                nextpressedornot = true;
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    nextpressedornot = true;
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
-                    } else {
-                        if (otpValue.equals("")) {
-                            progressDialog.show();
-                        } else {
 
-                            if (dialogCustomWish.isShowing()) {
-                                new InterBankBankSinarmasAsynTask().execute();
-                            } else {
-                                dialogCustomWish.show();
-                            }
+                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
+
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                    109);
+                        } else {
+                            handlerforTimer.removeCallbacks(runnableforExit);
+                            TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                            timerCount.SMSAlert("");
                         }
+                    } else {
+                        handlerforTimer.removeCallbacks(runnableforExit);
+                        TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                        timerCount.SMSAlert("");
                     }
                 } else {
                     if (Timervalueout) {
@@ -337,6 +369,7 @@ public class TransferConfirmationActivity extends Activity {
         button1.setTypeface(Utility.RegularTextFormat(context));
         textView.setTypeface(Utility.RegularTextFormat(context));
 
+
         textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + sharedPreferences.getString("mobileNumber", "") + ". Masukkan kode tersebut atau akses link yang tersedia.");
 
 
@@ -388,14 +421,6 @@ public class TransferConfirmationActivity extends Activity {
         protected Void doInBackground(Void... params) {
 
 
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-            try {
-                OTP = CryptoService.encryptWithPublicKey(module, exponent,
-                        otpValue.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
@@ -432,10 +457,19 @@ public class TransferConfirmationActivity extends Activity {
                 }
             }
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                String module = sharedPreferences.getString("MODULE", "NONE");
+                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+                try {
+                    OTP = CryptoService.encryptWithPublicKey(module, exponent,
+                            otpValue.getBytes());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, OTP);
             } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
+            Log.e("=======","--------"+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, TransferConfirmationActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -523,6 +557,19 @@ public class TransferConfirmationActivity extends Activity {
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), TransferConfirmationActivity.this);
+            }
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                handlerforTimer.removeCallbacks(runnableforExit);
+                TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                timerCount.SMSAlert("");
+            } else {
+
             }
         }
     }

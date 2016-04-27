@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -54,54 +55,38 @@ public class CashInConfirmationActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String body = intent.getExtras().getString("message");
-                if (body.contains("Kode Simobi Anda")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Kode Simobi Anda ")
-                                            + new String(
-                                            "Kode Simobi Anda ")
-                                            .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
-                    handler.removeCallbacks(runnable);
-                    if(nextpressedornot){
-                        new CashInAsynTask().execute();
-                        handlerforTimer.removeCallbacks(runnableforExit);
-                    }
-
-                   
-
-                } else if (body.contains("Your Simobi Code is ")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-                    otpValue = body
-                            .substring(
-                                    body.indexOf("Your Simobi Code is ")
-                                            + new String(
-                                            "Your Simobi Code is ")
-                                            .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
-                    handler.removeCallbacks(runnable);
-                    if(nextpressedornot){
-                        new CashInAsynTask().execute();
-                        handlerforTimer.removeCallbacks(runnableforExit);
-                    }
-
+                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                    Cancel();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                    otpValue = intent.getExtras().getString("otpValue");
+                    new CashInAsynTask().execute();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",CashInConfirmationActivity.this);
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),CashInConfirmationActivity.this);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     };
+
+    void Cancel(){
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            handlerforTimer.removeCallbacks(runnableforExit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent1 = getIntent();
+        setResult(10, intent1);
+        finish();
+    }
 
     Runnable runnable = new Runnable() {
 
@@ -148,7 +133,7 @@ public class CashInConfirmationActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
+        registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
     }
 
     @Override
@@ -226,12 +211,9 @@ public class CashInConfirmationActivity extends Activity {
                     if (Timervalueout) {
                         Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), CashInConfirmationActivity.this);
                     } else {
-                        if (otpValue.equals("")) {
-                            progressDialog.show();
-                        } else {
-                            handlerforTimer.removeCallbacks(runnableforExit);
-                            new CashInAsynTask().execute();
-                        }
+                        handlerforTimer.removeCallbacks(runnableforExit);
+                        TimerCount timerCount=new TimerCount(CashInConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                        timerCount.SMSAlert("");
                     }
                 }else{
                     if (Timervalueout) {

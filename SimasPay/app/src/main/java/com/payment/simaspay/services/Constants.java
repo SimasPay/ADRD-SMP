@@ -651,6 +651,7 @@ public class Constants {
     public static final String RESET_PINBY_EMAIL_INQUIRY = "ResetPinByEmailInquiry";
     public static final String GETSECRET_PIN_AND_SECURITY_QUESTION_ANSWER = "ResetPinAndSQA";
     public static final String VIEW_PROFILE = "ViewProfile";
+    public static final String TRANSACTION_RESENDMFAOTP="ResendMFAOTP";
 
     public static final String TRANSACTION_BUY_VIPMEMBERSHIP = "EnableMemberShipInquiry";
     public static final String TRANSACTION_BUY_VIPMEMBERSHIPCONFIRMATION = "EnableMemberShip";
@@ -729,6 +730,7 @@ public class Constants {
     public static final String PARAMETER_DOMESTIC_IDENTITY = "domesticIdentity";
     public static final String PARAMETER_DEST_MDN = "destMDN";
     public static final String PARAMETER_AMOUNT = "amount";
+    public static final String PARAMETER_SCTLID="sctlId";
     public static final String PARAMETER_SECRET_ANSWER = "secretAnswer";
     public static final String PARAMETER_CONTACT_NO = "contactNumber";
     public static final String PARAMETER_EMAIL = "email";

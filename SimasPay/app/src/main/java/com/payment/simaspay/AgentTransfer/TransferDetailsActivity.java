@@ -88,10 +88,10 @@ public class TransferDetailsActivity extends Activity {
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Nomor Handphone Agen", TransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), TransferDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                    Utility.displayDialog("Nomor Handphone Agen harus lebih dari 10 angka", TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), TransferDetailsActivity.this);
+                    Utility.displayDialog("Nomor Handphone Agen Lebih Dari 14 Angka", TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Jumlah", TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {

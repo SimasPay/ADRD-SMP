@@ -1,34 +1,34 @@
 [
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\logo_simaspay.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\logo_simaspay.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\vpn.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\vpn.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\logo_sinarmas_bank.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\logo_sinarmas_bank.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\call.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\call.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\call_copy.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\call_copy.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\logo_sinarmas_bank.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\logo_sinarmas_bank.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\mail.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\mail.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\app_icon.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\app_icon.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\app_icon.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\app_icon.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\mail.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\mail.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\vpn.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\vpn.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\logo_simaspay.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\logo_simaspay.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\call.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\call.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\call_copy.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\mipmap-hdpi\\call_copy.png"
     }
 ]

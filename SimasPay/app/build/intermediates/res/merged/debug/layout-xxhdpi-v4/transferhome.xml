@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/logo_simaspay"/>
 
             <TextView
@@ -258,8 +258,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:src="@drawable/user" />
@@ -271,7 +271,7 @@
                     android:layout_gravity="center"
                     android:text="Ganti Akun"
                     android:textColor="#5F060A"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -282,8 +282,8 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:src="@drawable/white_logout" />
@@ -295,7 +295,7 @@
                     android:layout_gravity="center"
                     android:text="Log Out"
                     android:textColor="#5F060A"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout></LinearLayout>
     </LinearLayout>
 </LinearLayout>

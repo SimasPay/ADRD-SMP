@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:ns1="http://schemas.android.com/apk/res/android">
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
+    <string-array name="city_entries">
+        <item>PILIH KOTA</item>
+        <item>JAKARTA</item>
+        <item>BEKASI</item>
+        <item>BOGOR</item>
+        <item>DEPOK</item>
+        <item>BANDUNG</item>
+        <item>KARAWANG</item>
+        <item>SUKABUMI</item>
+        <item>TANGERANG</item>
+    </string-array>
+    <string-array name="pickup_method_entries">
+        <item>ALAMAT</item>
+        <item>TOKO</item>
+    </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
+    <attr format="string" name="font"/>
     <attr format="dimension" name="height"/>
     <attr format="boolean" name="isLightTheme"/>
     <attr format="string" name="title"/>
     <bool name="abc_action_bar_embed_tabs">true</bool>
     <bool name="abc_action_bar_embed_tabs_pre_jb">false</bool>
     <bool name="abc_action_bar_expanded_action_views_exclusive">true</bool>
+    <bool name="abc_allow_stacked_button_bar">true</bool>
     <bool name="abc_config_actionMenuItemAllCaps">true</bool>
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_closeDialogWhenTouchOutside">true</bool>
@@ -18,10 +35,10 @@
     <color name="accent_material_dark">@color/material_deep_teal_200</color>
     <color name="accent_material_light">@color/material_deep_teal_500</color>
     <color name="ampm_text_color">#8c8c8c</color>
-    <color name="background_floating_material_dark">#ff424242</color>
-    <color name="background_floating_material_light">#ffeeeeee</color>
-    <color name="background_material_dark">#ff303030</color>
-    <color name="background_material_light">#ffeeeeee</color>
+    <color name="background_floating_material_dark">@color/material_grey_800</color>
+    <color name="background_floating_material_light">@android:color/white</color>
+    <color name="background_material_dark">@color/material_grey_850</color>
+    <color name="background_material_light">@color/material_grey_50</color>
     <color name="bg_color">#F44336</color>
     <color name="bg_color_h">#D32F2F</color>
     <color name="black">#000000</color>
@@ -32,6 +49,7 @@
     <color name="bright_foreground_inverse_material_light">@color/bright_foreground_material_dark</color>
     <color name="bright_foreground_material_dark">@android:color/white</color>
     <color name="bright_foreground_material_light">@android:color/black</color>
+    <color name="btn_action_scanQR_transparent">#cc5d5d5d</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
     <color name="calendar_header">#890000</color>
@@ -46,7 +64,7 @@
     <color name="date_picker_view_animator">#fff2f2f2</color>
     <color name="def_bg_color">#E9EAEA</color>
     <color name="def_bg_h_color">#CACBCB</color>
-    <color name="def_divider_color">#CCCDD0</color>
+    <color name="def_divider_color">#FFFFFF</color>
     <color name="def_text_color">#157DFB</color>
     <color name="details_background">#F3F3F3</color>
     <color name="dim_foreground_disabled_material_dark">#80bebebe</color>
@@ -55,46 +73,103 @@
     <color name="dim_foreground_material_light">#ff323232</color>
     <color name="done_text_color_disabled">#ffcccccc</color>
     <color name="done_text_color_normal">#ff333333</color>
+    <color name="foreground_material_dark">@android:color/white</color>
+    <color name="foreground_material_light">@android:color/black</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
     <color name="line_background">#ffcccccc</color>
-    <color name="link_text_material_dark">@color/material_deep_teal_200</color>
-    <color name="link_text_material_light">@color/material_deep_teal_500</color>
+    <color name="loyalty_detail_discount_info">#656565</color>
+    <color name="loyalty_detail_discount_info_title">#363636</color>
+    <color name="loyalty_detail_discount_title_background">#EAEAEA</color>
+    <color name="loyalty_detail_discount_title_color">#951520</color>
+    <color name="loyalty_list_desc">#848484</color>
+    <color name="loyalty_list_expired">#AEAEAE</color>
+    <color name="loyalty_list_icon_border">#C0C0C0</color>
+    <color name="loyalty_list_title">#5B5B5B</color>
     <color name="material_blue_grey_800">#ff37474f</color>
     <color name="material_blue_grey_900">#ff263238</color>
     <color name="material_blue_grey_950">#ff21272b</color>
     <color name="material_deep_teal_200">#ff80cbc4</color>
     <color name="material_deep_teal_500">#ff009688</color>
+    <color name="material_grey_100">#fff5f5f5</color>
+    <color name="material_grey_300">#ffe0e0e0</color>
+    <color name="material_grey_50">#fffafafa</color>
+    <color name="material_grey_600">#ff757575</color>
+    <color name="material_grey_800">#ff424242</color>
+    <color name="material_grey_850">#ff303030</color>
+    <color name="material_grey_900">#ff212121</color>
     <color name="menu_fragment_background">#B3000000</color>
+    <color name="no_connection_background">#A7A7A7</color>
+    <color name="no_connection_button_close">#686868</color>
+    <color name="no_connection_button_retry">#FFFFFF</color>
     <color name="numbers_text_color">#dd000000</color>
-    <color name="primary_dark_material_dark">#ff000000</color>
-    <color name="primary_dark_material_light">#ff757575</color>
-    <color name="primary_material_dark">#ff212121</color>
-    <color name="primary_material_light">#ffefefef</color>
+    <color name="ok_disablecolor">#727272</color>
+    <color name="primary_dark_material_dark">@android:color/black</color>
+    <color name="primary_dark_material_light">@color/material_grey_600</color>
+    <color name="primary_material_dark">@color/material_grey_900</color>
+    <color name="primary_material_light">@color/material_grey_100</color>
     <color name="primary_text_default_material_dark">#ffffffff</color>
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <color name="progress_bar_background">#CFD0D1</color>
+    <color name="progress_bar_progress">#F9EF38</color>
     <color name="reg">#CC0000</color>
     <color name="reg_2">#5E5D5E</color>
     <color name="reg_nonfocus">#B1B1B1</color>
     <color name="rem_bal">#DBDBDB</color>
-    <color name="ripple_material_dark">#4dffffff</color>
+    <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
     <color name="secondary_text_disabled_material_light">#24000000</color>
     <color name="splashscreen">#DDDDDD</color>
+    <color name="store_background">#F5F5F5</color>
+    <color name="store_detail_info_background">#80000000</color>
+    <color name="store_header_slider">#00A5FD</color>
+    <color name="store_line_checkout">#D3D3D3</color>
+    <color name="store_text_checkout">#3E475E</color>
+    <color name="success_fidelitiz_info_background">#32000000</color>
+    <color name="success_txt_voucher_generated">#76000A</color>
     <color name="switch_thumb_disabled_material_dark">#ff616161</color>
     <color name="switch_thumb_disabled_material_light">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="text_color">#B3FFFFFF</color>
+    <color name="theme_bg_gray">#cfcfcf</color>
+    <color name="theme_bg_light_gray">#f5f5f5</color>
+    <color name="theme_bg_scanQR_frame">#80a1a1a1</color>
+    <color name="theme_black">#000000</color>
+    <color name="theme_btn_OK">#ffffff</color>
+    <color name="theme_btn_loyalty">#4d1315</color>
+    <color name="theme_btn_redeem_point">#5d5d5d</color>
+    <color name="theme_btn_tip">#373737</color>
+    <color name="theme_colorPrimary">#9f1723</color>
+    <color name="theme_colorPrimaryDark">#82151d</color>
+    <color name="theme_text_over_basic_bg">#ffffff</color>
+    <color name="timer_color">#727272</color>
+    <color name="tip_accent">#FEFE2D</color>
+    <color name="tip_text_total">#C5A7A9</color>
+    <color name="transparent">#00000000</color>
     <color name="transparent_black">#7F000000</color>
+    <color name="txt_discount_amount">#80FFFFFF</color>
+    <color name="txt_error_red">#951520</color>
+    <color name="txt_invoiceDetail_info_plain">#4c4c4d</color>
+    <color name="txt_scanQR_flash_on">#FEFE2D</color>
     <color name="white">#ffffffff</color>
+    <color name="zxing_custom_possible_result_points">#903A89CF</color>
+    <color name="zxing_custom_result_view">#b0000000</color>
+    <color name="zxing_custom_viewfinder_laser">#1976D2</color>
+    <color name="zxing_custom_viewfinder_mask">#60000000</color>
+    <color name="zxing_possible_result_points">#c0ffbd21</color>
+    <color name="zxing_result_view">#b0000000</color>
+    <color name="zxing_status_text">#ffffffff</color>
+    <color name="zxing_transparent">#00000000</color>
+    <color name="zxing_viewfinder_laser">#ffcc0000</color>
+    <color name="zxing_viewfinder_mask">#60000000</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="none" value="0"/><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr name="homeAsUpIndicator"/><attr format="dimension" name="itemPadding"/><attr format="boolean" name="hideOnContentScroll"/><attr format="dimension" name="contentInsetStart"/><attr format="dimension" name="contentInsetEnd"/><attr format="dimension" name="contentInsetLeft"/><attr format="dimension" name="contentInsetRight"/><attr format="dimension" name="elevation"/><attr format="reference" name="popupTheme"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionMenuItemView"><attr name="android:minWidth"/></declare-styleable>
@@ -102,29 +177,43 @@
     <declare-styleable name="ActionMode"><attr name="titleTextStyle"/><attr name="subtitleTextStyle"/><attr name="background"/><attr name="backgroundSplit"/><attr name="height"/><attr format="reference" name="closeItemLayout"/></declare-styleable>
     <declare-styleable name="ActivityChooserView"><attr format="string" name="initialActivityCount"/><attr format="reference" name="expandActivityOverflowButtonDrawable"/></declare-styleable>
     <declare-styleable name="AlertDialog"><attr name="android:layout"/><attr format="reference" name="buttonPanelSideLayout"/><attr format="reference" name="listLayout"/><attr format="reference" name="multiChoiceItemLayout"/><attr format="reference" name="singleChoiceItemLayout"/><attr format="reference" name="listItemLayout"/></declare-styleable>
+    <declare-styleable name="AppCompatImageView"><attr name="android:src"/><attr format="reference" name="srcCompat"/></declare-styleable>
     <declare-styleable name="AppCompatTextView"><attr format="reference|boolean" name="textAllCaps"/><attr name="android:textAppearance"/></declare-styleable>
-    <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="topBottomBarArrowSize"/><attr format="dimension" name="middleBarArrowSize"/><attr format="dimension" name="barSize"/><attr format="dimension" name="thickness"/></declare-styleable>
+    <declare-styleable name="AppCompatTheme"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowNoTitle"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/><attr format="dimension|fraction" name="windowMinWidthMajor"/><attr format="dimension|fraction" name="windowMinWidthMinor"/><attr name="android:windowIsFloating"/><attr name="android:windowAnimationStyle"/><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionOverflowMenuStyle"/><attr format="reference" name="actionBarPopupTheme"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarTheme"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeCutDrawable"/><attr format="reference" name="actionModeCopyDrawable"/><attr format="reference" name="actionModePasteDrawable"/><attr format="reference" name="actionModeSelectAllDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModeFindDrawable"/><attr format="reference" name="actionModeWebSearchDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="dialogTheme"/><attr format="dimension" name="dialogPreferredPadding"/><attr format="reference" name="listDividerAlertDialog"/><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="selectableItemBackgroundBorderless"/><attr format="reference" name="borderlessButtonStyle"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="dividerHorizontal"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="toolbarStyle"/><attr format="reference" name="toolbarNavigationButtonStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="reference" name="popupWindowStyle"/><attr format="reference|color" name="editTextColor"/><attr format="reference" name="editTextBackground"/><attr format="reference" name="imageButtonStyle"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="reference" name="searchViewStyle"/><attr format="dimension" name="listPreferredItemHeight"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemHeightLarge"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="textAppearanceListItem"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="reference" name="panelBackground"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/><attr format="color" name="colorPrimary"/><attr format="color" name="colorPrimaryDark"/><attr format="color" name="colorAccent"/><attr format="color" name="colorControlNormal"/><attr format="color" name="colorControlActivated"/><attr format="color" name="colorControlHighlight"/><attr format="color" name="colorButtonNormal"/><attr format="color" name="colorSwitchThumbNormal"/><attr format="reference" name="controlBackground"/><attr format="reference" name="alertDialogStyle"/><attr format="reference" name="alertDialogButtonGroupStyle"/><attr format="boolean" name="alertDialogCenterButtons"/><attr format="reference" name="alertDialogTheme"/><attr format="reference|color" name="textColorAlertDialogListItem"/><attr format="reference" name="buttonBarPositiveButtonStyle"/><attr format="reference" name="buttonBarNegativeButtonStyle"/><attr format="reference" name="buttonBarNeutralButtonStyle"/><attr format="reference" name="autoCompleteTextViewStyle"/><attr format="reference" name="buttonStyle"/><attr format="reference" name="buttonStyleSmall"/><attr format="reference" name="checkboxStyle"/><attr format="reference" name="checkedTextViewStyle"/><attr format="reference" name="editTextStyle"/><attr format="reference" name="radioButtonStyle"/><attr format="reference" name="ratingBarStyle"/><attr format="reference" name="ratingBarStyleIndicator"/><attr format="reference" name="ratingBarStyleSmall"/><attr format="reference" name="seekBarStyle"/><attr format="reference" name="spinnerStyle"/><attr format="reference" name="switchStyle"/></declare-styleable>
+    <declare-styleable name="ButtonBarLayout"><attr format="boolean" name="allowStacking"/></declare-styleable>
+    <declare-styleable name="CompoundButton"><attr name="android:button"/><attr format="color" name="buttonTint"/><attr name="buttonTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
+    <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="arrowHeadLength"/><attr format="dimension" name="arrowShaftLength"/><attr format="dimension" name="barLength"/><attr format="dimension" name="thickness"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat"><attr name="android:orientation"/><attr name="android:gravity"/><attr name="android:baselineAligned"/><attr name="android:baselineAlignedChildIndex"/><attr name="android:weightSum"/><attr format="boolean" name="measureWithLargestChild"/><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
     <declare-styleable name="LinearLayoutCompat_Layout"><attr name="android:layout_width"/><attr name="android:layout_height"/><attr name="android:layout_weight"/><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ListPopupWindow"><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/></declare-styleable>
     <declare-styleable name="MenuGroup"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:checkableBehavior"/><attr name="android:visible"/><attr name="android:enabled"/></declare-styleable>
     <declare-styleable name="MenuItem"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:title"/><attr name="android:titleCondensed"/><attr name="android:icon"/><attr name="android:alphabeticShortcut"/><attr name="android:numericShortcut"/><attr name="android:checkable"/><attr name="android:checked"/><attr name="android:visible"/><attr name="android:enabled"/><attr name="android:onClick"/><attr name="showAsAction"><flag name="never" value="0"/><flag name="ifRoom" value="1"/><flag name="always" value="2"/><flag name="withText" value="4"/><flag name="collapseActionView" value="8"/></attr><attr format="reference" name="actionLayout"/><attr format="string" name="actionViewClass"/><attr format="string" name="actionProviderClass"/></declare-styleable>
     <declare-styleable name="MenuView"><attr name="android:itemTextAppearance"/><attr name="android:horizontalDivider"/><attr name="android:verticalDivider"/><attr name="android:headerBackground"/><attr name="android:itemBackground"/><attr name="android:windowAnimationStyle"/><attr name="android:itemIconDisabledAlpha"/><attr format="boolean" name="preserveIconSpacing"/></declare-styleable>
+    <declare-styleable name="PercentLayout_Layout"><attr format="fraction" name="layout_widthPercent"/><attr format="fraction" name="layout_heightPercent"/><attr format="fraction" name="layout_marginPercent"/><attr format="fraction" name="layout_marginLeftPercent"/><attr format="fraction" name="layout_marginTopPercent"/><attr format="fraction" name="layout_marginRightPercent"/><attr format="fraction" name="layout_marginBottomPercent"/><attr format="fraction" name="layout_marginStartPercent"/><attr format="fraction" name="layout_marginEndPercent"/><attr format="fraction" name="layout_aspectRatio"/></declare-styleable>
     <declare-styleable name="PopupWindow"><attr format="boolean" name="overlapAnchor"/><attr name="android:popupBackground"/></declare-styleable>
     <declare-styleable name="PopupWindowBackgroundState"><attr format="boolean" name="state_above_anchor"/></declare-styleable>
+    <declare-styleable name="RecyclerView"><attr format="string" name="layoutManager"/><attr name="android:orientation"/><attr format="integer" name="spanCount"/><attr format="boolean" name="reverseLayout"/><attr format="boolean" name="stackFromEnd"/></declare-styleable>
     <declare-styleable name="SearchView"><attr format="reference" name="layout"/><attr format="boolean" name="iconifiedByDefault"/><attr name="android:maxWidth"/><attr format="string" name="queryHint"/><attr format="string" name="defaultQueryHint"/><attr name="android:imeOptions"/><attr name="android:inputType"/><attr format="reference" name="closeIcon"/><attr format="reference" name="goIcon"/><attr format="reference" name="searchIcon"/><attr format="reference" name="searchHintIcon"/><attr format="reference" name="voiceIcon"/><attr format="reference" name="commitIcon"/><attr format="reference" name="suggestionRowLayout"/><attr format="reference" name="queryBackground"/><attr format="reference" name="submitBackground"/><attr name="android:focusable"/></declare-styleable>
-    <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/><attr name="android:background"/></declare-styleable>
+    <declare-styleable name="Spinner"><attr name="android:prompt"/><attr name="popupTheme"/><attr name="android:popupBackground"/><attr name="android:dropDownWidth"/><attr name="android:entries"/></declare-styleable>
     <declare-styleable name="SwitchCompat"><attr name="android:thumb"/><attr format="reference" name="track"/><attr name="android:textOn"/><attr name="android:textOff"/><attr format="dimension" name="thumbTextPadding"/><attr format="reference" name="switchTextAppearance"/><attr format="dimension" name="switchMinWidth"/><attr format="dimension" name="switchPadding"/><attr format="boolean" name="splitTrack"/><attr format="boolean" name="showText"/></declare-styleable>
-    <declare-styleable name="TextAppearance"><attr name="android:textSize"/><attr name="android:textColor"/><attr name="android:textStyle"/><attr name="android:typeface"/><attr name="textAllCaps"/></declare-styleable>
-    <declare-styleable name="Theme"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowNoTitle"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/><attr format="dimension|fraction" name="windowMinWidthMajor"/><attr format="dimension|fraction" name="windowMinWidthMinor"/><attr name="android:windowIsFloating"/><attr name="android:windowAnimationStyle"/><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionOverflowMenuStyle"/><attr format="reference" name="actionBarPopupTheme"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarTheme"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeCutDrawable"/><attr format="reference" name="actionModeCopyDrawable"/><attr format="reference" name="actionModePasteDrawable"/><attr format="reference" name="actionModeSelectAllDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModeFindDrawable"/><attr format="reference" name="actionModeWebSearchDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="dialogTheme"/><attr format="dimension" name="dialogPreferredPadding"/><attr format="reference" name="listDividerAlertDialog"/><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="buttonBarStyle"/><attr format="reference" name="buttonBarButtonStyle"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="selectableItemBackgroundBorderless"/><attr format="reference" name="borderlessButtonStyle"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="dividerHorizontal"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="toolbarStyle"/><attr format="reference" name="toolbarNavigationButtonStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="reference" name="popupWindowStyle"/><attr format="reference|color" name="editTextColor"/><attr format="reference" name="editTextBackground"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="reference" name="searchViewStyle"/><attr format="dimension" name="listPreferredItemHeight"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemHeightLarge"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="textAppearanceListItem"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="reference" name="panelBackground"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/><attr format="color" name="colorPrimary"/><attr format="color" name="colorPrimaryDark"/><attr format="color" name="colorAccent"/><attr format="color" name="colorControlNormal"/><attr format="color" name="colorControlActivated"/><attr format="color" name="colorControlHighlight"/><attr format="color" name="colorButtonNormal"/><attr format="color" name="colorSwitchThumbNormal"/><attr format="reference" name="alertDialogStyle"/><attr format="reference" name="alertDialogButtonGroupStyle"/><attr format="boolean" name="alertDialogCenterButtons"/><attr format="reference" name="alertDialogTheme"/><attr format="reference|color" name="textColorAlertDialogListItem"/><attr format="reference" name="buttonBarPositiveButtonStyle"/><attr format="reference" name="buttonBarNegativeButtonStyle"/><attr format="reference" name="buttonBarNeutralButtonStyle"/><attr format="reference" name="autoCompleteTextViewStyle"/><attr format="reference" name="buttonStyle"/><attr format="reference" name="buttonStyleSmall"/><attr format="reference" name="checkboxStyle"/><attr format="reference" name="checkedTextViewStyle"/><attr format="reference" name="editTextStyle"/><attr format="reference" name="radioButtonStyle"/><attr format="reference" name="ratingBarStyle"/><attr format="reference" name="spinnerStyle"/><attr format="reference" name="switchStyle"/></declare-styleable>
-    <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargins"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr format="dimension" name="maxButtonHeight"/><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="android:minHeight"/></declare-styleable>
-    <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
+    <declare-styleable name="TextAppearance"><attr name="android:textSize"/><attr name="android:textColor"/><attr name="android:textStyle"/><attr name="android:typeface"/><attr name="textAllCaps"/><attr name="android:shadowColor"/><attr name="android:shadowDy"/><attr name="android:shadowDx"/><attr name="android:shadowRadius"/></declare-styleable>
+    <declare-styleable name="Toolbar"><attr format="reference" name="titleTextAppearance"/><attr format="reference" name="subtitleTextAppearance"/><attr name="title"/><attr name="subtitle"/><attr name="android:gravity"/><attr format="dimension" name="titleMargins"/><attr format="dimension" name="titleMarginStart"/><attr format="dimension" name="titleMarginEnd"/><attr format="dimension" name="titleMarginTop"/><attr format="dimension" name="titleMarginBottom"/><attr name="contentInsetStart"/><attr name="contentInsetEnd"/><attr name="contentInsetLeft"/><attr name="contentInsetRight"/><attr format="dimension" name="maxButtonHeight"/><attr format="reference" name="collapseIcon"/><attr format="string" name="collapseContentDescription"/><attr name="popupTheme"/><attr format="reference" name="navigationIcon"/><attr format="string" name="navigationContentDescription"/><attr name="android:minHeight"/><attr name="logo"/><attr format="string" name="logoDescription"/><attr format="color" name="titleTextColor"/><attr format="color" name="subtitleTextColor"/></declare-styleable>
+    <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
+    <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
+    <declare-styleable name="com.dimo.view.DIMOButton"><attr format="color" name="bgColor"/><attr format="enum" name="buttonSize"><enum name="normal" value="0"/><enum name="small" value="1"/><enum name="big" value="2"/></attr><attr name="font"/></declare-styleable>
+    <declare-styleable name="com.dimo.view.DIMOEditText"><attr name="font"/></declare-styleable>
+    <declare-styleable name="com.dimo.view.DIMOTextView"><attr name="font"/></declare-styleable>
+    <declare-styleable name="zxing_finder"><attr format="color" name="zxing_possible_result_points"/><attr format="color" name="zxing_result_view"/><attr format="color" name="zxing_viewfinder_laser"/><attr format="color" name="zxing_viewfinder_mask"/></declare-styleable>
+    <declare-styleable name="zxing_view"><attr format="reference" name="zxing_scanner_layout"/></declare-styleable>
+    <dimen name="WheelItemSpace">8dp</dimen>
+    <dimen name="WheelPadding">8dp</dimen>
+    <dimen name="WheelTextSize">20sp</dimen>
     <dimen name="abc_action_bar_content_inset_material">16dp</dimen>
     <dimen name="abc_action_bar_default_height_material">56dp</dimen>
-    <dimen name="abc_action_bar_default_padding_material">4dp</dimen>
+    <dimen name="abc_action_bar_default_padding_end_material">0dp</dimen>
+    <dimen name="abc_action_bar_default_padding_start_material">0dp</dimen>
     <dimen name="abc_action_bar_icon_vertical_padding_material">16dp</dimen>
-    <dimen name="abc_action_bar_navigation_padding_start_material">0dp</dimen>
     <dimen name="abc_action_bar_overflow_padding_end_material">10dp</dimen>
     <dimen name="abc_action_bar_overflow_padding_start_material">6dp</dimen>
     <dimen name="abc_action_bar_progress_bar_size">40dp</dimen>
@@ -144,6 +233,10 @@
     <dimen name="abc_control_corner_material">2dp</dimen>
     <dimen name="abc_control_inset_material">4dp</dimen>
     <dimen name="abc_control_padding_material">4dp</dimen>
+    <item name="abc_dialog_fixed_height_major" type="dimen">80%</item>
+    <item name="abc_dialog_fixed_height_minor" type="dimen">100%</item>
+    <item name="abc_dialog_fixed_width_major" type="dimen">320dp</item>
+    <item name="abc_dialog_fixed_width_minor" type="dimen">320dp</item>
     <dimen name="abc_dialog_list_padding_vertical_material">8dp</dimen>
     <item name="abc_dialog_min_width_major" type="dimen">65%</item>
     <item name="abc_dialog_min_width_minor" type="dimen">95%</item>
@@ -162,6 +255,9 @@
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
     <dimen name="abc_search_view_text_min_width">160dip</dimen>
+    <dimen name="abc_seekbar_track_background_height_material">2dp</dimen>
+    <dimen name="abc_seekbar_track_progress_height_material">2dp</dimen>
+    <dimen name="abc_select_dialog_padding_start_material">20dp</dimen>
     <dimen name="abc_switch_padding">3dp</dimen>
     <dimen name="abc_text_size_body_1_material">14sp</dimen>
     <dimen name="abc_text_size_body_2_material">14sp</dimen>
@@ -180,10 +276,23 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
+    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_horizontal_margin_store">1dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin_store">1dp</dimen>
     <dimen name="ampm_label_size">16sp</dimen>
     <dimen name="ampm_left_padding">6dip</dimen>
     <dimen name="backbuttonsize">16dp</dimen>
+    <dimen name="button_big_corner_radius">24dp</dimen>
+    <dimen name="button_big_drawable_size">28dp</dimen>
+    <dimen name="button_big_height">48dp</dimen>
+    <dimen name="button_min_width">88dp</dimen>
+    <dimen name="button_normal_corner_radius">18dp</dimen>
+    <dimen name="button_normal_drawable_size">16dp</dimen>
+    <dimen name="button_normal_height">36dp</dimen>
+    <dimen name="button_small_corner_radius">16dp</dimen>
+    <dimen name="button_small_drawable_size">16dp</dimen>
+    <dimen name="button_small_height">32dp</dimen>
     <dimen name="corner_radius">16dp</dimen>
     <dimen name="date_picker_component_width">300dip</dimen>
     <dimen name="date_picker_header_height">30dip</dimen>
@@ -193,15 +302,38 @@
     <dimen name="day_number_size">16sp</dimen>
     <dimen name="def_gap">10dp</dimen>
     <dimen name="def_text_size">20sp</dimen>
-    <item name="dialog_fixed_height_major" type="dimen">80%</item>
-    <item name="dialog_fixed_height_minor" type="dimen">100%</item>
-    <item name="dialog_fixed_width_major" type="dimen">320dp</item>
-    <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
     <dimen name="done_label_size">14sp</dimen>
     <dimen name="extra_time_label_margin">-30dp</dimen>
     <dimen name="header_height">96dip</dimen>
+    <item format="float" name="highlight_alpha_material_colored" type="dimen">0.26</item>
+    <item format="float" name="highlight_alpha_material_dark" type="dimen">0.20</item>
+    <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
+    <dimen name="image_size_diagonal_line">3dp</dimen>
+    <dimen name="image_size_discount">60dp</dimen>
+    <dimen name="image_size_icon_back">48dp</dimen>
+    <dimen name="image_size_icon_clear">24dp</dimen>
+    <dimen name="image_size_icon_info_payment_failed">48dp</dimen>
+    <dimen name="image_size_icon_no_connection">85dp</dimen>
+    <dimen name="image_size_icon_payment_failed">65dp</dimen>
+    <dimen name="image_size_icon_payment_success">65dp</dimen>
+    <dimen name="image_size_icon_use_voucher">48dp</dimen>
+    <dimen name="image_size_loyalty_list_discount">45dp</dimen>
+    <dimen name="image_size_loyalty_list_image">80dp</dimen>
+    <dimen name="image_size_voucher_box_border_width">2dp</dimen>
+    <dimen name="image_size_voucher_used_height">30dp</dimen>
+    <dimen name="image_size_voucher_used_width">40dp</dimen>
+    <dimen name="item_touch_helper_max_drag_scroll_per_frame">20dp</dimen>
+    <dimen name="item_touch_helper_swipe_escape_max_velocity">800dp</dimen>
+    <dimen name="item_touch_helper_swipe_escape_velocity">120dp</dimen>
+    <dimen name="margin_discount_left">-15dp</dimen>
+    <dimen name="margin_loyalty_list_discount_top_right">-7dp</dimen>
+    <dimen name="margin_loyalty_list_image_top">7dp</dimen>
+    <dimen name="margin_tip_text_top_bottom">4dp</dimen>
+    <dimen name="margin_voucher_top">15dp</dimen>
+    <dimen name="margin_voucher_used_right">-20dp</dimen>
+    <dimen name="margin_voucher_used_top">-15dp</dimen>
     <dimen name="minimum_margin_sides">48dip</dimen>
     <dimen name="minimum_margin_top_bottom">24dip</dimen>
     <dimen name="month_day_label_text_size">12sp</dimen>
@@ -211,13 +343,40 @@
     <dimen name="notification_large_icon_height">64dp</dimen>
     <dimen name="notification_large_icon_width">64dp</dimen>
     <dimen name="notification_subtext_size">12dp</dimen>
+    <dimen name="padding_eula_header_top_bottom">16dp</dimen>
+    <dimen name="padding_icon_info_payment_failed">12dp</dimen>
+    <dimen name="padding_text_error_payment_failed">20dp</dimen>
+    <dimen name="padding_tip_left_right">20dp</dimen>
     <dimen name="picker_dimen">270dip</dimen>
+    <dimen name="progress_bar_corner">12dp</dimen>
+    <dimen name="progress_bar_height">24dp</dimen>
+    <dimen name="progress_bar_progress_height">32dp</dimen>
+    <dimen name="progress_bar_progress_height_detail">40dp</dimen>
+    <dimen name="radius_voucher_used">15dp</dimen>
     <dimen name="selected_calendar_layout_height">155dip</dimen>
     <dimen name="selected_date_day_size">65dp</dimen>
     <dimen name="selected_date_month_size">24dp</dimen>
     <dimen name="selected_date_year_size">24dp</dimen>
     <dimen name="separator_padding">4dip</dimen>
     <dimen name="textSize">14sp</dimen>
+    <dimen name="text_size_10">6sp</dimen>
+    <dimen name="text_size_12">8sp</dimen>
+    <dimen name="text_size_14">10sp</dimen>
+    <dimen name="text_size_16">12sp</dimen>
+    <dimen name="text_size_18">14sp</dimen>
+    <dimen name="text_size_20">16sp</dimen>
+    <dimen name="text_size_22">18sp</dimen>
+    <dimen name="text_size_24">20sp</dimen>
+    <dimen name="text_size_26">22sp</dimen>
+    <dimen name="text_size_28">24sp</dimen>
+    <dimen name="text_size_32">28sp</dimen>
+    <dimen name="text_size_36">32sp</dimen>
+    <dimen name="text_size_40">36sp</dimen>
+    <dimen name="text_size_loyalty_list_desc">12sp</dimen>
+    <dimen name="text_size_loyalty_list_discount">6sp</dimen>
+    <dimen name="text_size_loyalty_list_discount_amount">18sp</dimen>
+    <dimen name="text_size_loyalty_list_expired">10sp</dimen>
+    <dimen name="text_size_loyalty_list_title">14sp</dimen>
     <dimen name="time_label_size">60sp</dimen>
     <dimen name="txt">50dp</dimen>
     <dimen name="year_label_height">64dip</dimen>
@@ -236,17 +395,33 @@
     <item name="day_picker_selected_date_layout" type="id">false</item>
     <item name="done" type="id">false</item>
     <item name="home" type="id"/>
+    <item name="item_touch_helper_previous_elevation" type="id"/>
     <item name="month_text_view" type="id">false</item>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
     <item name="split_action_bar" type="id"/>
     <item name="up" type="id"/>
+    <item name="zxing_back_button" type="id"/>
+    <item name="zxing_camera_error" type="id"/>
+    <item name="zxing_decode" type="id"/>
+    <item name="zxing_decode_failed" type="id"/>
+    <item name="zxing_decode_succeeded" type="id"/>
+    <item name="zxing_possible_result_points" type="id"/>
+    <item name="zxing_prewiew_size_ready" type="id"/>
     <integer name="abc_config_activityDefaultDur">220</integer>
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
     <integer name="cancel_button_image_alpha">127</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <integer name="text_dimoButton_big">18</integer>
+    <integer name="text_dimoButton_normal">14</integer>
+    <integer name="text_dimoButton_small">12</integer>
+    <integer name="text_size_16">12</integer>
+    <string name="BahasaSmsData">Kode OTP Simaspay anda</string>
+    <string name="EnglishSmsData">Your Simaspay code is </string>
     <string name="FourceUpdate">Please Update Your App.</string>
+    <string name="Loading">Loading</string>
+    <string name="SMS_notreceived_message">Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi SimasPay, silahkan hubungi customer support untuk keterangan lebih lanjut.</string>
     <string name="TandC">"SYARAT DAN KETENTUAN PEMBAYARAN QR 
  
 Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan bahwa saya telah menerima dan menyetujui untuk tunduk dan terikat pada ketentuan-ketentuan sebagai berikut: 
@@ -264,6 +439,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="abc_action_mode_done">Done</string>
     <string name="abc_activity_chooser_view_see_all">See all</string>
     <string name="abc_activitychooserview_choose_application">Choose an app</string>
+    <string name="abc_capital_off">OFF</string>
+    <string name="abc_capital_on">ON</string>
     <string name="abc_search_hint">Search…</string>
     <string name="abc_searchview_description_clear">Clear query</string>
     <string name="abc_searchview_description_query">Search query</string>
@@ -289,6 +466,13 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="action_bar_custom_view_second_step_text_view_text">Nearly done</string>
     <string name="activity_launcher_button_connect">Login</string>
     <string name="activity_login_forgotten_password">Forgotten your password?</string>
+    <string name="alertdialog_message_permission_denied">Pay by QR membutuhkan akses %1$s untuk melakukan transaksi.</string>
+    <string name="alertdialog_negBtn_retry">Coba lagi</string>
+    <string name="alertdialog_posBtn_batal">Batal</string>
+    <string name="alertdialog_posBtn_close">Tutup</string>
+    <string name="alertdialog_posBtn_hapus">Hapus</string>
+    <string name="alertdialog_posBtn_ok">OK</string>
+    <string name="alertdialog_title_error">Info</string>
     <item format="float" name="ampm_circle_radius_multiplier" type="string">0.19</item>
     <string name="app_cancel">Cancel</string>
     <string name="app_confirm">Confirm</string>
@@ -317,14 +501,44 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="bahasa_register">Buat Akun Baru</string>
     <string name="bahasa_serverNotRespond">Tidak dapat terhubung dengan server SimasPay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.</string>
     <string name="bahasa_telepon">Nomor Handphone</string>
+    <string name="benef">
+        <html>
+        <head/>
+        <body style="text-align:justify;color:gray;background-color:black;">
+         "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
+ </body>
+</html>
+
+</string>
     <string name="bixTitle">SIMASPAY</string>
+    <string name="bt_store_add_more">TAMBAH BARANG</string>
+    <string name="bt_store_add_to_cart">TAMBAH KE KERANJANG</string>
+    <string name="bt_store_checkout">PROSES KERANJANG</string>
+    <string name="bt_store_konfirmasi">BAYAR</string>
+    <string name="bt_store_lanjut">LANJUT</string>
+    <string name="bt_store_start_shop">MULAI BELANJA</string>
+    <string name="button_EULA_accept">SETUJU</string>
+    <string name="button_EULA_decline">TOLAK</string>
+    <string name="button_action_done">DONE</string>
+    <string name="button_cek_loyalty">Cek Loyalti</string>
+    <string name="button_exit">Keluar</string>
+    <string name="button_flash_off">Off</string>
+    <string name="button_flash_on">On</string>
+    <string name="button_no">Tidak</string>
+    <string name="button_pay">BAYAR</string>
+    <string name="button_retry">Coba Lagi</string>
+    <string name="button_tip">BERI TIP</string>
+    <string name="button_yes">Ya</string>
     <string name="cancel">Cancel</string>
+    <string name="cart_name_placeholder">Qr Store</string>
     <item format="float" name="circle_radius_multiplier" type="string">0.82</item>
     <item format="float" name="circle_radius_multiplier_24HourMode" type="string">0.85</item>
     <string name="create_credentials_edit_text_email_hint">EMAIL</string>
     <string name="create_credentials_edit_text_password_hint">PASSWORD</string>
+    <string name="dailog_heading">SimasPay</string>
     <string name="day_of_week_label_typeface" translatable="false">sans-serif</string>
     <string name="day_picker_description">Month grid of days</string>
+    <string name="default_pin">0000</string>
     <string name="deleted_key"><ns1:g example="4" id="key">%1$s</ns1:g> deleted</string>
     <string name="dimo">Dimo</string>
     <string name="done_label">Done</string>
@@ -338,21 +552,37 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="engine_fidelitiz_points_cash_get">Collect %1$s points to get a coupon worth %2$s.</string>
     <string name="engine_fidelitiz_points_payment">Get %1$s points per purchase.</string>
     <string name="engine_fidelitiz_points_percent">Collect %1$s points to get a discount coupon worth %2$s</string>
+    <string name="error_JSON_parser">Mohon maaf, terjadi gangguan pada sistem kami. Mohon coba beberapa saat lagi.</string>
+    <string name="error_SDK_no_listener">Gagal memulai SDK: Listener tidak ditemukan.</string>
     <string name="error_activation_auto_refill">An error has occurred during the activation of automatic recharging, please try again.</string>
     <string name="error_add_credit_card_failed">An error has occurred while you were adding your bank card, please try again.</string>
     <string name="error_already_existing_account">To finalize the creation of your account, please contact contact@flashiz.com</string>
+    <string name="error_authentication">Mohon maaf, terjadi gangguan pada sistem kami. Mohon coba beberapa saat lagi.</string>
     <string name="error_cancel_loyalty_programs_failed">An error has occurred while you were cancelling your membership of the loyalty program, please try again.</string>
     <string name="error_cancel_transaction_failed">The transaction could not be cancelled. Please try again.</string>
+    <string name="error_connection_detail">Periksa kembali koneksi internet Anda.</string>
+    <string name="error_connection_header">ERROR</string>
+    <string name="error_connection_message">Gagal terhubung dengan server Pay by QR.</string>
     <string name="error_connection_timed_out">The connection with FLASHiZ failed. Please try again.</string>
     <string name="error_delete_credit_card_failed">An error has occurred while you were deleting your bank card, please try again.</string>
     <string name="error_desactivation_auto_refill">An error has occurred during the disabling of automatic recharging, please try again.</string>
+    <string name="error_empty_amount">Mohon masukkan nominal</string>
     <string name="error_expired_or_invalid_credit_card">Your credit card is invalid. Please use another card.</string>
     <string name="error_four_attempts_in_connection">A problem to get connected? Please contact contact@flashiz.com</string>
     <string name="error_generic_message">An error has occurred, please try again.</string>
     <string name="error_get_credit_cards_failed">An error has occurred during the display of your bank cards, please try again.</string>
     <string name="error_invalid_credentials">The email address or password is not correct. Please try again.</string>
     <string name="error_invalid_invoice">The QR code has not been initialised yet. Please try again.</string>
+    <string name="error_invalid_qr_detail_expired">Batas waktu pembayaran QR ini sudah habis, silakan minta dibuatkan QR yang baru.</string>
+    <string name="error_invalid_qr_detail_notFound">QR yang Anda scan tidak terdaftar dalam sistem kami.</string>
+    <string name="error_invalid_qr_detail_paid">QR yang Anda scan tidak berlaku karena telah dibayar sebelumnya.</string>
+    <string name="error_invalid_qr_store_title">QR STORE</string>
+    <string name="error_invalid_qr_title">QR TIDAK VALID</string>
+    <string name="error_item_not_valid">Barang tidak terdaftar</string>
     <string name="error_join_rewards_program_failed">An error has occurred while you were joining the loyalty program, please try again.</string>
+    <string name="error_lanjut_validity">Semua informasi harus diisi untuk memproses pembelanjaan</string>
+    <string name="error_lanjut_validity_name">Nama belum valid \nSilakan diedit</string>
+    <string name="error_lanjut_validity_number">Nomor Telepon belum valid\nSilakan diedit</string>
     <string name="error_limit_of_account_reached">Your annual transaction limit was reached. Please contact contact@flashiz.com to get your account verified.</string>
     <string name="error_loading_avatar_failed">An error has occurred while your avatar was loading.</string>
     <string name="error_loading_countries_list_failed">An error has occurred while the list of countries was loading.</string>
@@ -361,7 +591,13 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="error_loading_multiple_loyalty_programs_failed">An error has occurred while programs were loading, please try again.</string>
     <string name="error_loading_secret_questions_failed">The list of secret questions cannot be displayed, please try again.</string>
     <string name="error_log_out_failed">Logout has failed, please try again.</string>
+    <string name="error_max_retry">Terjadi gangguan pada transaksi ini, silakan cek histori transaksi untuk memastikan status.</string>
+    <string name="error_max_stock">Stok maksimum untuk produk ini adalah %1$d</string>
+    <string name="error_minimum_trx">Jumlah pembayaran transaksi ini kurang dari minimum pembayaran yang berlaku, Rp %1$s. Silakan bertransaksi sejumlah atau diatas nilai tersebut.</string>
+    <string name="error_no_connection_title">Tidak Ada Koneksi Internet</string>
     <string name="error_no_internet_connection">You need an internet connection to use FLASHiZ. Please check your connection and try again.</string>
+    <string name="error_no_selection">Silahkan Pilih Item</string>
+    <string name="error_no_stock">Maaf, stok barang sedang habis</string>
     <string name="error_payment_failed">The payment failed. Please try again.</string>
     <string name="error_pin_codes_entered_different">An error has occurred. Please re-enter your personal code.</string>
     <string name="error_refill_account_credit_card_failed">Credit card payment could not be completed.</string>
@@ -369,7 +605,16 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="error_retrieve_user_infos_failed">An error has occurred while you were updating your information.</string>
     <string name="error_rewards_cgu_aceptance_failed">Acceptance of terms and conditions has failed, please try again.</string>
     <string name="error_send_money_to_itself_unauthorized">You cannot send money to your own account. Please enter a new email address.</string>
+    <string name="error_transaction_canceled">Transaksi ini telah dibatalkan. Silakan hubungi kasir untuk konfirmasi.</string>
+    <string name="error_transaction_expired">QR expired dikarenakan batas waktu transaksi telah habis. Silakan minta dibuatkan QR yang baru.</string>
+    <string name="error_unknown">Mohon maaf, terjadi gangguan pada sistem kami. Mohon coba beberapa saat lagi.</string>
     <string name="flashiz_tc">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:white;font-size:15px;> &lt;p>&lt;B>SYARAT DAN KETENTUAN PEMBAYARAN QR&lt;/B>&lt;br /> &lt;br /> Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan bahwa saya telah menerima dan menyetujui untuk tunduk dan terikat pada ketentuan-ketentuan sebagai berikut:&lt;br /> &lt;br /> 1. Pembayaran QR hanya dapat dilakukan pada merchant-merchant atau outlet-outlet yang berpartisipasi.&lt;/p> &lt;p>2. Pembayaran QR ini menggunakan teknologi FLASHiZ.&lt;/p> &lt;p>3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY.&lt;/p> &lt;/body> &lt;/html></string>
+    <string name="font_helvetica">font/HelveticaNeue.ttf</string>
+    <string name="font_helvetica_light">font/HelveticaNeue-Light.ttf</string>
+    <string name="font_montserrat">font/Montserrat-Regular.ttf</string>
+    <string name="font_montserrat_bold">font/Montserrat-Bold.ttf</string>
+    <string name="font_montserrat_light">font/Montserrat-Light.ttf</string>
+    <string name="font_montserrat_thin">font/Montserrat-Thin.ttf</string>
     <string name="fragment_answer_secret_question_deal_success_three_trials_message">"Lost your password?
 
 Contact our Customer Services at contact@flashiz.com"</string>
@@ -460,10 +705,17 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="minute_picker_description">Minutes circular slider</string>
     <string name="no_storage_card">No storage card</string>
     <string name="not_enough_space">Not enough space</string>
+    <string name="number_grater14">Nomor Handphone harus kurang dari 14 angka</string>
+    <string name="number_less7">Nomor Handphone harus lebih dari 10 angka</string>
     <item format="float" name="numbers_radius_multiplier_inner" type="string">0.60</item>
     <item format="float" name="numbers_radius_multiplier_normal" type="string">0.81</item>
     <item format="float" name="numbers_radius_multiplier_outer" type="string">0.83</item>
+    <string name="pilih_toko">PILIH TOKO</string>
     <string name="preparing_card">Preparing card</string>
+    <string name="progressdialog_message_get_invoice_detail">Memproses invoice...</string>
+    <string name="progressdialog_message_get_store_item_detail">Mengambil data barang...</string>
+    <string name="progressdialog_message_join_loyalty_program">Mendaftarkan program loyalti...</string>
+    <string name="progressdialog_message_login_waiting">Mohon tunggu...</string>
     <string name="promoScreenTitle">Promo</string>
     <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
     <string name="regSuccessContent1">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selamat Franky SIMASPAY Kini telah aktif. &lt;/body> &lt;/html></string>
@@ -483,17 +735,125 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="select_minutes">Select minutes</string>
     <string name="select_year">Select year</string>
     <item format="float" name="selection_radius_multiplier" type="string">0.16</item>
+    <string name="server_dev">https://sandbox.flashiz.co.id</string>
     <string name="server_error_message">Tidak dapat terhubung dengan server SimasPay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.</string>
+    <string name="server_live">https://my.flashiz.co.id</string>
     <string name="server_timeout_message">Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi SimasPay, silahkan hubungi customer support untuk keterangan lebih lanjut.</string>
+    <string name="server_uat">https://uat.flashiz.co.id</string>
+    <string name="shared_prefvalue">SimasPay</string>
     <string name="source_packet_code">1</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="text_EULA_title">SYARAT &amp; KETENTUAN</string>
+    <string name="text_detail_currency">Rp</string>
+    <string name="text_detail_info_normal">Pastikan jumlah yang tertera di atas sesuai dengan pembayaran yang Anda lakukan</string>
+    <string name="text_detail_info_tip">Puas dengan pelayanan yang diberikan?</string>
+    <string name="text_detail_voucher_anda">Voucher Anda saat ini</string>
+    <string name="text_detail_voucher_gunakan">Gunakan sekarang?</string>
+    <string name="text_discount">DISCOUNT</string>
+    <string name="text_discount_OFF">OFF</string>
+    <string name="text_header_title_confirm">KONFIRMASI</string>
+    <string name="text_header_title_input_amount">MASUKKAN NOMINAL</string>
+    <string name="text_header_title_loyalty">LOYALTI</string>
+    <string name="text_header_title_loyalty_detail">LOYALTI DETAIL</string>
+    <string name="text_header_title_tip">TIP</string>
+    <string name="text_info_fidelitiz1">Anda mendapatkan </string>
+    <string name="text_info_fidelitiz2">Total poin Anda adalah</string>
+    <string name="text_info_fidelitiz3">lagi untuk mendapatkan voucher</string>
+    <string name="text_info_fidelitiz3_get_voucher">Selamat! Anda mendapatkan voucher</string>
+    <string name="text_info_tip_max">Mohon maaf, jumlah tip tidak dapat melebihi jumlah pembayaran.\nJumlah pembayaran Anda saat ini adalah Rp %1$s</string>
+    <string name="text_info_voucher_max">Anda telah memakai seluruh voucher yang Anda miliki.</string>
+    <string name="text_info_voucher_max_percentage">Voucher hanya dapat dipakai satu kali per transaksi dan tidak dapat digabungkan.</string>
+    <string name="text_info_voucher_min_trx">Batas minimum transaksi setelah pemakaian voucher adalah Rp %1$s</string>
+    <string name="text_loyalty_detail_info_empty">( Tidak ada %1$s )</string>
+    <string name="text_loyalty_detail_info_empty_location">( Data lokasi tidak tersedia )</string>
+    <string name="text_loyalty_detail_info_expired">Diskon berlaku dari:</string>
+    <string name="text_loyalty_detail_info_expired_type_point">Program loyalti berlaku dari:</string>
+    <string name="text_loyalty_detail_info_maximum">Maksimum diskon:</string>
+    <string name="text_loyalty_detail_info_membership">Lokasi:</string>
+    <string name="text_loyalty_detail_info_minimum">Minimum pembelian:</string>
+    <string name="text_loyalty_detail_point_to_go">lagi untuk mendapatkan</string>
+    <string name="text_loyalty_detail_syarat">SYARAT DAN KETENTUAN</string>
+    <string name="text_loyalty_detail_total_voucher">Total Voucher Anda saat ini adalah:</string>
+    <string name="text_loyalty_list_desc">Dapatkan %1$s poin untuk setiap pembelanjaan %2$s\nKumpulkan %3$s poin dan dapatkan Voucher %4$s</string>
+    <string name="text_not_authenticate">PEMBAYARAN GAGAL</string>
+    <string name="text_not_authenticate_splash">ERROR</string>
+    <string name="text_payment_failed">PEMBAYARAN GAGAL !</string>
+    <string name="text_payment_success">PEMBAYARAN BERHASIL !</string>
+    <string name="text_payment_timeout">TERJADI GANGGUAN</string>
+    <string name="text_plus_tip">+ TIP</string>
+    <string name="text_poin">%1$s poin</string>
+    <string name="text_scanqr_tutorial">Silakan scan QR\npada area yang telah ditentukan</string>
+    <string name="text_search">Search</string>
     <item format="float" name="text_size_multiplier_inner" type="string">0.14</item>
     <item format="float" name="text_size_multiplier_normal" type="string">0.17</item>
     <item format="float" name="text_size_multiplier_outer" type="string">0.11</item>
+    <string name="text_store_dec">1</string>
+    <string name="text_store_minus">-</string>
+    <string name="text_store_normal">nama barang</string>
+    <string name="text_store_plus">+</string>
+    <string name="text_tip_total">TOTAL BAYAR</string>
+    <string name="text_transaction_canceled_by_user">Anda yakin ingin membatalkan transaksi ?</string>
+    <string name="text_voucher">Voucher</string>
+    <string name="text_voucher_balance">%1$sVoucher %2$s</string>
     <string name="time_placeholder" translatable="false">--</string>
     <string name="time_separator" translatable="false">:</string>
     <string name="title">  SimasPay               </string>
+    <string name="transition_name_loyalty_list_desc">loyalty_desc</string>
+    <string name="transition_name_loyalty_list_image">loyalty_image</string>
+    <string name="transition_name_loyalty_list_title">loyalty_title</string>
+    <string name="transition_name_loyalty_list_title_disc">loyalty_title_disc</string>
+    <string name="tx_maximum_length">30</string>
+    <string name="tx_qr_delete">Yakin untuk menghapus \"%1$s\" ?</string>
+    <string name="tx_qr_store_bt">Keranjang Belanja</string>
+    <string name="tx_store_action_reset">Reset</string>
+    <string name="tx_store_address_max">60</string>
+    <string name="tx_store_address_min">9</string>
+    <string name="tx_store_checout_alamat_empty">Alamat pengiriman tidak boleh kosong. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_alamat_error">Alamat pengiriman tidak boleh kurang dari 8 karakter. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_alamat_hint">MASUKKAN ALAMAT</string>
+    <string name="tx_store_checout_kota_error">Kota harus dipilih. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_name_empty">Nama tidak boleh kosong. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_name_error">Nama tidak boleh kurang dari 3 karakter. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_name_hint">MASUKKAN NAMA</string>
+    <string name="tx_store_checout_telepon_empty">Nomor Telepon tidak boleh kosong. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_telepon_error">Nomor telepon tidak boleh kurang dari 7 karakter. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_telepon_hint">MASUKKAN TELEPON</string>
+    <string name="tx_store_checout_toko_error">Toko harus dipilih. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_empty_1">Keranjang belanja Anda masih kosong.\nSilakan scan QR barang\nuntuk mulai berbelanja</string>
+    <string name="tx_store_header">QR STORE</string>
+    <string name="tx_store_keranjang_bel">KERANJANG BELANJA</string>
+    <string name="tx_store_merchant">MERCHANT</string>
+    <string name="tx_store_name_max">30</string>
+    <string name="tx_store_name_min">2</string>
+    <string name="tx_store_number_max">16</string>
+    <string name="tx_store_number_min">7</string>
+    <string name="tx_store_pick_address">ALAMAT</string>
+    <string name="tx_store_pick_addressdummy">Plaza Permata 10 th floor Mh thamrin 28-30 Jakarta</string>
+    <string name="tx_store_pick_batal">BATAL</string>
+    <string name="tx_store_pick_city">KOTA</string>
+    <string name="tx_store_pick_selesai">SELESAI</string>
+    <string name="tx_store_pick_store">TOKO</string>
+    <string name="tx_store_pre_total">TOTAL</string>
+    <string name="tx_store_pre_totalprice">Rp. 1200</string>
+    <string name="tx_store_select">TOKO [img src=v_arrow/]</string>
+    <string name="tx_store_total_address">ALAMAT</string>
+    <string name="tx_store_total_bayar">TOTAL BAYAR</string>
+    <string name="tx_store_total_bel">TOTAL BELANJA</string>
+    <string name="tx_store_total_nama">NAMA</string>
+    <string name="tx_store_total_phone">TELEPON</string>
+    <string name="tx_store_total_pickup">PENGAMBILAN</string>
+    <string name="tx_store_total_ship">BIAYA KIRIM</string>
+    <string name="url_path_getLoyaltyList">/mobile/individualGetActiveLoyaltyPrograms</string>
+    <string name="url_path_invoiceDetail">/banking/v1/mobile/invoice/get</string>
+    <string name="url_path_invoiceStatus">/banking/v1/mobile/invoice/status</string>
+    <string name="url_path_joinLoyaltyProgram">/mobile/fidelitizCardCreate</string>
+    <string name="url_path_login">/login/auth/connect</string>
+    <string name="waitingSms">Menunggu SMS</string>
     <string name="year_picker_description">Year list</string>
+    <string name="zxing_app_name">Barcode Scanner</string>
+    <string name="zxing_button_ok">OK</string>
+    <string name="zxing_msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the device.</string>
+    <string name="zxing_msg_default_status">Place a barcode inside the viewfinder rectangle to scan it.</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
@@ -625,7 +985,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColor">?android:textColorPrimary</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Subhead.Inverse">
-        <item name="android:textColor">?android:attr/textColorSecondaryInverse</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textColorHint">?android:attr/textColorHintInverse</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Title">
@@ -636,28 +996,31 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textColorHint">?android:attr/textColorHintInverse</item>
     </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="android:TextAppearance.Small">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textStyle">bold</item>
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="TextAppearance.AppCompat.Button">
         <item name="android:textColor">?attr/actionMenuTextColor</item>
+        <item name="textAllCaps">@bool/abc_config_actionMenuItemAllCaps</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle" parent="TextAppearance.AppCompat.Subhead">
         <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse" parent="TextAppearance.AppCompat.Subhead.Inverse">
         <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
+        <item name="android:textColor">?android:attr/textColorSecondaryInverse</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" parent="TextAppearance.AppCompat.Title.Inverse">
         <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Subtitle" parent="TextAppearance.AppCompat.Subhead">
-        <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
-    </style>
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Title" parent="TextAppearance.AppCompat.Title">
-        <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Subtitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle"/>
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionMode.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+    <style name="Base.TextAppearance.AppCompat.Widget.Button" parent="TextAppearance.AppCompat.Button"/>
+    <style name="Base.TextAppearance.AppCompat.Widget.Button.Inverse" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textColor">?android:textColorPrimaryInverse</item>
     </style>
     <style name="Base.TextAppearance.AppCompat.Widget.DropDownItem" parent="android:TextAppearance.Small">
         <item name="android:textColor">?android:attr/textColorPrimaryDisableOnly</item>
@@ -688,10 +1051,10 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
     </style>
     <style name="Base.Theme.AppCompat.Dialog.FixedSize">
-        <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
-        <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
-        <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
-        <item name="windowFixedHeightMinor">@dimen/dialog_fixed_height_minor</item>
+        <item name="windowFixedWidthMajor">@dimen/abc_dialog_fixed_width_major</item>
+        <item name="windowFixedWidthMinor">@dimen/abc_dialog_fixed_width_minor</item>
+        <item name="windowFixedHeightMajor">@dimen/abc_dialog_fixed_height_major</item>
+        <item name="windowFixedHeightMinor">@dimen/abc_dialog_fixed_height_minor</item>
     </style>
     <style name="Base.Theme.AppCompat.Dialog.MinWidth">
         <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
@@ -717,25 +1080,25 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
     </style>
     <style name="Base.Theme.AppCompat.Light.Dialog.FixedSize">
-        <item name="windowFixedWidthMajor">@dimen/dialog_fixed_width_major</item>
-        <item name="windowFixedWidthMinor">@dimen/dialog_fixed_width_minor</item>
-        <item name="windowFixedHeightMajor">@dimen/dialog_fixed_height_major</item>
-        <item name="windowFixedHeightMinor">@dimen/dialog_fixed_height_minor</item>
+        <item name="windowFixedWidthMajor">@dimen/abc_dialog_fixed_width_major</item>
+        <item name="windowFixedWidthMinor">@dimen/abc_dialog_fixed_width_minor</item>
+        <item name="windowFixedHeightMajor">@dimen/abc_dialog_fixed_height_major</item>
+        <item name="windowFixedHeightMinor">@dimen/abc_dialog_fixed_height_minor</item>
     </style>
     <style name="Base.Theme.AppCompat.Light.Dialog.MinWidth">
         <item name="windowMinWidthMajor">@dimen/abc_dialog_min_width_major</item>
         <item name="windowMinWidthMinor">@dimen/abc_dialog_min_width_minor</item>
     </style>
     <style name="Base.Theme.AppCompat.Light.DialogWhenLarge" parent="Theme.AppCompat.Light"/>
-    <style name="Base.ThemeOverlay.AppCompat" parent=""/>
+    <style name="Base.ThemeOverlay.AppCompat" parent="Platform.ThemeOverlay.AppCompat"/>
     <style name="Base.ThemeOverlay.AppCompat.ActionBar">
         <item name="colorControlNormal">?android:attr/textColorPrimary</item>
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView.ActionBar</item>
     </style>
-    <style name="Base.ThemeOverlay.AppCompat.Dark">
+    <style name="Base.ThemeOverlay.AppCompat.Dark" parent="Platform.ThemeOverlay.AppCompat.Dark">
         <item name="android:windowBackground">@color/background_material_dark</item>
-        <item name="android:colorForeground">@color/bright_foreground_material_dark</item>
-        <item name="android:colorForegroundInverse">@color/bright_foreground_material_light</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:colorForegroundInverse">@color/foreground_material_light</item>
         <item name="android:colorBackground">@color/background_material_dark</item>
         <item name="android:colorBackgroundCacheHint">@color/abc_background_cache_hint_selector_material_dark</item>
 
@@ -749,7 +1112,6 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColorHint">@color/hint_foreground_material_dark</item>
         <item name="android:textColorHintInverse">@color/hint_foreground_material_light</item>
         <item name="android:textColorHighlight">@color/highlighted_text_material_dark</item>
-        <item name="android:textColorLink">@color/link_text_material_dark</item>
 
         <item name="colorControlNormal">?android:attr/textColorSecondary</item>
         <item name="colorControlHighlight">@color/ripple_material_dark</item>
@@ -765,8 +1127,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
     </style>
     <style name="Base.ThemeOverlay.AppCompat.Light" parent="Platform.ThemeOverlay.AppCompat.Light">
         <item name="android:windowBackground">@color/background_material_light</item>
-        <item name="android:colorForeground">@color/bright_foreground_material_light</item>
-        <item name="android:colorForegroundInverse">@color/bright_foreground_material_dark</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="android:colorForegroundInverse">@color/foreground_material_dark</item>
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:colorBackgroundCacheHint">@color/abc_background_cache_hint_selector_material_light</item>
 
@@ -781,7 +1143,6 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColorHint">@color/hint_foreground_material_light</item>
         <item name="android:textColorHintInverse">@color/hint_foreground_material_dark</item>
         <item name="android:textColorHighlight">@color/highlighted_text_material_light</item>
-        <item name="android:textColorLink">@color/link_text_material_light</item>
 
         <item name="colorControlNormal">?android:attr/textColorSecondary</item>
         <item name="colorControlHighlight">@color/ripple_material_light</item>
@@ -792,8 +1153,11 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="isLightTheme">true</item>
     </style>
     <style name="Base.V7.Theme.AppCompat" parent="Platform.AppCompat">
+        <item name="windowNoTitle">false</item>
         <item name="windowActionBar">true</item>
         <item name="windowActionBarOverlay">false</item>
+        <item name="windowActionModeOverlay">false</item>
+        <item name="actionBarPopupTheme">@null</item>
 
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">false</item>
@@ -869,7 +1233,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Widget.PopupMenu.Small</item>
         <item name="listPopupWindowStyle">@style/Widget.AppCompat.ListPopupWindow</item>
-        <item name="dropDownListViewStyle">@style/Widget.AppCompat.ListView.DropDown</item>
+        <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
 
         <!-- SearchView attributes -->
         <item name="searchViewStyle">@style/Widget.AppCompat.SearchView</item>
@@ -900,6 +1264,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="colorControlHighlight">@color/ripple_material_dark</item>
         <item name="colorButtonNormal">@color/button_material_dark</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_dark</item>
+        <item name="controlBackground">?attr/selectableItemBackgroundBorderless</item>
 
         <item name="drawerArrowStyle">@style/Widget.AppCompat.DrawerArrowToggle</item>
 
@@ -908,11 +1273,16 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="switchStyle">@style/Widget.AppCompat.CompoundButton.Switch</item>
 
         <item name="ratingBarStyle">@style/Widget.AppCompat.RatingBar</item>
+        <item name="ratingBarStyleIndicator">@style/Widget.AppCompat.RatingBar.Indicator</item>
+        <item name="ratingBarStyleSmall">@style/Widget.AppCompat.RatingBar.Small</item>
+        <item name="seekBarStyle">@style/Widget.AppCompat.SeekBar</item>
 
         <!-- Button styles -->
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="buttonStyleSmall">@style/Widget.AppCompat.Button.Small</item>
-        <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Button</item>
+        <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Widget.Button</item>
+
+        <item name="imageButtonStyle">@style/Widget.AppCompat.ImageButton</item>
 
         <item name="buttonBarStyle">@style/Widget.AppCompat.ButtonBar</item>
         <item name="buttonBarButtonStyle">@style/Widget.AppCompat.Button.ButtonBar.AlertDialog</item>
@@ -960,8 +1330,11 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:listDivider">@null</item>
     </style>
     <style name="Base.V7.Theme.AppCompat.Light" parent="Platform.AppCompat.Light">
+        <item name="windowNoTitle">false</item>
         <item name="windowActionBar">true</item>
         <item name="windowActionBarOverlay">false</item>
+        <item name="windowActionModeOverlay">false</item>
+        <item name="actionBarPopupTheme">@null</item>
 
         <!-- Used by MediaRouter -->
         <item name="isLightTheme">true</item>
@@ -1037,7 +1410,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="textAppearanceLargePopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large</item>
         <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small</item>
         <item name="listPopupWindowStyle">@style/Widget.AppCompat.ListPopupWindow</item>
-        <item name="dropDownListViewStyle">@style/Widget.AppCompat.ListView.DropDown</item>
+        <item name="dropDownListViewStyle">?android:attr/dropDownListViewStyle</item>
 
         <!-- SearchView attributes -->
         <item name="searchViewStyle">@style/Widget.AppCompat.Light.SearchView</item>
@@ -1068,6 +1441,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="colorControlHighlight">@color/ripple_material_light</item>
         <item name="colorButtonNormal">@color/button_material_light</item>
         <item name="colorSwitchThumbNormal">@color/switch_thumb_material_light</item>
+        <item name="controlBackground">?attr/selectableItemBackgroundBorderless</item>
 
         <item name="drawerArrowStyle">@style/Widget.AppCompat.DrawerArrowToggle</item>
 
@@ -1076,11 +1450,16 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="switchStyle">@style/Widget.AppCompat.CompoundButton.Switch</item>
 
         <item name="ratingBarStyle">@style/Widget.AppCompat.RatingBar</item>
+        <item name="ratingBarStyleIndicator">@style/Widget.AppCompat.RatingBar.Indicator</item>
+        <item name="ratingBarStyleSmall">@style/Widget.AppCompat.RatingBar.Small</item>
+        <item name="seekBarStyle">@style/Widget.AppCompat.SeekBar</item>
 
         <!-- Button styles -->
         <item name="buttonStyle">@style/Widget.AppCompat.Button</item>
         <item name="buttonStyleSmall">@style/Widget.AppCompat.Button.Small</item>
-        <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Button</item>
+        <item name="android:textAppearanceButton">@style/TextAppearance.AppCompat.Widget.Button</item>
+
+        <item name="imageButtonStyle">@style/Widget.AppCompat.ImageButton</item>
 
         <item name="buttonBarStyle">@style/Widget.AppCompat.ButtonBar</item>
         <item name="buttonBarButtonStyle">@style/Widget.AppCompat.Button.ButtonBar.AlertDialog</item>
@@ -1189,10 +1568,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:layout_weight">1</item>
         <item name="android:minWidth">80dip</item>
     </style>
-    <style name="Base.Widget.AppCompat.ActionButton" parent="">
+    <style name="Base.Widget.AppCompat.ActionButton" parent="RtlUnderlay.Widget.AppCompat.ActionButton">
         <item name="android:background">?attr/actionBarItemBackground</item>
-        <item name="android:paddingLeft">12dip</item>
-        <item name="android:paddingRight">12dip</item>
         <item name="android:minWidth">@dimen/abc_action_button_min_width_material</item>
         <item name="android:minHeight">@dimen/abc_action_button_min_height_material</item>
         <item name="android:scaleType">center</item>
@@ -1201,10 +1578,9 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="textAllCaps">@bool/abc_config_actionMenuItemAllCaps</item>
     </style>
     <style name="Base.Widget.AppCompat.ActionButton.CloseMode">
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:minWidth">56dp</item>
+        <item name="android:background">?attr/controlBackground</item>
     </style>
-    <style name="Base.Widget.AppCompat.ActionButton.Overflow">
+    <style name="Base.Widget.AppCompat.ActionButton.Overflow" parent="RtlUnderlay.Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/abc_ic_menu_moreoverflow_mtrl_alpha</item>
         <item name="android:background">?attr/actionBarItemBackground</item>
         <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
@@ -1247,6 +1623,10 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:maxLines">2</item>
         <item name="android:minHeight">@dimen/abc_alert_dialog_button_bar_height</item>
     </style>
+    <style name="Base.Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/abc_btn_colored_material</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.Button.Inverse</item>
+    </style>
     <style name="Base.Widget.AppCompat.Button.Small">
         <item name="android:minHeight">48dip</item>
         <item name="android:minWidth">48dip</item>
@@ -1254,36 +1634,36 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="Base.Widget.AppCompat.ButtonBar" parent="android:Widget">
         <item name="android:background">@null</item>
     </style>
-    <style name="Base.Widget.AppCompat.ButtonBar.AlertDialog">
-        <item name="android:background">@null</item>
-    </style>
+    <style name="Base.Widget.AppCompat.ButtonBar.AlertDialog"/>
     <style name="Base.Widget.AppCompat.CompoundButton.CheckBox" parent="android:Widget.CompoundButton.CheckBox">
         <item name="android:button">?android:attr/listChoiceIndicatorMultiple</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">?attr/controlBackground</item>
     </style>
     <style name="Base.Widget.AppCompat.CompoundButton.RadioButton" parent="android:Widget.CompoundButton.RadioButton">
         <item name="android:button">?android:attr/listChoiceIndicatorSingle</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">?attr/controlBackground</item>
     </style>
     <style name="Base.Widget.AppCompat.CompoundButton.Switch" parent="android:Widget.CompoundButton">
         <item name="track">@drawable/abc_switch_track_mtrl_alpha</item>
         <item name="android:thumb">@drawable/abc_switch_thumb_material</item>
         <item name="switchTextAppearance">@style/TextAppearance.AppCompat.Widget.Switch</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:background">?attr/controlBackground</item>
         <item name="showText">false</item>
         <item name="switchPadding">@dimen/abc_switch_padding</item>
+        <item name="android:textOn">@string/abc_capital_on</item>
+        <item name="android:textOff">@string/abc_capital_off</item>
     </style>
     <style name="Base.Widget.AppCompat.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle.Common">
-        <item name="barSize">18dp</item>
+        <item name="barLength">18dp</item>
         <item name="gapBetweenBars">3dp</item>
         <item name="drawableSize">24dp</item>
     </style>
     <style name="Base.Widget.AppCompat.DrawerArrowToggle.Common" parent="">
         <item name="color">?android:attr/textColorSecondary</item>
-        <item name="middleBarArrowSize">16dp</item>
         <item name="spinBars">true</item>
         <item name="thickness">2dp</item>
-        <item name="topBottomBarArrowSize">11.31dp</item>
+        <item name="arrowShaftLength">16dp</item>
+        <item name="arrowHeadLength">8dp</item>
     </style>
     <style name="Base.Widget.AppCompat.DropDownItem.Spinner" parent="">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Widget.DropDownItem</item>
@@ -1292,6 +1672,9 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:gravity">center_vertical</item>
     </style>
     <style name="Base.Widget.AppCompat.EditText" parent="Base.V7.Widget.AppCompat.EditText"/>
+    <style name="Base.Widget.AppCompat.ImageButton" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/abc_btn_default_mtrl_shape</item>
+    </style>
     <style name="Base.Widget.AppCompat.Light.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
         <item name="actionButtonStyle">@style/Widget.AppCompat.Light.ActionButton</item>
         <item name="actionOverflowButtonStyle">@style/Widget.AppCompat.Light.ActionButton.Overflow</item>
@@ -1354,6 +1737,22 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:progressDrawable">@drawable/abc_ratingbar_full_material</item>
         <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_full_material</item>
     </style>
+    <style name="Base.Widget.AppCompat.RatingBar.Indicator" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/abc_ratingbar_indicator_material</item>
+        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_indicator_material</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:maxHeight">36dp</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:thumb">@null</item>
+    </style>
+    <style name="Base.Widget.AppCompat.RatingBar.Small" parent="android:Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/abc_ratingbar_small_material</item>
+        <item name="android:indeterminateDrawable">@drawable/abc_ratingbar_small_material</item>
+        <item name="android:minHeight">16dp</item>
+        <item name="android:maxHeight">16dp</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:thumb">@null</item>
+    </style>
     <style name="Base.Widget.AppCompat.SearchView" parent="android:Widget">
         <item name="layout">@layout/abc_search_view</item>
         <item name="queryBackground">@drawable/abc_textfield_search_material</item>
@@ -1372,25 +1771,25 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="searchHintIcon">@null</item>
         <item name="defaultQueryHint">@string/abc_search_hint</item>
     </style>
-    <style name="Base.Widget.AppCompat.Spinner" parent="android:Widget.Spinner">
-        <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
-        <item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>
-        <item name="android:dropDownVerticalOffset">0dip</item>
+    <style name="Base.Widget.AppCompat.SeekBar" parent="android:Widget">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/abc_seekbar_track_material</item>
+        <item name="android:indeterminateDrawable">@drawable/abc_seekbar_track_material</item>
+        <item name="android:thumb">@drawable/abc_seekbar_thumb_material</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
     </style>
-    <style name="Base.Widget.AppCompat.Spinner.DropDown.ActionBar" parent="android:Widget">
-        <item name="spinnerMode">dropdown</item>
-
-        <item name="android:clickable">true</item>
+    <style name="Base.Widget.AppCompat.Spinner" parent="Platform.Widget.AppCompat.Spinner">
         <item name="android:background">@drawable/abc_spinner_mtrl_am_alpha</item>
-        <item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>
         <item name="android:popupBackground">@drawable/abc_popup_background_mtrl_mult</item>
+        <item name="android:dropDownSelector">?attr/listChoiceBackgroundIndicator</item>
         <item name="android:dropDownVerticalOffset">0dip</item>
         <item name="android:dropDownHorizontalOffset">0dip</item>
-        <item name="overlapAnchor">true</item>
         <item name="android:dropDownWidth">wrap_content</item>
-        <item name="popupPromptView">@layout/abc_simple_dropdown_hint</item>
+        <item name="android:clickable">true</item>
         <item name="android:gravity">left|start|center_vertical</item>
-        <item name="disableChildrenWhenDisabled">true</item>
+        <item name="overlapAnchor">true</item>
     </style>
     <style name="Base.Widget.AppCompat.Spinner.Underlined">
         <item name="android:background">@drawable/abc_spinner_textfield_background_material</item>
@@ -1405,15 +1804,17 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="subtitleTextAppearance">@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle</item>
         <item name="android:minHeight">?attr/actionBarSize</item>
         <item name="titleMargins">4dp</item>
-        <item name="maxButtonHeight">56dp</item>
+        <item name="maxButtonHeight">@dimen/abc_action_bar_default_height_material</item>
         <item name="collapseIcon">?attr/homeAsUpIndicator</item>
         <item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>
         <item name="contentInsetStart">16dp</item>
+        <item name="android:paddingLeft">@dimen/abc_action_bar_default_padding_start_material</item>
+        <item name="android:paddingRight">@dimen/abc_action_bar_default_padding_end_material</item>
     </style>
     <style name="Base.Widget.AppCompat.Toolbar.Button.Navigation" parent="android:Widget">
+        <item name="android:background">?attr/controlBackground</item>
         <item name="android:minWidth">56dp</item>
         <item name="android:scaleType">center</item>
-        <item name="android:background">?attr/selectableItemBackground</item>
     </style>
     <style name="DialogFragmentStyle" parent="AppTheme">
         <item name="android:background">@android:color/transparent</item>
@@ -1423,12 +1824,25 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <!--  <item name="android:colorBackgroundCacheHint">@android:color/transparent</item> -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+    <style name="PayByQRTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/theme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme_colorPrimary</item>
+        <item name="colorAccent">@color/theme_colorPrimary</item>
+        <item name="android:colorBackground">@android:color/white</item>
+
+    </style>
+    <style name="PayByQRTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/theme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/theme_colorPrimary</item>
+        <item name="colorAccent">@color/theme_colorPrimary</item>
+        <item name="android:colorBackground">@android:color/white</item>
+    </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
 
         <!-- Window colors -->
-        <item name="android:colorForeground">@color/bright_foreground_material_dark</item>
-        <item name="android:colorForegroundInverse">@color/bright_foreground_material_light</item>
+        <item name="android:colorForeground">@color/foreground_material_dark</item>
+        <item name="android:colorForegroundInverse">@color/foreground_material_light</item>
         <item name="android:colorBackground">@color/background_material_dark</item>
         <item name="android:colorBackgroundCacheHint">@color/abc_background_cache_hint_selector_material_dark</item>
         <item name="android:disabledAlpha">@dimen/abc_disabled_alpha_material_dark</item>
@@ -1446,7 +1860,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColorHint">@color/hint_foreground_material_dark</item>
         <item name="android:textColorHintInverse">@color/hint_foreground_material_light</item>
         <item name="android:textColorHighlight">@color/highlighted_text_material_dark</item>
-        <item name="android:textColorLink">@color/link_text_material_dark</item>
+        <item name="android:textColorLink">?attr/colorAccent</item>
 
         <!-- Text styles -->
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
@@ -1465,8 +1879,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:windowNoTitle">true</item>
 
         <!-- Window colors -->
-        <item name="android:colorForeground">@color/bright_foreground_material_light</item>
-        <item name="android:colorForegroundInverse">@color/bright_foreground_material_dark</item>
+        <item name="android:colorForeground">@color/foreground_material_light</item>
+        <item name="android:colorForegroundInverse">@color/foreground_material_dark</item>
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:colorBackgroundCacheHint">@color/abc_background_cache_hint_selector_material_light</item>
         <item name="android:disabledAlpha">@dimen/abc_disabled_alpha_material_light</item>
@@ -1485,7 +1899,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textColorHint">@color/hint_foreground_material_light</item>
         <item name="android:textColorHintInverse">@color/hint_foreground_material_dark</item>
         <item name="android:textColorHighlight">@color/highlighted_text_material_light</item>
-        <item name="android:textColorLink">@color/link_text_material_light</item>
+        <item name="android:textColorLink">?attr/colorAccent</item>
 
         <!-- Text styles -->
         <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
@@ -1500,7 +1914,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:listChoiceIndicatorSingle">@drawable/abc_btn_radio_material</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/abc_btn_check_material</item>
     </style>
-    <style name="Platform.ThemeOverlay.AppCompat.Dark" parent="">
+    <style name="Platform.ThemeOverlay.AppCompat" parent=""/>
+    <style name="Platform.ThemeOverlay.AppCompat.Dark">
         <!-- Action Bar styles -->
         <item name="actionBarItemBackground">@drawable/abc_item_background_holo_dark</item>
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Spinner.DropDown.ActionBar</item>
@@ -1510,7 +1925,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:autoCompleteTextViewStyle">@style/Widget.AppCompat.AutoCompleteTextView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
-    <style name="Platform.ThemeOverlay.AppCompat.Light" parent="">
+    <style name="Platform.ThemeOverlay.AppCompat.Light">
         <item name="actionBarItemBackground">@drawable/abc_item_background_holo_light</item>
         <item name="actionDropDownStyle">@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar</item>
         <item name="selectableItemBackground">@drawable/abc_item_background_holo_light</item>
@@ -1519,15 +1934,12 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:autoCompleteTextViewStyle">@style/Widget.AppCompat.Light.AutoCompleteTextView</item>
         <item name="android:dropDownItemStyle">@style/Widget.AppCompat.DropDownItem.Spinner</item>
     </style>
+    <style name="Platform.Widget.AppCompat.Spinner" parent="android:Widget.Spinner"/>
     <style name="RtlOverlay.DialogWindowTitle.AppCompat" parent="Base.DialogWindowTitle.AppCompat">
     </style>
     <style name="RtlOverlay.Widget.AppCompat.ActionBar.TitleItem" parent="android:Widget">
         <item name="android:layout_gravity">center_vertical|left</item>
         <item name="android:paddingRight">8dp</item>
-    </style>
-    <style name="RtlOverlay.Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
-        <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
     </style>
     <style name="RtlOverlay.Widget.AppCompat.DialogTitle.Icon" parent="android:Widget">
         <item name="android:layout_marginRight">8dp</item>
@@ -1561,8 +1973,13 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="RtlOverlay.Widget.AppCompat.SearchView.MagIcon" parent="android:Widget">
         <item name="android:layout_marginLeft">@dimen/abc_dropdownitem_text_padding_left</item>
     </style>
-    <style name="RtlOverlay.Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="android:paddingLeft">@dimen/abc_action_bar_navigation_padding_start_material</item>
+    <style name="RtlUnderlay.Widget.AppCompat.ActionButton" parent="android:Widget">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+    </style>
+    <style name="RtlUnderlay.Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton">
+        <item name="android:paddingLeft">@dimen/abc_action_bar_overflow_padding_start_material</item>
+        <item name="android:paddingRight">@dimen/abc_action_bar_overflow_padding_end_material</item>
     </style>
     <style name="TextAppearance.AppCompat" parent="Base.TextAppearance.AppCompat"/>
     <style name="TextAppearance.AppCompat.Body1" parent="Base.TextAppearance.AppCompat.Body1"/>
@@ -1598,12 +2015,10 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="TextAppearance.AppCompat.Title.Inverse" parent="Base.TextAppearance.AppCompat.Title.Inverse"/>
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Menu" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Menu">
     </style>
-    <style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
-    </style>
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"/>
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse">
     </style>
-    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title">
-    </style>
+    <style name="TextAppearance.AppCompat.Widget.ActionBar.Title" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title"/>
     <style name="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
     </style>
     <style name="TextAppearance.AppCompat.Widget.ActionMode.Subtitle" parent="Base.TextAppearance.AppCompat.Widget.ActionMode.Subtitle">
@@ -1612,6 +2027,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="TextAppearance.AppCompat.Widget.ActionMode.Title" parent="Base.TextAppearance.AppCompat.Widget.ActionMode.Title">
     </style>
     <style name="TextAppearance.AppCompat.Widget.ActionMode.Title.Inverse" parent="TextAppearance.AppCompat.Widget.ActionMode.Title"/>
+    <style name="TextAppearance.AppCompat.Widget.Button" parent="Base.TextAppearance.AppCompat.Widget.Button"/>
+    <style name="TextAppearance.AppCompat.Widget.Button.Inverse" parent="Base.TextAppearance.AppCompat.Widget.Button.Inverse"/>
     <style name="TextAppearance.AppCompat.Widget.DropDownItem" parent="Base.TextAppearance.AppCompat.Widget.DropDownItem">
     </style>
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="Base.TextAppearance.AppCompat.Widget.PopupMenu.Large">
@@ -1633,6 +2050,13 @@ Contact our Customer Services at contact@flashiz.com"</string>
     </style>
     <style name="Theme.AppCompat" parent="Base.Theme.AppCompat"/>
     <style name="Theme.AppCompat.CompactMenu" parent="Base.Theme.AppCompat.CompactMenu"/>
+    <style name="Theme.AppCompat.DayNight" parent="Theme.AppCompat.Light"/>
+    <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar"/>
+    <style name="Theme.AppCompat.DayNight.Dialog" parent="Theme.AppCompat.Light.Dialog"/>
+    <style name="Theme.AppCompat.DayNight.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert"/>
+    <style name="Theme.AppCompat.DayNight.Dialog.MinWidth" parent="Theme.AppCompat.Light.Dialog.MinWidth"/>
+    <style name="Theme.AppCompat.DayNight.DialogWhenLarge" parent="Theme.AppCompat.Light.DialogWhenLarge"/>
+    <style name="Theme.AppCompat.DayNight.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar"/>
     <style name="Theme.AppCompat.Dialog" parent="Base.Theme.AppCompat.Dialog"/>
     <style name="Theme.AppCompat.Dialog.Alert" parent="Base.Theme.AppCompat.Dialog.Alert"/>
     <style name="Theme.AppCompat.Dialog.MinWidth" parent="Base.Theme.AppCompat.Dialog.MinWidth"/>
@@ -1670,7 +2094,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     </style>
     <style name="Widget.AppCompat.ActionButton" parent="Base.Widget.AppCompat.ActionButton"/>
     <style name="Widget.AppCompat.ActionButton.CloseMode" parent="Base.Widget.AppCompat.ActionButton.CloseMode"/>
-    <style name="Widget.AppCompat.ActionButton.Overflow" parent="RtlOverlay.Widget.AppCompat.ActionButton.Overflow"/>
+    <style name="Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow"/>
     <style name="Widget.AppCompat.ActionMode" parent="Base.Widget.AppCompat.ActionMode">
     </style>
     <style name="Widget.AppCompat.ActivityChooserView" parent="Base.Widget.AppCompat.ActivityChooserView">
@@ -1681,6 +2105,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="Widget.AppCompat.Button.Borderless" parent="Base.Widget.AppCompat.Button.Borderless"/>
     <style name="Widget.AppCompat.Button.Borderless.Colored" parent="Base.Widget.AppCompat.Button.Borderless.Colored"/>
     <style name="Widget.AppCompat.Button.ButtonBar.AlertDialog" parent="Base.Widget.AppCompat.Button.ButtonBar.AlertDialog"/>
+    <style name="Widget.AppCompat.Button.Colored" parent="Base.Widget.AppCompat.Button.Colored"/>
     <style name="Widget.AppCompat.Button.Small" parent="Base.Widget.AppCompat.Button.Small"/>
     <style name="Widget.AppCompat.ButtonBar" parent="Base.Widget.AppCompat.ButtonBar"/>
     <style name="Widget.AppCompat.ButtonBar.AlertDialog" parent="Base.Widget.AppCompat.ButtonBar.AlertDialog"/>
@@ -1691,8 +2116,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="color">?attr/colorControlNormal</item>
     </style>
     <style name="Widget.AppCompat.DropDownItem.Spinner" parent="RtlOverlay.Widget.AppCompat.Search.DropDown.Text"/>
-    <style name="Widget.AppCompat.EditText" parent="Base.Widget.AppCompat.EditText">
-    </style>
+    <style name="Widget.AppCompat.EditText" parent="Base.Widget.AppCompat.EditText"/>
+    <style name="Widget.AppCompat.ImageButton" parent="Base.Widget.AppCompat.ImageButton"/>
     <style name="Widget.AppCompat.Light.ActionBar" parent="Base.Widget.AppCompat.Light.ActionBar">
     </style>
     <style name="Widget.AppCompat.Light.ActionBar.Solid" parent="Base.Widget.AppCompat.Light.ActionBar.Solid">
@@ -1740,15 +2165,18 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <style name="Widget.AppCompat.ProgressBar.Horizontal" parent="Base.Widget.AppCompat.ProgressBar.Horizontal">
     </style>
     <style name="Widget.AppCompat.RatingBar" parent="Base.Widget.AppCompat.RatingBar"/>
+    <style name="Widget.AppCompat.RatingBar.Indicator" parent="Base.Widget.AppCompat.RatingBar.Indicator"/>
+    <style name="Widget.AppCompat.RatingBar.Small" parent="Base.Widget.AppCompat.RatingBar.Small"/>
     <style name="Widget.AppCompat.SearchView" parent="Base.Widget.AppCompat.SearchView"/>
     <style name="Widget.AppCompat.SearchView.ActionBar" parent="Base.Widget.AppCompat.SearchView.ActionBar"/>
+    <style name="Widget.AppCompat.SeekBar" parent="Base.Widget.AppCompat.SeekBar"/>
     <style name="Widget.AppCompat.Spinner" parent="Base.Widget.AppCompat.Spinner"/>
     <style name="Widget.AppCompat.Spinner.DropDown"/>
-    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Base.Widget.AppCompat.Spinner.DropDown.ActionBar"/>
+    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar"/>
     <style name="Widget.AppCompat.Spinner.Underlined" parent="Base.Widget.AppCompat.Spinner.Underlined"/>
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
-    <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="RtlOverlay.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
     <style name="ampm_label">
         <item name="android:textSize">@dimen/ampm_label_size</item>
         <item name="android:textColor">@color/ampm_text_color</item>
@@ -1759,4 +2187,6 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:textSize">@dimen/time_label_size</item>
         <item name="android:textColor">@color/numbers_text_color</item>
     </style>
+    <style name="zxing_CaptureTheme" parent="android:Theme.Black.NoTitleBar.Fullscreen">
+  </style>
 </resources>

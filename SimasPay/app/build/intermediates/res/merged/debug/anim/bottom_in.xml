@@ -7,6 +7,6 @@
         android:fillEnabled="true"
         android:fromYDelta="100%p"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-        android:toYDelta="%p" />
+        android:toYDelta="0%p" />
 
 </set>

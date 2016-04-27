@@ -211,7 +211,7 @@
                             android:textSize="16dp" />
 
                         <Button
-                            android:id="@+id/from"
+                            android:id="@+id/fromButton"
                             android:layout_width="fill_parent"
                             android:layout_height="35.0dip"
                             android:layout_marginLeft="5dp"
@@ -247,7 +247,7 @@
                             android:textSize="16dp" />
 
                         <Button
-                            android:id="@+id/to"
+                            android:id="@+id/toButton"
                             android:layout_width="fill_parent"
                             android:layout_height="35.0dip"
                             android:layout_marginLeft="5dp"

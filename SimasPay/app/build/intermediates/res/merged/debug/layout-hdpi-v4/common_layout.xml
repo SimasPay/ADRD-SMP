@@ -68,7 +68,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -103,7 +103,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Transfer"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -129,7 +129,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Pembelian"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -155,7 +155,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Pembayaran"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -169,8 +169,8 @@
 
             <ImageView
                 android:id="@+id/menu_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:src="@drawable/btn_menuback" />
         </LinearLayout>
     </LinearLayout>
@@ -250,7 +250,7 @@
                         android:layout_gravity="center"
                         android:text="Ganti Akun"
                         android:textColor="@android:color/white"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,8 +261,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:src="@drawable/logout" />
@@ -274,7 +274,7 @@
                         android:layout_gravity="center"
                         android:text="Log Out"
                         android:textColor="@android:color/white"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -336,8 +336,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:src="@drawable/user" />
@@ -349,7 +349,7 @@
                         android:layout_gravity="center"
                         android:text="Ganti Akun"
                         android:textColor="#5F060A"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -360,10 +360,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:scaleType="fitXY"
                         android:src="@drawable/white_logout" />
 
                     <TextView
@@ -373,7 +374,7 @@
                         android:layout_gravity="center"
                         android:text="Log Out"
                         android:textColor="#5F060A"
-                        android:textSize="15dp" />
+                        android:textSize="13dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

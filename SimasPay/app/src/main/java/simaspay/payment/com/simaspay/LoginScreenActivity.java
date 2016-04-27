@@ -137,7 +137,7 @@ public class LoginScreenActivity extends Activity {
                 } else if (e_Mdn.getText().toString().equals("")) {
                     Utility.displayDialog("Masukkan Nomor Handphone", LoginScreenActivity.this);
                 } else if (e_Mdn.getText().toString().replace(" ", "")
-                        .length() < 7) {
+                        .length() < 10) {
                     Utility.displayDialog(getResources().getString(R.string.number_less7),
                             LoginScreenActivity.this);
                 } else if (e_mPin.getText().toString().equals("")) {
@@ -280,6 +280,7 @@ public class LoginScreenActivity extends Activity {
                     if (responseContainer.getCustomerType().equals("0")) {
                         if (responseContainer.getIsBank().equalsIgnoreCase("true")) {
                             sharedPreferences.edit().putInt("userType", 0).commit();
+                            sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).commit();
                             Intent intent = new Intent(LoginScreenActivity.this, SimaspayUserActivity.class);
                             startActivityForResult(intent, 20);
                         } else {
@@ -291,7 +292,7 @@ public class LoginScreenActivity extends Activity {
                     } else if (responseContainer.getCustomerType().equals("2")) {
                         sharedPreferences.edit().putInt("userType", 2).commit();
                         Intent intent = new Intent(LoginScreenActivity.this, NumberSwitchingActivity.class);
-                        sharedPreferences.edit().putString("accountnumber",responseContainer.getAccountNumber()).commit();
+                        sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).commit();
                         startActivityForResult(intent, 20);
                     }
                 } else {

@@ -1,5 +1,6 @@
 package com.payment.simaspay.UserActivation;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,11 +9,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +28,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -63,20 +67,15 @@ public class ActivationPage_2_Activity extends Activity {
         public void onReceive(Context context, Intent intent) {
             try {
                 String body = intent.getExtras().getString("message");
-                if (body.contains("Kode Simobi Anda")
-                        && body.contains(idnumber)) {
+                if (body.contains("Kode OTP Simaspay anda")) {
 
                     otpValue = body
                             .substring(
-                                    body.indexOf("Kode Simobi Anda ")
+                                    body.indexOf("Kode OTP Simaspay anda : ")
                                             + new String(
-                                            "Kode Simobi Anda ")
+                                            "Kode OTP Simaspay anda : ")
                                             .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
                     handler.removeCallbacks(runnable);
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -96,19 +95,16 @@ public class ActivationPage_2_Activity extends Activity {
                     intent1.putExtra("name", name);
                     startActivityForResult(intent1, 20);
 
-                } else if (body.contains("Your Simobi Code is ")
+                } else if (body.contains("Your Simaspay code is ")
                         && body.contains(idnumber)) {
                     otpValue = body
                             .substring(
-                                    body.indexOf("Your Simobi Code is ")
+                                    body.indexOf("Your Simaspay code is ")
                                             + new String(
-                                            "Your Simobi Code is ")
+                                            "Your Simaspay code is ")
                                             .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
+
                     handler.removeCallbacks(runnable);
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -214,8 +210,8 @@ public class ActivationPage_2_Activity extends Activity {
                 } else if (e_Mdn.getText().toString().equals("")) {
                     Utility.networkDisplayDialog("Masukkan Nomor Handphone", ActivationPage_2_Activity.this);
                 } else if (e_Mdn.getText().toString().replace(" ", "")
-                        .length() < 7) {
-                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 6 angka",
+                        .length() < 10) {
+                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
                             ActivationPage_2_Activity.this);
                 } else {
 
@@ -240,15 +236,31 @@ public class ActivationPage_2_Activity extends Activity {
                 } else if (e_Mdn.getText().toString().equals("")) {
                     Utility.networkDisplayDialog("Masukkan Nomor Handphone", ActivationPage_2_Activity.this);
                 } else if (e_Mdn.getText().toString().replace(" ", "")
-                        .length() < 7) {
-                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 6 angka",
+                        .length() < 10) {
+                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
                             ActivationPage_2_Activity.this);
                 } else if (e_mPin.getText().toString().equals("")) {
                     Utility.networkDisplayDialog("Masukkan OTP Anda", ActivationPage_2_Activity.this);
                 } else {
-                    mobileNumber = e_Mdn.getText().toString();
-                    otp = e_mPin.getText().toString();
-                    new ActivationAsyn().execute();
+
+                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
+
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                    109);
+                        } else {
+                            mobileNumber = e_Mdn.getText().toString();
+                            otp = e_mPin.getText().toString();
+                            new ActivationAsyn().execute();
+                        }
+                    } else {
+                        mobileNumber = e_Mdn.getText().toString();
+                        otp = e_mPin.getText().toString();
+                        new ActivationAsyn().execute();
+                    }
                 }
 
             }
@@ -316,6 +328,20 @@ public class ActivationPage_2_Activity extends Activity {
         dialogCustomWish.show();
 
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                mobileNumber = e_Mdn.getText().toString();
+                otp = e_mPin.getText().toString();
+                new ActivationAsyn().execute();
+            } else {
+
+            }
+        }
     }
 
     int msgCode;
@@ -393,9 +419,6 @@ public class ActivationPage_2_Activity extends Activity {
                 }
                 if (msgCode == 2040) {
                     if (responseContainer.getMfaMode().equalsIgnoreCase("OTP")) {
-                        if (progressDialog != null) {
-                            progressDialog.dismiss();
-                        }
                         idnumber = responseContainer.getSctl();
                         name = responseContainer.getName();
                         handler.postDelayed(runnable, 60000);
