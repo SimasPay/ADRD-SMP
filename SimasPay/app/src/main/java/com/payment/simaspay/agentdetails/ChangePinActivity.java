@@ -222,7 +222,7 @@ public class ChangePinActivity extends Activity {
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     startActivityForResult(intent, 10);
 
-                } else if (msgCode == 661) {
+                } else if (msgCode == 631) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }

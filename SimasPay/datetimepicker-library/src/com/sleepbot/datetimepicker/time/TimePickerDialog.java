@@ -44,7 +44,8 @@ import java.util.Locale;
 /**
  * Dialog to set a time.
  */
-public class TimePickerDialog extends DialogFragment implements RadialPickerLayout.OnValueSelectedListener {
+public class
+TimePickerDialog extends DialogFragment implements RadialPickerLayout.OnValueSelectedListener {
     private static final String TAG = "TimePickerDialog";
 
     private static final String KEY_HOUR_OF_DAY = "hour_of_day";

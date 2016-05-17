@@ -4,26 +4,19 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.services.AppConfigFile;
-import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.JustifiedTextView;
 import com.payment.simaspay.services.Utility;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
@@ -38,7 +31,11 @@ public class ActivationPage_1_Activity extends Activity {
 
     SharedPreferences sharedPreferences;
 
+    ProgressDialog progressDialog;
+
     String rsaKey;
+
+    WebView webView;
 
 
     @Override
@@ -47,7 +44,7 @@ public class ActivationPage_1_Activity extends Activity {
         if (requestCode == 10) {
             if (resultCode == Activity.RESULT_OK) {
                 Intent intent = getIntent();
-                setResult(Activity.RESULT_OK, intent);
+                setResult(Activity.RESULT_FIRST_USER, intent);
                 finish();
             } else if (resultCode == 12) {
                 Intent intent = getIntent();
@@ -74,21 +71,47 @@ public class ActivationPage_1_Activity extends Activity {
         }
 
         terms_conditions = (TextView) findViewById(R.id.terms_conditions);
-//        terms_conditions_Text=(TextView)findViewById(R.id.tandc);
 
         cancel = (Button) findViewById(R.id.cancel);
         accept = (Button) findViewById(R.id.accept);
 
         terms_conditions.setTypeface(Utility.Robot_Regular(ActivationPage_1_Activity.this));
-//        terms_conditions_Text.setTypeface(Utility.Robot_Regular(ActivationPage_1_Activity.this));
         cancel.setTypeface(Utility.Robot_Regular(ActivationPage_1_Activity.this));
         accept.setTypeface(Utility.Robot_Regular(ActivationPage_1_Activity.this));
 
-//        terms_conditions_Text.setText(getResources().getString(R.string.benef));
 
-        JustifiedTextView jtv= new JustifiedTextView(getApplicationContext(), "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.");
+//        JustifiedTextView jtv= new JustifiedTextView(getApplicationContext(), "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.");
+
+        progressDialog = new ProgressDialog(ActivationPage_1_Activity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+        progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+        progressDialog.show();
+
+        webView = new WebView(ActivationPage_1_Activity.this);
+        webView.setVisibility(View.GONE);
+
+        webView.setWebViewClient(new WebViewClient() {
+
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+
+
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+
+                webView.setVisibility(View.VISIBLE);
+            }
+
+
+        });
+
+        webView.loadUrl("https://www.banksinarmas.com/PersonalBanking/IB.do?action=terms");
+
         LinearLayout place = (LinearLayout) findViewById(R.id.textlayout);
-        place.addView(jtv);
+        place.addView(webView);
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +141,7 @@ public class ActivationPage_1_Activity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = getIntent();
             setResult(Activity.RESULT_OK, intent);
             finish();

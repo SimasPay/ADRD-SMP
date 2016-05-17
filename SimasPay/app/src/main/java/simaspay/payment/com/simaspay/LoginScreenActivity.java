@@ -33,6 +33,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SimaspayUserActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -65,6 +66,18 @@ public class LoginScreenActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 20) {
             if (resultCode == Activity.RESULT_OK) {
+                Intent intent=new Intent(LoginScreenActivity.this, SecondLoginActivity.class);
+                startActivity(intent);
+                finish();
+            }else if(resultCode==Activity.RESULT_FIRST_USER){
+
+            } else {
+                finish();
+            }
+        }else if (requestCode == 30) {
+            if (resultCode == Activity.RESULT_OK) {
+
+            }else if(resultCode==Activity.RESULT_FIRST_USER){
 
             } else {
                 finish();
@@ -94,6 +107,11 @@ public class LoginScreenActivity extends Activity {
         simas = (TextView) findViewById(R.id.simas);
 //        simas.setTextSize(getResources().getDimensionPixelSize(R.dimen.txt));
 
+        if(sharedPreferences.getBoolean("Login",false)){
+            Intent intent=new Intent(LoginScreenActivity.this, SecondLoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         login.setTypeface(Utility.Robot_Regular(LoginScreenActivity.this));
         register.setTypeface(Utility.Robot_Regular(LoginScreenActivity.this));
         atau.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
@@ -112,7 +130,7 @@ public class LoginScreenActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginScreenActivity.this, ActivationPage_1_Activity.class);
-                startActivityForResult(intent, 20);
+                startActivityForResult(intent, 30);
             }
         });
 
@@ -252,7 +270,7 @@ public class LoginScreenActivity extends Activity {
                 }
                 if (msgCode == 630) {
                     progressDialog.dismiss();
-
+                    sharedPreferences.edit().putBoolean("Login",true).commit();
                     Log.e("------","------"+responseContainer.getUserApiKey());
                     if (responseContainer.getUserApiKey() != null) {
                         sharedPreferences.edit()

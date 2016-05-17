@@ -38,7 +38,7 @@ import simaspay.payment.com.simaspay.R;
 public class TransferOtherBankDetailsActivity extends Activity {
 
 
-    TextView title, handphone, jumlah, mPin, bankName;
+    TextView title, handphone, jumlah, mPin, bankName,Rp;
 
     Button submit;
 
@@ -64,6 +64,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
         bankName = (TextView) findViewById(R.id.bankName_textView);
+        Rp = (TextView) findViewById(R.id.Rp);
 
         submit = (Button) findViewById(R.id.submit);
 
@@ -84,6 +85,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
         number.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
         amount.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
         bankName_editfield.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
 
         bankName_editfield.setText(getIntent().getExtras().getString("BankName"));
@@ -133,35 +135,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
         });
 
 
-        amount.setText("Rp ");
-        Selection.setSelection(amount.getText(), amount.getText().length());
 
-
-        amount.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    amount.setText("Rp ");
-                    Selection.setSelection(amount.getText(), amount.getText().length());
-
-                }
-
-            }
-        });
 
 
     }
@@ -274,6 +248,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     sharedPreferences.edit().putString("password", pinValue).commit();
                     Intent intent = new Intent(TransferOtherBankDetailsActivity.this, TransferOtherbankConfirmationActivity.class);
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("originalamount", amountValue);
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("DestMDN", responseContainer.getAccountNumber());
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());

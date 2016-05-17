@@ -39,7 +39,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class LakupandaiTransferDetailsActivity extends Activity {
 
-    TextView title, handphone, jumlah, mPin;
+    TextView title, handphone, jumlah, mPin,Rp;
 
     Button submit;
 
@@ -66,6 +66,7 @@ public class LakupandaiTransferDetailsActivity extends Activity {
         handphone = (TextView) findViewById(R.id.handphone);
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
+        Rp=(TextView) findViewById(R.id.Rp);
 
         title.setText("Transfer - Laku Pandai");
 
@@ -89,7 +90,7 @@ public class LakupandaiTransferDetailsActivity extends Activity {
         number.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
         amount.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
-
+        Rp.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,35 +132,7 @@ public class LakupandaiTransferDetailsActivity extends Activity {
         });
 
 
-        amount.setText("Rp ");
-        Selection.setSelection(amount.getText(), amount.getText().length());
 
-
-        amount.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    amount.setText("Rp ");
-                    Selection.setSelection(amount.getText(), amount.getText().length());
-
-                }
-
-            }
-        });
 
 
     }

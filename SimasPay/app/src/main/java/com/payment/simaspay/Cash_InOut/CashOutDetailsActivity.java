@@ -36,7 +36,7 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 1/29/2016.
  */
 public class CashOutDetailsActivity extends Activity {
-    TextView title, handphone, jumlah, mPin;
+    TextView title, handphone, jumlah, mPin,Rp;
 
     Button submit;
 
@@ -63,6 +63,8 @@ public class CashOutDetailsActivity extends Activity {
         handphone = (TextView) findViewById(R.id.handphone);
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
+        Rp = (TextView) findViewById(R.id.Rp);
+
 
         submit = (Button) findViewById(R.id.submit);
 
@@ -70,35 +72,6 @@ public class CashOutDetailsActivity extends Activity {
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
 
-        amount.setText("Rp ");
-        Selection.setSelection(amount.getText(), amount.getText().length());
-
-
-        amount.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    amount.setText("Rp ");
-                    Selection.setSelection(amount.getText(), amount.getText().length());
-
-                }
-
-            }
-        });
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
@@ -110,6 +83,7 @@ public class CashOutDetailsActivity extends Activity {
         number.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
         amount.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
 
         title.setText("Tarik Tunai");
         handphone.setText("Nomor Handphone Agen");
@@ -139,7 +113,7 @@ public class CashOutDetailsActivity extends Activity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new CashOutAsynTask().execute();
 

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dimo.PayByQR"
+    android:versionCode="1"
+    android:versionName="1.0.1" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:largeHeap="true" >
+        <activity
+            android:name="com.dimo.PayByQR.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.ScanQRActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.InvoiceDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.PaymentSuccessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.FailedActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.NoConnectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.TipActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+
+        <!-- - QR STORE -->
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreMenuActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreCheckout"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreKonfirmasiActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreEmpty"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreMenuMerchant"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.QrStore.view.StoreSuccess"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <!-- QR STORE END -->
+
+        <activity
+            android:name="com.dimo.PayByQR.activity.LoyaltyActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.LoyaltyDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar" />
+        <activity
+            android:name="com.dimo.PayByQR.activity.OfflineQRActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/PayByQRTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible" />
+    </application>
+
+</manifest>

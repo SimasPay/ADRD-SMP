@@ -96,6 +96,7 @@ public class CloseAccountDetailsActivity extends Activity {
         mPin.setVisibility(View.GONE);
         amount.setVisibility(View.GONE);
         pin.setVisibility(View.GONE);
+        findViewById(R.id.setortunailayout).setVisibility(View.GONE);
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
@@ -119,13 +120,15 @@ public class CloseAccountDetailsActivity extends Activity {
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
                     Utility.displayDialog(getResources().getString(R.string.number_grater14),CloseAccountDetailsActivity.this);
                 } else {
-                    if(number.getText().toString().replace(" ", "").startsWith("0")){
+                   /* if(number.getText().toString().replace(" ", "").startsWith("0")){
                         DestMDN="62"+number.getText().toString().replace(" ", "").substring(1);
                     }else if(number.getText().toString().replace(" ", "").startsWith("62")){
                         DestMDN=number.getText().toString().replace(" ", "");
                     }else {
                         DestMDN="62"+number.getText().toString().replace(" ", "");
-                    }
+                    }*/
+
+                    DestMDN=number.getText().toString().replace(" ","");
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(number.getWindowToken(), 0);
                     new CloseAsynTask().execute();

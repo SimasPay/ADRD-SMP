@@ -61,20 +61,17 @@ public class CloseAccountConfirmationActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
             try {
                 String body = intent.getExtras().getString("message");
-                if (body.contains("Kode Simobi Anda")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
+                if (body.contains("Kode OTP Simaspay anda")
+                        ) {
 
                     otpValue = body
                             .substring(
-                                    body.indexOf("Kode Simobi Anda ")
+                                    body.indexOf("Kode OTP Simaspay anda ")
                                             + new String(
-                                            "Kode Simobi Anda ")
+                                            "Kode OTP Simaspay anda ")
                                             .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
+
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -83,19 +80,15 @@ public class CloseAccountConfirmationActivity extends Activity {
                     }
 
 
-                } else if (body.contains("Your Simobi Code is ")
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
+                } else if (body.contains("Your Simaspay code is ")
+                        ) {
                     otpValue = body
                             .substring(
-                                    body.indexOf("Your Simobi Code is ")
+                                    body.indexOf("Your Simaspay code is ")
                                             + new String(
-                                            "Your Simobi Code is ")
+                                            "Your Simaspay code is ")
                                             .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
+                                    body.indexOf(". ")).trim();
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -186,6 +179,11 @@ public class CloseAccountConfirmationActivity extends Activity {
 
         back = (LinearLayout) findViewById(R.id.back_layout);
 
+        progressDialog = new ProgressDialog(CloseAccountConfirmationActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+        progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+
         title.setTypeface(Utility.Robot_Regular(CloseAccountConfirmationActivity.this));
         heading.setTypeface(Utility.Robot_Regular(CloseAccountConfirmationActivity.this));
         name.setTypeface(Utility.Robot_Regular(CloseAccountConfirmationActivity.this));
@@ -226,7 +224,7 @@ public class CloseAccountConfirmationActivity extends Activity {
             public void onClick(View view) {
 
                 if (!confirmation.getText().toString().equalsIgnoreCase("Kembali")) {
-                    if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                    if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                         nextpressedornot = true;
                         if (Timervalueout) {
                             Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), CloseAccountConfirmationActivity.this);
@@ -238,7 +236,7 @@ public class CloseAccountConfirmationActivity extends Activity {
                                 new CloseAccountConfirmationAsyn().execute();
                             }
                         }
-                    }else{
+                    } else {
 
                         SMSAlert("");
                     }
@@ -302,7 +300,9 @@ public class CloseAccountConfirmationActivity extends Activity {
             }
         }
     }
+
     TextView textView1;
+
     public void SMSAlert(final String string) {
 
         dialogCustomWish = new Dialog(context);
@@ -327,10 +327,9 @@ public class CloseAccountConfirmationActivity extends Activity {
         textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
         textView1.setVisibility(View.GONE);
 
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor "+getIntent().getExtras().getString("DestMDN")+" Masukkan kode tersebut atau akses link yang tersedia.");
+        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + getIntent().getExtras().getString("DestMDN") + " Masukkan kode tersebut atau akses link yang tersedia.");
 
         final EditText otpCode = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
-
 
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -348,9 +347,9 @@ public class CloseAccountConfirmationActivity extends Activity {
             public void onClick(View v) {
                 dialogCustomWish.dismiss();
 
-                if(otpCode.getText().toString().length()<=0){
+                if (otpCode.getText().toString().length() <= 0) {
 
-                }else {
+                } else {
                     otp = otpCode.getText().toString();
 
                     handler12.postDelayed(runnable12, 1000);
@@ -402,7 +401,7 @@ public class CloseAccountConfirmationActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
             mapContainer.put(Constants.PARAMETER_DEST_MDN, getIntent().getExtras().getString("DestMDN"));
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, getIntent().getExtras().getString("SctlID"));
-            if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")){
+            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 try {
                     encryptedmfaOTP = CryptoService.encryptWithPublicKey(module, exponent,
                             otpValue.getBytes());
@@ -410,12 +409,12 @@ public class CloseAccountConfirmationActivity extends Activity {
                     e1.printStackTrace();
                 }
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, encryptedmfaOTP);
-            }else{
+            } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
             mapContainer.put(Constants.PARAMETER_OTP, encryptedOTP);
 
-            Log.e("----------","--------"+mapContainer.toString());
+            Log.e("----------", "--------" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, CloseAccountConfirmationActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -424,11 +423,15 @@ public class CloseAccountConfirmationActivity extends Activity {
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(CloseAccountConfirmationActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.show();
+            if (progressDialog != null) {
+                progressDialog.show();
+            } else {
+                progressDialog = new ProgressDialog(CloseAccountConfirmationActivity.this);
+                progressDialog.setCancelable(false);
+                progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+                progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+                progressDialog.show();
+            }
             super.onPreExecute();
         }
 
@@ -454,13 +457,13 @@ public class CloseAccountConfirmationActivity extends Activity {
                 }
                 if (msgCode == 2130) {
                     Intent intent = new Intent(CloseAccountConfirmationActivity.this, CloseAccountSuccessActivity.class);
-                    intent.putExtra("Name",responseContainer.getName());
-                    intent.putExtra("DestMDN",responseContainer.getDestMDN());
+                    intent.putExtra("Name", responseContainer.getName());
+                    intent.putExtra("DestMDN", responseContainer.getDestMDN());
                     startActivityForResult(intent, 10);
-                }else{
-                    if(responseContainer.getMsg()!=null) {
+                } else {
+                    if (responseContainer.getMsg() != null) {
                         Utility.networkDisplayDialog(responseContainer.getMsg(), CloseAccountConfirmationActivity.this);
-                    }else{
+                    } else {
                         Utility.networkDisplayDialog(sharedPreferences.getString(
                                 "ErrorMessage",
                                 getResources().getString(

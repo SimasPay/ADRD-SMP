@@ -127,7 +127,7 @@ public class TransferOtherbankConfirmationActivity extends Activity {
         name_field.setText(getIntent().getExtras().getString("Name"));
         bank_field.setText(getIntent().getExtras().getString("BankName"));
         number_field.setText(getIntent().getExtras().getString("DestMDN"));
-        amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        amount_field.setText("Rp. "+getIntent().getExtras().getString("originalamount"));
         charge_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
         total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
 
@@ -463,6 +463,7 @@ public class TransferOtherbankConfirmationActivity extends Activity {
                     }
                     Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, TransferOtherBankSuccessActivity.class);
                     intent.putExtra("amount",getIntent().getExtras().getString("amount"));
+                    intent.putExtra("originalamount",getIntent().getExtras().getString("originalamount"));
                     intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
                     intent.putExtra("transferID",responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID",responseContainer.getSctl());

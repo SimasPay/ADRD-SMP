@@ -137,16 +137,12 @@ public class WebServiceHttp  {
             ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
                     passphrase);
         } catch (NoSuchAlgorithmException e1) {
-            Log.e("-----------","NoSuchAlgorithmException");
             e1.printStackTrace();
         } catch (java.security.cert.CertificateException e1) {
-            Log.e("-----------","CertificateException");
             e1.printStackTrace();
         } catch (NotFoundException e1) {
-            Log.e("-----------","NotFoundException");
             e1.printStackTrace();
         } catch (IOException e1) {
-            Log.e("--------s---","IOException");
             e1.printStackTrace();
         }
 
@@ -156,14 +152,12 @@ public class WebServiceHttp  {
             tmf = TrustManagerFactory.getInstance(KeyManagerFactory
                     .getDefaultAlgorithm());
         } catch (NoSuchAlgorithmException e1) {
-            Log.e("--------s---","NoSuchAlgorithmException");
             e1.printStackTrace();
         }
 
         try {
             tmf.init(ksTrust);
         } catch (KeyStoreException e1) {
-            Log.e("--------s---","KeyStoreException");
             e1.printStackTrace();
         }
 
@@ -172,14 +166,12 @@ public class WebServiceHttp  {
         try {
             sslContext = SSLContext.getInstance("TLS");
         } catch (NoSuchAlgorithmException e1) {
-            Log.e("----------","NoSuchAlgorithmException");
             e1.printStackTrace();
         }
 
         try {
             sslContext.init(null, tmf.getTrustManagers(), new SecureRandom());
         } catch (KeyManagementException e1) {
-            Log.e("----------","KeyManagementException");
             e1.printStackTrace();
         }
 
@@ -189,7 +181,6 @@ public class WebServiceHttp  {
             try {
                 sslContext = SSLContext.getInstance("TLS");
             } catch (NoSuchAlgorithmException e) {
-                Log.e("----------","NoSuchAlgorithmException");
                 e.printStackTrace();
             }
 
@@ -198,14 +189,12 @@ public class WebServiceHttp  {
             try {
                 sslContext.init(null, nullTrustManagers, new SecureRandom());
             } catch (KeyManagementException e) {
-                Log.e("---------dee-","KeyManagementException");
                 e.printStackTrace();
             }
 
             url = new URL(getUrl());
 
         } catch (MalformedURLException e) {
-            Log.e("-------","--------------------------Malframed");
             e.printStackTrace();
         }
 
@@ -257,20 +246,161 @@ public class WebServiceHttp  {
 
 
         } catch (SocketTimeoutException e) {
-            Log.e("-------","Socket");
             contents = null;
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
 
         } catch (ConnectException e) {
-            Log.e("-------","ConnectException");
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
             contents = null;
         } catch (java.net.ProtocolException e) {
-            Log.e("-------","ProtocolException");
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e("-------","IOException");
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").commit();
+            contents = null;
+        } finally {
+            conn.disconnect();
+        }
+        return contents;
+    }
+
+
+    public String getPostResponseSSLCertificatation() {
+
+        String contents = null;
+
+        char[] passphrase = "DDTCert".toCharArray();
+        KeyStore ksTrust = null;
+
+        try {
+            ksTrust = KeyStore.getInstance("BKS");
+        } catch (KeyStoreException e1) {
+
+            e1.printStackTrace();
+        }
+
+        try {
+            ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
+                    passphrase);
+        } catch (NoSuchAlgorithmException e1) {
+            e1.printStackTrace();
+        } catch (java.security.cert.CertificateException e1) {
+            e1.printStackTrace();
+        } catch (NotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+        TrustManagerFactory tmf = null;
+
+        try {
+            tmf = TrustManagerFactory.getInstance(KeyManagerFactory
+                    .getDefaultAlgorithm());
+        } catch (NoSuchAlgorithmException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            tmf.init(ksTrust);
+        } catch (KeyStoreException e1) {
+            e1.printStackTrace();
+        }
+
+        SSLContext sslContext = null;
+
+        try {
+            sslContext = SSLContext.getInstance("TLS");
+        } catch (NoSuchAlgorithmException e1) {
+            e1.printStackTrace();
+        }
+
+        try {
+            sslContext.init(null, tmf.getTrustManagers(), new SecureRandom());
+        } catch (KeyManagementException e1) {
+            e1.printStackTrace();
+        }
+
+        URL url = null;
+
+        try {
+            try {
+                sslContext = SSLContext.getInstance("TLS");
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+
+            X509TrustManager nullTrustManager = new NullTrustManager();
+            TrustManager[] nullTrustManagers = {nullTrustManager};
+            try {
+                sslContext.init(null, nullTrustManagers, new SecureRandom());
+            } catch (KeyManagementException e) {
+                e.printStackTrace();
+            }
+
+            url = new URL(getUrl());
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        HttpsURLConnection conn = null;
+        try {
+            conn = (HttpsURLConnection) url.openConnection();
+            conn.setHostnameVerifier(new NullVerifier());
+            conn.setSSLSocketFactory(sslContext.getSocketFactory());
+            conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);
+            conn.setReadTimeout(Constants.CONNECTION_TIMEOUT);
+            conn.setDoOutput(true);
+            conn.setFixedLengthStreamingMode(params.getBytes().length);
+            OutputStreamWriter wr = new OutputStreamWriter(
+                    conn.getOutputStream());
+            wr.write(params);
+            wr.flush();
+
+            int rc = 0;
+
+            rc = conn.getResponseCode();
+            if (rc == 0) {
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                    }
+                }, SPLASH_DISPLAY_LENGHT);
+            } else {
+
+                InputStreamReader resultInputStream = new InputStreamReader(
+                        conn.getInputStream());
+                BufferedReader rd = new BufferedReader(resultInputStream);
+                String line;
+                StringBuffer sb = new StringBuffer("");
+
+                while ((line = rd.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                contents = sb.toString();
+                if (contents.contains("Your request is queued.")) {
+                    contents = null;
+                }
+                rd.close();
+                resultInputStream.close();
+
+            }
+
+
+        } catch (SocketTimeoutException e) {
+            contents = null;
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+
+        } catch (ConnectException e) {
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            contents = null;
+        } catch (java.net.ProtocolException e) {
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            e.printStackTrace();
+        } catch (IOException e) {
             subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").commit();
             contents = null;
         } finally {

@@ -38,7 +38,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class CashInDetailsActivity extends Activity {
 
-    TextView title, handphone, jumlah, mPin;
+    TextView title, handphone, jumlah, mPin,Rp;
 
     Button submit;
 
@@ -65,6 +65,7 @@ public class CashInDetailsActivity extends Activity {
         handphone = (TextView) findViewById(R.id.handphone);
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
+        Rp = (TextView) findViewById(R.id.Rp);
 
         submit = (Button) findViewById(R.id.submit);
 
@@ -86,36 +87,9 @@ public class CashInDetailsActivity extends Activity {
         number.setTypeface(Utility.Robot_Light(CashInDetailsActivity.this));
         amount.setTypeface(Utility.Robot_Light(CashInDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(CashInDetailsActivity.this));
-
-        amount.setText("Rp ");
-        Selection.setSelection(amount.getText(), amount.getText().length());
+        Rp.setTypeface(Utility.Robot_Light(CashInDetailsActivity.this));
 
 
-        amount.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    amount.setText("Rp ");
-                    Selection.setSelection(amount.getText(), amount.getText().length());
-
-                }
-
-            }
-        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,7 +113,7 @@ public class CashInDetailsActivity extends Activity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new CashInAsynTask().execute();
 

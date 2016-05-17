@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class IncomingSms extends BroadcastReceiver {
 
-	final SmsManager sms = SmsManager.getDefault();
+//	final SmsManager sms = SmsManager.getDefault();
 
 	public void onReceive(Context context, Intent intent) {
 

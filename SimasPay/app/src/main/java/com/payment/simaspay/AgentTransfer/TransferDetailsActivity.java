@@ -39,7 +39,7 @@ import simaspay.payment.com.simaspay.R;
 public class TransferDetailsActivity extends Activity {
 
 
-    TextView title, handphone, jumlah, mPin;
+    TextView title, handphone, jumlah, mPin,Rp;
 
     Button submit;
 
@@ -64,12 +64,14 @@ public class TransferDetailsActivity extends Activity {
         handphone = (TextView) findViewById(R.id.handphone);
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
+        Rp=(TextView) findViewById(R.id.Rp);
 
         submit = (Button) findViewById(R.id.submit);
 
         number = (EditText) findViewById(R.id.number);
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
+
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
@@ -81,6 +83,7 @@ public class TransferDetailsActivity extends Activity {
         number.setTypeface(Utility.Robot_Light(TransferDetailsActivity.this));
         amount.setTypeface(Utility.Robot_Light(TransferDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(TransferDetailsActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(TransferDetailsActivity.this));
 
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +109,7 @@ public class TransferDetailsActivity extends Activity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new transferBankSinarmasAsynTask().execute();
 
@@ -123,35 +126,6 @@ public class TransferDetailsActivity extends Activity {
         });
 
 
-        amount.setText("Rp ");
-        Selection.setSelection(amount.getText(), amount.getText().length());
-
-
-        amount.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    amount.setText("Rp ");
-                    Selection.setSelection(amount.getText(), amount.getText().length());
-
-                }
-
-            }
-        });
 
 
     }
@@ -267,7 +241,7 @@ public class TransferDetailsActivity extends Activity {
                     intent.putExtra("transferID",responseContainer.getEncryptedTransferId());
                     intent.putExtra("ParentId",responseContainer.getEncryptedParentTxnId());
                     intent.putExtra("sctlID",responseContainer.getSctl());
-                    intent.putExtra("Name",responseContainer.getKycName());
+                    intent.putExtra("Name",responseContainer.getCustName());
                     intent.putExtra("mfaMode",responseContainer.getMfaMode());
                     startActivityForResult(intent, 10);
                 } else {

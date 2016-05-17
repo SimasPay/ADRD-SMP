@@ -70,10 +70,11 @@
                     android:hint="6 digit kode OTP"
                     android:imeActionLabel="@string/done_label"
                     android:inputType="number"
+                    android:password="true"
                     android:singleLine="true"
                     android:textColor="#61000000"
                     android:textColorHint="#61000000"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/timer"
@@ -85,7 +86,7 @@
                     android:gravity="right|center"
                     android:layout_alignParentRight="true"
                     android:text="1234"
-                    android:textSize="17dp" />
+                    android:textSize="14dp" />
             </RelativeLayout>
 
             <View

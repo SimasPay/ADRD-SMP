@@ -815,6 +815,7 @@ public class Constants {
     public static final String PARAMETER_OPENINGACCOUNT="goalOfOpeningAccount";
     public static final String PARAMETER_INCOME="income";
     public static final String PARAMETER_WORK="work";
+    public static final String PARAMETER_OTHER_WORK="otherwork";
 
 
 

@@ -46,6 +46,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
@@ -67,6 +68,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import pubdialog.DialogGroup;
 import pubdialog.DialogObject;
@@ -115,7 +117,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
     String mothersName;
 
-    int selectedProvice = -1, value = 0, selected_region = -1, selectedDistrict = -1, selectedVillage = -1;
+    int selectedProvice = -1, value = 0, selected_region = 0, selectedDistrict = -1, selectedVillage = -1;
 
 
     TextView stage3_textView, stage3_textView1, stage3_textView2, stage3_textView3, stage3_textView4, stage3_textView5, stage3_textView6, stage3_textView7, stage3_textView8, stage3_textview9;
@@ -176,6 +178,11 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         datePickerDialog = DatePickerDialog.newInstance(AgentRegistrationActivity.this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), false);
         datePickerDialog_1 = DatePickerDialog.newInstance(AgentRegistrationActivity.this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), false);
+
+        progressDialog = new ProgressDialog(AgentRegistrationActivity.this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+        progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -592,11 +599,13 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage_1.setVisibility(View.VISIBLE);
         stage_2.setVisibility(View.GONE);
         stage_3.setVisibility(View.GONE);
-
+        new UserWorkAsynTask().execute();
         stage3_button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new UserWorkAsynTask().execute();
+                if (arrayList.size() > 0) {
+                    WorkDisplay();
+                }
             }
         });
 
@@ -929,7 +938,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
                     }
                 } else if (i == 1) {
-                    ktp_Name = stage2_name_edit.getText().toString();
+                    ktp_Name = stage1_Name.getText().toString();
                     if (stage2_sameaddress) {
 
                         tab_2_text.setTextColor(getResources().getColor(R.color.reg));
@@ -939,6 +948,17 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage_3.setVisibility(View.VISIBLE);
                         reg_2.setEnabled(true);
                         reg_3.setEnabled(true);
+
+                        ktp_Provinsi = stage2_provinsi_1.getText().toString();
+                        ktp_City = stage2_kota_kabu_1.getText().toString();
+                        ktp_district = stage2_kecamatan_1.getText().toString();
+                        ktp_village = stage2_desa_kelu_1.getText().toString();
+                        ktp_rt = stage2_rt_rw_1.getText().toString();
+                        ktp_rw = stage2_rw_edit.getText().toString();
+                        ktp_postalcode = stage2_kode_pos_1.getText().toString();
+                        ktp_AddressCode = stage2_alamat_sesuai_ktp_edit.getText().toString();
+
+
                         i++;
                     } else {
                         diff_AddressCode = stage2_different_alamat_sesuai_ktp_edit.getText().toString();
@@ -1106,7 +1126,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         mapContainer.put(Constants.PARAMETER_OPENINGACCOUNT, openingAccount);
                         mapContainer.put(Constants.PARAMETER_EMAIL, emailId);
                         if (Subrscriber_work_otherThanlainnya.equalsIgnoreCase("Lainnya")) {
-                            mapContainer.put(Constants.PARAMETER_WORK, subscriberwork);
+                            mapContainer.put(Constants.PARAMETER_WORK, Subrscriber_work_otherThanlainnya);
+                            mapContainer.put(Constants.PARAMETER_OTHER_WORK, subscriberwork);
                         } else {
                             mapContainer.put(Constants.PARAMETER_WORK, Subrscriber_work_otherThanlainnya);
                         }
@@ -1118,6 +1139,17 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         mapContainer.put(Constants.PARAMETER_MOTHERSMAIDENNAME, mothersName);
                         if (stage2_sameaddress) {
                             mapContainer.put(Constants.PARAMETER_DOMESTIC_IDENTITY, "1");
+
+
+                            mapContainer.put(Constants.PARAMETER_KTPRW, ktp_rw);
+                            mapContainer.put(Constants.PARAMETER_KTPLINE1, ktp_AddressCode);
+                            mapContainer.put(Constants.PARAMETER_KTPRT, ktp_rt);
+                            mapContainer.put(Constants.PARAMETER_KTPREGIONNAME, ktp_Provinsi);
+                            mapContainer.put(Constants.PARAMETER_KTPSTATE, ktp_district);
+                            mapContainer.put(Constants.PARAMETER_KTPZIPCODE, ktp_postalcode);
+                            mapContainer.put(Constants.PARAMETER_KTPCITY, ktp_City);
+                            mapContainer.put(Constants.PARAMETER_KTPSUBSTATE, ktp_village);
+                            mapContainer.put(Constants.PARAMETER_KTPCOUNTRY, "");
                         } else {
                             mapContainer.put(Constants.PARAMETER_DOMESTIC_IDENTITY, "2");
 
@@ -1166,6 +1198,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             editor.putString("supportedBitmap", (supportingDocument));
                         }
                         editor.commit();
+
                         intent.putExtra("KTPName", stage1_Name.getText().toString());
                         intent.putExtra("birthplace", ktp_bithPlace);
                         intent.putExtra("ktp_addressline", stage2_alamat_sesuai_ktp_edit.getText().toString());
@@ -1188,13 +1221,13 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
         String showDay = "", showMonth = "";
-        if (day < 9) {
+        if (day <= 9) {
             showDay = "0" + day;
         } else {
             showDay = "" + day;
         }
         month = month + 1;
-        if (month < 9) {
+        if (month <= 9) {
             showMonth = "0" + month;
         } else {
             showMonth = "" + month;
@@ -1526,8 +1559,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                                 arrayList.add(arealData);
                             }
 
-                            if (arrayList.size() > 0) {
-                                WorkDisplay();
+                            if(arrayList.size()>0){
+                                stage3_button1.setText(arrayList.get(0).getWork());
                             }
                         }
 
@@ -1539,6 +1572,14 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                                         R.string.bahasa_serverNotRespond)), AgentRegistrationActivity.this);
                     }
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), AgentRegistrationActivity.this);
             }
         }
 
@@ -1587,9 +1628,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected_region = -1;
+                selected_region =0;
                 dialogCustomWish.dismiss();
-
             }
         });
 
@@ -1609,6 +1649,10 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage3_editText1.setClickable(false);
                         stage3_editText1.setFocusable(false);
                     }
+                }else{
+                    stage3_editText1.setText("");
+                    stage3_editText1.setClickable(false);
+                    stage3_editText1.setFocusable(false);
                 }
 
             }
@@ -1745,7 +1789,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             if (pubDialogFragment != null) {
                 pubDialogFragment.dismiss();
             }
-
+            Log.e("========","======="+data);
             if (data != null && data.getExtras() != null) {
                 if (documnetSelection == 1) {
                     Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
@@ -1818,29 +1862,17 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         }
     }
 
-    public Uri getPhotoFileUri(String fileName) {
-        if (isExternalStorageAvailable()) {
-            File mediaStorageDir = new File(
-                    getExternalFilesDir(Environment.DIRECTORY_PICTURES), "SimasPay");
-            if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
-                Log.d("SimasPay", "failed to create directory");
-            }
-            return Uri.fromFile(new File(mediaStorageDir.getPath() + File.separator + fileName));
-        }
-        return null;
-    }
-    private boolean isExternalStorageAvailable() {
-        String state = Environment.getExternalStorageState();
-        return state.equals(Environment.MEDIA_MOUNTED);
-    }
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+
+
+    public Uri getImageUri(Context inContext, Bitmap mBitmap) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), mBitmap, "Title", null);
         return Uri.parse(path);
     }
 
     public String getRealPathFromURI(Uri uri) {
+//        Log.e("=======","-------"+uri);
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
@@ -1884,10 +1916,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             destNumber = stage1_nomorHp.getText().toString();
             ktpID = stage1_number.getText().toString();
 
-            progressDialog = new ProgressDialog(AgentRegistrationActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+
             progressDialog.show();
         }
 
@@ -1914,7 +1943,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
                     mothersName = responseContainer.getMothersMaidenName();
                     stage2_provinsi_1.setText(responseContainer.getProvince());
-                    stage2_name_edit.setText(responseContainer.getName());
+                    stage2_name_edit.setText(responseContainer.getMothersMaidenName());
                     stage2_alamat_sesuai_ktp_edit.setText(responseContainer.getAddressLine());
                     stage2_kota_kabu_1.setText(responseContainer.getCity());
                     stage2_kecamatan_1.setText(responseContainer.getDistrict());
@@ -1964,6 +1993,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     stage_3.setVisibility(View.GONE);
                     reg_2.setEnabled(true);
                     reg_3.setEnabled(false);
+                }else if (msgCode == 631) {
+                    Intent intent = new Intent(AgentRegistrationActivity.this, SessionTimeOutActivity.class);
+                    startActivityForResult(intent, 40);
                 } else {
                     progressDialog.dismiss();
                     if (responseContainer.getMsg() == null) {

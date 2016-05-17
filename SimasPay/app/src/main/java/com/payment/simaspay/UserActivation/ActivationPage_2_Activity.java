@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -83,20 +82,19 @@ public class ActivationPage_2_Activity extends Activity {
                     Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
                     intent1.putExtra("SctlID", idnumber);
                     intent1.putExtra("mailedOtp", otp);
-                    if (mobileNumber.startsWith("62")) {
+//                    if (mobileNumber.startsWith("62")) {
                         intent1.putExtra("mobileNumber", mobileNumber);
-                    } else if (mobileNumber.startsWith("0")) {
-                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
-                    } else {
-                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
-                    }
+//                    } else if (mobileNumber.startsWith("0")) {
+//                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
+//                    } else {
+//                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
+//                    }
                     intent1.putExtra("otpValue", otpValue);
                     intent1.putExtra("mfaMode", "OTP");
                     intent1.putExtra("name", name);
                     startActivityForResult(intent1, 20);
 
-                } else if (body.contains("Your Simaspay code is ")
-                        && body.contains(idnumber)) {
+                } else if (body.contains("Your Simaspay code is ")) {
                     otpValue = body
                             .substring(
                                     body.indexOf("Your Simaspay code is ")
@@ -113,13 +111,13 @@ public class ActivationPage_2_Activity extends Activity {
                     intent1.putExtra("SctlID", idnumber);
                     intent1.putExtra("mailedOtp", otp);
                     intent1.putExtra("name", name);
-                    if (mobileNumber.startsWith("62")) {
+//                    if (mobileNumber.startsWith("62")) {
                         intent1.putExtra("mobileNumber", mobileNumber);
-                    } else if (mobileNumber.startsWith("0")) {
-                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
-                    } else {
-                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
-                    }
+//                    } else if (mobileNumber.startsWith("0")) {
+//                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
+//                    } else {
+//                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
+//                    }
                     intent1.putExtra("mfaMode", "OTP");
                     intent1.putExtra("otpValue", otpValue);
                     startActivityForResult(intent1, 20);
@@ -142,6 +140,8 @@ public class ActivationPage_2_Activity extends Activity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            Utility.displayDialog("Gagal mendapatkan SMS", ActivationPage_2_Activity.this);
         }
     };
     Handler handler = new Handler();
@@ -369,13 +369,13 @@ public class ActivationPage_2_Activity extends Activity {
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_ACTIVATION);
-            if (mobileNumber.startsWith("62")) {
-                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);
-            } else if (mobileNumber.startsWith("0")) {
-                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber.substring(1));
-            } else {
-                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber);
-            }
+//            if (mobileNumber.startsWith("62")) {
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);
+//            } else if (mobileNumber.startsWith("0")) {
+//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber.substring(1));
+//            } else {
+//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber);
+//            }
             mapContainer.put(Constants.PARAMETER_OTP, rsaKey);
             mapContainer.put(Constants.TRANSACTION_ISSIMASPAYACTIVITY, Constants.CONSTANT_VALUE_TRUE);
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);

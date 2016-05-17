@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fffffde5" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded"
+        android:orientation="vertical"
+        android:padding="10.0dip" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50.0dip" >
+
+            <Button
+                android:id="@+id/exclamation"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/exclamation"
+                android:gravity="center" />
+
+            <Button
+                android:id="@+id/exclamationIcon"
+                android:layout_width="32.0dip"
+                android:layout_height="32.0dip"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/error_cancel"
+                android:gravity="center" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/errorMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20.0dip"
+            android:paddingBottom="10.0dip"
+            android:gravity="center"
+            android:paddingTop="10.0dip"
+            android:text="kjhladsfkl dsklldkjf llkj ldfkjls flk jdfkljdsfj ldfj ldsk fjldsk fjlskd f jlkjlkjflfkjdslk jljladkjflk lkdjflksj l lkadsjflk laksdjflk jlkjadlkfjl asldfkj lasdkf"
+            android:textColor="#ff000000" />
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="fill_parent"
+            android:layout_height="45.0dip"
+            android:layout_below="@+id/errorMsg"
+            android:layout_marginTop="10.0dip"
+            android:background="@drawable/rounded_meruncolor"
+            android:text="Ok"
+            android:textColor="#fffaea01"
+            android:textSize="18.0dip" />
+    </LinearLayout>
+
+</RelativeLayout>

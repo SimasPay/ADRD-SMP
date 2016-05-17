@@ -14,21 +14,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
-
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
-
-
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
-
+import java.util.Date;
 
 import simaspay.payment.com.simaspay.R;
 
@@ -240,10 +237,12 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
             @Override
             public void onClick(View v) {
                 dateSelectionValue = 1;
-                from_datePickerDialog.setVibrate(false);
-                from_datePickerDialog.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
-                from_datePickerDialog.setCloseOnSingleTapDay(true);
-                from_datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                if (!from_datePickerDialog.isAdded()) {
+                    from_datePickerDialog.setVibrate(false);
+                    from_datePickerDialog.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
+                    from_datePickerDialog.setCloseOnSingleTapDay(true);
+                    from_datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                }
             }
         });
 
@@ -251,29 +250,31 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
             @Override
             public void onClick(View v) {
                 dateSelectionValue = 2;
-                to_datePickerDialog.setVibrate(false);
-                to_datePickerDialog.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
-                to_datePickerDialog.setCloseOnSingleTapDay(true);
-                to_datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                if (!to_datePickerDialog.isAdded()) {
+                    to_datePickerDialog.setVibrate(false);
+                    to_datePickerDialog.setYearRange(calendar.get(Calendar.YEAR), calendar.get(Calendar.YEAR) + 1);
+                    to_datePickerDialog.setCloseOnSingleTapDay(true);
+                    to_datePickerDialog.show(getSupportFragmentManager(), DATEPICKER_TAG);
+                }
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar calendar1=Calendar.getInstance();
-                if(booleanthisMonth){
+                Calendar calendar1 = Calendar.getInstance();
+                if (booleanthisMonth) {
 
                     toDate = sdf.format(calendar1.getTime());
                     calendar1.set(Calendar.DAY_OF_MONTH, 1);
                     fromDate = sdf.format(calendar1.getTime());
 //                    new DwnLoadAsynTask().execute();
-                    Intent intent=new Intent(Trans_DataSelectionActivity.this,TransactionsListActivity.class);
-                    intent.putExtra("fromDate",fromDate);
-                    intent.putExtra("toDate",toDate);
-                    Log.e("=-------",toDate+"========"+fromDate);
-                    startActivityForResult(intent,10);
-                }else if(booleanlastmonth){
+                    Intent intent = new Intent(Trans_DataSelectionActivity.this, TransactionsListActivity.class);
+                    intent.putExtra("fromDate", fromDate);
+                    intent.putExtra("toDate", toDate);
+                    Log.e("=-------", toDate + "========" + fromDate);
+                    startActivityForResult(intent, 10);
+                } else if (booleanlastmonth) {
                     calendar1.add(Calendar.MONTH, -1);
                     int max = calendar1.getActualMaximum(Calendar.DAY_OF_MONTH);
                     int min = calendar1.getActualMinimum(Calendar.DAY_OF_MONTH);
@@ -281,11 +282,11 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                     toDate = sdf.format(calendar1.getTime());
                     calendar1.set(Calendar.DAY_OF_MONTH, min);
                     fromDate = sdf.format(calendar1.getTime());
-                    Intent intent=new Intent(Trans_DataSelectionActivity.this,TransactionsListActivity.class);
-                    intent.putExtra("fromDate",fromDate);
-                    intent.putExtra("toDate",toDate);
-                    startActivityForResult(intent,10);
-                }else if(booleantwomonths){
+                    Intent intent = new Intent(Trans_DataSelectionActivity.this, TransactionsListActivity.class);
+                    intent.putExtra("fromDate", fromDate);
+                    intent.putExtra("toDate", toDate);
+                    startActivityForResult(intent, 10);
+                } else if (booleantwomonths) {
                     calendar1.add(Calendar.MONTH, -1);
                     int max = calendar1.getActualMaximum(Calendar.DAY_OF_MONTH);
                     calendar1.set(Calendar.DAY_OF_MONTH, max);
@@ -294,20 +295,49 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                     int min = calendar1.getActualMinimum(Calendar.DAY_OF_MONTH);
                     calendar1.set(Calendar.DAY_OF_MONTH, min);
                     fromDate = sdf.format(calendar1.getTime());
-                    Intent intent=new Intent(Trans_DataSelectionActivity.this,TransactionsListActivity.class);
-                    intent.putExtra("fromDate",fromDate);
-                    intent.putExtra("toDate",toDate);
-                    startActivityForResult(intent,10);
-                }else if (booleanmanualSelection) {
+                    Intent intent = new Intent(Trans_DataSelectionActivity.this, TransactionsListActivity.class);
+                    intent.putExtra("fromDate", fromDate);
+                    intent.putExtra("toDate", toDate);
+                    startActivityForResult(intent, 10);
+                } else if (booleanmanualSelection) {
+
+
+                    SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                     if (fromDate.equalsIgnoreCase("")) {
                         Utility.displayDialog("Please enter from Date", Trans_DataSelectionActivity.this);
                     } else if (toDate.equalsIgnoreCase("")) {
                         Utility.displayDialog("Please enter to Date", Trans_DataSelectionActivity.this);
                     } else {
-                       Intent intent=new Intent(Trans_DataSelectionActivity.this,TransactionsListActivity.class);
-                        intent.putExtra("fromDate",fromDate);
-                        intent.putExtra("toDate",toDate);
-                        startActivityForResult(intent,10);
+
+                        try {
+                            date1 = sdf1.parse(datefrom_button.getText().toString().replace("-","/"));
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                        try {
+                            date2 = sdf1.parse(dateto_button.getText().toString().replace("-","/"));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        int days = Integer.parseInt(Utility
+                                .getDateDiffString(datefrom_button.getText().toString().replace("-","/")));
+
+
+                        int days1 = Integer.parseInt(Utility
+                                .getDateDiffString(dateto_button.getText().toString().replace("-","/")));
+
+                        if (date1.compareTo(date2) > 0) {
+                            datefrom_button.requestFocus();
+                            Utility.displayDialog("Tanggal pertama harus lebih awal dari tanggal kedua", Trans_DataSelectionActivity.this);
+                        } else if (days - days1 > 90) {
+                            datefrom_button.requestFocus();
+                            Utility.displayDialog("Rentang tanggal salah", Trans_DataSelectionActivity.this);
+                        } else {
+                            Intent intent = new Intent(Trans_DataSelectionActivity.this, TransactionsListActivity.class);
+                            intent.putExtra("fromDate", fromDate);
+                            intent.putExtra("toDate", toDate);
+                            startActivityForResult(intent, 10);
+                        }
                     }
                 }
             }
@@ -316,29 +346,51 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
     }
 
+    Date date1;
+    Date date2;
+    private int mYear;
+    private int mMonth;
+    private int mDay;
+
+
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int year, int month, int day) {
         String showDay = "", showMonth = "";
-        if (day < 9) {
+        if (day <= 9) {
             showDay = "0" + day;
         } else {
             showDay = "" + day;
         }
         month = month + 1;
-        if (month < 9) {
+        if (month <= 9) {
             showMonth = "0" + month;
         } else {
             showDay = "" + month;
         }
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
         if (dateSelectionValue == 1) {
-            datefrom_button.setText(showDay + "-" + showMonth + "-" + year);
-            fromDate = showDay + "" + showMonth + "" + year;
-
+            Log.e("=====" + mYear + "----" + mMonth + "=====" + mDay, "=====" + year + "=====" + month + "-----" + day);
+            if ((mYear > year)
+                    || (((mMonth + 1) > month) && (mYear == year))
+                    || ((mDay >= day) && (mYear == year) && ((mMonth + 1) == month))) {
+                datefrom_button.setText(showDay + "-" + showMonth + "-" + year);
+                fromDate = showDay + "" + showMonth + "" + year;
+            } else {
+                Toast.makeText(Trans_DataSelectionActivity.this, "Silakan pilih tanggal yang valid", Toast.LENGTH_LONG).show();
+            }
         } else if (dateSelectionValue == 2) {
-            dateto_button.setText(showDay + "-" + showMonth + "-" + year);
-            toDate = showDay + "" + showMonth + "" + year;
+            if ((mYear > year)
+                    || (((mMonth + 1) > month) && (mYear == year))
+                    || ((mDay >= day) && (mYear == year) && ((mMonth + 1) == month))) {
+                dateto_button.setText(showDay + "-" + showMonth + "-" + year);
+                toDate = showDay + "" + showMonth + "" + year;
+            } else {
+                Toast.makeText(Trans_DataSelectionActivity.this, "Silakan pilih tanggal yang valid", Toast.LENGTH_LONG).show();
+            }
         }
-
     }
 
     @Override
@@ -360,7 +412,6 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
     WebServiceHttp webServiceHttp;
     ProgressDialog progressDialog;
     int msgCode;
-
 
 
 }

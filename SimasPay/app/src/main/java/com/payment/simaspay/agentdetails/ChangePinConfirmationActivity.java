@@ -1,5 +1,6 @@
 package com.payment.simaspay.agentdetails;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -64,7 +67,7 @@ public class ChangePinConfirmationActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
+        registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
     }
 
     @Override
@@ -81,52 +84,38 @@ public class ChangePinConfirmationActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                String body = intent.getExtras().getString("message");
-
-                if (body.contains(getResources().getString(R.string.BahasaSmsData))
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-                    otpValue = body
-                            .substring(
-                                    body.indexOf(getResources().getString(R.string.BahasaSmsData))
-                                            + new String(
-                                            getResources().getString(R.string.BahasaSmsData))
-                                            .length(),
-                                    body.indexOf(" (no ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("no ref: ")
-                                    + new String("no ref: ").length(),
-                            body.indexOf(")")).trim();
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
-                    handlerforTimer.removeCallbacks(runnableforExit);
-
-                } else if (body.contains(getResources().getString(R.string.EnglishSmsData))
-                        && body.contains(getIntent().getExtras().getString("sctlID"))) {
-                    otpValue = body
-                            .substring(
-                                    body.indexOf(getResources().getString(R.string.EnglishSmsData))
-                                            + new String(
-                                            getResources().getString(R.string.EnglishSmsData))
-                                            .length(),
-                                    body.indexOf("(ref")).trim();
-                    sctl = body.substring(
-                            body.indexOf("(ref no: ")
-                                    + new String("(ref no: ").length(),
-                            body.indexOf(")")).trim();
-                    SMSAlert(otpValue);
-                    if (progressDialog != null) {
-                        progressDialog.dismiss();
-                    }
-                    handlerforTimer.removeCallbacks(runnableforExit);
-
+                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                    Cancel();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                    otpValue = intent.getExtras().getString("otpValue");
+                    new ChangePinConfirmationAsyn().execute();
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",ChangePinConfirmationActivity.this);
+                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),ChangePinConfirmationActivity.this);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     };
+
+    void Cancel(){
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            handlerforTimer.removeCallbacks(runnableforExit);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Intent intent=getIntent();
+        setResult(RESULT_CANCELED,intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,17 +196,23 @@ public class ChangePinConfirmationActivity extends Activity {
             public void onClick(View v) {
 
                     if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                        if (otpValue.equalsIgnoreCase("")) {
-                            if (!progressDialog.isShowing()) {
-                                progressDialog.setMessage(getResources().getString(R.string.waitingSms));
-                                progressDialog.show();
+                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) {
+
+                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                        109);
+                            } else {
+                                handlerforTimer.removeCallbacks(runnableforExit);
+                                TimerCount timerCount=new TimerCount(ChangePinConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                                timerCount.SMSAlert("");
                             }
                         } else {
-                            if (dialogCustomWish.isShowing()) {
-                                new ChangePinConfirmationAsyn().execute();
-                            } else {
-                                dialogCustomWish.show();
-                            }
+                            handlerforTimer.removeCallbacks(runnableforExit);
+                            TimerCount timerCount=new TimerCount(ChangePinConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                            timerCount.SMSAlert("");
                         }
                     }else{
                         if(timeroutornot){
@@ -407,7 +402,7 @@ public class ChangePinConfirmationActivity extends Activity {
                     sharedPreferences.edit().putString("password",getIntent().getExtras().getString("newPin")).commit();
                     Intent intent=new Intent(ChangePinConfirmationActivity.this,ChangePinSuccessActivity.class);
                     startActivityForResult(intent,10);
-                }else if(msgCode==661){
+                }else if(msgCode==631){
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }

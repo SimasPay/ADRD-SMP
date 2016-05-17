@@ -45,8 +45,8 @@ public class SimaspayUserActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 20) {
             if (resultCode == Activity.RESULT_OK) {
-                Intent intent = new Intent(SimaspayUserActivity.this, LoginScreenActivity.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+                setResult(RESULT_OK,intent);
                 finish();
             }
         }
@@ -125,8 +125,8 @@ public class SimaspayUserActivity extends Activity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SimaspayUserActivity.this, LoginScreenActivity.class);
-                startActivity(intent);
+                Intent intent = getIntent();
+                setResult(RESULT_OK,intent);
                 finish();
 
             }

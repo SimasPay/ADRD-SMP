@@ -100,12 +100,8 @@ public class Register_To_SimaspayUserConfirmationActivity extends Activity {
         tempat_lahir = (TextView) findViewById(R.id.tempat_lahir);
         tempat_lahir_field = (TextView) findViewById(R.id.tempat_lahir_field);
 
-        Intent intent = getIntent();
-//        hashMap = (HashMap<String, String>) intent.getSerializableExtra("mapContainer");
 
         hashMap = loadMap();
-
-        Log.e("--------", "=-----" + hashMap.toString());
 
 
         if (pSharedPref.getString("ktpBitmap", "").equals("")) {
@@ -132,7 +128,6 @@ public class Register_To_SimaspayUserConfirmationActivity extends Activity {
             hashMap.put(Constants.PARAMETER_SUPPORTDOCUMENT, ConvertBase64Data(myBitmap));
         }
 
-        Log.e("--------", "=-----" + hashMap.toString());
 
 
         confirmation = (Button) findViewById(R.id.next);
@@ -198,6 +193,7 @@ public class Register_To_SimaspayUserConfirmationActivity extends Activity {
 
         name_field.setText(getIntent().getExtras().getString("KTPName"));
         nomor_ktp_field.setText(hashMap.get(Constants.PARAMETER_KTPID));
+
         if (hashMap.get(Constants.PARAMETER_KTPLIFETIME).equals("false")) {
             ktp_berlaku_hingga_field.setText(hashMap.get(Constants.PARAMETER_KTPVALIDUNTIL));
         } else {
@@ -211,7 +207,7 @@ public class Register_To_SimaspayUserConfirmationActivity extends Activity {
             alamat_domisili_field.setText(hashMap.get(Constants.PARAMETER_DIFF_LINE1));
         }
 
-        nama_lengkap_field.setText(hashMap.get(Constants.PARAMETER_SUB_FIRSTNAME));
+        nama_lengkap_field.setText(hashMap.get(Constants.PARAMETER_MOTHERSMAIDENNAME));
         nomor_hp_field.setText(hashMap.get(Constants.PARAMETER_DEST_MDN));
 
         confirmation.setOnClickListener(new View.OnClickListener() {

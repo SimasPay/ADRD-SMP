@@ -46,7 +46,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class PerchaseDetailsActivity extends Activity {
 
-    TextView title, pulsa_field, product, number, pin;
+    TextView title, pulsa_field, product, number, pin,Rp;
 
     EditText product_field, number_field, pin_field, plnamount_entryfield;
 
@@ -57,6 +57,8 @@ public class PerchaseDetailsActivity extends Activity {
     String encryptedpinValue, billNumber, amountString;
 
     SharedPreferences sharedPreferences;
+
+    LinearLayout manualEnterLayout;
 
 
     @Override
@@ -75,6 +77,9 @@ public class PerchaseDetailsActivity extends Activity {
 
         title = (TextView) findViewById(R.id.titled);
 
+
+        Rp = (TextView) findViewById(R.id.Rp);
+
         product = (TextView) findViewById(R.id.name_product);
         product_field = (EditText) findViewById(R.id.product_field);
         number = (TextView) findViewById(R.id.number);
@@ -83,6 +88,8 @@ public class PerchaseDetailsActivity extends Activity {
         pin_field = (EditText) findViewById(R.id.pin);
 
         plnamount_entryfield = (EditText) findViewById(R.id.pln_amountentry_field);
+
+        manualEnterLayout = (LinearLayout) findViewById(R.id.manualEnterLayout);
 
 
         String[] strings=getIntent().getExtras().getString("invoiceType").split("\\|");
@@ -98,7 +105,7 @@ public class PerchaseDetailsActivity extends Activity {
         product_field.setText(getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
 
         if (!getIntent().getExtras().getString("DenomValues").equalsIgnoreCase("")) {
-            plnamount_entryfield.setVisibility(View.GONE);
+            manualEnterLayout.setVisibility(View.GONE);
             nominal_pulsa.setVisibility(View.VISIBLE);
             String sampleString = getIntent().getExtras().getString("DenomValues");
             String[] items = sampleString.split("\\|");
@@ -107,7 +114,7 @@ public class PerchaseDetailsActivity extends Activity {
                 arrayList.add(items[i]);
             }
         } else {
-            plnamount_entryfield.setVisibility(View.VISIBLE);
+            manualEnterLayout.setVisibility(View.VISIBLE);
             nominal_pulsa.setVisibility(View.GONE);
         }
 
@@ -122,31 +129,6 @@ public class PerchaseDetailsActivity extends Activity {
         });
 
 
-        plnamount_entryfield.setText("Rp ");
-        Selection.setSelection(plnamount_entryfield.getText(), plnamount_entryfield.getText().length());
-
-
-        plnamount_entryfield.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    plnamount_entryfield.setText("Rp ");
-                    Selection.setSelection(plnamount_entryfield.getText(), plnamount_entryfield.getText().length());
-                }
-
-            }
-        });
-
         title.setTypeface(Utility.Robot_Regular(PerchaseDetailsActivity.this));
         product.setTypeface(Utility.Robot_Regular(PerchaseDetailsActivity.this));
         product_field.setTypeface(Utility.Robot_Light(PerchaseDetailsActivity.this));
@@ -158,6 +140,7 @@ public class PerchaseDetailsActivity extends Activity {
         nominal_pulsa.setTypeface(Utility.Robot_Light(PerchaseDetailsActivity.this));
 
         plnamount_entryfield.setTypeface(Utility.Robot_Light(PerchaseDetailsActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(PerchaseDetailsActivity.this));
 
         product_field.setText(getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
         product_field.setEnabled(false);

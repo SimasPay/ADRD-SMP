@@ -61,6 +61,7 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -759,6 +760,45 @@ public class Utility {
 		});
 		dialog.show();
 	}*/
+
+
+    public  static int  str_age;
+
+    public static int getAge(Context context,long selectedMilli) {
+        Date dateOfBirth = new Date(selectedMilli);
+        Calendar dob = Calendar.getInstance();
+        dob.setTime(dateOfBirth);
+        Calendar today = Calendar.getInstance();
+        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+            age--;
+        } else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
+                && today.get(Calendar.DAY_OF_MONTH) < dob
+                .get(Calendar.DAY_OF_MONTH)) {
+            age--;
+        }
+
+
+
+        str_age = age;
+        Log.d("", ": Age in year= " + age);
+        return str_age;
+    }
+
+    public static long milliseconds(Context context,String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date mDate = sdf.parse(date);
+            long timeInMilliseconds = mDate.getTime();
+            System.out.println("Date in milli :: " + timeInMilliseconds);
+            return timeInMilliseconds;
+        } catch (ParseException e) {
+
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 
     public static void displayDialog(String msg, Context ctx) {
 

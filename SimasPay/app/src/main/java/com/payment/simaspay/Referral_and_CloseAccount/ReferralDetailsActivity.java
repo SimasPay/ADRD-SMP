@@ -135,7 +135,7 @@ public class ReferralDetailsActivity extends Activity {
                     if(others_field.getText().toString().length()<=0){
                         Utility.displayDialog("Masukkan Sebutkan",ReferralDetailsActivity.this);
                     }else{
-                        mdn=Utility.NormalizationMDN(number_field.getText().toString().replace(" ",""));
+                        mdn=(number_field.getText().toString().replace(" ",""));
                         NameField=name_field.getText().toString();
                         email_field=mail_field.getText().toString();
                         productDesired=others.getText().toString();
@@ -149,7 +149,7 @@ public class ReferralDetailsActivity extends Activity {
                         startActivityForResult(intent, 10);
                     }
                 }else{
-                    mdn=Utility.NormalizationMDN(number_field.getText().toString().replace(" ",""));
+                    mdn=(number_field.getText().toString().replace(" ",""));
                     NameField=name_field.getText().toString();
                     email_field=mail_field.getText().toString();
                     productDesired=others.getText().toString();
@@ -166,10 +166,14 @@ public class ReferralDetailsActivity extends Activity {
             }
         });
 
+
+        new UserReferralAsynTask().execute();
         others.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new UserWorkAsynTask().execute();
+                if (arrayList.size() > 0) {
+                    WorkDisplay();
+                }
             }
         });
 
@@ -192,7 +196,7 @@ public class ReferralDetailsActivity extends Activity {
 
     ArrayList<ArealData> arrayList = new ArrayList<>();
 
-    class UserWorkAsynTask extends AsyncTask<Void, Void, Void> {
+    class UserReferralAsynTask extends AsyncTask<Void, Void, Void> {
 
 
         @Override
@@ -276,7 +280,7 @@ public class ReferralDetailsActivity extends Activity {
                             }
 
                             if (arrayList.size() > 0) {
-                                WorkDisplay();
+                                others.setText(arrayList.get(0).getWork());
                             }
                         }
 
@@ -313,7 +317,7 @@ public class ReferralDetailsActivity extends Activity {
     }
 
     Dialog dialogCustomWish;
-    int selected_region=-1;
+    int selected_region=0;
 
     ProductsAdapter productsAdapter;
 
@@ -354,7 +358,7 @@ public class ReferralDetailsActivity extends Activity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected_region = -1;
+                selected_region = 0;
                 dialogCustomWish.dismiss();
 
             }

@@ -24,11 +24,11 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\bundles\\debug\\res\\layout\\date_picker_done_button.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\time_picker_dialog.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\bundles\\debug\\res\\layout\\time_picker_dialog.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\date_picker_dialog.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\bundles\\debug\\res\\layout\\date_picker_dialog.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\time_picker_dialog.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\datetimepicker-library\\build\\intermediates\\bundles\\debug\\res\\layout\\time_picker_dialog.xml"
     }
 ]

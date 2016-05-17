@@ -116,7 +116,7 @@ public class Register_To_SimaspayUserSuccessActivity extends Activity {
             alamat_domisili_field.setText(hashMap.get(Constants.PARAMETER_DIFF_LINE1));
         }
 
-        nama_lengkap_field.setText(hashMap.get(Constants.PARAMETER_SUB_FIRSTNAME));
+        nama_lengkap_field.setText(hashMap.get(Constants.PARAMETER_MOTHERSMAIDENNAME));
         nomor_hp_field.setText(hashMap.get(Constants.PARAMETER_DEST_MDN));
 
         confirmation = (Button) findViewById(R.id.next);
