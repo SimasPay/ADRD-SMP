@@ -40,6 +40,10 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\transferotherbankconfirmation.xml"
     },
     {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\mobile_transfer.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\mobile_transfer.xml"
+    },
+    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\abc_action_mode_bar.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_bar.xml"
     },
@@ -308,12 +312,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\agent_home.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\commonconfirmation.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\commonconfirmation.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media_narrow.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\commonconfirmation.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\commonconfirmation.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout\\notification_media_action.xml",

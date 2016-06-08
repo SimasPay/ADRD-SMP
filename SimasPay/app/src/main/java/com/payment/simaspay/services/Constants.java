@@ -635,6 +635,7 @@ public class Constants {
     public static final String TRANSACTION_EMAIL_SEND = "EmailHistoryAsPDF";
     public static final String TRANSACTION_HISTORY = "History";
     public static final String TRANSACTION_TRANSFER = "Transfer";
+    public static final String TRANSACTION_UANGKU = "TransferToUangku";
     public static final String TRANSACTION_CASHOUT = "CashOut";
     public static final String TRANSACTION_SUBSCRIBERREGISTRATION = "SubscriberRegistration";
     public static final String TRANSACTION_CASHIN = "CashIn";
@@ -667,6 +668,7 @@ public class Constants {
     public static final String TRANSACTION_LOGOUT = "Logout";
     public static final String TRANSACTION_BANK_CONFIRMATION = "InterBankTransfer";
     public static final String TRANSACTION_BANK_INQUERY = "InterBankTransferInquiry";
+    public static final String TRANSACTION_UANGKU_INQUERY = "TransferToUangkuInquiry";
     public static final String TRANSACTION_TRANSFER_INQUIRY = "TransferInquiry";
     public static final String TRANSACTION_CASHIN_INQUIRY = "CashInInquiry";
     public static final String TRANSACTION_CASHOUT_INQUIRY = "CashOutInquiry";

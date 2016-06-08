@@ -248,7 +248,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     sharedPreferences.edit().putString("password", pinValue).commit();
                     Intent intent = new Intent(TransferOtherBankDetailsActivity.this, TransferOtherbankConfirmationActivity.class);
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
-                    intent.putExtra("originalamount", amountValue);
+                    intent.putExtra("originalamount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("DestMDN", responseContainer.getAccountNumber());
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());

@@ -1,5 +1,7 @@
 package com.payment.simaspay.services;
 
+import android.util.Log;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 
@@ -98,7 +100,10 @@ public class XMLParser {
 					result.setCustomerType(pe.getText());
 				}else if (Constants.XML_ACCOUNT_NUMBER.equals(event.getName())) {
 					pe = parser.read();
+					Log.e("1234567890----------","---------"+pe.getText());
 					result.setDestinationAccountNumber(pe.getText());
+
+					Log.e("1234567890----------","---------"+result.getDestinationAccountNumber());
 				}else if (Constants.XML_AMOUNT_TRANSFER
 						.equals(event.getName())) {
 					pe = parser.read();

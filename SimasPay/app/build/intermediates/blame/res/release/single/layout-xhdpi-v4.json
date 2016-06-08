@@ -4,6 +4,10 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-xhdpi\\agent_home.xml"
     },
     {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-xhdpi-v4\\mobile_transfer.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-xhdpi\\mobile_transfer.xml"
+    },
+    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-xhdpi-v4\\login_screen.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-xhdpi\\login_screen.xml"
     },

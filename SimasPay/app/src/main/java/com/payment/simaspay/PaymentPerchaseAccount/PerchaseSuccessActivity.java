@@ -21,7 +21,9 @@ import simaspay.payment.com.simaspay.R;
  */
 public class PerchaseSuccessActivity extends Activity {
 
-    TextView title, heading, name, name_field, number, number_field, amount, amount_field,transfer_field,transferID;
+    TextView title, heading, name, name_field, number, number_field, amount, amount_field,transfer_field,transferID,charges,charges_field,total,total_field;
+
+    View view;
 
     Button ok;
 
@@ -45,6 +47,20 @@ public class PerchaseSuccessActivity extends Activity {
         amount = (TextView) findViewById(R.id.amount);
         amount_field = (TextView) findViewById(R.id.amount_field);
 
+        charges = (TextView) findViewById(R.id.products);
+        charges_field = (TextView) findViewById(R.id.other_products);
+        total = (TextView) findViewById(R.id.total);
+        total_field = (TextView) findViewById(R.id.total_field);
+
+        view=(View)findViewById(R.id.line);
+
+        charges_field.setVisibility(View.VISIBLE);
+        charges.setVisibility(View.VISIBLE);
+        total_field.setVisibility(View.VISIBLE);
+        total.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
+
+
         transferID=(TextView)findViewById(R.id.transferID);
         transfer_field=(TextView)findViewById(R.id.transfer_field);
 
@@ -56,13 +72,19 @@ public class PerchaseSuccessActivity extends Activity {
         name.setText("Nama Produk");
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
         number.setText("Nominal Pulsa");
-        number_field.setText("Rp.  "+getIntent().getExtras().getString("amount"));
+        number_field.setText("Rp.  "+getIntent().getExtras().getString("originalAmount"));
         amount.setText("Nomor Handphone");
         amount_field.setText(getIntent().getExtras().getString("invoiceNo"));
+        charges.setText("Biaya Administrasi");
+        charges_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
+        total.setText("Total Pendebitan");
+        total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
+        charges_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
+        total_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
 
 
         findViewById(R.id.ID_layout).setVisibility(View.VISIBLE);

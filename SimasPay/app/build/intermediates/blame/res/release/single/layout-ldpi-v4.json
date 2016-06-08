@@ -1,5 +1,9 @@
 [
     {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-ldpi-v4\\mobile_transfer.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-ldpi\\mobile_transfer.xml"
+    },
+    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-ldpi-v4\\transferhome.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-ldpi\\transferhome.xml"
     },

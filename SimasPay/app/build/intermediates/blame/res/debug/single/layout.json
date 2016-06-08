@@ -48,24 +48,24 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\fragment_default_eula.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_part_chronometer.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_no_connection.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\activity_no_connection.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\resend_otp_dialog.xml",
@@ -112,12 +112,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_invoice_detail.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\activity_invoice_detail.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\province_list.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\province_list.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_invoice_detail.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\activity_invoice_detail.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
@@ -128,16 +128,16 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\registration_page_1.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_qrstore_merchant.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\act_qrstore_merchant.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_loyalty.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\item_list_loyalty.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_qrstore_merchant.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\layout\\act_qrstore_merchant.xml"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
@@ -342,6 +342,10 @@
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\common_layout.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\common_layout.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\mobile_transfer.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout\\mobile_transfer.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\layout\\registration_complete.xml",

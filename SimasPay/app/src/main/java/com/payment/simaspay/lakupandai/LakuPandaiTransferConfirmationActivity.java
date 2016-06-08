@@ -399,8 +399,6 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-            mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
-                    Constants.SERVICE_WALLET);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_TRANSFER);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");

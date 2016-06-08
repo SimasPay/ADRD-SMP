@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.lakupandai.LakupandaiTransferDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -28,11 +29,11 @@ import simaspay.payment.com.simaspay.R;
  */
 public class TransferHomeActivity extends Activity {
 
-    LinearLayout layout1, layout2, layout3, logOut, numberSwitching, gantiAkun_layout, whitelogOut;
+    LinearLayout layout1, layout2, layout3,layout4, logOut, numberSwitching, gantiAkun_layout, whitelogOut;
 
-    TextView textView1, textView2, textView3, simas, name, number, ganti_akun, logout_text, whiteName, white_number;
+    TextView textView1, textView2, textView3,textView4, simas, name, number, ganti_akun, logout_text, whiteName, white_number;
 
-    ImageView imageView1, imageView2, imageView3, menu_back;
+    ImageView imageView1, imageView2, imageView3,imageView4, menu_back;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -40,7 +41,7 @@ public class TransferHomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.common_layout);
+        setContentView(R.layout.mobile_transfer);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -64,16 +65,19 @@ public class TransferHomeActivity extends Activity {
         layout1 = (LinearLayout) findViewById(R.id.common_layout_1);
         layout2 = (LinearLayout) findViewById(R.id.common_layout_2);
         layout3 = (LinearLayout) findViewById(R.id.common_layout_3);
+        layout4 = (LinearLayout) findViewById(R.id.common_layout_4);
 
         imageView1 = (ImageView) findViewById(R.id.common_image_1);
         imageView2 = (ImageView) findViewById(R.id.common_image_2);
         imageView3 = (ImageView) findViewById(R.id.common_image_3);
+        imageView4 = (ImageView) findViewById(R.id.common_image_4);
 
         menu_back = (ImageView) findViewById(R.id.menu_back);
 
         textView1 = (TextView) findViewById(R.id.common_text_1);
         textView2 = (TextView) findViewById(R.id.common_text_2);
         textView3 = (TextView) findViewById(R.id.common_text_3);
+        textView4 = (TextView) findViewById(R.id.common_text_4);
 
         name = (TextView) findViewById(R.id.com_name);
         number = (TextView) findViewById(R.id.com_number);
@@ -88,6 +92,7 @@ public class TransferHomeActivity extends Activity {
         textView1.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
         textView2.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
         textView3.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
+        textView4.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
 
 
         name.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
@@ -136,6 +141,7 @@ public class TransferHomeActivity extends Activity {
         textView1.setText("Bank Sinarmas");
         textView2.setText("Bank Lain");
         textView3.setText("Laku Pandai");
+        textView4.setText("Uangku");
 
         layout1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +163,15 @@ public class TransferHomeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TransferHomeActivity.this, BankDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        layout4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TransferHomeActivity.this, UangkuTransferDetailsActivity.class);
                 startActivity(intent);
             }
         });

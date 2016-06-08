@@ -16,12 +16,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\ic_phone.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_transaksi.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\ic_transaksi.png"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edittext_background.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\edittext_background.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_transaksi.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\ic_transaksi.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_mpin.png",
@@ -52,56 +52,56 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_alone.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\item_alone.xml"
-    },
-    {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_item_cart_qty.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\background_item_cart_qty.xml"
-    },
-    {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable\\abc_textfield_search_material.xml"
-    },
-    {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_tarik_tunayi.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_tarik_tunayi.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\layoutbackground.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\layoutbackground.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\paybyqr.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\paybyqr.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\layoutbackground.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\layoutbackground.xml"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_tarik_tunayi.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_tarik_tunayi.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dwnselected.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\dwnselected.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_item_cart_qty.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\background_item_cart_qty.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_alone.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\item_alone.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_search.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\ic_search.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\paybyqr_horizontal.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\paybyqr_horizontal.png"
-    },
-    {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\loyalty_list_no_image.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\loyalty_list_no_image.png"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\dwnselected.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\dwnselected.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\item_center_default.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\item_center_default.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\title_bg.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\title_bg.xml"
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\loyalty_list_no_image.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\loyalty_list_no_image.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\paybyqr_horizontal.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\paybyqr_horizontal.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\v_arrow.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\v_arrow.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\title_bg.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\title_bg.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_round_corner.xml",
@@ -162,6 +162,10 @@
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable\\abc_item_background_holo_light.xml"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_uangku.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_uangku.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\background_circle_discount.xml",
@@ -316,12 +320,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_banklain.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\success.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\success.png"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_otp.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\ic_otp.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\success.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\success.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\error_cancel.png",

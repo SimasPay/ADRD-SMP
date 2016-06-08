@@ -94,6 +94,7 @@ public class PaymentDetailsActivity extends Activity {
             }
         });
 
+
         submit = (Button) findViewById(R.id.submit);
 
         submit.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
@@ -237,6 +238,7 @@ public class PaymentDetailsActivity extends Activity {
                     }
                     Intent intent = new Intent(PaymentDetailsActivity.this, PaymentConfirmationActivity.class);
                     intent.putExtra("creditamt", responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("originalAmount",responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("parentTxnID", responseContainer.getEncryptedParentTxnId());

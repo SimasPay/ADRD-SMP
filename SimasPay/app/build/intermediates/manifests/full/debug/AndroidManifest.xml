@@ -362,6 +362,21 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name="com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.payment.simaspay.UangkuTransfer.UangkuTransferSuccessActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name="com.dimo.PayByQR.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/PayByQRTheme.NoActionBar" />

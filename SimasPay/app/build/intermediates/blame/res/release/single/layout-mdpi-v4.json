@@ -20,6 +20,10 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-mdpi\\transferhome.xml"
     },
     {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-mdpi-v4\\mobile_transfer.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-mdpi\\mobile_transfer.xml"
+    },
+    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\layout-mdpi-v4\\common_layout.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\layout-mdpi\\common_layout.xml"
     },

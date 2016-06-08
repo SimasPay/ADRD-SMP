@@ -127,7 +127,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     EditText stage3_editText, stage3_editText1, stage3_editText2, stage3_editText3, stage3_editText4, stage3_editText5, stage3_editText6;
 
 
-    TextView textView;
+    TextView Rp;
 
     public static Button next;
 
@@ -163,6 +163,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
     ImageView document_image_1, document_image_2, document_image_3;
 
     SharedPreferences sharedPreferences, transferData;
+
+    TextView textView;
 
 
     public String ktp_bithPlace, ktp_Name, ktp_AddressCode, ktp_Provinsi, ktp_City, ktp_district, ktp_village, ktp_rt, ktp_rw, ktp_postalcode, diff_AddressCode, diff_Province, diff_City, diff_disctrict, diff_village, diff_Rt, diff_Rw, diff_PostalCode;
@@ -236,6 +238,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage1_textView15 = (TextView) findViewById(R.id.textview11);
         stage1_textView16 = (TextView) findViewById(R.id.textview12);
 
+        Rp=(TextView)findViewById(R.id.Rp);
+
         tab_1_text = (TextView) findViewById(R.id.tab_1_text);
         tab_2_text = (TextView) findViewById(R.id.tab_2_text);
         tab_3_text = (TextView) findViewById(R.id.tab_3_text);
@@ -283,6 +287,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         stage1_tanggal = (Button) findViewById(R.id.dateselect);
         stage1_tanggal.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
         stage1_tanggal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -608,37 +613,6 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 }
             }
         });
-
-        stage3_editText2.setText("Rp ");
-        Selection.setSelection(stage3_editText2.getText(), stage3_editText2.getText().length());
-
-
-        stage3_editText2.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!s.toString().contains("Rp ")) {
-                    stage3_editText2.setText("Rp ");
-                    Selection.setSelection(stage3_editText2.getText(), stage3_editText2.getText().length());
-
-                }
-
-            }
-        });
-
 
         tab_2_text.setTextColor(getResources().getColor(R.color.reg_nonfocus));
         tab_3_text.setTextColor(getResources().getColor(R.color.reg_nonfocus));

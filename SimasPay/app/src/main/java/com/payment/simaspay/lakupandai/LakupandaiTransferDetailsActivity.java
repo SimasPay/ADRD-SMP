@@ -115,7 +115,7 @@ public class LakupandaiTransferDetailsActivity extends Activity {
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
-                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new LakuPandaiInterBankAsynTask().execute();
 

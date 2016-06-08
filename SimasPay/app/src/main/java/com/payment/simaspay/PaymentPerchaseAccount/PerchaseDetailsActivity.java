@@ -306,6 +306,7 @@ public class PerchaseDetailsActivity extends Activity {
                     }
                     Intent intent = new Intent(PerchaseDetailsActivity.this, PerchaseConfirmationActivity.class);
                     intent.putExtra("debitamt", responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("parentTxnID", responseContainer.getEncryptedParentTxnId());

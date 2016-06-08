@@ -84,12 +84,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-mdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_chevron_right.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable-mdpi-v4\\ic_chevron_right.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable-mdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png",

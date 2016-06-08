@@ -16,7 +16,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
@@ -82,13 +85,7 @@ public class ActivationPage_2_Activity extends Activity {
                     Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
                     intent1.putExtra("SctlID", idnumber);
                     intent1.putExtra("mailedOtp", otp);
-//                    if (mobileNumber.startsWith("62")) {
-                        intent1.putExtra("mobileNumber", mobileNumber);
-//                    } else if (mobileNumber.startsWith("0")) {
-//                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
-//                    } else {
-//                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
-//                    }
+                    intent1.putExtra("mobileNumber", mobileNumber);
                     intent1.putExtra("otpValue", otpValue);
                     intent1.putExtra("mfaMode", "OTP");
                     intent1.putExtra("name", name);
@@ -111,13 +108,7 @@ public class ActivationPage_2_Activity extends Activity {
                     intent1.putExtra("SctlID", idnumber);
                     intent1.putExtra("mailedOtp", otp);
                     intent1.putExtra("name", name);
-//                    if (mobileNumber.startsWith("62")) {
-                        intent1.putExtra("mobileNumber", mobileNumber);
-//                    } else if (mobileNumber.startsWith("0")) {
-//                        intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
-//                    } else {
-//                        intent1.putExtra("mobileNumber", "62" + mobileNumber);
-//                    }
+                    intent1.putExtra("mobileNumber", mobileNumber);
                     intent1.putExtra("mfaMode", "OTP");
                     intent1.putExtra("otpValue", otpValue);
                     startActivityForResult(intent1, 20);
@@ -141,7 +132,8 @@ public class ActivationPage_2_Activity extends Activity {
                 e.printStackTrace();
             }
 
-            Utility.displayDialog("Gagal mendapatkan SMS", ActivationPage_2_Activity.this);
+//            Utility.displayDialog("Gagal mendapatkan SMS", ActivationPage_2_Activity.this);
+            SMSAlert("");
         }
     };
     Handler handler = new Handler();
@@ -194,6 +186,11 @@ public class ActivationPage_2_Activity extends Activity {
 
         String htmlString = "<u>Lo</u>" + "g" + "<u>in</u>";
         text_7.setText(Html.fromHtml(htmlString));
+
+        progressDialog = new ProgressDialog(ActivationPage_2_Activity.this);
+        progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+        progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+        progressDialog.setCancelable(false);
 
         lanjut = (Button) findViewById(R.id.next);
 
@@ -369,13 +366,7 @@ public class ActivationPage_2_Activity extends Activity {
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_ACTIVATION);
-//            if (mobileNumber.startsWith("62")) {
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);
-//            } else if (mobileNumber.startsWith("0")) {
-//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber.substring(1));
-//            } else {
-//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber);
-//            }
             mapContainer.put(Constants.PARAMETER_OTP, rsaKey);
             mapContainer.put(Constants.TRANSACTION_ISSIMASPAYACTIVITY, Constants.CONSTANT_VALUE_TRUE);
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
@@ -430,13 +421,7 @@ public class ActivationPage_2_Activity extends Activity {
                         intent1.putExtra("SctlID", responseContainer.getSctl());
                         intent1.putExtra("mailedOtp", otp);
                         intent1.putExtra("name", responseContainer.getName());
-                        if (mobileNumber.startsWith("62")) {
-                            intent1.putExtra("mobileNumber", mobileNumber);
-                        } else if (mobileNumber.startsWith("0")) {
-                            intent1.putExtra("mobileNumber", "62" + mobileNumber.substring(1));
-                        } else {
-                            intent1.putExtra("mobileNumber", "62" + mobileNumber);
-                        }
+                        intent1.putExtra("mobileNumber", mobileNumber);
                         intent1.putExtra("mfaMode", "None");
                         startActivityForResult(intent1, 20);
                     }
@@ -481,13 +466,7 @@ public class ActivationPage_2_Activity extends Activity {
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-//            if (mobileNumber.startsWith("62")) {
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);
-//            } else if (mobileNumber.startsWith("0")) {
-//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber.substring(1));
-//            } else {
-//                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber);
-//            }
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
@@ -502,10 +481,7 @@ public class ActivationPage_2_Activity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(ActivationPage_2_Activity.this);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.setCancelable(false);
+
             progressDialog.show();
         }
 
@@ -541,6 +517,189 @@ public class ActivationPage_2_Activity extends Activity {
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), ActivationPage_2_Activity.this);
+            }
+        }
+    }
+
+
+    Button button;
+    TextView textView1;
+    ProgressBar progressBar;
+    EditText editText;
+
+    public void SMSAlert(final String string) {
+
+
+        dialogCustomWish = new Dialog(context);
+        dialogCustomWish.setCancelable(false);
+
+        dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+        View view = LayoutInflater.from(context).inflate(R.layout.sms_alert, null);
+        dialogCustomWish.setContentView(R.layout.sms_alert);
+
+        button = (Button) dialogCustomWish.findViewById(R.id.ok);
+        Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
+        final TextView textView = (TextView) dialogCustomWish.findViewById(R.id.number);
+        TextView textView_1 = (TextView) dialogCustomWish.findViewById(R.id.number_1);
+        button.setTypeface(Utility.RegularTextFormat(context));
+        button1.setTypeface(Utility.RegularTextFormat(context));
+        textView.setTypeface(Utility.RegularTextFormat(context));
+
+        textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
+        editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
+
+        progressBar = (ProgressBar) dialogCustomWish.findViewById(R.id.progressbar);
+        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + mobileNumber + ". Masukkan kode tersebut atau akses link yang tersedia.");
+
+
+        textView1.setText("Kirim Ulang");
+        textView1.setTextColor(context.getResources().getColor(R.color.bg_color_h));
+        editText.setEnabled(true);
+        button.setEnabled(false);
+
+
+
+        editText.setHint("6 digit kode OTP");
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    button.setEnabled(false);
+                    progressBar.setVisibility(View.GONE);
+                    button.setTextColor(context.getResources().getColor(R.color.ok_disablecolor));
+                } else {
+                    button.setEnabled(true);
+                    button.setTextColor(context.getResources().getColor(R.color.bg_color_h));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        textView_1.setTypeface(Utility.Robot_Regular(context));
+
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogCustomWish.dismiss();
+                Intent i = getIntent();
+                setResult(Activity.RESULT_CANCELED, i);
+                finish();
+
+
+            }
+        });
+
+        button.setEnabled(false);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                dialogCustomWish.dismiss();
+                Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
+                intent1.putExtra("SctlID", idnumber);
+                intent1.putExtra("mailedOtp", otp);
+                intent1.putExtra("mobileNumber", mobileNumber);
+                intent1.putExtra("otpValue", editText.getText().toString());
+                intent1.putExtra("mfaMode", "OTP");
+                intent1.putExtra("name", name);
+                startActivityForResult(intent1, 20);
+
+            }
+        });
+
+
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (textView1.getText().toString().equalsIgnoreCase("Kirim Ulang")) {
+                    dialogCustomWish.dismiss();
+                    new MFAResendOTPAsyn().execute();
+                }
+            }
+        });
+        dialogCustomWish.show();
+
+    }
+
+
+    String response;
+
+    class MFAResendOTPAsyn extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            Map<String, String> mapContainer = new HashMap<String, String>();
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
+                    Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
+                    Constants.TRANSACTION_RESENDMFAOTP);
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN,mobileNumber);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_SCTLID, idnumber);
+
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, context);
+
+            response = webServiceHttp.getResponseSSLCertificatation();
+            Log.e("-------------","------------"+mapContainer.toString());
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (response != null) {
+                Log.e("-------", "---------" + response);
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseContainer = null;
+                try {
+                    responseContainer = obj.parse(response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    msgCode = Integer.parseInt(responseContainer
+                            .getMsgCode());
+                } catch (Exception e) {
+                    msgCode = 0;
+                }
+
+                if (msgCode == 2171) {
+                    dialogCustomWish.dismiss();
+                    handler.postDelayed(runnable, 30000);
+                } else if (msgCode == 2172) {
+                    dialogCustomWish.dismiss();
+                    Utility.displayDialog(responseContainer.getMsg(), ActivationPage_2_Activity.this);
+
+                } else if (msgCode == 2173) {
+                    dialogCustomWish.dismiss();
+                    Utility.displayDialog(responseContainer.getMsg(), ActivationPage_2_Activity.this);
+                }
+            } else {
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        context.getResources().getString(
+                                R.string.bahasa_serverNotRespond)), context);
             }
         }
     }

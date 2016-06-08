@@ -20,9 +20,11 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 1/28/2016.
  */
 public class PaymentSuccessActivity extends Activity {
-    TextView title, heading, name, name_field, number, number_field, amount, amount_field,transfer_field,transferID;
+    TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer_field, transferID, charges, charges_field, total, total_field;
 
     Button ok;
+
+    View view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +46,17 @@ public class PaymentSuccessActivity extends Activity {
         amount = (TextView) findViewById(R.id.amount);
         amount_field = (TextView) findViewById(R.id.amount_field);
 
-        transferID=(TextView)findViewById(R.id.transferID);
-        transfer_field=(TextView)findViewById(R.id.transfer_field);
+        charges = (TextView) findViewById(R.id.products);
+        charges_field = (TextView) findViewById(R.id.other_products);
+
+        total = (TextView) findViewById(R.id.total);
+        total_field = (TextView) findViewById(R.id.total_field);
+
+        transferID = (TextView) findViewById(R.id.transferID);
+        transfer_field = (TextView) findViewById(R.id.transfer_field);
+
+
+        view = (View) findViewById(R.id.line);
 
 
         transferID.setText(getIntent().getExtras().getString("sctlID"));
@@ -58,14 +69,26 @@ public class PaymentSuccessActivity extends Activity {
         number.setText("Nomor Handphone");
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
-        amount_field.setText("Rp. "+ getIntent().getExtras().getString("amount"));
+        amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
+        charges.setText("Biaya Administrasi");
+        charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+        total.setText("Total Pendebitan");
+        total_field.setText("Rp. " + getIntent().getExtras().getString("totalAmount"));
 
-        amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
-        number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
-        name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
+        amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        charges_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        total_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
 
 
         findViewById(R.id.ID_layout).setVisibility(View.VISIBLE);
+
+        charges.setVisibility(View.VISIBLE);
+        charges_field.setVisibility(View.VISIBLE);
+        total_field.setVisibility(View.VISIBLE);
+        total.setVisibility(View.VISIBLE);
+        view.setVisibility(View.VISIBLE);
 
         title.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
         heading.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
@@ -101,7 +124,7 @@ public class PaymentSuccessActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = getIntent();
             setResult(10, intent);
             finish();

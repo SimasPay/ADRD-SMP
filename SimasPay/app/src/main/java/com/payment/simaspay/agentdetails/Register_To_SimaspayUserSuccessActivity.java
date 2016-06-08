@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -95,7 +96,15 @@ public class Register_To_SimaspayUserSuccessActivity extends Activity {
             e.printStackTrace();
         }
         pekerjaan_field.setText(hashMap.get(Constants.PARAMETER_WORK));
-        pendapatan_per_Bulan_field.setText(hashMap.get(Constants.PARAMETER_INCOME));
+        if(hashMap.get(Constants.PARAMETER_INCOME)!=null){
+            double amount =  Double.parseDouble(hashMap.get(Constants.PARAMETER_INCOME));
+            String s=String.format("%,.2f", amount).replace(",",".");
+            try {
+                pendapatan_per_Bulan_field.setText("Rp. "+s.substring(0,s.length()-3));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         tujuan_pembukaan_rekening_field.setText(hashMap.get(Constants.PARAMETER_OPENINGACCOUNT));
         sumber_dana_field.setText(hashMap.get(Constants.PARAMETER_SOURCEOFFUNDS));
         e_mail_field.setText(hashMap.get(Constants.PARAMETER_EMAIL));
@@ -104,7 +113,12 @@ public class Register_To_SimaspayUserSuccessActivity extends Activity {
         name_field.setText(getIntent().getExtras().getString("KTPName"));
         nomor_ktp_field.setText(hashMap.get(Constants.PARAMETER_KTPID));
         if (hashMap.get(Constants.PARAMETER_KTPLIFETIME).equals("false")) {
-            ktp_berlaku_hingga_field.setText(hashMap.get(Constants.PARAMETER_KTPVALIDUNTIL));
+
+            try {
+                ktp_berlaku_hingga_field.setText(hashMap.get(Constants.PARAMETER_KTPVALIDUNTIL).substring(0, 2) + "-" + hashMap.get(Constants.PARAMETER_KTPVALIDUNTIL).substring(2, 4) + "-" + hashMap.get(Constants.PARAMETER_KTPVALIDUNTIL).substring(4));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             ktp_berlaku_hingga_field.setText("life time");
         }

@@ -46,11 +46,13 @@ import simaspay.payment.com.simaspay.R;
  */
 public class PerchaseConfirmationActivity extends Activity {
 
-    TextView title, heading, name, name_field, number, number_field, amount, amount_field;
+    TextView title, heading, name, name_field, number, number_field, amount, amount_field, charges, charges_field, total, total_field;
 
     Button cancel, confirmation;
 
     LinearLayout back;
+
+    View line;
 
 
     boolean Timervalueout;
@@ -63,15 +65,15 @@ public class PerchaseConfirmationActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                if (intent.getExtras().getString("value").equalsIgnoreCase("0")) {
                     Cancel();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("1")) {
                     otpValue = intent.getExtras().getString("otpValue");
                     new PurchaseConfirmationAsynTask().execute();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
-                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",PerchaseConfirmationActivity.this);
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
-                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),PerchaseConfirmationActivity.this);
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("2")) {
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.", PerchaseConfirmationActivity.this);
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("3")) {
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"), PerchaseConfirmationActivity.this);
                 }
 
             } catch (Exception e) {
@@ -79,7 +81,8 @@ public class PerchaseConfirmationActivity extends Activity {
             }
         }
     };
-    void Cancel(){
+
+    void Cancel() {
         try {
             unregisterReceiver(broadcastReceiver);
         } catch (Exception e) {
@@ -157,7 +160,12 @@ public class PerchaseConfirmationActivity extends Activity {
         number_field = (TextView) findViewById(R.id.number_field);
         amount = (TextView) findViewById(R.id.amount);
         amount_field = (TextView) findViewById(R.id.amount_field);
+        charges = (TextView) findViewById(R.id.products);
+        charges_field = (TextView) findViewById(R.id.other_products);
+        total = (TextView) findViewById(R.id.total);
+        total_field = (TextView) findViewById(R.id.total_field);
 
+        line = (View) findViewById(R.id.line);
         cancel = (Button) findViewById(R.id.cancel);
         confirmation = (Button) findViewById(R.id.next);
 
@@ -178,6 +186,10 @@ public class PerchaseConfirmationActivity extends Activity {
         number_field.setTypeface(Utility.Robot_Light(PerchaseConfirmationActivity.this));
         amount.setTypeface(Utility.Robot_Regular(PerchaseConfirmationActivity.this));
         amount_field.setTypeface(Utility.Robot_Light(PerchaseConfirmationActivity.this));
+        charges.setTypeface(Utility.Robot_Regular(PerchaseConfirmationActivity.this));
+        charges_field.setTypeface(Utility.Robot_Light(PerchaseConfirmationActivity.this));
+        total.setTypeface(Utility.Robot_Regular(PerchaseConfirmationActivity.this));
+        total_field.setTypeface(Utility.Robot_Light(PerchaseConfirmationActivity.this));
         cancel.setTypeface(Utility.Robot_Regular(PerchaseConfirmationActivity.this));
         confirmation.setTypeface(Utility.Robot_Regular(PerchaseConfirmationActivity.this));
 
@@ -203,52 +215,66 @@ public class PerchaseConfirmationActivity extends Activity {
         name.setText("Nama Produk");
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
         number.setText("Nominal Pulsa");
-        number_field.setText("Rp. " + getIntent().getExtras().getString("debitamt"));
+        number_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
         amount.setText("Nomor Handphone");
         amount_field.setText(getIntent().getExtras().getString("invoiceNo"));
+        charges.setText("Biaya Administrasi");
+        charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+        total.setText("Total Pendebitan");
+        total_field.setText("Rp. " + getIntent().getExtras().getString("debitamt"));
+
+
+        charges_field.setVisibility(View.VISIBLE);
+        charges.setVisibility(View.VISIBLE);
+        total.setVisibility(View.VISIBLE);
+        line.setVisibility(View.VISIBLE);
+        total_field.setVisibility(View.VISIBLE);
+
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        charges_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
+        total_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
 
 
         confirmation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                    if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                        if (Timervalueout) {
-                            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
-                        } else {
-                            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                            if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                                if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                        != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                        != PackageManager.PERMISSION_GRANTED) {
+                if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                    if (Timervalueout) {
+                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
+                    } else {
+                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) {
 
-                                    requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                            109);
-                                } else {
-                                    handlerforTimer.removeCallbacks(runnableforExit);
-                                    TimerCount timerCount=new TimerCount(PerchaseConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
-                                    timerCount.SMSAlert("");
-                                }
+                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                        109);
                             } else {
                                 handlerforTimer.removeCallbacks(runnableforExit);
-                                TimerCount timerCount=new TimerCount(PerchaseConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                                TimerCount timerCount = new TimerCount(PerchaseConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                                 timerCount.SMSAlert("");
                             }
-                        }
-                    } else {
-                        if (Timervalueout) {
-                            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
-                        }else{
+                        } else {
                             handlerforTimer.removeCallbacks(runnableforExit);
-                            new PurchaseConfirmationAsynTask().execute();
-
+                            TimerCount timerCount = new TimerCount(PerchaseConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
+                            timerCount.SMSAlert("");
                         }
+                    }
+                } else {
+                    if (Timervalueout) {
+                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
+                    } else {
+                        handlerforTimer.removeCallbacks(runnableforExit);
+                        new PurchaseConfirmationAsynTask().execute();
 
                     }
+
+                }
 
 
             }
@@ -315,13 +341,14 @@ public class PerchaseConfirmationActivity extends Activity {
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 handlerforTimer.removeCallbacks(runnableforExit);
-                TimerCount timerCount=new TimerCount(PerchaseConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                TimerCount timerCount = new TimerCount(PerchaseConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                 timerCount.SMSAlert("");
             } else {
 
             }
         }
     }
+
     Context context;
     Dialog dialogCustomWish;
 
@@ -420,7 +447,7 @@ public class PerchaseConfirmationActivity extends Activity {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 }
             }
-            if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");
                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
                 try {
@@ -430,7 +457,7 @@ public class PerchaseConfirmationActivity extends Activity {
                     e1.printStackTrace();
                 }
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, OTP);
-            }else{
+            } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, PerchaseConfirmationActivity.this);
@@ -486,6 +513,7 @@ public class PerchaseConfirmationActivity extends Activity {
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("billerDetails"));
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
@@ -494,9 +522,11 @@ public class PerchaseConfirmationActivity extends Activity {
                     }
                     Intent intent = new Intent(PerchaseConfirmationActivity.this, PaymentSuccessActivity.class);
                     intent.putExtra("amount", getIntent().getExtras().getString("amount"));
+                    intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
+                    intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     startActivityForResult(intent, 10);
                 } else {

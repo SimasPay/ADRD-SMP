@@ -52,6 +52,10 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_uangku.png",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_uangku.png"
+    },
+    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\alert_back.xml",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\alert_back.xml"
     },
@@ -336,12 +340,12 @@
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\item_top_pressed.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_rect_dark_gray.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\background_rect_dark_gray.xml"
-    },
-    {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\btn_bayarpakaiqr.png",
         "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\src\\main\\res\\drawable\\btn_bayarpakaiqr.png"
+    },
+    {
+        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_rect_dark_gray.xml",
+        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable\\background_rect_dark_gray.xml"
     },
     {
         "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\release\\drawable\\background_loyalty_list_image.xml",

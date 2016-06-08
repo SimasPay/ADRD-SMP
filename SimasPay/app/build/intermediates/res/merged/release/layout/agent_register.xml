@@ -1334,22 +1334,48 @@
                                 android:textColor="@android:color/black"
                                 android:textSize="14dp" />
 
-                            <EditText
-                                android:id="@+id/stage3_editText2"
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_gravity="left|center"
-                                android:layout_marginRight="5dp"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="10dp"
                                 android:background="@drawable/white_color"
-                                android:gravity="left|center"
-                                android:hint="Rp"
-                                android:inputType="number"
-                                android:singleLine="true"
-                                android:digits="1234567890 "
-                                android:paddingLeft="10dp"
-                                android:textColor="@android:color/black"
-                                android:textSize="16dp" />
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/Rp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="10dp"
+                                    android:gravity="center_vertical"
+                                    android:text="Rp."
+                                    android:textColor="@android:color/black"
+                                    android:textSize="15dp" />
+
+
+                                <EditText
+                                    android:id="@+id/stage3_editText2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="45dp"
+                                    android:layout_gravity="left|center"
+                                    android:layout_marginRight="5dp"
+                                    android:background="#FFFFFF"
+                                    android:gravity="left|center"
+                                    android:inputType="number"
+                                    android:layout_marginLeft="1dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:singleLine="true"
+                                    android:digits="1234567890 "
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="10dp"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="16dp" />
+
+                            </LinearLayout>
+
+
                         </LinearLayout>
 
                         <LinearLayout

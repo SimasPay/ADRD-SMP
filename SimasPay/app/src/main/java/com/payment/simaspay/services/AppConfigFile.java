@@ -27,7 +27,7 @@ public class AppConfigFile {
 	
 	
 //	AWS
-		 /*public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
+		/* public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrlFiles="http://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrl ="http://54.255.194.95:8443/webapi/sdynamic";
 		 public static String pfdDownLoadURL = "http://54.255.194.95:8443/webapi/";
