@@ -118,7 +118,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
                 progressDialog.dismiss();
             }
             Timervalueout = true;
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
 
         }
     };
@@ -132,7 +132,6 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
         super.onResume();
         registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -234,9 +233,9 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
+//                    } else {
                         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                             if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
@@ -255,14 +254,14 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
                             TimerCount timerCount=new TimerCount(LakuPandaiTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
                             timerCount.SMSAlert("");
                         }
-                    }
+//                    }
                 } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
-                    }else{
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), LakuPandaiTransferConfirmationActivity.this);
+//                    }else{
                         handlerforTimer.removeCallbacks(runnableforExit);
                         new InterBankLakuPandaiAsynTask().execute();
-                    }
+//                    }
                 }
 
             }
@@ -287,6 +286,7 @@ public class LakuPandaiTransferConfirmationActivity extends Activity {
             }
         });
         handlerforTimer.postDelayed(runnableforExit, 90000);
+
     }
 
     @Override

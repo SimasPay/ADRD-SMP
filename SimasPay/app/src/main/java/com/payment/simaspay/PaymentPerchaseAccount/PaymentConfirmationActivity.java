@@ -126,7 +126,7 @@ public class PaymentConfirmationActivity extends Activity {
             }
             Timervalueout = true;
 
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
 
         }
     };
@@ -247,9 +247,9 @@ public class PaymentConfirmationActivity extends Activity {
 
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
 
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
+//                    } else {
 
                         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -269,15 +269,15 @@ public class PaymentConfirmationActivity extends Activity {
                             TimerCount timerCount = new TimerCount(PaymentConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                             timerCount.SMSAlert("");
                         }
-                    }
+//                    }
                 } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PaymentConfirmationActivity.this);
+//                    } else {
                         handlerforTimer.removeCallbacks(runnableforExit);
                         new BillPayConfirmationAsynTask().execute();
 
-                    }
+//                    }
                 }
             }
         });

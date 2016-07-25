@@ -69,9 +69,10 @@ public class TimerCount {
                                     body.indexOf(". ")).trim();
                     button.setEnabled(true);
                     editText.setText(otpValue);
-                    cancelTimer();
                     textView1.setVisibility(View.GONE);
                     button.setTextColor(context.getResources().getColor(R.color.bg_color_h));
+
+                    cancelTimer();
 
                 } else if (body.contains("Your Simaspay code is ")) {
                     otpValue = body
@@ -87,6 +88,7 @@ public class TimerCount {
                     progressBar.setVisibility(View.GONE);
                     button.setTextColor(context.getResources().getColor(R.color.bg_color_h));
                     textView1.setVisibility(View.GONE);
+                    cancelTimer();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -114,6 +116,7 @@ public class TimerCount {
                     textView1.setText(minutes + ":"+ seconds);
 
                 }
+                Log.e("=============","===============Nagendra Palepu");
                 progressBar.setVisibility(View.VISIBLE);
                 button.setTextColor(context.getResources().getColor(R.color.ok_disablecolor));
                 textView1.setTextColor(context.getResources().getColor(R.color.timer_color));
@@ -164,7 +167,7 @@ public class TimerCount {
         textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
 
 
-        startTimer();
+
 
         progressBar=(ProgressBar)dialogCustomWish.findViewById(R.id.progressbar);
         textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + sharedPreferences.getString("mobileNumber", "") + ". Masukkan kode tersebut atau akses link yang tersedia.");
@@ -250,7 +253,9 @@ public class TimerCount {
                 }
             }
         });
-        dialogCustomWish.show();
+
+        new MFAResendOTPAsyn().execute();
+
 
     }
 
@@ -308,6 +313,7 @@ public class TimerCount {
                     progressBar.setVisibility(View.GONE);
                     editText.setEnabled(false);
                     button.setEnabled(false);
+                    dialogCustomWish.show();
                 }else if(msgCode==2172){
                     dialogCustomWish.dismiss();
                     try {

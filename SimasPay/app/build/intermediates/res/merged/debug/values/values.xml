@@ -75,6 +75,7 @@
     <color name="done_text_color_normal">#ff333333</color>
     <color name="foreground_material_dark">@android:color/white</color>
     <color name="foreground_material_light">@android:color/black</color>
+    <color name="gray_sinarmas">#D5D5D5</color>
     <color name="highlighted_text_material_dark">#6680cbc4</color>
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
@@ -115,7 +116,8 @@
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
     <color name="progress_bar_background">#CFD0D1</color>
-    <color name="progress_bar_progress">#F9EF38</color>
+    <color name="progress_bar_progress">#cc0000</color>
+    <color name="red_sinarmas">#cc0000</color>
     <color name="reg">#CC0000</color>
     <color name="reg_2">#5E5D5E</color>
     <color name="reg_nonfocus">#B1B1B1</color>
@@ -128,6 +130,12 @@
     <color name="secondary_text_disabled_material_light">#24000000</color>
     <color name="splashscreen">#DDDDDD</color>
     <color name="store_background">#F5F5F5</color>
+    <color name="store_cart_footer_bg">#e9e9e9</color>
+    <color name="store_cart_item_name">#4a4a4a</color>
+    <color name="store_cart_item_qty_btn">#9b9b9b</color>
+    <color name="store_cart_item_qty_btn_seleceted">#BF9b9b9b</color>
+    <color name="store_checkout_step_progress">#cc0000</color>
+    <color name="store_checkout_step_progress_disable">#9B9B9B</color>
     <color name="store_detail_info_background">#80000000</color>
     <color name="store_header_slider">#00A5FD</color>
     <color name="store_line_checkout">#D3D3D3</color>
@@ -139,7 +147,7 @@
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="text_color">#B3FFFFFF</color>
-    <color name="theme_bg_gray">#cfcfcf</color>
+    <color name="theme_bg_gray">#dfdfdf</color>
     <color name="theme_bg_light_gray">#f5f5f5</color>
     <color name="theme_bg_scanQR_frame">#80a1a1a1</color>
     <color name="theme_black">#000000</color>
@@ -147,15 +155,15 @@
     <color name="theme_btn_loyalty">#4d1315</color>
     <color name="theme_btn_redeem_point">#5d5d5d</color>
     <color name="theme_btn_tip">#373737</color>
-    <color name="theme_colorPrimary">#9f1723</color>
+    <color name="theme_colorPrimary">#cc0000</color>
     <color name="theme_colorPrimaryDark">#82151d</color>
-    <color name="theme_text_over_basic_bg">#ffffff</color>
+    <color name="theme_text_over_basic_bg">#4a4a4a</color>
     <color name="timer_color">#727272</color>
-    <color name="tip_accent">#FEFE2D</color>
+    <color name="tip_accent">#C90000</color>
     <color name="tip_text_total">#C5A7A9</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_black">#7F000000</color>
-    <color name="txt_discount_amount">#80FFFFFF</color>
+    <color name="txt_discount_amount">#804a4a4a</color>
     <color name="txt_error_red">#951520</color>
     <color name="txt_invoiceDetail_info_plain">#4c4c4d</color>
     <color name="txt_scanQR_flash_on">#FEFE2D</color>
@@ -201,7 +209,7 @@
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/><attr format="reference" name="theme"/><attr name="android:theme"/></declare-styleable>
     <declare-styleable name="ViewBackgroundHelper"><attr name="android:background"/><attr format="color" name="backgroundTint"/><attr name="backgroundTintMode"><enum name="src_over" value="3"/><enum name="src_in" value="5"/><enum name="src_atop" value="9"/><enum name="multiply" value="14"/><enum name="screen" value="15"/></attr></declare-styleable>
     <declare-styleable name="ViewStubCompat"><attr name="android:layout"/><attr name="android:inflatedId"/><attr name="android:id"/></declare-styleable>
-    <declare-styleable name="com.dimo.view.DIMOButton"><attr format="color" name="bgColor"/><attr format="enum" name="buttonSize"><enum name="normal" value="0"/><enum name="small" value="1"/><enum name="big" value="2"/></attr><attr name="font"/></declare-styleable>
+    <declare-styleable name="com.dimo.view.DIMOButton"><attr format="color" name="bgColor"/><attr format="enum" name="dimoButtonSize"><enum name="normal" value="0"/><enum name="small" value="1"/><enum name="big" value="2"/></attr><attr name="font"/></declare-styleable>
     <declare-styleable name="com.dimo.view.DIMOEditText"><attr name="font"/></declare-styleable>
     <declare-styleable name="com.dimo.view.DIMOTextView"><attr name="font"/></declare-styleable>
     <declare-styleable name="zxing_finder"><attr format="color" name="zxing_possible_result_points"/><attr format="color" name="zxing_result_view"/><attr format="color" name="zxing_viewfinder_laser"/><attr format="color" name="zxing_viewfinder_mask"/></declare-styleable>
@@ -293,6 +301,9 @@
     <dimen name="button_small_corner_radius">16dp</dimen>
     <dimen name="button_small_drawable_size">16dp</dimen>
     <dimen name="button_small_height">32dp</dimen>
+    <dimen name="callout_bubble_corner">8dp</dimen>
+    <dimen name="callout_bubble_line">2dp</dimen>
+    <dimen name="callout_bubble_triangle_width">16dp</dimen>
     <dimen name="corner_radius">16dp</dimen>
     <dimen name="date_picker_component_width">300dip</dimen>
     <dimen name="date_picker_header_height">30dip</dimen>
@@ -321,6 +332,8 @@
     <dimen name="image_size_icon_use_voucher">48dp</dimen>
     <dimen name="image_size_loyalty_list_discount">45dp</dimen>
     <dimen name="image_size_loyalty_list_image">80dp</dimen>
+    <dimen name="image_size_qrstore_cart_item">64dp</dimen>
+    <dimen name="image_size_qrstore_cart_item_discount">36dp</dimen>
     <dimen name="image_size_voucher_box_border_width">2dp</dimen>
     <dimen name="image_size_voucher_used_height">30dp</dimen>
     <dimen name="image_size_voucher_used_width">40dp</dimen>
@@ -412,6 +425,7 @@
     <integer name="abc_config_activityShortDur">150</integer>
     <integer name="abc_max_action_buttons">2</integer>
     <integer name="cancel_button_image_alpha">127</integer>
+    <integer name="pinSize">6</integer>
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <integer name="text_dimoButton_big">18</integer>
     <integer name="text_dimoButton_normal">14</integer>
@@ -472,7 +486,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="alertdialog_posBtn_close">Tutup</string>
     <string name="alertdialog_posBtn_hapus">Hapus</string>
     <string name="alertdialog_posBtn_ok">OK</string>
-    <string name="alertdialog_title_error">Info</string>
+    <string name="alertdialog_title_info">Info</string>
     <item format="float" name="ampm_circle_radius_multiplier" type="string">0.19</item>
     <string name="app_cancel">Cancel</string>
     <string name="app_confirm">Confirm</string>
@@ -591,13 +605,15 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="error_loading_multiple_loyalty_programs_failed">An error has occurred while programs were loading, please try again.</string>
     <string name="error_loading_secret_questions_failed">The list of secret questions cannot be displayed, please try again.</string>
     <string name="error_log_out_failed">Logout has failed, please try again.</string>
+    <string name="error_max_goods_in_cart">. Anda sudah pernah menambahkan %1$d barang di keranjang belanja Anda.</string>
+    <string name="error_max_qty">Jumlah maksimal yang bisa Anda beli untuk produk ini adalah %1$d</string>
     <string name="error_max_retry">Terjadi gangguan pada transaksi ini, silakan cek histori transaksi untuk memastikan status.</string>
-    <string name="error_max_stock">Stok maksimum untuk produk ini adalah %1$d</string>
+    <string name="error_max_stock">Stok yang tersedia untuk barang ini adalah %1$d</string>
     <string name="error_minimum_trx">Jumlah pembayaran transaksi ini kurang dari minimum pembayaran yang berlaku, Rp %1$s. Silakan bertransaksi sejumlah atau diatas nilai tersebut.</string>
     <string name="error_no_connection_title">Tidak Ada Koneksi Internet</string>
     <string name="error_no_internet_connection">You need an internet connection to use FLASHiZ. Please check your connection and try again.</string>
     <string name="error_no_selection">Silahkan Pilih Item</string>
-    <string name="error_no_stock">Maaf, stok barang sedang habis</string>
+    <string name="error_no_stock">Maaf, stok barang habis</string>
     <string name="error_payment_failed">The payment failed. Please try again.</string>
     <string name="error_pin_codes_entered_different">An error has occurred. Please re-enter your personal code.</string>
     <string name="error_refill_account_credit_card_failed">Credit card payment could not be completed.</string>
@@ -611,6 +627,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="flashiz_tc">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:white;font-size:15px;> &lt;p>&lt;B>SYARAT DAN KETENTUAN PEMBAYARAN QR&lt;/B>&lt;br /> &lt;br /> Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan bahwa saya telah menerima dan menyetujui untuk tunduk dan terikat pada ketentuan-ketentuan sebagai berikut:&lt;br /> &lt;br /> 1. Pembayaran QR hanya dapat dilakukan pada merchant-merchant atau outlet-outlet yang berpartisipasi.&lt;/p> &lt;p>2. Pembayaran QR ini menggunakan teknologi FLASHiZ.&lt;/p> &lt;p>3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY.&lt;/p> &lt;/body> &lt;/html></string>
     <string name="font_helvetica">font/HelveticaNeue.ttf</string>
     <string name="font_helvetica_light">font/HelveticaNeue-Light.ttf</string>
+    <string name="font_helvetica_medium">font/HelveticaNeue-Medium.ttf</string>
     <string name="font_montserrat">font/Montserrat-Regular.ttf</string>
     <string name="font_montserrat_bold">font/Montserrat-Bold.ttf</string>
     <string name="font_montserrat_light">font/Montserrat-Light.ttf</string>
@@ -702,6 +719,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="helpScreenTitle">Hubungi</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="item_is_selected">%1$s selected</string>
+    <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="minute_picker_description">Minutes circular slider</string>
     <string name="no_storage_card">No storage card</string>
     <string name="not_enough_space">Not enough space</string>
@@ -710,7 +728,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <item format="float" name="numbers_radius_multiplier_inner" type="string">0.60</item>
     <item format="float" name="numbers_radius_multiplier_normal" type="string">0.81</item>
     <item format="float" name="numbers_radius_multiplier_outer" type="string">0.83</item>
-    <string name="pilih_toko">PILIH TOKO</string>
+    <string name="pilih_kota">Pilih Kota</string>
+    <string name="pilih_toko">Pilih Toko</string>
     <string name="preparing_card">Preparing card</string>
     <string name="progressdialog_message_get_invoice_detail">Memproses invoice...</string>
     <string name="progressdialog_message_get_store_item_detail">Mengambil data barang...</string>
@@ -725,6 +744,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="save">Save</string>
     <string name="saving_image">Saving image</string>
     <string name="sdk_link_with_flashiz_app">Link your FLASHiZ account</string>
+    <string name="sdk_name">Pay By QR</string>
     <string name="sdk_popup_cant_link_with_flashiz">No FLASHiZ account is connected.Please enter your password to continue</string>
     <string name="sdk_register_with_flashiz_app">Subscribe to FLASHiZ</string>
     <string name="security_captcha_mail_notification">Please check your inbox to activate your account.</string>
@@ -744,22 +764,34 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="source_packet_code">1</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="text_EULA_title">SYARAT &amp; KETENTUAN</string>
+    <string name="text_camera">Kamera</string>
+    <string name="text_camera_storage">Kamera dan Penyimpanan</string>
+    <string name="text_cart_item_deleted">%1$s telah di hapus dari keranjang belanja</string>
     <string name="text_detail_currency">Rp</string>
     <string name="text_detail_info_normal">Pastikan jumlah yang tertera di atas sesuai dengan pembayaran yang Anda lakukan</string>
     <string name="text_detail_info_tip">Puas dengan pelayanan yang diberikan?</string>
     <string name="text_detail_voucher_anda">Voucher Anda saat ini</string>
     <string name="text_detail_voucher_gunakan">Gunakan sekarang?</string>
-    <string name="text_discount">DISCOUNT</string>
+    <string name="text_discount">diskon</string>
     <string name="text_discount_OFF">OFF</string>
+    <string name="text_header_subtitle_checkout">Langkah %1$s</string>
+    <string name="text_header_title_cart">Keranjang Belanja</string>
+    <string name="text_header_title_checkout_1">Data Pemesan</string>
+    <string name="text_header_title_checkout_2">Metode Pengiriman</string>
+    <string name="text_header_title_checkout_3">Konfirmasi</string>
     <string name="text_header_title_confirm">KONFIRMASI</string>
+    <string name="text_header_title_goods_detail">Detil Barang</string>
     <string name="text_header_title_input_amount">MASUKKAN NOMINAL</string>
-    <string name="text_header_title_loyalty">LOYALTI</string>
-    <string name="text_header_title_loyalty_detail">LOYALTI DETAIL</string>
+    <string name="text_header_title_loyalty">PROMO</string>
+    <string name="text_header_title_loyalty_detail">DETIL PROMO</string>
     <string name="text_header_title_tip">TIP</string>
     <string name="text_info_fidelitiz1">Anda mendapatkan </string>
     <string name="text_info_fidelitiz2">Total poin Anda adalah</string>
     <string name="text_info_fidelitiz3">lagi untuk mendapatkan voucher</string>
     <string name="text_info_fidelitiz3_get_voucher">Selamat! Anda mendapatkan voucher</string>
+    <string name="text_info_max_redeem_daily">Batas pemakaian diskon Anda hari ini telah habis ( maksimal %1$sx )</string>
+    <string name="text_info_max_redeem_event">Batas pemakaian diskon Anda dalam event ini telah habis ( maksimal %1$sx )</string>
+    <string name="text_info_min_trx_for_disc">Silakan bertransaksi minimal Rp %1$s untuk mendapatkan diskon %2$s%%</string>
     <string name="text_info_tip_max">Mohon maaf, jumlah tip tidak dapat melebihi jumlah pembayaran.\nJumlah pembayaran Anda saat ini adalah Rp %1$s</string>
     <string name="text_info_voucher_max">Anda telah memakai seluruh voucher yang Anda miliki.</string>
     <string name="text_info_voucher_max_percentage">Voucher hanya dapat dipakai satu kali per transaksi dan tidak dapat digabungkan.</string>
@@ -768,18 +800,25 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="text_loyalty_detail_info_empty_location">( Data lokasi tidak tersedia )</string>
     <string name="text_loyalty_detail_info_expired">Diskon berlaku dari:</string>
     <string name="text_loyalty_detail_info_expired_type_point">Program loyalti berlaku dari:</string>
+    <string name="text_loyalty_detail_info_max_redeem">Maksimum redeem:</string>
     <string name="text_loyalty_detail_info_maximum">Maksimum diskon:</string>
     <string name="text_loyalty_detail_info_membership">Lokasi:</string>
     <string name="text_loyalty_detail_info_minimum">Minimum pembelian:</string>
     <string name="text_loyalty_detail_point_to_go">lagi untuk mendapatkan</string>
     <string name="text_loyalty_detail_syarat">SYARAT DAN KETENTUAN</string>
     <string name="text_loyalty_detail_total_voucher">Total Voucher Anda saat ini adalah:</string>
-    <string name="text_loyalty_list_desc">Dapatkan %1$s poin untuk setiap pembelanjaan %2$s\nKumpulkan %3$s poin dan dapatkan Voucher %4$s</string>
+    <string name="text_loyalty_list_desc">Dapatkan %1$s poin untuk setiap pembelanjaan%2$s\nKumpulkan %3$s poin dan dapatkan Voucher %4$s</string>
+    <string name="text_masa_berlaku">masa berlaku</string>
+    <string name="text_max_diskon">maksimum diskon</string>
+    <string name="text_max_redeem">maksimum redeem</string>
+    <string name="text_min_pembelian">minimum pembelian</string>
     <string name="text_not_authenticate">PEMBAYARAN GAGAL</string>
     <string name="text_not_authenticate_splash">ERROR</string>
     <string name="text_payment_failed">PEMBAYARAN GAGAL !</string>
     <string name="text_payment_success">PEMBAYARAN BERHASIL !</string>
     <string name="text_payment_timeout">TERJADI GANGGUAN</string>
+    <string name="text_per_day">per hari</string>
+    <string name="text_per_event">per event</string>
     <string name="text_plus_tip">+ TIP</string>
     <string name="text_poin">%1$s poin</string>
     <string name="text_scanqr_tutorial">Silakan scan QR\npada area yang telah ditentukan</string>
@@ -787,6 +826,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <item format="float" name="text_size_multiplier_inner" type="string">0.14</item>
     <item format="float" name="text_size_multiplier_normal" type="string">0.17</item>
     <item format="float" name="text_size_multiplier_outer" type="string">0.11</item>
+    <string name="text_storage">Penyimpanan</string>
     <string name="text_store_dec">1</string>
     <string name="text_store_minus">-</string>
     <string name="text_store_normal">nama barang</string>
@@ -805,44 +845,56 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="tx_maximum_length">30</string>
     <string name="tx_qr_delete">Yakin untuk menghapus \"%1$s\" ?</string>
     <string name="tx_qr_store_bt">Keranjang Belanja</string>
+    <string name="tx_store_action_done">Done</string>
+    <string name="tx_store_action_edit">Edit</string>
     <string name="tx_store_action_reset">Reset</string>
     <string name="tx_store_address_max">60</string>
     <string name="tx_store_address_min">9</string>
     <string name="tx_store_checout_alamat_empty">Alamat pengiriman tidak boleh kosong. Mohon periksa kembali data Anda</string>
     <string name="tx_store_checout_alamat_error">Alamat pengiriman tidak boleh kurang dari 8 karakter. Mohon periksa kembali data Anda</string>
-    <string name="tx_store_checout_alamat_hint">MASUKKAN ALAMAT</string>
+    <string name="tx_store_checout_alamat_hint">Isi alamat Anda</string>
+    <string name="tx_store_checout_email_empty">E-mail tidak boleh kosong. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_email_error">Format e-mail salah. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_checout_email_hint">Isi e-mail Anda</string>
     <string name="tx_store_checout_kota_error">Kota harus dipilih. Mohon periksa kembali data Anda</string>
     <string name="tx_store_checout_name_empty">Nama tidak boleh kosong. Mohon periksa kembali data Anda</string>
     <string name="tx_store_checout_name_error">Nama tidak boleh kurang dari 3 karakter. Mohon periksa kembali data Anda</string>
-    <string name="tx_store_checout_name_hint">MASUKKAN NAMA</string>
+    <string name="tx_store_checout_name_hint">Isi nama Anda</string>
+    <string name="tx_store_checout_shipping_fee_hint">Biaya pengiriman:</string>
     <string name="tx_store_checout_telepon_empty">Nomor Telepon tidak boleh kosong. Mohon periksa kembali data Anda</string>
     <string name="tx_store_checout_telepon_error">Nomor telepon tidak boleh kurang dari 7 karakter. Mohon periksa kembali data Anda</string>
-    <string name="tx_store_checout_telepon_hint">MASUKKAN TELEPON</string>
+    <string name="tx_store_checout_telepon_hint">Isi nomor telepon Anda</string>
     <string name="tx_store_checout_toko_error">Toko harus dipilih. Mohon periksa kembali data Anda</string>
+    <string name="tx_store_confirm_pickup_method">Metode pengiriman: %1$s</string>
     <string name="tx_store_empty_1">Keranjang belanja Anda masih kosong.\nSilakan scan QR barang\nuntuk mulai berbelanja</string>
     <string name="tx_store_header">QR STORE</string>
-    <string name="tx_store_keranjang_bel">KERANJANG BELANJA</string>
+    <string name="tx_store_item_detail_description">Deskripsi</string>
+    <string name="tx_store_item_per_merchant">%1$s barang</string>
+    <string name="tx_store_keranjang_bel">Keranjang Belanja</string>
     <string name="tx_store_merchant">MERCHANT</string>
     <string name="tx_store_name_max">30</string>
     <string name="tx_store_name_min">2</string>
     <string name="tx_store_number_max">16</string>
     <string name="tx_store_number_min">7</string>
+    <string name="tx_store_per_item">per barang</string>
     <string name="tx_store_pick_address">ALAMAT</string>
     <string name="tx_store_pick_addressdummy">Plaza Permata 10 th floor Mh thamrin 28-30 Jakarta</string>
     <string name="tx_store_pick_batal">BATAL</string>
     <string name="tx_store_pick_city">KOTA</string>
     <string name="tx_store_pick_selesai">SELESAI</string>
     <string name="tx_store_pick_store">TOKO</string>
-    <string name="tx_store_pre_total">TOTAL</string>
+    <string name="tx_store_pre_total">Total Belanja</string>
     <string name="tx_store_pre_totalprice">Rp. 1200</string>
     <string name="tx_store_select">TOKO [img src=v_arrow/]</string>
-    <string name="tx_store_total_address">ALAMAT</string>
-    <string name="tx_store_total_bayar">TOTAL BAYAR</string>
+    <string name="tx_store_total_address">Alamat</string>
+    <string name="tx_store_total_bayar">Total Bayar</string>
     <string name="tx_store_total_bel">TOTAL BELANJA</string>
-    <string name="tx_store_total_nama">NAMA</string>
-    <string name="tx_store_total_phone">TELEPON</string>
+    <string name="tx_store_total_email">E-mail</string>
+    <string name="tx_store_total_harga_barang">Total Harga Barang</string>
+    <string name="tx_store_total_nama">Nama</string>
+    <string name="tx_store_total_phone">Nomor Telepon</string>
     <string name="tx_store_total_pickup">PENGAMBILAN</string>
-    <string name="tx_store_total_ship">BIAYA KIRIM</string>
+    <string name="tx_store_total_ship">Biaya Kirim</string>
     <string name="url_path_getLoyaltyList">/mobile/individualGetActiveLoyaltyPrograms</string>
     <string name="url_path_invoiceDetail">/banking/v1/mobile/invoice/get</string>
     <string name="url_path_invoiceStatus">/banking/v1/mobile/invoice/status</string>
@@ -1825,17 +1877,23 @@ Contact our Customer Services at contact@flashiz.com"</string>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
     <style name="PayByQRTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/theme_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/theme_colorPrimary</item>
-        <item name="colorAccent">@color/theme_colorPrimary</item>
-        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
 
     </style>
     <style name="PayByQRTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/theme_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/theme_colorPrimary</item>
-        <item name="colorAccent">@color/theme_colorPrimary</item>
-        <item name="android:colorBackground">@android:color/white</item>
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
+    </style>
+    <style name="PayByQRTheme.NoActionBar.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>

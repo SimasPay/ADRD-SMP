@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.dimo.PayByQR.activity.TipActivity">
 
     <include layout="@layout/header_bar" />
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingBottom="@dimen/activity_vertical_margin"
-            android:background="@color/theme_colorPrimary"
+            android:elevation="6dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -66,7 +67,7 @@
                         android:layout_marginTop="@dimen/margin_tip_text_top_bottom"
                         android:layout_marginBottom="@dimen/margin_tip_text_top_bottom"
                         android:text="@string/text_plus_tip"
-                        android:textColor="@color/tip_accent"
+                        android:textColor="@color/tip_text_total"
                         android:textSize="@dimen/text_size_22"
                         dimo:font="@string/font_montserrat"/>
                     <RelativeLayout
@@ -76,7 +77,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="@dimen/margin_tip_text_top_bottom"
-                            android:background="@color/theme_colorPrimaryDark">
+                            android:elevation="4dp"
+                            android:background="@color/store_detail_info_background">
                             <ImageButton
                                 android:id="@+id/activity_tip_btn_clear"
                                 android:layout_width="@dimen/image_size_icon_clear"
@@ -85,7 +87,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginLeft="@dimen/margin_tip_text_top_bottom"
                                 android:background="@android:color/transparent"
-                                android:src="@drawable/ico_circle_failed_yellow"
+                                android:src="@drawable/ic_clear_outline"
                                 android:scaleType="fitXY"/>
                             <com.dimo.PayByQR.view.DIMOEditText
                                 android:id="@+id/activity_tip_amount_edit"
@@ -95,10 +97,10 @@
                                 android:layout_centerVertical="true"
                                 android:gravity="right"
                                 android:inputType="numberSigned"
-                                android:background="@color/theme_colorPrimaryDark"
+                                android:background="@android:color/transparent"
                                 android:textCursorDrawable="@null"
                                 android:text="Rp 0"
-                                android:textColor="@color/theme_text_over_basic_bg"
+                                android:textColor="@android:color/white"
                                 android:textSize="@dimen/text_size_32"
                                 dimo:font="@string/font_montserrat_bold"
                                 android:visibility="visible"/>
@@ -131,7 +133,8 @@
                     android:paddingRight="@dimen/padding_tip_left_right"
                     android:paddingTop="@dimen/activity_vertical_margin"
                     android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:background="@color/theme_colorPrimaryDark">
+                    android:elevation="4dp"
+                    android:background="@color/store_detail_info_background">
                     <RelativeLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -154,8 +157,8 @@
                             android:layout_alignBottom="@id/activity_tip_btn_tip_proposition1"
                             android:layout_marginBottom="8dp"
                             android:text="+ Rp 0"
-                            android:textColor="@color/tip_accent"
-                            android:textSize="@dimen/text_size_22"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_18"
                             dimo:font="@string/font_montserrat"/>
                     </RelativeLayout>
                     <RelativeLayout
@@ -180,8 +183,8 @@
                             android:layout_alignBottom="@id/activity_tip_btn_tip_proposition2"
                             android:layout_marginBottom="8dp"
                             android:text="+ Rp 0"
-                            android:textColor="@color/tip_accent"
-                            android:textSize="@dimen/text_size_22"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/text_size_18"
                             dimo:font="@string/font_montserrat"/>
                     </RelativeLayout>
                 </LinearLayout>
@@ -244,15 +247,15 @@
                 android:visibility="gone"/>
             <com.dimo.PayByQR.view.DIMOButton
                 android:id="@+id/activity_tip_btn_pay"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:paddingLeft="36dp"
                 android:paddingRight="36dp"
                 android:text="@string/button_pay"
-                android:textColor="@color/theme_text_over_basic_bg"
+                android:textColor="@android:color/white"
                 dimo:bgColor="@color/theme_colorPrimary"
-                dimo:buttonSize="big"
+                dimo:dimoButtonSize="big"
                 dimo:font="@string/font_montserrat"
                 android:visibility="visible"/>
         </RelativeLayout>

@@ -54,7 +54,6 @@ public class ChangePinConfirmationActivity extends Activity {
     LinearLayout btnBacke;
 
 
-
     SharedPreferences sharedPreferences;
 
     ProgressDialog progressDialog;
@@ -190,7 +189,6 @@ public class ChangePinConfirmationActivity extends Activity {
 
         simpan.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
         cancel.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
-
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,12 +213,12 @@ public class ChangePinConfirmationActivity extends Activity {
                             timerCount.SMSAlert("");
                         }
                     }else{
-                        if(timeroutornot){
-                            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), ChangePinConfirmationActivity.this);
-                        }else{
+//                        if(timeroutornot){
+//                            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), ChangePinConfirmationActivity.this);
+//                        }else{
                             handlerforTimer.removeCallbacks(runnableforExit);
                             new ChangePinConfirmationAsyn().execute();
-                        }
+//                        }
                     }
 
             }
@@ -245,7 +243,7 @@ public class ChangePinConfirmationActivity extends Activity {
             }
         });
 
-        handlerforTimer.postDelayed(runnableforExit, 90000);
+//        handlerforTimer.postDelayed(runnableforExit, 90000);
     }
 
     Handler handlerforTimer = new Handler();
@@ -262,7 +260,7 @@ public class ChangePinConfirmationActivity extends Activity {
             }
 
             timeroutornot = true;
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), ChangePinConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), ChangePinConfirmationActivity.this);
 
         }
     };

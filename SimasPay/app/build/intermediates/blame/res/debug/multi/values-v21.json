@@ -1582,17 +1582,17 @@
                     "startOffset": 15836,
                     "endLine": 221,
                     "endColumn": 12,
-                    "endOffset": 16586
+                    "endOffset": 16605
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\values-v21\\values-v21.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v21\\values-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
                         "endLine": 13,
                         "endColumn": 12,
-                        "endOffset": 805
+                        "endOffset": 824
                     }
                 }
             },
@@ -1600,31 +1600,52 @@
                 "to": {
                     "startLine": 222,
                     "startColumn": 4,
-                    "startOffset": 16591,
-                    "endLine": 236,
+                    "startOffset": 16610,
+                    "endLine": 230,
                     "endColumn": 12,
-                    "endOffset": 17592
+                    "endOffset": 17177
                 },
                 "from": {
-                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\values-v21\\values-v21.xml",
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v21\\values-v21.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 810,
-                        "endLine": 28,
+                        "startOffset": 829,
+                        "endLine": 22,
                         "endColumn": 12,
-                        "endOffset": 1811
+                        "endOffset": 1396
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 237,
+                    "startLine": 231,
                     "startColumn": 4,
-                    "startOffset": 17597,
-                    "endLine": 246,
+                    "startOffset": 17182,
+                    "endLine": 239,
                     "endColumn": 12,
-                    "endOffset": 18105
+                    "endOffset": 17753
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v21\\values-v21.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1401,
+                        "endLine": 31,
+                        "endColumn": 12,
+                        "endOffset": 1972
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 240,
+                    "startColumn": 4,
+                    "startOffset": 17758,
+                    "endLine": 249,
+                    "endColumn": 12,
+                    "endOffset": 18266
                 },
                 "from": {
                     "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-v21\\values-v21.xml",
@@ -1640,12 +1661,12 @@
             },
             {
                 "to": {
-                    "startLine": 247,
+                    "startLine": 250,
                     "startColumn": 4,
-                    "startOffset": 18110,
-                    "endLine": 256,
+                    "startOffset": 18271,
+                    "endLine": 259,
                     "endColumn": 12,
-                    "endOffset": 18630
+                    "endOffset": 18791
                 },
                 "from": {
                     "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-v21\\values-v21.xml",
@@ -1661,12 +1682,12 @@
             },
             {
                 "to": {
-                    "startLine": 257,
+                    "startLine": 260,
                     "startColumn": 4,
-                    "startOffset": 18635,
-                    "endLine": 266,
+                    "startOffset": 18796,
+                    "endLine": 269,
                     "endColumn": 12,
-                    "endOffset": 19310
+                    "endOffset": 19471
                 },
                 "from": {
                     "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-v21\\values-v21.xml",
@@ -1682,11 +1703,11 @@
             },
             {
                 "to": {
-                    "startLine": 267,
+                    "startLine": 270,
                     "startColumn": 4,
-                    "startOffset": 19315,
+                    "startOffset": 19476,
                     "endColumn": 56,
-                    "endOffset": 19367
+                    "endOffset": 19528
                 },
                 "from": {
                     "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-v21\\values-v21.xml",
@@ -1701,11 +1722,11 @@
             },
             {
                 "to": {
-                    "startLine": 268,
+                    "startLine": 271,
                     "startColumn": 4,
-                    "startOffset": 19372,
+                    "startOffset": 19533,
                     "endColumn": 57,
-                    "endOffset": 19425
+                    "endOffset": 19586
                 },
                 "from": {
                     "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\values-v21\\values-v21.xml",

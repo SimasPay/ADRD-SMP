@@ -304,9 +304,9 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                     SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                     if (fromDate.equalsIgnoreCase("")) {
-                        Utility.displayDialog("Please enter from Date", Trans_DataSelectionActivity.this);
+                        Utility.displayDialog("Harap masukkan periode tanggal awal yang Anda inginkan. Periode yang Anda masukkan maksimal 90 hari dari tanggal hari ini.", Trans_DataSelectionActivity.this);
                     } else if (toDate.equalsIgnoreCase("")) {
-                        Utility.displayDialog("Please enter to Date", Trans_DataSelectionActivity.this);
+                        Utility.displayDialog("Harap masukkan periode tanggal akhir yang Anda inginkan.", Trans_DataSelectionActivity.this);
                     } else {
 
                         try {
@@ -328,10 +328,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                         if (date1.compareTo(date2) > 0) {
                             datefrom_button.requestFocus();
-                            Utility.displayDialog("Tanggal pertama harus lebih awal dari tanggal kedua", Trans_DataSelectionActivity.this);
+                            Utility.displayDialog("Periode tanggal yang dipilih tidak valid. Tanggal akhir tidak boleh lebih kecil dari tanggal awal.", Trans_DataSelectionActivity.this);
                         } else if (days - days1 > 90) {
                             datefrom_button.requestFocus();
-                            Utility.displayDialog("Rentang tanggal salah", Trans_DataSelectionActivity.this);
+                            Utility.displayDialog("Periode tanggal yang dipilih tidak valid. Periode yang Anda masukkan maksimal 90 hari dari tanggal hari ini.", Trans_DataSelectionActivity.this);
                         } else {
                             Intent intent = new Intent(Trans_DataSelectionActivity.this, TransactionsListActivity.class);
                             intent.putExtra("fromDate", fromDate);

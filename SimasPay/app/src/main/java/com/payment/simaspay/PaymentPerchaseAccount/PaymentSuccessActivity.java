@@ -101,6 +101,10 @@ public class PaymentSuccessActivity extends Activity {
         transfer_field.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
         transferID.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
         ok.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
+        charges.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
+        charges_field.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
+        total.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
+        total_field.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PayByQRTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image_transform</item>
+    </style>
+    <style name="PayByQRTheme.NoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+    <style name="PayByQRTheme.NoActionBar.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/red_sinarmas</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@drawable/bg_simaspay</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+</resources>

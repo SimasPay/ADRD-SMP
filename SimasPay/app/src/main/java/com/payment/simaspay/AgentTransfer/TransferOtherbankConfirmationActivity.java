@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.services.ChangePinTimerCount;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
@@ -144,9 +145,9 @@ public class TransferOtherbankConfirmationActivity extends Activity {
 
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                     nextpressedornot=true;
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
+//                    } else {
                         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                             if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
@@ -157,22 +158,22 @@ public class TransferOtherbankConfirmationActivity extends Activity {
                                         109);
                             } else {
                                 handlerforTimer.removeCallbacks(runnableforExit);
-                                TimerCount timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                                timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
                                 timerCount.SMSAlert("");
                             }
                         } else {
                             handlerforTimer.removeCallbacks(runnableforExit);
-                            TimerCount timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                            timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
                             timerCount.SMSAlert("");
                         }
-                    }
+//                    }
                 } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
-                    }else{
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
+//                    }else{
                         handlerforTimer.removeCallbacks(runnableforExit);
                         new OtherBankLakuPandaiAsynTask().execute();
-                    }
+//                    }
                 }
 
             }
@@ -200,10 +201,10 @@ public class TransferOtherbankConfirmationActivity extends Activity {
         handlerforTimer.postDelayed(runnableforExit, 90000);
         dialogCustomWish = new Dialog(context);
     }
-    
-    
 
 
+
+    TimerCount timerCount;
     Handler handlerforTimer = new Handler();
 
     Runnable runnableforExit = new Runnable() {
@@ -221,7 +222,7 @@ public class TransferOtherbankConfirmationActivity extends Activity {
                 dialogCustomWish.dismiss();
             }
             Timervalueout = true;
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
 
         }
     };
@@ -506,7 +507,7 @@ public class TransferOtherbankConfirmationActivity extends Activity {
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 handlerforTimer.removeCallbacks(runnableforExit);
-                TimerCount timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
                 timerCount.SMSAlert("");
             } else {
 

@@ -54,10 +54,11 @@ public class UangkuTransferConfirmationActivity extends Activity {
     boolean Timervalueout;
 
     SharedPreferences sharedPreferences;
+//    ChangePinTimerCount timerCount;
 
     String otpValue = "", sctl;
 
-    void Cancel(){
+    void Cancel() {
         try {
             unregisterReceiver(broadcastReceiver);
         } catch (Exception e) {
@@ -77,15 +78,15 @@ public class UangkuTransferConfirmationActivity extends Activity {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
-                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
+                if (intent.getExtras().getString("value").equalsIgnoreCase("0")) {
                     Cancel();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("1")) {
                     otpValue = intent.getExtras().getString("otpValue");
                     new InterBankLakuPandaiAsynTask().execute();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
-                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",UangkuTransferConfirmationActivity.this);
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
-                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"),UangkuTransferConfirmationActivity.this);
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("2")) {
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.", UangkuTransferConfirmationActivity.this);
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("3")) {
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"), UangkuTransferConfirmationActivity.this);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -118,7 +119,7 @@ public class UangkuTransferConfirmationActivity extends Activity {
                 progressDialog.dismiss();
             }
             Timervalueout = true;
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
 
         }
     };
@@ -139,7 +140,7 @@ public class UangkuTransferConfirmationActivity extends Activity {
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 handlerforTimer.removeCallbacks(runnableforExit);
-                TimerCount timerCount=new TimerCount(UangkuTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                TimerCount timerCount = new TimerCount(UangkuTransferConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                 timerCount.SMSAlert("");
             } else {
 
@@ -189,7 +190,7 @@ public class UangkuTransferConfirmationActivity extends Activity {
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
 
-        Log.e("---------","---------"+getIntent().getExtras().getString("Acc_Number"));
+        Log.e("---------", "---------" + getIntent().getExtras().getString("Acc_Number"));
 
         products.setVisibility(View.GONE);
         product_field.setVisibility(View.GONE);
@@ -236,35 +237,35 @@ public class UangkuTransferConfirmationActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
-                    } else {
-                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
+//                    } else {
+                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
 
-                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                        109);
-                            } else {
-                                handlerforTimer.removeCallbacks(runnableforExit);
-                                TimerCount timerCount=new TimerCount(UangkuTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
-                                timerCount.SMSAlert("");
-                            }
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                    109);
                         } else {
                             handlerforTimer.removeCallbacks(runnableforExit);
-                            TimerCount timerCount=new TimerCount(UangkuTransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
+                            TimerCount timerCount = new TimerCount(UangkuTransferConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                             timerCount.SMSAlert("");
                         }
-                    }
-                } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
-                    }else{
+                    } else {
                         handlerforTimer.removeCallbacks(runnableforExit);
-                        new InterBankLakuPandaiAsynTask().execute();
+                        TimerCount timerCount = new TimerCount(UangkuTransferConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
+                        timerCount.SMSAlert("");
                     }
+//                    }
+                } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
+//                    }else{
+                    handlerforTimer.removeCallbacks(runnableforExit);
+                    new InterBankLakuPandaiAsynTask().execute();
+//                    }
                 }
 
             }
@@ -288,7 +289,8 @@ public class UangkuTransferConfirmationActivity extends Activity {
                 finish();
             }
         });
-        handlerforTimer.postDelayed(runnableforExit, 90000);
+//        handlerforTimer.postDelayed(runnableforExit, 90000);
+
     }
 
     @Override
@@ -428,12 +430,12 @@ public class UangkuTransferConfirmationActivity extends Activity {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if(sharedPreferences.getInt("AgentUsing",-1)==1){
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME,Constants.SERVICE_AGENT);
-                }else{
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                } else {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME,Constants.SERVICE_BANK);
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 }
             }
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UangkuTransferConfirmationActivity.this);
@@ -476,7 +478,7 @@ public class UangkuTransferConfirmationActivity extends Activity {
                     }
                     Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SessionTimeOutActivity.class);
                     startActivityForResult(intent, 40);
-                } else if (msgCode == 293 || msgCode == 81 || msgCode==305) {
+                } else if (msgCode == 293 || msgCode == 81 || msgCode == 305 || msgCode == 2176) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }

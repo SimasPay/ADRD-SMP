@@ -4,6 +4,7 @@
     xmlns:dimo="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.dimo.PayByQR.activity.FailedActivity">
 
     <LinearLayout
@@ -12,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:background="@color/theme_black"
         android:weightSum="1">
         <ImageView
             android:layout_width="0dp"
@@ -21,15 +21,14 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:adjustViewBounds="true"
-            android:src="@drawable/aserviceby"/>
+            android:src="@drawable/servicebydimo"/>
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/footer_service_by_dimo"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:background="@color/theme_colorPrimary">
+        android:padding="@dimen/activity_horizontal_margin">
 
         <com.dimo.PayByQR.view.DIMOButton
             android:id="@+id/activity_failed_btn_OK"
@@ -42,9 +41,9 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="@string/alertdialog_posBtn_ok"
-            android:textColor="@color/theme_colorPrimary"
-            dimo:bgColor="@color/theme_btn_OK"
-            dimo:buttonSize="big"
+            android:textColor="@android:color/white"
+            dimo:bgColor="@color/theme_colorPrimary"
+            dimo:dimoButtonSize="big"
             dimo:font="@string/font_montserrat"/>
 
         <com.dimo.PayByQR.view.DIMOTextView
@@ -67,7 +66,7 @@
             android:layout_above="@id/activity_failed_text_header"
             android:layout_marginBottom="24dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ico_circle_failed"/>
+            android:src="@drawable/ic_failed"/>
 
         <RelativeLayout
             android:id="@+id/activity_failed_error_detail_block"
@@ -92,7 +91,7 @@
                 android:background="@drawable/background_rect_gray"
                 android:text="Saldo Anda tidak mencukupi untuk melakukan transakasi ini.\nSilahkan isi saldo Anda."
                 android:textSize="@dimen/text_size_18"
-                android:textColor="@color/txt_error_red"
+                android:textColor="@color/theme_text_over_basic_bg"
                 dimo:font="@string/font_montserrat"/>
             <ImageView
                 android:layout_width="@dimen/image_size_icon_info_payment_failed"
@@ -100,7 +99,7 @@
                 android:layout_centerHorizontal="true"
                 android:padding="@dimen/padding_icon_info_payment_failed"
                 android:background="@drawable/background_circle_gray"
-                android:src="@drawable/ico_info"
+                android:src="@drawable/ic_info_outline"
                 android:scaleType="fitXY"/>
 
         </RelativeLayout>

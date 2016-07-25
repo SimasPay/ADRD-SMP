@@ -3,7 +3,6 @@
     xmlns:dimo="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_bg_light_gray"
     tools:context="com.dimo.PayByQR.activity.DefaultEULAFragment">
 
     <LinearLayout
@@ -15,7 +14,6 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/padding_eula_header_top_bottom"
         android:paddingBottom="@dimen/padding_eula_header_top_bottom"
-        android:background="@color/theme_colorPrimary"
         android:orientation="vertical">
         <LinearLayout
             android:id="@+id/fragment_eula_logo"
@@ -29,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.7"
                 android:adjustViewBounds="true"
-                android:src="@drawable/paybyqr_horizontal"/>
+                android:src="@drawable/logo_paybyqr_horizontal"/>
         </LinearLayout>
 
         <com.dimo.PayByQR.view.DIMOTextView
@@ -52,7 +50,8 @@
         android:paddingTop="@dimen/padding_eula_header_top_bottom"
         android:paddingBottom="@dimen/padding_eula_header_top_bottom"
         android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin">
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:background="@color/theme_bg_light_gray">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,9 +63,9 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="@string/button_EULA_decline"
-                android:textColor="@color/theme_text_over_basic_bg"
+                android:textColor="@android:color/white"
                 dimo:bgColor="@color/theme_btn_tip"
-                dimo:buttonSize="normal"
+                dimo:dimoButtonSize="normal"
                 dimo:font="@string/font_montserrat"/>
         </LinearLayout>
         <LinearLayout
@@ -80,26 +79,32 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="@string/button_EULA_accept"
-                android:textColor="@color/theme_text_over_basic_bg"
+                android:textColor="@android:color/white"
                 dimo:bgColor="@color/theme_colorPrimary"
-                dimo:buttonSize="normal"
+                dimo:dimoButtonSize="normal"
                 dimo:font="@string/font_montserrat"/>
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/fragment_eula_header_layout"
         android:layout_above="@id/fragment_eula_footer_layout"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:background="@drawable/background_rect_white">
-        <WebView
-            android:id="@+id/fragment_eula_webview"
+        android:background="@color/theme_bg_light_gray">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:background="@drawable/background_rect_white">
+            <WebView
+                android:id="@+id/fragment_eula_webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/theme_colorPrimary"
+    android:fitsSystemWindows="true"
     tools:context="com.dimo.PayByQR.activity.SplashActivity">
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/aserviceby"/>
+            android:src="@drawable/servicebydimo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -43,7 +43,7 @@
                 android:layout_weight="0.4"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/paybyqr"/>
+                android:src="@drawable/logo_paybyqr"/>
         </LinearLayout>
 
         <LinearLayout

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,8 @@ import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,17 +37,19 @@ import simaspay.payment.com.simaspay.R;
  */
 public class PaymentDetailsActivity extends Activity {
 
-    TextView title, product, number, pin;
+    TextView title, product, number, pin, amount_Text, rp;
 
-    EditText product_field, number_field, pin_field;
+    EditText product_field, number_field, pin_field, amountField;
 
     Button submit;
 
     LinearLayout back;
+    String[] strings;
 
-    String billNumber, pinValue, encryptedpinValue;
+    String billNumber, pinValue, encryptedpinValue, amountValue, rangealert, noEntryAlert;
 
     SharedPreferences sharedPreferences;
+    int maxLimitValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +72,9 @@ public class PaymentDetailsActivity extends Activity {
         number_field = (EditText) findViewById(R.id.number_field);
         pin = (TextView) findViewById(R.id.mPin);
         pin_field = (EditText) findViewById(R.id.pin);
+        amount_Text = (TextView) findViewById(R.id.mAMount);
+        rp = (TextView) findViewById(R.id.Rp);
+        amountField = (EditText) findViewById(R.id.Payment_amountentry_field);
 
         title.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         product.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
@@ -76,10 +84,26 @@ public class PaymentDetailsActivity extends Activity {
         pin.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         pin_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
 
+        amount_Text.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
+        rp.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
+        amountField.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
 
-        String[] strings=getIntent().getExtras().getString("invoiceType").split("\\|");
+        if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
 
-        number.setText(""+strings[1]);
+            amountField.setVisibility(View.VISIBLE);
+            rp.setVisibility(View.VISIBLE);
+            amount_Text.setVisibility(View.VISIBLE);
+
+        } else {
+            amountField.setVisibility(View.GONE);
+            rp.setVisibility(View.GONE);
+            amount_Text.setVisibility(View.GONE);
+        }
+
+
+        strings = getIntent().getExtras().getString("invoiceType").split("\\|");
+
+        number.setText("" + strings[1]);
 
         product_field.setText(getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
         product_field.setEnabled(false);
@@ -99,30 +123,94 @@ public class PaymentDetailsActivity extends Activity {
 
         submit.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
 
+        try {
+            maxLimitValue = getIntent().getExtras().getInt("maxLength");
+        } catch (Exception e) {
+            e.printStackTrace();
+            maxLimitValue = 0;
+        }
+        if (maxLimitValue == 0) {
+            maxLimitValue = 16;
+        }
+
+
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
+        number_field.setFilters(FilterArray);
+
+        try {
+            rangealert = getIntent().getExtras().getString("errormessage1");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rangealert = strings[1] + " yang Anda masukkan harus 10-16 angka.";
+        }
+
+
+        try {
+            noEntryAlert = getIntent().getExtras().getString("errormessage");
+        } catch (Exception e) {
+            e.printStackTrace();
+            noEntryAlert = "Harap masukkan " + strings[1] + " Anda.";
+        }
+
+
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin_field.setFilters(FilterArray1);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (number_field.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan Nomor Handphone Tujuan", PaymentDetailsActivity.this);
-                } else if (number_field.getText().toString().length() <= 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), PaymentDetailsActivity.this);
-                } else if (number_field.getText().toString().length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), PaymentDetailsActivity.this);
-                } else if (pin_field.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPin", PaymentDetailsActivity.this);
+                    Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
+                } else if (number_field.getText().toString().length() < 10) {
+                    Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
+                } else if (number_field.getText().toString().length() > maxLimitValue) {
+                    Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                 } else {
                     billNumber = number_field.getText().toString().replace(" ", "");
-                    String module = sharedPreferences.getString("MODULE", "NONE");
-                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+                    if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
 
-                    try {
-                        encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                pin_field.getText().toString().getBytes());
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
+                        if (amountField.getText().toString().replace(" ", "").length() == 0) {
+                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembayaran.", PaymentDetailsActivity.this);
+                        } else if (pin_field.getText().toString().length() <= 0) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
+                        } else {
+                            amountValue = amountField.getText().toString().replace(" ", "");
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                            try {
+                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin_field.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            new BillpaymentAsynTask().execute();
+                        }
+                    } else {
+
+                        if (pin_field.getText().toString().length() <= 0) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
+                        }else if (pin_field.getText().toString().length() < 6) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
+                        }  else {
+                            amountValue = "";
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                            try {
+                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin_field.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            new BillpaymentAsynTask().execute();
+                        }
                     }
-                    new BillpaymentAsynTask().execute();
+
                 }
 
             }
@@ -130,7 +218,6 @@ public class PaymentDetailsActivity extends Activity {
 
 
     }
-
 
 
     @Override
@@ -185,7 +272,8 @@ public class PaymentDetailsActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
             mapContainer.put(Constants.PARAMETER_DENOM_CODE, "");
-            mapContainer.put(Constants.PARAMETER_AMOUNT, "");
+
+            mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
 
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, PaymentDetailsActivity.this);
 
@@ -238,18 +326,18 @@ public class PaymentDetailsActivity extends Activity {
                     }
                     Intent intent = new Intent(PaymentDetailsActivity.this, PaymentConfirmationActivity.class);
                     intent.putExtra("creditamt", responseContainer.getEncryptedDebitAmount());
-                    intent.putExtra("originalAmount",responseContainer.getAmount());
+                    intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("parentTxnID", responseContainer.getEncryptedParentTxnId());
-                    intent.putExtra("sctlID",responseContainer.getSctl());
-                    intent.putExtra("nominalamt",responseContainer.getNominalAmount());
-                    intent.putExtra("invoiceNo",responseContainer.getInvoiceNo());
-                    intent.putExtra("PaymentMode",getIntent().getExtras().getString("PaymentMode"));
+                    intent.putExtra("sctlID", responseContainer.getSctl());
+                    intent.putExtra("nominalamt", responseContainer.getNominalAmount());
+                    intent.putExtra("invoiceNo", responseContainer.getInvoiceNo());
+                    intent.putExtra("PaymentMode", getIntent().getExtras().getString("PaymentMode"));
                     intent.putExtra("ProductCode", getIntent().getExtras().getString("ProductCode"));
-                    intent.putExtra("billerDetails",getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
-                    intent.putExtra("Name",responseContainer.getCustName());
-                    intent.putExtra("mfaMode",responseContainer.getMfaMode());
+                    intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
+                    intent.putExtra("Name", responseContainer.getCustName());
+                    intent.putExtra("mfaMode", responseContainer.getMfaMode());
 
 
                     startActivityForResult(intent, 10);

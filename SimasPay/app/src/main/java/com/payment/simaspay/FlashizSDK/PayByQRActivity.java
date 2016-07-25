@@ -1,27 +1,38 @@
 package com.payment.simaspay.FlashizSDK;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Window;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.dimo.PayByQR.PayByQRProperties;
 import com.dimo.PayByQR.PayByQRSDK;
 import com.dimo.PayByQR.PayByQRSDKListener;
 import com.dimo.PayByQR.UserAPIKeyListener;
+import com.dimo.PayByQR.data.Constant;
 import com.dimo.PayByQR.model.InvoiceModel;
+import com.dimo.PayByQR.model.LoyaltyModel;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
+import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
@@ -49,14 +60,21 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     UserAPIKeyListener userAPIKeyListener;
     String QRBillerCode = "QRFLASHIZ";
 
+    String pin;
 
     InvoiceModel invoiceModel;
     String invoiceID;
 
+    boolean value=false;
+
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e("================", "------Nagendra Palepu");
+        Log.e("========onpause========", "------Nagendra Palepu");
+    }
+
+    @Override
+    public void callbackShowDialog(Context context, int i, String s, LoyaltyModel loyaltyModel) {
     }
 
     @Override
@@ -64,7 +82,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         super.onResume();
     }
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    /*BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             try {
@@ -81,7 +99,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                     body.indexOf(". ")).trim();
                     otp = otpValue;
                     handler.removeCallbacks(runnable);
-                    handler1.postDelayed(runnable1,1000);
+                    handler1.postDelayed(runnable1, 1000);
                     new ConfirmationAsynTask().execute();
 
 
@@ -97,8 +115,39 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
                     otp = otpValue;
                     handler.removeCallbacks(runnable);
-                    handler1.postDelayed(runnable1,1000);
+                    handler1.postDelayed(runnable1, 1000);
                     new ConfirmationAsynTask().execute();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };*/
+    void Cancel() {
+        try {
+            unregisterReceiver(broadcastReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        callbackSDKClosed();
+    }
+
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                if (intent.getExtras().getString("value").equalsIgnoreCase("0")) {
+                    Log.e("=======", "======Nagendra Palepu-------");
+                    value=true;
+                    Cancel();
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("1")) {
+                    otpValue = intent.getExtras().getString("otpValue");
+                    new ConfirmationAsynTask().execute();
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("2")) {
+                    Utility.TransactionsdisplayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.", PayByQRProperties.getSDKContext());
+                } else if (intent.getExtras().getString("value").equalsIgnoreCase("3")) {
+                    Utility.TransactionsdisplayDialog(intent.getExtras().getString("otpValue"), PayByQRProperties.getSDKContext());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -106,9 +155,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         }
     };
 
-    Handler handler1=new Handler();
+    Handler handler1 = new Handler();
 
-    Runnable runnable1=new Runnable() {
+    Runnable runnable1 = new Runnable() {
         @Override
         public void run() {
             try {
@@ -130,7 +179,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 e.printStackTrace();
             }
             if (!payByQRSDK.isPolling())
-                payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond));
+                payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
         }
     };
 
@@ -210,23 +259,36 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
                         109);
             } else {
-                new PaymentInquiryAsyn().execute(invoiceModel1);
+
+                pinDialogBox();
+
             }
         } else {
-            new PaymentInquiryAsyn().execute(invoiceModel1);
+            pinDialogBox();
         }
 
     }
 
     @Override
     public void callbackSDKClosed() {
-        finish();
+
+        if(value){
+            try {
+                unregisterReceiver(broadcastReceiver);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            payByQRSDK.closeSDK();
+            Intent intent1 = getIntent();
+            setResult(10, intent1);
+            finish();
+
+        }else {
+            finish();
+        }
+
     }
 
-    @Override
-    public void callbackShowDialog(Context arg0, int arg1, String arg2) {
-
-    }
 
     @Override
     public Fragment callbackShowEULA() {
@@ -325,24 +387,34 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
 
     String inqueryResponse, mfa, otp, parentTxnId, txnId;
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new PaymentInquiryAsyn().execute(invoiceModel);
+                pinDialogBox();
             } else {
 
             }
         }
     }
 
+    String rsaKey;
 
     class PaymentInquiryAsyn extends AsyncTask<Object, Void, Void> {
 
         @Override
         protected Void doInBackground(Object... params) {
+            String module = sharedPreferences.getString("MODULE", "NONE");
+            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
+            try {
+                rsaKey = CryptoService.encryptWithPublicKey(module, exponent,
+                        pin.getBytes());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
             InvoiceModel invoiceModel = (InvoiceModel) params[0];
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
@@ -352,7 +424,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
                     sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
-                    sharedPreferences.getString("password", ""));
+                    rsaKey);
             if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
@@ -420,10 +492,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 } else if (!((msgCode == 72) || (msgCode == 2109) || (msgCode == 713))) {
                     if (msgCode == 29) {
                         if (!payByQRSDK.isPolling())
-                            payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg());
+                            payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     } else {
                         if (!payByQRSDK.isPolling())
-                            payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg());
+                            payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     }
                 } else {
                     try {
@@ -439,27 +511,29 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                         mfa = "None";
                     }
                     if (mfa.equalsIgnoreCase("OTP")) {
-                        registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
+                        registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
                         parentTxnId = responseContainer
                                 .getEncryptedParentTxnId();
-                        idnumber=responseContainer.getSctl();
+                        idnumber = responseContainer.getSctl();
                         txnId = responseContainer
                                 .getEncryptedTransferId();
-                        handler.postDelayed(runnable, Constants.MFA_CONNECTION_TIMEOUT);
+//                        handler.postDelayed(runnable, Constants.MFA_CONNECTION_TIMEOUT);
+                        TimerCount timerCount = new TimerCount(PayByQRProperties.getSDKContext(), responseContainer.getSctl());
+                        timerCount.SMSAlert("");
                     } else {
                         otp = otpValue;
                         parentTxnId = responseContainer
                                 .getEncryptedParentTxnId();
                         txnId = responseContainer.getEncryptedTransferId();
                         new ConfirmationAsynTask().execute();
-                        sctl=responseContainer.getSctl();
+                        sctl = responseContainer.getSctl();
 
                     }
 
                 }
             } else {
                 if (!payByQRSDK.isPolling())
-                    payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond));
+                    payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
             }
         }
     }
@@ -567,14 +641,14 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 if (!((Integer.parseInt(responseContainer.getMsgCode()) == 2111) || (Integer
                         .parseInt(responseContainer.getMsgCode()) == 715))) {
                     if (!payByQRSDK.isPolling())
-                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg());
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                 } else {
                     if (!payByQRSDK.isPolling())
-                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.STATUS_CODE_PAYMENT_SUCCESS, getString(com.dimo.PayByQR.R.string.text_payment_success));
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.STATUS_CODE_PAYMENT_SUCCESS, getString(com.dimo.PayByQR.R.string.text_payment_success), true);
                 }
             } else {
                 if (!payByQRSDK.isPolling())
-                    payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond));
+                    payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
             }
         }
     }
@@ -585,8 +659,53 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         if (requestCode == 40) {
             if (resultCode == RESULT_OK) {
                 Log.e("=======", "======" + "Nagendra Palepu");
-                new PaymentInquiryAsyn().execute(invoiceModel);
             }
         }
+    }
+
+    Dialog dialogCustomWish;
+    TextView txt_1, txt_2, txt_3;
+    EditText pinlayEditText;
+
+    void pinDialogBox() {
+        Log.e("----------", "----------Nagendra palepu----");
+        dialogCustomWish = new Dialog(PayByQRProperties.getSDKContext());
+        dialogCustomWish.setCancelable(false);
+        dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        dialogCustomWish.setContentView(R.layout.pinlayout);
+        txt_1 = (TextView) dialogCustomWish.findViewById(R.id.txt_1);
+        txt_2 = (TextView) dialogCustomWish.findViewById(R.id.txt_2);
+        txt_3 = (TextView) dialogCustomWish.findViewById(R.id.txt_3);
+
+        txt_3.setText(sharedPreferences.getString("mobileNumber", ""));
+
+        txt_1.setTypeface(Utility.Robot_Regular(PayByQRActivity.this));
+        txt_2.setTypeface(Utility.Robot_Regular(PayByQRActivity.this));
+        txt_3.setTypeface(Utility.Robot_Regular(PayByQRActivity.this));
+
+        pinlayEditText = (EditText) dialogCustomWish.findViewById(R.id.mpin);
+        pinlayEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 6) {
+                    dialogCustomWish.dismiss();
+                    pin = pinlayEditText.getText().toString();
+                    new PaymentInquiryAsyn().execute(invoiceModel);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        dialogCustomWish.show();
     }
 }

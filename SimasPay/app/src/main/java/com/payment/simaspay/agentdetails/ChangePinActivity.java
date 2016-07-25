@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -83,6 +84,18 @@ public class ChangePinActivity extends Activity {
         editText1 = (EditText) findViewById(R.id.editText2);
         editText2 = (EditText) findViewById(R.id.editText3);
 
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        editText.setFilters(FilterArray1);
+
+        InputFilter[] FilterArray2 = new InputFilter[1];
+        FilterArray2[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        editText1.setFilters(FilterArray2);
+
+        InputFilter[] FilterArray3 = new InputFilter[1];
+        FilterArray3[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        editText2.setFilters(FilterArray3);
+
         simpan = (Button) findViewById(R.id.changepin);
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
@@ -116,13 +129,19 @@ public class ChangePinActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (editText.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPIN", ChangePinActivity.this);
+                    Utility.displayDialog("Harap masukkan mPIN lama Anda.", ChangePinActivity.this);
+                } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), ChangePinActivity.this);
                 } else if (editText1.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPIN Baru", ChangePinActivity.this);
+                    Utility.displayDialog("Harap masukkan mPIN baru Anda.", ChangePinActivity.this);
+                } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog("mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (editText2.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan Konfirmasi mPIN", ChangePinActivity.this);
+                    Utility.displayDialog("Harap masukkan Konfirmasi mPIN baru Anda.", ChangePinActivity.this);
+                } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog("Konfirmasi mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (!editText1.getText().toString().equals(editText2.getText().toString())) {
-                    Utility.displayDialog("mPIN and Konfirmasi mPIN need to be Same", ChangePinActivity.this);
+                    Utility.displayDialog("mPIN dan konfirmasi mPIN baru yang Anda masukkan harus sama.", ChangePinActivity.this);
                 } else {
 
                     String module = sharedPreferences.getString("MODULE", "NONE");
@@ -228,10 +247,10 @@ public class ChangePinActivity extends Activity {
                     }
                     Intent intent = new Intent(ChangePinActivity.this, SessionTimeOutActivity.class);
                     startActivityForResult(intent, 40);
-                }else if(msgCode==26){
-                    sharedPreferences.edit().putString("password",newPin).commit();
-                    Intent intent=new Intent(ChangePinActivity.this,ChangePinSuccessActivity.class);
-                    startActivityForResult(intent,10);
+                } else if (msgCode == 26) {
+                    sharedPreferences.edit().putString("password", newPin).commit();
+                    Intent intent = new Intent(ChangePinActivity.this, ChangePinSuccessActivity.class);
+                    startActivityForResult(intent, 10);
                 } else {
                     if (responseContainer.getMsg() == null) {
                         Utility.networkDisplayDialog(sharedPreferences.getString(

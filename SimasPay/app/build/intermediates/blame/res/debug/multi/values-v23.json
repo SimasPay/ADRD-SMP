@@ -195,6 +195,69 @@
                         "endOffset": 2514
                     }
                 }
+            },
+            {
+                "to": {
+                    "startLine": 36,
+                    "startColumn": 4,
+                    "startOffset": 2519,
+                    "endLine": 48,
+                    "endColumn": 12,
+                    "endOffset": 3350
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v23\\values-v23.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 14,
+                        "endColumn": 12,
+                        "endOffset": 886
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 49,
+                    "startColumn": 4,
+                    "startOffset": 3355,
+                    "endLine": 58,
+                    "endColumn": 12,
+                    "endOffset": 3984
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v23\\values-v23.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 891,
+                        "endLine": 24,
+                        "endColumn": 12,
+                        "endOffset": 1520
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 59,
+                    "startColumn": 4,
+                    "startOffset": 3989,
+                    "endLine": 68,
+                    "endColumn": 12,
+                    "endOffset": 4623
+                },
+                "from": {
+                    "file": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\values-v23\\values-v23.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1525,
+                        "endLine": 34,
+                        "endColumn": 12,
+                        "endOffset": 2159
+                    }
+                }
             }
         ]
     }

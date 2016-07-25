@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -75,7 +76,9 @@ public class CashInDetailsActivity extends Activity {
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
-
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin.setFilters(FilterArray1);
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
 
@@ -96,14 +99,16 @@ public class CashInDetailsActivity extends Activity {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Masukkan Nomor Rekening", CashInDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("Nomor Rekening harus dari 10 angka", CashInDetailsActivity.this);
+                    Utility.displayDialog("Nomor Rekening  yang Anda masukkan harus 10-14 angka", CashInDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog("Nomor Rekening harus kurang dari 14 angka", CashInDetailsActivity.this);
+                    Utility.displayDialog("Nomor Rekening yang Anda masukkan harus 10-14 angka", CashInDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Jumlah", CashInDetailsActivity.this);
-                } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPin", CashInDetailsActivity.this);
-                } else {
+                    Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashin.", CashInDetailsActivity.this);
+                }else if (pin.getText().toString().length() <= 0) {
+                    Utility.displayDialog("Harap masukkan mPIN Anda.", CashInDetailsActivity.this);
+                }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashInDetailsActivity.this);
+                }  else {
                     String module = sharedPreferences.getString("MODULE", "NONE");
                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 

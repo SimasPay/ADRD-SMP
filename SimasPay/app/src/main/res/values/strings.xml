@@ -183,6 +183,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="bahasa_telepon">Nomor Handphone</string>
     <string name="bahasa_Simpan">simpan</string>
     <string name="bahasa_pin">PIN</string>
+    <integer name="pinSize">6</integer>
     <string name="bahasa_hint">telepon</string>
     <string name="bahasa_pin_hint">pin</string>
     <string name="bahasa_lupapin">lupa PIN</string>
@@ -194,6 +195,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="bahasa_login">MASUK</string>
     <string name="promoScreenTitle">Promo</string>
     <string name="helpScreenTitle">Hubungi</string>
+    <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="bahasa_serverNotRespond">Tidak dapat terhubung dengan server SimasPay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.</string>
     <string name="regSuccessContent1">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selamat Franky SIMASPAY Kini telah aktif. &lt;/body> &lt;/html></string>
     <string name="regSuccessContent2">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Nikmati kemududahan bertransaksi dimana saja menggunakan telepon genggam &lt;/body> &lt;/html></string>

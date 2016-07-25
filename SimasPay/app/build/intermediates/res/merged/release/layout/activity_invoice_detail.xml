@@ -5,157 +5,204 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context="com.dimo.PayByQR.activity.InvoiceDetailActivity">
 
-    <include layout="@layout/header_bar" />
+    <!--<include layout="@layout/header_bar"
+        android:elevation="6dp" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="10"
         android:orientation="vertical">
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
             android:id="@+id/activity_invoiceDetail_line1"
-            android:animateLayoutChanges="true"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
-            android:background="@color/theme_colorPrimary"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin" >
-            <RelativeLayout
+            android:layout_weight="4.5"
+            dimo:contentInsetStart="0dp"
+            android:elevation="6dp"
+            android:animateLayoutChanges="true" >
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:animateLayoutChanges="true">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <include layout="@layout/header_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_alignParentTop="true" />
 
                 <RelativeLayout
-                    android:id="@+id/activity_invoiceDetail_originalAmount_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/image_size_discount"
-                    android:visibility="gone">
-                    <LinearLayout
-                        android:id="@+id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentBottom="true"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp">
-                        <com.dimo.PayByQR.view.DIMOTextView
-                            android:id="@+id/activity_invoiceDetail_originalAmount_curr"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:animateLayoutChanges="true">
+
+                        <FrameLayout
+                            android:id="@+id/activity_invoiceDetail_info_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <RelativeLayout
+                                android:id="@+id/activity_invoiceDetail_originalAmount_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/image_size_discount"
+                                android:visibility="gone">
+                                <LinearLayout
+                                    android:id="@+id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp">
+                                    <com.dimo.PayByQR.view.DIMOTextView
+                                        android:id="@+id/activity_invoiceDetail_originalAmount_curr"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="8dp"
+                                        android:text="@string/text_detail_currency"
+                                        android:textColor="@color/txt_discount_amount"
+                                        android:textSize="@dimen/text_size_20"
+                                        dimo:font="@string/font_montserrat"/>
+                                    <com.dimo.PayByQR.view.DIMOTextView
+                                        android:id="@+id/activity_invoiceDetail_originalAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0"
+                                        android:textColor="@color/txt_discount_amount"
+                                        android:textSize="@dimen/text_size_36"
+                                        dimo:font="@string/font_montserrat_bold"/>
+                                </LinearLayout>
+
+                                <com.dimo.PayByQR.view.DiagonalLineView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignLeft="@id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_alignBottom="@id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_alignRight="@id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_alignTop="@id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/activity_invoiceDetail_discount_text"
+                                    android:layout_width="@dimen/image_size_discount"
+                                    android:layout_height="@dimen/image_size_discount"
+                                    android:layout_toRightOf="@id/activity_invoiceDetail_originalAmount_block"
+                                    android:layout_marginLeft="@dimen/margin_discount_left"
+                                    android:gravity="center"
+                                    android:background="@drawable/background_circle_discount"
+                                    android:orientation="vertical"
+                                    android:visibility="visible">
+                                    <com.dimo.PayByQR.view.DIMOTextView
+                                        android:id="@+id/activity_invoiceDetail_discount_amount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="0%"
+                                        android:textColor="@color/theme_colorPrimary"
+                                        android:textSize="@dimen/text_size_24"
+                                        dimo:font="@string/font_montserrat"/>
+                                    <com.dimo.PayByQR.view.DIMOTextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/text_discount_OFF"
+                                        android:textColor="@color/theme_colorPrimary"
+                                        android:textSize="@dimen/text_size_16"
+                                        dimo:font="@string/font_montserrat"/>
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:id="@+id/activity_invoiceDetail_maxRedeemInfo_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/image_size_discount"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:visibility="gone">
+                                <com.dimo.PayByQR.view.CalloutBubbleView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
+                                <com.dimo.PayByQR.view.DIMOTextView
+                                    android:id="@+id/activity_invoiceDetail_maxRedeemInfo_text"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginBottom="@dimen/callout_bubble_triangle_width"
+                                    android:padding="4dp"
+                                    android:gravity="center"
+                                    android:text="@string/text_info_max_redeem_daily"
+                                    android:textColor="@color/tip_accent"
+                                    android:textSize="@dimen/text_size_14"
+                                    dimo:font="@string/font_montserrat_light"
+                                    android:visibility="visible"/>
+                            </RelativeLayout>
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:id="@+id/activity_invoiceDetail_paidAmount_block"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="8dp"
-                            android:text="@string/text_detail_currency"
-                            android:textColor="@color/txt_discount_amount"
+                            android:layout_below="@id/activity_invoiceDetail_info_layout"
+                            android:layout_centerHorizontal="true">
+                            <com.dimo.PayByQR.view.DIMOTextView
+                                android:id="@+id/activity_invoiceDetail_paidAmount_curr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:text="@string/text_detail_currency"
+                                android:textColor="@color/theme_text_over_basic_bg"
+                                android:textSize="@dimen/text_size_24"
+                                dimo:font="@string/font_montserrat"/>
+                            <com.dimo.PayByQR.view.DIMOTextView
+                                android:id="@+id/activity_invoiceDetail_paidAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/theme_text_over_basic_bg"
+                                android:textSize="@dimen/text_size_40"
+                                dimo:font="@string/font_montserrat_bold"/>
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/activity_invoiceDetail_spacing"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@id/activity_invoiceDetail_paidAmount_block"
+                            android:background="@color/theme_text_over_basic_bg"
+                            android:layout_marginTop="@dimen/activity_vertical_margin"
+                            android:layout_marginBottom="@dimen/activity_vertical_margin"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"/>
+
+                        <com.dimo.PayByQR.view.DIMOTextView
+                            android:id="@+id/activity_invoiceDetail_merchant"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/activity_invoiceDetail_spacing"
+                            android:layout_centerHorizontal="true"
+                            android:gravity="center_horizontal"
+                            android:text="Merchant Name"
+                            android:textColor="@color/theme_text_over_basic_bg"
                             android:textSize="@dimen/text_size_20"
                             dimo:font="@string/font_montserrat"/>
-                        <com.dimo.PayByQR.view.DIMOTextView
-                            android:id="@+id/activity_invoiceDetail_originalAmount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/txt_discount_amount"
-                            android:textSize="@dimen/text_size_36"
-                            dimo:font="@string/font_montserrat_bold"/>
-                    </LinearLayout>
 
-                    <com.dimo.PayByQR.view.DiagonalLineView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_alignBottom="@id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_alignRight="@id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_alignTop="@id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"/>
-
-                    <LinearLayout
-                        android:id="@+id/activity_invoiceDetail_discount_text"
-                        android:layout_width="@dimen/image_size_discount"
-                        android:layout_height="@dimen/image_size_discount"
-                        android:layout_toRightOf="@id/activity_invoiceDetail_originalAmount_block"
-                        android:layout_marginLeft="@dimen/margin_discount_left"
-                        android:gravity="center"
-                        android:background="@drawable/background_circle_discount"
-                        android:orientation="vertical"
-                        android:visibility="visible">
-                        <com.dimo.PayByQR.view.DIMOTextView
-                            android:id="@+id/activity_invoiceDetail_discount_amount"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0%"
-                            android:textColor="@color/theme_colorPrimary"
-                            android:textSize="@dimen/text_size_24"
-                            dimo:font="@string/font_montserrat"/>
-                        <com.dimo.PayByQR.view.DIMOTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text_discount_OFF"
-                            android:textColor="@color/theme_colorPrimary"
-                            android:textSize="@dimen/text_size_16"
-                            dimo:font="@string/font_montserrat"/>
-                    </LinearLayout>
+                    </RelativeLayout>
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/activity_invoiceDetail_paidAmount_block"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/activity_invoiceDetail_originalAmount_layout"
-                    android:layout_centerHorizontal="true">
-                    <com.dimo.PayByQR.view.DIMOTextView
-                        android:id="@+id/activity_invoiceDetail_paidAmount_curr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="@string/text_detail_currency"
-                        android:textColor="@color/theme_text_over_basic_bg"
-                        android:textSize="@dimen/text_size_24"
-                        dimo:font="@string/font_montserrat"/>
-                    <com.dimo.PayByQR.view.DIMOTextView
-                        android:id="@+id/activity_invoiceDetail_paidAmount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textColor="@color/theme_text_over_basic_bg"
-                        android:textSize="@dimen/text_size_40"
-                        dimo:font="@string/font_montserrat_bold"/>
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/activity_invoiceDetail_spacing"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/activity_invoiceDetail_paidAmount_block"
-                    android:background="@color/theme_text_over_basic_bg"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"/>
-
-                <com.dimo.PayByQR.view.DIMOTextView
-                    android:id="@+id/activity_invoiceDetail_merchant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/activity_invoiceDetail_spacing"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_horizontal"
-                    android:text=""
-                    android:textColor="@color/theme_text_over_basic_bg"
-                    android:textSize="@dimen/text_size_20"
-                    dimo:font="@string/font_montserrat"/>
-
-            </RelativeLayout>
-        </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
         <LinearLayout
             android:id="@+id/activity_invoiceDetail_line2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.75"
             android:layout_below="@id/activity_invoiceDetail_line1"
+            android:elevation="4dp"
             android:gravity="center"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -270,7 +317,7 @@
                         android:background="@drawable/background_voucher_used"
                         android:text="x0"
                         android:textSize="@dimen/text_size_16"
-                        android:textColor="@color/theme_text_over_basic_bg"
+                        android:textColor="@android:color/white"
                         dimo:font="@string/font_montserrat"/>
 
                     <LinearLayout
@@ -311,7 +358,7 @@
             android:id="@+id/activity_invoiceDetail_line3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.75"
             android:layout_below="@id/activity_invoiceDetail_line2"
             android:background="@color/theme_bg_light_gray"
             android:animateLayoutChanges="true">
@@ -324,7 +371,7 @@
                 android:visibility="gone"/>
             <LinearLayout
                 android:id="@+id/activity_invoiceDetail_btn_block"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
@@ -348,23 +395,24 @@
                     android:paddingLeft="24dp"
                     android:paddingRight="24dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:text="@string/button_tip"
-                    android:textColor="@color/theme_text_over_basic_bg"
+                    android:textColor="@android:color/white"
                     dimo:bgColor="@color/theme_btn_tip"
-                    dimo:buttonSize="normal"
+                    dimo:dimoButtonSize="normal"
                     dimo:font="@string/font_montserrat"
                     android:visibility="gone"/>
                 <com.dimo.PayByQR.view.DIMOButton
                     android:id="@+id/activity_invoiceDetail_btn_pay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:paddingLeft="36dp"
                     android:paddingRight="36dp"
                     android:text="@string/button_pay"
-                    android:textColor="@color/theme_text_over_basic_bg"
+                    android:textColor="@android:color/white"
                     dimo:bgColor="@color/theme_colorPrimary"
-                    dimo:buttonSize="big"
+                    dimo:dimoButtonSize="big"
                     dimo:font="@string/font_montserrat"/>
             </LinearLayout>
 

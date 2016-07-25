@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -72,6 +73,14 @@ public class TransferDetailsActivity extends Activity {
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
 
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(15);
+        number.setFilters(FilterArray);
+
+
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin.setFilters(FilterArray1);
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
 
@@ -90,15 +99,17 @@ public class TransferDetailsActivity extends Activity {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Nomor Handphone Agen", TransferDetailsActivity.this);
+                    Utility.displayDialog("Harap Masukkan Nomor Rekening Tujuan Anda.", TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("Nomor Handphone Agen harus lebih dari 10 angka", TransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog("Nomor Handphone Agen Lebih Dari 14 Angka", TransferDetailsActivity.this);
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() > 15) {
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Jumlah", TransferDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPin", TransferDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferDetailsActivity.this);
+                } else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferDetailsActivity.this);
                 } else {
                     String module = sharedPreferences.getString("MODULE", "NONE");
                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");

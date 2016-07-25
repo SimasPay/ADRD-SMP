@@ -25,6 +25,8 @@
     <dimen name="image_size_icon_use_voucher">48dp</dimen>
     <dimen name="image_size_loyalty_list_discount">60dp</dimen>
     <dimen name="image_size_loyalty_list_image">100dp</dimen>
+    <dimen name="image_size_qrstore_cart_item">64dp</dimen>
+    <dimen name="image_size_qrstore_cart_item_discount">36dp</dimen>
     <dimen name="image_size_voucher_box_border_width">2dp</dimen>
     <dimen name="image_size_voucher_used_height">30dp</dimen>
     <dimen name="image_size_voucher_used_width">40dp</dimen>

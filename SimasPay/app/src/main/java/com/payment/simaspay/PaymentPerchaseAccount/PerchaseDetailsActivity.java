@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -46,7 +47,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class PerchaseDetailsActivity extends Activity {
 
-    TextView title, pulsa_field, product, number, pin,Rp;
+    TextView title, pulsa_field, product, number, pin, Rp;
 
     EditText product_field, number_field, pin_field, plnamount_entryfield;
 
@@ -59,7 +60,9 @@ public class PerchaseDetailsActivity extends Activity {
     SharedPreferences sharedPreferences;
 
     LinearLayout manualEnterLayout;
-
+    String[] strings;
+    String rangealert, noEntryAlert;
+    int maxLimitValue = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +95,42 @@ public class PerchaseDetailsActivity extends Activity {
         manualEnterLayout = (LinearLayout) findViewById(R.id.manualEnterLayout);
 
 
-        String[] strings=getIntent().getExtras().getString("invoiceType").split("\\|");
+        strings = getIntent().getExtras().getString("invoiceType").split("\\|");
 
-        number.setText(""+strings[1]);
+        number.setText("" + strings[1]);
+        try {
+            maxLimitValue = getIntent().getExtras().getInt("maxLength");
+        } catch (Exception e) {
+            e.printStackTrace();
+            maxLimitValue = 0;
+        }
+        if (maxLimitValue == 0) {
+            maxLimitValue = 16;
+        }
+
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
+        number_field.setFilters(FilterArray);
+
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin_field.setFilters(FilterArray1);
+
+
+        try {
+            rangealert = getIntent().getExtras().getString("errormessage1");
+        } catch (Exception e) {
+            e.printStackTrace();
+            rangealert = strings[1] + " yang Anda masukkan harus 10-16 angka.";
+        }
+
+
+        try {
+            noEntryAlert = getIntent().getExtras().getString("errormessage");
+        } catch (Exception e) {
+            e.printStackTrace();
+            noEntryAlert = "Harap masukkan " + strings[1] + " Anda.";
+        }
 
         pulsa_field = (TextView) findViewById(R.id.pulsa);
 
@@ -171,30 +207,53 @@ public class PerchaseDetailsActivity extends Activity {
                 } else if (plnamount_entryfield.getText().toString().length() <= 0 && plnamount_entryfield.isShown()) {
                     Utility.displayDialog("Masukkan Nominal PLN Pulsa", PerchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan Nominal Handphone", PerchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() <= 7) {
-                    Utility.displayDialog(getResources().getString(R.string.number_less7), PerchaseDetailsActivity.this);
+                    Utility.displayDialog(noEntryAlert, PerchaseDetailsActivity.this);
+                } else if (number_field.getText().toString().length() <= 10) {
+                    Utility.displayDialog(rangealert, PerchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14), PerchaseDetailsActivity.this);
-                } else if (pin_field.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPIN", PerchaseDetailsActivity.this);
+                    Utility.displayDialog(rangealert, PerchaseDetailsActivity.this);
                 } else {
                     billNumber = number_field.getText().toString().replace(" ", "");
                     if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
-                        amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
-                    } else {
-                        amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
-                    }
-                    String module = sharedPreferences.getString("MODULE", "NONE");
-                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
-                    try {
-                        encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                pin_field.getText().toString().getBytes());
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
+                        if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
+                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembelian.", PerchaseDetailsActivity.this);
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", PerchaseDetailsActivity.this);
+                        } else if (pin_field.getText().toString().length() < 6) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PerchaseDetailsActivity.this);
+                        } else {
+                            amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                            try {
+                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin_field.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            new PurchaseAccountAsynTask().execute();
+                        }
+                    } else {
+                        if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", PerchaseDetailsActivity.this);
+                        }else if (pin_field.getText().toString().length() < 6) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PerchaseDetailsActivity.this);
+                        }  else {
+                            amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                            try {
+                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin_field.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            new PurchaseAccountAsynTask().execute();
+                        }
                     }
-                    new PurchaseAccountAsynTask().execute();
                 }
 
             }
@@ -317,7 +376,7 @@ public class PerchaseDetailsActivity extends Activity {
                     intent.putExtra("ProductCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
                     intent.putExtra("Name", responseContainer.getCustName());
-                    intent.putExtra("mfaMode",responseContainer.getMfaMode());
+                    intent.putExtra("mfaMode", responseContainer.getMfaMode());
 
 
                     startActivityForResult(intent, 10);

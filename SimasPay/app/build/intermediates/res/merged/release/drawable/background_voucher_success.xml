@@ -4,5 +4,5 @@
         android:right="@dimen/image_size_voucher_box_border_width"
         android:top="@dimen/image_size_voucher_box_border_width"
         android:bottom="@dimen/image_size_voucher_box_border_width"/>
-    <stroke android:color="@color/progress_bar_progress" android:width="@dimen/image_size_voucher_box_border_width"/>
+    <stroke android:color="@android:color/white" android:width="@dimen/image_size_voucher_box_border_width"/>
 </shape>

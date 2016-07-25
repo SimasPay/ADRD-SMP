@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -93,20 +94,31 @@ public class TransferOtherBankDetailsActivity extends Activity {
         bankName_editfield.setClickable(false);
         bankName_editfield.setFocusable(false);
 
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(15);
+        number.setFilters(FilterArray);
+
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin.setFilters(FilterArray1);
+
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Nomor Rekening Tujuan", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 7) {
-                    Utility.displayDialog("Nomor Rekening Tujuan harus lebih dari 10 angka", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog("Nomor Rekening Tujuan Lebih Dari 14 Angka", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() > 15) {
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Jumlah", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPin", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
+                }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
                 } else {
                     String module = sharedPreferences.getString("MODULE", "NONE");
                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");

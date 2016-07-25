@@ -79,6 +79,7 @@
                     android:hint="No. Handphone"
                     android:inputType="number"
                     android:textSize="17dp"
+                    android:maxLength="14"
                     android:paddingLeft="10dp"
                     android:singleLine="true"
 

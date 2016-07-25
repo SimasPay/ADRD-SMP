@@ -94,7 +94,7 @@ public class Utility {
     static ValueContainer valueContainer;
     static SharedPreferences subscriberKYCStatus;
 
-    static InputStream is = null;
+        static InputStream is = null;
     static String json = "";
     String refNo, errorCode, parameters;
     static String fromScreen;

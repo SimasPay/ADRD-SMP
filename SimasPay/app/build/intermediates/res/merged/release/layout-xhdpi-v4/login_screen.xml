@@ -70,6 +70,7 @@
             android:drawableLeft="@drawable/ic_mobile"
             android:drawablePadding="15dp"
             android:inputType="number"
+            android:maxLength="14"
             android:paddingLeft="10dp"
             android:singleLine="true"
             android:text=""

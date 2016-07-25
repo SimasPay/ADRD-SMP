@@ -160,6 +160,10 @@ public class LoginScreenActivity extends Activity {
                             LoginScreenActivity.this);
                 } else if (e_mPin.getText().toString().equals("")) {
                     Utility.displayDialog("Masukkan Pin Anda", LoginScreenActivity.this);
+                }else if (e_mPin.getText().toString().replace(" ", "")
+                        .length() < 6) {
+                    Utility.displayDialog("mPIN you enter must be 6 digits.",
+                            LoginScreenActivity.this);
                 } else {
                     mobileNumber = e_Mdn.getText().toString();
                     pin = e_mPin.getText().toString();

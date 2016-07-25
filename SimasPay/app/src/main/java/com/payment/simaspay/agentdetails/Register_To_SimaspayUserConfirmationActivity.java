@@ -104,6 +104,8 @@ public class Register_To_SimaspayUserConfirmationActivity extends Activity {
         hashMap = loadMap();
 
 
+        Log.e("-----------","---Before data-----"+hashMap.toString());
+
         if (pSharedPref.getString("ktpBitmap", "").equals("")) {
             hashMap.put(Constants.PARAMETER_KTPDOCUMENT, "");
         } else {

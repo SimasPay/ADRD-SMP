@@ -39,7 +39,33 @@ public class Payments {
         this.productsJsonArray = productsJsonArray;
     }
 
-    String providerName,productName,productCode,paymentMode,invoiceType,DenomValues;
+    String providerName,productName,productCode,paymentMode,invoiceType,DenomValues,errormessage1,errormessage;
+
+    int maxLength;
+
+    public String getErrormessage1() {
+        return errormessage1;
+    }
+
+    public void setErrormessage1(String errormessage1) {
+        this.errormessage1 = errormessage1;
+    }
+
+    public String getErrormessage() {
+        return errormessage;
+    }
+
+    public void setErrormessage(String errormessage) {
+        this.errormessage = errormessage;
+    }
+
+    public int getMaxLength() {
+        return maxLength;
+    }
+
+    public void setMaxLength(int maxLength) {
+        this.maxLength = maxLength;
+    }
 
     public String getDenomValues() {
         return DenomValues;

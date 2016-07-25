@@ -125,7 +125,7 @@ public class PerchaseConfirmationActivity extends Activity {
             }
             Timervalueout = true;
 
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
 
         }
     };
@@ -243,9 +243,9 @@ public class PerchaseConfirmationActivity extends Activity {
             public void onClick(View view) {
 
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
+//                    } else {
                         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
                             if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
@@ -263,16 +263,16 @@ public class PerchaseConfirmationActivity extends Activity {
                             handlerforTimer.removeCallbacks(runnableforExit);
                             TimerCount timerCount = new TimerCount(PerchaseConfirmationActivity.this, getIntent().getExtras().getString("sctlID"));
                             timerCount.SMSAlert("");
-                        }
+//                        }
                     }
                 } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
-                    } else {
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), PerchaseConfirmationActivity.this);
+//                    } else {
                         handlerforTimer.removeCallbacks(runnableforExit);
                         new PurchaseConfirmationAsynTask().execute();
 
-                    }
+//                    }
 
                 }
 

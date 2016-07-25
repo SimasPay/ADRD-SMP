@@ -100,6 +100,10 @@ public class PerchaseSuccessActivity extends Activity {
         transfer_field.setTypeface(Utility.Robot_Regular(PerchaseSuccessActivity.this));
         transferID.setTypeface(Utility.Robot_Light(PerchaseSuccessActivity.this));
         ok.setTypeface(Utility.Robot_Regular(PerchaseSuccessActivity.this));
+        charges.setTypeface(Utility.Robot_Regular(PerchaseSuccessActivity.this));
+        charges_field.setTypeface(Utility.Robot_Light(PerchaseSuccessActivity.this));
+        total.setTypeface(Utility.Robot_Regular(PerchaseSuccessActivity.this));
+        total_field.setTypeface(Utility.Robot_Light(PerchaseSuccessActivity.this));
 
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

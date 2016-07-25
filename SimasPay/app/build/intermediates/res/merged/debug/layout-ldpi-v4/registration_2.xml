@@ -106,6 +106,7 @@
                     android:digits="1234567890"
                     android:drawableLeft="@drawable/ic_mobile"
                     android:drawablePadding="15dp"
+                    android:maxLength="14"
                     android:hint="No. Handphone"
                     android:inputType="number"
                     android:paddingLeft="10dp"

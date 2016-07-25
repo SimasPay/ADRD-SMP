@@ -88,8 +88,12 @@ public class ActivationPage_3_Activity extends Activity {
             public void onClick(View view) {
                 if (e_pin.getText().toString().replace(" ", "").length() == 0) {
                     Utility.displayDialog("Masukkan mPIN", ActivationPage_3_Activity.this);
+                } else if (e_pin.getText().toString().replace(" ", "").length() < 6) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
                 } else if (e_con_mPin.getText().toString().replace(" ", "").length() == 0) {
                     Utility.displayDialog("Masukkan Konfirmasi mPIN", ActivationPage_3_Activity.this);
+                }else if (e_con_mPin.getText().toString().replace(" ", "").length() < 6) {
+                    Utility.displayDialog("Konfirmasi "+getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
                 } else if (!e_pin.getText().toString().equals(e_con_mPin.getText().toString())) {
                     Utility.displayDialog("mPIN dan Konfirmasi mPIN harus sama.", ActivationPage_3_Activity.this);
                 } else {

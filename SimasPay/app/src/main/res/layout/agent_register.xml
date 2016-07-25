@@ -182,12 +182,12 @@
                             android:id="@+id/editText1"
                             android:layout_width="match_parent"
                             android:layout_height="45dp"
-
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:background="@drawable/edittext_background"
                             android:hint="Sesuai KTP"
                             android:padding="10dp"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                             android:singleLine="true"
                             android:textSize="16dp"></EditText>
 
@@ -912,6 +912,7 @@
                                 android:layout_marginTop="15dp"
                                 android:background="@drawable/edittext_background"
                                 android:gravity="top|left"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                                 android:hint="Jl./Gg./Perum./Komp./Ged. beserta nomor"
                                 android:padding="10dp"
                                 android:textColor="#ceced2"

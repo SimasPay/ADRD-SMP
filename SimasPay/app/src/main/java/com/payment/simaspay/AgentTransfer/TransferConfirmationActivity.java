@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.services.ChangePinTimerCount;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
@@ -62,6 +63,8 @@ public class TransferConfirmationActivity extends Activity {
     SharedPreferences sharedPreferences;
 
     String otpValue = "", sctl;
+
+//    ChangePinTimerCount timerCount;
 
     public void displayDialog(String msg, Context ctx) {
 
@@ -156,7 +159,7 @@ public class TransferConfirmationActivity extends Activity {
                 progressDialog.dismiss();
             }
             Timervalueout = true;
-            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
+//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
 
         }
     };
@@ -277,12 +280,12 @@ public class TransferConfirmationActivity extends Activity {
                         timerCount.SMSAlert("");
                     }
                 } else {
-                    if (Timervalueout) {
-                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
-                    }else{
+//                    if (Timervalueout) {
+//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
+//                    }else{
                         handlerforTimer.removeCallbacks(runnableforExit);
                         new InterBankBankSinarmasAsynTask().execute();
-                    }
+//                    }
                 }
             }
         });
@@ -307,7 +310,6 @@ public class TransferConfirmationActivity extends Activity {
         });
 
         handlerforTimer.postDelayed(runnableforExit, 90000);
-
     }
 
     @Override

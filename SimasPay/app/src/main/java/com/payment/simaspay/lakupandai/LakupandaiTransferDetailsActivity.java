@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Selection;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -92,19 +93,30 @@ public class LakupandaiTransferDetailsActivity extends Activity {
         pin.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
         Rp.setTypeface(Utility.Robot_Light(LakupandaiTransferDetailsActivity.this));
 
+
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(14);
+        number.setFilters(FilterArray);
+
+        InputFilter[] FilterArray1 = new InputFilter[1];
+        FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
+        pin.setFilters(FilterArray1);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Nomor Handphone Tujuan", LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Masukkan Nomor Handphone Tujuan.", LakupandaiTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("Nomor Handphone Agen harus lebih dari 10 angka", LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-14 angka.", LakupandaiTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog("Nomor Handphone Agen harus kurang dari 14 angka", LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-14 angka.", LakupandaiTransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Jumlah", LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", LakupandaiTransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Masukkan mPin", LakupandaiTransferDetailsActivity.this);
+                    Utility.displayDialog("Harap masukkan mPIN Anda.", LakupandaiTransferDetailsActivity.this);
+                }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
+                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), LakupandaiTransferDetailsActivity.this);
                 } else {
                     String module = sharedPreferences.getString("MODULE", "NONE");
                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");

@@ -111,7 +111,7 @@ public class SecondLoginActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 4) {
+                if (s.length() == 6) {
                     pin = e_mPin.getText().toString();
                     nextProcess();
                 }

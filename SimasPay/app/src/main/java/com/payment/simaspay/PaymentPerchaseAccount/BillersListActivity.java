@@ -138,6 +138,21 @@ public class BillersListActivity extends Activity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        try {
+                            payments.setErrormessage(array.getJSONObject(i).getString("errormessage"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            payments.setErrormessage1(array.getJSONObject(i).getString("errormessage1"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         providerNamesList.add(payments);
                     }
 
@@ -196,6 +211,21 @@ public class BillersListActivity extends Activity {
                             payments.setIsPLNPrepaid("false");
                             e.printStackTrace();
                         }
+                        try {
+                            payments.setErrormessage(array.getJSONObject(i).getString("errormessage"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            payments.setErrormessage1(array.getJSONObject(i).getString("errormessage1"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                         providerNamesList.add(payments);
                     }
@@ -226,6 +256,9 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("ProductCode", providerNamesList.get(i).getProductCode());
                     intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
                     intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
+                    intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
+                    intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                    intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
                     startActivityForResult(intent, 10);
                 } else {
                     Intent intent = new Intent(BillersListActivity.this, PerchaseDetailsActivity.class);
@@ -237,6 +270,9 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
                     intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
                     intent.putExtra("NominalType", providerNamesList.get(i).getNominaltype());
+                    intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
+                    intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                    intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
                     if(providerNamesList.get(i).getIsPLNPrepaid().equalsIgnoreCase("true")){
                         intent.putExtra("DenomValues","");
                     }else {

@@ -106,7 +106,7 @@
                     android:layout_height="45dp"
                     android:layout_marginRight="5dp"
                     android:background="#FFFFFF"
-                    android:digits="1234567890Rp"
+                    android:digits="1234567890"
                     android:drawablePadding="10dp"
                     android:inputType="number"
                     android:paddingLeft="5dp"

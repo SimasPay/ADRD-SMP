@@ -132,7 +132,6 @@ public class ActivationPage_2_Activity extends Activity {
                 e.printStackTrace();
             }
 
-//            Utility.displayDialog("Gagal mendapatkan SMS", ActivationPage_2_Activity.this);
             SMSAlert("");
         }
     };
@@ -238,7 +237,11 @@ public class ActivationPage_2_Activity extends Activity {
                             ActivationPage_2_Activity.this);
                 } else if (e_mPin.getText().toString().equals("")) {
                     Utility.networkDisplayDialog("Masukkan OTP Anda", ActivationPage_2_Activity.this);
-                } else {
+                }  else if (e_mPin.getText().toString().replace(" ", "")
+                        .length() < 6) {
+                    Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka.",
+                            ActivationPage_2_Activity.this);
+                }else {
 
                     int currentapiVersion = android.os.Build.VERSION.SDK_INT;
                     if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -457,8 +460,6 @@ public class ActivationPage_2_Activity extends Activity {
     }
 
     class ResendOtpAsyn extends AsyncTask<Void, Void, Void> {
-
-        ProgressDialog progressDialog;
         String response;
 
         @Override
@@ -686,13 +687,20 @@ public class ActivationPage_2_Activity extends Activity {
 
                 if (msgCode == 2171) {
                     dialogCustomWish.dismiss();
+                    progressDialog.dismiss();
                     handler.postDelayed(runnable, 30000);
                 } else if (msgCode == 2172) {
                     dialogCustomWish.dismiss();
+                    progressDialog.dismiss();
                     Utility.displayDialog(responseContainer.getMsg(), ActivationPage_2_Activity.this);
 
                 } else if (msgCode == 2173) {
                     dialogCustomWish.dismiss();
+                    progressDialog.dismiss();
+                    Utility.displayDialog(responseContainer.getMsg(), ActivationPage_2_Activity.this);
+                }else{
+                    dialogCustomWish.dismiss();
+                    progressDialog.dismiss();
                     Utility.displayDialog(responseContainer.getMsg(), ActivationPage_2_Activity.this);
                 }
             } else {
@@ -700,6 +708,8 @@ public class ActivationPage_2_Activity extends Activity {
                         "ErrorMessage",
                         context.getResources().getString(
                                 R.string.bahasa_serverNotRespond)), context);
+                dialogCustomWish.dismiss();
+                progressDialog.dismiss();
             }
         }
     }
