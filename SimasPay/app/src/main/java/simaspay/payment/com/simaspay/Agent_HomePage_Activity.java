@@ -115,8 +115,8 @@ public class Agent_HomePage_Activity extends Activity {
         });
         userNumber.setText(sharedPreferences.getString("mobileNumber",""));
         String user;
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }

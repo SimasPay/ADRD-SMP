@@ -28,6 +28,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -327,8 +328,9 @@ public class CloseAccountConfirmationActivity extends Activity {
         textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
         textView1.setVisibility(View.GONE);
 
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + getIntent().getExtras().getString("DestMDN") + " Masukkan kode tersebut atau akses link yang tersedia.");
-
+//        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + getIntent().getExtras().getString("DestMDN") + " Masukkan kode tersebut atau akses link yang tersedia.");
+        textView.setText("Masukkan Kode Verifikasi");
+        textView_1.setText("Kode Verifikasi telah dikirimkan ke nasabah dengan nomor HP " + getIntent().getExtras().getString("DestMDN") );
         final EditText otpCode = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
 
 
@@ -460,6 +462,9 @@ public class CloseAccountConfirmationActivity extends Activity {
                     intent.putExtra("Name", responseContainer.getName());
                     intent.putExtra("DestMDN", responseContainer.getDestMDN());
                     startActivityForResult(intent, 10);
+                }  else if (msgCode == 631) {
+                    Intent intent = new Intent(CloseAccountConfirmationActivity.this, SessionTimeOutActivity.class);
+                    startActivityForResult(intent, 40);
                 } else {
                     if (responseContainer.getMsg() != null) {
                         Utility.networkDisplayDialog(responseContainer.getMsg(), CloseAccountConfirmationActivity.this);

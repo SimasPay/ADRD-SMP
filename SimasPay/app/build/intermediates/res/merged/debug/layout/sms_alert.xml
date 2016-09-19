@@ -71,6 +71,7 @@
                     android:imeActionLabel="@string/done_label"
                     android:inputType="number"
                     android:password="true"
+                    android:maxLength="6"
                     android:singleLine="true"
                     android:textColor="#61000000"
                     android:textColorHint="#61000000"

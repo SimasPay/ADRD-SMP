@@ -101,9 +101,13 @@ public class PaymentDetailsActivity extends Activity {
         }
 
 
-        strings = getIntent().getExtras().getString("invoiceType").split("\\|");
+        try {
+            strings = getIntent().getExtras().getString("invoiceType").split("\\|");
 
-        number.setText("" + strings[1]);
+            number.setText("" + strings[1]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         product_field.setText(getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
         product_field.setEnabled(false);
@@ -338,6 +342,12 @@ public class PaymentDetailsActivity extends Activity {
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
                     intent.putExtra("Name", responseContainer.getCustName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                    try {
+                        intent.putExtra("numberTitle",strings[1]);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        intent.putExtra("numberTitle","");
+                    }
 
 
                     startActivityForResult(intent, 10);

@@ -103,8 +103,8 @@ public class TransferHomeActivity extends Activity {
 //        name.setText(sharedPreferences.getString("userName", ""));
 
         String user;
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }
@@ -112,8 +112,8 @@ public class TransferHomeActivity extends Activity {
 
 
 //        whiteName.setText(sharedPreferences.getString("userName", ""));
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }

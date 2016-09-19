@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -21,25 +20,20 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.payment.simaspay.PojoClasses.ArealData;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.LineNumberReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +44,7 @@ import simaspay.payment.com.simaspay.R;
  */
 public class ContactUs_Activity extends Activity {
 
-    TextView mobile_number_1, mobile_number_2, e_mail, website, textView, textView1, textView2,heading;
+    TextView mobile_number_1, mobile_number_2, e_mail, website, textView, textView1, textView2, heading;
 
     ImageView mobile_1, mobile_2;
     Dialog dialogCustomWish;
@@ -119,28 +113,52 @@ public class ContactUs_Activity extends Activity {
         mobile_number_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CallToCustomerCare(mobile_number_1.getText().toString());
+//                CallToCustomerCare(mobile_number_1.getText().toString());
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + mobile_number_1.getText().toString()));
+                if (ActivityCompat.checkSelfPermission(ContactUs_Activity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
             }
         });
 
         mobile_number_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CallToCustomerCare(mobile_number_2.getText().toString());
+                /*CallToCustomerCare(mobile_number_2.getText().toString());*/
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + mobile_number_2.getText().toString()));
+                if (ActivityCompat.checkSelfPermission(ContactUs_Activity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
             }
         });
 
         mobile_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CallToCustomerCare(mobile_number_1.getText().toString());
+//                CallToCustomerCare(mobile_number_1.getText().toString());
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + mobile_number_1.getText().toString()));
+                if (ActivityCompat.checkSelfPermission(ContactUs_Activity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
             }
         });
 
         mobile_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CallToCustomerCare(mobile_number_2.getText().toString());
+//                CallToCustomerCare(mobile_number_2.getText().toString());
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + mobile_number_2.getText().toString()));
+                if (ActivityCompat.checkSelfPermission(ContactUs_Activity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
             }
         });
 
@@ -249,15 +267,13 @@ public class ContactUs_Activity extends Activity {
         dialogCustomWish.show();
 
 
-
-
     }
 
     ProgressDialog progressDialog;
     String response;
     int msgCode;
 
-    class ContactUsAsyntask extends AsyncTask<Void,Void,Void>{
+    class ContactUsAsyntask extends AsyncTask<Void, Void, Void> {
 
 
         @Override
@@ -277,14 +293,14 @@ public class ContactUs_Activity extends Activity {
             response = webServiceHttp.getResponseSSLCertificatation();
             /*JSONParser jParser = new JSONParser();
              response =  jParser.getJsonData("https://dl.dropboxusercontent.com/u/93708740/ContactUsfile.json");*/
-            Log.e("=======","-0-----"+response);
+            Log.e("=======", "-0-----" + response);
             return null;
         }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog=new ProgressDialog(ContactUs_Activity.this);
+            progressDialog = new ProgressDialog(ContactUs_Activity.this);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -296,7 +312,7 @@ public class ContactUs_Activity extends Activity {
             super.onPostExecute(aVoid);
             if (response != null) {
                 if (response.startsWith("<")) {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     Log.e("-------", "---------" + response);
@@ -313,9 +329,9 @@ public class ContactUs_Activity extends Activity {
                     } catch (Exception e) {
                         msgCode = 0;
                     }
-                    Utility.displayDialog(responseContainer.getMsg(),ContactUs_Activity.this);
+                    Utility.displayDialog(responseContainer.getMsg(), ContactUs_Activity.this);
                 } else {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     JSONObject jsonObject = null;
@@ -362,9 +378,8 @@ public class ContactUs_Activity extends Activity {
                         }
 
 
-
-                    }else{
-                        if(progressDialog!=null){
+                    } else {
+                        if (progressDialog != null) {
                             progressDialog.dismiss();
                         }
                         Utility.networkDisplayDialog(sharedPreferences.getString(
@@ -373,8 +388,8 @@ public class ContactUs_Activity extends Activity {
                                         R.string.bahasa_serverNotRespond)), ContactUs_Activity.this);
                     }
                 }
-            }else{
-                if(progressDialog!=null){
+            } else {
+                if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
                 Utility.networkDisplayDialog(sharedPreferences.getString(

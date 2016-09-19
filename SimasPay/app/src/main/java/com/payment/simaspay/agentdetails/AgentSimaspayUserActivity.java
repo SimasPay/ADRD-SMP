@@ -133,8 +133,8 @@ public class AgentSimaspayUserActivity extends Activity {
 //        user_Name.setText(sharedPreferences.getString("userName",""));
 
         String user;
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }

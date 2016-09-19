@@ -10,6 +10,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -85,6 +86,9 @@ public class UserAPikeyCall {
                     Intent intent=new Intent(context, PayByQRActivity.class);
                     (context).startActivity(intent);
 
+                }else if(msgCode==631){
+                    Intent intent = new Intent(context, SessionTimeOutActivity.class);
+                    (context).startActivity(intent);
                 } else {
                     sharedPreferences.edit()
                             .putString("userApiKey",

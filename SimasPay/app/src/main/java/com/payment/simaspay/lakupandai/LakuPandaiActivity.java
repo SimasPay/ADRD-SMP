@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -16,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payment.simaspay.AgentTransfer.TransferHomeActivity;
 import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
@@ -128,8 +130,8 @@ public class LakuPandaiActivity extends Activity {
         number.setText(sharedPreferences.getString("mobileNumber", ""));
 //        name.setText(sharedPreferences.getString("userName", ""));
         String user;
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }

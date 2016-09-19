@@ -95,7 +95,11 @@ public class Register_To_SimaspayUserSuccessActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        pekerjaan_field.setText(hashMap.get(Constants.PARAMETER_WORK));
+        if(hashMap.get(Constants.PARAMETER_WORK).equalsIgnoreCase("Lainnya")){
+            pekerjaan_field.setText(hashMap.get(Constants.PARAMETER_WORK) +" - "+hashMap.get(Constants.PARAMETER_OTHER_WORK));
+        }else {
+            pekerjaan_field.setText(hashMap.get(Constants.PARAMETER_WORK));
+        }
         if(hashMap.get(Constants.PARAMETER_INCOME)!=null){
             double amount =  Double.parseDouble(hashMap.get(Constants.PARAMETER_INCOME));
             String s=String.format("%,.2f", amount).replace(",",".");
@@ -120,7 +124,7 @@ public class Register_To_SimaspayUserSuccessActivity extends Activity {
                 e.printStackTrace();
             }
         } else {
-            ktp_berlaku_hingga_field.setText("life time");
+            ktp_berlaku_hingga_field.setText("Seumur Hidup");
         }
 
         alamat_sesuai_ktp_field.setText(getIntent().getExtras().getString("ktp_addressline"));

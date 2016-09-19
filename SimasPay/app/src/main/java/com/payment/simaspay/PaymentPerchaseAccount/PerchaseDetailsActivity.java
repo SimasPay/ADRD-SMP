@@ -210,7 +210,7 @@ public class PerchaseDetailsActivity extends Activity {
                     Utility.displayDialog(noEntryAlert, PerchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() <= 10) {
                     Utility.displayDialog(rangealert, PerchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() > 14) {
+                } else if (number_field.getText().toString().length() > maxLimitValue) {
                     Utility.displayDialog(rangealert, PerchaseDetailsActivity.this);
                 } else {
                     billNumber = number_field.getText().toString().replace(" ", "");

@@ -117,7 +117,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
     String mothersName;
 
-    int selectedProvice = -1, value = 0, selected_region = 0, selectedDistrict = -1, selectedVillage = -1;
+    int selectedProvice = -1, value = 0, selected_region = 0, selectedDistrict = -1, selectedVillage = -1,selected_work=0;
 
 
     TextView stage3_textView, stage3_textView1, stage3_textView2, stage3_textView3, stage3_textView4, stage3_textView5, stage3_textView6, stage3_textView7, stage3_textView8, stage3_textview9;
@@ -884,6 +884,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                         stage1_date.setBackgroundResource(R.drawable.edittext_background);
                         stage1_textView16.setVisibility(View.VISIBLE);
                         stage1_nomorHp.setBackgroundResource(R.drawable.edit_text_alert_background);
+                        Utility.displayDialog("Nomor handphone yang Anda masukkan harus 10-14 angka.",AgentRegistrationActivity.this);
 
                     } else if (stage1_nomorHp.getText().toString().replace(" ", "").length() > 14) {
                         stage1_textView7.setVisibility(View.GONE);
@@ -973,7 +974,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             stage2_kota_kabu_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_kecamatan_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_desa_kelu_2.setBackgroundResource(R.drawable.edit_text_alert_background);
-                        } else if (diff_Rt.length() <= 0) {
+                        } /*else if (diff_Rt.length() <= 0) {
                             stage2_different_alamat_sesuai_ktp_edit.setBackgroundResource(R.drawable.edittext_background);
                             stage2_provinsi_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_kota_kabu_2.setBackgroundResource(R.drawable.edittext_background);
@@ -988,7 +989,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             stage2_desa_kelu_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_rt_rw_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_rw_different_edit.setBackgroundResource(R.drawable.edit_text_alert_background);
-                        } else if (diff_PostalCode.length() <= 0) {
+                        }*/ else if (diff_PostalCode.length() <= 0) {
                             stage2_different_alamat_sesuai_ktp_edit.setBackgroundResource(R.drawable.edittext_background);
                             stage2_provinsi_2.setBackgroundResource(R.drawable.edittext_background);
                             stage2_kota_kabu_2.setBackgroundResource(R.drawable.edittext_background);
@@ -1593,7 +1594,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                selected_region = position;
+                selected_work = position;
                 productsAdapter.notifyDataSetChanged();
             }
         });
@@ -1602,7 +1603,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected_region =0;
+                selected_work =0;
                 dialogCustomWish.dismiss();
             }
         });
@@ -1612,9 +1613,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             public void onClick(View v) {
                 dialogCustomWish.dismiss();
 
-                if (selected_region != -1) {
-                    stage3_button1.setText(arrayList.get(selected_region).getWork());
-                    if (arrayList.get(selected_region).getWork().equals("Lainnya")) {
+                if (selected_work != -1) {
+                    stage3_button1.setText(arrayList.get(selected_work).getWork());
+                    if (arrayList.get(selected_work).getWork().equals("Lainnya")) {
                         stage3_editText1.setFocusableInTouchMode(true);
                         stage3_editText1.setClickable(true);
                         stage3_editText1.setFocusable(true);
@@ -1645,7 +1646,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             TextView textView = (TextView) view.findViewById(R.id.location_text);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
 
-            if (selected_region == position) {
+            if (selected_work == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
             } else {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
@@ -1968,6 +1969,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     reg_2.setEnabled(true);
                     reg_3.setEnabled(false);
                 }else if (msgCode == 631) {
+                    progressDialog.dismiss();
                     Intent intent = new Intent(AgentRegistrationActivity.this, SessionTimeOutActivity.class);
                     startActivityForResult(intent, 40);
                 } else {

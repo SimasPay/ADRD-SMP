@@ -114,16 +114,17 @@ public class BalanceSheetActivity extends Activity {
         logout_text.setTypeface(Utility.LightTextFormat(BalanceSheetActivity.this));
         ganti_akun.setTypeface(Utility.LightTextFormat(BalanceSheetActivity.this));
 
-        name.setText(sharedPreferences.getString("userName", ""));
+//        name.setText(sharedPreferences.getString("userName", ""));
 
 //        white_name.setText(sharedPreferences.getString("userName", ""));
         String user;
-        if (sharedPreferences.getString("userName","").length() >= 13) {
-            user = sharedPreferences.getString("userName","").substring(0, 13)+ "...";
+        if (sharedPreferences.getString("userName","").length() >= 15) {
+            user = sharedPreferences.getString("userName","").substring(0, 15)+ "...";
         } else {
             user = sharedPreferences.getString("userName","");
         }
         white_name.setText(user);
+        name.setText(user);
 
 
         imageView1.setImageDrawable(getResources().getDrawable(R.drawable.btn_infosaldo));

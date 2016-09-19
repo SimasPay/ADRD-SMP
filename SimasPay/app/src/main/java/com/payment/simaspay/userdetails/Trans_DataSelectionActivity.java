@@ -379,7 +379,8 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 datefrom_button.setText(showDay + "-" + showMonth + "-" + year);
                 fromDate = showDay + "" + showMonth + "" + year;
             } else {
-                Toast.makeText(Trans_DataSelectionActivity.this, "Silakan pilih tanggal yang valid", Toast.LENGTH_LONG).show();
+//                Toast.makeText(Trans_DataSelectionActivity.this, "Tanggal yang Anda pilih tidak boleh melebihi tanggal hari ini.", Toast.LENGTH_LONG).show();
+                Utility.displayDialog("Tanggal yang Anda pilih tidak boleh melebihi tanggal hari ini.", Trans_DataSelectionActivity.this);
             }
         } else if (dateSelectionValue == 2) {
             if ((mYear > year)
@@ -388,7 +389,8 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 dateto_button.setText(showDay + "-" + showMonth + "-" + year);
                 toDate = showDay + "" + showMonth + "" + year;
             } else {
-                Toast.makeText(Trans_DataSelectionActivity.this, "Silakan pilih tanggal yang valid", Toast.LENGTH_LONG).show();
+//                Toast.makeText(Trans_DataSelectionActivity.this, "Tanggal yang Anda pilih tidak boleh melebihi tanggal hari ini.", Toast.LENGTH_LONG).show();
+                Utility.displayDialog("Tanggal yang Anda pilih tidak boleh melebihi tanggal hari ini.", Trans_DataSelectionActivity.this);
             }
         }
     }

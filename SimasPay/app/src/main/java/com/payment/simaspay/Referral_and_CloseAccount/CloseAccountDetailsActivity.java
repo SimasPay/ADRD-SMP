@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -109,6 +110,11 @@ public class CloseAccountDetailsActivity extends Activity {
         amount.setTypeface(Utility.Robot_Light(CloseAccountDetailsActivity.this));
         pin.setTypeface(Utility.Robot_Light(CloseAccountDetailsActivity.this));
 
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(14);
+        number.setFilters(FilterArray);
+
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +173,8 @@ public class CloseAccountDetailsActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
             mapContainer.put(Constants.PARAMETER_DEST_MDN, DestMDN);
+
+            Log.e("======","---------------"+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, CloseAccountDetailsActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();

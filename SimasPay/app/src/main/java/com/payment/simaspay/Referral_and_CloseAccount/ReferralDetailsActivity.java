@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,14 +25,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.payment.simaspay.Cash_InOut.CashInConfirmationActivity;
 import com.payment.simaspay.PojoClasses.ArealData;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONArray;
@@ -115,51 +113,56 @@ public class ReferralDetailsActivity extends Activity {
         others_field.setTypeface(Utility.Robot_Light(ReferralDetailsActivity.this));
         others.setTypeface(Utility.Robot_Light(ReferralDetailsActivity.this));
 
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(14);
+        number_field.setFilters(FilterArray);
+
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(name_field.getText().toString().length()<=0){
-                    Utility.displayDialog("Masukkan Nama Lengkap",ReferralDetailsActivity.this);
-                }else  if(number_field.getText().toString().length()<=0){
-                    Utility.displayDialog("Masukkan Nomor Handphone",ReferralDetailsActivity.this);
-                }else if(number_field.getText().toString().length()<7){
-                    Utility.displayDialog(getResources().getString(R.string.number_less7),ReferralDetailsActivity.this);
-                }else if(number_field.getText().toString().length()>14){
-                    Utility.displayDialog(getResources().getString(R.string.number_grater14),ReferralDetailsActivity.this);
-                }else  if(!(mail_field.getText().toString().length()<=0 || Utility.emailValidator(mail_field.getText().toString()))){
-                    Utility.displayDialog("Enter Valid Email ID",ReferralDetailsActivity.this);
-                }else  if(others.getText().toString().equals("")){
-                    Utility.displayDialog("Masukkan Produk yang Diinginkan",ReferralDetailsActivity.this);
-                }else if(others.getText().toString().equals("Lainnya")){
-                    if(others_field.getText().toString().length()<=0){
-                        Utility.displayDialog("Masukkan Sebutkan",ReferralDetailsActivity.this);
-                    }else{
-                        mdn=(number_field.getText().toString().replace(" ",""));
-                        NameField=name_field.getText().toString();
-                        email_field=mail_field.getText().toString();
-                        productDesired=others.getText().toString();
-                        otherfield=others_field.getText().toString();
+                if (name_field.getText().toString().length() <= 0) {
+                    Utility.displayDialog("Masukkan Nama Lengkap", ReferralDetailsActivity.this);
+                } else if (number_field.getText().toString().length() <= 0) {
+                    Utility.displayDialog("Masukkan Nomor Handphone", ReferralDetailsActivity.this);
+                } else if (number_field.getText().toString().length() < 10) {
+                    Utility.displayDialog(getResources().getString(R.string.number_less7), ReferralDetailsActivity.this);
+                } else if (number_field.getText().toString().length() > 14) {
+                    Utility.displayDialog(getResources().getString(R.string.number_grater14), ReferralDetailsActivity.this);
+                } else if (!(mail_field.getText().toString().length() <= 0 || Utility.emailValidator(mail_field.getText().toString()))) {
+                    Utility.displayDialog("Enter Valid Email ID", ReferralDetailsActivity.this);
+                } else if (others.getText().toString().equals("")) {
+                    Utility.displayDialog("Masukkan Produk yang Diinginkan", ReferralDetailsActivity.this);
+                } else if (others.getText().toString().equals("Lainnya")) {
+                    if (others_field.getText().toString().length() <= 0) {
+                        Utility.displayDialog("Masukkan Sebutkan", ReferralDetailsActivity.this);
+                    } else {
+                        mdn = (number_field.getText().toString().replace(" ", ""));
+                        NameField = name_field.getText().toString();
+                        email_field = mail_field.getText().toString();
+                        productDesired = others.getText().toString();
+                        otherfield = others_field.getText().toString();
                         Intent intent = new Intent(ReferralDetailsActivity.this, ReferralAccountConfirmationActivity.class);
-                        intent.putExtra("mdn",mdn);
-                        intent.putExtra("NameField",NameField);
-                        intent.putExtra("email_field",email_field);
-                        intent.putExtra("productDesired",productDesired);
-                        intent.putExtra("otherfield",otherfield);
+                        intent.putExtra("mdn", mdn);
+                        intent.putExtra("NameField", NameField);
+                        intent.putExtra("email_field", email_field);
+                        intent.putExtra("productDesired", productDesired);
+                        intent.putExtra("otherfield", otherfield);
                         startActivityForResult(intent, 10);
                     }
-                }else{
-                    mdn=(number_field.getText().toString().replace(" ",""));
-                    NameField=name_field.getText().toString();
-                    email_field=mail_field.getText().toString();
-                    productDesired=others.getText().toString();
-                    otherfield=others_field.getText().toString();
+                } else {
+                    mdn = (number_field.getText().toString().replace(" ", ""));
+                    NameField = name_field.getText().toString();
+                    email_field = mail_field.getText().toString();
+                    productDesired = others.getText().toString();
+                    otherfield = others_field.getText().toString();
                     Intent intent = new Intent(ReferralDetailsActivity.this, ReferralAccountConfirmationActivity.class);
-                    intent.putExtra("mdn",mdn);
-                    intent.putExtra("NameField",NameField);
-                    intent.putExtra("email_field",email_field);
-                    intent.putExtra("productDesired",productDesired);
-                    intent.putExtra("otherfield","");
+                    intent.putExtra("mdn", mdn);
+                    intent.putExtra("NameField", NameField);
+                    intent.putExtra("email_field", email_field);
+                    intent.putExtra("productDesired", productDesired);
+                    intent.putExtra("otherfield", "");
                     startActivityForResult(intent, 10);
                 }
 
@@ -192,7 +195,7 @@ public class ReferralDetailsActivity extends Activity {
 
 
     String workString;
-    
+
 
     ArrayList<ArealData> arrayList = new ArrayList<>();
 
@@ -218,7 +221,7 @@ public class ReferralDetailsActivity extends Activity {
            /* JSONParser jParser = new JSONParser();
              workString =  jParser.getJsonData("https://dl.dropboxusercontent.com/u/93708740/b.json");*/
 
-            Log.e("=====","====="+workString);
+            Log.e("=====", "=====" + workString);
             return null;
         }
 
@@ -227,10 +230,10 @@ public class ReferralDetailsActivity extends Activity {
             super.onPostExecute(aVoid);
             if (workString != null) {
                 if (workString.startsWith("<")) {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     Log.e("-------", "---------" + workString);
@@ -247,9 +250,9 @@ public class ReferralDetailsActivity extends Activity {
                     } catch (Exception e) {
                         msgCode = 0;
                     }
-                    Utility.displayDialog(responseContainer.getMsg(),ReferralDetailsActivity.this);
+                    Utility.displayDialog(responseContainer.getMsg(), ReferralDetailsActivity.this);
                 } else {
-                    if(progressDialog!=null){
+                    if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
                     JSONObject jsonObject = null;
@@ -285,19 +288,18 @@ public class ReferralDetailsActivity extends Activity {
                         }
 
 
-
-                }else{
-                        if(progressDialog!=null){
+                    } else {
+                        if (progressDialog != null) {
                             progressDialog.dismiss();
                         }
-                    Utility.networkDisplayDialog(sharedPreferences.getString(
-                            "ErrorMessage",
-                            getResources().getString(
-                                    R.string.bahasa_serverNotRespond)), ReferralDetailsActivity.this);
+                        Utility.networkDisplayDialog(sharedPreferences.getString(
+                                "ErrorMessage",
+                                getResources().getString(
+                                        R.string.bahasa_serverNotRespond)), ReferralDetailsActivity.this);
+                    }
                 }
-                }
-            }else{
-                if(progressDialog!=null){
+            } else {
+                if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
                 Utility.networkDisplayDialog(sharedPreferences.getString(
@@ -310,14 +312,14 @@ public class ReferralDetailsActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if(!progressDialog.isShowing()){
+            if (!progressDialog.isShowing()) {
                 progressDialog.show();
             }
         }
     }
 
     Dialog dialogCustomWish;
-    int selected_region=0;
+    int selected_region = 0;
 
     ProductsAdapter productsAdapter;
 
@@ -342,17 +344,15 @@ public class ReferralDetailsActivity extends Activity {
         textView.setText("Produk yang Diinginkan");
 
         productsAdapter = new ProductsAdapter();
-            listView.setAdapter(productsAdapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        listView.setAdapter(productsAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    selected_region = position;
-                    productsAdapter.notifyDataSetChanged();
-                }
-            });
-
-
+                selected_region = position;
+                productsAdapter.notifyDataSetChanged();
+            }
+        });
 
 
         button1.setOnClickListener(new View.OnClickListener() {
@@ -369,17 +369,17 @@ public class ReferralDetailsActivity extends Activity {
             public void onClick(View v) {
                 dialogCustomWish.dismiss();
 
-                    if (selected_region != -1) {
-                        others.setText(arrayList.get(selected_region).getWork());
-                        if(arrayList.get(selected_region).getWork().equals("Lainnya")){
-                            others_field.setFocusableInTouchMode(true);
-                            others_field.setClickable(true);
-                            others_field.setFocusable(true);
-                        }else{
-                            others_field.setClickable(false);
-                            others_field.setFocusable(false);
-                        }
+                if (selected_region != -1) {
+                    others.setText(arrayList.get(selected_region).getWork());
+                    if (arrayList.get(selected_region).getWork().equals("Lainnya")) {
+                        others_field.setFocusableInTouchMode(true);
+                        others_field.setClickable(true);
+                        others_field.setFocusable(true);
+                    } else {
+                        others_field.setClickable(false);
+                        others_field.setFocusable(false);
                     }
+                }
 
             }
         });
@@ -391,19 +391,19 @@ public class ReferralDetailsActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("=====","======"+"Nagendra Palepu");
+        Log.e("=====", "======" + "Nagendra Palepu");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e("=====","=start====="+"Nagendra Palepu");
+        Log.e("=====", "=start=====" + "Nagendra Palepu");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.e("=====","=Restart====="+"Nagendra Palepu");
+        Log.e("=====", "=Restart=====" + "Nagendra Palepu");
     }
 
     class ProductsAdapter extends BaseAdapter {
@@ -443,8 +443,7 @@ public class ReferralDetailsActivity extends Activity {
 
     int msgCode;
     ProgressDialog progressDialog;
-    String mdn,NameField,email_field,otherfield,productDesired;
-
+    String mdn, NameField, email_field, otherfield, productDesired;
 
 
 }

@@ -38,7 +38,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="16dp"
-                android:text="Kami sudah mengirimkan SMS kode OTP yang baru untuk Anda. Apabila SMS belum diterima, silakan cek koneksi atau hubungi mobile service provider Anda."
+                android:text="Mohon Tunggu Kami sudah mengirimkan SMS kode aktivasi yang baru untuk Anda. Apabila SMS belum diterima, silakan cek koneksi atau hubungi mobile service provider Anda."
                 android:textColor="#000000"
                 android:textSize="17dp" />
 

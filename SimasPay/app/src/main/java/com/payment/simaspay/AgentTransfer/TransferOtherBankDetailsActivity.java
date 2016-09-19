@@ -110,9 +110,9 @@ public class TransferOtherBankDetailsActivity extends Activity {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {

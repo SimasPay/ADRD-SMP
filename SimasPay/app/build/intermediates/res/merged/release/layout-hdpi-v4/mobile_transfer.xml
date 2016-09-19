@@ -340,6 +340,7 @@
                     android:layout_gravity="left"
                     android:gravity="left"
                     android:text="Bayu Santoso"
+                    android:singleLine="true"
                     android:textColor="@android:color/white"
                     android:textSize="17dp" />
 

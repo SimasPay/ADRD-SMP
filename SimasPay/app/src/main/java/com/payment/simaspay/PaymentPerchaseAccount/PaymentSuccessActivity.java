@@ -66,7 +66,18 @@ public class PaymentSuccessActivity extends Activity {
         heading.setText("Pembayaran Berhasil!");
         name.setText("Nama Produk");
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
-        number.setText("Nomor Handphone");
+        try {
+
+            if(getIntent().getExtras().getString("numberTitle").equalsIgnoreCase("")){
+                number.setText("Nomor Handphone");
+            }else{
+                number.setText(getIntent().getExtras().getString("numberTitle"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            number.setText("Nomor Handphone");
+        }
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));

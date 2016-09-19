@@ -27,11 +27,11 @@ public class AppConfigFile {
 	
 	
 //	AWS
-		 /*public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
+		 public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrlFiles="http://54.255.194.95:8443/webapi/sdynamic";
 		 public static String webAPIUrl ="http://54.255.194.95:8443/webapi/sdynamic";
-		 public static String pfdDownLoadURL = "http://54.255.194.95:8443/webapi/";
-		 public static String promoImageURLPath = "http://54.255.194.95:8443/";*/
+		 public static String pfdDownLoadURL = "https://54.255.194.95:8443/webapi/";
+		 public static String promoImageURLPath = "http://54.255.194.95:8443/";
 
 
 	//	New UAT
@@ -54,21 +54,16 @@ public class AppConfigFile {
 	
 	// SimasPay QA Team
 
-	public static String requestUrl = "https://175.101.5.72:8444/webapi/sdynamic";
-	public static String webAPIUrlFiles = "https://175.101.5.72:8444/webapi/sdynamic";
-	public static String webAPIUrl = "https://175.101.5.72:8444/webapi/sdynamic";
-	public static String pfdDownLoadURL = "https://175.101.5.72:8444/webapi/";
-	public static String promoImageURLPath = "http://175.101.5.72:8443/";
 
 
 	
 	
 	// Multi Tenant Dev Team
 
-		/*public static String requestUrl = "https://175.101.5.74:8443/webapi/sdynamic";
-		public static String webAPIUrlFiles = "https://175.101.5.74:8443/webapi/sdynamic";
-		public static String webAPIUrl = "https://175.101.5.74:8443/webapi/sdynamic";
-		public static String pfdDownLoadURL = "https://175.101.5.74:8443/webapi/";
+		/*public static String requestUrl = "https://175.101.5.72:8444/webapi/sdynamic";
+		public static String webAPIUrlFiles = "https://175.101.5.72:8444/webapi/sdynamic";
+		public static String webAPIUrl = "https://175.101.5.72:8444/webapi/sdynamic";
+		public static String pfdDownLoadURL = "https://175.101.5.72:8444/webapi/";
 		public static String promoImageURLPath = "http://175.101.5.74:8080/";*/
 
 	// Bala System.

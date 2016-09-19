@@ -108,7 +108,7 @@ public class ActivationPage_1_Activity extends Activity {
 
         });
 
-        webView.loadUrl("https://www.banksinarmas.com/PersonalBanking/IB.do?action=terms");
+        webView.loadUrl("http://banksinarmas.com/tabunganonline/simobi");
 
         LinearLayout place = (LinearLayout) findViewById(R.id.textlayout);
         place.addView(webView);

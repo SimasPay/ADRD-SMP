@@ -73,7 +73,7 @@ public class ReferralAccountSuccessActivity extends Activity {
 
         products.setText("Produk yang Diinginkan");
         if(productDesired.equals("Lainnya")){
-            other_products.setText(otherfield);
+            other_products.setText(productDesired+" - "+ otherfield);
         }else{
             other_products.setText(productDesired);
         }

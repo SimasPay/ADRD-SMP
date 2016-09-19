@@ -1,11 +1,6 @@
 package com.payment.simaspay.services;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
-import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -47,9 +41,6 @@ public class TimerCount {
     Button button;
 
     ProgressBar progressBar;
-
-
-
 
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
@@ -96,10 +87,10 @@ public class TimerCount {
         }
     };
 
-    public TimerCount(Context mContext,String string) {
+    public TimerCount(Context mContext, String string) {
         context = mContext;
         context.registerReceiver(broadcastReceiver, new IntentFilter("com.msg.simaspay"));
-        sctl=string;
+        sctl = string;
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.shared_prefvalue), context.MODE_PRIVATE);
     }
 
@@ -110,13 +101,13 @@ public class TimerCount {
                 int hours = (int) ((millisUntilFinished / (1000 * 60 * 60)));
                 int minutes = (int) ((millisUntilFinished / (1000 * 60)) % 60);
                 int seconds = (int) ((millisUntilFinished / 1000) % 60);
-                if(seconds<10){
-                    textView1.setText(minutes + ":" +"0"+ seconds);
-                }else{
-                    textView1.setText(minutes + ":"+ seconds);
+                if (seconds < 10) {
+                    textView1.setText(minutes + ":" + "0" + seconds);
+                } else {
+                    textView1.setText(minutes + ":" + seconds);
 
                 }
-                Log.e("=============","===============Nagendra Palepu");
+                Log.e("=============", "===============Nagendra Palepu");
                 progressBar.setVisibility(View.VISIBLE);
                 button.setTextColor(context.getResources().getColor(R.color.ok_disablecolor));
                 textView1.setTextColor(context.getResources().getColor(R.color.timer_color));
@@ -141,7 +132,7 @@ public class TimerCount {
 
     Dialog dialogCustomWish;
     EditText editText;
-    boolean value=false;
+    boolean value = false;
 
     public void SMSAlert(final String string) {
 
@@ -167,10 +158,8 @@ public class TimerCount {
         textView1 = (TextView) dialogCustomWish.findViewById(R.id.timer);
 
 
-
-
-        progressBar=(ProgressBar)dialogCustomWish.findViewById(R.id.progressbar);
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + sharedPreferences.getString("mobileNumber", "") + ". Masukkan kode tersebut atau akses link yang tersedia.");
+        progressBar = (ProgressBar) dialogCustomWish.findViewById(R.id.progressbar);
+        textView_1.setText("Mohon menunggu selagi kami melakukan verifikasi OTP secara otomatis ke nomor " + sharedPreferences.getString("mobileNumber", "") + " atau silakan masukkan kode secara manual jika verifikasi otomatis gagal.");
 
 
         editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
@@ -184,14 +173,14 @@ public class TimerCount {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if(s.length()==0){
-                        button.setEnabled(false);
-                        progressBar.setVisibility(View.GONE);
-                        button.setTextColor(context.getResources().getColor(R.color.ok_disablecolor));
-                    }else{
-                        button.setEnabled(true);
-                        button.setTextColor(context.getResources().getColor(R.color.bg_color_h));
-                    }
+                if (s.length() == 0) {
+                    button.setEnabled(false);
+                    progressBar.setVisibility(View.GONE);
+                    button.setTextColor(context.getResources().getColor(R.color.ok_disablecolor));
+                } else {
+                    button.setEnabled(true);
+                    button.setTextColor(context.getResources().getColor(R.color.bg_color_h));
+                }
             }
 
             @Override
@@ -208,7 +197,7 @@ public class TimerCount {
             public void onClick(View v) {
 
                 dialogCustomWish.dismiss();
-                value=false;
+                value = false;
                 Intent i = new Intent("com.send");
                 i.putExtra("value", "0");
                 try {
@@ -227,18 +216,23 @@ public class TimerCount {
             @Override
             public void onClick(View v) {
                 cancelTimer();
-                dialogCustomWish.dismiss();
-                if(button.getText().toString().equalsIgnoreCase("ok")) {
-                    progressBar.setVisibility(View.GONE);
-                    Intent i = new Intent("com.send");
-                    i.putExtra("value","1");
-                    try {
-                        context.unregisterReceiver(broadcastReceiver);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+
+                if (button.getText().toString().equalsIgnoreCase("ok")) {
+                    if (editText.getText().toString().length() < 6) {
+                        Utility.displayDialog("Kode OTP yang Anda masukkan harus 6 angka.", context);
+                    } else {
+                        dialogCustomWish.dismiss();
+                        progressBar.setVisibility(View.GONE);
+                        Intent i = new Intent("com.send");
+                        i.putExtra("value", "1");
+                        try {
+                            context.unregisterReceiver(broadcastReceiver);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        i.putExtra("otpValue", editText.getText().toString());
+                        context.sendBroadcast(i);
                     }
-                    i.putExtra("otpValue",editText.getText().toString());
-                    context.sendBroadcast(i);
                 }
 
             }
@@ -248,7 +242,7 @@ public class TimerCount {
         textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(textView1.getText().toString().equalsIgnoreCase("Kirim Ulang")){
+                if (textView1.getText().toString().equalsIgnoreCase("Kirim Ulang")) {
                     new MFAResendOTPAsyn().execute();
                 }
             }
@@ -263,7 +257,7 @@ public class TimerCount {
     String response;
     int msgCode;
 
-    class MFAResendOTPAsyn extends AsyncTask<Void,Void,Void>{
+    class MFAResendOTPAsyn extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -273,7 +267,7 @@ public class TimerCount {
                     Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_RESENDMFAOTP);
-            mapContainer.put(Constants.PARAMETER_SOURCE_PIN,  sharedPreferences.getString("password", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
             mapContainer.put(Constants.PARAMETER_SCTLID, sctl);
@@ -308,13 +302,13 @@ public class TimerCount {
                     msgCode = 0;
                 }
 
-                if(msgCode==2171){
+                if (msgCode == 2171) {
                     startTimer();
                     progressBar.setVisibility(View.GONE);
                     editText.setEnabled(false);
                     button.setEnabled(false);
                     dialogCustomWish.show();
-                }else if(msgCode==2172){
+                } else if (msgCode == 2172) {
                     dialogCustomWish.dismiss();
                     try {
                         context.unregisterReceiver(broadcastReceiver);
@@ -323,9 +317,9 @@ public class TimerCount {
                     }
                     Intent i = new Intent("com.send");
                     i.putExtra("value", "2");
-                    i.putExtra("otpValue",responseContainer.getMsg());
+                    i.putExtra("otpValue", responseContainer.getMsg());
                     context.sendBroadcast(i);
-                }else if(msgCode==2173){
+                } else if (msgCode == 2173) {
                     dialogCustomWish.dismiss();
                     try {
                         context.unregisterReceiver(broadcastReceiver);
@@ -334,18 +328,17 @@ public class TimerCount {
                     }
                     Intent i = new Intent("com.send");
                     i.putExtra("value", "3");
-                    i.putExtra("otpValue",responseContainer.getMsg());
+                    i.putExtra("otpValue", responseContainer.getMsg());
                     context.sendBroadcast(i);
                 }
-            }else {
+            } else {
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         context.getResources().getString(
-                                R.string.bahasa_serverNotRespond)),context);
+                                R.string.bahasa_serverNotRespond)), context);
             }
         }
     }
-
 
 
 }

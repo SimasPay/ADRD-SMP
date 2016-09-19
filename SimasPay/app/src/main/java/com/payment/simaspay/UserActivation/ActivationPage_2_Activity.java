@@ -171,6 +171,8 @@ public class ActivationPage_2_Activity extends Activity {
         e_Mdn.setTypeface(Utility.Robot_Light(ActivationPage_2_Activity.this));
         e_mPin.setTypeface(Utility.Robot_Light(ActivationPage_2_Activity.this));
 
+        e_mPin.setHint("6 digit kode aktivasi");
+
         text_1.setTypeface(Utility.LightTextFormat(ActivationPage_2_Activity.this));
         text_2.setTypeface(Utility.LightTextFormat(ActivationPage_2_Activity.this));
         text_3.setTypeface(Utility.LightTextFormat(ActivationPage_2_Activity.this));
@@ -204,10 +206,10 @@ public class ActivationPage_2_Activity extends Activity {
                                     R.string.bahasa_serverNotRespond), context);
 
                 } else if (e_Mdn.getText().toString().equals("")) {
-                    Utility.networkDisplayDialog("Masukkan Nomor Handphone", ActivationPage_2_Activity.this);
+                    Utility.networkDisplayDialog("SimasPay Harap masukkan nomor handphone Anda", ActivationPage_2_Activity.this);
                 } else if (e_Mdn.getText().toString().replace(" ", "")
                         .length() < 10) {
-                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
+                    Utility.networkDisplayDialog("SimasPay Nomor handphone yang Anda masukkan harus 10-14 angka.",
                             ActivationPage_2_Activity.this);
                 } else {
 
@@ -236,7 +238,7 @@ public class ActivationPage_2_Activity extends Activity {
                     Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
                             ActivationPage_2_Activity.this);
                 } else if (e_mPin.getText().toString().equals("")) {
-                    Utility.networkDisplayDialog("Masukkan OTP Anda", ActivationPage_2_Activity.this);
+                    Utility.networkDisplayDialog("'SimasPay Harap masukkan kode aktivasi Anda.", ActivationPage_2_Activity.this);
                 }  else if (e_mPin.getText().toString().replace(" ", "")
                         .length() < 6) {
                     Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka.",
@@ -553,15 +555,13 @@ public class ActivationPage_2_Activity extends Activity {
         editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
 
         progressBar = (ProgressBar) dialogCustomWish.findViewById(R.id.progressbar);
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + mobileNumber + ". Masukkan kode tersebut atau akses link yang tersedia.");
+        textView_1.setText("Mohon menunggu selagi kami melakukan verifikasi OTP secara otomatis ke nomor " + mobileNumber + " atau silakan masukkan kode secara manual jika verifikasi otomatis gagal.");
 
 
         textView1.setText("Kirim Ulang");
         textView1.setTextColor(context.getResources().getColor(R.color.bg_color_h));
         editText.setEnabled(true);
         button.setEnabled(false);
-
-
 
         editText.setHint("6 digit kode OTP");
         editText.addTextChangedListener(new TextWatcher() {
@@ -609,16 +609,19 @@ public class ActivationPage_2_Activity extends Activity {
             @Override
             public void onClick(View v) {
 
-                dialogCustomWish.dismiss();
-                Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
-                intent1.putExtra("SctlID", idnumber);
-                intent1.putExtra("mailedOtp", otp);
-                intent1.putExtra("mobileNumber", mobileNumber);
-                intent1.putExtra("otpValue", editText.getText().toString());
-                intent1.putExtra("mfaMode", "OTP");
-                intent1.putExtra("name", name);
-                startActivityForResult(intent1, 20);
-
+                if(editText.getText().toString().length()<6){
+                    Utility.displayDialog("Kode OTP yang Anda masukkan harus 6 angka.", context);
+                }else {
+                    dialogCustomWish.dismiss();
+                    Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
+                    intent1.putExtra("SctlID", idnumber);
+                    intent1.putExtra("mailedOtp", otp);
+                    intent1.putExtra("mobileNumber", mobileNumber);
+                    intent1.putExtra("otpValue", editText.getText().toString());
+                    intent1.putExtra("mfaMode", "OTP");
+                    intent1.putExtra("name", name);
+                    startActivityForResult(intent1, 20);
+                }
             }
         });
 

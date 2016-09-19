@@ -2,11 +2,45 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-23</target>
+      </config>
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout-hdpi/agent_home.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/simas_pay_home.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/agent_register.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/paymentdetails.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/resend_otp_dialog.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/sms_alert.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="WARN" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -39,193 +73,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PayByQRActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/FlashizSDK/PayByQRActivity.java">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4247312">
-              <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="85" column="88" selection-start-line="85" selection-start-column="88" selection-end-line="85" selection-end-column="88" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/Constants.java">
+      <file leaf-file-name="AgentRegistrationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentRegistrationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="716" column="63" selection-start-line="716" selection-start-column="63" selection-end-line="716" selection-end-column="63" />
+              <caret line="174" column="41" selection-start-line="174" selection-start-column="41" selection-end-line="174" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="false" />
-                <element signature="e#279#280#0" expanded="false" />
-                <element signature="e#321#322#0" expanded="false" />
-                <element signature="e#727#728#0" expanded="false" />
-                <element signature="e#762#763#0" expanded="false" />
-                <element signature="e#922#923#0" expanded="false" />
-                <element signature="e#955#956#0" expanded="false" />
-                <element signature="e#1014#1015#0" expanded="false" />
-                <element signature="e#1063#1064#0" expanded="false" />
-                <element signature="e#1100#1101#0" expanded="false" />
-                <element signature="e#1130#1131#0" expanded="false" />
-                <element signature="e#1179#1180#0" expanded="false" />
-                <element signature="e#1222#1223#0" expanded="false" />
-                <element signature="e#1269#1270#0" expanded="false" />
-                <element signature="e#1305#1306#0" expanded="false" />
-                <element signature="e#1476#1477#0" expanded="false" />
-                <element signature="e#1516#1517#0" expanded="false" />
-                <element signature="e#2318#2319#0" expanded="false" />
-                <element signature="e#2348#2349#0" expanded="false" />
-                <element signature="e#2401#2402#0" expanded="false" />
-                <element signature="e#2444#2445#0" expanded="false" />
-                <element signature="e#2487#2488#0" expanded="false" />
-                <element signature="e#2519#2520#0" expanded="false" />
-                <element signature="e#2576#2577#0" expanded="false" />
-                <element signature="e#2623#2624#0" expanded="false" />
-                <element signature="e#2666#2667#0" expanded="false" />
-                <element signature="e#2698#2699#0" expanded="false" />
-                <element signature="e#2755#2756#0" expanded="false" />
-                <element signature="e#2802#2803#0" expanded="false" />
-                <element signature="e#2847#2848#0" expanded="false" />
-                <element signature="e#2881#2882#0" expanded="false" />
-                <element signature="e#2942#2943#0" expanded="false" />
-                <element signature="e#2993#2994#0" expanded="false" />
-                <element signature="e#3037#3038#0" expanded="false" />
-                <element signature="e#3070#3071#0" expanded="false" />
-                <element signature="e#3129#3130#0" expanded="false" />
-                <element signature="e#3178#3179#0" expanded="false" />
-                <element signature="e#3229#3230#0" expanded="false" />
-                <element signature="e#3269#3270#0" expanded="false" />
-                <element signature="e#3446#3447#0" expanded="false" />
-                <element signature="e#3476#3477#0" expanded="false" />
-                <element signature="e#3529#3530#0" expanded="false" />
-                <element signature="e#3572#3573#0" expanded="false" />
-                <element signature="e#3615#3616#0" expanded="false" />
-                <element signature="e#3647#3648#0" expanded="false" />
-                <element signature="e#3704#3705#0" expanded="false" />
-                <element signature="e#3751#3752#0" expanded="false" />
-                <element signature="e#3791#3792#0" expanded="false" />
-                <element signature="e#3820#3821#0" expanded="false" />
-                <element signature="e#3871#3872#0" expanded="false" />
-                <element signature="e#3912#3913#0" expanded="false" />
-                <element signature="e#3956#3957#0" expanded="false" />
-                <element signature="e#3989#3990#0" expanded="false" />
-                <element signature="e#4048#4049#0" expanded="false" />
-                <element signature="e#4097#4098#0" expanded="false" />
-                <element signature="e#4139#4140#0" expanded="false" />
-                <element signature="e#4170#4171#0" expanded="false" />
-                <element signature="e#4225#4226#0" expanded="false" />
-                <element signature="e#4270#4271#0" expanded="false" />
-                <element signature="e#4316#4317#0" expanded="false" />
-                <element signature="e#4351#4352#0" expanded="false" />
-                <element signature="e#4505#4506#0" expanded="false" />
-                <element signature="e#4532#4533#0" expanded="false" />
-                <element signature="e#4579#4580#0" expanded="false" />
-                <element signature="e#4616#4617#0" expanded="false" />
-                <element signature="e#4660#4661#0" expanded="false" />
-                <element signature="e#4693#4694#0" expanded="false" />
-                <element signature="e#4752#4753#0" expanded="false" />
-                <element signature="e#4801#4802#0" expanded="false" />
-                <element signature="e#4849#4850#0" expanded="false" />
-                <element signature="e#4886#4887#0" expanded="false" />
-                <element signature="e#6545#6546#0" expanded="false" />
-                <element signature="e#6588#6589#0" expanded="false" />
-                <element signature="e#8795#8796#0" expanded="false" />
-                <element signature="e#8836#8837#0" expanded="false" />
-                <element signature="e#9016#9017#0" expanded="false" />
-                <element signature="e#9048#9049#0" expanded="false" />
-                <element signature="e#9105#9106#0" expanded="false" />
-                <element signature="e#9152#9153#0" expanded="false" />
-                <element signature="e#9206#9207#0" expanded="false" />
-                <element signature="e#9249#9250#0" expanded="false" />
-                <element signature="e#9447#9448#0" expanded="false" />
-                <element signature="e#9489#9490#0" expanded="false" />
-                <element signature="e#9670#9671#0" expanded="false" />
-                <element signature="e#9702#9703#0" expanded="false" />
-                <element signature="e#9756#9757#0" expanded="false" />
-                <element signature="e#9803#9804#0" expanded="false" />
-                <element signature="e#9846#9847#0" expanded="false" />
-                <element signature="e#9881#9882#0" expanded="false" />
-                <element signature="e#9941#9942#0" expanded="false" />
-                <element signature="e#9994#9995#0" expanded="false" />
-                <element signature="e#10037#10038#0" expanded="false" />
-                <element signature="e#10072#10073#0" expanded="false" />
-                <element signature="e#10132#10133#0" expanded="false" />
-                <element signature="e#10185#10186#0" expanded="false" />
-                <element signature="e#10235#10236#0" expanded="false" />
-                <element signature="e#10277#10278#0" expanded="false" />
-                <element signature="e#10465#10466#0" expanded="false" />
-                <element signature="e#10504#10505#0" expanded="false" />
-                <element signature="e#10686#10687#0" expanded="false" />
-                <element signature="e#10731#10732#0" expanded="false" />
-                <element signature="e#10936#10937#0" expanded="false" />
-                <element signature="e#10980#10981#0" expanded="false" />
-                <element signature="e#11181#11182#0" expanded="false" />
-                <element signature="e#11225#11226#0" expanded="false" />
-                <element signature="e#11426#11427#0" expanded="false" />
-                <element signature="e#11470#11471#0" expanded="false" />
-                <element signature="e#11671#11672#0" expanded="false" />
-                <element signature="e#11715#11716#0" expanded="false" />
-                <element signature="e#11922#11923#0" expanded="false" />
-                <element signature="e#11972#11973#0" expanded="false" />
-                <element signature="e#12212#12213#0" expanded="false" />
-                <element signature="e#12258#12259#0" expanded="false" />
-                <element signature="e#12462#12463#0" expanded="false" />
-                <element signature="e#12501#12502#0" expanded="false" />
-                <element signature="e#12686#12687#0" expanded="false" />
-                <element signature="e#12734#12735#0" expanded="false" />
-                <element signature="e#12967#12968#0" expanded="false" />
-                <element signature="e#13014#13015#0" expanded="false" />
-                <element signature="e#13903#13904#0" expanded="false" />
-                <element signature="e#13936#13937#0" expanded="false" />
-                <element signature="e#13995#13996#0" expanded="false" />
-                <element signature="e#14044#14045#0" expanded="false" />
-                <element signature="e#14086#14087#0" expanded="false" />
-                <element signature="e#14117#14118#0" expanded="false" />
-                <element signature="e#14172#14173#0" expanded="false" />
-                <element signature="e#14217#14218#0" expanded="false" />
-                <element signature="e#14329#14330#0" expanded="false" />
-                <element signature="e#14363#14364#0" expanded="false" />
-                <element signature="e#14597#14598#0" expanded="false" />
-                <element signature="e#14624#14625#0" expanded="false" />
-                <element signature="e#14677#14678#0" expanded="false" />
-                <element signature="e#14714#14715#0" expanded="false" />
+                <element signature="e#8617#8618#0" expanded="false" />
+                <element signature="e#8657#8658#0" expanded="false" />
+                <element signature="e#75957#75958#0" expanded="false" />
+                <element signature="e#76001#76002#0" expanded="false" />
+                <element signature="e#83214#83215#0" expanded="false" />
+                <element signature="e#83258#83259#0" expanded="false" />
+                <element signature="e#90931#90932#0" expanded="false" />
+                <element signature="e#90978#90979#0" expanded="false" />
+                <element signature="e#91043#91044#0" expanded="false" />
+                <element signature="e#91075#91076#0" expanded="false" />
+                <element signature="e#91140#91141#0" expanded="false" />
+                <element signature="e#91172#91173#0" expanded="false" />
+                <element signature="e#119328#119329#0" expanded="false" />
+                <element signature="e#119378#119379#0" expanded="false" />
+                <element signature="e#119443#119444#0" expanded="false" />
+                <element signature="e#119475#119476#0" expanded="false" />
+                <element signature="e#119540#119541#0" expanded="false" />
+                <element signature="e#119572#119573#0" expanded="false" />
+                <element signature="e#120441#120442#0" expanded="false" />
+                <element signature="e#120489#120490#0" expanded="false" />
+                <element signature="e#120554#120555#0" expanded="false" />
+                <element signature="e#120586#120587#0" expanded="false" />
+                <element signature="e#120651#120652#0" expanded="false" />
+                <element signature="e#120683#120684#0" expanded="false" />
+                <element signature="e#121559#121560#0" expanded="false" />
+                <element signature="e#121609#121610#0" expanded="false" />
+                <element signature="e#121674#121675#0" expanded="false" />
+                <element signature="e#121706#121707#0" expanded="false" />
+                <element signature="e#121771#121772#0" expanded="false" />
+                <element signature="e#121803#121804#0" expanded="false" />
+                <element signature="e#122676#122677#0" expanded="false" />
+                <element signature="e#122726#122727#0" expanded="false" />
+                <element signature="e#122791#122792#0" expanded="false" />
+                <element signature="e#122823#122824#0" expanded="false" />
+                <element signature="e#122888#122889#0" expanded="false" />
+                <element signature="e#122920#122921#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppConfigFile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/AppConfigFile.java">
+      <file leaf-file-name="agent_register.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/agent_register.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="80" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="80" />
+              <caret line="181" column="55" selection-start-line="181" selection-start-column="55" selection-end-line="181" selection-end-column="55" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransferConfirmationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferConfirmationActivity.java">
+      <file leaf-file-name="CloseAccountConfirmationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/CloseAccountConfirmationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="275" column="25" selection-start-line="275" selection-start-column="25" selection-end-line="275" selection-end-column="25" />
+              <caret line="360" column="32" selection-start-line="360" selection-start-column="32" selection-end-line="360" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="false" />
+                <element signature="e#13427#13428#0" expanded="false" />
+                <element signature="e#13495#13496#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utility.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/Utility.java">
+      <file leaf-file-name="SecondLoginActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SecondLoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
+              <caret line="235" column="32" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="false" />
-                <element signature="e#22654#22655#0" expanded="false" />
-                <element signature="e#22702#22703#0" expanded="false" />
-                <element signature="e#26363#26364#0" expanded="false" />
-                <element signature="e#26411#26412#0" expanded="false" />
+                <element signature="e#4378#4379#0" expanded="false" />
+                <element signature="e#4423#4424#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -235,7 +176,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="60" selection-start-line="118" selection-start-column="60" selection-end-line="118" selection-end-column="60" />
+              <caret line="236" column="62" selection-start-line="236" selection-start-column="62" selection-end-line="236" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="false" />
                 <element signature="e#3811#3812#0" expanded="false" />
@@ -245,50 +186,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <file leaf-file-name="ChangePinConfirmationActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinConfirmationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+              <caret line="402" column="37" selection-start-line="402" selection-start-column="34" selection-end-line="402" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppConfigFile.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/AppConfigFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.28333333">
+              <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UangkuTransferConfirmationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferConfirmationActivity.java">
+      <file leaf-file-name="sms_alert.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sms_alert.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <caret line="30" column="43" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="43" />
+              <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LakuPandaiTransferConfirmationActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiTransferConfirmationActivity.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="72" column="17" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimerCount.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/TimerCount.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="69" selection-start-line="76" selection-start-column="69" selection-end-line="76" selection-end-column="69" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#10404#10405#0" expanded="false" />
-                <element signature="e#10448#10449#0" expanded="false" />
-              </folding>
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -2271,7 +2209,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="F:\SimasPay\Coding\SimasPayCode\SimasPay" value="7322040750120" />
+        <entry key="F:\SimasPay\Coding\SimasPayCode\SimasPay" value="7327648095089" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2962,65 +2900,65 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/simaspay/payment/com/simaspay/LoginScreenActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SecondLoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-hdpi/registration_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/registration_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-xhdpi/registration_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-mdpi/registration_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-ldpi/registration_2.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_2_Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_3_Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/transferdetails.xml" />
-        <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/SimasPay/PayByQR/unspecified/res/values/values.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-ldpi/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-mdpi/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-hdpi/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-xhdpi/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/login_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/Register_To_SimaspayUserConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/sms_alert.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/ChangePinTimerCount.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/otherbankdetails.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/Trans_DataSelectionActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/changepin.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PojoClasses/Payments.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/BillersListActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/BalanceSheetActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-hdpi/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-ldpi/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-mdpi/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xhdpi/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/simas_pay_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-hdpi/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-ldpi/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-mdpi/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xhdpi/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/mobile_transfer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-mdpi/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-ldpi/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-hdpi/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xhdpi/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-xxhdpi/common_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SimaspayUserActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/simaspay/payment/com/simaspay/Agent_HomePage_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentSimaspayUserActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/AgentTransferHomeActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferOtherBankDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashInDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashOutDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiTransferConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinConfirmationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakupandaiTransferDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferOtherbankConfirmationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_3_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/resend_otp_dialog.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_2_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_1_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/registration_page_1.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/contactus/ContactUs_Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseDetailsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentDetailsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentSuccessActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseSuccessActivity.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/background_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/pinlayout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/TimerCount.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/FlashizSDK/PayByQRActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferConfirmationActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/Utility.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentConfirmationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/dwnloaddetails.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/Trans_DataSelectionActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashInDetailsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/agent_register.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentRegistrationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/Register_To_SimaspayUserConfirmationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/Register_To_SimaspayUserSuccessActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/CloseAccountDetailsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralDetailsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralAccountConfirmationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralAccountSuccessActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/CloseAccountConfirmationActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/AppConfigFile.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1364" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -3048,8 +2986,6 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -3107,6 +3043,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3121,14 +3059,15 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../PayByQR_Android_1.1.7_Simaspay.aar" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="N986" />
+    <property name="device.picker.selection" value="TA933047GJ" />
     <property name="ExportApk.ApkPath" value="F:\SimasPay\KeyStore" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://F:/SimasPay/Coding/SimasPayCode/SimasPay/app/src/main/java/com/payment/simaspay/FlashizSDK/PayByQRActivity.java" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -3399,28 +3338,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="1" y="1" width="1364" height="726" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3274648" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32593855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5068259" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5870307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5870307" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5862676" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3274648" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24886535" sideWeight="0.49317408" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25230062" sideWeight="0.49317408" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3996479" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3464,44 +3403,217 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2556391">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk1/sources/android-23/android/content/res/Resources.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="1098" column="15" selection-start-line="1098" selection-start-column="15" selection-end-line="1098" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/otherbankdetails.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33200794">
-          <caret line="152" column="12" selection-start-line="152" selection-start-column="12" selection-end-line="152" selection-end-column="12" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/app_icon.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/purchasedetails.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.6302185">
-          <caret line="137" column="39" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/changepin.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-ldpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/app_icon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferOtherBankDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="37" selection-start-line="121" selection-start-column="37" selection-end-line="121" selection-end-column="37" />
+          <caret line="117" column="68" selection-start-line="117" selection-start-column="68" selection-end-line="117" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="127" column="16" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.3962264">
+          <caret line="197" column="74" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_3_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="96" selection-start-line="95" selection-start-column="96" selection-end-line="95" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/resend_otp_dialog.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="196" selection-start-line="40" selection-start-column="196" selection-end-line="40" selection-end-column="196" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_2_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="238" column="60" selection-start-line="238" selection-start-column="60" selection-end-line="238" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/homepage4.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/registration_page_1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UserActivation/ActivationPage_1_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="44" selection-start-line="118" selection-start-column="44" selection-end-line="118" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/TimerCount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="201" column="41" selection-start-line="201" selection-start-column="41" selection-end-line="201" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/simaspay/payment/com/simaspay/SplashScreenActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="248" column="0" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/contactus/ContactUs_Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="42" selection-start-line="121" selection-start-column="42" selection-end-line="121" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SimaspayUserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="36" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentSimaspayUserActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="175" column="97" selection-start-line="175" selection-start-column="97" selection-end-line="175" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentAndPerchaseAccountTypeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="121" column="105" selection-start-line="121" selection-start-column="105" selection-end-line="121" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/ProviderNamesListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="158" column="85" selection-start-line="158" selection-start-column="85" selection-end-line="158" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/BillersListActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="167" column="9" selection-start-line="109" selection-start-column="63" selection-end-line="167" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseDetailsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="211" column="84" selection-start-line="211" selection-start-column="84" selection-end-line="211" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/paymentdetails.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2363636">
+          <caret line="73" column="39" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/commonconfirmation.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2363636">
+          <caret line="96" column="43" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentSuccessActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.310345">
+          <caret line="79" column="9" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentConfirmationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="141.03448">
+          <caret line="256" column="44" selection-start-line="256" selection-start-column="44" selection-end-line="256" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/dwnloaddetails.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.2363636">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -3510,298 +3622,201 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/Trans_DataSelectionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="345" column="0" selection-start-line="345" selection-start-column="0" selection-end-line="345" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PojoClasses/Payments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/BillersListActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="263" column="82" selection-start-line="263" selection-start-column="82" selection-end-line="263" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="241" column="126" selection-start-line="241" selection-start-column="126" selection-end-line="241" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36831683">
-          <caret line="197" column="74" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashInConfirmationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3387097">
-          <caret line="278" column="10" selection-start-line="278" selection-start-column="10" selection-end-line="278" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashInDetailsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="37" selection-start-line="80" selection-start-column="37" selection-end-line="80" selection-end-column="37" />
+        <state vertical-scroll-proportion="-7.172414">
+          <caret line="382" column="52" selection-start-line="382" selection-start-column="52" selection-end-line="382" selection-end-column="52" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashOutDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferOtherBankDetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/setortunaidetails.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="260" column="106" selection-start-line="260" selection-start-column="106" selection-end-line="260" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/agent_register.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7995781">
-          <caret line="1520" column="0" selection-start-line="1520" selection-start-column="0" selection-end-line="1520" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.2363636">
+          <caret line="61" column="39" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinConfirmationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03046595">
-          <caret line="193" column="41" selection-start-line="193" selection-start-column="41" selection-end-line="193" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentRegistrationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.03046595">
-          <caret line="174" column="48" selection-start-line="174" selection-start-column="48" selection-end-line="174" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/referralaccountdetails.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="52" selection-start-line="113" selection-start-column="52" selection-end-line="113" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferDetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Cash_InOut/CashInDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="106" selection-start-line="110" selection-start-column="106" selection-end-line="110" selection-end-column="106" />
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakupandaiTransferDetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/Register_To_SimaspayUserConfirmationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
+        <state vertical-scroll-proportion="-8.793103">
+          <caret line="193" column="9" selection-start-line="189" selection-start-column="6" selection-end-line="193" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferDetailsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/Register_To_SimaspayUserSuccessActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <caret line="106" column="68" selection-start-line="106" selection-start-column="68" selection-end-line="106" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferOtherbankConfirmationActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/CloseAccountDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="505" column="81" selection-start-line="505" selection-start-column="81" selection-end-line="505" selection-end-column="81" />
+          <caret line="230" column="18" selection-start-line="224" selection-start-column="17" selection-end-line="230" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="192" column="28" selection-start-line="192" selection-start-column="28" selection-end-line="192" selection-end-column="28" />
+          <caret line="143" column="0" selection-start-line="140" selection-start-column="8" selection-end-line="143" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PaymentSuccessActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralDetailsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="75" selection-start-line="102" selection-start-column="75" selection-end-line="102" selection-end-column="75" />
+          <caret line="132" column="102" selection-start-line="132" selection-start-column="102" selection-end-line="132" selection-end-column="102" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferSuccessActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralAccountConfirmationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <caret line="97" column="51" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiTransferSuccessActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/ReferralAccountSuccessActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/PaymentPerchaseAccount/PerchaseSuccessActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/jars/classes.jar!/com/dimo/PayByQR/data/Constant.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PayByQR_Android_1.1.7_Simaspay/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/jars/classes.jar!/com/dimo/PayByQR/activity/InvoiceDetailActivity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-xhdpi/second_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="19" selection-start-line="10" selection-start-column="4" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/background_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/pinlayout.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="31" selection-start-line="38" selection-start-column="31" selection-end-line="38" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SecondLoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="148" column="18" selection-start-line="148" selection-start-column="4" selection-end-line="148" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="202" column="44" selection-start-line="202" selection-start-column="44" selection-end-line="202" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/FlashizSDK/UserAPikeyCall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="44" selection-start-line="88" selection-start-column="44" selection-end-line="88" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/contactus/ContactUs_Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="0" selection-start-line="219" selection-start-column="0" selection-end-line="219" selection-end-column="0" />
+          <caret line="75" column="69" selection-start-line="75" selection-start-column="69" selection-end-line="75" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+          <caret line="85" column="88" selection-start-line="85" selection-start-column="88" selection-end-line="85" selection-end-column="88" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk1/platforms/android-23/android.jar!/android/app/Activity.class">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/AgentRegistrationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="495" column="16" selection-start-line="495" selection-start-column="16" selection-end-line="495" selection-end-column="16" />
+          <caret line="174" column="41" selection-start-line="174" selection-start-column="41" selection-end-line="174" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#8617#8618#0" expanded="false" />
+            <element signature="e#8657#8658#0" expanded="false" />
+            <element signature="e#75957#75958#0" expanded="false" />
+            <element signature="e#76001#76002#0" expanded="false" />
+            <element signature="e#83214#83215#0" expanded="false" />
+            <element signature="e#83258#83259#0" expanded="false" />
+            <element signature="e#90931#90932#0" expanded="false" />
+            <element signature="e#90978#90979#0" expanded="false" />
+            <element signature="e#91043#91044#0" expanded="false" />
+            <element signature="e#91075#91076#0" expanded="false" />
+            <element signature="e#91140#91141#0" expanded="false" />
+            <element signature="e#91172#91173#0" expanded="false" />
+            <element signature="e#119328#119329#0" expanded="false" />
+            <element signature="e#119378#119379#0" expanded="false" />
+            <element signature="e#119443#119444#0" expanded="false" />
+            <element signature="e#119475#119476#0" expanded="false" />
+            <element signature="e#119540#119541#0" expanded="false" />
+            <element signature="e#119572#119573#0" expanded="false" />
+            <element signature="e#120441#120442#0" expanded="false" />
+            <element signature="e#120489#120490#0" expanded="false" />
+            <element signature="e#120554#120555#0" expanded="false" />
+            <element signature="e#120586#120587#0" expanded="false" />
+            <element signature="e#120651#120652#0" expanded="false" />
+            <element signature="e#120683#120684#0" expanded="false" />
+            <element signature="e#121559#121560#0" expanded="false" />
+            <element signature="e#121609#121610#0" expanded="false" />
+            <element signature="e#121674#121675#0" expanded="false" />
+            <element signature="e#121706#121707#0" expanded="false" />
+            <element signature="e#121771#121772#0" expanded="false" />
+            <element signature="e#121803#121804#0" expanded="false" />
+            <element signature="e#122676#122677#0" expanded="false" />
+            <element signature="e#122726#122727#0" expanded="false" />
+            <element signature="e#122791#122792#0" expanded="false" />
+            <element signature="e#122823#122824#0" expanded="false" />
+            <element signature="e#122888#122889#0" expanded="false" />
+            <element signature="e#122920#122921#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk1/sources/android-23/android/app/Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49074075">
-          <caret line="3198" column="0" selection-start-line="3198" selection-start-column="0" selection-end-line="3198" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sms_alert.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/agent_register.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="39" selection-start-line="118" selection-start-column="37" selection-end-line="118" selection-end-column="39" />
+          <caret line="181" column="55" selection-start-line="181" selection-start-column="55" selection-end-line="181" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/TimerCount.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/sms_alert.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="69" selection-start-line="76" selection-start-column="69" selection-end-line="76" selection-end-column="69" />
+          <caret line="30" column="43" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/Referral_and_CloseAccount/CloseAccountConfirmationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="360" column="32" selection-start-line="360" selection-start-column="32" selection-end-line="360" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#10404#10405#0" expanded="false" />
-            <element signature="e#10448#10449#0" expanded="false" />
+            <element signature="e#13427#13428#0" expanded="false" />
+            <element signature="e#13495#13496#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/lakupandai/LakuPandaiTransferConfirmationActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/userdetails/SecondLoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="72" column="17" selection-start-line="70" selection-start-column="8" selection-end-line="72" selection-end-column="17" />
+          <caret line="235" column="32" selection-start-line="235" selection-start-column="31" selection-end-line="235" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="false" />
+            <element signature="e#4378#4379#0" expanded="false" />
+            <element signature="e#4423#4424#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/UangkuTransfer/UangkuTransferConfirmationActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <caret line="236" column="62" selection-start-line="236" selection-start-column="62" selection-end-line="236" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3811#3812#0" expanded="false" />
+            <element signature="e#3851#3852#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinConfirmationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="402" column="37" selection-start-line="402" selection-start-column="34" selection-end-line="402" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -3811,201 +3826,15 @@
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/AgentTransfer/TransferConfirmationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="275" column="25" selection-start-line="275" selection-start-column="25" selection-end-line="275" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="30" selection-start-line="102" selection-start-column="30" selection-end-line="102" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#22654#22655#0" expanded="false" />
-            <element signature="e#22702#22703#0" expanded="false" />
-            <element signature="e#26363#26364#0" expanded="false" />
-            <element signature="e#26411#26412#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/agentdetails/ChangePinActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="60" selection-start-line="118" selection-start-column="60" selection-end-line="118" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3811#3812#0" expanded="false" />
-            <element signature="e#3851#3852#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/AppConfigFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="80" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/services/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="716" column="63" selection-start-line="716" selection-start-column="63" selection-end-line="716" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#279#280#0" expanded="false" />
-            <element signature="e#321#322#0" expanded="false" />
-            <element signature="e#727#728#0" expanded="false" />
-            <element signature="e#762#763#0" expanded="false" />
-            <element signature="e#922#923#0" expanded="false" />
-            <element signature="e#955#956#0" expanded="false" />
-            <element signature="e#1014#1015#0" expanded="false" />
-            <element signature="e#1063#1064#0" expanded="false" />
-            <element signature="e#1100#1101#0" expanded="false" />
-            <element signature="e#1130#1131#0" expanded="false" />
-            <element signature="e#1179#1180#0" expanded="false" />
-            <element signature="e#1222#1223#0" expanded="false" />
-            <element signature="e#1269#1270#0" expanded="false" />
-            <element signature="e#1305#1306#0" expanded="false" />
-            <element signature="e#1476#1477#0" expanded="false" />
-            <element signature="e#1516#1517#0" expanded="false" />
-            <element signature="e#2318#2319#0" expanded="false" />
-            <element signature="e#2348#2349#0" expanded="false" />
-            <element signature="e#2401#2402#0" expanded="false" />
-            <element signature="e#2444#2445#0" expanded="false" />
-            <element signature="e#2487#2488#0" expanded="false" />
-            <element signature="e#2519#2520#0" expanded="false" />
-            <element signature="e#2576#2577#0" expanded="false" />
-            <element signature="e#2623#2624#0" expanded="false" />
-            <element signature="e#2666#2667#0" expanded="false" />
-            <element signature="e#2698#2699#0" expanded="false" />
-            <element signature="e#2755#2756#0" expanded="false" />
-            <element signature="e#2802#2803#0" expanded="false" />
-            <element signature="e#2847#2848#0" expanded="false" />
-            <element signature="e#2881#2882#0" expanded="false" />
-            <element signature="e#2942#2943#0" expanded="false" />
-            <element signature="e#2993#2994#0" expanded="false" />
-            <element signature="e#3037#3038#0" expanded="false" />
-            <element signature="e#3070#3071#0" expanded="false" />
-            <element signature="e#3129#3130#0" expanded="false" />
-            <element signature="e#3178#3179#0" expanded="false" />
-            <element signature="e#3229#3230#0" expanded="false" />
-            <element signature="e#3269#3270#0" expanded="false" />
-            <element signature="e#3446#3447#0" expanded="false" />
-            <element signature="e#3476#3477#0" expanded="false" />
-            <element signature="e#3529#3530#0" expanded="false" />
-            <element signature="e#3572#3573#0" expanded="false" />
-            <element signature="e#3615#3616#0" expanded="false" />
-            <element signature="e#3647#3648#0" expanded="false" />
-            <element signature="e#3704#3705#0" expanded="false" />
-            <element signature="e#3751#3752#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3820#3821#0" expanded="false" />
-            <element signature="e#3871#3872#0" expanded="false" />
-            <element signature="e#3912#3913#0" expanded="false" />
-            <element signature="e#3956#3957#0" expanded="false" />
-            <element signature="e#3989#3990#0" expanded="false" />
-            <element signature="e#4048#4049#0" expanded="false" />
-            <element signature="e#4097#4098#0" expanded="false" />
-            <element signature="e#4139#4140#0" expanded="false" />
-            <element signature="e#4170#4171#0" expanded="false" />
-            <element signature="e#4225#4226#0" expanded="false" />
-            <element signature="e#4270#4271#0" expanded="false" />
-            <element signature="e#4316#4317#0" expanded="false" />
-            <element signature="e#4351#4352#0" expanded="false" />
-            <element signature="e#4505#4506#0" expanded="false" />
-            <element signature="e#4532#4533#0" expanded="false" />
-            <element signature="e#4579#4580#0" expanded="false" />
-            <element signature="e#4616#4617#0" expanded="false" />
-            <element signature="e#4660#4661#0" expanded="false" />
-            <element signature="e#4693#4694#0" expanded="false" />
-            <element signature="e#4752#4753#0" expanded="false" />
-            <element signature="e#4801#4802#0" expanded="false" />
-            <element signature="e#4849#4850#0" expanded="false" />
-            <element signature="e#4886#4887#0" expanded="false" />
-            <element signature="e#6545#6546#0" expanded="false" />
-            <element signature="e#6588#6589#0" expanded="false" />
-            <element signature="e#8795#8796#0" expanded="false" />
-            <element signature="e#8836#8837#0" expanded="false" />
-            <element signature="e#9016#9017#0" expanded="false" />
-            <element signature="e#9048#9049#0" expanded="false" />
-            <element signature="e#9105#9106#0" expanded="false" />
-            <element signature="e#9152#9153#0" expanded="false" />
-            <element signature="e#9206#9207#0" expanded="false" />
-            <element signature="e#9249#9250#0" expanded="false" />
-            <element signature="e#9447#9448#0" expanded="false" />
-            <element signature="e#9489#9490#0" expanded="false" />
-            <element signature="e#9670#9671#0" expanded="false" />
-            <element signature="e#9702#9703#0" expanded="false" />
-            <element signature="e#9756#9757#0" expanded="false" />
-            <element signature="e#9803#9804#0" expanded="false" />
-            <element signature="e#9846#9847#0" expanded="false" />
-            <element signature="e#9881#9882#0" expanded="false" />
-            <element signature="e#9941#9942#0" expanded="false" />
-            <element signature="e#9994#9995#0" expanded="false" />
-            <element signature="e#10037#10038#0" expanded="false" />
-            <element signature="e#10072#10073#0" expanded="false" />
-            <element signature="e#10132#10133#0" expanded="false" />
-            <element signature="e#10185#10186#0" expanded="false" />
-            <element signature="e#10235#10236#0" expanded="false" />
-            <element signature="e#10277#10278#0" expanded="false" />
-            <element signature="e#10465#10466#0" expanded="false" />
-            <element signature="e#10504#10505#0" expanded="false" />
-            <element signature="e#10686#10687#0" expanded="false" />
-            <element signature="e#10731#10732#0" expanded="false" />
-            <element signature="e#10936#10937#0" expanded="false" />
-            <element signature="e#10980#10981#0" expanded="false" />
-            <element signature="e#11181#11182#0" expanded="false" />
-            <element signature="e#11225#11226#0" expanded="false" />
-            <element signature="e#11426#11427#0" expanded="false" />
-            <element signature="e#11470#11471#0" expanded="false" />
-            <element signature="e#11671#11672#0" expanded="false" />
-            <element signature="e#11715#11716#0" expanded="false" />
-            <element signature="e#11922#11923#0" expanded="false" />
-            <element signature="e#11972#11973#0" expanded="false" />
-            <element signature="e#12212#12213#0" expanded="false" />
-            <element signature="e#12258#12259#0" expanded="false" />
-            <element signature="e#12462#12463#0" expanded="false" />
-            <element signature="e#12501#12502#0" expanded="false" />
-            <element signature="e#12686#12687#0" expanded="false" />
-            <element signature="e#12734#12735#0" expanded="false" />
-            <element signature="e#12967#12968#0" expanded="false" />
-            <element signature="e#13014#13015#0" expanded="false" />
-            <element signature="e#13903#13904#0" expanded="false" />
-            <element signature="e#13936#13937#0" expanded="false" />
-            <element signature="e#13995#13996#0" expanded="false" />
-            <element signature="e#14044#14045#0" expanded="false" />
-            <element signature="e#14086#14087#0" expanded="false" />
-            <element signature="e#14117#14118#0" expanded="false" />
-            <element signature="e#14172#14173#0" expanded="false" />
-            <element signature="e#14217#14218#0" expanded="false" />
-            <element signature="e#14329#14330#0" expanded="false" />
-            <element signature="e#14363#14364#0" expanded="false" />
-            <element signature="e#14597#14598#0" expanded="false" />
-            <element signature="e#14624#14625#0" expanded="false" />
-            <element signature="e#14677#14678#0" expanded="false" />
-            <element signature="e#14714#14715#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/payment/simaspay/FlashizSDK/PayByQRActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4247312">
-          <caret line="261" column="0" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.28333333">
+          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding />
         </state>
       </provider>

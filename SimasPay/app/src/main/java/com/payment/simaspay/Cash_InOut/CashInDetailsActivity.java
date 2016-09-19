@@ -82,6 +82,12 @@ public class CashInDetailsActivity extends Activity {
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
 
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(14);
+        number.setFilters(FilterArray);
+
+
+
         title.setTypeface(Utility.Robot_Regular(CashInDetailsActivity.this));
         handphone.setTypeface(Utility.HelveticaNeue_Medium(CashInDetailsActivity.this));
         jumlah.setTypeface(Utility.HelveticaNeue_Medium(CashInDetailsActivity.this));

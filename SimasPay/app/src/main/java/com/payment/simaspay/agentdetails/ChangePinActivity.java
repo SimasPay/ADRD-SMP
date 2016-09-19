@@ -134,11 +134,11 @@ public class ChangePinActivity extends Activity {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), ChangePinActivity.this);
                 } else if (editText1.getText().toString().length() <= 0) {
                     Utility.displayDialog("Harap masukkan mPIN baru Anda.", ChangePinActivity.this);
-                } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                } else if (editText1.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog("mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (editText2.getText().toString().length() <= 0) {
                     Utility.displayDialog("Harap masukkan Konfirmasi mPIN baru Anda.", ChangePinActivity.this);
-                } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                } else if (editText2.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog("Konfirmasi mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (!editText1.getText().toString().equals(editText2.getText().toString())) {
                     Utility.displayDialog("mPIN dan konfirmasi mPIN baru yang Anda masukkan harus sama.", ChangePinActivity.this);
@@ -248,10 +248,16 @@ public class ChangePinActivity extends Activity {
                     Intent intent = new Intent(ChangePinActivity.this, SessionTimeOutActivity.class);
                     startActivityForResult(intent, 40);
                 } else if (msgCode == 26) {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
                     sharedPreferences.edit().putString("password", newPin).commit();
                     Intent intent = new Intent(ChangePinActivity.this, ChangePinSuccessActivity.class);
                     startActivityForResult(intent, 10);
                 } else {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
                     if (responseContainer.getMsg() == null) {
                         Utility.networkDisplayDialog(sharedPreferences.getString(
                                 "ErrorMessage",

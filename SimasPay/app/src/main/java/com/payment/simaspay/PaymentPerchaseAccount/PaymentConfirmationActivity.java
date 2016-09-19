@@ -220,7 +220,18 @@ public class PaymentConfirmationActivity extends Activity {
 
         name.setText("Nama Produk");
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
-        number.setText("Nomor Handphone");
+        try {
+
+            if(getIntent().getExtras().getString("numberTitle").equalsIgnoreCase("")){
+                number.setText("Nomor Handphone");
+            }else{
+                number.setText(getIntent().getExtras().getString("numberTitle"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            number.setText("Nomor Handphone");
+        }
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
@@ -503,6 +514,7 @@ public class PaymentConfirmationActivity extends Activity {
                     intent.putExtra("originalAmount",responseContainer.getAmount());
                     intent.putExtra("totalAmount",responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                    intent.putExtra("numberTitle",getIntent().getExtras().getString("numberTitle"));
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
@@ -516,6 +528,7 @@ public class PaymentConfirmationActivity extends Activity {
                     intent.putExtra("charges",responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("totalAmount",responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("numberTitle",getIntent().getExtras().getString("numberTitle"));
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
