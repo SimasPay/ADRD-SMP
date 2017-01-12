@@ -21,7 +21,6 @@ import simaspay.payment.com.simaspay.R;
 public class LakuPandaiTransferSuccessActivity extends Activity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, other_products, transfer_field, transferID;
-
     Button ok;
 
     @Override

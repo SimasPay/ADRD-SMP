@@ -108,6 +108,7 @@
     <string name="progressdialog_message_join_loyalty_program">Mendaftarkan program loyalti...</string>
     <string name="progressdialog_message_login_waiting">Mohon tunggu...</string>
     <string name="sdk_name">Pay By QR</string>
+    <string msgid="146198913615257606" name="search_menu_title">"Telusuri"</string>
     <string msgid="3973338219107019769" name="select_day">"Pilih bulan dan hari"</string>
     <string msgid="7651068754188418859" name="select_hours">"Pilih jam"</string>
     <string msgid="8327182090226828481" name="select_minutes">"Pilih menit"</string>

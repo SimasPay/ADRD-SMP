@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -23,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.payment.simaspay.services.Constants;
@@ -39,17 +41,21 @@ import java.util.Map;
 public class SplashScreenActivity extends Activity {
 
     Handler handler = new Handler();
-
+    public SharedPreferences settings;
+    public SharedPreferences.Editor editor;
+    private static final String TAG = "Simaspay";
     TextView textView;
-
     RSAEncryption rsaEncryption;
-
     SharedPreferences sharedPreferences;
+    static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        settings = getSharedPreferences(TAG, 0);
+        context=SplashScreenActivity.this;
+        editor = settings.edit();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = SplashScreenActivity.this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -64,7 +70,6 @@ public class SplashScreenActivity extends Activity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            // fetch data
             Log.e("--------","========================Connected");
         } else {
             // display error
@@ -110,6 +115,8 @@ public class SplashScreenActivity extends Activity {
 
         ProgressDialog progressDialog;
         String response;
+        PackageInfo info = null;
+        String version= "";
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -120,6 +127,16 @@ public class SplashScreenActivity extends Activity {
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_GETPUBLICKEY);
+            mapContainer.put("appos", "2");
+            PackageManager manager = context.getPackageManager();
+
+            try {
+                info = manager.getPackageInfo(context.getPackageName(), 0);
+                version = info.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            mapContainer.put("appversion", version);
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SplashScreenActivity.this);
@@ -161,7 +178,9 @@ public class SplashScreenActivity extends Activity {
                 }
                 try {
                     if (responseDataContainer != null) {
+                        Log.d("test", "not null");
                         if (responseDataContainer.getSuccess().equals("true")) {
+                            Log.d("test", "success:true");
                             sharedPreferences
                                     .edit()
                                     .putString("MODULE",
@@ -172,10 +191,21 @@ public class SplashScreenActivity extends Activity {
                                     .putString("EXPONENT",
                                             responseDataContainer.getPublicKeyExponet())
                                     .commit();
-                            Intent intent = new Intent(SplashScreenActivity.this, LoginScreenActivity.class);
-                            startActivity(intent);
-                            finish();
+
+                            String firsttime = settings.getString("firsttime", "yes");
+                            Log.d("test", "firsttime: "+ firsttime);
+                            if(firsttime.equals("yes")){
+                                Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+
                         } else {
+                            Log.d("test", "success:false");
                             if (responseDataContainer.getMsg() != null) {
                                 Utility.ShowDialog(responseDataContainer.getMsg(), SplashScreenActivity.this);
                             } else {

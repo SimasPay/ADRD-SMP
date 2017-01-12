@@ -18,4 +18,12 @@
     <color name="bg_color_h">#D32F2F</color>
     <color name="timer_color">#727272</color>
     <color name="black">#000000</color>
+    <color name="SKYBLUE">#87CEEB</color>
+    <color name="LIGHT">#463E3F</color>
+    <color name="SILVER">#C0C0C0</color>
+    <color name="GRAY">#545454</color>
+    <color name="HEADER">#383838</color>
+    <color name="MAROON">#800000</color>
+    <color name="BLUE">#000066</color>
+    <color name="label_grey">#949899</color>
 </resources>

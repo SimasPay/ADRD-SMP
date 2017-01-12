@@ -1,1 +1,0 @@
-# Simaspay-Android

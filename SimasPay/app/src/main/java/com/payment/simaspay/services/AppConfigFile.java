@@ -26,12 +26,13 @@ public class AppConfigFile {
 
 	
 	
-//	AWS
-		 public static String requestUrl="https://54.255.194.95:8443/webapi/sdynamic";
-		 public static String webAPIUrlFiles="http://54.255.194.95:8443/webapi/sdynamic";
-		 public static String webAPIUrl ="http://54.255.194.95:8443/webapi/sdynamic";
-		 public static String pfdDownLoadURL = "https://54.255.194.95:8443/webapi/";
-		 public static String promoImageURLPath = "http://54.255.194.95:8443/";
+			//	AWS
+		 public static String requestUrl="https://52.78.238.224:8443/webapi/sdynamic";
+		 public static String webAPIUrlFiles="https://52.78.238.224:8443/webapi/sdynamic";
+		 //public static String webAPIUrl ="http://54.255.194.95:8443/webapi/sdynamic";
+		 public static String webAPIUrl ="https://52.78.238.224:8443/webapi/sdynamic";
+		 public static String pfdDownLoadURL = "https://52.78.238.224:8443/webapi/";
+		 public static String promoImageURLPath = "https://52.78.238.224:8443/";
 
 
 	//	New UAT

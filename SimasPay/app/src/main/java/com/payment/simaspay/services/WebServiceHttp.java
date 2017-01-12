@@ -69,9 +69,15 @@ public class WebServiceHttp  {
     public String getUrl() {
 
         for (Map.Entry<String, String> entry : mapContainer.entrySet()) {
-
             String key = entry.getKey();
-            String value = encodeString(entry.getValue().trim());
+            String value="";
+            Log.d("Test","key:" + entry.getKey() + ", VALUE: "+ entry.getValue());
+            if(entry.getValue()==null){
+                value = encodeString(entry.getValue());
+            }else{
+                value = encodeString(entry.getValue().trim());
+            }
+
             requestUrlConstruct.append(key).append("=").append(value)
                     .append("&");
         }

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="left"
+        android:src="@drawable/ic_arrow"/>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo_simaspay"/>
+
+        <TextView
+            android:id="@+id/simas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:text="simas"
+            android:visibility="gone"
+            android:textColor="#CC0001"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:text="pay"
+            android:visibility="gone"
+            android:textColor="@color/background_material_dark"
+            android:textSize="65sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/phoneinput_label"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_round_corner"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/hand_phno"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:inputType="number"
+            android:digits="1234567890"
+            android:drawableLeft="@drawable/ic_mobile"
+            android:drawablePadding="15dp"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:hint="No. Handphone"
+             />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.25dp"
+            android:background="#BEBEBE" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="50dp"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/aktivasi_label"/>
+
+    <TextView
+        android:id="@+id/aktivasi_link"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="55dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="17sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textStyle=""
+        android:layout_gravity="center_horizontal"
+        android:text="@string/aktivasi_akun"/>
+
+    <Button
+        android:id="@+id/lanjut"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_gravity="center"
+        android:background="@drawable/login_color_red"
+        android:text="@string/lanjut"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff" />
+
+
+</LinearLayout>

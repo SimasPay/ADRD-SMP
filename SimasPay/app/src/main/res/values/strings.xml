@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="en_full_name">Full Name</string>
+    <string name="en_email_address">Email Address</string>
+    <string name="en_phonenumber">Phone Number</string>
+    <string name="en_mpin">mPIN</string>
+    <string name="en_confirmation_mpin">Confirmation mPIN</string>
+    <string name="daftar">Daftar</string>
+    <string name="benar">Benar</string>
+    <string name="salah">Salah</string>
+    <string name="en_security_questions">Pilih Pertanyaan Keamanan</string>
+    <string name="en_success_dialog">Registrasi Berhasil!\n\nSelamat, Anda berhasil membuat akun e-money Simaspay</string>
+    <string name="en_security_answer">Jawaban Anda</string>
+    <string name="id_tolak">Tolak</string>
+    <string name="id_setuju">Setuju</string>
+    <string name="id_batal">Batal</string>
+    <string name="id_kirim">Kirim</string>
+    <string name="waiting_sms">Menunggu SMS Kode Verifikasi di Nomor </string>
+    <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
+    <string name="btn_sms_manual">Masukan Kode secara manual.</string>
+    <string name="manual_input">Input Manual Kode Verifikasi</string>
+    <string name="_6_digit_kode_otp">4 digit kode Simobi</string>
+    <string name="_00_00">00:00</string>
+    <string name="lanjut">Lanjut</string>
+    <string name="phoneinput_label">Silahkan masukkan Nomor Handphone Anda</string>
+    <string name="aktivasi_label">Sudah memiliki kode aktivasi?</string>
+    <string name="aktivasi_akun">Aktivasi Akun</string>
+    <string name="eng_otprequired_title">Code Verification</string>
+    <string name="eng_otprequired_desc_1">Please wait while we are doing automatic code verification to the number : </string>
+    <string name="eng_otprequired_desc_2"> or please enter the code manually if automatic verification is failed.</string>
+    <string name="eng_otpfailed">Code Verification Failed</string>
+    <string name="eng_desc_otpfailed">Please enter the code within specified time limit."</string>
+    <string name="eng_incorrectotp">You have entered incorrect code. Please try again and ensure that you  enter the correct code.</string>
+    <string name="bahasa_otprequired_title">Code Verification</string>
+    <string name="bahasa_otprequired_desc_1">Please wait while we are doing automatic code verification to the number : </string>
+    <string name="bahasa_otprequired_desc_2"> or please enter the code manually if automatic verification is failed.</string>
+    <string name="bahasa_otpfailed">Code Verification Failed</string>
+    <string name="bahasa_desc_otpfailed">Please enter the code within specified time limit."</string>
+    <string name="bahasa_incorrectotp">You have entered incorrect code. Please try again and ensure that you  enter the correct code.</string>
     <string name="empty" />
     <string name="fragment_fidelitiz_btn_your_programs">My programs</string>
     <string name="fragment_fidelitiz_btn_all_programs">All programs</string>
@@ -81,6 +117,7 @@
     <string name="app_confirm">Confirm</string>
     <string name="app_cancel">Cancel</string>
     <string name="app_error">Error</string>
+    <string name="bahasa_terms_condition">Syarat dan Ketentuan</string>
     <string name="app_loading_in_progress">Loading…</string>
     <string name="app_join">Join</string>
     <string name="app_stop">Stop</string>
@@ -216,8 +253,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="preparing_card">Preparing card</string>
     <string name="no_storage_card">No storage card</string>
     <string name="not_enough_space">Not enough space</string>
-    <string name="TandC">"SYARAT DAN KETENTUAN PEMBAYARAN QR 
- 
+    <string name="TandC">"SYARAT DAN KETENTUAN PEMBAYARAN QR
 Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan bahwa saya telah menerima dan menyetujui untuk tunduk dan terikat pada ketentuan-ketentuan sebagai berikut: 
 
 1. Pembayaran QR hanya dapat dilakukan pada merchant-merchant atau outlet-outlet yang berpartisipasi. 

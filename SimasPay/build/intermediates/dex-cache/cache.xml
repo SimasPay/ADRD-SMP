@@ -1,3 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_85d9387bdaf96d527eda352309208402eac1d715/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.0_c5c0e69ae883f2b4cbc89fc8a29499ed8a9f4c3c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/libs/mobileapplibrary2_8.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="04c258d6094f78b0a8dd0a70baa8580687f3fba1">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/2/mobileapplibrary2_8_799a224d6957030f6625796b067e036a8d480292/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-codec-1.9_0d1a70f5c79e95b80b6bd07cd3385d6637ac4276/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.0_0eaf6565d10027b47bb28a05ba1862cbc3dc95f6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.0_03e1a7c9ba24843c4f1490cb5d41640f5bff735a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_698369f6199fcba9f1f4d03ef33a49c5436b7ad4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_898a8b237c14da75d8206791c5ce91ee6a9ef0fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.2.1_5d37acb7ae7f8bb28a6609155b826d327c024109/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_cb2c6fa2fa47e5a8efcb98624e0647c0390045c8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_c51d1481e7713ae7482c81d5ca8cf98422c54729/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_a3516589079283446761e7bb4f4046c45381d38b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/jars/libs/zbar.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="8d7d1e181139a4681321821db89d391902cf9ed3">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/8/zbar_be77fbeff1d81291d1a29d42aee6ba83bcf35d1b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_44a87a695166c9b34dca1328d9bd70ed1b1f76c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_315b2b67e1e0d9785ce65ad847f8249b1b67af91/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_e48b205263482c98391152356300c921d0e6cc0e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_f850995b81ef68d65a07508cdbcc90dbc2e2528a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_c94cd82d550ec60362a6f81db88ea74587141def/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="965e6ec262aae2b0df63ce1a6f30ff4624f7ad23">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_36274be096438f1fa454a788446739863539729d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4005435a0fb84d284feaf8b53fdf2d361921353e">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_ce23e74cd6f98899d849ec187a3ecc6a2605d891/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_b675e3435afb4ac4d6c9ffebbeb14fa606761381/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/libs/kxml-min.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c1b06b8ed125bd0acd3303aeb635c6f35252962c">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/2/kxml-min_6ed30a931a8e76d488180b94473fdcc52d80e0dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/percent/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="c796c6602e5fa48f90a81c8ab3b3a21a205d1853">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-percent-25.0.0_32412b87f889b7849e9463b251c51fc5dc206d48/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.5/686c608d1805b6d4d425ec4459e88164ffc85870/gson-2.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="686c608d1805b6d4d425ec4459e88164ffc85870">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.5_5b8acb5aa52af53799dd25caf2bbc522862ff91b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_fe0fb3146b2fe69b69f37c2e82880a5eae25764e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="eccf1a2cb72813a3099bc2618ea9d6430b92f0fc">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.journeyapps-zxing-android-embedded-3.0.3_3c2da185e7d8baa22b16e1233d5d99a70767fc8d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_42b0682039c77cc996263f04394c162c8356bfc2/classes.dex" />
+    </item>
+
+</items>

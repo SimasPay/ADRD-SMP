@@ -33,7 +33,6 @@ public class EncryptedResponseDataContainer {
     private String destBank;
     private String destMDN;
     private String resetPinRequested;
-    private String status;
     private String sctl;
     private String mfaMode;
     private String isActivated;
@@ -62,6 +61,8 @@ public class EncryptedResponseDataContainer {
     private String currentBalance;
     private String name;
     private String sourceMDN;
+    private String mdn;
+    private String status;
     private String sqexist;
     private String remainbalance;
     private String maxbalance;
@@ -71,6 +72,24 @@ public class EncryptedResponseDataContainer {
     private String resetPinByCSR;
     private String emailVerified;
     private String kycLevel;
+
+    public String questions;
+
+    public String getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(String questions) {
+        this.questions = questions;
+    }
+
+    public String getMdn() {
+        return mdn;
+    }
+
+    public void setMdn(String mdn) {
+        this.mdn = mdn;
+    }
 
     int totalRecords;
 

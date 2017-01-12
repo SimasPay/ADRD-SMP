@@ -1,114 +1,110 @@
 [
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\background_money.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\background_money.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_chevron_right.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_chevron_right.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_uncheck.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_uncheck.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_clear.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_clear.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\logo_paybyqr_horizontal.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\logo_paybyqr_horizontal.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_uncheck.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_uncheck.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_clear_outline.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_clear_outline.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_info_outline.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_info_outline.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_remove_circle_outline_disabled.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_remove_circle_outline_disabled.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_add_circle_outline_disabled.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_add_circle_outline_disabled.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_clear_search.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_clear_search.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_arrow_back.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_arrow_back.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_info_outline_fidelitiz.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR\\unspecified\\res\\drawable-anydpi-v21\\ic_info_outline_fidelitiz.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_chevron_right_store.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_chevron_right_store.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_failed.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_failed.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_remove_circle_outline.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_remove_circle_outline.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_add_circle_outline_disabled.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_add_circle_outline_disabled.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/logo_paybyqr_horizontal.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/logo_paybyqr_horizontal.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_add.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_add.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_success.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_success.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\logo_paybyqr.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\logo_paybyqr.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/servicebydimo.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/servicebydimo.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_remove.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_remove.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_failed.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_failed.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_chevron_right.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_chevron_right.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_add.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_add.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_question.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_question.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_add_circle_outline.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_add_circle_outline.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_remove_circle_outline.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_remove_circle_outline.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_check_circle.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_check_circle.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_exclamation.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_exclamation.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_exclamation.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_exclamation.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_success.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_success.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_cart.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_cart.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_remove_circle.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_remove_circle.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_clear_search.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_clear_search.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_clear.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_clear.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_remove_circle.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_remove_circle.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_success_add_to_cart.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_success_add_to_cart.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_remove.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_remove.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\logo_payinapp.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\logo_payinapp.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/background_money.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/background_money.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_add_circle_outline.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_add_circle_outline.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_remove_circle_outline_disabled.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_remove_circle_outline_disabled.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_info_outline.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_info_outline.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_success_add_to_cart.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_success_add_to_cart.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\servicebydimo.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\servicebydimo.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_clear_outline.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_clear_outline.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_arrow_back.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_arrow_back.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/ic_question.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/ic_question.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_chevron_right_store.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_chevron_right_store.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/logo_paybyqr.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/logo_paybyqr.xml"
     },
     {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_cart.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_cart.xml"
-    },
-    {
-        "merged": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_check_circle.xml",
-        "source": "F:\\SimasPay\\Coding\\SimasPayCode\\SimasPay\\app\\build\\intermediates\\exploded-aar\\SimasPay\\PayByQR_Android_1.1.7_Simaspay\\unspecified\\res\\drawable-anydpi-v21\\ic_check_circle.xml"
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/logo_payinapp.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/res/drawable-anydpi-v21/logo_payinapp.xml"
     }
 ]

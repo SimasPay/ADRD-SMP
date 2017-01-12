@@ -19,17 +19,14 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.services.ChangePinTimerCount;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
@@ -49,9 +46,7 @@ import simaspay.payment.com.simaspay.R;
 public class TransferOtherbankConfirmationActivity extends Activity {
 
     TextView title, heading, name, name_field, bank, bank_field, number, number_field, amount, amount_field, charge, charge_field, total, total_field;
-
     LinearLayout backlayout;
-
     Button confirm, Cancel;
 
 

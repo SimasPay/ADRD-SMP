@@ -77,24 +77,23 @@
 
             <LinearLayout
                 android:id="@+id/tranfer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="1"
                 android:gravity="center_horizontal"
+                android:background="@drawable/borderwhite"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/btn_transfer" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_transfer" />
 
                 <TextView
                     android:id="@+id/tranfer_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Transfer"
                     android:textSize="15dp" />
@@ -102,24 +101,23 @@
 
             <LinearLayout
                 android:id="@+id/pembelian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
+                android:background="@drawable/borderwhite"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/btn_pembelian" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_pembelian" />
 
                 <TextView
                     android:id="@+id/pembelian_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Pembelian"
                     android:textSize="15dp" />
@@ -127,25 +125,23 @@
 
             <LinearLayout
                 android:id="@+id/pembayaran"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
+                android:background="@drawable/borderwhite"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:src="@drawable/btn_pembayaran" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_pembayaran" />
 
                 <TextView
                     android:id="@+id/pembayaran_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Pembayaran"
                     android:textSize="15dp" />
@@ -186,28 +182,27 @@
 
             <LinearLayout
                 android:id="@+id/flashiz"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
+                android:background="@drawable/borderwhite"
                 android:layout_marginLeft="30dp"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/btn_bayarpakaiqr" />
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:src="@drawable/ic_paybyqr" />
 
                 <TextView
                     android:id="@+id/flashiz_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Bayar Pakai QR"
-                    android:textSize="15dp" />
+                    android:textSize="13dp" />
             </LinearLayout>
 
             <LinearLayout

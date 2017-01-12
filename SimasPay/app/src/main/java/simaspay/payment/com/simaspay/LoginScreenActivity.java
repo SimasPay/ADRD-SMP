@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
@@ -41,23 +42,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Nagendra P on 12/14/2015.
+ * Created by Widy Agung P on 01/12/2017.
+ * 12
  */
 public class LoginScreenActivity extends Activity {
-
-    EditText e_Mdn, e_mPin;
-    Button login, register;
-
+    private static final String TAG = "Simaspay";
+    EditText e_mPin;
+    Button login;
     String countryCode = "62", mobileNumber;
-
-    TextView contact_us, simas, atau;
-
+    TextView simas;
     Context context;
-
     SharedPreferences sharedPreferences;
-
     String pin;
-
     int msgCode = 0;
 
 
@@ -88,7 +84,7 @@ public class LoginScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_screen);
+        setContentView(R.layout.activity_login);
         context = LoginScreenActivity.this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -96,13 +92,21 @@ public class LoginScreenActivity extends Activity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
-        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        e_Mdn = (EditText) findViewById(R.id.hand_phno);
+
+        ImageView back_btn = (ImageView)findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent intent = new Intent(LoginScreenActivity.this, InputNumberScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+        sharedPreferences = getSharedPreferences(TAG, MODE_PRIVATE);
+        final String mdn = sharedPreferences.getString("phonenumber","");
         e_mPin = (EditText) findViewById(R.id.mpin);
 
         login = (Button) findViewById(R.id.login);
-        register = (Button) findViewById(R.id.activation);
-        atau = (TextView) findViewById(R.id.or);
 
         simas = (TextView) findViewById(R.id.simas);
 //        simas.setTextSize(getResources().getDimensionPixelSize(R.dimen.txt));
@@ -113,34 +117,8 @@ public class LoginScreenActivity extends Activity {
             finish();
         }
         login.setTypeface(Utility.Robot_Regular(LoginScreenActivity.this));
-        register.setTypeface(Utility.Robot_Regular(LoginScreenActivity.this));
-        atau.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
 
-
-        contact_us = (TextView) findViewById(R.id.contact_us);
-        contact_us.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
-
-        String htmlString="<u>Hubun</u>"+"g"+"<u>i Kami</u>";
-        contact_us.setText(Html.fromHtml(htmlString));
-
-        e_Mdn.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
         e_mPin.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginScreenActivity.this, ActivationPage_1_Activity.class);
-                startActivityForResult(intent, 30);
-            }
-        });
-
-        contact_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginScreenActivity.this, ContactUs_Activity.class);
-                startActivity(intent);
-            }
-        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,9 +130,9 @@ public class LoginScreenActivity extends Activity {
                             getResources().getString(
                                     R.string.bahasa_serverNotRespond), context);
 
-                } else if (e_Mdn.getText().toString().equals("")) {
+                } else if (mdn.equals("")) {
                     Utility.displayDialog("Masukkan Nomor Handphone", LoginScreenActivity.this);
-                } else if (e_Mdn.getText().toString().replace(" ", "")
+                } else if (mdn.replace(" ", "")
                         .length() < 10) {
                     Utility.displayDialog(getResources().getString(R.string.number_less7),
                             LoginScreenActivity.this);
@@ -165,7 +143,7 @@ public class LoginScreenActivity extends Activity {
                     Utility.displayDialog("mPIN you enter must be 6 digits.",
                             LoginScreenActivity.this);
                 } else {
-                    mobileNumber = e_Mdn.getText().toString();
+                    mobileNumber = mdn;
                     pin = e_mPin.getText().toString();
                     nextProcess();
                 }
@@ -208,21 +186,21 @@ public class LoginScreenActivity extends Activity {
             String version = pInfo.versionName;
 
             int verCode = pInfo.versionCode;
-            sharedPreferences.edit().putString("profileId", "").commit();
+            sharedPreferences.edit().putString("profileId", "").apply();
             String module = sharedPreferences.getString("MODULE", "NONE");
             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
             try {
-                rsaKey = CryptoService.encryptWithPublicKey(module, exponent,
-                        pin.getBytes());
+                rsaKey = CryptoService.encryptWithPublicKey(module, exponent, pin.getBytes());
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
             Map<String, String> mapContainer = new HashMap<String, String>();
-            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
-                    Constants.CONSTANT_CHANNEL_ID);
+            /**
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
+                    Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_LOGIN);
             if (mobileNumber.startsWith("62")) {
@@ -238,6 +216,26 @@ public class LoginScreenActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_DEVICE_MODEL, deviceModel);
             mapContainer.put(Constants.PARAMETER_OS_VERSION, osVersion);
             mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY,Constants.CONSTANT_VALUE_TRUE);
+            **/
+
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_LOGIN);
+            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("authenticationKey", "f");
+            if (mobileNumber.startsWith("62")) {
+                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);
+            } else if (mobileNumber.startsWith("0")) {
+                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber.substring(1));
+            } else {
+                mapContainer.put(Constants.PARAMETER_SOURCE_MDN, "62" + mobileNumber);
+            }
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_STRING, rsaKey);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY, Constants.CONSTANT_VALUE_TRUE);
+            mapContainer.put(Constants.PARAMETER_APPOS, "2");
+            mapContainer.put(Constants.PARAMETER_APPTYPE, "");
+            mapContainer.put(Constants.PARAMETER_APPVERSION, version);
+
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, LoginScreenActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -274,47 +272,46 @@ public class LoginScreenActivity extends Activity {
                 }
                 if (msgCode == 630) {
                     progressDialog.dismiss();
-                    sharedPreferences.edit().putBoolean("Login",true).commit();
+                    sharedPreferences.edit().putBoolean("Login",true).apply();
                     Log.e("------","------"+responseContainer.getUserApiKey());
                     if (responseContainer.getUserApiKey() != null) {
                         sharedPreferences.edit()
                                 .putString("userApiKey", responseContainer.getUserApiKey())
-                                .commit();
+                                .apply();
                     } else {
                         sharedPreferences.edit()
                                 .putString("userApiKey", "")
-                                .commit();
+                                .apply();
                     }
                     Log.e("------","------"+sharedPreferences.getString("userApiKey",""));
 
                     if (mobileNumber.startsWith("62")) {
-                        sharedPreferences.edit().putString("mobileNumber", mobileNumber).commit();
+                        sharedPreferences.edit().putString("mobileNumber", mobileNumber).apply();
                     } else if (mobileNumber.startsWith("0")) {
-                        sharedPreferences.edit().putString("mobileNumber", "62" + mobileNumber.substring(1)).commit();
+                        sharedPreferences.edit().putString("mobileNumber", "62" + mobileNumber.substring(1)).apply();
                     } else {
-                        sharedPreferences.edit().putString("mobileNumber", "62" + mobileNumber).commit();
+                        sharedPreferences.edit().putString("mobileNumber", "62" + mobileNumber).apply();
                     }
 
-                    sharedPreferences.edit().putString("password", rsaKey).commit();
-                    sharedPreferences.edit().putString("userName", responseContainer.getName()).commit();
+                    sharedPreferences.edit().putString("password", rsaKey).apply();
+                    sharedPreferences.edit().putString("userName", responseContainer.getName()).apply();
                     e_mPin.setText("");
-                    e_Mdn.setText("");
                     if (responseContainer.getCustomerType().equals("0")) {
                         if (responseContainer.getIsBank().equalsIgnoreCase("true")) {
-                            sharedPreferences.edit().putInt("userType", 0).commit();
-                            sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).commit();
+                            sharedPreferences.edit().putInt("userType", 0).apply();
+                            sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).apply();
                             Intent intent = new Intent(LoginScreenActivity.this, SimaspayUserActivity.class);
                             startActivityForResult(intent, 20);
                         } else {
-                            sharedPreferences.edit().putInt("userType", 1).commit();
+                            sharedPreferences.edit().putInt("userType", 1).apply();
                             Intent intent = new Intent(LoginScreenActivity.this, LakuPandaiActivity.class);
                             startActivityForResult(intent, 20);
                         }
 
                     } else if (responseContainer.getCustomerType().equals("2")) {
-                        sharedPreferences.edit().putInt("userType", 2).commit();
+                        sharedPreferences.edit().putInt("userType", 2).apply();
                         Intent intent = new Intent(LoginScreenActivity.this, NumberSwitchingActivity.class);
-                        sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).commit();
+                        sharedPreferences.edit().putString("accountnumber",responseContainer.getBankAccountNumber()).apply();
                         startActivityForResult(intent, 20);
                     }
                 } else {

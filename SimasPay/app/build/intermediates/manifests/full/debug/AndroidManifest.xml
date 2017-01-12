@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="simaspay.payment.com.simaspay"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="23" />
+        android:targetSdkVersion="25" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -64,6 +64,12 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        <receiver android:name="com.payment.simaspay.receivers.IncomingSMS" >
+            <intent-filter android:priority="900" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name="simaspay.payment.com.simaspay.SplashScreenActivity"
@@ -86,7 +92,42 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="simaspay.payment.com.simaspay.TermsNConditionsActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.RegistrationNonKYCActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name="simaspay.payment.com.simaspay.LoginScreenActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.LandingScreenActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.InputNumberScreenActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.SecurityQuestionsActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.ConfirmationActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="simaspay.payment.com.simaspay.NotificationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
@@ -410,8 +451,7 @@
             android:name="com.dimo.PayByQR.activity.TipActivity"
             android:configChanges="layoutDirection|locale"
             android:screenOrientation="portrait"
-            android:theme="@style/PayByQRTheme.NoActionBar.Translucent" />
- <!-- - QR STORE -->
+            android:theme="@style/PayByQRTheme.NoActionBar.Translucent" /> <!-- - QR STORE -->
         <activity
             android:name="com.dimo.PayByQR.QrStore.view.StoreMenuActivity"
             android:configChanges="layoutDirection|locale"
@@ -443,8 +483,7 @@
             android:name="com.dimo.PayByQR.QrStore.view.StoreMenuMerchant"
             android:configChanges="layoutDirection|locale"
             android:screenOrientation="portrait"
-            android:theme="@style/PayByQRTheme.NoActionBar.Translucent" />
- <!-- QR STORE END -->
+            android:theme="@style/PayByQRTheme.NoActionBar.Translucent" /> <!-- QR STORE END -->
         <activity
             android:name="com.dimo.PayByQR.activity.LoyaltyActivity"
             android:configChanges="layoutDirection|locale"

@@ -36,17 +36,11 @@ import simaspay.payment.com.simaspay.R;
  */
 public class UangkuTransferDetailsActivity extends Activity {
     TextView title, handphone, jumlah, mPin,Rp;
-
     Button submit;
-
     EditText number, amount, pin;
-
     LinearLayout btnBacke;
-
     SharedPreferences sharedPreferences;
-
     ProgressDialog progressDialog;
-
     String pinValue, amountValue, mdn;
 
     @Override
@@ -128,9 +122,7 @@ public class UangkuTransferDetailsActivity extends Activity {
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     new UangkuTransferAsynTask().execute();
-
                 }
-
             }
         });
 
@@ -175,7 +167,6 @@ int msgCode;
             }
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION,Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UangkuTransferDetailsActivity.this);
-
             response = webServiceHttp.getResponseSSLCertificatation();
             Log.e("-----------","--------"+response);
             return null;
