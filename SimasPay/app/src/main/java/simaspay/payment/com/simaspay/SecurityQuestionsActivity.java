@@ -33,7 +33,7 @@ import java.util.Map;
  */
 
 public class SecurityQuestionsActivity extends AppCompatActivity{
-    private static final String LOG_TAG = "SIMASPAY";
+    private static final String LOG_TAG = "SimasPay";
     private Spinner questions;
     private EditText answer;
     JSONObject jsonobject;

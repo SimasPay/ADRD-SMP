@@ -38,7 +38,7 @@ import java.util.Map;
 public class LandingScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
-    private static final String TAG = "Simaspay";
+    private static final String TAG = "SimasPay";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

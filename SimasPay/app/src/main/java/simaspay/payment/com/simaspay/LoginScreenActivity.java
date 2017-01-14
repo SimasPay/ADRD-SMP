@@ -1,10 +1,8 @@
 package simaspay.payment.com.simaspay;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -12,9 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -25,11 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
-import com.payment.simaspay.contactus.ContactUs_Activity;
 import com.payment.simaspay.lakupandai.LakuPandaiActivity;
-import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -45,8 +38,8 @@ import java.util.Map;
  * Created by Widy Agung P on 01/12/2017.
  * 12
  */
-public class LoginScreenActivity extends Activity {
-    private static final String TAG = "Simaspay";
+public class LoginScreenActivity extends AppCompatActivity {
+    private static final String TAG = "SimasPay";
     EditText e_mPin;
     Button login;
     String countryCode = "62", mobileNumber;
@@ -105,7 +98,8 @@ public class LoginScreenActivity extends Activity {
         sharedPreferences = getSharedPreferences(TAG, MODE_PRIVATE);
         final String mdn = sharedPreferences.getString("phonenumber","");
         e_mPin = (EditText) findViewById(R.id.mpin);
-
+        TextView phonenumber=(TextView)findViewById(R.id.label_phone);
+        phonenumber.setText("Silakan masukkan MPIN untuk \\nnomor HP "+mdn);
         login = (Button) findViewById(R.id.login);
 
         simas = (TextView) findViewById(R.id.simas);

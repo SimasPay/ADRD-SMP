@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -42,9 +43,9 @@ public class InputNumberScreenActivity extends AppCompatActivity {
     private ImageView back_btn;
     public EditText phone_number;
     private TextView aktivasi_link;
-    private static final String TAG = "Simaspay";
+    private static final String TAG = "SimasPay";
     private Button lanjut;
-    private String phonenum;
+    private String phonenum, mdn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_entermobilenum);
         context = InputNumberScreenActivity.this;
         settings = getSharedPreferences(TAG, 0);
+        mdn = settings.getString("mobileNumber", "");
         editor = settings.edit();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -80,11 +82,15 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             }
         });
         phone_number = (EditText)findViewById(R.id.hand_phno);
+        if(!mdn.equals("")){
+            phone_number.setText(mdn);
+        }
         lanjut=(Button)findViewById(R.id.lanjut);
         lanjut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
+                settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
                 phonenum=phone_number.getText().toString();
                 new mdnvalidation().execute();
             }
@@ -141,7 +147,9 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                         String status = responseDataContainer.getStatus();
                         Log.d("test", "mdn: "+ mdn + ", status: "+ status);
                         if(status.equals("0") || status.equals("27")){
-                            Intent intent = new Intent(InputNumberScreenActivity.this, LoginScreenActivity.class);
+                            settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
+                            settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
+                            Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
                             startActivity(intent);
                             finish();
                         }else if(status.equals("11")){

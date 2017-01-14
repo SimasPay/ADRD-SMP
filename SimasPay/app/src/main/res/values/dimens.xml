@@ -7,4 +7,6 @@
     <dimen name="def_gap">10dp</dimen>
     <dimen name="backbuttonsize">16dp</dimen>
     <dimen name="textSize">14sp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="slider_view_height">56dp</dimen>
 </resources>

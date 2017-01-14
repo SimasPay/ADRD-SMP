@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 4/27/2016.
@@ -113,6 +114,7 @@ public class SecondLoginActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 6) {
                     pin = e_mPin.getText().toString();
+                    sharedPreferences.edit().putString("mpin", e_mPin.getText().toString()).apply();
                     nextProcess();
                 }
             }
@@ -257,7 +259,8 @@ public class SecondLoginActivity extends Activity {
                         if (responseContainer.getIsBank().equalsIgnoreCase("true")) {
                             sharedPreferences.edit().putInt("userType", 0).commit();
                             sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).commit();
-                            Intent intent = new Intent(SecondLoginActivity.this, SimaspayUserActivity.class);
+                            //Intent intent = new Intent(SecondLoginActivity.this, SimaspayUserActivity.class);
+                            Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
                         } else {
                             sharedPreferences.edit().putInt("userType", 1).commit();

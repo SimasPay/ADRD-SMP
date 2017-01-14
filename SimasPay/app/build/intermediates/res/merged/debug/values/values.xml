@@ -397,7 +397,7 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <dimen name="activity_horizontal_margin">8dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_horizontal_margin_store">1dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="activity_vertical_margin_store">1dp</dimen>
@@ -500,6 +500,7 @@
     <dimen name="selected_date_month_size">24dp</dimen>
     <dimen name="selected_date_year_size">24dp</dimen>
     <dimen name="separator_padding">4dip</dimen>
+    <dimen name="slider_view_height">56dp</dimen>
     <dimen name="textSize">14sp</dimen>
     <dimen name="text_size_10">6sp</dimen>
     <dimen name="text_size_12">8sp</dimen>
@@ -703,6 +704,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="create_credentials_edit_text_email_hint">EMAIL</string>
     <string name="create_credentials_edit_text_password_hint">PASSWORD</string>
     <string name="daftar">Daftar</string>
+    <string name="daftar_transaksi">Daftar Transaksi</string>
+    <string name="daftar_transfer">Transfer</string>
     <string name="dailog_heading">SimasPay</string>
     <string name="day_of_week_label_typeface" translatable="false">sans-serif</string>
     <string name="day_picker_description">Month grid of days</string>
@@ -884,6 +887,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="fragment_pin_code_try_popup_title">Incorrect personal code</string>
     <string name="fragment_proximity_g_maps_no_plugin">The Google Maps application cannot be found. Do you want to install it?</string>
     <string name="fragment_receive_my_balance_text">My balance: %s</string>
+    <string name="gantimpin">Ganti mPIN</string>
     <string name="helpScreenTitle">Hubungi</string>
     <string name="hour_picker_description">Hours circular slider</string>
     <string name="id_batal">Batal</string>
@@ -902,6 +906,9 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <item format="float" name="numbers_radius_multiplier_inner" type="string">0.60</item>
     <item format="float" name="numbers_radius_multiplier_normal" type="string">0.81</item>
     <item format="float" name="numbers_radius_multiplier_outer" type="string">0.83</item>
+    <string name="pbq">Pay by QR</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="pembelian">Pembelian</string>
     <string name="phoneinput_label">Silahkan masukkan Nomor Handphone Anda</string>
     <string name="pilih_kota">Pilih Kota</string>
     <string name="pilih_toko">Pilih Toko</string>
@@ -910,6 +917,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="progressdialog_message_get_store_item_detail">Mengambil data barang...</string>
     <string name="progressdialog_message_join_loyalty_program">Mendaftarkan program loyalti...</string>
     <string name="progressdialog_message_login_waiting">Mohon tunggu...</string>
+    <string name="promo">Promo PaybyQR</string>
     <string name="promoScreenTitle">Promo</string>
     <string name="radial_numbers_typeface" translatable="false">sans-serif</string>
     <string name="regSuccessContent1">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selamat Franky SIMASPAY Kini telah aktif. &lt;/body> &lt;/html></string>
@@ -940,6 +948,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="shared_prefvalue">SimasPay</string>
     <string name="source_packet_code">1</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="tariktunai">Tarik Tunai</string>
     <string name="text_EULA_title">SYARAT &amp; KETENTUAN</string>
     <string name="text_camera">Kamera</string>
     <string name="text_camera_storage">Kamera dan Penyimpanan</string>

@@ -261,5 +261,13 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
 2. Pembayaran QR ini menggunakan teknologi FLASHiZ. 
 
 3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY."</string>
+    <string name="daftar_transaksi">Daftar Transaksi</string>
+    <string name="daftar_transfer">Transfer</string>
+    <string name="pembelian">Pembelian</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="pbq">Pay by QR</string>
+    <string name="promo">Promo PaybyQR</string>
+    <string name="tariktunai">Tarik Tunai</string>
+    <string name="gantimpin">Ganti mPIN</string>
 
 </resources>

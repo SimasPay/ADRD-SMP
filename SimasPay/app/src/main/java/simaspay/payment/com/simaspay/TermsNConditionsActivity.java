@@ -28,7 +28,7 @@ public class TermsNConditionsActivity extends AppCompatActivity {
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
     private Button batal, setuju;
-    private static final String TAG = "Simaspay";
+    private static final String TAG = "SimasPay";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

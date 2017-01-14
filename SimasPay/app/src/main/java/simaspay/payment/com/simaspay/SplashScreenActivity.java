@@ -43,7 +43,7 @@ public class SplashScreenActivity extends Activity {
     Handler handler = new Handler();
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
-    private static final String TAG = "Simaspay";
+    private static final String TAG = "SimasPay";
     TextView textView;
     RSAEncryption rsaEncryption;
     SharedPreferences sharedPreferences;

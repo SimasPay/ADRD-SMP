@@ -57,7 +57,7 @@ import static com.payment.simaspay.services.AppConfigFile.webAPIUrlFiles;
  */
 
 public class RegistrationNonKYCActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
-    private static final String LOG_TAG = "Simaspay";
+    private static final String LOG_TAG = "SimasPay";
     static EditText fullname, email, mpin, conf_mpin, edt, phonenumber;
     static Spinner questions;
     static AlertDialog dialogBuilder, alertError;
@@ -181,7 +181,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             mapContainer.put("txnName",
                     "GenerateOTP");
             mapContainer.put("sourceMDN",
-                    "62819234567");
+                    mobilenumber);
             mapContainer.put("channelID",
                     "7");
             Log.e("-----",""+mapContainer.toString());
@@ -267,7 +267,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             mapContainer.put("txnName", "SubscriberRegistration");
             mapContainer.put("institutionID", "simaspay");
             mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", "62819234567");
+            mapContainer.put("sourceMDN", mobilenumber);
             mapContainer.put("subFirstName", stFullname);
             mapContainer.put("channelID", "7");
             mapContainer.put("email", stEmail);
@@ -338,7 +338,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor 6281227227241 \n");
+        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor "+mobilenumber+ "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

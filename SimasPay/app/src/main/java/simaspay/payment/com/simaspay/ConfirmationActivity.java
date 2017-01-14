@@ -48,7 +48,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
     TextView lbl_name, lbl_email, lbl_mdn;
     Button benar_btn, salah_btn;
     private AlertDialog.Builder alertbox;
-    private static final String LOG_TAG = "SIMASPAY";
+    private static final String LOG_TAG = "SimasPay";
     private EditText edt;
     private static AlertDialog dialogBuilder, alertError;
     static boolean isExitActivity = false;

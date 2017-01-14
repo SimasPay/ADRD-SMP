@@ -132,6 +132,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
+            android:name="simaspay.payment.com.simaspay.UserHomeActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name="com.payment.simaspay.UserActivation.ActivationPage_1_Activity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
