@@ -32,11 +32,8 @@ import simaspay.payment.com.simaspay.R;
  */
 public class BillersListActivity extends Activity {
     TextView title;
-
     LinearLayout back;
-
     ListView listView;
-
     String billerString;
     String CategoryType;
 

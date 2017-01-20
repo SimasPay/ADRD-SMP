@@ -68,24 +68,15 @@ import simaspay.payment.com.simaspay.R;
 public class TransactionsListActivity extends Activity {
 
     TextView title, period, terms_conditions_1;
-
     Button ok;
-
     TransactionsAdapter transactionsAdapter;
-
     LinearLayout back_layout, dwn_layout;
-
-    int totaloCountValue;
-
-
+    int totaloCountValue, pageNumber = 0;
     ArrayList<TransactionsData> transationsListarray = new ArrayList<>();
-
     ListView listView;
-
     SharedPreferences sharedPreferences;
-
     boolean isLoading;
-    int pageNumber = 0;
+    String akun="";
 
 
     @Override
@@ -113,7 +104,7 @@ public class TransactionsListActivity extends Activity {
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         listView = (ListView) findViewById(R.id.listView);
-
+        akun = sharedPreferences.getString("akun","");
         ok = (Button) findViewById(R.id.accept);
 
         back_layout = (LinearLayout) findViewById(R.id.back_layout);
@@ -153,7 +144,7 @@ public class TransactionsListActivity extends Activity {
         dwn_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DwnLoadAsynTask().execute();
+                new DownLoadAsyncTask().execute();
             }
         });
 
@@ -173,28 +164,56 @@ public class TransactionsListActivity extends Activity {
             }
         });
 
-        new TransactionsListAsyn().execute();
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-            }
+        if(akun.equals("bank")){
+            new TransactionsListAsync().execute();
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                }
 
-                int lastIndexInScreen = visibleItemCount + firstVisibleItem;
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
-                if(totalItemCount==totaloCountValue){
+                    int lastIndexInScreen = visibleItemCount + firstVisibleItem;
 
-                }else {
-                    if (lastIndexInScreen >= totalItemCount && !isLoading) {
-                        isLoading = true;
-                        new TransactionsListAsyn().execute();
+                    if(totalItemCount==totaloCountValue){
+
+                    }else {
+                        if (lastIndexInScreen >= totalItemCount && !isLoading) {
+                            isLoading = true;
+                            new TransactionsListAsync().execute();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }else if(akun.equals("nonkyc") || akun.equals("both")){
+            new TransactionsListAsyncNonBank().execute();
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+                }
+
+                @Override
+                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                    int lastIndexInScreen = visibleItemCount + firstVisibleItem;
+
+                    if(totalItemCount==totaloCountValue){
+
+                    }else {
+                        if (lastIndexInScreen >= totalItemCount && !isLoading) {
+                            isLoading = true;
+                            new TransactionsListAsyncNonBank().execute();
+                        }
+                    }
+                }
+            });
+        }
+
+
     }
 
     class TransactionsAdapter extends BaseAdapter {
@@ -261,7 +280,7 @@ public class TransactionsListActivity extends Activity {
 
     int msgCode;
 
-    class TransactionsListAsyn extends AsyncTask<Void, Void, Void> {
+    class TransactionsListAsync extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -358,6 +377,108 @@ public class TransactionsListActivity extends Activity {
                             .getElementsByTagName("transactionDetail");
                     if (nl.getLength() > 0) {
                         for (int i = 0; i < nl.getLength(); i++) {
+                            TransactionsData transationsList = new TransactionsData();
+                            Element e = (Element) nl.item(i);
+                            transationsList.setTransactionData(parser.getValue(e,
+                                    "transactionType"));
+                            transationsList.setAmount(parser
+                                    .getValue(e, "amount"));
+                            transationsList.setType(parser.getValue(e,
+                                    "isCredit"));
+                            transationsList.setDate_time(parser
+                                    .getValue(e, "transactionTime"));
+                            transationsListarray.add(transationsList);
+                        }
+
+                    }
+                    if (transationsListarray.size() > 0) {
+                        if (pageNumber == 1) {
+                            transactionsAdapter = new TransactionsAdapter();
+                            listView.setAdapter(transactionsAdapter);
+                        } else {
+                            transactionsAdapter.notifyDataSetChanged();
+                        }
+                    }
+                } else if (msgCode == 38) {
+                    Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
+                }
+
+
+            } else {
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), TransactionsListActivity.this);
+            }
+        }
+    }
+
+    class TransactionsListAsyncNonBank extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_HISTORY);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put("authenticationKey", "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
+            mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
+            mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, "1");
+
+            webServiceHttp = new WebServiceHttp(mapContainer, TransactionsListActivity.this);
+
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (progressDialog != null) {
+                progressDialog.show();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (response != null) {
+                Log.e("=======", "======" + response);
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseContainer = null;
+                try {
+                    responseContainer = obj.parse(response);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    msgCode = Integer.parseInt(responseContainer
+                            .getMsgCode());
+                } catch (Exception e) {
+                    msgCode = 0;
+                }
+
+                if (msgCode == 39) {
+                    totaloCountValue=responseContainer.getTotalRecords();
+                    pageNumber = pageNumber + 1;
+                    isLoading = false;
+                    HistroyParser parser = new HistroyParser();
+                    Document doc = parser.getDomElement(response);
+
+                    NodeList nl = doc
+                            .getElementsByTagName("transactionDetail");
+                    if (nl.getLength() > 0) {
+                        for (int i = 0; i < nl.getLength(); i++) {
 
                             TransactionsData transationsList = new TransactionsData();
                             Element e = (Element) nl.item(i);
@@ -400,8 +521,7 @@ public class TransactionsListActivity extends Activity {
 
 
 
-    class
-    DwnLoadAsynTask extends AsyncTask<Void, Void, Void> {
+    class DownLoadAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {

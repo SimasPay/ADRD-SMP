@@ -948,6 +948,9 @@ public class Constants {
     public static final String XML_REFERENCE_NO = "referenceNo";
     public static final String XML_ERROR_CODE = "errorCode";
     public static final String XML_ISBANK = "isBank";
+    public static final String XML_ISEMONEY = "isEmoney";
+    public static final String XML_ISKYC = "isKyc";
+    public static final String XML_ISLAKUPANDAI = "isLakupandia";
     public static final String XML_CUSTOMERTYPE = "type";
     public static final String XML_PROVINCE = "province";
     public static final String XML_DISTRICT = "district";

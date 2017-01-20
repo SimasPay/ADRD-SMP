@@ -137,7 +137,7 @@
                     android:id="@+id/agent_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Akun Agen"
+                    android:text="Akun E-money"
                     android:textColor="@android:color/black"
                     android:textSize="20dp" />
                 <TextView

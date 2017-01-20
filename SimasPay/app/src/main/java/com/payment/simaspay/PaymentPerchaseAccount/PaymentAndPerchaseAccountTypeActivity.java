@@ -156,7 +156,6 @@ public class PaymentAndPerchaseAccountTypeActivity extends Activity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-
             View view1 = LayoutInflater.from(PaymentAndPerchaseAccountTypeActivity.this).inflate(R.layout.textviewdata, null);
             TextView textView = (TextView) view1.findViewById(R.id.textviewdata_text);
             if (getIntent().getExtras().getBoolean("accounttype")) {
@@ -211,8 +210,6 @@ public class PaymentAndPerchaseAccountTypeActivity extends Activity {
             if (progressDialog != null) {
                 progressDialog.show();
             }
-
-
         }
 
         @Override

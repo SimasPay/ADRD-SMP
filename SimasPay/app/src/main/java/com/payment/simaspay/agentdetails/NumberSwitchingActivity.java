@@ -27,6 +27,7 @@ import com.payment.simaspay.userdetails.SimaspayUserActivity;
 import simaspay.payment.com.simaspay.Agent_HomePage_Activity;
 import simaspay.payment.com.simaspay.LoginScreenActivity;
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 12/30/2015.
@@ -86,10 +87,9 @@ public class NumberSwitchingActivity extends Activity {
             @Override
             public void onClick(View view) {
                 sharedPreferences.edit().putInt("AgentUsing",1).commit();
-                Intent intent=new Intent(NumberSwitchingActivity.this, Agent_HomePage_Activity.class);
+                Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
                 startActivityForResult(intent,20);
-
-
+                finish();
             }
         });
 
@@ -187,9 +187,10 @@ public class NumberSwitchingActivity extends Activity {
 
                 dialogCustomWish.show();*/
                 sharedPreferences.edit().putInt("AgentUsing",2).commit();
-                Intent intent=new Intent(NumberSwitchingActivity.this, AgentSimaspayUserActivity.class);
+                Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
                 intent.putExtra("direct",true);
                 startActivityForResult(intent,20);
+                finish();
 
             }
         });

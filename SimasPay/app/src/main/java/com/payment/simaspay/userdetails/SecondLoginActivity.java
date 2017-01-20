@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -17,7 +18,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -40,9 +40,10 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 4/27/2016.
+ * Widy Agung Priasmoro on 12/20/2016
  */
 public class SecondLoginActivity extends Activity {
-
+    private static final String LOG_TAG = "SimasPay";
     TextView txt_1, txt_2, number, contact_us;
     Context context;
     SharedPreferences sharedPreferences;
@@ -55,10 +56,8 @@ public class SecondLoginActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 20) {
-            if (resultCode == Activity.RESULT_OK) {
-
-            } else {
-                finish();
+            if (resultCode != Activity.RESULT_OK) {
+                SecondLoginActivity.this.finish();
             }
         }
     }
@@ -73,7 +72,13 @@ public class SecondLoginActivity extends Activity {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
+            final int version = Build.VERSION.SDK_INT;
+            if (version >= 23) {
+                window.setStatusBarColor(ContextCompat.getColor(context, R.color.splashscreen));
+            } else {
+                window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
+            }
+            //window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -177,7 +182,7 @@ public class SecondLoginActivity extends Activity {
             String version = pInfo.versionName;
 
             int verCode = pInfo.versionCode;
-            sharedPreferences.edit().putString("profileId", "").commit();
+            sharedPreferences.edit().putString("profileId", "").apply();
             String module = sharedPreferences.getString("MODULE", "NONE");
             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
@@ -188,19 +193,21 @@ public class SecondLoginActivity extends Activity {
                 e1.printStackTrace();
             }
             Map<String, String> mapContainer = new HashMap<String, String>();
-            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
-                    Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_LOGIN);
+            mapContainer.put("institutionID","simaspay");
+            mapContainer.put("authenticationKey","f");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_STRING, rsaKey);
-            mapContainer.put(Constants.PARAMETER_APPVERSION, version);
-            mapContainer.put(Constants.PARAMETER_APPOS, AppConfigFile.appOS);
-            mapContainer.put(Constants.PARAMETER_DEVICE_MODEL, deviceModel);
-            mapContainer.put(Constants.PARAMETER_OS_VERSION, osVersion);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY, Constants.CONSTANT_VALUE_TRUE);
+            mapContainer.put(Constants.PARAMETER_APPOS, AppConfigFile.appOS);
+            mapContainer.put("apptype","");
+            //mapContainer.put(Constants.PARAMETER_DEVICE_MODEL, deviceModel);
+            mapContainer.put(Constants.PARAMETER_APPVERSION, version);
+            //mapContainer.put(Constants.PARAMETER_OS_VERSION, osVersion);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, SecondLoginActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -242,36 +249,72 @@ public class SecondLoginActivity extends Activity {
                     if (responseContainer.getUserApiKey() != null) {
                         sharedPreferences.edit()
                                 .putString("userApiKey", responseContainer.getUserApiKey())
-                                .commit();
+                                .apply();
                     } else {
                         sharedPreferences.edit()
                                 .putString("userApiKey", "")
-                                .commit();
+                                .apply();
                     }
                     Log.e("------", "------" + sharedPreferences.getString("userApiKey", ""));
 
 
-                    sharedPreferences.edit().putString("password", rsaKey).commit();
-                    sharedPreferences.edit().putString("userName", responseContainer.getName()).commit();
+                    sharedPreferences.edit().putString("password", rsaKey).apply();
+                    sharedPreferences.edit().putString("userName", responseContainer.getName()).apply();
+                    Log.d(LOG_TAG,"responseContainer.getIsBank():"+responseContainer.getIsBank());
+                    Log.d(LOG_TAG,"responseContainer.getIsEmoney():"+responseContainer.getIsEmoney());
+                    Log.d(LOG_TAG,"responseContainer.getIsKyc():"+responseContainer.getIsKyc());
+                    if(responseContainer.getIsBank().equals("true")){
+                        Log.d(LOG_TAG, "yes true");
+                    }
+                    if(responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")){
+                        Log.d(LOG_TAG, "bank account");
+                        sharedPreferences.edit().putString("akun", "bank").apply();
+                    }else if(responseContainer.getIsBank().equals("false")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("false")){
+                        Log.d(LOG_TAG, "emoney non KYC");
+                        sharedPreferences.edit().putString("akun", "nonkyc").apply();
+                    }else if(responseContainer.getIsBank().equals("true")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("true")){
+                        Log.d(LOG_TAG, "both");
+                        sharedPreferences.edit().putString("akun", "both").apply();
+                    }
                     e_mPin.setText("");
 
+
+
+
                     if (responseContainer.getCustomerType().equals("0")) {
+
+
+                        if(responseContainer.getIsBank().equals("true")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("true")) {
+                            sharedPreferences.edit().putInt("userType", 1).apply();
+                            sharedPreferences.edit().putInt("userType", 0).apply();
+                            sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).apply();
+                            Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
+                            startActivityForResult(intent, 20);
+                        }else{
+                            sharedPreferences.edit().putInt("userType", 0).apply();
+                            sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).apply();
+                            Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
+                            startActivityForResult(intent, 20);
+                        }
+
+                        /**
                         if (responseContainer.getIsBank().equalsIgnoreCase("true")) {
-                            sharedPreferences.edit().putInt("userType", 0).commit();
-                            sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).commit();
+                            sharedPreferences.edit().putInt("userType", 0).apply();
+                            sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).apply();
                             //Intent intent = new Intent(SecondLoginActivity.this, SimaspayUserActivity.class);
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
                         } else {
-                            sharedPreferences.edit().putInt("userType", 1).commit();
-                            Intent intent = new Intent(SecondLoginActivity.this, LakuPandaiActivity.class);
-                            startActivityForResult(intent, 20);
+                            sharedPreferences.edit().putInt("userType", 1).apply();
+                            //Intent intent = new Intent(SecondLoginActivity.this, LakuPandaiActivity.class);
+
                         }
+                         **/
 
                     } else if (responseContainer.getCustomerType().equals("2")) {
-                        sharedPreferences.edit().putInt("userType", 2).commit();
+                        sharedPreferences.edit().putInt("userType", 2).apply();
                         Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
-                        sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).commit();
+                        sharedPreferences.edit().putString("accountnumber", responseContainer.getBankAccountNumber()).apply();
                         startActivityForResult(intent, 20);
                     }
                 } else {

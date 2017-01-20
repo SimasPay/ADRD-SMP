@@ -130,7 +130,7 @@
                     android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/pembelian"
+                        android:id="@+id/pembelian_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -226,14 +226,16 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/borderwhite"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:padding="0dp">
 
                     <ImageButton
                         android:id="@+id/promo_pbq_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="7dp"
+                        android:layout_marginTop="10dp"
                         android:background="@null"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_promo" />
@@ -389,6 +391,7 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/switch_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -413,6 +416,24 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="visible"
+            android:indeterminateTint="#888"
+            android:indeterminateTintMode="src_in"
+            android:padding="3dp" />
+
         <TextView
             android:id="@+id/swipe_balance"
             android:text="Swipe Ke Kanan Untuk Melihat Saldo"
@@ -426,24 +447,6 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:background="@drawable/background_checkbalance"/>
-
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:layout_marginBottom="12dp"
-            android:indeterminateTint="#888"
-            android:indeterminateTintMode="src_in"
-            android:padding="3dp" />
 
         <TextView
             android:gravity="center"

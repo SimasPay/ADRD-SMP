@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="transfer_array">
+        <item>Bank Sinarmas</item>
+        <item>Bank Lainnya</item>
+        <item>Laku Pandai</item>
+        <item>Uangku</item>
+        <item>E-Money Lainnya</item>
+    </string-array>
     <string name="en_full_name">Full Name</string>
     <string name="en_email_address">Email Address</string>
     <string name="en_phonenumber">Phone Number</string>
@@ -15,6 +22,7 @@
     <string name="id_setuju">Setuju</string>
     <string name="id_batal">Batal</string>
     <string name="id_kirim">Kirim</string>
+    <string name="id_transfer">Transfer</string>
     <string name="waiting_sms">Menunggu SMS Kode Verifikasi di Nomor </string>
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
     <string name="btn_sms_manual">Masukan Kode secara manual.</string>
@@ -266,7 +274,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="pembelian">Pembelian</string>
     <string name="pembayaran">Pembayaran</string>
     <string name="pbq">Pay by QR</string>
-    <string name="promo">Promo PaybyQR</string>
+    <string name="promo">Promo Pay by QR</string>
     <string name="tariktunai">Tarik Tunai</string>
     <string name="gantimpin">Ganti mPIN</string>
 

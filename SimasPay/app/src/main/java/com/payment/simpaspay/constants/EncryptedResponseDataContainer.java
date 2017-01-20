@@ -203,7 +203,7 @@ public class EncryptedResponseDataContainer {
 
     private String vipMemberID;
 
-    public String isBank,CustomerType;
+    public String isBank,isEmoney, isLakuPandai, isKyc, CustomerType;
 
     public String destinationAccountNumber;
 
@@ -243,6 +243,30 @@ public class EncryptedResponseDataContainer {
 
     public void setDestinationAccountNumber(String destinationAccountNumber) {
         this.destinationAccountNumber = destinationAccountNumber;
+    }
+
+    public String getIsEmoney() {
+        return isEmoney;
+    }
+
+    public void setIsEmoney(String isEmoney) {
+        this.isEmoney = isEmoney;
+    }
+
+    public String getIsLakupandai() {
+        return isLakuPandai;
+    }
+
+    public void setIsLakuPandai(String isLakuPandai) {
+        this.isLakuPandai = isLakuPandai;
+    }
+
+    public String getIsKyc() {
+        return isKyc;
+    }
+
+    public void setIsKyc(String isKyc) {
+        this.isKyc = isKyc;
     }
 
     public String getIsBank() {

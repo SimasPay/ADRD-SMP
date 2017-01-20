@@ -87,9 +87,7 @@
             android:maxLength="6"
             android:text=""
             android:paddingLeft="10dp"
-            android:singleLine="true"
-
-            />
+            android:singleLine="true" ><requestFocus /></EditText>
 
 
     </LinearLayout>

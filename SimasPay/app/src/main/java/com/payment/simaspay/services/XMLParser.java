@@ -95,6 +95,15 @@ public class XMLParser {
 				} else if (Constants.XML_ISBANK.equals(event.getName())) {
 					pe = parser.read();
 					result.setIsBank(pe.getText());
+				} else if (Constants.XML_ISEMONEY.equals(event.getName())) {
+					pe = parser.read();
+					result.setIsEmoney(pe.getText());
+				} else if (Constants.XML_ISKYC.equals(event.getName())) {
+					pe = parser.read();
+					result.setIsKyc(pe.getText());
+				}else if (Constants.XML_ISLAKUPANDAI.equals(event.getName())) {
+					pe = parser.read();
+					result.setIsLakuPandai(pe.getText());
 				}else if (Constants.XML_CUSTOMERTYPE.equals(event.getName())) {
 					pe = parser.read();
 					result.setCustomerType(pe.getText());
