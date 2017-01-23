@@ -127,8 +127,8 @@ public class TransactionsListActivity extends Activity {
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
         } else {
-            dwn_layout.setVisibility(View.GONE);
-            title.setText("Transaksi");
+            dwn_layout.setVisibility(View.VISIBLE);
+            title.setText("Mutasi");
             findViewById(R.id.period).setVisibility(View.GONE);
         }
 
@@ -574,20 +574,19 @@ public class TransactionsListActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
-                    Constants.CONSTANT_CHANNEL_ID);
 
-            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
-                    Constants.TRANSACTION_PDF_DOWNLOAD);
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
-                    sharedPreferences.getString("mobileNumber", ""));
-            mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
-                    sharedPreferences.getString("password", ""));
-
-            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
-                    Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, "DownloadHistoryAsPDF");
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, "simaspay");
+            mapContainer.put("authenticationKey", "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, "1");
+            mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
+            mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
+            /**
             if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
             } else if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
@@ -601,10 +600,9 @@ public class TransactionsListActivity extends Activity {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 }
             }
-            mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
-            mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
-
-//            Log.e("======","======"+mapContainer.toString());
+             Log.e("======","======"+mapContainer.toString());
+             **/
+//
 
             webServiceHttp = new WebServiceHttp(mapContainer,
                     TransactionsListActivity.this);

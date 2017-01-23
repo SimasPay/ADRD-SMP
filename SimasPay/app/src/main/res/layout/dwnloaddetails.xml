@@ -21,7 +21,7 @@
             android:gravity="center"
             android:text="Mutasi"
             android:textColor="@android:color/white"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <LinearLayout
             android:id="@+id/back_layout"

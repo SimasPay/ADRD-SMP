@@ -1,10 +1,8 @@
 package simaspay.payment.com.simaspay;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,26 +16,19 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
-import com.payment.simaspay.AgentTransfer.TransferHomeActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.BalanceSheetActivity;
-import com.payment.simaspay.userdetails.CurrentSessionActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
-import com.payment.simaspay.userdetails.SimaspayUserActivity;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.Trans_DataSelectionActivity;
 import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
@@ -57,7 +48,7 @@ public class UserHomeActivity extends AppCompatActivity {
     private static String mdn, mpin, nama, label_home;
     String rsaKey;
     ProgressBar progbar;
-    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq;
+    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, logout;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
 
     @Override
@@ -80,6 +71,16 @@ public class UserHomeActivity extends AppCompatActivity {
         label_home = sharedPreferences.getString("akun","");
 
         switch_account=(ImageButton)findViewById(R.id.switch_account);
+        logout=(ImageButton)findViewById(R.id.logout_btn);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                sharedPreferences.edit().putString("userApiKey", "NONE").apply();
+                startActivity(intent);
+            }
+        });
 
         if(label_home.equals("bank")){
             home_lbl.setText("Bank");
