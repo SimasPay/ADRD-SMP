@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="nohptujuan">Nomor Handphone Tujuan</string>
+    <string name="jumlah">Jumlah</string>
+    <string name="mpin">mPIN</string>
+    <string name="transfer_emoney">Transfer - E-money</string>
+    <string name="rp">Rp.</string>
     <string-array name="transfer_array">
         <item>Bank Sinarmas</item>
         <item>Bank Lainnya</item>
@@ -277,5 +282,10 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="promo">Promo Pay by QR</string>
     <string name="tariktunai">Tarik Tunai</string>
     <string name="gantimpin">Ganti mPIN</string>
+    <string name="jumlah_value">Rp 2.500.000</string>
+    <string name="label_konfirmasi">Pastikan data berikut sudah benar</string>
+    <string name="nama_pemilik_rekening">Nama Pemilik Rekening</string>
+    <string name="notice">*Nomor ini belum terdaftar sebagai e-money user. Kami akan mengirimkan SMS panduan download Simaspay E-money ke nomor tujuan.</string>
+    <string name="transaction_id">ID Transaksi: 123958</string>
 
 </resources>

@@ -15,12 +15,15 @@
     </style>
 
 
-    <style name="MyAlertDialogStyle" parent="@android:Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@color/white</item>
         <item name="android:windowTitleStyle">@style/DialogWindowTitle_Holo</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="colorAccent">#ec0524</item>
+        <item name="android:textColorPrimary">@color/black</item>
     </style>
 
     <style name="DialogWindowTitle_Holo">

@@ -76,7 +76,8 @@ public class NewTransferHomeActivity extends AppCompatActivity implements OnItem
             Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
             startActivity(intent);
         }else if(teks.equals("E-Money Lainnya")){
-            //
+            Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyActivity.class);
+            startActivity(intent);
         }
     }
 }

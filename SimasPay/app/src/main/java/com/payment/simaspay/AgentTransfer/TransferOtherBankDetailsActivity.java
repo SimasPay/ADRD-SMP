@@ -37,14 +37,9 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 2/3/2016.
  */
 public class TransferOtherBankDetailsActivity extends Activity {
-
-
     TextView title, handphone, jumlah, mPin, bankName,Rp;
-
     Button submit;
-
     EditText number, amount, pin, bankName_editfield;
-
     LinearLayout btnBacke;
 
     @Override

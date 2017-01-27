@@ -109,6 +109,7 @@ public class SecondLoginActivity extends Activity {
             }
         });
 
+        e_mPin.requestFocus();
         e_mPin.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -118,7 +118,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         lanjut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if(fullname.getText().toString().length()==0) {
+                if(fullname.getText().toString().replace(" ", "").length()==0) {
                     fullname.setError("Kolom Nama Wajib Diisi");
                     return;
                 }
@@ -126,7 +126,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     email.setError("Format Email Keliru");
                     return;
                 }
-                else if(mpin.getText().toString().length()<4) {
+                else if(mpin.getText().toString().replace(" ", "").length()<4) {
                     //Validation for Website Address
                     mpin.setError("mPin minimal 4 digit");
                     return;

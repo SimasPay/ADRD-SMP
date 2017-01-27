@@ -203,7 +203,7 @@ public class EncryptedResponseDataContainer {
 
     private String vipMemberID;
 
-    public String isBank,isEmoney, isLakuPandai, isKyc, CustomerType;
+    public String isBank,isEmoney, isLakuPandai, isKyc, CustomerType, ReceiverAccountName;
 
     public String destinationAccountNumber;
 
@@ -237,6 +237,13 @@ public class EncryptedResponseDataContainer {
 
     public String province,district,subDistrict,city,mothersMaidenName,transactionId,addressLine,rt,rw,postalCode,dob;
 
+    public String getDestinationAccountName() {
+        return ReceiverAccountName;
+    }
+
+    public void setDestinationAccountName(String ReceiverAccountName) {
+        this.ReceiverAccountName = ReceiverAccountName;
+    }
     public String getDestinationAccountNumber() {
         return destinationAccountNumber;
     }
