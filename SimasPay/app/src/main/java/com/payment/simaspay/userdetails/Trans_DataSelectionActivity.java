@@ -142,8 +142,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                 datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
+                datefrom_button.setEnabled(false);
                 dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
+                dateto_button.setEnabled(false);
 
                 datefrom_button.setText("");
                 dateto_button.setText("");
@@ -168,8 +170,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                 datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
+                datefrom_button.setEnabled(false);
                 dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
+                dateto_button.setEnabled(false);
 
                 datefrom_button.setText("");
                 dateto_button.setText("");
@@ -198,8 +202,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                 datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
+                datefrom_button.setEnabled(false);
                 dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
+                dateto_button.setEnabled(false);
 
                 datefrom_button.setText("");
                 dateto_button.setText("");
@@ -223,9 +229,12 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
 
                 datefrom_button.setFocusable(true);
                 datefrom_button.setClickable(true);
+                datefrom_button.setEnabled(true);
+                datefrom_button.requestFocus();
                 datefrom_button.setFocusableInTouchMode(true);
                 dateto_button.setFocusable(true);
                 dateto_button.setClickable(true);
+                dateto_button.setEnabled(true);
                 dateto_button.setFocusableInTouchMode(true);
 
                 fromDate = "";
@@ -300,8 +309,6 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                     intent.putExtra("toDate", toDate);
                     startActivityForResult(intent, 10);
                 } else if (booleanmanualSelection) {
-
-
                     SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
                     if (fromDate.equalsIgnoreCase("")) {
                         Utility.displayDialog("Harap masukkan periode tanggal awal yang Anda inginkan. Periode yang Anda masukkan maksimal 90 hari dari tanggal hari ini.", Trans_DataSelectionActivity.this);

@@ -391,6 +391,14 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), LandingScreenActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
     }
 }

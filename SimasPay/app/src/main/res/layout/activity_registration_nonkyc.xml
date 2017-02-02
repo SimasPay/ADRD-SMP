@@ -77,7 +77,7 @@
             android:id="@+id/fullname_ed"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="@string/en_full_name"
+            android:hint="@string/id_full_name"
             android:drawableLeft="@drawable/ic_mobile"
             android:drawableStart="@drawable/ic_mobile"
             android:drawablePadding="15dp"
@@ -86,7 +86,7 @@
             android:paddingRight="10dp"
             android:background="@null"
             android:inputType="text"
-            android:singleLine="true"
+            android:maxLength="25"
             android:maxLines="1"
             android:ems="10" >
             <requestFocus />
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:hint="@string/en_email_address"
+            android:hint="@string/id_email_address"
             android:inputType="textEmailAddress"
             android:drawableLeft="@drawable/ic_otp"
             android:drawableStart="@drawable/ic_otp"
@@ -108,6 +108,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingStart="10dp"
+            android:maxLines="1"
+            android:maxLength="25"
             android:background="@null"/>
         <View
             android:layout_width="fill_parent"
@@ -118,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:hint="@string/en_phonenumber"
+            android:hint="@string/id_phonenumber"
             android:inputType="number"
             android:drawableLeft="@drawable/ic_mdn"
             android:drawableStart="@drawable/ic_mdn"
@@ -126,6 +128,8 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingStart="10dp"
+            android:maxLines="1"
+            android:maxLength="14"
             android:background="@null"/>
         <View
             android:layout_width="fill_parent"
@@ -145,7 +149,9 @@
             android:paddingRight="10dp"
             android:paddingStart="10dp"
             android:background="@null"
-            android:inputType="textPassword" />
+            android:maxLines="1"
+            android:maxLength="6"
+            android:inputType="numberPassword" />
 
         <View
             android:layout_width="fill_parent"
@@ -156,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:ems="10"
-            android:hint="@string/en_confirmation_mpin"
+            android:hint="@string/id_confirmation_mpin"
             android:drawableLeft="@drawable/ic_mpin"
             android:drawableStart="@drawable/ic_mpin"
             android:drawablePadding="15dp"
@@ -164,7 +170,9 @@
             android:paddingRight="10dp"
             android:paddingStart="10dp"
             android:background="@null"
-            android:inputType="textPassword" />
+            android:maxLines="1"
+            android:maxLength="6"
+            android:inputType="numberPassword" />
 
     </LinearLayout>
 

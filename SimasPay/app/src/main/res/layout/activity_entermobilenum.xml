@@ -86,6 +86,8 @@
             android:drawablePadding="15dp"
             android:paddingLeft="10dp"
             android:singleLine="true"
+            android:maxLines="1"
+            android:maxLength="14"
             android:hint="No. Handphone"
              />
 

@@ -40,10 +40,132 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_below="@+id/balance"
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:contentDescription="@null"
+                android:src="@drawable/logo_simaspay" />
+
+            <TextView
+                android:id="@+id/home_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:text="E-Money Plus"
+                android:textColor="#777"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/switch_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:layout_toLeftOf="@+id/logout_btn"
+            android:layout_toStartOf="@+id/logout_btn"
+            android:src="@drawable/btn_switch_white" />
+
+        <ImageButton
+            android:id="@+id/logout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:src="@drawable/btn_logout_red" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/balance"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="45dp"
+        android:layout_below="@+id/profile"
+        android:background="@android:color/transparent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="visible"
+            android:indeterminateTint="#888"
+            android:indeterminateTintMode="src_in"
+            android:padding="3dp" />
+
+        <TextView
+            android:id="@+id/swipe_balance"
+            android:text="@string/id_swipe_kanan"
+            android:drawableLeft="@drawable/ic_arrow_forward"
+            android:drawableRight="@drawable/ic_arrow_forward"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:background="@drawable/background_checkbalance"/>
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/check_balance_lbl"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text=""/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/balance"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -306,7 +428,7 @@
                         android:layout_marginTop="7dp"
                         android:background="@null"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_paybyqr" />
+                        android:src="@drawable/ic_gantimpin" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -350,126 +472,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:gravity="top"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@null"
-                android:src="@drawable/logo_simaspay" />
-
-            <TextView
-                android:id="@+id/home_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="5dp"
-                android:text="E-Money Plus"
-                android:textColor="#777"
-                android:textSize="14sp" />
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/switch_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="10dp"
-            android:background="@null"
-            android:layout_toLeftOf="@+id/logout_btn"
-            android:layout_toStartOf="@+id/logout_btn"
-            android:src="@drawable/btn_switch_white" />
-
-        <ImageButton
-            android:id="@+id/logout_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@null"
-            android:src="@drawable/btn_logout_red" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/balance"
-        android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="45dp"
-        android:layout_below="@+id/profile"
-        android:background="@android:color/transparent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:visibility="visible"
-            android:indeterminateTint="#888"
-            android:indeterminateTintMode="src_in"
-            android:padding="3dp" />
-
-        <TextView
-            android:id="@+id/swipe_balance"
-            android:text="Swipe Ke Kanan Untuk Melihat Saldo"
-            android:drawableLeft="@drawable/ic_arrow_forward"
-            android:drawableRight="@drawable/ic_arrow_forward"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:background="@drawable/background_checkbalance"/>
-
-        <TextView
-            android:gravity="center"
-            android:id="@+id/check_balance_lbl"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="20sp"
-            android:text=""/>
-
-    </RelativeLayout>
 
 
 </RelativeLayout>

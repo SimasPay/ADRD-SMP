@@ -110,19 +110,19 @@ public class TransactionsListActivity extends Activity {
         back_layout = (LinearLayout) findViewById(R.id.back_layout);
         dwn_layout = (LinearLayout) findViewById(R.id.download_layout);
 
-        if (sharedPreferences.getInt("userType", -1) == 1) {
+        String label_home = sharedPreferences.getString("akun","");
+
+        if(label_home.equals("nonkyc")){
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText("Mutasi");
             findViewById(R.id.period).setVisibility(View.VISIBLE);
-
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
-        } else if (sharedPreferences.getInt("userType", -1) == 2 && sharedPreferences.getInt("AgentUsing", -1) == 1) {
+        } else if(label_home.equals("both")){
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText("Mutasi");
             findViewById(R.id.period).setVisibility(View.VISIBLE);
-
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));

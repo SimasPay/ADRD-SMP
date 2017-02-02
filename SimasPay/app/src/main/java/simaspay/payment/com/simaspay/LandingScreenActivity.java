@@ -54,13 +54,17 @@ public class LandingScreenActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
 
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finish();
+        }
+
         Button login=(Button)findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LandingScreenActivity.this, InputNumberScreenActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
             }
         });
         Button activation=(Button)findViewById(R.id.activation);

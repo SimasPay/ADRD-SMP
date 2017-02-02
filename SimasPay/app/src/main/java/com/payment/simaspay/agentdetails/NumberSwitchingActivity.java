@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.payment.simaspay.lakupandai.LakuPandaiActivity;
 import com.payment.simaspay.services.Utility;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SimaspayUserActivity;
 
 import simaspay.payment.com.simaspay.Agent_HomePage_Activity;
@@ -198,9 +199,10 @@ public class NumberSwitchingActivity extends Activity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=getIntent();
-                setResult(RESULT_OK,intent);
-                finish();
+                Intent intent = new Intent(NumberSwitchingActivity.this, SecondLoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                sharedPreferences.edit().putString("userApiKey", "NONE").apply();
+                startActivity(intent);
             }
         });
 

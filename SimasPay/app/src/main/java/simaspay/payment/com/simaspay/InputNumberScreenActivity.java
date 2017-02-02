@@ -2,12 +2,14 @@ package simaspay.payment.com.simaspay;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -23,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -78,7 +81,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         phone_number = (EditText)findViewById(R.id.hand_phno);
@@ -89,10 +92,22 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         lanjut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
-                settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
-                phonenum=phone_number.getText().toString();
-                new mdnvalidation().execute();
+                if(phone_number.getText().length()>6){
+                    settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
+                    settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
+                    phonenum=phone_number.getText().toString();
+                    new mdnvalidation().execute();
+                }else{
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(getResources().getString(R.string.id_empty_mdn_input));
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int arg1) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alertbox.show();
+                }
+
             }
         });
     }
@@ -150,12 +165,13 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                             settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
                             settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
                             Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();
+                            //finish();
                         }else if(status.equals("11")){
                             Intent intent = new Intent(InputNumberScreenActivity.this, RegistrationNonKYCActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finish();
                         }
                     }
                 }catch (Exception e) {

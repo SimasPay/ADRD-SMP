@@ -119,20 +119,20 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             @Override
             public void onClick(View arg0) {
                 if(fullname.getText().toString().replace(" ", "").length()==0) {
-                    fullname.setError("Kolom Nama Wajib Diisi");
+                    fullname.setError("Nama lengkap wajib diisi");
                     return;
                 }
                 else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
-                    email.setError("Format Email Keliru");
+                    email.setError("Format email salah");
                     return;
                 }
                 else if(mpin.getText().toString().replace(" ", "").length()<4) {
                     //Validation for Website Address
-                    mpin.setError("mPin minimal 4 digit");
+                    mpin.setError("mPin minimal 6 digit");
                     return;
                 }else if(!mpin.getText().toString().equals(conf_mpin.getText().toString())){
                     Log.d(LOG_TAG, "mpin: "+mpin.getText().toString() + ", conf mpin: " +conf_mpin.getText().toString());
-                    conf_mpin.setError("mPin tidak sama, ulangi kembali");
+                    conf_mpin.setError("Konfirmasi mPin harus sama dengan mPIN");
                     return;
                     /**
                 }else if(answer.getText().toString().length()==0){

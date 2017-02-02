@@ -2,6 +2,7 @@ package com.payment.simaspay.AgentTransfer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,11 +44,14 @@ public class NewTransferHomeActivity extends AppCompatActivity implements OnItem
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
+            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
 
         listView = (ListView) findViewById(R.id.transfer_list);
         listView.setOnItemClickListener(NewTransferHomeActivity.this);
+        String[] transferString=getResources().getStringArray(R.array.transfer_array);
+        ArrayAdapter<String> listAdapter =
+                new ArrayAdapter<String>(this, R.layout.textviewdata,R.id.textviewdata_text, transferString);
         LinearLayout backLin=(LinearLayout)findViewById(R.id.back_layout);
         backLin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +61,7 @@ public class NewTransferHomeActivity extends AppCompatActivity implements OnItem
                 startActivity(intent);
             }
         });
+        listView.setAdapter(listAdapter);
 
     }
 
@@ -63,6 +69,8 @@ public class NewTransferHomeActivity extends AppCompatActivity implements OnItem
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
         String teks=((TextView) view).getText().toString();
+        //Drawable myDrawable = getResources().getDrawable(R.drawable.right_arrow);
+        //((TextView) view).setCompoundDrawables(null, null, myDrawable, null);
         if(teks.equals("Bank Sinarmas")){
             Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
             startActivity(intent);

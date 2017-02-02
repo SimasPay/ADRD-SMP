@@ -100,8 +100,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         salah_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ConfirmationActivity.this, RegistrationNonKYCActivity.class);
-                startActivity(intent);
+                finish();
+                //Intent intent = new Intent(ConfirmationActivity.this, RegistrationNonKYCActivity.class);
+                //startActivity(intent);
             }
         });
 
