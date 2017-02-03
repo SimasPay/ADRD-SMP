@@ -92,14 +92,23 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         lanjut.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(phone_number.getText().length()>6){
+                if(phone_number.getText().length()>=10){
                     settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
                     settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
                     phonenum=phone_number.getText().toString();
                     new mdnvalidation().execute();
-                }else{
+                }else if(phone_number.getText().length()==0){
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(getResources().getString(R.string.id_empty_mdn_input));
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int arg1) {
+                            dialog.dismiss();
+                        }
+                    });
+                    alertbox.show();
+                }else if(phone_number.getText().length()<10&&phone_number.getText().length()>0){
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(getResources().getString(R.string.id_invalid_mdn_input));
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int arg1) {
                             dialog.dismiss();

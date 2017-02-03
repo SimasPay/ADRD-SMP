@@ -15,16 +15,16 @@ public final class R {
 		public static final int zxing_viewfinder_mask = 0x7f0100fb;
 	}
 	public static final class color {
-		public static final int zxing_custom_possible_result_points = 0x7f0e0095;
-		public static final int zxing_custom_result_view = 0x7f0e0096;
-		public static final int zxing_custom_viewfinder_laser = 0x7f0e0097;
-		public static final int zxing_custom_viewfinder_mask = 0x7f0e0098;
-		public static final int zxing_possible_result_points = 0x7f0e0099;
-		public static final int zxing_result_view = 0x7f0e009a;
-		public static final int zxing_status_text = 0x7f0e009b;
-		public static final int zxing_transparent = 0x7f0e009c;
-		public static final int zxing_viewfinder_laser = 0x7f0e009d;
-		public static final int zxing_viewfinder_mask = 0x7f0e009e;
+		public static final int zxing_custom_possible_result_points = 0x7f0e0096;
+		public static final int zxing_custom_result_view = 0x7f0e0097;
+		public static final int zxing_custom_viewfinder_laser = 0x7f0e0098;
+		public static final int zxing_custom_viewfinder_mask = 0x7f0e0099;
+		public static final int zxing_possible_result_points = 0x7f0e009a;
+		public static final int zxing_result_view = 0x7f0e009b;
+		public static final int zxing_status_text = 0x7f0e009c;
+		public static final int zxing_transparent = 0x7f0e009d;
+		public static final int zxing_viewfinder_laser = 0x7f0e009e;
+		public static final int zxing_viewfinder_mask = 0x7f0e009f;
 	}
 	public static final class id {
 		public static final int zxing_back_button = 0x7f0f0013;

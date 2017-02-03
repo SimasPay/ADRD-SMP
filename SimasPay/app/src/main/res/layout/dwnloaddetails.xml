@@ -195,7 +195,6 @@
                             android:layout_width="30.0dip"
                             android:layout_height="30.0dip"
                             android:layout_gravity="center"
-
                             android:layout_marginLeft="15.0dip"
                             android:src="@drawable/dwnunselected" />
 
@@ -208,7 +207,7 @@
                             android:gravity="center_vertical"
                             android:text="Periode dari"
                             android:textColor="#ff535d66"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
 
                         <Button
                             android:id="@+id/fromButton"
@@ -217,10 +216,9 @@
                             android:layout_marginLeft="5dp"
                             android:drawableRight="@drawable/ic_calendar"
                             android:paddingRight="10dp"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:text="DD-MM-YYYY"
-
-                            android:background="@drawable/datefieldcorners" />
+                            android:background="@drawable/custom_selectordate" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -240,7 +238,6 @@
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-
                             android:gravity="center_vertical"
                             android:text="Hingga"
                             android:textColor="#ff535d66"
@@ -255,7 +252,7 @@
                             android:textSize="14dp"
                             android:paddingRight="10dp"
                             android:text="DD-MM-YYYY"
-                            android:background="@drawable/datefieldcorners" />
+                            android:background="@drawable/custom_selectordate" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

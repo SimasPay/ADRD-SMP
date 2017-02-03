@@ -112,6 +112,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
         dateto_button.setTypeface(Utility.Robot_Light(Trans_DataSelectionActivity.this));
         next.setTypeface(Utility.Robot_Regular(Trans_DataSelectionActivity.this));
 
+        datefrom_button.setEnabled(false);
+        dateto_button.setEnabled(false);
+        datefrom_button.clearFocus();
+        dateto_button.clearFocus();
 
         current_month = (LinearLayout) findViewById(R.id.current_month);
         onemonth = (LinearLayout) findViewById(R.id.onemonth);
@@ -139,14 +143,12 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 oneMonthImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 twoMonthsImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 manualSelectionImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
-
-                datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
                 datefrom_button.setEnabled(false);
-                dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
                 dateto_button.setEnabled(false);
-
+                datefrom_button.clearFocus();
+                dateto_button.clearFocus();
                 datefrom_button.setText("");
                 dateto_button.setText("");
 
@@ -168,12 +170,12 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 twoMonthsImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 manualSelectionImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
 
-                datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
                 datefrom_button.setEnabled(false);
-                dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
                 dateto_button.setEnabled(false);
+                datefrom_button.clearFocus();
+                dateto_button.clearFocus();
 
                 datefrom_button.setText("");
                 dateto_button.setText("");
@@ -200,12 +202,12 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 twoMonthsImage.setImageDrawable(getResources().getDrawable(R.drawable.selected));
                 manualSelectionImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
 
-                datefrom_button.setFocusable(false);
                 datefrom_button.setClickable(false);
                 datefrom_button.setEnabled(false);
-                dateto_button.setFocusable(false);
                 dateto_button.setClickable(false);
                 dateto_button.setEnabled(false);
+                datefrom_button.clearFocus();
+                dateto_button.clearFocus();
 
                 datefrom_button.setText("");
                 dateto_button.setText("");
@@ -226,16 +228,14 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
                 oneMonthImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 twoMonthsImage.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
                 manualSelectionImage.setImageDrawable(getResources().getDrawable(R.drawable.selected));
-
-                datefrom_button.setFocusable(true);
+                datefrom_button.setTextColor(getResources().getColor(R.color.text_color_black));
+                dateto_button.setTextColor(getResources().getColor(R.color.text_color_black));
+                datefrom_button.requestFocus();
                 datefrom_button.setClickable(true);
                 datefrom_button.setEnabled(true);
-                datefrom_button.requestFocus();
-                datefrom_button.setFocusableInTouchMode(true);
-                dateto_button.setFocusable(true);
+                dateto_button.requestFocus();
                 dateto_button.setClickable(true);
                 dateto_button.setEnabled(true);
-                dateto_button.setFocusableInTouchMode(true);
 
                 fromDate = "";
                 toDate = "";

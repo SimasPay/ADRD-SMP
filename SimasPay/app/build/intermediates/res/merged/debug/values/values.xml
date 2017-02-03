@@ -160,6 +160,7 @@
     <color name="switch_thumb_normal_material_dark">#ffbdbdbd</color>
     <color name="switch_thumb_normal_material_light">#fff1f1f1</color>
     <color name="text_color">#B3FFFFFF</color>
+    <color name="text_color_black">#383434</color>
     <color name="theme_bg_gray">#dfdfdf</color>
     <color name="theme_bg_light_gray">#f5f5f5</color>
     <color name="theme_bg_scanQR_frame">#80a1a1a1</color>
@@ -903,8 +904,9 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_batal">Batal</string>
     <string name="id_confirmation_mpin">Konfirmasi mPIN</string>
     <string name="id_email_address">email</string>
-    <string name="id_empty_mdn_input">Harap masukkan Nomor Handphone</string>
+    <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
     <string name="id_full_name">Nama lengkap</string>
+    <string name="id_invalid_mdn_input">Nomor handphone anda tidak valid</string>
     <string name="id_kirim">Kirim</string>
     <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
     <string name="id_phonenumber">Nomor handphone</string>
