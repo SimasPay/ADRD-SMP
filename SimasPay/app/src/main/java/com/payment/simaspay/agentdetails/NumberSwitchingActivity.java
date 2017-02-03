@@ -89,6 +89,7 @@ public class NumberSwitchingActivity extends Activity {
             public void onClick(View view) {
                 sharedPreferences.edit().putInt("AgentUsing",1).commit();
                 Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
+                intent.putExtra("useas","E-money Plus");
                 startActivityForResult(intent,20);
                 finish();
             }
@@ -190,6 +191,7 @@ public class NumberSwitchingActivity extends Activity {
                 sharedPreferences.edit().putInt("AgentUsing",2).commit();
                 Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
                 intent.putExtra("direct",true);
+                intent.putExtra("useas","Bank");
                 startActivityForResult(intent,20);
                 finish();
 

@@ -28,8 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.RegistrationNonKYCActivity;
-import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
@@ -53,7 +51,7 @@ public class TransferEmoneyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_emoney);
+        setContentView(R.layout.activity_bsim_to_emoney);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

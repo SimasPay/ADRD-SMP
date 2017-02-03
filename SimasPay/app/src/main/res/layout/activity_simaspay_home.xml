@@ -214,6 +214,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/transferlay"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_margin="7dp"
@@ -385,6 +386,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
+                    android:id="@+id/layout_tariktunai"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_margin="7dp"
@@ -441,6 +443,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/layout_unused"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_margin="7dp"

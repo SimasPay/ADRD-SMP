@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -31,10 +32,10 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
  * 16
  */
 
-public class NewTransferHomeActivity extends AppCompatActivity implements OnItemClickListener {
-
+public class NewTransferHomeActivity extends AppCompatActivity{
+    private static final String LOG_TAG = "SimasPay";
     ListView listView;
-
+    String account="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,45 +48,57 @@ public class NewTransferHomeActivity extends AppCompatActivity implements OnItem
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
 
+        if(getIntent().getExtras()!=null){
+            account = getIntent().getStringExtra("usesas");
+            Log.d(LOG_TAG,"account type:" + account);
+        }
+
         listView = (ListView) findViewById(R.id.transfer_list);
-        listView.setOnItemClickListener(NewTransferHomeActivity.this);
         String[] transferString=getResources().getStringArray(R.array.transfer_array);
-        ArrayAdapter<String> listAdapter =
+        final ArrayAdapter<String> listAdapter =
                 new ArrayAdapter<String>(this, R.layout.textviewdata,R.id.textviewdata_text, transferString);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView teksview=(TextView)view.findViewById(R.id.textviewdata_text);
+                String text = teksview.getText().toString();
+                if(text.equals("Bank Sinarmas")){
+                    Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
+                    startActivity(intent);
+                }else if(text.equals("Bank Lainnya")){
+                    Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
+                    startActivity(intent);
+                }else if(text.equals("Laku Pandai")){
+                    Intent intent = new Intent(NewTransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
+                    startActivity(intent);
+                }else if(text.equals("Uangku")){
+                    Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
+                    startActivity(intent);
+                }else if(text.equals("E-money Lainnya")){
+                    if(account.equals("E-money Plus")||account.equals("E-Money Reguler")){
+                        Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
+                        startActivity(intent);
+                    }else{
+                        if(account.equals("E-money Plus")||account.equals("E-Money Reguler")){
+                            Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
+                            startActivity(intent);
+                        }else if(account.equals("Bank")){
+                            Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+                }
+            }
+        });
+
         LinearLayout backLin=(LinearLayout)findViewById(R.id.back_layout);
         backLin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewTransferHomeActivity.this, UserHomeActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
             }
         });
         listView.setAdapter(listAdapter);
-
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        //Toast.makeText(getApplicationContext(), ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
-        String teks=((TextView) view).getText().toString();
-        //Drawable myDrawable = getResources().getDrawable(R.drawable.right_arrow);
-        //((TextView) view).setCompoundDrawables(null, null, myDrawable, null);
-        if(teks.equals("Bank Sinarmas")){
-            Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
-            startActivity(intent);
-        }else if(teks.equals("Bank Lainnya")){
-            Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
-            startActivity(intent);
-        }else if(teks.equals("Laku Pandai")){
-            Intent intent = new Intent(NewTransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
-            startActivity(intent);
-        }else if(teks.equals("Uangku")){
-            Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
-            startActivity(intent);
-        }else if(teks.equals("E-Money Lainnya")){
-            Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyActivity.class);
-            startActivity(intent);
-        }
-    }
 }

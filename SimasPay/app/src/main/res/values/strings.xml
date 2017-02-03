@@ -293,5 +293,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_swipe_kanan">Swipe ke kanan untuk melihat saldo</string>
     <string name="id_full_name">Nama lengkap</string>
     <string name="id_email_address">email</string>
+    <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
+    <string name="id_transfer_emoneytoemoney">Transfer - e-Money ke e-Money</string>
+    <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke e-Money</string>
 
 </resources>

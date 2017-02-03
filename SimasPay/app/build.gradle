@@ -9,7 +9,7 @@ android {
         applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 11
         targetSdkVersion 25
-        versionCode 2
+        versionCode 4
         versionName "1.0.0"
 
     }

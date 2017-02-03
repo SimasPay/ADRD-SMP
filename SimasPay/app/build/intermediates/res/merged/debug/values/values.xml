@@ -906,11 +906,14 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_empty_mdn_input">Harap masukkan Nomor Handphone</string>
     <string name="id_full_name">Nama lengkap</string>
     <string name="id_kirim">Kirim</string>
+    <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
     <string name="id_phonenumber">Nomor handphone</string>
     <string name="id_setuju">Setuju</string>
     <string name="id_swipe_kanan">Swipe ke kanan untuk melihat saldo</string>
     <string name="id_tolak">Tolak</string>
     <string name="id_transfer">Transfer</string>
+    <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke e-Money</string>
+    <string name="id_transfer_emoneytoemoney">Transfer - e-Money ke e-Money</string>
     <string name="item_is_selected">%1$s selected</string>
     <string name="jumlah">Jumlah</string>
     <string name="jumlah_value">Rp 2.500.000</string>

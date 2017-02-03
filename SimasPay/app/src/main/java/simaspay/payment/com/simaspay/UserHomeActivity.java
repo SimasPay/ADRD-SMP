@@ -17,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -48,7 +49,8 @@ public class UserHomeActivity extends AppCompatActivity {
     private static String mdn, mpin, nama, label_home;
     String rsaKey;
     ProgressBar progbar;
-    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, logout;
+    String accountSelected="";
+    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, tariktunai, logout;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
 
     @Override
@@ -82,14 +84,57 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+
+        transfer=(ImageButton)findViewById(R.id.transfer_btn);
+        transfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
+                intent.putExtra("simaspayuser", false);
+                intent.putExtra("agentornot", false);
+                intent.putExtra("usesas", accountSelected);
+                startActivityForResult(intent, 20);
+            }
+        });
+
+        tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
+        tariktunai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TarikTunai
+            }
+        });
+
+        phone_lbl=(TextView)findViewById(R.id.mobilephone_lbl);
+
         if(label_home.equals("bank")){
             home_lbl.setText("Bank");
+            phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
             switch_account.setVisibility(View.GONE);
         }else if(label_home.equals("nonkyc")){
             home_lbl.setText("E-Money Reguler");
+            phone_lbl.setText(sharedPreferences.getString("mobileNumber",""));
             switch_account.setVisibility(View.GONE);
+            transfer.setEnabled(false);
+            tariktunai.setEnabled(false);
+            transfer.setAlpha((float) 0.2);
+            tariktunai.setAlpha((float) 0.2);
+            LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+            tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
+            LinearLayout transferlay = (LinearLayout)findViewById(R.id.transferlay);
+            tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
+            transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
         }else if(label_home.equals("both")){
-            home_lbl.setText("E-Money Plus");
+            if(getIntent().getExtras()!=null){
+                String account = getIntent().getStringExtra("useas");
+                accountSelected=account;
+                if(account.equals("Bank")){
+                    phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
+                }else{
+                    phone_lbl.setText(sharedPreferences.getString("mobileNumber",""));
+                }
+                home_lbl.setText(account);
+            }
             switch_account.setVisibility(View.VISIBLE);
         }
         Log.d("data", "mdn: "+mdn+", mpin: "+mpin);
@@ -110,16 +155,6 @@ public class UserHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(UserHomeActivity.this, Trans_DataSelectionActivity.class);
                 startActivity(intent);
-            }
-        });
-        transfer=(ImageButton)findViewById(R.id.transfer_btn);
-        transfer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
-                intent.putExtra("simaspayuser", false);
-                intent.putExtra("agentornot", false);
-                startActivityForResult(intent, 20);
             }
         });
 
@@ -160,8 +195,6 @@ public class UserHomeActivity extends AppCompatActivity {
         final View swipe_balance=(View)findViewById(R.id.swipe_balance);
         name_lbl=(TextView)findViewById(R.id.fullname_lbl);
         name_lbl.setText(nama);
-        phone_lbl=(TextView)findViewById(R.id.mobilephone_lbl);
-        phone_lbl.setText(mdn);
         checkbalance=(TextView)findViewById(R.id.check_balance_lbl);
         checkbalance.setVisibility(View.GONE);
         swipe_balance.setOnTouchListener(new OnSwipeTouchListener(UserHomeActivity.this) {
