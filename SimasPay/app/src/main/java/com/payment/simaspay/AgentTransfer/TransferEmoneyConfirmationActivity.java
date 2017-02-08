@@ -116,8 +116,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
         salah_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, TransferEmoneyActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
     }

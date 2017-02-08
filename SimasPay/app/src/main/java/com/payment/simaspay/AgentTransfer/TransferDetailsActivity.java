@@ -2,11 +2,13 @@ package com.payment.simaspay.AgentTransfer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -33,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 1/28/2016.
@@ -40,13 +43,12 @@ import simaspay.payment.com.simaspay.R;
 public class TransferDetailsActivity extends Activity {
 
 
-    TextView title, handphone, jumlah, mPin,Rp;
-
+    TextView title, handphone, jumlah, mPin, Rp;
+    private static final String LOG_TAG = "SimasPay";
     Button submit;
-
     EditText number, amount, pin;
-
     LinearLayout btnBacke;
+    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +61,13 @@ public class TransferDetailsActivity extends Activity {
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
 
-        sharedPreferences= getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
         title = (TextView) findViewById(R.id.titled);
         handphone = (TextView) findViewById(R.id.handphone);
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
-        Rp=(TextView) findViewById(R.id.Rp);
+        Rp = (TextView) findViewById(R.id.Rp);
 
         submit = (Button) findViewById(R.id.submit);
 
@@ -108,7 +110,7 @@ public class TransferDetailsActivity extends Activity {
                     Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
                     Utility.displayDialog("Harap masukkan mPIN Anda.", TransferDetailsActivity.this);
-                } else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
+                } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferDetailsActivity.this);
                 } else {
                     String module = sharedPreferences.getString("MODULE", "NONE");
@@ -122,10 +124,17 @@ public class TransferDetailsActivity extends Activity {
                     }
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
-                    new transferBankSinarmasAsynTask().execute();
+
+                    String account = sharedPreferences.getString("useas","");
+                    if(account.equals("Bank")){
+                        new transferBankSinarmasAsynTask().execute();
+                    }else{
+                        new inquiryEmoneyAsyncTask().execute();
+                    }
+
 
                 }
-                
+
             }
         });
 
@@ -135,8 +144,6 @@ public class TransferDetailsActivity extends Activity {
                 finish();
             }
         });
-
-
 
 
     }
@@ -156,7 +163,7 @@ public class TransferDetailsActivity extends Activity {
 
     SharedPreferences sharedPreferences;
 
-    String pinValue,mdn,amountValue;
+    String pinValue, mdn, amountValue;
 
     class transferBankSinarmasAsynTask extends AsyncTask<Void, Void, Void> {
 
@@ -175,30 +182,30 @@ public class TransferDetailsActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
             mapContainer.put(Constants.PARAMETER_DEST_BankAccount, mdn);
-            if(sharedPreferences.getInt("userType",-1)==0){
+            if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-            }else if(sharedPreferences.getInt("userType",-1)==1){
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-            }else if(sharedPreferences.getInt("userType",-1)==2) {
-                if(sharedPreferences.getInt("AgentUsing",-1)==1){
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
+                    mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-                }else{
+                } else {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
+                    mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
                 }
             }
-            mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION,Constants.TRANSACTION_MFA_TRANSACTION);
+            mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, TransferDetailsActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -244,16 +251,16 @@ public class TransferDetailsActivity extends Activity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    sharedPreferences.edit().putString("password",pinValue).commit();
+                    sharedPreferences.edit().putString("password", pinValue).commit();
                     Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
-                    intent.putExtra("amount",responseContainer.getEncryptedDebitAmount());
-                    intent.putExtra("charges",responseContainer.getEncryptedTransactionCharges());
-                    intent.putExtra("DestMDN",responseContainer.getAccountNumber());
-                    intent.putExtra("transferID",responseContainer.getEncryptedTransferId());
-                    intent.putExtra("ParentId",responseContainer.getEncryptedParentTxnId());
-                    intent.putExtra("sctlID",responseContainer.getSctl());
-                    intent.putExtra("Name",responseContainer.getCustName());
-                    intent.putExtra("mfaMode",responseContainer.getMfaMode());
+                    intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                    intent.putExtra("DestMDN", responseContainer.getAccountNumber());
+                    intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
+                    intent.putExtra("ParentId", responseContainer.getEncryptedParentTxnId());
+                    intent.putExtra("sctlID", responseContainer.getSctl());
+                    intent.putExtra("Name", responseContainer.getCustName());
+                    intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -278,6 +285,120 @@ public class TransferDetailsActivity extends Activity {
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), TransferDetailsActivity.this);
+            }
+        }
+    }
+
+    class inquiryEmoneyAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        String response;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put("txnName", "TransferInquiry");
+            mapContainer.put("service", "Wallet");
+            mapContainer.put("institutionID", "");
+            mapContainer.put("authenticationKey", "");
+            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put("sourcePIN", pinValue);
+            mapContainer.put("destMDN", "");
+            mapContainer.put("destBankAccount",mdn);
+            mapContainer.put("amount", amountValue);
+            mapContainer.put("channelID", "7");
+            mapContainer.put("bankID", "");
+            mapContainer.put("sourcePocketCode", "1");
+            mapContainer.put("destPocketCode", "2");
+
+            Log.e("-----", "" + mapContainer.toString());
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
+                    TransferDetailsActivity.this);
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(TransferDetailsActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            if (response != null) {
+                Log.e("-------", "=====" + response);
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseDataContainer = null;
+                try {
+                    responseDataContainer = obj.parse(response);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, e.toString());
+                }
+                try {
+                    if (responseDataContainer != null) {
+                        Log.d("test", "not null");
+                        if (responseDataContainer.getMsgCode().equals("72") || responseDataContainer.getMsgCode().equals("676")) {
+                            message = responseDataContainer.getMsg();
+                            Log.d(LOG_TAG, "message" + message);
+                            transactionTime = responseDataContainer.getTransactionTime();
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                            receiverAccountName = responseDataContainer.getKycName();
+                            Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
+                            destinationBank = responseDataContainer.getDestBank();
+                            Log.d(LOG_TAG, "destinationBank" + destinationBank);
+                            destinationName = responseDataContainer.getDestinationAccountName();
+                            Log.d(LOG_TAG, "destinationName" + destinationName);
+                            destinationAccountNumber = responseDataContainer.getDestinationAccountNumber();
+                            Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
+                            destinationMDN = responseDataContainer.getDestMDN();
+                            Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
+                            transferID = responseDataContainer.getEncryptedTransferId();
+                            Log.d(LOG_TAG, "transferID" + transferID);
+                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                            Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                            sctlID = responseDataContainer.getSctl();
+                            Log.d(LOG_TAG, "sctlID" + sctlID);
+                            mfaMode = responseDataContainer.getMfaMode();
+                            Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
+                                intent.putExtra("DestMDN", mdn);
+                                intent.putExtra("transferID", transferID);
+                                intent.putExtra("sctlID", sctlID);
+                                intent.putExtra("amount", amountValue);
+                                intent.putExtra("destname", receiverAccountName);
+                                intent.putExtra("mpin", pinValue);
+                                intent.putExtra("ParentId", parentTxnID);
+                                intent.putExtra("mfaMode", mfaMode);
+                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
+                                intent.putExtra("transferID", transferID);
+                                intent.putExtra("Name", receiverAccountName);
+                                startActivity(intent);
+                            } else {
+                                //tanpa OTP
+                            }
+                        } else {
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferDetailsActivity.this, UserHomeActivity.class);
+                                    startActivity(intent);
+                                    TransferDetailsActivity.this.finish();
+                                }
+                            });
+                            alertbox.show();
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "error: " + e.toString());
+                }
             }
         }
     }
