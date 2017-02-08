@@ -148,7 +148,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "TransferInquiry");
             mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "");
+            mapContainer.put("institutionID", "simaspay");
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", pinValue);
@@ -157,7 +157,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             mapContainer.put("amount", amountValue);
             mapContainer.put("channelID", "7");
             mapContainer.put("bankID", "");
-            mapContainer.put("sourcePocketCode", "2");
+            mapContainer.put("sourcePocketCode", "1");
             mapContainer.put("destPocketCode", "1");
 
             Log.e("-----",""+mapContainer.toString());
@@ -193,7 +193,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("72")){
+                        if(responseDataContainer.getMsgCode().equals("72")||responseDataContainer.getMsgCode().equals("676")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
@@ -217,7 +217,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                             mfaMode = responseDataContainer.getMfaMode();
                             Log.d(LOG_TAG, "mfaMode"+mfaMode);
                             if(mfaMode.toString().equalsIgnoreCase("OTP")){
-                                Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyConfirmationActivity.class);
+                                Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyToEmoneyConfirmationActivity.class);
                                 intent.putExtra("destmdn", destmdn);
                                 intent.putExtra("transferID", transferID);
                                 intent.putExtra("sctlID", sctlID);

@@ -36,6 +36,8 @@ public class NewTransferHomeActivity extends AppCompatActivity{
     private static final String LOG_TAG = "SimasPay";
     ListView listView;
     String account="";
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +50,9 @@ public class NewTransferHomeActivity extends AppCompatActivity{
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
 
-        if(getIntent().getExtras()!=null){
-            account = getIntent().getStringExtra("usesas");
-            Log.d(LOG_TAG,"account type:" + account);
-        }
-
+        sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        account=sharedPreferences.getString("useas","");
+        Log.d(LOG_TAG,"account as: " + account);
         listView = (ListView) findViewById(R.id.transfer_list);
         String[] transferString=getResources().getStringArray(R.array.transfer_array);
         final ArrayAdapter<String> listAdapter =
@@ -68,13 +68,15 @@ public class NewTransferHomeActivity extends AppCompatActivity{
                 }else if(text.equals("Bank Lainnya")){
                     Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
                     startActivity(intent);
+                    /**
                 }else if(text.equals("Laku Pandai")){
                     Intent intent = new Intent(NewTransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
                     startActivity(intent);
+                     **/
                 }else if(text.equals("Uangku")){
                     Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
                     startActivity(intent);
-                }else if(text.equals("E-money Lainnya")){
+                }else if(text.equals("E-money")){
                     if(account.equals("E-money Plus")||account.equals("E-Money Reguler")){
                         Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
                         startActivity(intent);

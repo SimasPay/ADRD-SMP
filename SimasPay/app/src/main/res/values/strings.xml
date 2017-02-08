@@ -10,9 +10,8 @@
     <string-array name="transfer_array">
         <item>Bank Sinarmas</item>
         <item>Bank Lainnya</item>
-        <item>Laku Pandai</item>
         <item>Uangku</item>
-        <item>E-money Lainnya</item>
+        <item>E-money</item>
     </string-array>
     <string name="en_full_name">Full name</string>
     <string name="en_email_address">Email address</string>
@@ -291,7 +290,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="nama_pemilik_rekening">Nama Pemilik Rekening</string>
     <string name="notice">*Nomor ini belum terdaftar sebagai e-money user. Kami akan mengirimkan SMS panduan download Simaspay E-money ke nomor tujuan.</string>
     <string name="transaction_id">ID Transaksi: 123958</string>
-    <string name="id_swipe_kanan">Swipe ke kanan untuk melihat saldo</string>
+    <string name="id_swipe_kanan">Slide ke kanan untuk melihat saldo</string>
     <string name="id_full_name">Nama lengkap</string>
     <string name="id_email_address">email</string>
     <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
