@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 1/28/2016.
@@ -85,9 +86,12 @@ public class TranaferSuccessActivity extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(10, intent);
-                finish();
+                //Intent intent = getIntent();
+                //setResult(10, intent);
+                //finish();
+                Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 

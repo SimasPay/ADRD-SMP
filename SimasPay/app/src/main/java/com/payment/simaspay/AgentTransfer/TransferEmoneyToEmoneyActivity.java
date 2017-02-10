@@ -235,9 +235,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferEmoneyToEmoneyActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();

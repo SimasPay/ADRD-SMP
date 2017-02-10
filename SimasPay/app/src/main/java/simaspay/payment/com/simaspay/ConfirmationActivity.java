@@ -44,7 +44,7 @@ import java.util.Map;
  */
 
 public class ConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
-    String stFullname, stEmail, stMPIN, stConfMPIN, stQuestion, stAnswer, stMDN;
+    String stFullname, stEmail, stMPIN, stConfMPIN, stQuestion, stAnswer, sourceMDN;
     TextView lbl_name, lbl_email, lbl_mdn;
     Button benar_btn, salah_btn;
     private AlertDialog.Builder alertbox;
@@ -82,14 +82,14 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         if (extras != null) {
             stFullname = (String) extras.get("fullname");
             stEmail = (String) extras.get("email");
-            stMDN = (String) extras.get("mdn");
+            sourceMDN = (String) extras.get("mdn");
             stMPIN = (String) extras.get("mpin");
             stConfMPIN = (String) extras.get("mpin2");
             stQuestion = (String) extras.get("question");
             stAnswer=(String) extras.get("answer");
             lbl_name.setText(stFullname);
             lbl_email.setText(stEmail);
-            lbl_mdn.setText(stMDN);
+            lbl_mdn.setText(sourceMDN);
         }
         benar_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +127,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             mapContainer.put("txnName",
                     "GenerateOTP");
             mapContainer.put("sourceMDN",
-                    stMDN);
+                    sourceMDN);
             mapContainer.put("channelID",
                     "7");
             Log.e("-----",""+mapContainer.toString());
@@ -215,7 +215,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             mapContainer.put("txnName", "SubscriberRegistration");
             mapContainer.put("institutionID", "simaspay");
             mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", stMDN);
+            mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("subFirstName", stFullname);
             mapContainer.put("channelID", "7");
             mapContainer.put("email", stEmail);
@@ -312,7 +312,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+stMDN+"</b>") + "\n");
+        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

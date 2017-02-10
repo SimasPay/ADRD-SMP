@@ -81,7 +81,9 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             StrictMode.setThreadPolicy(policy);
         }
         context=TransferEmoneyConfirmationActivity.this;
+
         IncomingSMS.setListener(TransferEmoneyConfirmationActivity.this);
+
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN = settings.getString("mobileNumber","");
 
@@ -146,7 +148,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+stMDN+"</b>") + "\n");
+        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -254,9 +256,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            finish();
                         }
                     });
         } else {
@@ -267,9 +267,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            finish();
                         }
                     });
         }

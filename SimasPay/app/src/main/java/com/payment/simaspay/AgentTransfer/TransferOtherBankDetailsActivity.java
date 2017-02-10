@@ -2,11 +2,13 @@ package com.payment.simaspay.AgentTransfer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 2/3/2016.
@@ -41,6 +44,8 @@ public class TransferOtherBankDetailsActivity extends Activity {
     Button submit;
     EditText number, amount, pin, bankName_editfield;
     LinearLayout btnBacke;
+    private static final String LOG_TAG = "SimasPay";
+    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,8 +132,13 @@ public class TransferOtherBankDetailsActivity extends Activity {
 //                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
-                    new transferOtherBankAsynTask().execute();
 
+                    String account = sharedPreferences.getString("useas","");
+                    if(account.equals("Bank")){
+                        new transferOtherBankAsynTask().execute();
+                    }else{
+                        new inquiryOtherBankEmoneyAsyncTask().execute();
+                    }
                 }
 
             }
@@ -289,6 +299,121 @@ public class TransferOtherBankDetailsActivity extends Activity {
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), TransferOtherBankDetailsActivity.this);
+            }
+        }
+    }
+
+    class inquiryOtherBankEmoneyAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        String response;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put("txnName", "InterBankTransferInquiry");
+            mapContainer.put("service", "Wallet");
+            mapContainer.put("institutionID", "simaspay");
+            //mapContainer.put("authenticationKey", "");
+            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put("sourcePIN", pinValue);
+            mapContainer.put("destAccountNo", mdn);
+            mapContainer.put("destBankCode", getIntent().getExtras().getString("BankCode"));
+            //mapContainer.put("destBankAccount",mdn);
+            mapContainer.put("amount", amountValue);
+            mapContainer.put("channelID", "7");
+            //mapContainer.put("bankID", "");
+            mapContainer.put("sourcePocketCode", "1");
+
+            Log.e("-----", "" + mapContainer.toString());
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
+                    TransferOtherBankDetailsActivity.this);
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(TransferOtherBankDetailsActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            if (response != null) {
+                Log.e("-------", "=====" + response);
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseDataContainer = null;
+                try {
+                    responseDataContainer = obj.parse(response);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, e.toString());
+                }
+                try {
+                    if (responseDataContainer != null) {
+                        Log.d("test", "not null");
+                        if (responseDataContainer.getMsgCode().equals("72") || responseDataContainer.getMsgCode().equals("676")) {
+                            message = responseDataContainer.getMsg();
+                            Log.d(LOG_TAG, "message" + message);
+                            transactionTime = responseDataContainer.getTransactionTime();
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                            receiverAccountName = responseDataContainer.getCustName();
+                            Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
+                            destinationBank = responseDataContainer.getDestBank();
+                            Log.d(LOG_TAG, "destinationBank" + destinationBank);
+                            destinationName = responseDataContainer.getCustName();
+                            Log.d(LOG_TAG, "destinationName" + destinationName);
+                            destinationAccountNumber = responseDataContainer.getAccountNumber();
+                            Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
+                            //destinationMDN = responseDataContainer.getDestMDN();
+                            //Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
+                            transferID = responseDataContainer.getEncryptedTransferId();
+                            Log.d(LOG_TAG, "transferID" + transferID);
+                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                            Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                            sctlID = responseDataContainer.getSctl();
+                            Log.d(LOG_TAG, "sctlID" + sctlID);
+                            mfaMode = responseDataContainer.getMfaMode();
+                            Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                Intent intent = new Intent(TransferOtherBankDetailsActivity.this, TransferOtherbankConfirmationActivity.class);
+                                intent.putExtra("DestMDN", mdn);
+                                intent.putExtra("transferID", transferID);
+                                intent.putExtra("sctlID", sctlID);
+                                intent.putExtra("destname", receiverAccountName);
+                                intent.putExtra("mpin", pinValue);
+                                intent.putExtra("ParentId", parentTxnID);
+                                intent.putExtra("mfaMode", mfaMode);
+                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
+                                intent.putExtra("Name", receiverAccountName);
+                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
+                                intent.putExtra("amount", responseDataContainer.getEncryptedDebitAmount());
+                                intent.putExtra("originalamount", responseDataContainer.getAmount());
+                                intent.putExtra("BankName", responseDataContainer.getDestBank());
+                                intent.putExtra("BankCode", getIntent().getExtras().getString("BankCode"));
+                                startActivity(intent);
+                            } else {
+                                //tanpa OTP
+                            }
+                        } else {
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                }
+                            });
+                            alertbox.show();
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "error: " + e.toString());
+                }
             }
         }
     }

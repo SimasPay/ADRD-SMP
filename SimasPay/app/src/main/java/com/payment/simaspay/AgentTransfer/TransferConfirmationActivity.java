@@ -48,9 +48,6 @@ import java.util.Map;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 1/28/2016.
- */
 public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, product_field;
@@ -85,6 +82,8 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
+
+        IncomingSMS.setListener(TransferConfirmationActivity.this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -199,14 +198,14 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         //handlerforTimer.removeCallbacks(runnableforExit);
                         //TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
                         //timerCount.SMSAlert("");
-                        showOTPRequiredDialog();
+                        new requestOTPAsyncTask().execute();
                     }
                 } else {
 //                    if (Timervalueout) {
 //                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
 //                    }else{
                     //handlerforTimer.removeCallbacks(runnableforExit);
-                    new InterBankBankSinarmasAsynTask().execute();
+                    //new InterBankBankSinarmasAsynTask().execute();
 //                    }
                 }
             }
@@ -310,7 +309,12 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     if(otpValue==null){
                         otpValue=edt.getText().toString();
                     }
-                    new InterBankBankSinarmasAsynTask().execute();
+                    String account = sharedPreferences.getString("useas","");
+                    if(account.equals("Bank")) {
+                        new InterBankBankSinarmasAsynTask().execute();
+                    }else{
+                        new TransferemoneyConfirmationAsyncTask().execute();
+                    }
                 }
             }
         });
@@ -370,9 +374,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            dialog.dismiss();
                         }
                     });
         } else {
@@ -383,9 +385,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            dialog.dismiss();
                         }
                     });
         }

@@ -38,6 +38,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import simaspay.payment.com.simaspay.ConfirmationActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
@@ -72,7 +73,9 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             StrictMode.setThreadPolicy(policy);
         }
         context=TransferEmoneyToEmoneyConfirmationActivity.this;
+
         IncomingSMS.setListener(TransferEmoneyToEmoneyConfirmationActivity.this);
+
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN = settings.getString("mobileNumber","");
 
@@ -147,7 +150,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+stMDN+"</b>") + "\n");
+        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -255,9 +258,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            finish();
                         }
                     });
         } else {
@@ -268,9 +269,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            finish();
                         }
                     });
         }

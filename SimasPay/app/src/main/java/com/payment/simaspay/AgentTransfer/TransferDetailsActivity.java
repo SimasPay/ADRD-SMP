@@ -388,9 +388,7 @@ public class TransferDetailsActivity extends Activity {
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferDetailsActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferDetailsActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();

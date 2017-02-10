@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 2/3/2016.
@@ -101,9 +102,12 @@ public class TransferOtherBankSuccessActivity extends Activity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
-                finish();
+                //Intent intent = getIntent();
+                //setResult(RESULT_OK, intent);
+                //finish();
+                Intent i = new Intent(TransferOtherBankSuccessActivity.this, UserHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 

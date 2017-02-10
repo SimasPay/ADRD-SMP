@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,25 +41,17 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/30/2016.
  */
-public class BankDetailsActivity extends Activity {
+public class BankDetailsActivity extends AppCompatActivity {
 
     TextView title;
-
     EditText search;
-
     ListView bankList;
-
     LinearLayout backlayLayout;
-
     BanksAdapter banksAdapter;
-
     ArrayList<BanksData> arrayList = new ArrayList<>();
-
-
     ArrayList<BanksData> filteredList = new ArrayList<>();
-
-
     SharedPreferences sharedPreferences;
+    private static final String LOG_TAG = "SimasPay";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,25 +98,19 @@ public class BankDetailsActivity extends Activity {
         });
 
         new BanksListAsyn().execute();
-
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-
         backlayLayout = (LinearLayout) findViewById(R.id.back_layout);
-
         backlayLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
         title.setTypeface(Utility.Robot_Regular(BankDetailsActivity.this));
-
 
         bankList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent intent = new Intent(BankDetailsActivity.this, TransferOtherBankDetailsActivity.class);
                 intent.putExtra("BankCode", arrayList.get(i).getBankId());
                 intent.putExtra("BankName", arrayList.get(i).getBankName());
@@ -155,7 +142,6 @@ public class BankDetailsActivity extends Activity {
         public View getView(int i, View view, ViewGroup viewGroup) {
             View view1 = LayoutInflater.from(BankDetailsActivity.this).inflate(R.layout.textviewdata, null);
             TextView textView = (TextView) view1.findViewById(R.id.textviewdata_text);
-
             textView.setText(arrayList.get(i).getBankName());
             textView.setTypeface(Utility.Robot_Regular(BankDetailsActivity.this));
             return view1;
