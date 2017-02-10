@@ -22,6 +22,7 @@ import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -193,7 +194,14 @@ public class TransferEmoneyActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("72")){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            Intent intent = new Intent(TransferEmoneyActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        } else if(responseDataContainer.getMsgCode().equals("72")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();

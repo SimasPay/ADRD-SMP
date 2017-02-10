@@ -30,6 +30,8 @@ import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -255,10 +257,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            finish();
+                            dialog.dismiss();
                         }
                     });
         } else {
@@ -266,10 +265,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            finish();
+                            dialog.dismiss();
                         }
                     });
         }
@@ -365,12 +361,26 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             msgCode = 0;
                         }
 
-                        if(msgCode==293||msgCode==678){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else if(msgCode==293||msgCode==678){
                             Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferEmoneyToEmoneyConfirmationActivity.this.finish();
                         }else{
@@ -378,9 +388,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferEmoneyToEmoneyConfirmationActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();
@@ -458,9 +466,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferEmoneyToEmoneyConfirmationActivity.this.finish();
+                                   arg0.dismiss();
                                 }
                             });
                             alertbox.show();

@@ -296,5 +296,9 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
     <string name="id_transfer_emoneytoemoney">Transfer - e-Money ke e-Money</string>
     <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke e-Money</string>
+    <string name="tarik_tunai_untuk_saya">Tarik Tunai - Untuk Saya</string>
+    <string name="id_bank_tujuan">Bank Tujuan</string>
+    <string name="id_transfer_bank_lain">Transfer - Bank Lain</string>
+    <string name="id_nomor_handphone">Nomor Handphone</string>
 
 </resources>

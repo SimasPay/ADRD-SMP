@@ -39,12 +39,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -556,7 +558,20 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("2171")){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
@@ -847,7 +862,20 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             msgCode = 0;
                         }
 
-                        if(msgCode==81){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else if(msgCode==81){
                             /**
                             Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
@@ -865,6 +893,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             intent.putExtra("Name",getIntent().getExtras().getString("Name"));
                             intent.putExtra("BankName",getIntent().getExtras().getString("BankName"));
                             intent.putExtra("BankCode",getIntent().getExtras().getString("BankCode"));
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                             TransferOtherbankConfirmationActivity.this.finish();
                         }else{

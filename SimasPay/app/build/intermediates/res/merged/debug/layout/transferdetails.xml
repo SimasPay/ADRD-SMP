@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Transfer - Bank Sinarmas"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nomor Rekening Tujuan"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/number"
@@ -66,11 +66,13 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="14"
                 android:inputType="number"
                 android:digits="1234567890"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/jumlah"
@@ -112,9 +114,11 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
+                    android:maxLines="1"
+                    android:maxLength="18"
                     android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

@@ -54,9 +54,9 @@
                 android:id="@+id/handphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomor Handphone"
+                android:text="@string/id_nomor_handphone"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/number"
@@ -68,18 +68,20 @@
                 android:inputType="number"
                 android:digits="1234567890"
                 android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="14"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/jumlah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jumlah"
+                android:text="@string/jumlah"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:id="@+id/setortunailayout"
@@ -96,9 +98,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:gravity="center_vertical"
-                    android:text="Rp."
+                    android:text="@string/rp"
                     android:textColor="@android:color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
 
                 <EditText
@@ -114,8 +116,10 @@
                     android:paddingRight="10dp"
                     android:singleLine="true"
                     android:text=""
+                    android:maxLines="1"
+                    android:maxLength="18"
                     android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -123,10 +127,10 @@
                 android:id="@+id/mPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mPIN"
+                android:text="@string/mpin"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/pin"
@@ -137,11 +141,13 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:password="true"
+                android:maxLines="1"
+                android:maxLength="20"
                 android:inputType="number"
                 android:digits="1234567890"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/submit"

@@ -70,8 +70,10 @@
                 android:paddingRight="10dp"
                 android:singleLine="true"
                 android:text=""
+                android:maxLines="1"
+                android:maxLength="14"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/jumlah"
@@ -113,6 +115,8 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
+                    android:maxLines="1"
+                    android:maxLength="18"
                     android:text=""
                     android:textColor="@android:color/black"
                     android:textSize="16dp" />

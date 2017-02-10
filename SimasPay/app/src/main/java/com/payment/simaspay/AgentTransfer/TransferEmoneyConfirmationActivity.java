@@ -34,6 +34,8 @@ import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -363,12 +365,26 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             msgCode = 0;
                         }
 
-                        if(msgCode==81){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else if(msgCode==81){
                             Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferEmoneyConfirmationActivity.this.finish();
                         }else{
@@ -376,9 +392,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferEmoneyConfirmationActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();
@@ -456,9 +470,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferEmoneyConfirmationActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();

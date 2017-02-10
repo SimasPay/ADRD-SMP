@@ -2,6 +2,7 @@ package com.payment.simaspay.Cash_InOut;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -68,12 +69,24 @@ public class CashoutSuccessActivity extends Activity {
         transferID.setTypeface(Utility.Robot_Light(CashoutSuccessActivity.this));
         ok.setTypeface(Utility.Robot_Regular(CashoutSuccessActivity.this));
 
-        name.setText("Nama Agen");
-        number.setText("Nomor Handphone Agen");
-        amount.setText("Jumlah");
-        name_field.setText(getIntent().getExtras().getString("Name"));
-        number_field.setText(getIntent().getExtras().getString("DestMDN"));
-        amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        SharedPreferences sharedPreferences= getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        String account = sharedPreferences.getString("useas","");
+        if(account.equals("Bank")) {
+            name.setText("Nama Agen");
+            number.setText("Nomor Handphone Agen");
+            amount.setText("Jumlah");
+            name_field.setText(getIntent().getExtras().getString("Name"));
+            number_field.setText(getIntent().getExtras().getString("DestMDN"));
+            amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        }else{
+            name.setVisibility(View.GONE);
+            number.setText("Jenis Transaksi");
+            amount.setText("Jumlah");
+            //name_field.setText(getIntent().getExtras().getString("Name"));
+            number_field.setText("Tarik Tunai - Untuk Saya");
+            amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        }
+
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));

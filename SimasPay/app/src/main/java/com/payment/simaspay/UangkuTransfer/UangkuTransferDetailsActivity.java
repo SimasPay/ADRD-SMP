@@ -2,11 +2,13 @@ package com.payment.simaspay.UangkuTransfer;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
+import com.payment.simaspay.AgentTransfer.TransferDetailsActivity;
 import com.payment.simaspay.lakupandai.LakuPandaiTransferConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -42,6 +46,10 @@ public class UangkuTransferDetailsActivity extends Activity {
     SharedPreferences sharedPreferences;
     ProgressDialog progressDialog;
     String pinValue, amountValue, mdn;
+    private static final String LOG_TAG = "SimasPay";
+    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
+    String response;
+    int msgCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +129,12 @@ public class UangkuTransferDetailsActivity extends Activity {
                     }
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
-                    new UangkuTransferAsynTask().execute();
+                    String account = sharedPreferences.getString("useas","");
+                    if(account.equals("Bank")){
+                        new UangkuTransferAsynTask().execute();
+                    }else{
+                        new inquiryEmoneyUangkuAsyncTask().execute();
+                    }
                 }
             }
         });
@@ -133,8 +146,7 @@ public class UangkuTransferDetailsActivity extends Activity {
             }
         });
     }
-String response;
-int msgCode;
+
     class UangkuTransferAsynTask extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... params) {
@@ -257,6 +269,121 @@ int msgCode;
         if (requestCode == 10) {
             if (resultCode == 10) {
                 finish();
+            }
+        }
+    }
+
+    class inquiryEmoneyUangkuAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        String response;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put("txnName", "TransferToUangkuInquiry");
+            mapContainer.put("service", "Wallet");
+            mapContainer.put("institutionID", "");
+            mapContainer.put("authenticationKey", "");
+            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put("sourcePIN", pinValue);
+            mapContainer.put("destAccountNo", mdn);
+            mapContainer.put("amount", amountValue);
+            mapContainer.put("channelID", "7");
+            //mapContainer.put("bankID", "");
+            mapContainer.put("sourcePocketCode", "1");
+
+            Log.e("-----", "" + mapContainer.toString());
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
+                    UangkuTransferDetailsActivity.this);
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(UangkuTransferDetailsActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            if (response != null) {
+                Log.e("-------", "=====" + response);
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseDataContainer = null;
+                try {
+                    responseDataContainer = obj.parse(response);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, e.toString());
+                }
+                try {
+                    if (responseDataContainer != null) {
+                        Log.d("test", "not null");
+                        if (responseDataContainer.getMsgCode().equals("72")) {
+                            message = responseDataContainer.getMsg();
+                            Log.d(LOG_TAG, "message" + message);
+                            transactionTime = responseDataContainer.getTransactionTime();
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                            //receiverAccountName = responseDataContainer.getCustName();
+                            //Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
+                            destinationBank = responseDataContainer.getDestBank();
+                            Log.d(LOG_TAG, "destinationBank" + destinationBank);
+                            destinationName = responseDataContainer.getCustName();
+                            Log.d(LOG_TAG, "destinationName" + destinationName);
+                            destinationAccountNumber = responseDataContainer.getAccountNumber();
+                            Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
+                            //destinationMDN = responseDataContainer.getDestMDN();
+                            //Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
+                            transferID = responseDataContainer.getEncryptedTransferId();
+                            Log.d(LOG_TAG, "transferID" + transferID);
+                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                            Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                            sctlID = responseDataContainer.getSctl();
+                            Log.d(LOG_TAG, "sctlID" + sctlID);
+                            mfaMode = responseDataContainer.getMfaMode();
+                            amountValue = responseDataContainer.getEncryptedDebitAmount();
+                            Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                Intent intent = new Intent(UangkuTransferDetailsActivity.this, UangkuTransferConfirmationActivity.class);
+                                //intent.putExtra("DestMDN", mdn);
+                                intent.putExtra("transferID", transferID);
+                                intent.putExtra("sctlID", sctlID);
+                                intent.putExtra("amount", amountValue);
+                                intent.putExtra("destname", receiverAccountName);
+                                intent.putExtra("mpin", pinValue);
+                                intent.putExtra("ParentId", parentTxnID);
+                                intent.putExtra("mfaMode", mfaMode);
+                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
+                                intent.putExtra("transferID", transferID);
+                                intent.putExtra("Acc_Number",destinationAccountNumber);
+                                intent.putExtra("bank",destinationBank);
+                                intent.putExtra("Name", destinationName);
+                                startActivity(intent);
+
+                                startActivityForResult(intent, 10);
+                            } else {
+                                //tanpa OTP
+                            }
+                        } else {
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                }
+                            });
+                            alertbox.show();
+                        }
+                    }
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "error: " + e.toString());
+                }
             }
         }
     }

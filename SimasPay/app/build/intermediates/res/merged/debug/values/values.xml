@@ -900,6 +900,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="gantimpin">Ganti mPIN</string>
     <string name="helpScreenTitle">Hubungi</string>
     <string name="hour_picker_description">Hours circular slider</string>
+    <string name="id_bank_tujuan">Bank Tujuan</string>
     <string name="id_batal">Batal</string>
     <string name="id_confirmation_mpin">Konfirmasi mPIN</string>
     <string name="id_email_address">email</string>
@@ -907,12 +908,14 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_full_name">Nama lengkap</string>
     <string name="id_invalid_mdn_input">Nomor handphone anda tidak valid</string>
     <string name="id_kirim">Kirim</string>
+    <string name="id_nomor_handphone">Nomor Handphone</string>
     <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
     <string name="id_phonenumber">Nomor handphone</string>
     <string name="id_setuju">Setuju</string>
     <string name="id_swipe_kanan">Slide ke kanan untuk melihat saldo</string>
     <string name="id_tolak">Tolak</string>
     <string name="id_transfer">Transfer</string>
+    <string name="id_transfer_bank_lain">Transfer - Bank Lain</string>
     <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke e-Money</string>
     <string name="id_transfer_emoneytoemoney">Transfer - e-Money ke e-Money</string>
     <string name="item_is_selected">%1$s selected</string>
@@ -977,6 +980,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="shared_prefvalue">SimasPay</string>
     <string name="source_packet_code">1</string>
     <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="tarik_tunai_untuk_saya">Tarik Tunai - Untuk Saya</string>
     <string name="tariktunai">Tarik Tunai</string>
     <string name="text_EULA_title">SYARAT &amp; KETENTUAN</string>
     <string name="text_camera">Kamera</string>

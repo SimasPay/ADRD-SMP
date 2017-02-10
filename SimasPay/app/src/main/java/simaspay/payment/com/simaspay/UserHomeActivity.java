@@ -3,6 +3,7 @@ package simaspay.payment.com.simaspay;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
+import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
@@ -81,14 +83,6 @@ public class UserHomeActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 sharedPreferences.edit().putString("userApiKey", "NONE").apply();
                 startActivity(intent);
-            }
-        });
-
-        tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
-        tariktunai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TarikTunai
             }
         });
 
@@ -180,6 +174,18 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
+                intent.putExtra("simaspayuser", false);
+                intent.putExtra("agentornot", false);
+                sharedPreferences.edit().putString("useas", accountSelected).apply();
+                startActivityForResult(intent, 20);
+            }
+        });
+
+        tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
+        tariktunai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserHomeActivity.this, CashOutDetailsActivity.class);
                 intent.putExtra("simaspayuser", false);
                 intent.putExtra("agentornot", false);
                 sharedPreferences.edit().putString("useas", accountSelected).apply();

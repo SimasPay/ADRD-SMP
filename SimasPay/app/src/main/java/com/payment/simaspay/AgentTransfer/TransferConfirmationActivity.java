@@ -32,11 +32,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -45,6 +47,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import simaspay.payment.com.simaspay.InputNumberScreenActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
@@ -208,6 +211,13 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     //new InterBankBankSinarmasAsynTask().execute();
 //                    }
                 }
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -504,22 +514,41 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             msgCode = 0;
                         }
 
-                        if(msgCode==703){
+                        if (msgCode == 631) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
+                        }else if(msgCode==703){
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
                             Intent intent = new Intent(TransferConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            TransferConfirmationActivity.this.finish();
+                            finish();
                         }else{
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
                             alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferConfirmationActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();
@@ -597,9 +626,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferConfirmationActivity.this.finish();
+                                    arg0.dismiss();
                                 }
                             });
                             alertbox.show();
