@@ -461,6 +461,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
