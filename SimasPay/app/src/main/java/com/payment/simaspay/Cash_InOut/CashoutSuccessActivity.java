@@ -54,7 +54,7 @@ public class CashoutSuccessActivity extends Activity {
 
         ok = (Button) findViewById(R.id.ok);
 
-        transferID.setText(getIntent().getExtras().getString("sctlID"));
+        transferID.setText(getIntent().getExtras().getString("transferID"));
 
         title.setTypeface(Utility.Robot_Regular(CashoutSuccessActivity.this));
         heading.setTypeface(Utility.Robot_Regular(CashoutSuccessActivity.this));
@@ -79,7 +79,18 @@ public class CashoutSuccessActivity extends Activity {
             number_field.setText(getIntent().getExtras().getString("DestMDN"));
             amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
         }else{
-            name.setVisibility(View.GONE);
+            String untuk = getIntent().getExtras().getString("untuk");
+            if(untuk.equals("Untuk Saya")){
+                name.setVisibility(View.GONE);
+                number.setVisibility(View.GONE);
+                name_field.setVisibility(View.GONE);
+                number_field.setVisibility(View.GONE);
+            }else if(untuk.equals("Untuk Orang Lain")){
+                name.setVisibility(View.GONE);
+                number.setVisibility(View.VISIBLE);
+                name_field.setVisibility(View.GONE);
+                number_field.setVisibility(View.VISIBLE);
+            }
             number.setText("Jenis Transaksi");
             amount.setText("Jumlah");
             //name_field.setText(getIntent().getExtras().getString("Name"));

@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.TransferEmoneyActivity;
 import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
+import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -67,13 +68,20 @@ public class CashOutDetailsActivity extends Activity {
         handphone = (TextView) findViewById(R.id.handphone);
         number = (EditText) findViewById(R.id.number);
 
+        String untuk = getIntent().getExtras().getString("untuk");
+        title.setText("Tarik Tunai - "+untuk);
         String account = sharedPreferences.getString("useas", "");
         if (account.equals("Bank")) {
             handphone.setVisibility(View.VISIBLE);
             number.setVisibility(View.VISIBLE);
         } else {
-            handphone.setVisibility(View.GONE);
-            number.setVisibility(View.GONE);
+            if(untuk.equals("Untuk Saya")){
+                handphone.setVisibility(View.GONE);
+                number.setVisibility(View.GONE);
+            }else if(untuk.equals("Untuk Orang Lain")){
+                handphone.setVisibility(View.VISIBLE);
+                number.setVisibility(View.VISIBLE);
+            }
         }
 
         jumlah = (TextView) findViewById(R.id.jumlah);
@@ -98,8 +106,8 @@ public class CashOutDetailsActivity extends Activity {
         pin.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
         Rp.setTypeface(Utility.Robot_Light(CashOutDetailsActivity.this));
 
-        title.setText("Tarik Tunai - Untuk Saya");
-        handphone.setText("Nomor Handphone Agen");
+
+        handphone.setText("Nomor Handphone");
 
         InputFilter[] FilterArray1 = new InputFilter[1];
         FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
@@ -137,26 +145,57 @@ public class CashOutDetailsActivity extends Activity {
                         new CashOutAsynTask().execute();
                     }
                 } else {
-                    if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                        Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
-                    } else if (pin.getText().toString().length() <= 0) {
-                        Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
-                    } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                        Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
-                    } else {
-                        String module = sharedPreferences.getString("MODULE", "NONE");
-                        String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+                    String untuk = getIntent().getExtras().getString("untuk");
+                    if(untuk.equals("Untuk Saya")){
+                        if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
+                        } else if (pin.getText().toString().length() <= 0) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
+                        } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
+                        } else {
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
-                        try {
-                            pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                    pin.getText().toString().getBytes());
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
+                            try {
+                                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            mdn = sharedPreferences.getString("mobileNumber","");
+                            amountValue = amount.getText().toString().replace("Rp ", "");
+                            new inquiryCashOutAsyncTask().execute();
                         }
-                        mdn = (number.getText().toString().replace(" ", ""));
-                        amountValue = amount.getText().toString().replace("Rp ", "");
-                        new inquiryCashOutAsyncTask().execute();
+                    }else if(untuk.equals("Untuk Orang Lain")){
+                        if (number.getText().toString().replace(" ", "").length() <= 0) {
+                            Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
+                        } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                            Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                        } else if (number.getText().toString().replace(" ", "").length() > 14) {
+                            Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                        } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
+                        } else if (pin.getText().toString().length() <= 0) {
+                            Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
+                        } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
+                        } else {
+                            String module = sharedPreferences.getString("MODULE", "NONE");
+                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                            try {
+                                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                        pin.getText().toString().getBytes());
+                            } catch (Exception e1) {
+                                e1.printStackTrace();
+                            }
+                            mdn = (number.getText().toString().replace(" ", ""));
+                            amountValue = amount.getText().toString().replace("Rp ", "");
+                            new inquiryCashOutAsyncTask().execute();
+                        }
                     }
+
                 }
 
 
@@ -348,9 +387,16 @@ public class CashOutDetailsActivity extends Activity {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
                         } else if (responseDataContainer.getMsgCode().equals("708")) {
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message" + message);
@@ -378,6 +424,7 @@ public class CashOutDetailsActivity extends Activity {
                                 intent.putExtra("sctlID", responseDataContainer.getSctl());
                                 intent.putExtra("Name", responseDataContainer.getName());
                                 intent.putExtra("mfaMode", responseDataContainer.getMfaMode());
+                                intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
                                 startActivityForResult(intent, 10);
                             } else {
                                 //tanpa OTP

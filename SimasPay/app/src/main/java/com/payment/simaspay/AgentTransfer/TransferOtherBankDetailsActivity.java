@@ -48,6 +48,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
     LinearLayout btnBacke;
     private static final String LOG_TAG = "SimasPay";
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
+    private AlertDialog.Builder alertbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,8 +259,16 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(TransferOtherBankDetailsActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(TransferOtherBankDetailsActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivityForResult(intent, 40);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 72) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -357,15 +366,28 @@ public class TransferOtherBankDetailsActivity extends Activity {
                     Log.e(LOG_TAG, e.toString());
                 }
                 try {
+                    msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
+                } catch (Exception e) {
+                    msgCode = 0;
+                }
+                try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            Intent intent = new Intent(TransferOtherBankDetailsActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferOtherBankDetailsActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
                         } else if (responseDataContainer.getMsgCode().equals("72") || responseDataContainer.getMsgCode().equals("676")) {
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message" + message);

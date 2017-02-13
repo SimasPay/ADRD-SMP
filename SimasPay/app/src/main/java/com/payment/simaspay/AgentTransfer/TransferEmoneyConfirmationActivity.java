@@ -378,6 +378,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(msgCode==81){
                             Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
@@ -408,6 +409,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
     class requestOTPAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
+        int msgCode;
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -452,9 +454,29 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                     Log.e(LOG_TAG, e.toString());
                 }
                 try {
+                    msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
+                } catch (Exception e) {
+                    msgCode = 0;
+                }
+                try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("2171")){
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
+                        } else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();

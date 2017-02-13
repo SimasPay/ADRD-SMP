@@ -150,12 +150,18 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             number_field.setText(getIntent().getExtras().getString("DestMDN"));
             amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
         }else{
-            name.setVisibility(View.GONE);
-            name_field.setVisibility(View.GONE);
+            String untuk = getIntent().getExtras().getString("untuk");
+            if(untuk.equals("Untuk Saya")){
+                name.setVisibility(View.GONE);
+                name_field.setVisibility(View.GONE);
+            }else if(untuk.equals("Untuk Orang Lain")){
+                name.setVisibility(View.VISIBLE);
+                name_field.setVisibility(View.VISIBLE);
+            }
             number.setText("Jenis Transaksi");
             amount.setText("Jumlah");
             //name_field.setText(getIntent().getExtras().getString("Name"));
-            number_field.setText("Tarik Tunai - Untuk Saya");
+            number_field.setText("Tarik Tunai - "+untuk);
             amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
         }
 
@@ -275,8 +281,16 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(CashOutConfirmationActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 298) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -287,6 +301,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -406,13 +421,15 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(msgCode==709){
-                            Intent intent = new Intent(CashOutConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
+                            Intent intent = new Intent(CashOutConfirmationActivity.this, CashoutSuccessActivity.class);
                             intent.putExtra("amount", getIntent().getExtras().getString("amount"));
                             intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
-                            intent.putExtra("transferID", responseDataContainer.getEncryptedTransferId());
-                            intent.putExtra("sctlID", responseDataContainer.getSctl());
+                            intent.putExtra("transferID", getIntent().getExtras().getString("transferID"));
+                            intent.putExtra("sctlID", getIntent().getExtras().getString("sctlID"));
                             intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                            intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                         }else{

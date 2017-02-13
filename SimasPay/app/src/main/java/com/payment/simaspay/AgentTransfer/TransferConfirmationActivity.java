@@ -610,7 +610,21 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("2171")){
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
+                        }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
@@ -731,8 +745,19 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(TransferConfirmationActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    //Intent intent = new Intent(TransferConfirmationActivity.this, SessionTimeOutActivity.class);
+                    //startActivityForResult(intent, 40);
+                    alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            arg0.dismiss();
+                            Intent intent = new Intent(TransferConfirmationActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 293) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

@@ -13,6 +13,10 @@
         <item>Uangku</item>
         <item>E-money</item>
     </string-array>
+    <string-array name="withdraw_array">
+        <item>Untuk Saya</item>
+        <item>Untuk Orang Lain</item>å
+    </string-array>
     <string name="en_full_name">Full name</string>
     <string name="en_email_address">Email address</string>
     <string name="en_phonenumber">Phone number</string>
@@ -300,5 +304,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_bank_tujuan">Bank Tujuan</string>
     <string name="id_transfer_bank_lain">Transfer - Bank Lain</string>
     <string name="id_nomor_handphone">Nomor Handphone</string>
+    <string name="min_transfer">Minimal Rp 100.000, harus kelipatan Rp 50.000</string>
 
 </resources>

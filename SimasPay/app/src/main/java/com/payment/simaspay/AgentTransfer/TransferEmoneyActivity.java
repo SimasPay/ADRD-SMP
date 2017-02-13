@@ -194,13 +194,21 @@ public class TransferEmoneyActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            Intent intent = new Intent(TransferEmoneyActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            alertbox = new AlertDialog.Builder(TransferEmoneyActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferEmoneyActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
                         } else if(responseDataContainer.getMsgCode().equals("72")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);

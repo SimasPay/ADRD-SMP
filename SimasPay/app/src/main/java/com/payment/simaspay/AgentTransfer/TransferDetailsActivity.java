@@ -50,6 +50,7 @@ public class TransferDetailsActivity extends Activity {
     EditText number, amount, pin;
     LinearLayout btnBacke;
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
+    private AlertDialog.Builder alertbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -344,13 +345,21 @@ public class TransferDetailsActivity extends Activity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
                         } else if (responseDataContainer.getMsgCode().equals("72") || responseDataContainer.getMsgCode().equals("676")) {
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message" + message);

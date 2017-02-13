@@ -450,8 +450,16 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 293 || msgCode==81) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -571,6 +579,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
@@ -875,6 +884,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(msgCode==81){
                             /**
                             Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, TransferEmoneyNotificationActivity.class);

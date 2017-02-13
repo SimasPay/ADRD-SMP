@@ -374,6 +374,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(msgCode==293||msgCode==678){
                             Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
@@ -450,7 +451,17 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("2171")){
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                        }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();

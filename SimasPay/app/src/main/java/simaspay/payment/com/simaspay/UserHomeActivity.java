@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
+import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
 import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
@@ -181,15 +182,16 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+
         tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
         tariktunai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, CashOutDetailsActivity.class);
-                intent.putExtra("simaspayuser", false);
-                intent.putExtra("agentornot", false);
+                Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
+                //intent.putExtra("simaspayuser", false);
+                //intent.putExtra("agentornot", false);
                 sharedPreferences.edit().putString("useas", accountSelected).apply();
-                startActivityForResult(intent, 20);
+                startActivity(intent);
             }
         });
 
