@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity;
 import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
+import com.payment.simaspay.PaymentPerchaseAccount.PerchaseConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
@@ -86,6 +87,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
+
+        IncomingSMS.setListener(CashOutConfirmationActivity.this);
 
         sharedPreferences= getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 

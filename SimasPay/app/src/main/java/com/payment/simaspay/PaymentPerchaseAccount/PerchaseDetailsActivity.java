@@ -3,12 +3,15 @@ package com.payment.simaspay.PaymentPerchaseAccount;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -29,10 +32,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -45,7 +50,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/29/2016.
  */
-public class PerchaseDetailsActivity extends Activity {
+public class PerchaseDetailsActivity extends AppCompatActivity {
 
     TextView title, pulsa_field, product, number, pin, Rp;
 
@@ -353,13 +358,22 @@ public class PerchaseDetailsActivity extends Activity {
                 } catch (Exception e) {
                     msgCode = 0;
                 }
+
                 if (msgCode == 631) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(PerchaseDetailsActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
-                } else if (msgCode == 660) {
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(PerchaseDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(PerchaseDetailsActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
+                }else if (msgCode == 660) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }

@@ -89,7 +89,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         phone_lbl=(TextView)findViewById(R.id.mobilephone_lbl);
         transfer=(ImageButton)findViewById(R.id.transfer_btn);
-
+        tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
         if(label_home.equals("bank")){
             home_lbl.setText("Bank");
             phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
@@ -182,8 +182,6 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
-
-        tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
         tariktunai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

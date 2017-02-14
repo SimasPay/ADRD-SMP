@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class ProviderNamesListActivity extends Activity {
+public class ProviderNamesListActivity extends AppCompatActivity {
 
     TextView title;
 
