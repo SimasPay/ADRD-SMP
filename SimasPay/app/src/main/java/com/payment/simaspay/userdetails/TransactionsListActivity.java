@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,6 +27,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
 import com.payment.simaspay.PojoClasses.TransactionsData;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
@@ -66,7 +69,7 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 1/29/2016.
  */
 public class TransactionsListActivity extends Activity {
-
+    private static final String LOG_TAG = "SimasPay";
     TextView title, period, terms_conditions_1;
     Button ok;
     TransactionsAdapter transactionsAdapter;
@@ -77,7 +80,10 @@ public class TransactionsListActivity extends Activity {
     SharedPreferences sharedPreferences;
     boolean isLoading;
     String akun="";
-
+    String response;
+    ProgressDialog progressDialog;
+    WebServiceHttp webServiceHttp;
+    int msgCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +110,8 @@ public class TransactionsListActivity extends Activity {
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         listView = (ListView) findViewById(R.id.listView);
+        listView.setSmoothScrollbarEnabled(true);
+        listView.setFastScrollEnabled(true);
         akun = sharedPreferences.getString("akun","");
         ok = (Button) findViewById(R.id.accept);
 
@@ -175,9 +183,7 @@ public class TransactionsListActivity extends Activity {
 
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
                     int lastIndexInScreen = visibleItemCount + firstVisibleItem;
-
                     if(totalItemCount==totaloCountValue){
 
                     }else {
@@ -198,12 +204,10 @@ public class TransactionsListActivity extends Activity {
 
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
                     int lastIndexInScreen = visibleItemCount + firstVisibleItem;
-
                     if(totalItemCount==totaloCountValue){
-
                     }else {
+                        Log.d(LOG_TAG,"lastIndexInScreen: "+lastIndexInScreen +"\nTotalItemCount"+totalItemCount+"\ntotalCountValue:"+totaloCountValue);
                         if (lastIndexInScreen >= totalItemCount && !isLoading) {
                             isLoading = true;
                             new TransactionsListAsyncNonBank().execute();
@@ -272,14 +276,6 @@ public class TransactionsListActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-
-    String response;
-    ProgressDialog progressDialog;
-
-    WebServiceHttp webServiceHttp;
-
-    int msgCode;
-
     class TransactionsListAsync extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
@@ -303,8 +299,6 @@ public class TransactionsListActivity extends Activity {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
                     mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
-                } else {
-
                 }
             }
 
@@ -339,8 +333,10 @@ public class TransactionsListActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if (progressDialog != null) {
-                progressDialog.show();
+            if(isLoading == false) {
+                if (progressDialog != null) {
+                    progressDialog.show();
+                }
             }
         }
 
@@ -349,8 +345,10 @@ public class TransactionsListActivity extends Activity {
             super.onPostExecute(aVoid);
             if (response != null) {
                 Log.e("=======", "======" + response);
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
+                if(isLoading == false) {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
                 }
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
@@ -366,7 +364,23 @@ public class TransactionsListActivity extends Activity {
                     msgCode = 0;
                 }
 
-                if (msgCode == 39) {
+                if (msgCode == 631) {
+                    /**
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
+                     **/
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(TransactionsListActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(TransactionsListActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
+                }else if (msgCode == 39) {
                     totaloCountValue=responseContainer.getTotalRecords();
                     pageNumber = pageNumber + 1;
                     isLoading = false;
@@ -405,9 +419,11 @@ public class TransactionsListActivity extends Activity {
 
 
             } else {
+                /**
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
+                 **/
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         getResources().getString(
@@ -441,8 +457,10 @@ public class TransactionsListActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if (progressDialog != null) {
-                progressDialog.show();
+            if(isLoading == false) {
+                if (progressDialog != null) {
+                    progressDialog.show();
+                }
             }
         }
 
@@ -451,8 +469,10 @@ public class TransactionsListActivity extends Activity {
             super.onPostExecute(aVoid);
             if (response != null) {
                 Log.e("=======", "======" + response);
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
+                if(isLoading == false) {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
                 }
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
@@ -508,9 +528,11 @@ public class TransactionsListActivity extends Activity {
 
 
             } else {
+                /**
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
+                 **/
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         getResources().getString(
@@ -525,6 +547,7 @@ public class TransactionsListActivity extends Activity {
 
         @Override
         protected void onPreExecute() {
+
             if (progressDialog != null) {
                 progressDialog.show();
             }

@@ -99,6 +99,9 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         }
 
         sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+
         sourceMDN=sharedPreferences.getString("mobileNumber", "");
         stMPIN = getIntent().getExtras().getString("mpin");
         stSctl = getIntent().getExtras().getString("sctlID");
@@ -752,6 +755,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
                             finish();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -763,6 +767,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
                             finish();
+                            dialogBuilder.dismiss();
                         }
                     });
         }

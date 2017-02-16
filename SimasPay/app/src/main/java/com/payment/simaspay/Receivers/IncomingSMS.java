@@ -13,20 +13,18 @@ import android.util.Log;
 
 public class IncomingSMS extends BroadcastReceiver {
 
-	private static final String LOG_TAG = "SIMASPAY";
-	private static SharedPreferences settings;
+	private static final String LOG_TAG = "SimasPay";
 	public static AutoReadSMSListener listener;
-	private static String otpValue, sctl;
+	private static String otpValue;
 	
     public static void setListener(AutoReadSMSListener listener) {
     	IncomingSMS.listener = listener;
     }
-	
-	@SuppressWarnings("deprecation")
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.d(LOG_TAG, "onReceive");
-		settings = context.getSharedPreferences("LOGIN_PREFERECES",	0);
+		SharedPreferences settings = context.getSharedPreferences(LOG_TAG,	0);
 		//String sctl = settings.getString("Sctl", "");
 		final Bundle bundle = intent.getExtras();
 		try {
@@ -45,21 +43,18 @@ public class IncomingSMS extends BroadcastReceiver {
 					String message = messages[i].getMessageBody();
 					Log.d(LOG_TAG, "msg : " + message);
 					try {
-						if (message.toLowerCase(Locale.getDefault()).contains("kode simobi anda ") 
-								|| message.toLowerCase(Locale.getDefault()).contains("your simobi code is ")) {
-							settings.edit().putBoolean("isAutoSubmit", true).commit();
-								otpValue = message
-										.substring(message.substring(0, message.indexOf("(")).lastIndexOf(" "), message.indexOf("("))
-										.trim();
-								sctl = message.substring(message.indexOf(":") + 1, message.indexOf(")"));
-
-							Log.d(LOG_TAG, "OPT code : " + otpValue + ", sctl : " + sctl);
+						Log.d(LOG_TAG, "msg to lowercase:"+message.toLowerCase(Locale.getDefault()));
+						if (message.toLowerCase(Locale.getDefault()).contains("kode simaspay anda ")
+								|| message.toLowerCase(Locale.getDefault()).contains("your simaspay code is ")) {
+							settings.edit().putBoolean("isAutoSubmit", true).apply();
+							otpValue = message.substring(message.substring(0, message.indexOf(".")).lastIndexOf(" "), message.indexOf(".")).trim();
+							Log.d(LOG_TAG, "OPT code : " + otpValue + "");
 							if (listener != null) {
                                 listener.onReadSMS(otpValue);
                             }
 							
 						}else{
-							settings.edit().putBoolean("isAutoSubmit", false).commit();
+							settings.edit().putBoolean("isAutoSubmit", false).apply();
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

@@ -376,6 +376,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     public void errorOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
+        /**
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
@@ -388,6 +389,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         }
                     });
         } else {
+         **/
             builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -396,9 +398,10 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
-        }
+        //}
         alertError = builder.create();
         if (!isFinishing()) {
             alertError.show();
@@ -955,67 +958,61 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 Intent intent = getIntent();
                 setResult(10, intent);
                 finish();
-            } else {
+            } else if (requestCode == 40) {
+                if (resultCode == RESULT_OK) {
 
-            }
-        } else if (requestCode == 40) {
-            if (resultCode == RESULT_OK) {
-
+                }
             }
         }
+
+        /**
+         public void SMSAlert(final String string) {
+
+         dialogCustomWish = new Dialog(context);
+         dialogCustomWish.setCancelable(false);
+
+         dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
+         dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+
+         View view = LayoutInflater.from(context).inflate(R.layout.sms_alert, null);
+         dialogCustomWish.setContentView(R.layout.sms_alert);
+
+         Button button = (Button) dialogCustomWish.findViewById(R.id.ok);
+         Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
+         TextView textView = (TextView) dialogCustomWish.findViewById(R.id.number);
+         TextView textView_1 = (TextView) dialogCustomWish.findViewById(R.id.number_1);
+         button.setTypeface(Utility.RegularTextFormat(context));
+         button1.setTypeface(Utility.RegularTextFormat(context));
+         textView.setTypeface(Utility.RegularTextFormat(context));
+
+
+         textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + sharedPreferences.getString("mobileNumber", "") + ". Masukkan kode tersebut atau akses link yang tersedia.");
+
+
+         EditText editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
+         editText.setHint("6 digit kode OTP");
+         editText.setText(string);
+         textView_1.setTypeface(Utility.Robot_Regular(context));
+
+
+         button1.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+
+        dialogCustomWish.dismiss();
+
+        }
+        });
+
+         button.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+        dialogCustomWish.dismiss();
+
+        handler12.postDelayed(runnable12, 1000);
+
+        }
+        });
+         dialogCustomWish.show();
+         }**/
     }
-
-    /**
-    public void SMSAlert(final String string) {
-
-        dialogCustomWish = new Dialog(context);
-        dialogCustomWish.setCancelable(false);
-
-        dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-        View view = LayoutInflater.from(context).inflate(R.layout.sms_alert, null);
-        dialogCustomWish.setContentView(R.layout.sms_alert);
-
-        Button button = (Button) dialogCustomWish.findViewById(R.id.ok);
-        Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
-        TextView textView = (TextView) dialogCustomWish.findViewById(R.id.number);
-        TextView textView_1 = (TextView) dialogCustomWish.findViewById(R.id.number_1);
-        button.setTypeface(Utility.RegularTextFormat(context));
-        button1.setTypeface(Utility.RegularTextFormat(context));
-        textView.setTypeface(Utility.RegularTextFormat(context));
-
-
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + sharedPreferences.getString("mobileNumber", "") + ". Masukkan kode tersebut atau akses link yang tersedia.");
-
-
-        EditText editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
-        editText.setHint("6 digit kode OTP");
-        editText.setText(string);
-        textView_1.setTypeface(Utility.Robot_Regular(context));
-
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialogCustomWish.dismiss();
-
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogCustomWish.dismiss();
-
-                handler12.postDelayed(runnable12, 1000);
-
-            }
-        });
-        dialogCustomWish.show();
-    }**/
-
-
 }

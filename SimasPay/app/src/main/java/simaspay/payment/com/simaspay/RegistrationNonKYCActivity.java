@@ -36,6 +36,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.JSONFunction;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -455,7 +456,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
                             isExitActivity = true;
-                            Intent intent = new Intent(RegistrationNonKYCActivity.this, LoginScreenActivity.class);
+                            Intent intent = new Intent(RegistrationNonKYCActivity.this, SecondLoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
@@ -468,7 +469,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
                             isExitActivity = true;
-                            Intent intent = new Intent(RegistrationNonKYCActivity.this, LoginScreenActivity.class);
+                            Intent intent = new Intent(RegistrationNonKYCActivity.this, SecondLoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }

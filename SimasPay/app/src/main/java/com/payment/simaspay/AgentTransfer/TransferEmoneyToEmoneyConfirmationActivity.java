@@ -258,6 +258,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -266,6 +267,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         }

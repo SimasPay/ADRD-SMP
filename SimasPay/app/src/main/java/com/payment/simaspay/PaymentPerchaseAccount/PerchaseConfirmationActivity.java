@@ -516,6 +516,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
     public void errorOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(PerchaseConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
+        /**
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
@@ -525,14 +526,16 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                         }
                     });
         } else {
+         **/
             builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
-        }
+        //}
         alertError = builder.create();
         if (!isFinishing()) {
             alertError.show();

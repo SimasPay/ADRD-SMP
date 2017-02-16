@@ -43,14 +43,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.ConfirmationActivity;
-import simaspay.payment.com.simaspay.LandingScreenActivity;
-import simaspay.payment.com.simaspay.LoginScreenActivity;
-import simaspay.payment.com.simaspay.NotificationActivity;
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.RegistrationNonKYCActivity;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by widy on 1/25/17.
@@ -259,6 +252,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
                             finish();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -270,6 +264,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
                             finish();
+                            dialogBuilder.dismiss();
                         }
                     });
         }

@@ -40,11 +40,8 @@ import simaspay.payment.com.simaspay.R;
 public class BalanceSheetActivity extends Activity {
 
     LinearLayout layout1, layout2, layout3, logOut, numberSwitching, white_logOut, white_numberswitching;
-
     TextView textView1, textView2, textView3, simas, name, number, ganti_akun, logout_text, white_name, white_number, white_ganti_akun, white_logout_text;
-
     ImageView imageView1, imageView2, imageView3, menu_back;
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 

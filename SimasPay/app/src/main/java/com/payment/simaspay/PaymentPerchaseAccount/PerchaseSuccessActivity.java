@@ -23,9 +23,7 @@ import simaspay.payment.com.simaspay.R;
 public class PerchaseSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field,transfer_field,transferID,charges,charges_field,total,total_field;
-
     View view;
-
     Button ok;
 
     @Override
