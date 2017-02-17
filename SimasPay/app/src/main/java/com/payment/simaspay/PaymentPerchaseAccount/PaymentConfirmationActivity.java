@@ -69,7 +69,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     static boolean isExitActivity = false;
     LinearLayout otplay, otp2lay;
     Context context;
-    SharedPreferences settings, settings2;
+    SharedPreferences settings, settings2, languageSettings;
     String pin, otpValue;
     String selectedLanguage;
     String sourceMDN, message, transactionTime, responseCode, stMPIN, stSctl, stTransferID, stParentTxnID, stAmount, stCharges, stName;
@@ -102,6 +102,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         total_field = (TextView) findViewById(R.id.total_field);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+
         sourceMDN = sharedPreferences.getString("mobileNumber","");
         String module = sharedPreferences.getString("MODULE", "NONE");
         String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -524,7 +527,6 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     public void errorOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(PaymentConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
-        /**
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
@@ -534,7 +536,6 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                         }
                     });
         } else {
-         **/
             builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -543,7 +544,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                             dialogBuilder.dismiss();
                         }
                     });
-        //}
+        }
         AlertDialog alertError = builder.create();
         if (!isFinishing()) {
             alertError.show();

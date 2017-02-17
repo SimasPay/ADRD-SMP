@@ -283,43 +283,58 @@ public class TransactionsListActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-
+            Log.d(LOG_TAG, "channelID, "+ "7");
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_HISTORY);
+            Log.d(LOG_TAG, "txtName, "+ "History");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
                     sharedPreferences.getString("mobileNumber", ""));
+            Log.d(LOG_TAG, "sourceMDN, "+ sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
+            Log.d(LOG_TAG, "sourcePIN, "+ sharedPreferences.getString("password", ""));
             if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
+                Log.d(LOG_TAG, "fromDate, "+ getIntent().getExtras().getString("fromDate"));
                 mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
+                Log.d(LOG_TAG, "toDate, "+ getIntent().getExtras().getString("toDate"));
             } else if (sharedPreferences.getInt("userType", -1) == 0) {
 
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
+                    Log.d(LOG_TAG, "fromDate, "+ getIntent().getExtras().getString("fromDate"));
                     mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
+                    Log.d(LOG_TAG, "toDate, "+ getIntent().getExtras().getString("toDate"));
                 }
             }
 
 
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put(Constants.PARAMETER_PAGE_NUMBER,
-                    "" + pageNumber);
+            Log.d(LOG_TAG, "institutionID, "+ "");
+            //mapContainer.put(Constants.PARAMETER_PAGE_NUMBER, "" + pageNumber);
             if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                Log.d(LOG_TAG, "service, "+ "Wallet");
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                Log.d(LOG_TAG, "sourcePocketCode, "+ Constants.POCKET_CODE_BANK_SINARMAS);
             } else if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                Log.d(LOG_TAG, "service, "+ "Wallet");
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_BANK);
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME+", "+ Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_EMONEY);
                 } else {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME+", "+ Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_BANK);
                 }
             }
 

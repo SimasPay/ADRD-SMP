@@ -754,7 +754,6 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            finish();
                             dialogBuilder.dismiss();
                         }
                     });
@@ -766,7 +765,6 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            finish();
                             dialogBuilder.dismiss();
                         }
                     });

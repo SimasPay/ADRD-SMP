@@ -22,8 +22,28 @@
     <string name="en_phonenumber">Phone number</string>
     <string name="id_phonenumber">Nomor handphone</string>
     <string name="en_mpin">mPIN</string>
+
+    <string name="id_invalid_name">Nama lengkap wajib diisi</string>
+    <string name="en_invalid_name">Nama lengkap wajib diisi</string>
+
+    <string name="id_invalid_mpin">mpin harus 6 digit</string>
+    <string name="en_invalid_mpin">mpin harus 6 digit</string>
+
+    <string name="id_checksame_mpin">Konfirmasi mPin harus sama dengan mPIN</string>
+    <string name="en_checksame_mpin">Konfirmasi mPin harus sama dengan mPIN</string>
+
+    <string name="id_waiting_sms_lbl">Menunggu SMS Kode Verifikasi di Nomor </string>
+    <string name="en_waiting_sms_lbl">Waiting verification code SMS to the number </string>
+
+    <string name="id_invalid_email">Format email salah</string>
+    <string name="en_invalid_email">Format email salah</string>
+
     <string name="en_confirmation_mpin">Confirmation mPIN</string>
     <string name="id_confirmation_mpin">Konfirmasi mPIN</string>
+    <string name="en_validation_mpin">mPIN should have not the same or sequence number</string>
+    <string name="id_validation_mpin">mPIN tidak boleh berupa angka yang sama atau berurutan</string>
+    <string name="en_validation_confmpin">mPIN Confirmation should have not the same or sequence number</string>
+    <string name="id_validation_confmpin">Konfirmasi mPIN tidak boleh berupa angka yang sama atau berurutan</string>
     <string name="daftar">Daftar</string>
     <string name="benar">Benar</string>
     <string name="salah">Salah</string>
@@ -54,9 +74,9 @@
     <string name="bahasa_otprequired_title">Code Verification</string>
     <string name="bahasa_otprequired_desc_1">Please wait while we are doing automatic code verification to the number : </string>
     <string name="bahasa_otprequired_desc_2"> or please enter the code manually if automatic verification is failed.</string>
-    <string name="bahasa_otpfailed">Code Verification Failed</string>
-    <string name="bahasa_desc_otpfailed">Please enter the code within specified time limit."</string>
-    <string name="bahasa_incorrectotp">You have entered incorrect code. Please try again and ensure that you  enter the correct code.</string>
+    <string name="bahasa_otpfailed">Verifikasi kode gagal</string>
+    <string name="bahasa_desc_otpfailed">Silakan masukkan code sebelum batas waktu yang ditentukan</string>
+    <string name="bahasa_incorrectotp">Anda telah memasukkan kode yang salah. Silakan mencoba kembali dan pastikan kode yang anda masukkan benar</string>
     <string name="empty" />
     <string name="fragment_fidelitiz_btn_your_programs">My programs</string>
     <string name="fragment_fidelitiz_btn_all_programs">All programs</string>

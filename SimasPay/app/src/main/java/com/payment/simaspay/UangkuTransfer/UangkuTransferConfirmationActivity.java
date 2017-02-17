@@ -346,6 +346,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -356,6 +357,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         }
@@ -469,6 +471,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(msgCode==2176){
                             Intent intent = new Intent(UangkuTransferConfirmationActivity.this, UangkuTransferSuccessActivity.class);
                             intent.putExtra("amount", stAmount);
@@ -546,7 +549,21 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if(responseDataContainer.getMsgCode().equals("2171")){
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
+                        } else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();

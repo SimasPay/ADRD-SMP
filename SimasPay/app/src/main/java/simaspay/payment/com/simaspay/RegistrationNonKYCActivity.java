@@ -120,20 +120,33 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             @Override
             public void onClick(View arg0) {
                 if(fullname.getText().toString().replace(" ", "").length()==0) {
-                    fullname.setError("Nama lengkap wajib diisi");
+                    fullname.setError(getResources().getString(R.string.id_invalid_name));
                     return;
                 }
                 else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
-                    email.setError("Format email salah");
+                    email.setError(getResources().getString(R.string.id_invalid_email));
                     return;
                 }
                 else if(mpin.getText().toString().replace(" ", "").length()<4) {
                     //Validation for Website Address
-                    mpin.setError("mPin minimal 6 digit");
+                    mpin.setError(getResources().getString(R.string.id_invalid_mpin));
+                    return;
+                    /**
+                     for (String test : tests) {
+                     System.out.printf("%s = %b%n", test, test.matches(
+                     "^(?=\\d{4}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$"
+                     ));
+                     }
+                     **/
+                }else if(mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
+                    mpin.setError(getResources().getString(R.string.id_validation_mpin));
+                    return;
+                }else if(conf_mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
+                    mpin.setError(getResources().getString(R.string.id_validation_confmpin));
                     return;
                 }else if(!mpin.getText().toString().equals(conf_mpin.getText().toString())){
                     Log.d(LOG_TAG, "mpin: "+mpin.getText().toString() + ", conf mpin: " +conf_mpin.getText().toString());
-                    conf_mpin.setError("Konfirmasi mPin harus sama dengan mPIN");
+                    conf_mpin.setError(getResources().getString(R.string.id_checksame_mpin));
                     return;
                     /**
                 }else if(answer.getText().toString().length()==0){
@@ -339,7 +352,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor "+mobilenumber+ "\n");
+        waitingsms.setText(getResources().getString(R.string.id_checksame_mpin)+mobilenumber+ "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

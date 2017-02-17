@@ -518,7 +518,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
@@ -531,6 +531,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                                     startActivity(intent);
                                 }
                             });
+                            alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
@@ -700,6 +701,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -710,6 +712,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         }
