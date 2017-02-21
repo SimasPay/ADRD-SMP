@@ -4,12 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
@@ -27,11 +30,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -48,6 +53,7 @@ public class SplashScreenActivity extends Activity {
     RSAEncryption rsaEncryption;
     SharedPreferences sharedPreferences;
     static Context context;
+    String appID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,25 +191,64 @@ public class SplashScreenActivity extends Activity {
                                     .edit()
                                     .putString("MODULE",
                                             responseDataContainer.getPublicKeyModulus())
-                                    .commit();
+                                    .apply();
                             sharedPreferences
                                     .edit()
                                     .putString("EXPONENT",
                                             responseDataContainer.getPublicKeyExponet())
-                                    .commit();
+                                    .apply();
 
                             String firsttime = settings.getString("firsttime", "yes");
                             Log.d("test", "firsttime: "+ firsttime);
-                            if(firsttime.equals("yes")){
-                                Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }else{
-                                Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
-                                startActivity(intent);
-                                finish();
+                            Log.d("test", "not null");
+                            int msgCode = 0;
+                            try {
+                                msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
+                            } catch (Exception e) {
+                                msgCode = 0;
                             }
-
+                            if(msgCode==2310){
+                                final String appURL = responseDataContainer.getAppUpdateURL();
+                                Log.d(TAG, "appURL:"+appURL);
+                                AlertDialog.Builder alertbox = new AlertDialog.Builder(SplashScreenActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        String[] parts = appURL.split("=");
+                                        if(parts.length>0){
+                                            appID = parts[1];
+                                        }else{
+                                            appID = getPackageName();
+                                        }
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appID)));
+                                        } catch (android.content.ActivityNotFoundException anfe) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appID)));
+                                        }
+                                    }
+                                });
+                                alertbox.show();
+                            }else if(msgCode==2309){
+                                if(firsttime.equals("yes")){
+                                    Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }else{
+                                if(firsttime.equals("yes")){
+                                    Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
                         } else {
                             Log.d("test", "success:false");
                             if (responseDataContainer.getMsg() != null) {
