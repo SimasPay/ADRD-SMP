@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.dimo.PayByQR.PayByQRSDK;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
 import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
@@ -53,7 +54,7 @@ public class UserHomeActivity extends AppCompatActivity {
     String rsaKey;
     ProgressBar progbar;
     String accountSelected="";
-    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, tariktunai, logout;
+    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
 
     @Override
@@ -170,6 +171,15 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+        promopbq=(ImageButton)findViewById(R.id.promo_pbq_btn);
+        promopbq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
+                startActivity(intent);
+            }
+        });
 
         transfer.setOnClickListener(new View.OnClickListener() {
             @Override

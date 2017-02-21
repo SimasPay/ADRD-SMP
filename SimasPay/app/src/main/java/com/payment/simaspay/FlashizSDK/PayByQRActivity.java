@@ -45,6 +45,7 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.dimo.PayByQR.PayByQRSDK.SDKLocale;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -84,27 +85,13 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     int msgCode;
     WebServiceHttp webServiceHttp;
     String message, transactionTime, responseCode;
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(LOG_TAG, "------onPause-------");
-    }
-
-    @Override
-    public void callbackShowDialog(Context context, int i, String s, LoyaltyModel loyaltyModel) {
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(LOG_TAG, "------onResume-------");
-    }
-
-    void Cancel() {
-        callbackSDKClosed();
-        Log.e(LOG_TAG, "------cancel: callbackSDKClosed-------");
-    }
+    public static final String INTENT_EXTRA_MODULE = "com.mfino.bsim.paybyqr.module";
+    public static final String INTENT_EXTRA_INVOICE_ID = "com.mfino.bsim.paybyqr.invoiceID";
+    public static final String INTENT_EXTRA_URL_CALLBACK = "com.mfino.bsim.paybyqr.URLCallback";
+    private String DIMO_PREF = "com.mfino.bsim.paybyqr.Preference";
+    private String DIMO_PREF_USERKEY = "com.mfino.bsim.paybyqr.UserKey";
+    public static final String QR_STORE_DB = "com.mfino.bsim.QrStore.db";
+    private int module;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,8 +136,44 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         payByQRSDK.setMinimumTransaction(500);
         payByQRSDK.setIsUsingCustomDialog(false);
         payByQRSDK.setIsPolling(false);
-        payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
+
+        if (selectedLanguage.equalsIgnoreCase("ENG")){
+            payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
+        }else {
+            payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
+        }
+
+        Bundle extras = getIntent().getExtras();
+        int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
+        Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
+        if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
+            payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
+        }else{
+            payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
+        }
         Log.e(LOG_TAG, "------start: SDK-------");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(LOG_TAG, "------onPause-------");
+    }
+
+    @Override
+    public void callbackShowDialog(Context context, int i, String s, LoyaltyModel loyaltyModel) {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(LOG_TAG, "------onResume-------");
+    }
+
+    void Cancel() {
+        callbackSDKClosed();
+        Log.e(LOG_TAG, "------cancel: callbackSDKClosed-------");
     }
 
 
