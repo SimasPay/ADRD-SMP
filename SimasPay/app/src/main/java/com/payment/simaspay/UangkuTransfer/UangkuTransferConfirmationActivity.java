@@ -167,7 +167,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                UangkuTransferConfirmationActivity.this.finish();
             }
         });
 
@@ -204,7 +204,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                UangkuTransferConfirmationActivity.this.finish();
             }
         });
     }
@@ -741,8 +741,16 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 293 || msgCode == 81 || msgCode == 305 || msgCode == 2176) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

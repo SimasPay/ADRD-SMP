@@ -131,6 +131,7 @@ public class UangkuTransferDetailsActivity extends Activity {
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
                     String account = sharedPreferences.getString("useas","");
+                    Log.d(LOG_TAG, "account: "+account);
                     if(account.equals("Bank")){
                         new UangkuTransferAsynTask().execute();
                     }else{
@@ -232,12 +233,11 @@ public class UangkuTransferDetailsActivity extends Activity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    sharedPreferences.edit().putString("password",pinValue).commit();
+                    sharedPreferences.edit().putString("password",pinValue).apply();
                     Intent intent = new Intent(UangkuTransferDetailsActivity.this, UangkuTransferConfirmationActivity.class);
                     intent.putExtra("amount",responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges",responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("Acc_Number",responseContainer.getAccountNumber());
-                    Log.e("12345678-----","-------------"+responseContainer.getAccountNumber());
                     intent.putExtra("transferID",responseContainer.getEncryptedTransferId());
                     intent.putExtra("ParentId",responseContainer.getEncryptedParentTxnId());
                     intent.putExtra("sctlID",responseContainer.getSctl());
@@ -334,7 +334,7 @@ public class UangkuTransferDetailsActivity extends Activity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
@@ -387,8 +387,6 @@ public class UangkuTransferDetailsActivity extends Activity {
                                 intent.putExtra("Acc_Number",destinationAccountNumber);
                                 intent.putExtra("bank",destinationBank);
                                 intent.putExtra("Name", destinationName);
-                                startActivity(intent);
-
                                 startActivityForResult(intent, 10);
                             } else {
                                 //tanpa OTP
