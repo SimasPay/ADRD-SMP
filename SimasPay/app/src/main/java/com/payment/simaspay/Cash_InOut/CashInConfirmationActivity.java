@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -21,11 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -350,8 +354,16 @@ public class CashInConfirmationActivity extends Activity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(CashInConfirmationActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(CashInConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(CashInConfirmationActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 296) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

@@ -74,6 +74,7 @@ public class EncryptedResponseDataContainer {
     private String kycLevel;
 
     public String questions;
+    private String appURL;
 
     public String getQuestions() {
         return questions;
@@ -759,6 +760,14 @@ public class EncryptedResponseDataContainer {
 
     public void setAppUpdateURL(String appUpdateURL) {
         this.appUpdateURL = appUpdateURL;
+    }
+
+    public String getAppURL() {
+        return appURL;
+    }
+
+    public void setAppURL(String appURL) {
+        this.appURL = appURL;
     }
 
     public void setMsg(String msg) {

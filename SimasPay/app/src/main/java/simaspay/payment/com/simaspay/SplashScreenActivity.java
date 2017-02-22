@@ -21,6 +21,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
@@ -43,7 +44,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SplashScreenActivity extends Activity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     Handler handler = new Handler();
     public SharedPreferences settings;
@@ -129,11 +130,16 @@ public class SplashScreenActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
+            Log.d(TAG, Constants.PARAMETER_CHANNEL_ID+ ", "+Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
+            Log.d(TAG, Constants.PARAMETER_SERVICE_NAME+ ", "+Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_GETPUBLICKEY);
+            Log.d(TAG, Constants.PARAMETER_TRANSACTIONNAME+ ", "+Constants.TRANSACTION_GETPUBLICKEY);
             mapContainer.put("appos", "2");
+            mapContainer.put("isSimaspayActivity", "true");
+            Log.d(TAG, "appos, 2");
             PackageManager manager = context.getPackageManager();
 
             try {
@@ -143,6 +149,7 @@ public class SplashScreenActivity extends Activity {
                 e.printStackTrace();
             }
             mapContainer.put("appversion", version);
+            Log.d(TAG, "appversion, "+version);
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SplashScreenActivity.this);
@@ -175,7 +182,7 @@ public class SplashScreenActivity extends Activity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------","====="+response);
+                Log.e("-------","=====SplashScreen===="+response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
@@ -208,7 +215,7 @@ public class SplashScreenActivity extends Activity {
                                 msgCode = 0;
                             }
                             if(msgCode==2310){
-                                final String appURL = responseDataContainer.getAppUpdateURL();
+                                final String appURL = responseDataContainer.getAppURL();
                                 Log.d(TAG, "appURL:"+appURL);
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(SplashScreenActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
@@ -225,6 +232,7 @@ public class SplashScreenActivity extends Activity {
                                         } catch (android.content.ActivityNotFoundException anfe) {
                                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appID)));
                                         }
+                                        SplashScreenActivity.this.finish();
                                     }
                                 });
                                 alertbox.show();

@@ -199,6 +199,9 @@ public class XMLParser {
 				} else if (Constants.XML_APPUPDATEURL.equals(event.getName())) {
 					pe = parser.read();
 					result.setAppUpdateURL(pe.getText());
+				} else if (Constants.XML_APPURL.equals(event.getName())) {
+					pe = parser.read();
+					result.setAppURL(pe.getText());
 				} else if (Constants.XML_REGISTRATION_MEDIUM.equals(event
 						.getName())) {
 					pe = parser.read();

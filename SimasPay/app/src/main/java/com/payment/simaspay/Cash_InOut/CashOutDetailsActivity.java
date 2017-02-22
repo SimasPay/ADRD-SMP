@@ -283,9 +283,16 @@ public class CashOutDetailsActivity extends Activity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivityForResult(intent, 40);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 72) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -383,7 +390,7 @@ public class CashOutDetailsActivity extends Activity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }

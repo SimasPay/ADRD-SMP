@@ -909,6 +909,7 @@ public class Constants {
     public static final String XML_DEBIT_AMOUNT = "debitamt";
     public static final String XML_CREDIT_AMOUNT = "creditamt";
     public static final String XML_APPUPDATEURL = "url";
+    public static final String XML_APPURL = "AppURL";
     public static final String XML_REGISTRATION_MEDIUM = "RegistrationMedium";
     public static final String XML_RESET_PIN_REQUEST = "ResetPinRequested";
     public static final String XML_STATUS = "status";
