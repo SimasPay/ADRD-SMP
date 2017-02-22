@@ -422,7 +422,6 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
     public void errorOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
-        /**
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
@@ -434,10 +433,10 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             Intent intent = new Intent(ConfirmationActivity.this, LoginScreenActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
-         **/
             builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -448,9 +447,10 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            dialogBuilder.dismiss();
                         }
                     });
-        //}
+        }
         alertError = builder.create();
         if (!isFinishing()) {
             alertError.show();

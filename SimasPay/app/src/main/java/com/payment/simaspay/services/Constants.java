@@ -860,7 +860,7 @@ public class Constants {
     public static final String SERVICE_PROVIDER_NAME = "serviceProviderName";
     public static final String CONSTANT_VALUE_FALSE = "false";
     public static final String CONSTANT_CHANNEL_ID = "7";
-    public static final String CONSTANT_INSTITUTION_ID = "";
+    public static final String CONSTANT_INSTITUTION_ID = "simaspay";
     public static final String CONSTANT_MSBID = "1";
     //	public static final String CONSTANT_INSTITUTION_ID = "el";
 //	public static final String CONSTANT_MSBID = "2";

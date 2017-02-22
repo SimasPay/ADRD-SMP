@@ -82,19 +82,20 @@ public class CashoutSuccessActivity extends Activity {
             String untuk = getIntent().getExtras().getString("untuk");
             if(untuk.equals("Untuk Saya")){
                 name.setVisibility(View.GONE);
-                number.setVisibility(View.GONE);
                 name_field.setVisibility(View.GONE);
-                number_field.setVisibility(View.GONE);
+                number.setVisibility(View.VISIBLE);
+                number.setText("Jenis Transaksi");
+                number_field.setVisibility(View.VISIBLE);
+                number_field.setText("Tarik Tunai - "+untuk);
             }else if(untuk.equals("Untuk Orang Lain")){
                 name.setVisibility(View.GONE);
-                number.setVisibility(View.VISIBLE);
                 name_field.setVisibility(View.GONE);
+                number.setVisibility(View.VISIBLE);
+                number.setText("Jenis Transaksi");
                 number_field.setVisibility(View.VISIBLE);
+                number_field.setText("Tarik Tunai - "+untuk);
             }
-            number.setText("Jenis Transaksi");
             amount.setText("Jumlah");
-            //name_field.setText(getIntent().getExtras().getString("Name"));
-            number_field.setText("Tarik Tunai - Untuk Saya");
             amount_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
         }
 

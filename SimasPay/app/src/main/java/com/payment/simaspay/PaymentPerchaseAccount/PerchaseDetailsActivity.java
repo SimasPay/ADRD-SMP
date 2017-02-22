@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -57,7 +58,7 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
     EditText product_field, number_field, pin_field, plnamount_entryfield;
 
     Button submit, nominal_pulsa;
-
+    private static final String LOG_TAG = "SimasPay";
     LinearLayout back;
 
     String encryptedpinValue, billNumber, amountString;
@@ -294,21 +295,30 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
 
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_AIRTIME_PURCHASE_INQUIRY);
-            if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            String account=sharedPreferences.getString("useas","");
+            Log.d(LOG_TAG,"account as: " + account);
+            if(account.equals("bank")){
+                if (sharedPreferences.getInt("userType", -1) == 0) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    }
                 }
+            }else{
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, "1");
             }
+
 
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, encryptedpinValue);
@@ -316,9 +326,9 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_BILL_NO, billNumber);
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
-            mapContainer.put(Constants.PARAMETER_DENOM_CODE, amountString);
+            mapContainer.put(Constants.PARAMETER_DENOM_CODE, "2");
             mapContainer.put(Constants.PARAMETER_AMOUNT, amountString);
-
+            mapContainer.put("nominalAmount", amountString);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, PerchaseDetailsActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -412,6 +422,7 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
                     }
                 }
             } else {
+                Log.d(LOG_TAG, "response: "+null+", -----"+response);
                 progressDialog.dismiss();
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",

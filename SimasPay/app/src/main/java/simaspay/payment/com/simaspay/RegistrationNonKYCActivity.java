@@ -127,17 +127,12 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     email.setError(getResources().getString(R.string.id_invalid_email));
                     return;
                 }
-                else if(mpin.getText().toString().replace(" ", "").length()<4) {
-                    //Validation for Website Address
+                else if(mpin.getText().toString().replace(" ", "").length()<6) {
                     mpin.setError(getResources().getString(R.string.id_invalid_mpin));
                     return;
-                    /**
-                     for (String test : tests) {
-                     System.out.printf("%s = %b%n", test, test.matches(
-                     "^(?=\\d{4}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$"
-                     ));
-                     }
-                     **/
+                }else if(conf_mpin.getText().toString().replace(" ", "").length()<6) {
+                    conf_mpin.setError(getResources().getString(R.string.id_invalid_mpin));
+                    return;
                 }else if(mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     mpin.setError(getResources().getString(R.string.id_validation_mpin));
                     return;
