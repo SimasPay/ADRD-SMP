@@ -1,9 +1,13 @@
 package simaspay.payment.com.simaspay;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.media.Image;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -237,11 +241,20 @@ public class UserHomeActivity extends AppCompatActivity {
                             progbar.setVisibility(View.GONE);
                         }
                         swipe_balance.setVisibility(View.GONE);
-                        if(label_home.equals("bank")){
-                            new CheckBalanceAsynTask().execute();
+                        if(isNetworkAvailable()==true){
+                            checkbalance.setText("");
+                            progbar.setVisibility(View.VISIBLE);
+                            if(label_home.equals("bank")){
+                                new CheckBalanceAsynTask().execute();
+                            }else{
+                                new reqCheckBalance().execute();
+                            }
                         }else{
-                            new reqCheckBalance().execute();
+                            checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
+                            checkbalance.setTypeface(null, Typeface.ITALIC);
+                            progbar.setVisibility(View.GONE);
                         }
+
                         //linLay.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
@@ -350,6 +363,8 @@ public class UserHomeActivity extends AppCompatActivity {
                 } else if (msgCode == 274 || msgCode == 4) {
                     checkbalance.setText("Rp "+ responseContainer.getAmount() +"");
                 }
+            }else{
+                checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
             }
         }
     }
@@ -412,13 +427,21 @@ public class UserHomeActivity extends AppCompatActivity {
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
-                        String amount = responseDataContainer.getAmount();
-                        checkbalance.setText("Rp "+ amount +"");
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            checkbalance.setText("Timeout");
+                        } else if (responseDataContainer.getMsgCode().equals("274") || responseDataContainer.getMsgCode().equals("4")) {
+                            checkbalance.setText("Rp "+ responseDataContainer.getAmount() +"");
+                        }else{
+                            Log.d("test", "not null");
+                            String amount = responseDataContainer.getAmount();
+                            checkbalance.setText("Rp "+ amount +"");
+                        }
                     }
                 }catch (Exception e) {
                     Log.d(LOG_TAG, "ERROR: " + e.toString());
                 }
+            }else{
+                checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
             }
         }
     }
@@ -447,5 +470,12 @@ public class UserHomeActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
         startActivity(intent);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

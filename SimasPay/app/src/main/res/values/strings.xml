@@ -23,6 +23,9 @@
     <string name="id_phonenumber">Nomor handphone</string>
     <string name="en_mpin">mPIN</string>
 
+    <string name="id_no_inetconnectivity">Tidak ada koneksi internet</string>
+    <string name="en_no_inetconnectivity">No internet connection</string>
+
     <string name="id_invalid_name">Nama lengkap wajib diisi</string>
     <string name="en_invalid_name">Nama lengkap wajib diisi</string>
 
