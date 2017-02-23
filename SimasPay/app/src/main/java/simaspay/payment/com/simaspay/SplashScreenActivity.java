@@ -44,7 +44,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends Activity {
 
     Handler handler = new Handler();
     public SharedPreferences settings;
@@ -85,9 +85,6 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         checkPermission();
-
-
-
     }
 
     @Override
@@ -237,16 +234,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 });
                                 alertbox.show();
                             }else if(msgCode==2309){
-                                if(firsttime.equals("yes")){
-                                    Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }else{
-                                    Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }else{
                                 if(firsttime.equals("yes")){
                                     Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
                                     startActivity(intent);
