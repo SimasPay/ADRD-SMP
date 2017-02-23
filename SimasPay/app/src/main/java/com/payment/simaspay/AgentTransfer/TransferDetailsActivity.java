@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -41,7 +42,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class TransferDetailsActivity extends Activity {
+public class TransferDetailsActivity extends AppCompatActivity {
 
 
     TextView title, handphone, jumlah, mPin, Rp;
@@ -300,7 +301,7 @@ public class TransferDetailsActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "TransferInquiry");
             mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put("sourcePIN", pinValue);

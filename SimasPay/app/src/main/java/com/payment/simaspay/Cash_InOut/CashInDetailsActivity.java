@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -37,7 +38,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/27/2016.
  */
-public class CashInDetailsActivity extends Activity {
+public class CashInDetailsActivity extends AppCompatActivity {
 
     TextView title, handphone, jumlah, mPin,Rp;
 

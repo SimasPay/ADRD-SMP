@@ -24,7 +24,7 @@
     <string name="en_mpin">mPIN</string>
 
     <string name="id_no_inetconnectivity">Tidak ada koneksi internet</string>
-    <string name="en_no_inetconnectivity">No internet connection</string>
+    <string name="en_no_inetconnectivity">No internet connectivity</string>
 
     <string name="id_invalid_name">Nama lengkap wajib diisi</string>
     <string name="en_invalid_name">Nama lengkap wajib diisi</string>
@@ -58,7 +58,8 @@
     <string name="id_batal">Batal</string>
     <string name="id_kirim">Kirim</string>
     <string name="id_transfer">Transfer</string>
-    <string name="waiting_sms">Menunggu SMS Kode Verifikasi di Nomor </string>
+    <string name="waiting_sms">Mohon Menunggu</string>
+    <string name="waiting_sms_2">Kami sedang melakukan\nverifikasi kode secara otomatis</string>
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
     <string name="btn_sms_manual">Masukan Kode secara manual.</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>

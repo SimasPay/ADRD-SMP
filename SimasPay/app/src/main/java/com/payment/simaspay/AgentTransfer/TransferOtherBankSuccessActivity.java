@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +21,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 /**
  * Created by Nagendra P on 2/3/2016.
  */
-public class TransferOtherBankSuccessActivity extends Activity {
+public class TransferOtherBankSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, id_field, id_value, name, name_field, bank, bank_field, number, number_field, amount, amount_field, charge, charge_field, total, total_field;
 

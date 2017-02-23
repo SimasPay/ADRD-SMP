@@ -387,7 +387,7 @@ public class UserHomeActivity extends AppCompatActivity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("service", "Wallet");
             mapContainer.put("txnName", "CheckBalance");
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", mdn);
             mapContainer.put("sourcePIN", CryptoService.encryptWithPublicKey(module, exponent, mpin.getBytes()));

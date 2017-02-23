@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +20,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class TranaferSuccessActivity extends Activity {
+public class TranaferSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field,products,other_products,transfer_field,transferID;
 

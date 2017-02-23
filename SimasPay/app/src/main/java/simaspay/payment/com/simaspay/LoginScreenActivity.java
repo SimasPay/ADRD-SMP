@@ -214,7 +214,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_LOGIN);
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "f");
             if (mobileNumber.startsWith("62")) {
                 mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mobileNumber);

@@ -603,9 +603,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
+        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>" + sharedPreferences.getString("mobileNumber", "") + "</b>") + "\n");
+        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>" + sharedPreferences.getString("mobileNumber", "") + "</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -764,8 +764,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "ResendMFAOTP");
-            mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "");
+            mapContainer.put("service", Constants.SERVICE_WALLET);
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", stMPIN);

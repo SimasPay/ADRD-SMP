@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -27,7 +28,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 12/29/2015.
  */
-public class TransferHomeActivity extends Activity {
+public class TransferHomeActivity extends AppCompatActivity {
 
     LinearLayout layout1, layout2, layout3,layout4, logOut, numberSwitching, gantiAkun_layout, whitelogOut;
 

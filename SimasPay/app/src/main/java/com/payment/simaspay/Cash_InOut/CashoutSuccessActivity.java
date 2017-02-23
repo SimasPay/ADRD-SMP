@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,7 +21,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/29/2016.
  */
-public class CashoutSuccessActivity extends Activity {
+public class CashoutSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer, transferID;
 

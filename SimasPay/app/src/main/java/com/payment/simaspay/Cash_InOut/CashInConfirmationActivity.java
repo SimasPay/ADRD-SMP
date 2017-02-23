@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -41,7 +42,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/27/2016.
  */
-public class CashInConfirmationActivity extends Activity {
+public class CashInConfirmationActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field;
 

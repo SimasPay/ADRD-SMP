@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -149,7 +150,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "TransferInquiry");
             mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", pinValue);

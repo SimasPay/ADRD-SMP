@@ -198,7 +198,7 @@ public class SecondLoginActivity extends Activity {
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_LOGIN);
-            mapContainer.put("institutionID","simaspay");
+            mapContainer.put("institutionID",Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey","f");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_STRING, rsaKey);

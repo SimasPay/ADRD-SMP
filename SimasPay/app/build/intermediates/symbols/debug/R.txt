@@ -1225,7 +1225,7 @@ int id buttonPanel 0x7f0f0041
 int id cameraPreview 0x7f0f00ef
 int id cancel 0x7f0f0155
 int id cancel_action 0x7f0f028f
-int id cancel_otp 0x7f0f0285
+int id cancel_otp 0x7f0f0289
 int id center_view 0x7f0f031f
 int id changepin 0x7f0f020b
 int id changepinsuccess 0x7f0f020d
@@ -1363,8 +1363,8 @@ int id gantiAkun_layout 0x7f0f0179
 int id ganti_akun 0x7f0f017a
 int id ganti_akun_text 0x7f0f01f8
 int id gantimpin_btn 0x7f0f011d
-int id halaman1 0x7f0f0281
-int id halaman2 0x7f0f0280
+int id halaman1 0x7f0f0280
+int id halaman2 0x7f0f0285
 int id hand_phno 0x7f0f0085
 int id handphone 0x7f0f02a9
 int id header 0x7f0f006d
@@ -1483,7 +1483,7 @@ int id manual_select2 0x7f0f02e2
 int id manual_selection_checkbox 0x7f0f0190
 int id manual_selection_checkbox2 0x7f0f0193
 int id manual_selection_layout 0x7f0f0255
-int id manualsms_lbl 0x7f0f028a
+int id manualsms_lbl 0x7f0f0284
 int id mdn_ed 0x7f0f00eb
 int id media_actions 0x7f0f0291
 int id menu_back 0x7f0f0217
@@ -1522,7 +1522,7 @@ int id number_Editfield 0x7f0f02d5
 int id number_field 0x7f0f0222
 int id ok 0x7f0f022c
 int id ok_btn 0x7f0f00d3
-int id ok_otp 0x7f0f0286
+int id ok_otp 0x7f0f028a
 int id onemonth 0x7f0f024f
 int id onemonth_checkbox 0x7f0f0250
 int id onemonth_textView 0x7f0f0251
@@ -1530,8 +1530,8 @@ int id or 0x7f0f027b
 int id other_products 0x7f0f0225
 int id otp 0x7f0f02f4
 int id otpCode 0x7f0f031c
-int id otp_timer 0x7f0f0284
-int id otp_value 0x7f0f0283
+int id otp_timer 0x7f0f0288
+int id otp_value 0x7f0f0287
 int id panel1 0x7f0f0111
 int id panel2 0x7f0f0116
 int id panel3 0x7f0f011a
@@ -1558,7 +1558,7 @@ int id profile_pic 0x7f0f0107
 int id progress_circular 0x7f0f000f
 int id progress_horizontal 0x7f0f0010
 int id progressbar 0x7f0f010e
-int id progressbar_otp 0x7f0f0287
+int id progressbar_otp 0x7f0f0281
 int id promo_pbq_btn 0x7f0f0119
 int id provisi_1 0x7f0f02dc
 int id provisi_2 0x7f0f02e3
@@ -1760,7 +1760,7 @@ int id title 0x7f0f0040
 int id titleDividerNoCustom 0x7f0f004f
 int id title_template 0x7f0f004d
 int id titled 0x7f0f0070
-int id titlemanualsms_lbl 0x7f0f0282
+int id titlemanualsms_lbl 0x7f0f0286
 int id toButton 0x7f0f0258
 int id top 0x7f0f0034
 int id topPanel 0x7f0f004c
@@ -1785,7 +1785,6 @@ int id txt_1 0x7f0f02b3
 int id txt_2 0x7f0f02b4
 int id txt_3 0x7f0f02b5
 int id type 0x7f0f032f
-int id unreadablesms_lbl 0x7f0f0289
 int id unused2 0x7f0f011f
 int id up 0x7f0f0012
 int id useLogo 0x7f0f0023
@@ -1795,7 +1794,8 @@ int id user_name 0x7f0f01f5
 int id user_number 0x7f0f01f6
 int id value_layout 0x7f0f031a
 int id view 0x7f0f0315
-int id waitingsms_lbl 0x7f0f0288
+int id waitingsms_lbl 0x7f0f0282
+int id waitingsms_lbl_2 0x7f0f0283
 int id whitecolor_layout 0x7f0f021d
 int id whitelogOut 0x7f0f021f
 int id withText 0x7f0f0032
@@ -2538,6 +2538,7 @@ int string url_path_joinLoyaltyProgram 0x7f0800ec
 int string url_path_login 0x7f0800ed
 int string waitingSms 0x7f08022c
 int string waiting_sms 0x7f08022d
+int string waiting_sms_2 0x7f08022e
 int string year_picker_description 0x7f08001f
 int string zxing_app_name 0x7f080020
 int string zxing_button_ok 0x7f080021

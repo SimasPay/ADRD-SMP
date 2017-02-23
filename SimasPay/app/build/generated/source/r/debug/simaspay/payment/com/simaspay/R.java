@@ -2747,7 +2747,7 @@ containing a value of this type.
         public static final int cameraPreview=0x7f0f00ef;
         public static final int cancel=0x7f0f0155;
         public static final int cancel_action=0x7f0f028f;
-        public static final int cancel_otp=0x7f0f0285;
+        public static final int cancel_otp=0x7f0f0289;
         public static final int center_view=0x7f0f031f;
         public static final int changepin=0x7f0f020b;
         public static final int changepinsuccess=0x7f0f020d;
@@ -2885,8 +2885,8 @@ containing a value of this type.
         public static final int ganti_akun=0x7f0f017a;
         public static final int ganti_akun_text=0x7f0f01f8;
         public static final int gantimpin_btn=0x7f0f011d;
-        public static final int halaman1=0x7f0f0281;
-        public static final int halaman2=0x7f0f0280;
+        public static final int halaman1=0x7f0f0280;
+        public static final int halaman2=0x7f0f0285;
         public static final int hand_phno=0x7f0f0085;
         public static final int handphone=0x7f0f02a9;
         public static final int header=0x7f0f006d;
@@ -3005,7 +3005,7 @@ containing a value of this type.
         public static final int manual_selection_checkbox=0x7f0f0190;
         public static final int manual_selection_checkbox2=0x7f0f0193;
         public static final int manual_selection_layout=0x7f0f0255;
-        public static final int manualsms_lbl=0x7f0f028a;
+        public static final int manualsms_lbl=0x7f0f0284;
         public static final int mdn_ed=0x7f0f00eb;
         public static final int media_actions=0x7f0f0291;
         public static final int menu_back=0x7f0f0217;
@@ -3044,7 +3044,7 @@ containing a value of this type.
         public static final int number_field=0x7f0f0222;
         public static final int ok=0x7f0f022c;
         public static final int ok_btn=0x7f0f00d3;
-        public static final int ok_otp=0x7f0f0286;
+        public static final int ok_otp=0x7f0f028a;
         public static final int onemonth=0x7f0f024f;
         public static final int onemonth_checkbox=0x7f0f0250;
         public static final int onemonth_textView=0x7f0f0251;
@@ -3052,8 +3052,8 @@ containing a value of this type.
         public static final int other_products=0x7f0f0225;
         public static final int otp=0x7f0f02f4;
         public static final int otpCode=0x7f0f031c;
-        public static final int otp_timer=0x7f0f0284;
-        public static final int otp_value=0x7f0f0283;
+        public static final int otp_timer=0x7f0f0288;
+        public static final int otp_value=0x7f0f0287;
         public static final int panel1=0x7f0f0111;
         public static final int panel2=0x7f0f0116;
         public static final int panel3=0x7f0f011a;
@@ -3080,7 +3080,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0f000f;
         public static final int progress_horizontal=0x7f0f0010;
         public static final int progressbar=0x7f0f010e;
-        public static final int progressbar_otp=0x7f0f0287;
+        public static final int progressbar_otp=0x7f0f0281;
         public static final int promo_pbq_btn=0x7f0f0119;
         public static final int provisi_1=0x7f0f02dc;
         public static final int provisi_2=0x7f0f02e3;
@@ -3282,7 +3282,7 @@ containing a value of this type.
         public static final int titleDividerNoCustom=0x7f0f004f;
         public static final int title_template=0x7f0f004d;
         public static final int titled=0x7f0f0070;
-        public static final int titlemanualsms_lbl=0x7f0f0282;
+        public static final int titlemanualsms_lbl=0x7f0f0286;
         public static final int toButton=0x7f0f0258;
         public static final int top=0x7f0f0034;
         public static final int topPanel=0x7f0f004c;
@@ -3307,7 +3307,6 @@ containing a value of this type.
         public static final int txt_2=0x7f0f02b4;
         public static final int txt_3=0x7f0f02b5;
         public static final int type=0x7f0f032f;
-        public static final int unreadablesms_lbl=0x7f0f0289;
         public static final int unused2=0x7f0f011f;
         public static final int up=0x7f0f0012;
         public static final int useLogo=0x7f0f0023;
@@ -3317,7 +3316,8 @@ containing a value of this type.
         public static final int user_number=0x7f0f01f6;
         public static final int value_layout=0x7f0f031a;
         public static final int view=0x7f0f0315;
-        public static final int waitingsms_lbl=0x7f0f0288;
+        public static final int waitingsms_lbl=0x7f0f0282;
+        public static final int waitingsms_lbl_2=0x7f0f0283;
         public static final int whitecolor_layout=0x7f0f021d;
         public static final int whitelogOut=0x7f0f021f;
         public static final int withText=0x7f0f0032;
@@ -4072,6 +4072,7 @@ containing a value of this type.
         public static final int url_path_login=0x7f0800ed;
         public static final int waitingSms=0x7f08022c;
         public static final int waiting_sms=0x7f08022d;
+        public static final int waiting_sms_2=0x7f08022e;
         public static final int year_picker_description=0x7f08001f;
         public static final int zxing_app_name=0x7f080020;
         public static final int zxing_button_ok=0x7f080021;
@@ -4083,6 +4084,8 @@ containing a value of this type.
         public static final int AlertDialog_AppCompat_Light=0x7f0a00a7;
         public static final int Animation_AppCompat_Dialog=0x7f0a00a8;
         public static final int Animation_AppCompat_DropDownUp=0x7f0a00a9;
+        /**  Customize your theme here. 
+         */
         public static final int AppTheme=0x7f0a00aa;
         public static final int Base_AlertDialog_AppCompat=0x7f0a00ab;
         public static final int Base_AlertDialog_AppCompat_Light=0x7f0a00ac;

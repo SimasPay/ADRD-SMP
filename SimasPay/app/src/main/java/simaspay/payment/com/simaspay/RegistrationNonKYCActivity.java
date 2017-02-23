@@ -274,7 +274,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put("service", "Account");
             mapContainer.put("txnName", "SubscriberRegistration");
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", mobilenumber);
             mapContainer.put("subFirstName", stFullname);

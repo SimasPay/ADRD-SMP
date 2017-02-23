@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Selection;
@@ -41,7 +42,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 /**
  * Created by Nagendra P on 2/3/2016.
  */
-public class TransferOtherBankDetailsActivity extends Activity {
+public class TransferOtherBankDetailsActivity extends AppCompatActivity {
     TextView title, handphone, jumlah, mPin, bankName,Rp;
     Button submit;
     EditText number, amount, pin, bankName_editfield;
@@ -323,7 +324,7 @@ public class TransferOtherBankDetailsActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "InterBankTransferInquiry");
             mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             //mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put("sourcePIN", pinValue);

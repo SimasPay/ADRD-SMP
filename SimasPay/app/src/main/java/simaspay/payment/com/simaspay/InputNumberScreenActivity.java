@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
+import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -130,7 +131,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("service", "Account");
             mapContainer.put("txnName", "SubscriberStatus");
-            mapContainer.put("institutionID", "simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", phonenum);
             mapContainer.put("channelID", "7");

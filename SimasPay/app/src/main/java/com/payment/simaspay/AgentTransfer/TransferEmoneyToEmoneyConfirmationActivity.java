@@ -150,9 +150,9 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
+        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
+        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -293,8 +293,8 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             Log.d(LOG_TAG,"txnName Transfer");
             mapContainer.put("service", "Wallet");
             Log.d(LOG_TAG,"service Wallet");
-            mapContainer.put("institutionID", "simaspay");
-            Log.d(LOG_TAG,"institutionID simaspay");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
+            Log.d(LOG_TAG,"institutionID "+Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             Log.d(LOG_TAG,"authenticationKey ");
             mapContainer.put("sourceMDN", sourceMDN);
@@ -413,7 +413,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put("txnName", "ResendMFAOTP");
             mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", "");
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", stMPIN);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,7 +20,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class PaymentSuccessActivity extends Activity {
+public class PaymentSuccessActivity extends AppCompatActivity {
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer_field, transferID, charges, charges_field, total, total_field;
 
     Button ok;

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +36,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class PaymentDetailsActivity extends Activity {
+public class PaymentDetailsActivity extends AppCompatActivity {
 
     TextView title, product, number, pin, amount_Text, rp;
 
