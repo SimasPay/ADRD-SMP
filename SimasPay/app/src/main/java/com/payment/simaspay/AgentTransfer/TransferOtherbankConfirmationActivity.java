@@ -918,6 +918,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {

@@ -270,21 +270,28 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
-            if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+            String account = sharedPreferences.getString("useas","");
+            if(account.equals("Bank")) {
+                if (sharedPreferences.getInt("userType", -1) == 0) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    }
                 }
+            }else{
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
+
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");
                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -343,6 +350,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                         }
                     });
                     alertbox.show();
+                    dialogBuilder.dismiss();
                 }else if (msgCode == 653) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -386,9 +394,11 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                                                 .getString(
                                                         R.string.server_error_message)),
                                 PaymentConfirmationActivity.this);
+                        dialogBuilder.dismiss();
                     } else {
                         Utility.networkDisplayDialog(
                                 responseContainer.getMsg(), PaymentConfirmationActivity.this);
+                        dialogBuilder.dismiss();
                     }
                 }
             } else {
@@ -399,6 +409,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), PaymentConfirmationActivity.this);
+                dialogBuilder.dismiss();
             }
         }
     }
@@ -533,6 +544,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.dismiss();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {
@@ -612,6 +624,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                                     }
                                 });
                                 alertbox.show();
+                                dialogBuilder.dismiss();
                                 break;
                             }
                             case "2171":

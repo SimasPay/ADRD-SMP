@@ -171,6 +171,7 @@ public class UserHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
+                intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
                 startActivity(intent);
             }
         });
@@ -251,7 +252,7 @@ public class UserHomeActivity extends AppCompatActivity {
                             }
                         }else{
                             checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
-                            checkbalance.setTypeface(null, Typeface.ITALIC);
+                            //checkbalance.setTypeface(null, Typeface.ITALIC);
                             progbar.setVisibility(View.GONE);
                         }
 

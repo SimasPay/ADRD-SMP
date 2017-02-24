@@ -148,8 +148,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
         if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
             payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
+            Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
         }else{
             payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
+            Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
         }
         Log.e(LOG_TAG, "------start: SDK-------");
     }
@@ -567,13 +569,16 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                         .parseInt(responseContainer.getMsgCode()) == 715))) {
                     if (!payByQRSDK.isPolling())
                         payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
+                    dialogBuilder.dismiss();
                 } else {
                     if (!payByQRSDK.isPolling())
                         payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.STATUS_CODE_PAYMENT_SUCCESS, getString(com.dimo.PayByQR.R.string.text_payment_success), true);
+                    dialogBuilder.dismiss();
                 }
             } else {
                 if (!payByQRSDK.isPolling())
                     payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                dialogBuilder.dismiss();
             }
         }
     }
@@ -658,6 +663,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
+                    dialogBuilder.dismiss();
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
@@ -710,6 +716,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     } else {
                         new ConfirmationAsynTask().execute();
                     }
+                    dialogBuilder.dismiss();
                     //new TransferEmoneyConfirmationActivity.TransferConfirmationAsyncTask().execute();
 
                 }
@@ -733,6 +740,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             dialog.dismiss();
                             Cancel();
                             payByQRSDK.closeSDK();
+                            dialogBuilder.dismiss();
                         }
                     });
         } else {

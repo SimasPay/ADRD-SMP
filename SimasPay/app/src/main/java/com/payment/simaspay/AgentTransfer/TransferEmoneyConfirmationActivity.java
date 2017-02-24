@@ -308,8 +308,16 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             Log.d(LOG_TAG,"channelID 7");
-            mapContainer.put("sourcePocketCode", "2");
-            Log.d(LOG_TAG,"sourcePocketCode 2");
+            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            String account=sharedPreferences.getString("useas","");
+            Log.d(LOG_TAG,"account as: " + account);
+            if(account.equals("bank")){
+                mapContainer.put("sourcePocketCode", "2");
+                Log.d(LOG_TAG,"sourcePocketCode 2");
+            }else{
+                mapContainer.put("sourcePocketCode", "1");
+                Log.d(LOG_TAG,"sourcePocketCode 1");
+            }
             mapContainer.put("destPocketCode", "1");
             Log.d(LOG_TAG,"destPocketCode 1");
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -392,6 +400,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
@@ -491,6 +500,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {

@@ -987,7 +987,7 @@ public class Constants {
     public static final String LABEL_EMONEY_TO_BANK = "eaZyMoney to Bank";
 //    public static final String POCKET_CODE_EMONEY = "1";
     public static final String POCKET_CODE_BANK = "2";
-    public static final String POCKET_CODE_EMONEY = "6";
+    public static final String POCKET_CODE_EMONEY = "1";
     public static final String POCKET_CODE_BANK_SINARMAS = "6";
     public static final String POCKET_CODE_BANK_SINARMAS_BANKCODE = "153";
     public static final String DISCLOSURE_LEGAL = "Legal Disclosure for Mobile Money Service "

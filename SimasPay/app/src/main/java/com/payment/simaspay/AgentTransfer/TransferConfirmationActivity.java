@@ -531,6 +531,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }else if(msgCode==703){
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -543,6 +544,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
+                            dialogBuilder.dismiss();
                         }else{
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -555,6 +557,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
@@ -761,6 +764,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         }
                     });
                     alertbox.show();
+                    dialogBuilder.dismiss();
                 } else if (msgCode == 293) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -772,6 +776,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     startActivityForResult(intent, 10);
+                    dialogBuilder.dismiss();
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -783,6 +788,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     startActivityForResult(intent, 10);
+                    dialogBuilder.dismiss();
                 } else {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -795,9 +801,11 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                                                 .getString(
                                                         R.string.server_error_message)),
                                 TransferConfirmationActivity.this);
+                        dialogBuilder.dismiss();
                     } else {
                         Utility.networkDisplayDialog(
                                 responseContainer.getMsg(), TransferConfirmationActivity.this);
+                        dialogBuilder.dismiss();
                     }
                 }
             } else {
@@ -808,6 +816,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), TransferConfirmationActivity.this);
+                dialogBuilder.dismiss();
             }
         }
     }

@@ -472,6 +472,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }else if(msgCode==2176){
                             Intent intent = new Intent(UangkuTransferConfirmationActivity.this, UangkuTransferSuccessActivity.class);
                             intent.putExtra("amount", stAmount);
@@ -491,6 +492,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
@@ -563,6 +565,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         } else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
@@ -583,6 +586,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
@@ -751,6 +755,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         }
                     });
                     alertbox.show();
+                    dialogBuilder.dismiss();
                 } else if (msgCode == 293 || msgCode == 81 || msgCode == 305 || msgCode == 2176) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

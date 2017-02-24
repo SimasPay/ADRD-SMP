@@ -300,7 +300,12 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             mapContainer.put("amount", amountValue);
             mapContainer.put("channelID", "7");
             //mapContainer.put("bankID", "");
-            mapContainer.put("sourcePocketCode", "1");
+            String account = sharedPreferences.getString("useas","");
+            if(account.equals("Bank")) {
+                mapContainer.put("sourcePocketCode", "2");
+            }else{
+                mapContainer.put("sourcePocketCode", "1");
+            }
 
             Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,

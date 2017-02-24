@@ -395,6 +395,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
@@ -484,6 +485,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                                 }
                             });
                             alertbox.show();
+                            dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {

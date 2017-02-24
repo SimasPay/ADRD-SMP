@@ -256,7 +256,7 @@ public class SecondLoginActivity extends Activity {
                                 .putString("userApiKey", "")
                                 .apply();
                     }
-                    Log.e("------", "------" + sharedPreferences.getString("userApiKey", ""));
+                    Log.e("------", "userAPIKey------" + sharedPreferences.getString("userApiKey", ""));
 
 
                     sharedPreferences.edit().putString("password", rsaKey).apply();
