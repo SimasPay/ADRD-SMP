@@ -58,7 +58,7 @@ public class UserHomeActivity extends AppCompatActivity {
     String rsaKey;
     ProgressBar progbar;
     String accountSelected="";
-    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout;
+    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout, daftaremoney;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
 
     @Override
@@ -182,6 +182,15 @@ public class UserHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
                 intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
+                startActivity(intent);
+            }
+        });
+
+        daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
+        daftaremoney.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
                 startActivity(intent);
             }
         });

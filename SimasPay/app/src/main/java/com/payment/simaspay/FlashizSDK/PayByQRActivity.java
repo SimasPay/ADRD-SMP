@@ -320,29 +320,40 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     rsaKey);
             Log.d(LOG_TAG, Constants.PARAMETER_SOURCE_PIN +": "+ rsaKey);
-            if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
-                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK);
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
-                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            String account=sharedPreferences.getString("useas","");
+            Log.d(LOG_TAG,"account as: " + account);
+            if(account.equals("bank")){
+                if (sharedPreferences.getInt("userType", -1) == 0) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
                     Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK);
+                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK_SINARMAS);
+                } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
+                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_EMONEY);
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
+                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK);
+                    }
                 }
+            }else{
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_EMONEY);
             }
+
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
             Log.d(LOG_TAG, Constants.PARAMETER_INSTITUTION_ID +": "+ Constants.CONSTANT_INSTITUTION_ID);
@@ -480,22 +491,30 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
-            if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            String account=sharedPreferences.getString("useas","");
+            Log.d(LOG_TAG,"account as: " + account);
+            if(account.equals("bank")){
+                if (sharedPreferences.getInt("userType", -1) == 0) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    }
                 }
+            }else{
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
+
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AMOUNT, invoiceModel.paidAmount + "");

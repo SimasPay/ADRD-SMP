@@ -443,30 +443,29 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_unused"
+                    android:id="@+id/daftar_emoney"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:layout_margin="7dp"
                     android:background="@drawable/borderwhite"
                     android:orientation="vertical"
-                    android:padding="5dp"
-                    android:visibility="invisible">
+                    android:padding="5dp">
 
                     <ImageButton
-                        android:id="@+id/unused2"
+                        android:id="@+id/daftar_emoney_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="7dp"
                         android:background="@null"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_tariktunai" />
+                        android:src="@drawable/ic_daftaremoney" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="@string/tariktunai"
+                        android:text="@string/id_daftar_emoney"
                         android:textSize="11sp"
                         android:textStyle="bold" />
 
