@@ -112,48 +112,53 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         sourceMDN = sharedPreferences.getString("mobileNumber", "");
         userApiKey = sharedPreferences.getString("userApiKey", "");
-        pin = sharedPreferences.getString("mpin", "");
-        Log.d(LOG_TAG, "userApiKey from preferences: "+userApiKey);
-        Log.d(LOG_TAG, "pin from preferences: "+pin);
-        String module = sharedPreferences.getString("MODULE", "NONE");
-        String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-        try {
-            pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                    pin.toString().getBytes());
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-        stMPIN = pinValue;
-
-        Log.d(LOG_TAG, "pinValue: "+pinValue);
-
-        payByQRSDK = new
-                PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
-        payByQRSDK.setIsPolling(true);
-        //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
-        PayByQRProperties.setServerURLString("https://sandbox.dimo.co.id");
-        payByQRSDK.setMinimumTransaction(500);
-        payByQRSDK.setIsUsingCustomDialog(false);
-        payByQRSDK.setIsPolling(false);
-
-        if (selectedLanguage.equalsIgnoreCase("ENG")){
-            payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
-        }else {
-            payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
-        }
-
-        Bundle extras = getIntent().getExtras();
-        int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
-        Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
-        if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
-            payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
-            Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
+        if(userApiKey==null||userApiKey.equals("")||userApiKey.length()==0){
+            new requestUserAPIKeyAsyncTask().execute();
         }else{
-            payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
-            Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
+            pin = sharedPreferences.getString("mpin", "");
+            Log.d(LOG_TAG, "userApiKey from preferences: "+userApiKey);
+            Log.d(LOG_TAG, "pin from preferences: "+pin);
+            String module = sharedPreferences.getString("MODULE", "NONE");
+            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+            try {
+                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                        pin.toString().getBytes());
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+            stMPIN = pinValue;
+
+            Log.d(LOG_TAG, "pinValue: "+pinValue);
+
+            payByQRSDK = new
+                    PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
+            payByQRSDK.setIsPolling(true);
+            //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
+            PayByQRProperties.setServerURLString("https://sandbox.dimo.co.id");
+            payByQRSDK.setMinimumTransaction(500);
+            payByQRSDK.setIsUsingCustomDialog(false);
+            payByQRSDK.setIsPolling(false);
+
+            if (selectedLanguage.equalsIgnoreCase("ENG")){
+                payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
+            }else {
+                payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
+            }
+
+            Bundle extras = getIntent().getExtras();
+            int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
+            Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
+            if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
+                payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
+                Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
+            }else{
+                payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
+                Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
+            }
+            Log.e(LOG_TAG, "------start: SDK-------");
         }
-        Log.e(LOG_TAG, "------start: SDK-------");
+
     }
 
 
@@ -491,30 +496,22 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
-                }
-            }else{
+            if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-            }
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
 
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                }
+            }
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AMOUNT, invoiceModel.paidAmount + "");
@@ -861,6 +858,145 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     arg0.dismiss();
                                     payByQRSDK.closeSDK();
+                                }
+                            });
+                            alertbox.show();
+                        }
+                    }
+                }catch (Exception e) {
+                    Log.e(LOG_TAG, "error: " + e.toString());
+                }
+            }
+        }
+    }
+
+    class requestUserAPIKeyAsyncTask extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        String response;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put("service", Constants.SERVICE_ACCOUNT);
+            mapContainer.put("txnName", Constants.TRANSACTION_USER_APIKEY);
+            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put("authenticationKey", "");
+            mapContainer.put("sourceMDN", sourceMDN);
+            mapContainer.put("channelID", "7");
+
+            Log.e("-----",""+mapContainer.toString());
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
+                    PayByQRActivity.this);
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(PayByQRActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            if (response != null) {
+                Log.e("-------", "=====" + response);
+                XMLParser obj = new XMLParser();
+                EncryptedResponseDataContainer responseDataContainer = null;
+                try {
+                    responseDataContainer = obj.parse(response);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, e.toString());
+                }
+                try {
+                    if (responseDataContainer != null) {
+                        Log.d("test", "not null");
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    payByQRSDK.closeSDK();
+                                    Intent intent = new Intent(PayByQRActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                }
+                            });
+                            alertbox.show();
+                        }else if(responseDataContainer.getMsgCode().equals("2103")){
+                            message = responseDataContainer.getMsg();
+                            if (responseDataContainer.getUserApiKey() != null) {
+                                UserApikeyresponse = responseDataContainer.getUserApiKey();
+                                userApiKey=UserApikeyresponse;
+                                sharedPreferences.edit()
+                                        .putString("userApiKey", UserApikeyresponse)
+                                        .apply();
+                                pin = sharedPreferences.getString("mpin", "");
+                                Log.d(LOG_TAG, "userApiKey from preferences: "+userApiKey);
+                                Log.d(LOG_TAG, "pin from preferences: "+pin);
+                                String module = sharedPreferences.getString("MODULE", "NONE");
+                                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                                try {
+                                    pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                            pin.toString().getBytes());
+                                } catch (Exception e1) {
+                                    e1.printStackTrace();
+                                }
+                                stMPIN = pinValue;
+
+                                Log.d(LOG_TAG, "pinValue: "+pinValue);
+
+                                payByQRSDK = new
+                                        PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
+                                payByQRSDK.setIsPolling(true);
+                                //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
+                                PayByQRProperties.setServerURLString("https://sandbox.dimo.co.id");
+                                payByQRSDK.setMinimumTransaction(500);
+                                payByQRSDK.setIsUsingCustomDialog(false);
+                                payByQRSDK.setIsPolling(false);
+
+                                if (selectedLanguage.equalsIgnoreCase("ENG")){
+                                    payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
+                                }else {
+                                    payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
+                                }
+
+                                Bundle extras = getIntent().getExtras();
+                                int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
+                                Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
+                                if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
+                                    payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
+                                    Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
+                                }else{
+                                    payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
+                                    Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
+                                }
+                                Log.e(LOG_TAG, "------start: SDK-------");
+                            } else {
+                                alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                        finish();
+                                    }
+                                });
+                                alertbox.show();
+                            }
+                        }else{
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
+                                    finish();
                                 }
                             });
                             alertbox.show();
