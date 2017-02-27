@@ -402,7 +402,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                     if(otpValue==null){
                         otpValue=edt.getText().toString();
                     }
-                    //dialogBuilder.dismiss();
+                    dialogBuilder.dismiss();
                     new ConfirmationActivity.RegisterAsyncTask().execute();
                     /**
                      isExitActivity = true;

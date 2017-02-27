@@ -44,7 +44,7 @@ public class IncomingSMS extends BroadcastReceiver {
 					Log.d(LOG_TAG, "msg : " + message);
 					try {
 						Log.d(LOG_TAG, "msg to lowercase:"+message.toLowerCase(Locale.getDefault()));
-						if (message.toLowerCase(Locale.getDefault()).contains("kode simaspay anda ")
+						if (message.toLowerCase(Locale.getDefault()).contains("kode otp simaspay anda ")
 								|| message.toLowerCase(Locale.getDefault()).contains("your simaspay code is ")) {
 							settings.edit().putBoolean("isAutoSubmit", true).apply();
 							otpValue = message.substring(message.substring(0, message.indexOf(".")).lastIndexOf(" "), message.indexOf(".")).trim();
