@@ -353,7 +353,6 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                 try {
                     responseDataContainer = obj.parse(response);
                     Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
-
                 } catch (Exception e) {
                     Log.e(LOG_TAG, e.toString());
                 }

@@ -335,5 +335,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_confirmation">Konfirmasi</string>
     <string name="id_buka_rekening">Anda akan membuka akun e-money dengan data diri Anda sebagai nasabah Bank Sinarmas. Lanjutkan proses?</string>
     <string name="id_btn_daftar_akun_emoney">Daftar Akun E-money</string>
+    <string name="id_mpinconfirmation_label">Anda akan mengubah mPIN Anda. Lanjutkan proses?</string>
 
 </resources>

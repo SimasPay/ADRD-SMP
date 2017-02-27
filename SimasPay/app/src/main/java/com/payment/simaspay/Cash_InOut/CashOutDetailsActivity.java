@@ -73,8 +73,13 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         title.setText("Tarik Tunai - "+untuk);
         String account = sharedPreferences.getString("useas", "");
         if (account.equals("Bank")) {
-            handphone.setVisibility(View.VISIBLE);
-            number.setVisibility(View.VISIBLE);
+            if(untuk.equals("Untuk Saya")){
+                handphone.setVisibility(View.GONE);
+                number.setVisibility(View.GONE);
+            }else if(untuk.equals("Untuk Orang Lain")){
+                handphone.setVisibility(View.VISIBLE);
+                number.setVisibility(View.VISIBLE);
+            }
         } else {
             if(untuk.equals("Untuk Saya")){
                 handphone.setVisibility(View.GONE);

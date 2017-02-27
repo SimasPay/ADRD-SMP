@@ -33,6 +33,7 @@ import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
 import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
+import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -58,8 +59,9 @@ public class UserHomeActivity extends AppCompatActivity {
     String rsaKey;
     ProgressBar progbar;
     String accountSelected="";
-    private ImageButton switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout, daftaremoney;
+    private ImageButton gantimpin, switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout, daftaremoney;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
+    LinearLayout daftaremoneylay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,10 @@ public class UserHomeActivity extends AppCompatActivity {
             home_lbl.setText("Bank");
             phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
             switch_account.setVisibility(View.GONE);
+            tariktunai.setEnabled(false);
+            tariktunai.setAlpha((float) 0.2);
+            LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+            tariktunailay.setVisibility(View.INVISIBLE);
             accountSelected="Bank";
         }else if(label_home.equals("nonkyc")){
             home_lbl.setText("E-Money Reguler");
@@ -111,7 +117,6 @@ public class UserHomeActivity extends AppCompatActivity {
             LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
             tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
             LinearLayout transferlay = (LinearLayout)findViewById(R.id.transferlay);
-            tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
             transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
             accountSelected="E-Money Reguler";
         }else if(label_home.equals("both")){
@@ -119,6 +124,8 @@ public class UserHomeActivity extends AppCompatActivity {
             accountSelected=account;
             if(account.equals("Bank")){
                 phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
+                LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                tariktunailay.setVisibility(View.INVISIBLE);
             }else{
                 phone_lbl.setText(sharedPreferences.getString("mobileNumber",""));
             }
@@ -186,6 +193,22 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         });
 
+        daftaremoneylay=(LinearLayout)findViewById(R.id.daftar_emoney);
+        daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
+        String accountType = sharedPreferences.getString("akun","");
+        if(accountType.equals("bank")){
+            daftaremoneylay.setVisibility(View.VISIBLE);
+            daftaremoney.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            daftaremoneylay.setVisibility(View.INVISIBLE);
+        }
+
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
         daftaremoney.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,15 +230,26 @@ public class UserHomeActivity extends AppCompatActivity {
         });
 
         tariktunai.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
+                    sharedPreferences.edit().putString("useas", accountSelected).apply();
+                    startActivity(intent);
+                }
+        });
+
+        gantimpin=(ImageButton)findViewById(R.id.gantimpin_btn);
+        gantimpin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
-                //intent.putExtra("simaspayuser", false);
-                //intent.putExtra("agentornot", false);
+                Intent intent = new Intent(UserHomeActivity.this, ChangePinActivity.class);
+                intent.putExtra("simaspayuser", false);
+                intent.putExtra("agentornot", false);
                 sharedPreferences.edit().putString("useas", accountSelected).apply();
-                startActivity(intent);
+                startActivityForResult(intent, 20);
             }
         });
+
 
 
         progbar = (ProgressBar)findViewById(R.id.progressbar);
