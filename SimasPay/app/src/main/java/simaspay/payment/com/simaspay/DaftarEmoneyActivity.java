@@ -56,6 +56,7 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
     String otpValue;
     String selectedLanguage;
     SharedPreferences sharedPreferences;
+    LinearLayout btnBacke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,14 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
 
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+
+        btnBacke = (LinearLayout) findViewById(R.id.back_layout);
+        btnBacke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         benar_btn=(Button)findViewById(R.id.benar_btn);
         salah_btn=(Button)findViewById(R.id.salah_btn);

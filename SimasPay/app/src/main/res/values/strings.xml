@@ -53,6 +53,8 @@
     <string name="en_security_questions">Pilih Pertanyaan Keamanan</string>
     <string name="en_success_dialog">Pendaftaran Berhasil!\n\nSelamat, Anda berhasil membuat akun e-money Simaspay</string>
     <string name="en_security_answer">Jawaban Anda</string>
+    <string name="id_authentication_failed">Proses otentifikasi gagal. Silahkan coba lagi</string>
+    <string name="en_authentication_failed">Authentification process failed. Please try again</string>
     <string name="id_tolak">Tolak</string>
     <string name="id_setuju">Setuju</string>
     <string name="id_batal">Batal</string>

@@ -17,7 +17,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,19 +32,18 @@ import android.widget.TextView;
 
 import com.dimo.PayByQR.PayByQRProperties;
 import com.dimo.PayByQR.PayByQRSDK;
+import com.dimo.PayByQR.PayByQRSDK.SDKLocale;
 import com.dimo.PayByQR.PayByQRSDKListener;
 import com.dimo.PayByQR.UserAPIKeyListener;
 import com.dimo.PayByQR.model.InvoiceModel;
 import com.dimo.PayByQR.model.LoyaltyModel;
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-import com.dimo.PayByQR.PayByQRSDK.SDKLocale;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -992,7 +990,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             }
                         }else{
                             alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setMessage(getResources().getString(R.string.id_authentication_failed));
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     arg0.dismiss();
