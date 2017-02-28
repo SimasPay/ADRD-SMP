@@ -494,22 +494,30 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
-            if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            String account=sharedPreferences.getString("useas","");
+            Log.d(LOG_TAG,"account as: " + account);
+            if(account.equals("bank")){
+                if (sharedPreferences.getInt("userType", -1) == 0) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    }
                 }
+            }else{
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
+
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AMOUNT, invoiceModel.paidAmount + "");
@@ -803,7 +811,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(PayByQRActivity.this);
+            progressDialog = new ProgressDialog(PayByQRProperties.getSDKContext());
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -828,7 +836,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
-                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -850,7 +858,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             int msgCode = 0;
                             showOTPRequiredDialog();
                         }else{
-                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -891,7 +899,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(PayByQRActivity.this);
+            progressDialog = new ProgressDialog(PayByQRProperties.getSDKContext());
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -916,7 +924,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
-                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -989,7 +997,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 alertbox.show();
                             }
                         }else{
-                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(getResources().getString(R.string.id_authentication_failed));
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {

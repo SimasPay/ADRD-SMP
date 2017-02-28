@@ -2,11 +2,13 @@ package com.payment.simaspay.PaymentPerchaseAccount;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -330,8 +333,16 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(PaymentDetailsActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(PaymentDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(PaymentDetailsActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 713) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

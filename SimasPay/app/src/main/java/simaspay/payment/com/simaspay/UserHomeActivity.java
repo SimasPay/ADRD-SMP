@@ -187,7 +187,7 @@ public class UserHomeActivity extends AppCompatActivity {
         promopbq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
                 intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
                 startActivity(intent);
             }
