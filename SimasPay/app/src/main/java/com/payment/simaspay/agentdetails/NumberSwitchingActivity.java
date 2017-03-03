@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.lakupandai.LakuPandaiActivity;
+import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SimaspayUserActivity;
@@ -36,23 +38,15 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
  */
 public class NumberSwitchingActivity extends AppCompatActivity {
 
-    TextView textView,agent_text,reg_text,agent_number,reg_number;
-
-    LinearLayout agent_layout,reg_layout,logOut;
-
-    Dialog dialogCustomWish;
+    TextView textView, agent_text, reg_text, agent_number, reg_number, lagout_text;
+    LinearLayout agent_layout, reg_layout, logOut;
     Context context;
-
-    int value=0;
-
-    TextView lagout_text;
-
     SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context=this;
+        context = this;
         setContentView(R.layout.number_switching);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -60,13 +54,13 @@ public class NumberSwitchingActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
-        textView=(TextView)findViewById(R.id.text_3);
-        agent_text=(TextView)findViewById(R.id.agent_text);
-        reg_text=(TextView)findViewById(R.id.reg_text);
-        agent_number=(TextView)findViewById(R.id.agent_number);
-        reg_number=(TextView)findViewById(R.id.reguler);
+        textView = (TextView) findViewById(R.id.text_3);
+        agent_text = (TextView) findViewById(R.id.agent_text);
+        reg_text = (TextView) findViewById(R.id.reg_text);
+        agent_number = (TextView) findViewById(R.id.agent_number);
+        reg_number = (TextView) findViewById(R.id.reguler);
 
-        sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
         textView.setTypeface(Utility.Robot_Light(NumberSwitchingActivity.this));
         agent_text.setTypeface(Utility.Robot_Light(NumberSwitchingActivity.this));
@@ -74,25 +68,25 @@ public class NumberSwitchingActivity extends AppCompatActivity {
         agent_number.setTypeface(Utility.Robot_Light(NumberSwitchingActivity.this));
         reg_number.setTypeface(Utility.Robot_Light(NumberSwitchingActivity.this));
 
-        lagout_text = (TextView)findViewById(R.id.lagout_text);
+        lagout_text = (TextView) findViewById(R.id.lagout_text);
         lagout_text.setTypeface(Utility.Robot_Light(NumberSwitchingActivity.this));
 
-        agent_layout=(LinearLayout)findViewById(R.id.agent_layout);
-        reg_layout=(LinearLayout)findViewById(R.id.reg_layout);
-        logOut=(LinearLayout)findViewById(R.id.logOut);
+        agent_layout = (LinearLayout) findViewById(R.id.agent_layout);
+        reg_layout = (LinearLayout) findViewById(R.id.reg_layout);
+        logOut = (LinearLayout) findViewById(R.id.logOut);
 
-        agent_number.setText(sharedPreferences.getString("mobileNumber",""));
-        reg_number.setText(sharedPreferences.getString("accountnumber",""));
+        agent_number.setText(sharedPreferences.getString("mobileNumber", ""));
+        reg_number.setText(sharedPreferences.getString("accountnumber", ""));
 
 
         agent_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sharedPreferences.edit().putInt("AgentUsing",1).commit();
-                Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
-                sharedPreferences.edit().putString("useas", "E-money Plus").apply();
+                sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
+                Intent intent = new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
+                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, Constants.CONSTANT_EMONEY_PLUS).apply();
                 //intent.putExtra("useas","E-money Plus");
-                startActivityForResult(intent,20);
+                startActivityForResult(intent, 20);
                 finish();
             }
         });
@@ -100,101 +94,11 @@ public class NumberSwitchingActivity extends AppCompatActivity {
         reg_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                /*dialogCustomWish = new Dialog(context);
-                dialogCustomWish.setCancelable(false);
-
-                dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-                View view1 = LayoutInflater.from(context).inflate(R.layout.select_account, null);
-                dialogCustomWish.setContentView(R.layout.select_account);
-
-                Button button = (Button) dialogCustomWish.findViewById(R.id.OK);
-                Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
-
-                LinearLayout linearLayout = (LinearLayout) dialogCustomWish.findViewById(R.id.firststone);
-                LinearLayout linearLayout1 = (LinearLayout) dialogCustomWish.findViewById(R.id.secondone);
-                TextView textView=(TextView)dialogCustomWish.findViewById(R.id.title);
-
-                TextView textView1=(TextView)dialogCustomWish.findViewById(R.id.number);
-                TextView textView2=(TextView)dialogCustomWish.findViewById(R.id.number_1);
-
-                button.setTypeface(Utility.RegularTextFormat(context));
-                button1.setTypeface(Utility.RegularTextFormat(context));
-                textView.setTypeface(Utility.LightTextFormat(context));
-
-                textView1.setTypeface(Utility.LightTextFormat(context));
-                textView2.setTypeface(Utility.LightTextFormat(context));
-
-                final ImageView imageView=(ImageView)dialogCustomWish.findViewById(R.id.current_month_checkbox);
-                final ImageView imageView1=(ImageView)dialogCustomWish.findViewById(R.id.current_month_checkbox_1);
-
-                linearLayout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
-                        imageView1.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
-                        value=1;
-                    }
-                });
-
-                linearLayout1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        imageView.setImageDrawable(getResources().getDrawable(R.drawable.dwnunselected));
-                        imageView1.setImageDrawable(getResources().getDrawable(R.drawable.selected));
-                        value=2;
-                    }
-                });
-
-                button1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-
-
-
-                        value=0;
-                        dialogCustomWish.dismiss();
-                    }
-                });
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        if(value==1){
-                            dialogCustomWish.dismiss();
-                            value=0;
-                            Intent intent=new Intent(NumberSwitchingActivity.this, AgentSimaspayUserActivity.class);
-                            intent.putExtra("direct",true);
-                            startActivityForResult(intent,20);
-
-                        }else if(value==2){
-                            dialogCustomWish.dismiss();
-                            value=0;
-                            Intent intent=new Intent(NumberSwitchingActivity.this, LakuPandaiActivity.class);
-                            intent.putExtra("direct",true);
-                            startActivityForResult(intent,20);
-
-                        }else{
-                            value=0;
-                            Toast.makeText(NumberSwitchingActivity.this,"Please Select Account Type",Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-
-
-                dialogCustomWish.show();*/
-                sharedPreferences.edit().putInt("AgentUsing",2).commit();
-                Intent intent=new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
-                intent.putExtra("direct",true);
-                sharedPreferences.edit().putString("useas", "Bank").apply();
-                startActivityForResult(intent,20);
+                sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_BANK_INT).apply();
+                Intent intent = new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
+                intent.putExtra("direct", true);
+                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, Constants.CONSTANT_BANK_USER).apply();
+                startActivityForResult(intent, 20);
                 finish();
 
             }
@@ -209,31 +113,26 @@ public class NumberSwitchingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==20){
-            if(resultCode==Activity.RESULT_OK){
-                Intent intent=getIntent();
-               setResult(RESULT_OK,intent);
+        if (requestCode == 20) {
+            if (resultCode == Activity.RESULT_OK) {
+                Intent intent = getIntent();
+                setResult(RESULT_OK, intent);
                 finish();
-            }else if(resultCode==Activity.RESULT_CANCELED){
-
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.d(Constants.LOG_TAG, "canceled");
             }
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            return  true;
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

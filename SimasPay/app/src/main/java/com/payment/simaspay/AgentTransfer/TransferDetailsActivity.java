@@ -207,6 +207,8 @@ public class TransferDetailsActivity extends AppCompatActivity {
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
                 }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+
             }
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, TransferDetailsActivity.this);

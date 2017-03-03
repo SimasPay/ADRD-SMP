@@ -206,7 +206,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new TransferConfirmationAsyncTask().execute();
@@ -237,7 +237,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new TransferConfirmationAsyncTask().execute();

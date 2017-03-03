@@ -167,17 +167,17 @@
         android:stateListAnimator="@anim/button_state_list_animator"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/contact_us"
+        android:id="@+id/forgot_mpin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:gravity="center"
-        android:text="Hubungi Kami"
+        android:text="@string/id_forgot_mpin"
         android:textColor="#5b5b5b"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
 
 </LinearLayout>

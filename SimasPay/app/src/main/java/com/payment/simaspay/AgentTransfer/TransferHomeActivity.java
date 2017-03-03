@@ -29,13 +29,9 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 12/29/2015.
  */
 public class TransferHomeActivity extends AppCompatActivity {
-
     LinearLayout layout1, layout2, layout3,layout4, logOut, numberSwitching, gantiAkun_layout, whitelogOut;
-
     TextView textView1, textView2, textView3,textView4, simas, name, number, ganti_akun, logout_text, whiteName, white_number;
-
     ImageView imageView1, imageView2, imageView3,imageView4, menu_back;
-
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 

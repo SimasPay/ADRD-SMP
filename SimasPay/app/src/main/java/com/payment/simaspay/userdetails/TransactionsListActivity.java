@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -68,7 +69,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/29/2016.
  */
-public class TransactionsListActivity extends Activity {
+public class TransactionsListActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SimasPay";
     TextView title, period, terms_conditions_1;
     Button ok;

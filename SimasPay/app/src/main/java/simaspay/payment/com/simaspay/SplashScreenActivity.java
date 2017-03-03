@@ -16,28 +16,20 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.JSONParser;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -134,9 +126,9 @@ public class SplashScreenActivity extends Activity {
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_GETPUBLICKEY);
             Log.d(TAG, Constants.PARAMETER_TRANSACTIONNAME+ ", "+Constants.TRANSACTION_GETPUBLICKEY);
-            mapContainer.put("appos", "2");
-            mapContainer.put("isSimaspayActivity", "true");
-            Log.d(TAG, "appos, 2");
+            mapContainer.put(Constants.PARAMETER_APPOS, Constants.OS_ANDROID);
+            mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY, Constants.IS_SIMASPAYACTIVITY);
+            Log.d(TAG, Constants.PARAMETER_APPOS+", "+Constants.OS_ANDROID);
             PackageManager manager = context.getPackageManager();
 
             try {
@@ -145,8 +137,8 @@ public class SplashScreenActivity extends Activity {
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();
             }
-            mapContainer.put("appversion", version);
-            Log.d(TAG, "appversion, "+version);
+            mapContainer.put(Constants.PARAMETER_APPVERSION, version);
+            Log.d(TAG, Constants.PARAMETER_APPVERSION+", "+version);
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SplashScreenActivity.this);
@@ -271,9 +263,7 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    private boolean checkWriteExternalPermission()
-    {
-
+    private boolean checkWriteExternalPermission() {
         String permission = "java.io.Writer";
         int res = checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);

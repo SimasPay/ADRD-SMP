@@ -90,6 +90,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
+            android:name=".ForgetmPINActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
             android:name=".RegistrationNonKYCActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"

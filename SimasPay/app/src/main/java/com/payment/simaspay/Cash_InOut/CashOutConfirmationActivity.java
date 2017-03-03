@@ -633,7 +633,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
                     otpValue=edt.getText().toString();
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     String account = sharedPreferences.getString("useas","");
@@ -671,7 +671,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
 

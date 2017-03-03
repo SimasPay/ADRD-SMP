@@ -502,7 +502,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new BillPayConfirmationAsynTask().execute();
@@ -523,7 +523,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new BillPayConfirmationAsynTask().execute();

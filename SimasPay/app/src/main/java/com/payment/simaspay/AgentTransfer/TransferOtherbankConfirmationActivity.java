@@ -686,7 +686,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
                     otpValue=edt.getText().toString();
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     String account = sharedPreferences.getString("useas","");
@@ -724,7 +724,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
 

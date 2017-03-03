@@ -49,7 +49,6 @@ public class LoginScreenActivity extends AppCompatActivity {
     String pin;
     int msgCode = 0;
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

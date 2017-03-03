@@ -197,7 +197,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new TransferConfirmationAsyncTask().execute();
@@ -228,7 +228,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new TransferConfirmationAsyncTask().execute();
@@ -311,12 +311,12 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
             String account=sharedPreferences.getString("useas","");
             Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                mapContainer.put("sourcePocketCode", "2");
-                Log.d(LOG_TAG,"sourcePocketCode 2");
+            if(account.equals("Bank")){
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                Log.d(LOG_TAG,Constants.PARAMETER_SRC_POCKET_CODE+" "+Constants.POCKET_CODE_BANK);
             }else{
-                mapContainer.put("sourcePocketCode", "1");
-                Log.d(LOG_TAG,"sourcePocketCode 1");
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                Log.d(LOG_TAG,Constants.PARAMETER_SRC_POCKET_CODE+" "+Constants.POCKET_CODE_EMONEY);
             }
             mapContainer.put("destPocketCode", "1");
             Log.d(LOG_TAG,"destPocketCode 1");

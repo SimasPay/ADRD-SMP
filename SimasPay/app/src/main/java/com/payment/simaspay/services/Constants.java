@@ -10,7 +10,7 @@ public class Constants {
     // Language Selection
 
     public static String serverNotResponding;
-
+    public static final String LOG_TAG = "SimasPay";
     public static String getServerNotResponding() {
         return serverNotResponding;
     }
@@ -653,6 +653,7 @@ public class Constants {
     public static final String GETSECRET_PIN_AND_SECURITY_QUESTION_ANSWER = "ResetPinAndSQA";
     public static final String VIEW_PROFILE = "ViewProfile";
     public static final String TRANSACTION_RESENDMFAOTP="ResendMFAOTP";
+    public static final String MDN_VALIDATION_FORGOTPIN = "MDNvalidationforForgotPIN";
 
     public static final String TRANSACTION_BUY_VIPMEMBERSHIP = "EnableMemberShipInquiry";
     public static final String TRANSACTION_BUY_VIPMEMBERSHIPCONFIRMATION = "EnableMemberShip";
@@ -779,7 +780,7 @@ public class Constants {
 
     public static final String PARAMETER_APPTYPE = "apptype";
     public static final String PARAMETER_APPVERSION = "appversion";
-    public static final String PARAMETER_APPOS = "osType";
+    public static final String PARAMETER_APPOS = "appos";
     public static final String PARAMETER_DEVICE_MODEL = "deviceModel";
     public static final String PARAMETER_OS_VERSION = "osVersion";
     public static final String PARAMETER_SIMASPAYACTIVITY = "isSimaspayActivity";
@@ -787,6 +788,25 @@ public class Constants {
     public static final String PARAMETER_KTPID = "ktpId";
     public static final String PARAMETER_PRODUCT = "productDesired";
     public static final String PARAMETER_OTHERS="others";
+
+    public static final String IS_SIMASPAYACTIVITY = "true";
+
+    //SourcePocketCode
+    public static final String PARAMETER_TYPEUSER = "akun";
+    public static final String PARAMETER_AGENTTYPE = "AgentUsing";
+    public static final String PARAMETER_USERTYPE = "userType";
+    public static final String PARAMETER_USES_AS = "useas";
+    public static final String PARAMETER_ACCOUNTNUMBER = "accountnumber";
+    public static final String CONSTANT_BANK_USER = "bank";
+    public static final String CONSTANT_EMONEYNONKYC_USER = "nonkyc";
+    public static final String CONSTANT_EMONEYKYC_USER = "kyc";
+    public static final String CONSTANT_BOTH_USER = "both";
+    public static final String CONSTANT_EMONEY_REGULER = "bank";
+    public static final String CONSTANT_EMONEY_PLUS = "E-money Plus";
+    public static final int CONSTANT_EMONEY_INT = 3;
+    public static final int CONSTANT_LAKUPANDAI_INT = 2;
+    public static final int CONSTANT_BANKSINARMAS_INT = 1;
+    public static final int CONSTANT_BANK_INT = 0;
 
 
 
@@ -986,6 +1006,7 @@ public class Constants {
     public static final String LABEL_BANK_TO_EMONEY = "Bank to eaZyMoney";
     public static final String LABEL_EMONEY_TO_BANK = "eaZyMoney to Bank";
 //    public static final String POCKET_CODE_EMONEY = "1";
+    public static final String OS_ANDROID = "2";
     public static final String POCKET_CODE_BANK = "2";
     public static final String POCKET_CODE_EMONEY = "1";
     public static final String POCKET_CODE_BANK_SINARMAS = "6";

@@ -484,7 +484,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new PurchaseConfirmationAsynTask().execute();
@@ -515,7 +515,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new PurchaseConfirmationAsynTask().execute();

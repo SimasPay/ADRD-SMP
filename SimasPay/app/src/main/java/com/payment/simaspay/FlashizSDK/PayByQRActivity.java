@@ -899,7 +899,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(PayByQRProperties.getSDKContext());
+            progressDialog = new ProgressDialog(PayByQRActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));

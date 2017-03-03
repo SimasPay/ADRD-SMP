@@ -315,8 +315,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    otpValue=edt.getText().toString();
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     String account = sharedPreferences.getString("useas","");
@@ -350,11 +349,10 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
-                    otpValue=edt.getText().toString();
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
 

@@ -185,6 +185,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRM_PIN, getIntent().getExtras().getString("ConfirmPin"));
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, getIntent().getExtras().getString("sctlID"));
+            Log.d(LOG_TAG, "otpValue:"+otpValue);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");
                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -369,7 +370,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new ChangePinConfirmationAsyncTask().execute();
@@ -401,7 +402,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null){
+                    if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
                     new ChangePinConfirmationAsyncTask().execute();

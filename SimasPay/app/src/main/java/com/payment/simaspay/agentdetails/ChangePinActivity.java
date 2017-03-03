@@ -3,11 +3,14 @@ package com.payment.simaspay.agentdetails;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +27,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -35,18 +39,15 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/12/2016.
  */
-public class ChangePinActivity extends Activity {
+public class ChangePinActivity extends AppCompatActivity {
 
     TextView textView, textView1, textView2, title;
-
     EditText editText, editText1, editText2;
-
     Button simpan;
     LinearLayout btnBacke;
-
     SharedPreferences sharedPreferences;
-
     ProgressDialog progressDialog;
+    private static final String LOG_TAG = "SimasPay";
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -111,7 +112,6 @@ public class ChangePinActivity extends Activity {
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
-
         textView1.setTypeface(Utility.Robot_Regular(ChangePinActivity.this));
         textView2.setTypeface(Utility.Robot_Regular(ChangePinActivity.this));
         textView.setTypeface(Utility.Robot_Regular(ChangePinActivity.this));
@@ -123,8 +123,6 @@ public class ChangePinActivity extends Activity {
         editText1.setTypeface(Utility.Robot_Light(ChangePinActivity.this));
 
         simpan.setTypeface(Utility.Robot_Regular(ChangePinActivity.this));
-
-
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -149,7 +147,6 @@ public class ChangePinActivity extends Activity {
                 } else if (!editText1.getText().toString().equals(editText2.getText().toString())) {
                     Utility.displayDialog("mPIN dan konfirmasi mPIN baru yang Anda masukkan harus sama.", ChangePinActivity.this);
                 } else {
-
                     String module = sharedPreferences.getString("MODULE", "NONE");
                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");
                     try {
@@ -224,6 +221,7 @@ public class ChangePinActivity extends Activity {
                 try {
                     responseContainer = obj.parse(inqueryResponse);
                 } catch (Exception e) {
+                    Log.d(LOG_TAG, "error: "+e.toString());
                 }
                 if (progressDialog != null) {
                     progressDialog.dismiss();
@@ -235,7 +233,6 @@ public class ChangePinActivity extends Activity {
                     msgCode = 0;
                 }
                 if (msgCode == 2039) {
-
                     Intent intent = new Intent(ChangePinActivity.this, ChangePinConfirmationActivity.class);
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("oldpin", oldPin);
@@ -246,18 +243,26 @@ public class ChangePinActivity extends Activity {
                     intent.putExtra("confirmpinValue", editText2.getText().toString());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     startActivityForResult(intent, 10);
-
                 } else if (msgCode == 631) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(ChangePinActivity.this, SessionTimeOutActivity.class);
-                    startActivityForResult(intent, 40);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(ChangePinActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            arg0.dismiss();
+                            Intent intent = new Intent(ChangePinActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else if (msgCode == 26) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    sharedPreferences.edit().putString("password", newPin).commit();
+                    sharedPreferences.edit().putString("password", newPin).apply();
                     Intent intent = new Intent(ChangePinActivity.this, ChangePinSuccessActivity.class);
                     startActivityForResult(intent, 10);
                 } else {
