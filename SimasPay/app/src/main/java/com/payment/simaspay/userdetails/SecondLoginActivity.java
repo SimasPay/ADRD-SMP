@@ -10,27 +10,23 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.dimo.PayByQR.data.Constant;
-import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -43,7 +39,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
  * Created by Nagendra P on 4/27/2016.
  * Widy Agung Priasmoro on 12/20/2016
  */
-public class SecondLoginActivity extends Activity {
+public class SecondLoginActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SimasPay";
     TextView txt_1, txt_2, number, forgot_mpin;
     Context context;
@@ -51,26 +47,17 @@ public class SecondLoginActivity extends Activity {
     EditText e_mPin;
     int msgCode=0;
     String pin, sourceMDN;
-    String message, transactionTime, sctlID, mfaMode, responseCode;
+    String message, transactionTime, responseCode;
     String rsaKey;
+    Functions functions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_login);
         context = SecondLoginActivity.this;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            final int version = Build.VERSION.SDK_INT;
-            if (version >= 23) {
-                window.setStatusBarColor(ContextCompat.getColor(context, R.color.splashscreen));
-            } else {
-                window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-            }
-            //window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-        }
+        functions = new Functions(this);
+        functions.initiatedToolbar(this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         e_mPin = (EditText) findViewById(R.id.mpin);
@@ -88,8 +75,8 @@ public class SecondLoginActivity extends Activity {
         txt_2.setTypeface(Utility.Robot_Light(SecondLoginActivity.this));
         number.setTypeface(Utility.Robot_Regular(SecondLoginActivity.this));
 
-        number.setText(sharedPreferences.getString("mobileNumber",""));
-        sourceMDN=sharedPreferences.getString("mobileNumber","");
+        sourceMDN=sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER,"");
+        number.setText(sourceMDN);
 
         forgot_mpin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,7 +109,7 @@ public class SecondLoginActivity extends Activity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() == 6) {
                     pin = e_mPin.getText().toString();
-                    sharedPreferences.edit().putString("mpin", e_mPin.getText().toString()).apply();
+                    sharedPreferences.edit().putString(Constants.PARAMETER_MPIN, e_mPin.getText().toString()).apply();
                     nextProcess();
                 }
             }
@@ -175,6 +162,7 @@ public class SecondLoginActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
 
+            /**
             String deviceModel = null, osVersion = null, deviceManufacture;
             try {
                 osVersion = android.os.Build.VERSION.RELEASE;
@@ -183,6 +171,7 @@ public class SecondLoginActivity extends Activity {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
+             **/
 
             PackageInfo pInfo = null;
             try {
@@ -194,28 +183,21 @@ public class SecondLoginActivity extends Activity {
 
             int verCode = pInfo.versionCode;
             sharedPreferences.edit().putString("profileId", "").apply();
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
-            try {
-                rsaKey = CryptoService.encryptWithPublicKey(module, exponent,
-                        pin.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+            rsaKey = functions.generateRSA(pin);
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_LOGIN);
-            mapContainer.put("institutionID",Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey","f");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, Constants.CONSTANT_AUTHENTICATION_KEY);
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_STRING, rsaKey);
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY, Constants.CONSTANT_VALUE_TRUE);
             mapContainer.put(Constants.PARAMETER_APPOS, AppConfigFile.appOS);
-            mapContainer.put("apptype","");
+            mapContainer.put(Constants.PARAMETER_APPTYPE, Constants.CONSTANTS_APPTYPE);
             //mapContainer.put(Constants.PARAMETER_DEVICE_MODEL, deviceModel);
             mapContainer.put(Constants.PARAMETER_APPVERSION, version);
             //mapContainer.put(Constants.PARAMETER_OS_VERSION, osVersion);
@@ -278,7 +260,7 @@ public class SecondLoginActivity extends Activity {
 
                     if (responseContainer.getCustomerType().equals("0")) {
                         if(responseContainer.getIsBank().equals("true")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("true")) {
-                            sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, 3).apply();
+                            sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "both");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BOTH_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
@@ -289,6 +271,7 @@ public class SecondLoginActivity extends Activity {
                             Log.d(LOG_TAG, "emoney KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYKYC_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
+                            sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
                         }else if(responseContainer.getIsBank().equals("false")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("false")){
@@ -296,13 +279,15 @@ public class SecondLoginActivity extends Activity {
                             Log.d(LOG_TAG, "emoney non KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYNONKYC_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
+                            sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
                         }else if(responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")){
-                            sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
+                            sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_BANK_INT).apply();
                             Log.d(LOG_TAG, "bank account");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BANK_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
+                            sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_BANK_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
                         }
@@ -348,12 +333,12 @@ public class SecondLoginActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", Constants.MDN_VALIDATION_FORGOTPIN);
-            mapContainer.put("service", Constants.SERVICE_ACCOUNT);
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sourceMDN);
-            mapContainer.put("channelID", Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.MDN_VALIDATION_FORGOTPIN);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SecondLoginActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();

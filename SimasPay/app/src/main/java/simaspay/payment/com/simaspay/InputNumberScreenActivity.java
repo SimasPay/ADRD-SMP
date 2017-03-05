@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;

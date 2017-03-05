@@ -53,7 +53,7 @@
         android:divider="#d8d8d8"
         android:dividerHeight="0.5dp"
         android:listSelector="@android:color/transparent"
-        android:entries="@array/transfer_array"
+        android:entries="@array/bahasa_transfer_array"
         android:paddingLeft="5dp"
         android:paddingStart="5dp"
         android:paddingRight="5dp"

@@ -7,7 +7,11 @@
     <string name="mpin">mPIN</string>
     <string name="transfer_emoney">Transfer - E-money</string>
     <string name="rp">Rp.</string>
-    <string-array name="transfer_array">
+    <string name="bank_sinarmas">Bank Sinarmas</string>
+    <string name="bank_lainnya">Bank Lainnya</string>
+    <string name="uangku">Uangku</string>
+    <string name="emoney">E-money</string>
+    <string-array name="bahasa_transfer_array">
         <item>Bank Sinarmas</item>
         <item>Bank Lainnya</item>
         <item>Uangku</item>
@@ -325,7 +329,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_email_address">email</string>
     <string name="id_nomor_rekening_tujuan">Nomor Rekening Tujuan</string>
     <string name="id_transfer_emoneytoemoney">Transfer - e-Money ke e-Money</string>
-    <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke e-Money</string>
+    <string name="id_transfer_bsim_to_emoney">Transfer - BSIM ke E-money</string>
     <string name="tarik_tunai_untuk_saya">Tarik Tunai - Untuk Saya</string>
     <string name="id_bank_tujuan">Bank Tujuan</string>
     <string name="id_transfer_bank_lain">Transfer - Bank Lain</string>
@@ -333,6 +337,10 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="min_transfer">Minimal Rp 100.000, harus kelipatan Rp 50.000</string>
     <string name="id_daftar_emoney">Daftar E-money</string>
     <string name="id_confirmation">Konfirmasi</string>
+    <string name="id_banksinarmas">Bank Sinarmas</string>
+    <string name="bank">Bank</string>
+    <string name="id_emoney_reguler">E-money Reguler</string>
+    <string name="id_emoney_plus">E-money Plus</string>
     <string name="id_buka_rekening">Anda akan membuka akun e-money dengan data diri Anda sebagai nasabah Bank Sinarmas. Lanjutkan proses?</string>
     <string name="id_btn_daftar_akun_emoney">Daftar Akun E-money</string>
     <string name="id_mpinconfirmation_label">Anda akan mengubah mPIN Anda. Lanjutkan proses?</string>

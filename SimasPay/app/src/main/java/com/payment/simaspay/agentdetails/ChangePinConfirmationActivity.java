@@ -1,7 +1,6 @@
 package com.payment.simaspay.agentdetails;
 
 import android.Manifest;
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -25,22 +24,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;

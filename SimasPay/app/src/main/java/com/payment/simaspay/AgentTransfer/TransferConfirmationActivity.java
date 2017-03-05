@@ -1,7 +1,6 @@
 package com.payment.simaspay.AgentTransfer;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,29 +16,25 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -47,9 +42,7 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.InputNumberScreenActivity;
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
 
@@ -73,18 +66,15 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     Context context;
     private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.commonconfirmation);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func = new Functions(this);
+        func.initiatedToolbar(this);
 
         IncomingSMS.setListener(TransferConfirmationActivity.this);
 
@@ -115,13 +105,13 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         product_field.setVisibility(View.VISIBLE);
         products.setVisibility(View.VISIBLE);
 
-        name.setText("Nama Pemilik Rekening");
+        name.setText(getResources().getString(R.string.nama_pemilik_rekening));
         name_field.setText(getIntent().getExtras().getString("Name"));
-        number.setText("Bank Tujuan");
-        number_field.setText("Bank Sinarmas");
-        amount.setText("Nomor Rekening Tujuan");
+        number.setText(getResources().getString(R.string.id_bank_tujuan));
+        number_field.setText(getResources().getString(R.string.bank_sinarmas));
+        amount.setText(getResources().getString(R.string.id_nomor_rekening_tujuan));
         amount_field.setText(getIntent().getExtras().getString("DestMDN"));
-        products.setText("Jumlah");
+        products.setText(getResources().getString(R.string.jumlah));
         product_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
 
 
@@ -148,27 +138,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         cancel.setTypeface(Utility.Robot_Regular(TransferConfirmationActivity.this));
         confirmation.setTypeface(Utility.Robot_Regular(TransferConfirmationActivity.this));
 
-        /**
-         cancel.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        try {
-        unregisterReceiver(broadcastReceiver);
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        try {
-        handlerforTimer.removeCallbacks(runnableforExit);
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        Intent intent = getIntent();
-        setResult(11, intent);
-        finish();
-        }
-        });
-         **/
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,24 +161,13 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
                                     109);
                         } else {
-                            //handlerforTimer.removeCallbacks(runnableforExit);
-                            //TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
-                            //timerCount.SMSAlert("");
                             new requestOTPAsyncTask().execute();
                         }
                     } else {
-                        //handlerforTimer.removeCallbacks(runnableforExit);
-                        //TimerCount timerCount=new TimerCount(TransferConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
-                        //timerCount.SMSAlert("");
                         new requestOTPAsyncTask().execute();
                     }
                 } else {
-//                    if (Timervalueout) {
-//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferConfirmationActivity.this);
-//                    }else{
-                    //handlerforTimer.removeCallbacks(runnableforExit);
-                    //new InterBankBankSinarmasAsynTask().execute();
-//                    }
+                    new InterBankBankSinarmasAsynTask().execute();
                 }
             }
         });
@@ -220,28 +178,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 finish();
             }
         });
-
-        /**
-         back.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        try {
-        unregisterReceiver(broadcastReceiver);
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        try {
-        handlerforTimer.removeCallbacks(runnableforExit);
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        Intent intent = getIntent();
-        setResult(11, intent);
-        finish();
-        }
-        });
-         handlerforTimer.postDelayed(runnableforExit, 90000);
-         **/
     }
 
     private void showOTPRequiredDialog() {
@@ -318,12 +254,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
-                        new InterBankBankSinarmasAsynTask().execute();
-                    }else{
-                        new TransferemoneyConfirmationAsyncTask().execute();
-                    }
+                    new InterBankBankSinarmasAsynTask().execute();
                 }
             }
         });
@@ -355,15 +286,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
-
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
-                        new InterBankBankSinarmasAsynTask().execute();
-                    }else{
-                        new TransferemoneyConfirmationAsyncTask().execute();
-                    }
-                    //new TransferEmoneyConfirmationActivity.TransferConfirmationAsyncTask().execute();
-
+                    new InterBankBankSinarmasAsynTask().execute();
                 }
 
             }
@@ -374,7 +297,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     public void errorOTP() {
         AlertDialog.Builder builder = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
-        /**
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
@@ -387,7 +309,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         }
                     });
         } else {
-         **/
             builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -399,7 +320,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             dialogBuilder.dismiss();
                         }
                     });
-        //}
+        }
         alertError = builder.create();
         if (!isFinishing()) {
             alertError.show();
@@ -413,16 +334,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         otpValue=otp;
     }
 
-    /**
-     Handler handler12 = new Handler();
-     Runnable runnable12 = new Runnable() {
-    @Override
-    public void run() {
-    handlerforTimer.removeCallbacks(runnableforExit);
-    new InterBankBankSinarmasAsynTask().execute();
-    }
-    };
-     **/
 
     class TransferemoneyConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
@@ -462,10 +373,21 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             Log.d(LOG_TAG,"channelID 7");
-            mapContainer.put("sourcePocketCode", "1");
-            Log.d(LOG_TAG,"sourcePocketCode 1");
-            mapContainer.put("destPocketCode", "2");
-            Log.d(LOG_TAG,"destPocketCode 2");
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
+                if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                }
+            }else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT){
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+            }
+
+            mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             }else{
@@ -534,7 +456,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            Intent intent = new Intent(TransferConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
+                            Intent intent = new Intent(TransferConfirmationActivity.this, TransferBankToEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
@@ -696,6 +618,11 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
                 }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
             }
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");

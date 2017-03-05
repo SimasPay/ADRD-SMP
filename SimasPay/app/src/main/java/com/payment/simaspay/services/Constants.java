@@ -700,6 +700,8 @@ public class Constants {
     public static final String PARAMETER_INSTITUTION_ID = "institutionID";
     public static final String PARAMETER_MSPID = "mspID";
     public static final String PARAMETER_AUTHENTICATION_KEY = "authenticationKey";
+    public static final String CONSTANT_AUTHENTICATION_KEY = "f";
+    public static final String PARAMETER_MPIN = "mpin";
     public static final String PARAMETER_SERVICE_NAME = "service";
     public static final String PARAMETER_TRANSACTIONNAME = "txnName";
     public static final String PARAMETER_CARD_PAN = "cardPan";
@@ -770,6 +772,8 @@ public class Constants {
     public static final String PARAMETER_SUB_LASTNAME = "subLastName";
     public static final String PARAMETER_ACCOUNT_TYPE = "accountType";
     public static final String PARAMETER_APPLICATION_ID = "appId";
+    public static final String PARAMETER_USERAPIKEY = "userApiKey";
+
     public static final String PARAMETER_DOB = "dob";
     public static final String PARAMETER_SALT = "salt";
     public static final String PARAMETER_AUTHENTICATION_STRING = "authenticationString";
@@ -779,6 +783,7 @@ public class Constants {
     public static final String PARAMETER_COMPANY_ID = "companyID";
 
     public static final String PARAMETER_APPTYPE = "apptype";
+    public static final String CONSTANTS_APPTYPE = "";
     public static final String PARAMETER_APPVERSION = "appversion";
     public static final String PARAMETER_APPOS = "appos";
     public static final String PARAMETER_DEVICE_MODEL = "deviceModel";
@@ -797,11 +802,12 @@ public class Constants {
     public static final String PARAMETER_USERTYPE = "userType";
     public static final String PARAMETER_USES_AS = "useas";
     public static final String PARAMETER_ACCOUNTNUMBER = "accountnumber";
+    public static final String PARAMETER_PHONENUMBER = "mobileNumber";
     public static final String CONSTANT_BANK_USER = "bank";
     public static final String CONSTANT_EMONEYNONKYC_USER = "nonkyc";
     public static final String CONSTANT_EMONEYKYC_USER = "kyc";
     public static final String CONSTANT_BOTH_USER = "both";
-    public static final String CONSTANT_EMONEY_REGULER = "bank";
+    public static final String CONSTANT_EMONEY_REGULER = "E-money Reguler";
     public static final String CONSTANT_EMONEY_PLUS = "E-money Plus";
     public static final int CONSTANT_EMONEY_INT = 3;
     public static final int CONSTANT_LAKUPANDAI_INT = 2;
@@ -865,6 +871,7 @@ public class Constants {
     public static final String PARAMETER_REDEEMAMOUNT = "amountRedeemed";
     public static final String PARAMETER_REDEEMPOINTS = "pointsRedeemed";
     public static final String PARAMETER_TIPAMOUNT = "tippingAmount";
+    public static final String PARAMETER_ONBEHALFOFMDN = "onBehalfOfMDN";
 
     // LupaPIN
     public static final String PARAMETER_SECURITY_QUESTION = "securityQuestion";
@@ -875,6 +882,7 @@ public class Constants {
 
     public static final String MESSAGE_MOBILE_TRANSFER = "Mobile Transfer";
     public static final String DUMMY_BANK_ID = "Not Yet";
+    public static final String CONSTANT_BANK_ID = "";
     public static final String CONSTANT_VALUE_ZERO = "0";
     public static final String CONSTANT_VALUE_TRUE = "true";
     public static final String SERVICE_PROVIDER_NAME = "serviceProviderName";
@@ -1009,9 +1017,12 @@ public class Constants {
     public static final String OS_ANDROID = "2";
     public static final String POCKET_CODE_BANK = "2";
     public static final String POCKET_CODE_EMONEY = "1";
+    public static final int POCKET_INT_EMONEY = 1;
     public static final String POCKET_CODE_BANK_SINARMAS = "6";
     public static final String POCKET_CODE_BANK_SINARMAS_BANKCODE = "153";
     public static final String DISCLOSURE_LEGAL = "Legal Disclosure for Mobile Money Service "
             + "\n" + "I agree to the terms of this service";
 
+
+    public static final String CONSTANTS_NONE = "NONE";
 }

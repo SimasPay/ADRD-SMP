@@ -38,9 +38,6 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 1/30/2016.
- */
 public class BankDetailsActivity extends AppCompatActivity {
 
     TextView title;
@@ -51,7 +48,6 @@ public class BankDetailsActivity extends AppCompatActivity {
     ArrayList<BanksData> arrayList = new ArrayList<>();
     ArrayList<BanksData> filteredList = new ArrayList<>();
     SharedPreferences sharedPreferences;
-    private static final String LOG_TAG = "SimasPay";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

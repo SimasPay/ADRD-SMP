@@ -40,6 +40,7 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.Trans_DataSelectionActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -62,25 +63,22 @@ public class UserHomeActivity extends AppCompatActivity {
     private ImageButton gantimpin, switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout, daftaremoney;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
     LinearLayout daftaremoneylay;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simaspay_home);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-        }
+        func=new Functions(this);
+        func.initiatedToolbar(this);
 
         home_lbl=(TextView)findViewById(R.id.home_label);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        mdn = sharedPreferences.getString("mobileNumber", "");
+        mdn = sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, "");
         nama = sharedPreferences.getString("userName", "");
-        mpin = sharedPreferences.getString("mpin", "");
-        label_home = sharedPreferences.getString("akun","");
+        mpin = sharedPreferences.getString(Constants.PARAMETER_MPIN, "");
+        label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER,"");
 
         switch_account=(ImageButton)findViewById(R.id.switch_account);
         logout=(ImageButton)findViewById(R.id.logout_btn);
@@ -89,7 +87,7 @@ public class UserHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                sharedPreferences.edit().putString("userApiKey", "NONE").apply();
+                sharedPreferences.edit().putString(Constants.PARAMETER_USERAPIKEY, "NONE").apply();
                 startActivity(intent);
             }
         });
@@ -97,18 +95,18 @@ public class UserHomeActivity extends AppCompatActivity {
         phone_lbl=(TextView)findViewById(R.id.mobilephone_lbl);
         transfer=(ImageButton)findViewById(R.id.transfer_btn);
         tariktunai=(ImageButton)findViewById(R.id.tariktunai_btn);
-        if(label_home.equals("bank")){
-            home_lbl.setText("Bank");
-            phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
+        if(label_home.equals(Constants.CONSTANT_BANK_USER)){
+            home_lbl.setText(getResources().getString(R.string.bank));
+            phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER,""));
             switch_account.setVisibility(View.GONE);
             tariktunai.setEnabled(false);
             tariktunai.setAlpha((float) 0.2);
             LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
             tariktunailay.setVisibility(View.INVISIBLE);
-            accountSelected="Bank";
-        }else if(label_home.equals("nonkyc")){
-            home_lbl.setText("E-Money Reguler");
-            phone_lbl.setText(sharedPreferences.getString("mobileNumber",""));
+            accountSelected=Constants.CONSTANT_BANK_USER;
+        }else if(label_home.equals(Constants.CONSTANT_EMONEYNONKYC_USER)){
+            home_lbl.setText(getResources().getString(R.string.id_emoney_reguler));
+            phone_lbl.setText(mdn);
             switch_account.setVisibility(View.GONE);
             transfer.setEnabled(false);
             tariktunai.setEnabled(false);
@@ -118,21 +116,28 @@ public class UserHomeActivity extends AppCompatActivity {
             tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
             LinearLayout transferlay = (LinearLayout)findViewById(R.id.transferlay);
             transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
-            accountSelected="E-Money Reguler";
-        }else if(label_home.equals("both")){
-            String account = sharedPreferences.getString("useas","");
+            accountSelected=Constants.CONSTANT_EMONEY_REGULER;
+        }else if(label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)){
+            home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
+            phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER,""));
+            switch_account.setVisibility(View.GONE);
+            accountSelected=Constants.CONSTANT_EMONEY_PLUS;
+        }else if(label_home.equals(Constants.CONSTANT_BOTH_USER)){
+            String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
             accountSelected=account;
-            if(account.equals("Bank")){
-                phone_lbl.setText(sharedPreferences.getString("accountnumber",""));
+            if(account.equals(Constants.CONSTANT_BANK_USER)){
+                home_lbl.setText(getResources().getString(R.string.bank));
+                phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER,""));
                 LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
                 tariktunailay.setVisibility(View.INVISIBLE);
             }else{
-                phone_lbl.setText(sharedPreferences.getString("mobileNumber",""));
+                home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
+                phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER,""));
             }
-            home_lbl.setText(account);
             switch_account.setVisibility(View.VISIBLE);
         }
         Log.d("data", "mdn: "+mdn+", mpin: "+mpin);
+        sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
 
         switch_account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,8 +200,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         daftaremoneylay=(LinearLayout)findViewById(R.id.daftar_emoney);
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
-        String accountType = sharedPreferences.getString("akun","");
-        if(accountType.equals("bank")){
+        if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
             daftaremoneylay.setVisibility(View.VISIBLE);
             daftaremoney.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -224,7 +228,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
                 intent.putExtra("simaspayuser", false);
                 intent.putExtra("agentornot", false);
-                sharedPreferences.edit().putString("useas", accountSelected).apply();
+                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
                 startActivityForResult(intent, 20);
             }
         });
@@ -233,7 +237,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
-                    sharedPreferences.edit().putString("useas", accountSelected).apply();
+                    sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
                     startActivity(intent);
                 }
         });
@@ -245,7 +249,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserHomeActivity.this, ChangePinActivity.class);
                 intent.putExtra("simaspayuser", false);
                 intent.putExtra("agentornot", false);
-                sharedPreferences.edit().putString("useas", accountSelected).apply();
+                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
                 startActivityForResult(intent, 20);
             }
         });
@@ -288,14 +292,9 @@ public class UserHomeActivity extends AppCompatActivity {
                         if(isNetworkAvailable()==true){
                             checkbalance.setText("");
                             progbar.setVisibility(View.VISIBLE);
-                            if(label_home.equals("bank")){
-                                new CheckBalanceAsynTask().execute();
-                            }else{
-                                new reqCheckBalance().execute();
-                            }
+                            new CheckBalanceAsynTask().execute();
                         }else{
                             checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
-                            //checkbalance.setTypeface(null, Typeface.ITALIC);
                             progbar.setVisibility(View.GONE);
                         }
 
@@ -317,7 +316,7 @@ public class UserHomeActivity extends AppCompatActivity {
                         progbar.setVisibility(View.GONE);
                         swipe_balance.startAnimation(inFromRightAnimation());
                     }
-                }, 5000);
+                }, 7000);
                 // Put your logic here for text visibility and for timer like progress bar for 5 second and setText
             }
     });
@@ -340,42 +339,40 @@ public class UserHomeActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
-
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_CHECKBALANCE);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mdn);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
-            String account = sharedPreferences.getString("useas","");
-            accountSelected=account;
-            if(account.equals("Bank")){
-                Log.d(LOG_TAG, "bank");
-                if (sharedPreferences.getInt("userType", -1) == 0) {
+                if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
+                    if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == 1) {
                         mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                         mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     } else {
                         mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                         mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     }
+                } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
+                    if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
+                        Log.d(LOG_TAG, "emoney");
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    }else if(sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_BANK_INT) {
+                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
+                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    }
                 }
-            }else{
-                Log.d(LOG_TAG, "emoney");
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-            }
-
-            mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
+            //mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UserHomeActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -414,7 +411,9 @@ public class UserHomeActivity extends AppCompatActivity {
                 }
                 if (msgCode == 631) {
                     checkbalance.setText("Timeout");
-                } else if (msgCode == 274 || msgCode == 4) {
+                } else if(msgCode == 571) {
+                    checkbalance.setText("Requested  account with the given cardpan is not available");
+                }else if (msgCode == 274 || msgCode == 4) {
                     checkbalance.setText("Rp "+ responseContainer.getAmount() +"");
                 }
             }else{
@@ -423,25 +422,17 @@ public class UserHomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
     class reqCheckBalance extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-            try {
-                rsaKey = CryptoService.encryptWithPublicKey(module, exponent,
-                        mpin.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-
+            rsaKey=func.generateRSA(mpin);
             Map<String, String> mapContainer = new HashMap<>();
-            String account = sharedPreferences.getString("useas","");
+            String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
             accountSelected=account;
-            if(account.equals("Bank")){
+            if(account.equals(Constants.CONSTANT_BANK_USER)){
                 Log.d(LOG_TAG, "bank");
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
@@ -449,11 +440,11 @@ public class UserHomeActivity extends AppCompatActivity {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
-            mapContainer.put("txnName", "CheckBalance");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_CHECKBALANCE);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", mdn);
-            mapContainer.put("sourcePIN", CryptoService.encryptWithPublicKey(module, exponent, mpin.getBytes()));
+            mapContainer.put("sourcePIN", rsaKey);
             mapContainer.put("bankID", "");
             mapContainer.put("channelID", "7");
             Log.e("-----",""+mapContainer.toString());
@@ -507,6 +498,7 @@ public class UserHomeActivity extends AppCompatActivity {
             }
         }
     }
+     **/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

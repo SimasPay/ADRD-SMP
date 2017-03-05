@@ -1,6 +1,5 @@
 package com.payment.simaspay.Cash_InOut;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,10 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -24,15 +20,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -53,17 +46,15 @@ public class CashOutDetailsActivity extends AppCompatActivity {
     String message, transactionTime, debitamt, creditamt, charges, transferID, parentTxnID, sctlID, mfaMode;
     private AlertDialog.Builder alertbox;
     private static final String LOG_TAG = "SimasPay";
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setortunaidetails);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func=new Functions(this);
+        func.initiatedToolbar(this);
+
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         title = (TextView) findViewById(R.id.titled);
         handphone = (TextView) findViewById(R.id.handphone);
@@ -71,8 +62,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
 
         String untuk = getIntent().getExtras().getString("untuk");
         title.setText("Tarik Tunai - "+untuk);
-        String account = sharedPreferences.getString("useas", "");
-        if (account.equals("Bank")) {
+        if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
             if(untuk.equals("Untuk Saya")){
                 handphone.setVisibility(View.GONE);
                 number.setVisibility(View.GONE);
@@ -122,8 +112,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String account = sharedPreferences.getString("useas", "");
-                if (account.equals("Bank")) {
+                if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                     if (number.getText().toString().replace(" ", "").length() <= 0) {
                         Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
                     } else if (number.getText().toString().replace(" ", "").length() < 10) {
@@ -137,15 +126,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                     } else {
-                        String module = sharedPreferences.getString("MODULE", "NONE");
-                        String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                        try {
-                            pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                    pin.getText().toString().getBytes());
-                        } catch (Exception e1) {
-                            e1.printStackTrace();
-                        }
+                        pinValue=func.generateRSA(pin.getText().toString());
                         mdn = (number.getText().toString().replace(" ", ""));
                         amountValue = amount.getText().toString().replace("Rp ", "");
                         new CashOutAsynTask().execute();
@@ -160,15 +141,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                         } else {
-                            String module = sharedPreferences.getString("MODULE", "NONE");
-                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                            try {
-                                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                        pin.getText().toString().getBytes());
-                            } catch (Exception e1) {
-                                e1.printStackTrace();
-                            }
+                            pinValue=func.generateRSA(pin.getText().toString());
                             mdn = sharedPreferences.getString("mobileNumber","");
                             amountValue = amount.getText().toString().replace("Rp ", "");
                             new inquiryCashOutAsyncTask().execute();
@@ -187,15 +160,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                         } else {
-                            String module = sharedPreferences.getString("MODULE", "NONE");
-                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                            try {
-                                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                        pin.getText().toString().getBytes());
-                            } catch (Exception e1) {
-                                e1.printStackTrace();
-                            }
+                            pinValue=func.generateRSA(pin.getText().toString());
                             mdn = (number.getText().toString().replace(" ", ""));
                             amountValue = amount.getText().toString().replace("Rp ", "");
                             new inquiryCashOutAsyncTask().execute();
@@ -348,17 +313,17 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", "CashOutAtATMInquiry");
-            mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_CASHOUT_AT_ATM_INQUIRY);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             //mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
-            mapContainer.put("onBehalfOfMDN", sharedPreferences.getString("userName", ""));
-            mapContainer.put("sourcePIN", pinValue);
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+            mapContainer.put(Constants.PARAMETER_ONBEHALFOFMDN, sharedPreferences.getString("userName", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             //mapContainer.put("destMDN", destmdn);
             //mapContainer.put("destBankAccount", "");
-            mapContainer.put("amount", amountValue);
-            mapContainer.put("channelID", "7");
+            mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             //mapContainer.put("bankID", "");
             //mapContainer.put("sourcePocketCode", "2");
             //mapContainer.put("destPocketCode", "1");

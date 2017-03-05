@@ -244,9 +244,9 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
                     } else {
                         if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PerchaseDetailsActivity.this);
-                        }else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < 6) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PerchaseDetailsActivity.this);
-                        }  else {
+                        } else {
                             amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
                             String module = sharedPreferences.getString("MODULE", "NONE");
                             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -295,28 +295,23 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
 
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_AIRTIME_PURCHASE_INQUIRY);
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
-                }
-            }else{
+            if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, "1");
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
 
 
@@ -383,7 +378,7 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
                         }
                     });
                     alertbox.show();
-                }else if (msgCode == 660) {
+                } else if (msgCode == 660) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -422,7 +417,7 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
                     }
                 }
             } else {
-                Log.d(LOG_TAG, "response: "+null+", -----"+response);
+                Log.d(LOG_TAG, "response: " + null + ", -----" + response);
                 progressDialog.dismiss();
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",

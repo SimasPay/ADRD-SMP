@@ -17,7 +17,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
  * 26
  */
 
-public class TransferEmoneyNotificationActivity extends AppCompatActivity {
+public class TransferBankToEmoneyNotificationActivity extends AppCompatActivity {
     String destName, destMDN, destAmount, transactionID;
 
     @Override
@@ -48,16 +48,16 @@ public class TransferEmoneyNotificationActivity extends AppCompatActivity {
         TextView destmdn_lbl=(TextView)findViewById(R.id.lbl_mdn);
         destmdn_lbl.setText(destMDN);
         TextView destamount_lbl=(TextView)findViewById(R.id.lbl_amount);
-        destamount_lbl.setText(TransferEmoneyConfirmationActivity.formatRupiah(destAmount));
+        destamount_lbl.setText(TransferBankToEmoneyConfirmationActivity.formatRupiah(destAmount));
 
         Button okbutton=(Button)findViewById(R.id.ok_btn);
         okbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(TransferEmoneyNotificationActivity.this, UserHomeActivity.class);
+                Intent i = new Intent(TransferBankToEmoneyNotificationActivity.this, UserHomeActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
-                TransferEmoneyNotificationActivity.this.finish();
+                TransferBankToEmoneyNotificationActivity.this.finish();
             }
         });
 

@@ -27,33 +27,30 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SimaspayUserActivity;
+import com.payment.simaspay.utils.Functions;
 
 import simaspay.payment.com.simaspay.Agent_HomePage_Activity;
 import simaspay.payment.com.simaspay.LoginScreenActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 12/30/2015.
- */
 public class NumberSwitchingActivity extends AppCompatActivity {
 
     TextView textView, agent_text, reg_text, agent_number, reg_number, lagout_text;
     LinearLayout agent_layout, reg_layout, logOut;
     Context context;
     SharedPreferences sharedPreferences;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.number_switching);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-        }
+
+        func=new Functions(this);
+        func.initiatedToolbar(this);
+
         textView = (TextView) findViewById(R.id.text_3);
         agent_text = (TextView) findViewById(R.id.agent_text);
         reg_text = (TextView) findViewById(R.id.reg_text);
@@ -75,8 +72,8 @@ public class NumberSwitchingActivity extends AppCompatActivity {
         reg_layout = (LinearLayout) findViewById(R.id.reg_layout);
         logOut = (LinearLayout) findViewById(R.id.logOut);
 
-        agent_number.setText(sharedPreferences.getString("mobileNumber", ""));
-        reg_number.setText(sharedPreferences.getString("accountnumber", ""));
+        agent_number.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+        reg_number.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
 
 
         agent_layout.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +82,7 @@ public class NumberSwitchingActivity extends AppCompatActivity {
                 sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                 Intent intent = new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
                 sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, Constants.CONSTANT_EMONEY_PLUS).apply();
-                //intent.putExtra("useas","E-money Plus");
+                sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                 startActivityForResult(intent, 20);
                 finish();
             }
@@ -98,6 +95,7 @@ public class NumberSwitchingActivity extends AppCompatActivity {
                 Intent intent = new Intent(NumberSwitchingActivity.this, UserHomeActivity.class);
                 intent.putExtra("direct", true);
                 sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, Constants.CONSTANT_BANK_USER).apply();
+                sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_BANK_INT).apply();
                 startActivityForResult(intent, 20);
                 finish();
 
@@ -109,7 +107,7 @@ public class NumberSwitchingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NumberSwitchingActivity.this, SecondLoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                sharedPreferences.edit().putString("userApiKey", "NONE").apply();
+                sharedPreferences.edit().putString(Constants.PARAMETER_USERAPIKEY, Constants.CONSTANTS_NONE).apply();
                 startActivity(intent);
             }
         });

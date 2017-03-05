@@ -110,12 +110,12 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         sourceMDN = sharedPreferences.getString("mobileNumber", "");
         userApiKey = sharedPreferences.getString("userApiKey", "");
-        if(userApiKey==null||userApiKey.equals("")||userApiKey.length()==0){
+        if (userApiKey == null || userApiKey.equals("") || userApiKey.length() == 0) {
             new requestUserAPIKeyAsyncTask().execute();
-        }else{
+        } else {
             pin = sharedPreferences.getString("mpin", "");
-            Log.d(LOG_TAG, "userApiKey from preferences: "+userApiKey);
-            Log.d(LOG_TAG, "pin from preferences: "+pin);
+            Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
+            Log.d(LOG_TAG, "pin from preferences: " + pin);
             String module = sharedPreferences.getString("MODULE", "NONE");
             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
@@ -127,7 +127,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             }
             stMPIN = pinValue;
 
-            Log.d(LOG_TAG, "pinValue: "+pinValue);
+            Log.d(LOG_TAG, "pinValue: " + pinValue);
 
             payByQRSDK = new
                     PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
@@ -138,21 +138,21 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             payByQRSDK.setIsUsingCustomDialog(false);
             payByQRSDK.setIsPolling(false);
 
-            if (selectedLanguage.equalsIgnoreCase("ENG")){
+            if (selectedLanguage.equalsIgnoreCase("ENG")) {
                 payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
-            }else {
+            } else {
                 payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
             }
 
             Bundle extras = getIntent().getExtras();
             int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
-            Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
-            if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
+            Log.d(LOG_TAG, "getTypeSDK:" + getTypeSDK);
+            if (getTypeSDK == PayByQRSDK.MODULE_LOYALTY) {
                 payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
-                Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
-            }else{
+                Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_LOYALTY);
+            } else {
                 payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
-                Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
+                Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_PAYMENT);
             }
             Log.e(LOG_TAG, "------start: SDK-------");
         }
@@ -195,7 +195,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     @Override
     public void callbackGenerateUserAPIKey(UserAPIKeyListener listener) {
         listener.setUserAPIKey(userApiKey);
-        Log.d(LOG_TAG, "setUSERAPIKey:"+userApiKey);
+        Log.d(LOG_TAG, "setUSERAPIKey:" + userApiKey);
     }
 
     @Override
@@ -215,7 +215,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         invoiceID = invoiceModel1.invoiceID;
         invoiceModel = invoiceModel1;
-        Log.d(LOG_TAG, "invoiceID:"+invoiceID+", invoiceModel:"+invoiceModel);
+        Log.d(LOG_TAG, "invoiceID:" + invoiceID + ", invoiceModel:" + invoiceModel);
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
             if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
@@ -313,82 +313,78 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG, Constants.PARAMETER_CHANNEL_ID +": "+ Constants.CONSTANT_CHANNEL_ID);
+            Log.d(LOG_TAG, Constants.PARAMETER_CHANNEL_ID + ": " + Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_QR_BILLPAYMENT_INQUIRY);
-            Log.d(LOG_TAG, Constants.PARAMETER_TRANSACTIONNAME +": "+ Constants.TRANSACTION_QR_BILLPAYMENT_INQUIRY);
+            Log.d(LOG_TAG, Constants.PARAMETER_TRANSACTIONNAME + ": " + Constants.TRANSACTION_QR_BILLPAYMENT_INQUIRY);
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
                     sharedPreferences.getString("mobileNumber", ""));
-            Log.d(LOG_TAG, Constants.PARAMETER_SOURCE_MDN +": "+ sharedPreferences.getString("mobileNumber", ""));
+            Log.d(LOG_TAG, Constants.PARAMETER_SOURCE_MDN + ": " + sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     rsaKey);
-            Log.d(LOG_TAG, Constants.PARAMETER_SOURCE_PIN +": "+ rsaKey);
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+            Log.d(LOG_TAG, Constants.PARAMETER_SOURCE_PIN + ": " + rsaKey);
+            sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+            if (sharedPreferences.getInt("userType", -1) == 0) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ": " + Constants.SERVICE_BILLPAYMENT);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ": " + Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ": " + Constants.SERVICE_BILLPAYMENT);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ": " + Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ": " + Constants.SERVICE_AGENT);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ": " + Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_AGENT);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_BANK);
-                    }
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ": " + Constants.SERVICE_AGENT);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ": " + Constants.POCKET_CODE_BANK);
                 }
-            }else{
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME +": "+ Constants.SERVICE_BILLPAYMENT);
-                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE +": "+ Constants.POCKET_CODE_EMONEY);
+                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ": " + Constants.SERVICE_BILLPAYMENT);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ": " + Constants.POCKET_CODE_EMONEY);
             }
 
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID,
                     Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG, Constants.PARAMETER_INSTITUTION_ID +": "+ Constants.CONSTANT_INSTITUTION_ID);
+            Log.d(LOG_TAG, Constants.PARAMETER_INSTITUTION_ID + ": " + Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AMOUNT, invoiceModel.paidAmount + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_AMOUNT +": "+ invoiceModel.paidAmount);
+            Log.d(LOG_TAG, Constants.PARAMETER_AMOUNT + ": " + invoiceModel.paidAmount);
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, QRBillerCode);
-            Log.d(LOG_TAG, Constants.PARAMETER_BILLER_CODE +": "+ QRBillerCode);
+            Log.d(LOG_TAG, Constants.PARAMETER_BILLER_CODE + ": " + QRBillerCode);
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE,
                     Constants.TRANSACTION_QR_PAYMENT);
-            Log.d(LOG_TAG, Constants.PARAMETER_PAYMENT_MODE +": "+ Constants.TRANSACTION_QR_PAYMENT);
+            Log.d(LOG_TAG, Constants.PARAMETER_PAYMENT_MODE + ": " + Constants.TRANSACTION_QR_PAYMENT);
             mapContainer.put(Constants.PARAMETER_MERCHANT_NAME, invoiceModel.merchantName);
-            Log.d(LOG_TAG, Constants.PARAMETER_MERCHANT_NAME +": "+ invoiceModel.merchantName);
+            Log.d(LOG_TAG, Constants.PARAMETER_MERCHANT_NAME + ": " + invoiceModel.merchantName);
             mapContainer.put(Constants.PARAMETER_USER_API_KEY,
                     sharedPreferences.getString("userApiKey", "NONE"));
-            Log.d(LOG_TAG, Constants.PARAMETER_USER_API_KEY +": "+ userApiKey);
+            Log.d(LOG_TAG, Constants.PARAMETER_USER_API_KEY + ": " + userApiKey);
             mapContainer.put(Constants.PARAMETER_BILL_NO, invoiceID);
-            Log.d(LOG_TAG, Constants.PARAMETER_BILL_NO +": "+ invoiceID);
+            Log.d(LOG_TAG, Constants.PARAMETER_BILL_NO + ": " + invoiceID);
             mapContainer.put(Constants.PARAMETER_LOYALITYNAME,
                     invoiceModel.loyaltyProgramName.replace(" ", "+"));
-            Log.d(LOG_TAG, Constants.PARAMETER_LOYALITYNAME +": "+ invoiceModel.loyaltyProgramName.replace(" ", "+"));
+            Log.d(LOG_TAG, Constants.PARAMETER_LOYALITYNAME + ": " + invoiceModel.loyaltyProgramName.replace(" ", "+"));
             mapContainer.put(Constants.PARAMETER_NUMBEROFCOUPUNS, invoiceModel.numberOfCoupons + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_NUMBEROFCOUPUNS +": "+ invoiceModel.numberOfCoupons);
+            Log.d(LOG_TAG, Constants.PARAMETER_NUMBEROFCOUPUNS + ": " + invoiceModel.numberOfCoupons);
             mapContainer.put(Constants.PARAMETER_DISCOUNTED_AMOUNT, invoiceModel.amountOfDiscount + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_DISCOUNTED_AMOUNT +": "+ invoiceModel.amountOfDiscount);
+            Log.d(LOG_TAG, Constants.PARAMETER_DISCOUNTED_AMOUNT + ": " + invoiceModel.amountOfDiscount);
             mapContainer.put(Constants.PARAMETER_DISCOUNTED_TYPE, invoiceModel.discountType);
-            Log.d(LOG_TAG, Constants.PARAMETER_DISCOUNTED_TYPE +": "+ invoiceModel.discountType);
+            Log.d(LOG_TAG, Constants.PARAMETER_DISCOUNTED_TYPE + ": " + invoiceModel.discountType);
             mapContainer.put(Constants.PARAMETER_REDEEMAMOUNT, invoiceModel.amountRedeemed + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_REDEEMAMOUNT +": "+ invoiceModel.amountRedeemed);
+            Log.d(LOG_TAG, Constants.PARAMETER_REDEEMAMOUNT + ": " + invoiceModel.amountRedeemed);
             mapContainer.put(Constants.PARAMETER_REDEEMPOINTS, invoiceModel.pointsRedeemed + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_REDEEMPOINTS +": "+ invoiceModel.pointsRedeemed);
+            Log.d(LOG_TAG, Constants.PARAMETER_REDEEMPOINTS + ": " + invoiceModel.pointsRedeemed);
             mapContainer.put(Constants.PARAMETER_TIPAMOUNT, invoiceModel.tipAmount + "");
-            Log.d(LOG_TAG, Constants.PARAMETER_TIPAMOUNT +": "+ invoiceModel.tipAmount);
+            Log.d(LOG_TAG, Constants.PARAMETER_TIPAMOUNT + ": " + invoiceModel.tipAmount);
 
             webServiceHttp = new WebServiceHttp(mapContainer, PayByQRActivity.this);
 
@@ -494,26 +490,21 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+            if (sharedPreferences.getInt("userType", -1) == 0) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
                 }
-            }else{
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
@@ -693,8 +684,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (otpValue == null) {
                         otpValue = edt.getText().toString();
                     }
-                    String account = sharedPreferences.getString("useas", "");
-                    if (account.equals("Bank")) {
+
+                    if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         new ConfirmationAsynTask().execute();
                     } else {
                         new ConfirmationAsynTask().execute();
@@ -732,8 +723,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                         otpValue = edt.getText().toString();
                     }
 
-                    String account = sharedPreferences.getString("useas", "");
-                    if (account.equals("Bank")) {
+                    if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         new ConfirmationAsynTask().execute();
                     } else {
                         new ConfirmationAsynTask().execute();
@@ -802,7 +792,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     PayByQRActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -847,17 +837,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 }
                             });
                             alertbox.show();
-                        }else if(responseDataContainer.getMsgCode().equals("2171")){
+                        } else if (responseDataContainer.getMsgCode().equals("2171")) {
                             message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
+                            Log.d(LOG_TAG, "message" + message);
                             transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
                             responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
+                            Log.d(LOG_TAG, "responseCode" + responseCode);
                             Log.d("test", "not null");
                             int msgCode = 0;
                             showOTPRequiredDialog();
-                        }else{
+                        } else {
                             alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -869,7 +859,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             alertbox.show();
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
@@ -890,7 +880,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     PayByQRActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -935,17 +925,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 }
                             });
                             alertbox.show();
-                        }else if(responseDataContainer.getMsgCode().equals("2103")){
+                        } else if (responseDataContainer.getMsgCode().equals("2103")) {
                             message = responseDataContainer.getMsg();
                             if (responseDataContainer.getUserApiKey() != null) {
                                 UserApikeyresponse = responseDataContainer.getUserApiKey();
-                                userApiKey=UserApikeyresponse;
+                                userApiKey = UserApikeyresponse;
                                 sharedPreferences.edit()
                                         .putString("userApiKey", UserApikeyresponse)
                                         .apply();
                                 pin = sharedPreferences.getString("mpin", "");
-                                Log.d(LOG_TAG, "userApiKey from preferences: "+userApiKey);
-                                Log.d(LOG_TAG, "pin from preferences: "+pin);
+                                Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
+                                Log.d(LOG_TAG, "pin from preferences: " + pin);
                                 String module = sharedPreferences.getString("MODULE", "NONE");
                                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
@@ -957,7 +947,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 }
                                 stMPIN = pinValue;
 
-                                Log.d(LOG_TAG, "pinValue: "+pinValue);
+                                Log.d(LOG_TAG, "pinValue: " + pinValue);
 
                                 payByQRSDK = new
                                         PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
@@ -968,21 +958,21 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 payByQRSDK.setIsUsingCustomDialog(false);
                                 payByQRSDK.setIsPolling(false);
 
-                                if (selectedLanguage.equalsIgnoreCase("ENG")){
+                                if (selectedLanguage.equalsIgnoreCase("ENG")) {
                                     payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
-                                }else {
+                                } else {
                                     payByQRSDK.setSDKLocale(SDKLocale.INDONESIAN);
                                 }
 
                                 Bundle extras = getIntent().getExtras();
                                 int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
-                                Log.d(LOG_TAG, "getTypeSDK:"+getTypeSDK);
-                                if(getTypeSDK==PayByQRSDK.MODULE_LOYALTY){
+                                Log.d(LOG_TAG, "getTypeSDK:" + getTypeSDK);
+                                if (getTypeSDK == PayByQRSDK.MODULE_LOYALTY) {
                                     payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
-                                    Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_LOYALTY);
-                                }else{
+                                    Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_LOYALTY);
+                                } else {
                                     payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
-                                    Log.d(LOG_TAG, "startSDK:"+PayByQRSDK.MODULE_PAYMENT);
+                                    Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_PAYMENT);
                                 }
                                 Log.e(LOG_TAG, "------start: SDK-------");
                             } else {
@@ -996,7 +986,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 });
                                 alertbox.show();
                             }
-                        }else{
+                        } else {
                             alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                             alertbox.setMessage(getResources().getString(R.string.id_authentication_failed));
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -1008,7 +998,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             alertbox.show();
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }

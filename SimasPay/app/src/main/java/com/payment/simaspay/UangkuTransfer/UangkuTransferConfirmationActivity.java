@@ -31,8 +31,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -40,6 +38,7 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -71,30 +70,15 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     Context context;
     private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 109) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-
-            }
-        }
-    }
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.commonconfirmation);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func = new Functions(this);
+        func.initiatedToolbar(this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
@@ -119,13 +103,13 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         product_field.setVisibility(View.VISIBLE);
         products.setVisibility(View.VISIBLE);
 
-        name.setText("Nama Pemilik Rekening");
+        name.setText(getResources().getString(R.string.nama_pemilik_rekening));
         name_field.setText(getIntent().getExtras().getString("Name"));
-        products.setText("Bank Tujuan");
-        product_field.setText("Bank Sinarmas");
-        number.setText("Nomor Rekening Tujuan");
+        products.setText(getResources().getString(R.string.id_bank_tujuan));
+        product_field.setText(getResources().getString(R.string.id_banksinarmas));
+        number.setText(getResources().getString(R.string.id_nomor_rekening_tujuan));
         number_field.setText(getIntent().getExtras().getString("Acc_Number"));
-        amount.setText("Jumlah");
+        amount.setText(getResources().getString(R.string.jumlah));
         amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
 
         Log.e("---------", "---------" + getIntent().getExtras().getString("Acc_Number"));
@@ -142,8 +126,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        sourceMDN = settings.getString("mobileNumber","");
-        stMPIN = getIntent().getExtras().getString("mpin");
+        sourceMDN = settings.getString(Constants.PARAMETER_PHONENUMBER,"");
+        stMPIN = getIntent().getExtras().getString(Constants.PARAMETER_MPIN);
         stFullname = getIntent().getExtras().getString("Name");
         stAmount = getIntent().getExtras().getString("amount");
         stMDN = getIntent().getExtras().getString("DestMDN");
@@ -207,6 +191,18 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                 UangkuTransferConfirmationActivity.this.finish();
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 109) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+
+            }
+        }
     }
 
     private void showOTPRequiredDialog() {
@@ -283,8 +279,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     if(otpValue==null){
                         otpValue=edt.getText().toString();
                     }
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
+                    if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         new InterBankLakuPandaiAsynTask().execute();
                     }else{
                         new TransferemoneyUangkuConfirmationAsyncTask().execute();
@@ -322,8 +317,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         otpValue=edt.getText().toString();
                     }
 
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
+                    if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         new InterBankLakuPandaiAsynTask().execute();
                     }else{
                         new TransferemoneyUangkuConfirmationAsyncTask().execute();
@@ -680,32 +674,28 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                String module = sharedPreferences.getString("MODULE", "NONE");
-                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-                try {
-                    OTP = CryptoService.encryptWithPublicKey(module, exponent,
-                            otpValue.getBytes());
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                OTP=func.generateRSA(otpValue);
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, OTP);
             } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
-            if (sharedPreferences.getInt("userType", -1) == 0) {
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
+                if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                 } else {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 }
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
             }
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UangkuTransferConfirmationActivity.this);
 
@@ -766,7 +756,9 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 10);
+                    finish();
                 } else {
                     if (progressDialog != null) {
                         progressDialog.dismiss();

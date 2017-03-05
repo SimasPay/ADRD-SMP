@@ -52,7 +52,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/28/2016.
  */
-public class PaymentConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class PaymentConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, charges, charges_field, total, total_field;
     Button cancel, confirmation;
@@ -105,12 +105,12 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
 
-        sourceMDN = sharedPreferences.getString("mobileNumber","");
+        sourceMDN = sharedPreferences.getString("mobileNumber", "");
         String module = sharedPreferences.getString("MODULE", "NONE");
         String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-        String pinValue="";
+        String pinValue = "";
         try {
-            pinValue  = CryptoService.encryptWithPublicKey(module, exponent,
+            pinValue = CryptoService.encryptWithPublicKey(module, exponent,
                     sharedPreferences.getString("mpin", "").getBytes());
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -167,9 +167,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
         try {
 
-            if(getIntent().getExtras().getString("numberTitle").equalsIgnoreCase("")){
+            if (getIntent().getExtras().getString("numberTitle").equalsIgnoreCase("")) {
                 number.setText("Nomor Handphone");
-            }else{
+            } else {
                 number.setText(getIntent().getExtras().getString("numberTitle"));
             }
 
@@ -181,9 +181,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
         charges.setText("Biaya Administrasi");
-        charges_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
+        charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
         total.setText("Total Pendebitan");
-        total_field.setText("Rp. "+getIntent().getExtras().getString("creditamt"));
+        total_field.setText("Rp. " + getIntent().getExtras().getString("creditamt"));
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
@@ -203,20 +203,20 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             public void onClick(View view) {
 
                 if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) {
+                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
 
-                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                        109);
-                            } else {
-                                new requestOTPAsyncTask().execute();
-                            }
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                                    109);
                         } else {
                             new requestOTPAsyncTask().execute();
                         }
+                    } else {
+                        new requestOTPAsyncTask().execute();
+                    }
                 } else {
                     new BillPayConfirmationAsynTask().execute();
                 }
@@ -270,24 +270,21 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
-            String account = sharedPreferences.getString("useas","");
-            if(account.equals("Bank")) {
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+            if (sharedPreferences.getInt("userType", -1) == 0) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
                 }
-            }else{
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
@@ -339,7 +336,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 } catch (Exception e) {
                     msgCode = 0;
                 }
-                if (msgCode==631) {
+                if (msgCode == 631) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(PaymentConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -351,7 +348,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     });
                     alertbox.show();
                     dialogBuilder.dismiss();
-                }else if (msgCode == 653) {
+                } else if (msgCode == 653) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -363,10 +360,10 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     }
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("billerDetails"));
                     intent.putExtra("sctlID", responseContainer.getSctl());
-                    intent.putExtra("originalAmount",responseContainer.getAmount());
-                    intent.putExtra("totalAmount",responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("originalAmount", responseContainer.getAmount());
+                    intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
-                    intent.putExtra("numberTitle",getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
@@ -377,10 +374,10 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
-                    intent.putExtra("charges",responseContainer.getEncryptedTransactionCharges());
-                    intent.putExtra("totalAmount",responseContainer.getEncryptedDebitAmount());
+                    intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                    intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
-                    intent.putExtra("numberTitle",getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -428,7 +425,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
-        otpValue=otp;
+        otpValue = otp;
     }
 
     private void showOTPRequiredDialog() {
@@ -502,8 +499,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
+                    if (otpValue == null || otpValue.equals("")) {
+                        otpValue = edt.getText().toString();
                     }
                     new BillPayConfirmationAsynTask().execute();
                 }
@@ -523,8 +520,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
+                    if (otpValue == null || otpValue.equals("")) {
+                        otpValue = edt.getText().toString();
                     }
                     new BillPayConfirmationAsynTask().execute();
 
@@ -579,7 +576,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     PaymentConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -650,7 +647,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                             }
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }

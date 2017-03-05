@@ -202,9 +202,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
                         if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
-                        }else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < 6) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
-                        }  else {
+                        } else {
                             amountValue = "";
                             String module = sharedPreferences.getString("MODULE", "NONE");
                             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -256,25 +256,22 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_BILLPAYMENT_INQUIRY);
-            String account = sharedPreferences.getString("useas","");
-            if(account.equals("Bank")) {
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            if (sharedPreferences.getInt("userType", -1) == 0) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
 
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 }
-            }else{
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
@@ -362,10 +359,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     intent.putExtra("Name", responseContainer.getCustName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     try {
-                        intent.putExtra("numberTitle",strings[1]);
+                        intent.putExtra("numberTitle", strings[1]);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        intent.putExtra("numberTitle","");
+                        intent.putExtra("numberTitle", "");
                     }
 
 

@@ -24,6 +24,7 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -49,17 +50,14 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
     String pinValue, destmdn, amountValue, sourceMDN;
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber,destinationMDN,transferID,parentTxnID,sctlID,mfaMode;
     private AlertDialog.Builder alertbox;
+    private Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emoney_to_emoney);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func=new Functions(this);
+        func.initiatedToolbar(this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
@@ -84,7 +82,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         pin = (EditText) findViewById(R.id.pin);
 
         SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        sourceMDN = settings.getString("mobileNumber","");
+        sourceMDN = settings.getString(Constants.PARAMETER_PHONENUMBER,"");
 
         title.setTypeface(Utility.Robot_Regular(TransferEmoneyToEmoneyActivity.this));
         handphone.setTypeface(Utility.HelveticaNeue_Medium(TransferEmoneyToEmoneyActivity.this));
@@ -109,17 +107,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                     pin.setError("Harap masukkan mPIN Anda");
                     return;
                 }else{
-                    String module = sharedPreferences.getString("MODULE", "NONE");
-                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                    try {
-                        pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                pin.getText().toString().getBytes());
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-
-                    //pinValue=pin.getText().toString();
+                    pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
 
@@ -148,19 +136,19 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", "TransferInquiry");
-            mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sourceMDN);
-            mapContainer.put("sourcePIN", pinValue);
-            mapContainer.put("destMDN", destmdn);
-            mapContainer.put("destBankAccount", "");
-            mapContainer.put("amount", amountValue);
-            mapContainer.put("channelID", "7");
-            mapContainer.put("bankID", "");
-            mapContainer.put("sourcePocketCode", "1");
-            mapContainer.put("destPocketCode", "1");
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, "TransferInquiry");
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, "Wallet");
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
+            mapContainer.put(Constants.PARAMETER_DEST_MDN, destmdn);
+            mapContainer.put(Constants.PARAMETER_DEST_BankAccount, "");
+            mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
+            mapContainer.put(Constants.PARAMETER_BANK_ID, "");
+            mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+            mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
 
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,

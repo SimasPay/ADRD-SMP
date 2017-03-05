@@ -51,7 +51,7 @@ import simaspay.payment.com.simaspay.R;
 /**
  * Created by Nagendra P on 1/29/2016.
  */
-public class PerchaseConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class PerchaseConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
     private static final String LOG_TAG = "SimasPay";
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, charges, charges_field, total, total_field;
     Button cancel, confirmation;
@@ -114,10 +114,10 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
 
         String module = sharedPreferences.getString("MODULE", "NONE");
         String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-        sourceMDN=sharedPreferences.getString("mobileNumber", "");
-        String pinValue="";
+        sourceMDN = sharedPreferences.getString("mobileNumber", "");
+        String pinValue = "";
         try {
-            pinValue  = CryptoService.encryptWithPublicKey(module, exponent,
+            pinValue = CryptoService.encryptWithPublicKey(module, exponent,
                     sharedPreferences.getString("mpin", "").getBytes());
         } catch (Exception e1) {
             e1.printStackTrace();
@@ -242,7 +242,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
-        otpValue=otp;
+        otpValue = otp;
     }
 
 
@@ -266,28 +266,24 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    }
-                }
-            }else{
+
+            if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, "1");
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
 
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -484,8 +480,8 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                     settings2 = getSharedPreferences(LOG_TAG, 0);
                     settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                     isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
+                    if (otpValue == null || otpValue.equals("")) {
+                        otpValue = edt.getText().toString();
                     }
                     new PurchaseConfirmationAsynTask().execute();
                 }
@@ -515,8 +511,8 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
+                    if (otpValue == null || otpValue.equals("")) {
+                        otpValue = edt.getText().toString();
                     }
                     new PurchaseConfirmationAsynTask().execute();
 
@@ -570,7 +566,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     PerchaseConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -614,16 +610,16 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                                 }
                             });
                             alertbox.show();
-                        }else if(responseDataContainer.getMsgCode().equals("2171")){
+                        } else if (responseDataContainer.getMsgCode().equals("2171")) {
                             String message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
+                            Log.d(LOG_TAG, "message" + message);
                             String transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
                             String responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
+                            Log.d(LOG_TAG, "responseCode" + responseCode);
                             Log.d("test", "not null");
                             showOTPRequiredDialog();
-                        }else{
+                        } else {
                             AlertDialog.Builder alertbox = new AlertDialog.Builder(PerchaseConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -634,7 +630,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                             alertbox.show();
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }

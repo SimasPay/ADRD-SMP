@@ -318,30 +318,30 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:138:13-37
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:137:13-93
-activity#com.payment.simaspay.AgentTransfer.TransferEmoneyActivity
+activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:140:9-143:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:143:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:142:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:141:13-85
-activity#com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:141:13-91
+activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:144:9-147:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:147:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:146:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:145:13-97
-activity#com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:145:13-103
+activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyNotificationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:148:9-151:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:151:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:150:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:149:13-97
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:149:13-103
 activity#com.payment.simaspay.AgentTransfer.NewTransferHomeActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:152:9-155:51
 	android:screenOrientation

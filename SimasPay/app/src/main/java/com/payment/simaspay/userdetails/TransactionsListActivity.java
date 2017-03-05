@@ -28,7 +28,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity;
 import com.payment.simaspay.PojoClasses.TransactionsData;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
@@ -80,7 +79,6 @@ public class TransactionsListActivity extends AppCompatActivity {
     ListView listView;
     SharedPreferences sharedPreferences;
     boolean isLoading;
-    String akun="";
     String response;
     ProgressDialog progressDialog;
     WebServiceHttp webServiceHttp;
@@ -113,22 +111,21 @@ public class TransactionsListActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
         listView.setSmoothScrollbarEnabled(true);
         listView.setFastScrollEnabled(true);
-        akun = sharedPreferences.getString("akun","");
         ok = (Button) findViewById(R.id.accept);
 
         back_layout = (LinearLayout) findViewById(R.id.back_layout);
         dwn_layout = (LinearLayout) findViewById(R.id.download_layout);
 
-        String label_home = sharedPreferences.getString("akun","");
+        String label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "");
 
-        if(label_home.equals("nonkyc")){
+        if (label_home.equals(Constants.CONSTANT_EMONEYNONKYC_USER)) {
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText("Mutasi");
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
-        } else if(label_home.equals("both")){
+        } else if (label_home.equals(Constants.CONSTANT_BOTH_USER) || label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)) {
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText("Mutasi");
             findViewById(R.id.period).setVisibility(View.VISIBLE);
@@ -174,7 +171,7 @@ public class TransactionsListActivity extends AppCompatActivity {
         });
 
 
-        if(akun.equals("bank")){
+        if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
             new TransactionsListAsync().execute();
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
@@ -185,9 +182,9 @@ public class TransactionsListActivity extends AppCompatActivity {
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     int lastIndexInScreen = visibleItemCount + firstVisibleItem;
-                    if(totalItemCount==totaloCountValue){
+                    if (totalItemCount == totaloCountValue) {
 
-                    }else {
+                    } else {
                         if (lastIndexInScreen >= totalItemCount && !isLoading) {
                             isLoading = true;
                             new TransactionsListAsync().execute();
@@ -195,7 +192,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                     }
                 }
             });
-        }else if(akun.equals("nonkyc") || akun.equals("both")){
+        } else {
             new TransactionsListAsyncNonBank().execute();
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
@@ -206,9 +203,9 @@ public class TransactionsListActivity extends AppCompatActivity {
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     int lastIndexInScreen = visibleItemCount + firstVisibleItem;
-                    if(totalItemCount==totaloCountValue){
-                    }else {
-                        Log.d(LOG_TAG,"lastIndexInScreen: "+lastIndexInScreen +"\nTotalItemCount"+totalItemCount+"\ntotalCountValue:"+totaloCountValue);
+                    if (totalItemCount == totaloCountValue) {
+                    } else {
+                        Log.d(LOG_TAG, "lastIndexInScreen: " + lastIndexInScreen + "\nTotalItemCount" + totalItemCount + "\ntotalCountValue:" + totaloCountValue);
                         if (lastIndexInScreen >= totalItemCount && !isLoading) {
                             isLoading = true;
                             new TransactionsListAsyncNonBank().execute();
@@ -251,10 +248,10 @@ public class TransactionsListActivity extends AppCompatActivity {
             textView2.setTypeface(Utility.Robot_Light(TransactionsListActivity.this));
             textView3.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
 
-            Log.d(LOG_TAG,"transaction data: "+transationsListarray.get(i).getTransactionData());
-            Log.d(LOG_TAG,"transaction time: "+transationsListarray.get(i).getDate_time());
-            Log.d(LOG_TAG,"transaction amount: "+transationsListarray.get(i).getAmount());
-            Log.d(LOG_TAG,"transaction isCredit: "+transationsListarray.get(i).getType());
+            Log.d(LOG_TAG, "transaction data: " + transationsListarray.get(i).getTransactionData());
+            Log.d(LOG_TAG, "transaction time: " + transationsListarray.get(i).getDate_time());
+            Log.d(LOG_TAG, "transaction amount: " + transationsListarray.get(i).getAmount());
+            Log.d(LOG_TAG, "transaction isCredit: " + transationsListarray.get(i).getType());
 
             if (transationsListarray.get(i).getType().equals("false")) {
                 textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
@@ -289,68 +286,63 @@ public class TransactionsListActivity extends AppCompatActivity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG, "channelID, "+ "7");
+            Log.d(LOG_TAG, "channelID, " + "7");
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_HISTORY);
-            Log.d(LOG_TAG, "txtName, "+ "History");
+            Log.d(LOG_TAG, "txtName, " + "History");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
                     sharedPreferences.getString("mobileNumber", ""));
-            Log.d(LOG_TAG, "sourceMDN, "+ sharedPreferences.getString("mobileNumber", ""));
+            Log.d(LOG_TAG, "sourceMDN, " + sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN,
                     sharedPreferences.getString("password", ""));
-            Log.d(LOG_TAG, "sourcePIN, "+ sharedPreferences.getString("password", ""));
+            Log.d(LOG_TAG, "sourcePIN, " + sharedPreferences.getString("password", ""));
             if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
-                Log.d(LOG_TAG, "fromDate, "+ getIntent().getExtras().getString("fromDate"));
+                Log.d(LOG_TAG, "fromDate, " + getIntent().getExtras().getString("fromDate"));
                 mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
-                Log.d(LOG_TAG, "toDate, "+ getIntent().getExtras().getString("toDate"));
+                Log.d(LOG_TAG, "toDate, " + getIntent().getExtras().getString("toDate"));
             } else if (sharedPreferences.getInt("userType", -1) == 0) {
 
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
-                    Log.d(LOG_TAG, "fromDate, "+ getIntent().getExtras().getString("fromDate"));
+                    Log.d(LOG_TAG, "fromDate, " + getIntent().getExtras().getString("fromDate"));
                     mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
-                    Log.d(LOG_TAG, "toDate, "+ getIntent().getExtras().getString("toDate"));
+                    Log.d(LOG_TAG, "toDate, " + getIntent().getExtras().getString("toDate"));
                 }
             }
 
 
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG, "institutionID, "+ Constants.CONSTANT_INSTITUTION_ID);
+            Log.d(LOG_TAG, "institutionID, " + Constants.CONSTANT_INSTITUTION_ID);
             //mapContainer.put(Constants.PARAMETER_PAGE_NUMBER, "" + pageNumber);
-            sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
-                if (sharedPreferences.getInt("userType", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                    Log.d(LOG_TAG, "service, "+ "Wallet");
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-                    Log.d(LOG_TAG, "sourcePocketCode, "+ Constants.POCKET_CODE_BANK_SINARMAS);
-                } else if (sharedPreferences.getInt("userType", -1) == 0) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                    Log.d(LOG_TAG, "service, "+ "Wallet");
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_BANK);
-                } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                    if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME+", "+ Constants.SERVICE_WALLET);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_EMONEY);
-                    } else {
-                        mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME+", "+ Constants.SERVICE_WALLET);
-                        mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                        Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_BANK);
-                    }
-                }
-            }else{
+            if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME+", "+ Constants.SERVICE_WALLET);
+                Log.d(LOG_TAG, "service, " + "Wallet");
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                Log.d(LOG_TAG, "sourcePocketCode, " + Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt("userType", -1) == 0) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                Log.d(LOG_TAG, "service, " + "Wallet");
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_BANK);
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ", " + Constants.SERVICE_WALLET);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ", " + Constants.SERVICE_WALLET);
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_BANK);
+                }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ", " + Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE+", "+ Constants.POCKET_CODE_EMONEY);
+                Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_EMONEY);
             }
 
             webServiceHttp = new WebServiceHttp(mapContainer,
@@ -363,7 +355,7 @@ public class TransactionsListActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if(isLoading == false) {
+            if (isLoading == false) {
                 if (progressDialog != null) {
                     progressDialog.show();
                 }
@@ -375,7 +367,7 @@ public class TransactionsListActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             if (response != null) {
                 Log.e(LOG_TAG, "Response: " + response);
-                if(isLoading == false) {
+                if (isLoading == false) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -408,8 +400,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                         }
                     });
                     alertbox.show();
-                }else if (msgCode == 39) {
-                    totaloCountValue=responseContainer.getTotalRecords();
+                } else if (msgCode == 39) {
+                    totaloCountValue = responseContainer.getTotalRecords();
                     pageNumber = pageNumber + 1;
                     isLoading = false;
                     HistroyParser parser = new HistroyParser();
@@ -449,9 +441,9 @@ public class TransactionsListActivity extends AppCompatActivity {
 
             } else {
                 /**
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+                 if (progressDialog != null) {
+                 progressDialog.dismiss();
+                 }
                  **/
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
@@ -475,11 +467,9 @@ public class TransactionsListActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
             mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-            }else{
+            } else {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
 
@@ -492,7 +482,7 @@ public class TransactionsListActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            if(isLoading == false) {
+            if (isLoading == false) {
                 if (progressDialog != null) {
                     progressDialog.show();
                 }
@@ -504,7 +494,7 @@ public class TransactionsListActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             if (response != null) {
                 Log.e("=======", "======" + response);
-                if(isLoading == false) {
+                if (isLoading == false) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
@@ -524,7 +514,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                 }
 
                 if (msgCode == 39) {
-                    totaloCountValue=responseContainer.getTotalRecords();
+                    totaloCountValue = responseContainer.getTotalRecords();
                     pageNumber = pageNumber + 1;
                     isLoading = false;
                     HistroyParser parser = new HistroyParser();
@@ -564,9 +554,9 @@ public class TransactionsListActivity extends AppCompatActivity {
 
             } else {
                 /**
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
+                 if (progressDialog != null) {
+                 progressDialog.dismiss();
+                 }
                  **/
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
@@ -575,7 +565,6 @@ public class TransactionsListActivity extends AppCompatActivity {
             }
         }
     }
-
 
 
     class DownLoadAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -611,11 +600,11 @@ public class TransactionsListActivity extends AppCompatActivity {
                     msgCode = 0;
                 }
 
-                if(msgCode==2051){
+                if (msgCode == 2051) {
                     new DownloadPDFTask()
                             .execute(AppConfigFile.pfdDownLoadURL
                                     + responseContainer.getDownLoadUrl());
-                }else if (msgCode == 38) {
+                } else if (msgCode == 38) {
                     Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
                 }
             } else {
@@ -640,30 +629,28 @@ public class TransactionsListActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("bank")){
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-            }else{
+            } else {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             }
             mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
             mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
             /**
-            if (sharedPreferences.getInt("userType", -1) == 1) {
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
-            } else if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                }
-            }
+             if (sharedPreferences.getInt("userType", -1) == 1) {
+             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+             } else if (sharedPreferences.getInt("userType", -1) == 0) {
+             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+             } else if (sharedPreferences.getInt("userType", -1) == 2) {
+             if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+             } else {
+             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+             }
+             }
              Log.e("======","======"+mapContainer.toString());
              **/
 //

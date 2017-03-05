@@ -32,6 +32,7 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -65,15 +66,19 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
     String rsaKey;
     String pin, otpValue;
     String selectedLanguage;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emoney_confirmation);
+        func=new Functions(this);
+        func.initiatedToolbar(this);
         if (Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
         context=TransferEmoneyToEmoneyConfirmationActivity.this;
 
         IncomingSMS.setListener(TransferEmoneyToEmoneyConfirmationActivity.this);
@@ -283,44 +288,25 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
         @Override
         protected Void doInBackground(Void... params) {
-            SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            sharedPreferences.edit().putString("profileId", "").apply();
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
             Map<String, String> mapContainer = new HashMap<String, String>();
-            mapContainer.put("txnName", "Transfer");
-            Log.d(LOG_TAG,"txnName Transfer");
-            mapContainer.put("service", "Wallet");
-            Log.d(LOG_TAG,"service Wallet");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG,"institutionID "+Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            Log.d(LOG_TAG,"authenticationKey ");
-            mapContainer.put("sourceMDN", sourceMDN);
-            Log.d(LOG_TAG,"sourceMDN "+sourceMDN);
-            mapContainer.put("destMDN", stMDN);
-            Log.d(LOG_TAG,"destMDN "+stMDN);
-            mapContainer.put("transferID", stTransferID);
-            Log.d(LOG_TAG,"transferID "+stTransferID);
-            mapContainer.put("bankID", "");
-            Log.d(LOG_TAG,"bankID ");
-            mapContainer.put("parentTxnID", stParentTxnID);
-            Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_TRANSFER);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_DEST_MDN, stMDN);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONID, stTransferID);
+            mapContainer.put(Constants.PARAMETER_BANK_ID, "");
+            mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, stParentTxnID);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
-            Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG,"channelID 7");
-            mapContainer.put("sourcePocketCode", "1");
-            Log.d(LOG_TAG,"sourcePocketCode 1");
-            mapContainer.put("destPocketCode", "1");
-            Log.d(LOG_TAG,"destPocketCode 1");
+            mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+            mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
+                mapContainer.put(Constants.PARAMETER_MFA_OTP, func.generateRSA(otpValue));
             }else{
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
-            Log.d(LOG_TAG,"mfaOtp "+CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     TransferEmoneyToEmoneyConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -378,7 +364,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             });
                             alertbox.show();
                         }else if(msgCode==293||msgCode==678){
-                            Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
+                            Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, TransferBankToEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
@@ -412,14 +398,14 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", "ResendMFAOTP");
-            mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sourceMDN);
-            mapContainer.put("sourcePIN", stMPIN);
-            mapContainer.put("sctlId", stSctl);
-            mapContainer.put("channelID", "7");
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_RESENDMFAOTP);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, stMPIN);
+            mapContainer.put(Constants.PARAMETER_SCTL, stSctl);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
 
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,

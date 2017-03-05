@@ -5,25 +5,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,7 +29,6 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -43,6 +36,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+
 import simaspay.payment.com.simaspay.R;
 
 /**
@@ -50,7 +44,7 @@ import simaspay.payment.com.simaspay.R;
  * 25
  */
 
-public class TransferEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
     String sourceMDN, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber,destinationMDN,transferID,parentTxnID,mfaMode, responseCode;
     TextView lbl_name, lbl_mdn, lbl_amount;
@@ -75,12 +69,12 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        context=TransferEmoneyConfirmationActivity.this;
+        context=TransferBankToEmoneyConfirmationActivity.this;
 
-        IncomingSMS.setListener(TransferEmoneyConfirmationActivity.this);
+        IncomingSMS.setListener(TransferBankToEmoneyConfirmationActivity.this);
 
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        sourceMDN = settings.getString("mobileNumber","");
+        sourceMDN = settings.getString(Constants.PARAMETER_PHONENUMBER,"");
 
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
@@ -130,7 +124,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
         LayoutInflater inflater = getLayoutInflater();
         final ViewGroup nullParent = null;
         View dialoglayout = inflater.inflate(R.layout.new_otp_dialog, nullParent, false);
-        dialogBuilder = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle).create();
+        dialogBuilder = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle).create();
         dialogBuilder.setCanceledOnTouchOutside(false);
         dialogBuilder.setTitle("");
         dialogBuilder.setCancelable(false);
@@ -241,7 +235,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
     }
 
     public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+        AlertDialog.Builder builder = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
         builder.setCancelable(false);
         if (selectedLanguage.equalsIgnoreCase("ENG")) {
             builder.setTitle(getResources().getString(R.string.eng_otpfailed));
@@ -286,40 +280,35 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
             Map<String, String> mapContainer = new HashMap<String, String>();
-            mapContainer.put("txnName", "Transfer");
-            Log.d(LOG_TAG,"txnName Transfer");
-            mapContainer.put("service", "Bank");
-            Log.d(LOG_TAG,"service Bank");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG,"institutionID "+ Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            Log.d(LOG_TAG,"authenticationKey ");
-            mapContainer.put("sourceMDN", sourceMDN);
-            Log.d(LOG_TAG,"sourceMDN "+sourceMDN);
-            mapContainer.put("destMDN", stMDN);
-            Log.d(LOG_TAG,"destMDN "+stMDN);
-            mapContainer.put("transferID", stTransferID);
-            Log.d(LOG_TAG,"transferID "+stTransferID);
-            mapContainer.put("bankID", "");
-            Log.d(LOG_TAG,"bankID ");
-            mapContainer.put("parentTxnID", stParentTxnID);
-            Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_TRANSFER);
+            Log.d(LOG_TAG,Constants.PARAMETER_TRANSACTIONNAME+", "+Constants.TRANSACTION_TRANSFER);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.CONSTANT_BANK);
+            Log.d(LOG_TAG,Constants.PARAMETER_SERVICE_NAME+" "+Constants.CONSTANT_BANK);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            Log.d(LOG_TAG,Constants.PARAMETER_INSTITUTION_ID+" "+ Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_DEST_MDN, stMDN);
+            mapContainer.put(Constants.PARAMETER_TRANSFER_ID, stTransferID);
+            mapContainer.put(Constants.PARAMETER_BANK_ID, "");
+            mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, stParentTxnID);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
-            Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG,"channelID 7");
             sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            String account=sharedPreferences.getString("useas","");
-            Log.d(LOG_TAG,"account as: " + account);
-            if(account.equals("Bank")){
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-                Log.d(LOG_TAG,Constants.PARAMETER_SRC_POCKET_CODE+" "+Constants.POCKET_CODE_BANK);
-            }else{
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
+                if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                } else {
+                    mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                }
+            }else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT){
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-                Log.d(LOG_TAG,Constants.PARAMETER_SRC_POCKET_CODE+" "+Constants.POCKET_CODE_EMONEY);
             }
-            mapContainer.put("destPocketCode", "1");
-            Log.d(LOG_TAG,"destPocketCode 1");
+            mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             }else{
@@ -327,14 +316,14 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
             }
             Log.d(LOG_TAG,"mfaOtp "+CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    TransferEmoneyConfirmationActivity.this);
+                    TransferBankToEmoneyConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
             return null;
         }
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(TransferEmoneyConfirmationActivity.this);
+            progressDialog = new ProgressDialog(TransferBankToEmoneyConfirmationActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -371,27 +360,27 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    Intent intent = new Intent(TransferBankToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                 }
                             });
                             alertbox.show();
                         }else if(msgCode==81){
-                            Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
+                            Intent intent = new Intent(TransferBankToEmoneyConfirmationActivity.this, TransferBankToEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            TransferEmoneyConfirmationActivity.this.finish();
+                            TransferBankToEmoneyConfirmationActivity.this.finish();
                         }else{
-                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -428,14 +417,14 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
 
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    TransferEmoneyConfirmationActivity.this);
+                    TransferBankToEmoneyConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
             return null;
         }
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(TransferEmoneyConfirmationActivity.this);
+            progressDialog = new ProgressDialog(TransferBankToEmoneyConfirmationActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -468,12 +457,12 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     arg0.dismiss();
-                                    Intent intent = new Intent(TransferEmoneyConfirmationActivity.this, SecondLoginActivity.class);
+                                    Intent intent = new Intent(TransferBankToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                 }
@@ -491,7 +480,7 @@ public class TransferEmoneyConfirmationActivity extends AppCompatActivity implem
 
                             showOTPRequiredDialog();
                         }else{
-                            alertbox = new AlertDialog.Builder(TransferEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(TransferBankToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {

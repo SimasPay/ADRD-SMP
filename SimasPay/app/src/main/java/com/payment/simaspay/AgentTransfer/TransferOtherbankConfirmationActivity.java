@@ -48,6 +48,7 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -82,6 +83,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
     SharedPreferences sharedPreferences;
     String otpValue="",sctl;
     private static AlertDialog dialogBuilder, alertError;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +93,8 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 
         IncomingSMS.setListener(TransferOtherbankConfirmationActivity.this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func = new Functions(this);
+        func.initiatedToolbar(this);
 
         sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -198,7 +196,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 //                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
 //                    }else{
                         //handlerforTimer.removeCallbacks(runnableforExit);
-                        //new OtherBankLakuPandaiAsynTask().execute();
+                    new OtherBankConfirmAsyncTask().execute();
 //                    }
                 }
 
@@ -359,9 +357,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
     }
     **/
 
-    class OtherBankLakuPandaiAsynTask extends AsyncTask<Void, Void, Void> {
-
-
+    class OtherBankConfirmAsyncTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -373,24 +369,24 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_INTERBANK_TRANSFER);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
             mapContainer.put(Constants.PARAMETER_TRANSFER_ID, getIntent().getExtras().getString("transferID"));
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID,getIntent().getExtras().getString("ParentId"));
             mapContainer.put(Constants.PARAMETER_DEST_ACCOUNT_NO, getIntent().getExtras().getString("DestMDN"));
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION,Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
-            if(sharedPreferences.getInt("userType",-1)==0){
+            if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
-            }else if(sharedPreferences.getInt("userType",-1)==1){
+            }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANKSINARMAS_INT){
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
-            }else if(sharedPreferences.getInt("userType",-1)==2) {
-                if(sharedPreferences.getInt("AgentUsing",-1)==1){
+            }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_LAKUPANDAI_INT) {
+                if(sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE,-1)==Constants.CONSTANT_EMONEY_INT){
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
@@ -401,16 +397,14 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
                 }
+            }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_EMONEY_INT) {
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
+                mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
             }
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                String module = sharedPreferences.getString("MODULE", "NONE");
-                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-                try {
-                    OTP = CryptoService.encryptWithPublicKey(module, exponent,
-                            otpValue.getBytes());
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
+                OTP = func.generateRSA(otpValue);
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, OTP);
             } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
@@ -689,12 +683,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
-                        new TransferOtherbankConfirmationActivity.OtherBankLakuPandaiAsynTask().execute();
-                    }else{
-                        new TransferOtherbankConfirmationActivity.TransferemoneyConfirmationAsyncTask().execute();
-                    }
+                    new OtherBankConfirmAsyncTask().execute();
                 }
             }
         });
@@ -728,13 +717,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                         otpValue=edt.getText().toString();
                     }
 
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
-                        new TransferOtherbankConfirmationActivity.OtherBankLakuPandaiAsynTask().execute();
-                    }else{
-                        new TransferOtherbankConfirmationActivity.TransferemoneyConfirmationAsyncTask().execute();
-                    }
-                    //new TransferEmoneyConfirmationActivity.TransferConfirmationAsyncTask().execute();
+                    new OtherBankConfirmAsyncTask().execute();
 
                 }
 
@@ -781,6 +764,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         edt.setText(otp);
         otpValue=otp;
     }
+
 
     class TransferemoneyConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;

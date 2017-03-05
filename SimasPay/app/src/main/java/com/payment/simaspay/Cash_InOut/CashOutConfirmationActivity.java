@@ -13,7 +13,6 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -29,9 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
-import com.payment.simaspay.PaymentPerchaseAccount.PerchaseConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.TimerCount;
@@ -39,7 +35,6 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -144,8 +139,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
 
-        String account = sharedPreferences.getString("useas","");
-        if(account.equals("Bank")) {
+        if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
             name.setText("Nama Agen");
             number.setText("Nomor Handphone Agen");
             amount.setText("Jumlah");
@@ -637,7 +631,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                         otpValue=edt.getText().toString();
                     }
                     String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
+                    if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                         new CashOutAsynTask().execute();
                     }else{
                         new CashOutConfirmationAsyncTask().execute();
@@ -675,8 +669,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                         otpValue=edt.getText().toString();
                     }
 
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")) {
+                    if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                         new CashOutAsynTask().execute();
                     }else{
                         new CashOutConfirmationAsyncTask().execute();

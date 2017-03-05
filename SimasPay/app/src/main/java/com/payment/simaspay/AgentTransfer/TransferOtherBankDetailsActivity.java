@@ -1,47 +1,35 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 2/3/2016.
- */
+
 public class TransferOtherBankDetailsActivity extends AppCompatActivity {
     TextView title, handphone, jumlah, mPin, bankName,Rp;
     Button submit;
@@ -50,17 +38,18 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SimasPay";
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
     private AlertDialog.Builder alertbox;
+    Functions func;
+    ProgressDialog progressDialog;
+    int msgCode;
+    SharedPreferences sharedPreferences;
+    String pinValue, mdn, amountValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otherbankdetails);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func = new Functions(this);
+        func.initiatedToolbar(this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
@@ -124,41 +113,27 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
                 } else {
-                    String module = sharedPreferences.getString("MODULE", "NONE");
-                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                    try {
-                        pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                pin.getText().toString().getBytes());
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-//                    mdn = Utility.NormalizationMDN(number.getText().toString().replace(" ", ""));
+                    pinValue = func.generateRSA(pin.getText().toString());
+                    Log.d(LOG_TAG, "pinValue:"+pinValue);
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
 
-                    String account = sharedPreferences.getString("useas","");
-                    if(account.equals("Bank")){
-                        new transferOtherBankAsynTask().execute();
-                    }else{
-                        new inquiryOtherBankEmoneyAsyncTask().execute();
-                    }
+                    //String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
+                    //if(account.equals(Constants.CONSTANT_BANK_USER)){
+                    new transferOtherBankAsynTask().execute();
+                    //}else{
+                    //    new inquiryOtherBankEmoneyAsyncTask().execute();
+                    //}
                 }
 
             }
         });
-
         btnBacke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
-
-
-
-
     }
 
     @Override
@@ -173,16 +148,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
         }
     }
 
-    ProgressDialog progressDialog;
-    int msgCode;
-
-    SharedPreferences sharedPreferences;
-
-    String pinValue, mdn, amountValue;
-
     class transferOtherBankAsynTask extends AsyncTask<Void, Void, Void> {
-
-
         String response;
 
         @Override
@@ -193,22 +159,22 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_INTERBANK_TRANSFER_INQUIRY);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
             mapContainer.put(Constants.PARAMETER_DEST_ACCOUNT_NO, mdn);
-            if (sharedPreferences.getInt("userType", -1) == 0) {
+            if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
-            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
-            } else if (sharedPreferences.getInt("userType", -1) == 2) {
-                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+            } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
+                if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
@@ -219,6 +185,11 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
                 }
+            }else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT){
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
             }
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, TransferOtherBankDetailsActivity.this);
@@ -274,7 +245,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    sharedPreferences.edit().putString("password", pinValue).commit();
+                    sharedPreferences.edit().putString("password", pinValue).apply();
                     Intent intent = new Intent(TransferOtherBankDetailsActivity.this, TransferOtherbankConfirmationActivity.class);
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("originalamount", responseContainer.getAmount());
@@ -287,6 +258,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     intent.putExtra("BankName", responseContainer.getDestBank());
                     intent.putExtra("BankCode", getIntent().getExtras().getString("BankCode"));
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                    intent.putExtra("mpin", pinValue);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -315,6 +287,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
         }
     }
 
+    /**
     class inquiryOtherBankEmoneyAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -449,4 +422,5 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
             }
         }
     }
+        **/
 }

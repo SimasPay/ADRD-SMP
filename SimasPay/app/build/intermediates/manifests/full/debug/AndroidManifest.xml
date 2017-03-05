@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="simaspay.payment.com.simaspay"
-    android:versionCode="24"
+    android:versionCode="25"
     android:versionName="1.0.0" >
 
     <uses-sdk
@@ -151,15 +151,15 @@
             android:label="SimasPay"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.payment.simaspay.AgentTransfer.TransferEmoneyActivity"
+            android:name="com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.payment.simaspay.AgentTransfer.TransferEmoneyConfirmationActivity"
+            android:name="com.payment.simaspay.AgentTransfer.TransferBankToEmoneyConfirmationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.payment.simaspay.AgentTransfer.TransferEmoneyNotificationActivity"
+            android:name="com.payment.simaspay.AgentTransfer.TransferBankToEmoneyNotificationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait" />
         <activity
