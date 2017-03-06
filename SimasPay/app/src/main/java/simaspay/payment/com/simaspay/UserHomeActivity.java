@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -64,6 +65,7 @@ public class UserHomeActivity extends AppCompatActivity {
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
     LinearLayout daftaremoneylay;
     Functions func;
+    public View swipe_balance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +202,9 @@ public class UserHomeActivity extends AppCompatActivity {
 
         daftaremoneylay=(LinearLayout)findViewById(R.id.daftar_emoney);
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
-        if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
+        if(sharedPreferences.getString(Constants.PARAMETER_TYPEUSER,"").equals(Constants.CONSTANT_BOTH_USER)){
+            daftaremoneylay.setVisibility(View.INVISIBLE);
+        }else{
             daftaremoneylay.setVisibility(View.VISIBLE);
             daftaremoney.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -209,8 +213,6 @@ public class UserHomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-        }else{
-            daftaremoneylay.setVisibility(View.INVISIBLE);
         }
 
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
@@ -258,7 +260,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         progbar = (ProgressBar)findViewById(R.id.progressbar);
         progbar.setVisibility(View.GONE);
-        final View swipe_balance=(View)findViewById(R.id.swipe_balance);
+        swipe_balance=(View)findViewById(R.id.swipe_balance);
         name_lbl=(TextView)findViewById(R.id.fullname_lbl);
         name_lbl.setText(nama);
         checkbalance=(TextView)findViewById(R.id.check_balance_lbl);
@@ -307,16 +309,7 @@ public class UserHomeActivity extends AppCompatActivity {
                     }
                 });
                 swipe_balance.startAnimation(RightSwipe);
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipe_balance.setVisibility(View.VISIBLE);
-                        checkbalance.setVisibility(View.GONE);
-                        progbar.setVisibility(View.GONE);
-                        swipe_balance.startAnimation(inFromRightAnimation());
-                    }
-                }, 7000);
+
                 // Put your logic here for text visibility and for timer like progress bar for 5 second and setText
             }
     });
@@ -414,11 +407,22 @@ public class UserHomeActivity extends AppCompatActivity {
                 } else if(msgCode == 571) {
                     checkbalance.setText("Requested  account with the given cardpan is not available");
                 }else if (msgCode == 274 || msgCode == 4) {
-                    checkbalance.setText("Rp "+ responseContainer.getAmount() +"");
+                    //checkbalance.setText("Rp "+ responseContainer.getAmount() +"");
+                    checkbalance.setText(Html.fromHtml("<small>Rp </small><big>"+responseContainer.getAmount() + "</big>"));
                 }
             }else{
                 checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
             }
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    swipe_balance.setVisibility(View.VISIBLE);
+                    checkbalance.setVisibility(View.GONE);
+                    progbar.setVisibility(View.GONE);
+                    swipe_balance.startAnimation(inFromRightAnimation());
+                }
+            }, 5000);
         }
     }
 

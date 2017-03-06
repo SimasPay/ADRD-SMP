@@ -8,7 +8,7 @@ import java.util.List;
 public class Constants {
 
     // Language Selection
-
+    public static String URL_PBQ = "https://sandbox.dimo.co.id";
     public static String serverNotResponding;
     public static final String LOG_TAG = "SimasPay";
     public static String getServerNotResponding() {

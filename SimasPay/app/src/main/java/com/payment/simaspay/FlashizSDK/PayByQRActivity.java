@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
@@ -112,6 +113,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         userApiKey = sharedPreferences.getString("userApiKey", "");
         if (userApiKey == null || userApiKey.equals("") || userApiKey.length() == 0) {
             new requestUserAPIKeyAsyncTask().execute();
+            Log.d("userAPIKEY","userAPIKey is null!");
         } else {
             pin = sharedPreferences.getString("mpin", "");
             Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
@@ -133,7 +135,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
             payByQRSDK.setIsPolling(true);
             //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
-            PayByQRProperties.setServerURLString("https://sandbox.dimo.co.id");
+            PayByQRProperties.setServerURLString(Constants.URL_PBQ);
             payByQRSDK.setMinimumTransaction(500);
             payByQRSDK.setIsUsingCustomDialog(false);
             payByQRSDK.setIsPolling(false);
@@ -387,9 +389,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             Log.d(LOG_TAG, Constants.PARAMETER_TIPAMOUNT + ": " + invoiceModel.tipAmount);
 
             webServiceHttp = new WebServiceHttp(mapContainer, PayByQRActivity.this);
-
             inqueryResponse = webServiceHttp.getResponseSSLCertificatation();
-
             return null;
         }
 
@@ -475,6 +475,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 if (!payByQRSDK.isPolling())
                     payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
             }
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(inqueryResponse==null||inqueryResponse.equals("")){
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                        Cancel();
+                        payByQRSDK.closeSDK();
+                    }
+                }
+            }, Constants.CONNECTION_TIMEOUT);
         }
     }
 
@@ -593,6 +604,18 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
                 dialogBuilder.dismiss();
             }
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(inqueryResponse==null||inqueryResponse.equals("")){
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                        Cancel();
+                        payByQRSDK.closeSDK();
+                        dialogBuilder.dismiss();
+                    }
+                }
+            }, Constants.CONNECTION_TIMEOUT);
         }
     }
 
@@ -914,7 +937,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
-                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -953,7 +976,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                         PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
                                 payByQRSDK.setIsPolling(true);
                                 //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
-                                PayByQRProperties.setServerURLString("https://sandbox.dimo.co.id");
+                                PayByQRProperties.setServerURLString(Constants.URL_PBQ);
                                 payByQRSDK.setMinimumTransaction(500);
                                 payByQRSDK.setIsUsingCustomDialog(false);
                                 payByQRSDK.setIsPolling(false);
@@ -987,7 +1010,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                 alertbox.show();
                             }
                         } else {
-                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(getResources().getString(R.string.id_authentication_failed));
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {

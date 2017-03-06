@@ -109,11 +109,12 @@
         android:id="@+id/balance"
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_height="45dp"
+        android:layout_marginBottom="15dp"
         android:layout_below="@+id/profile"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
@@ -125,13 +126,13 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="visible"
-            android:indeterminateTint="#888"
+            android:indeterminateTint="#333"
             android:indeterminateTintMode="src_in"
             android:padding="3dp" />
 
@@ -145,17 +146,18 @@
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
             android:background="@drawable/background_checkbalance"/>
 
         <TextView
             android:gravity="center"
+            android:background="@android:color/transparent"
             android:id="@+id/check_balance_lbl"
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20sp"
+            android:textSize="23sp"
             android:text=""/>
 
     </RelativeLayout>
