@@ -104,7 +104,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
                 daftar.setText("Konfirmasi");
             } else {
                 label_toolbar.setText(getResources().getString(R.string.id_pertanyaan_keamanan));
-                String mpin = sharedPreferences.getString("mpin", "");
+                String mpin = extras.getString("mpin");
                 pinValue = func.generateRSA(mpin);
                 daftar.setText("Daftar");
             }
