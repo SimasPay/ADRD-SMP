@@ -1,5 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <color name="gray_sinarmas">#4a4a4a</color>
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -29,6 +31,28 @@
     <style name="DialogWindowTitle_Holo">
         <item name="android:maxLines">1</item>
         <item name="android:scrollHorizontally">true</item>
+    </style>
+
+    <style name="PayByQRTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/gray_sinarmas</item>
+        <item name="android:windowBackground">@drawable/back_ground</item>
+
+    </style>
+
+    <style name="PayByQRTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/gray_sinarmas</item>
+        <item name="android:windowBackground">@drawable/back_ground</item>
+    </style>
+
+    <style name="PayByQRTheme.NoActionBar.TranslucentStatus" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/gray_sinarmas</item>
+        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
+        <item name="colorAccent">@color/gray_sinarmas</item>
+        <item name="android:windowBackground">@drawable/back_ground</item>
     </style>
 
 </resources>

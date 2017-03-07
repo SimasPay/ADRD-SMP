@@ -202,9 +202,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         daftaremoneylay=(LinearLayout)findViewById(R.id.daftar_emoney);
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);
-        if(sharedPreferences.getString(Constants.PARAMETER_TYPEUSER,"").equals(Constants.CONSTANT_BOTH_USER)){
-            daftaremoneylay.setVisibility(View.INVISIBLE);
-        }else{
+        if(sharedPreferences.getString(Constants.PARAMETER_TYPEUSER,"").equals(Constants.CONSTANT_BANK_USER)){
             daftaremoneylay.setVisibility(View.VISIBLE);
             daftaremoney.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -213,6 +211,8 @@ public class UserHomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+        }else{
+            daftaremoneylay.setVisibility(View.INVISIBLE);
         }
 
         daftaremoney=(ImageButton)findViewById(R.id.daftar_emoney_btn);

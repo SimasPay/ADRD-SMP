@@ -1,124 +1,126 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:2:1-465:12
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:2:1-565:12
 	package
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:3:5-44
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:4:5-44
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:3:5-51
 	xmlns:android
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:6:5-75
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:7:5-75
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:6:22-72
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:7:22-72
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:7:5-79
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:8:5-79
 MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:16:5-79
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:7:22-76
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:8:22-76
 uses-permission#android.permission.INTERNET
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:8:5-67
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:9:5-67
 MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:11:5-67
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:8:22-64
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:9:22-64
 uses-permission#android.permission.RECEIVE_SMS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:9:5-69
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:10:5-69
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:9:22-67
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:10:22-67
 uses-permission#android.permission.PREVENT_POWER_KEY
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:10:5-76
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:11:5-76
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:10:22-73
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:11:22-73
 uses-permission#android.permission.READ_SMS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:11:5-67
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:11:22-64
-uses-permission#android.permission.SEND_SMS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:12:5-66
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:12:5-67
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:12:22-64
+uses-permission#android.permission.SEND_SMS
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:13:5-66
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:13:22-64
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:13:5-73
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:14:5-73
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:13:22-70
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:14:22-70
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:14:5-81
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:15:5-81
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:14:22-78
-uses-permission#android.permission.CALL_PHONE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:16:5-69
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:16:22-66
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:15:22-78
 uses-permission#android.permission.READ_CONTACTS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:5-72
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:16:5-72
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:22-69
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:16:22-69
 uses-permission#android.permission.WRITE_CONTACTS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:5-73
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:5-73
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:22-70
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:22-70
 uses-permission#android.permission.CAMERA
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:5-65
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:5-65
 MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:12:5-65
 MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:23:5-65
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:22-62
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:22-62
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:20:5-79
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:5-79
 MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:14:5-80
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:20:22-77
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:22-77
 uses-permission#android.permission.VIBRATE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:23:5-66
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:20:5-66
 MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:13:5-66
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:23:22-63
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:20:22-63
 uses-permission#android.permission.FLASHLIGHT
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:21:5-69
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:21:22-66
+uses-permission#android.permission.GET_TASKS
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:22:5-68
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:22:22-65
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:23:5-81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:15:5-81
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:23:22-78
+uses-permission#android.permission.CALL_PHONE
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:24:5-69
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:24:22-66
-uses-permission#android.permission.GET_TASKS
+uses-permission#android.permission.WAKE_LOCK
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:25:5-68
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:25:22-65
-uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:26:5-81
-MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:15:5-81
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:26:22-78
 uses-feature#android.hardware.camera
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:29:5-31:36
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:26:5-28:36
 MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:26:5-28:36
+	android:required
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:28:9-33
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:27:9-47
+uses-feature#android.hardware.camera.autofocus
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:29:5-31:36
+MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:34:5-36:36
 	android:required
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:31:9-33
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:30:9-47
-uses-feature#android.hardware.camera.autofocus
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:30:9-57
+uses-feature#android.hardware.camera.flash
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:32:5-34:36
-MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:34:5-36:36
+MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:37:5-39:36
 	android:required
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:34:9-33
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:33:9-57
-uses-feature#android.hardware.camera.flash
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:35:5-37:36
-MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:37:5-39:36
-	android:required
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:37:9-33
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:36:9-53
-uses-permission#android.permission.WAKE_LOCK
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:39:5-68
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:39:22-65
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:33:9-53
 application
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:42:5-463:19
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:36:5-563:19
 MERGED from [com.android.support:appcompat-v7:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.2.0/AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-vector-drawable:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.2.0/AndroidManifest.xml:23:5-20
@@ -133,76 +135,88 @@ MERGED from [com.android.support:percent:25.2.0] /Users/widy/Documents/workspace
 MERGED from [com.android.support:support-compat:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.2.0/AndroidManifest.xml:25:5-20
 MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:47:5-55:19
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:45:9-41
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:39:9-41
+	tools:overrideLibrary
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:41:9-61
 	android:allowBackup
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:43:9-35
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:37:9-35
 	android:icon
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:44:9-43
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:38:9-43
 	android:largeHeap
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:46:9-33
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:40:9-33
 	android:theme
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:47:9-40
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:42:9-40
 receiver#com.payment.simaspay.rec.IncomingSms
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:48:9-52:20
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:43:9-47:20
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:48:19-70
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:43:19-70
 intent-filter#android.provider.Telephony.SMS_RECEIVED
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:49:13-51:29
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:44:13-46:29
 action#android.provider.Telephony.SMS_RECEIVED
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:50:17-82
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:45:17-82
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:50:25-79
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:45:25-79
 receiver#com.payment.simaspay.receivers.IncomingSMS
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:54:9-60:20
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:49:9-55:20
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:55:13-70
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:50:13-70
 intent-filter#android.intent.action.BOOT_COMPLETED+android.provider.Telephony.SMS_RECEIVED
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:56:13-59:29
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:51:13-54:29
 	android:priority
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:56:28-50
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:51:28-50
 action#android.intent.action.BOOT_COMPLETED
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:58:17-79
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:53:17-79
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:58:25-76
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:53:25-76
 activity#simaspay.payment.com.simaspay.SplashScreenActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:62:9-81:20
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:57:9-76:20
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:65:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:60:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:64:13-45
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:59:13-45
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:63:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:58:13-49
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:66:13-70:29
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:61:13-65:29
 action#android.intent.action.MAIN
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:62:17-69
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:62:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:64:17-77
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:64:27-74
+intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:66:13-75:29
+action#android.intent.action.VIEW
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:67:17-69
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:67:25-66
-category#android.intent.category.LAUNCHER
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:69:17-77
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:69:27-74
-intent-filter#android.intent.action.VIEW+android.intent.category.BROWSABLE+android.intent.category.DEFAULT
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:71:13-80:29
-action#android.intent.action.VIEW
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:72:17-69
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:72:25-66
 category#android.intent.category.DEFAULT
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:74:17-76
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:69:17-76
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:74:27-73
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:69:27-73
 category#android.intent.category.BROWSABLE
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:75:17-78
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:70:17-78
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:75:27-75
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:70:27-75
 data
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:77:17-79:49
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:72:17-74:49
 	android:host
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:78:21-44
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:73:21-44
 	android:scheme
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:79:21-46
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:74:21-46
 activity#simaspay.payment.com.simaspay.TermsNConditionsActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:77:9-81:56
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:80:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:79:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:81:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:78:13-53
+activity#simaspay.payment.com.simaspay.DaftarEmoneyActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:82:9-86:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:85:13-49
@@ -211,8 +225,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:86:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:83:13-53
-activity#simaspay.payment.com.simaspay.DaftarEmoneyActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:83:13-49
+activity#simaspay.payment.com.simaspay.ForgetmPINActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:87:9-91:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:90:13-49
@@ -221,8 +235,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:91:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:88:13-49
-activity#simaspay.payment.com.simaspay.ForgetmPINActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:88:13-47
+activity#simaspay.payment.com.simaspay.RegistrationNonKYCActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:92:9-96:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:95:13-49
@@ -231,8 +245,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:96:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:93:13-47
-activity#simaspay.payment.com.simaspay.RegistrationNonKYCActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:93:13-55
+activity#simaspay.payment.com.simaspay.LoginScreenActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:97:9-101:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:100:13-49
@@ -241,8 +255,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:101:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:98:13-55
-activity#simaspay.payment.com.simaspay.LoginScreenActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:98:13-48
+activity#simaspay.payment.com.simaspay.LandingScreenActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:102:9-106:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:105:13-49
@@ -251,26 +265,26 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:106:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:103:13-48
-activity#simaspay.payment.com.simaspay.LandingScreenActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:107:9-111:56
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:103:13-50
+activity#simaspay.payment.com.simaspay.InputNumberScreenActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:107:9-110:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:110:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:109:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:111:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:108:13-50
-activity#simaspay.payment.com.simaspay.InputNumberScreenActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:112:9-115:51
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:115:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:114:13-37
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:113:13-54
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:108:13-54
 activity#simaspay.payment.com.simaspay.SecurityQuestionsActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:111:9-115:56
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:114:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:113:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:115:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:112:13-54
+activity#simaspay.payment.com.simaspay.ConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:116:9-120:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:119:13-49
@@ -279,8 +293,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:120:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:117:13-54
-activity#simaspay.payment.com.simaspay.ConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:117:13-49
+activity#simaspay.payment.com.simaspay.NotificationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:121:9-125:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:124:13-49
@@ -290,7 +304,7 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:125:13-54
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:122:13-49
-activity#simaspay.payment.com.simaspay.NotificationActivity
+activity#simaspay.payment.com.simaspay.UserHomeActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:126:9-130:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:129:13-49
@@ -299,58 +313,58 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:130:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:127:13-49
-activity#simaspay.payment.com.simaspay.UserHomeActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:131:9-135:56
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:127:13-45
+activity#com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:131:9-134:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:134:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:133:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:135:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:132:13-45
-activity#com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:136:9-139:51
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:139:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:138:13-37
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:137:13-93
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:132:13-93
 activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:140:9-143:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:135:9-138:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:143:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:138:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:142:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:137:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:141:13-91
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:136:13-91
 activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyConfirmationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:144:9-147:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:139:9-142:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:147:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:142:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:146:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:141:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:145:13-103
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:140:13-103
 activity#com.payment.simaspay.AgentTransfer.TransferBankToEmoneyNotificationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:148:9-151:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:143:9-146:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:151:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:146:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:150:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:145:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:149:13-103
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:144:13-103
 activity#com.payment.simaspay.AgentTransfer.NewTransferHomeActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:152:9-155:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:147:9-150:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:155:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:150:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:154:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:149:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:153:13-86
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:148:13-86
 activity#com.payment.simaspay.UserActivation.ActivationPage_1_Activity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:151:9-155:56
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:154:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:153:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:155:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:152:13-89
+activity#com.payment.simaspay.UserActivation.ActivationPage_2_Activity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:156:9-160:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:159:13-49
@@ -360,7 +374,7 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:160:13-54
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:157:13-89
-activity#com.payment.simaspay.UserActivation.ActivationPage_2_Activity
+activity#com.payment.simaspay.UserActivation.ActivationPage_3_Activity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:161:9-165:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:164:13-49
@@ -370,7 +384,7 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:165:13-54
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:162:13-89
-activity#com.payment.simaspay.UserActivation.ActivationPage_3_Activity
+activity#com.payment.simaspay.UserActivation.ActivationPage_4_Activity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:166:9-170:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:169:13-49
@@ -380,81 +394,79 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:170:13-54
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:167:13-89
-activity#com.payment.simaspay.UserActivation.ActivationPage_4_Activity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:171:9-175:56
+activity#com.payment.simaspay.contactus.ContactUs_Activity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:171:9-174:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:174:13-49
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:173:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:175:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:172:13-89
-activity#com.payment.simaspay.contactus.ContactUs_Activity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:176:9-179:51
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:179:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:178:13-37
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:177:13-77
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:172:13-77
 activity#simaspay.payment.com.simaspay.Agent_HomePage_Activity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:180:9-183:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:175:9-178:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:183:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:178:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:182:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:177:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:181:13-52
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:176:13-52
 activity#com.payment.simaspay.userdetails.SimaspayUserActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:184:9-187:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:179:9-182:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:187:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:182:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:186:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:181:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:185:13-81
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:180:13-81
 activity#com.payment.simaspay.userdetails.SecondLoginActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:188:9-191:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:183:9-186:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:191:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:186:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:190:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:185:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:189:13-80
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:184:13-80
 activity#simaspay.payment.com.simaspay.NewMpin_Activity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:192:9-195:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:187:9-190:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:195:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:190:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:194:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:189:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:193:13-45
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:188:13-45
 activity#com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:196:9-199:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:191:9-194:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:199:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:194:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:198:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:193:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:197:13-86
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:192:13-86
 activity#com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:200:9-203:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:195:9-198:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:203:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:198:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:202:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:197:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:201:13-105
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:196:13-105
 activity#com.payment.simaspay.userdetails.BalanceSheetActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:204:9-207:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:199:9-202:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:207:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:202:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:206:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:201:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:205:13-81
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:200:13-81
 activity#com.payment.simaspay.userdetails.CurrentSessionActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:203:9-206:51
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:206:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:205:13-37
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:204:13-83
+activity#com.payment.simaspay.AgentTransfer.TransferHomeActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:208:9-211:51
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:211:13-49
@@ -462,71 +474,73 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:210:13-37
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:209:13-83
-activity#com.payment.simaspay.AgentTransfer.TransferHomeActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:213:9-216:51
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:216:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:215:13-37
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:214:13-83
 activity#com.payment.simaspay.userdetails.Trans_DataSelectionActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:217:9-220:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:212:9-215:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:220:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:215:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:219:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:214:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:218:13-88
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:213:13-88
 activity#com.payment.simaspay.userdetails.TransactionsListActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:221:9-224:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:216:9-219:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:224:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:219:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:223:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:218:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:222:13-85
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:217:13-85
 activity#com.payment.simaspay.agentdetails.NumberSwitchingActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:225:9-228:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:220:9-223:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:228:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:223:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:227:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:222:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:226:13-85
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:221:13-85
 activity#com.payment.simaspay.agentdetails.AgentSimaspayUserActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:229:9-232:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:224:9-227:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:232:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:227:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:231:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:226:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:230:13-87
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:225:13-87
 activity#com.payment.simaspay.agentdetails.Register_to_SimaspayUserActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:233:9-236:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:228:9-231:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:236:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:231:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:235:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:230:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:234:13-94
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:229:13-94
 activity#com.payment.simaspay.agentdetails.Register_To_SimaspayUserConfirmationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:237:9-240:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:232:9-235:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:240:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:235:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:239:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:234:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:238:13-106
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:233:13-106
 activity#com.payment.simaspay.agentdetails.Register_To_SimaspayUserSuccessActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:241:9-244:51
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:236:9-239:51
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:244:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:239:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:243:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:238:13-37
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:242:13-101
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:237:13-101
 activity#com.payment.simaspay.agentdetails.ChangePinActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:240:9-244:56
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:243:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:242:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:244:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:241:13-79
+activity#com.payment.simaspay.agentdetails.ChangePinConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:245:9-249:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:248:13-49
@@ -535,8 +549,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:249:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:246:13-79
-activity#com.payment.simaspay.agentdetails.ChangePinConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:246:13-91
+activity#com.payment.simaspay.agentdetails.ChangePinSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:250:9-254:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:253:13-49
@@ -545,8 +559,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:254:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:251:13-91
-activity#com.payment.simaspay.agentdetails.ChangePinSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:251:13-86
+activity#com.payment.simaspay.agentdetails.AgentRegistrationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:255:9-259:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:258:13-49
@@ -555,18 +569,18 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:259:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:256:13-86
-activity#com.payment.simaspay.agentdetails.AgentRegistrationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:260:9-264:56
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:263:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:262:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:264:13-54
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:261:13-87
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:256:13-87
 activity#com.payment.simaspay.lakupandai.LakuPandaiActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:261:9-265:56
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:264:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:263:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:265:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:262:13-78
+activity#com.payment.simaspay.lakupandai.LakupandaiTransferDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:266:9-270:56
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:269:13-49
@@ -575,9 +589,9 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:270:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:267:13-78
-activity#com.payment.simaspay.lakupandai.LakupandaiTransferDetailsActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:271:9-275:56
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:267:13-93
+activity#com.payment.simaspay.lakupandai.LakuPandaiTransferConfirmationActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:271:9-275:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:274:13-49
 	android:label
@@ -585,8 +599,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:275:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:272:13-93
-activity#com.payment.simaspay.lakupandai.LakuPandaiTransferConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:272:13-98
+activity#com.payment.simaspay.lakupandai.LakuPandaiTransferSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:276:9-280:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:279:13-49
@@ -595,8 +609,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:280:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:277:13-98
-activity#com.payment.simaspay.lakupandai.LakuPandaiTransferSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:277:13-93
+activity#com.payment.simaspay.Cash_InOut.CashInDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:281:9-285:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:284:13-49
@@ -605,8 +619,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:285:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:282:13-93
-activity#com.payment.simaspay.Cash_InOut.CashInDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:282:13-81
+activity#com.payment.simaspay.Cash_InOut.CashInConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:286:9-290:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:289:13-49
@@ -615,8 +629,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:290:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:287:13-81
-activity#com.payment.simaspay.Cash_InOut.CashInConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:287:13-86
+activity#com.payment.simaspay.Cash_InOut.CashInSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:291:9-295:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:294:13-49
@@ -625,8 +639,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:295:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:292:13-86
-activity#com.payment.simaspay.Cash_InOut.CashInSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:292:13-81
+activity#com.payment.simaspay.Cash_InOut.CashOutDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:296:9-300:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:299:13-49
@@ -635,8 +649,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:300:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:297:13-81
-activity#com.payment.simaspay.Cash_InOut.CashOutDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:297:13-82
+activity#com.payment.simaspay.Cash_InOut.CashOutConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:301:9-305:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:304:13-49
@@ -645,8 +659,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:305:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:302:13-82
-activity#com.payment.simaspay.Cash_InOut.CashOutConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:302:13-87
+activity#com.payment.simaspay.Cash_InOut.CashoutSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:306:9-310:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:309:13-49
@@ -655,8 +669,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:310:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:307:13-87
-activity#com.payment.simaspay.Cash_InOut.CashoutSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:307:13-82
+activity#com.payment.simaspay.userdetails.SessionTimeOutActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:311:9-315:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:314:13-49
@@ -665,8 +679,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:315:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:312:13-82
-activity#com.payment.simaspay.userdetails.SessionTimeOutActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:312:13-83
+activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:316:9-320:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:319:13-49
@@ -675,8 +689,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:320:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:317:13-83
-activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:317:13-102
+activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:321:9-325:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:324:13-49
@@ -685,8 +699,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:325:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:322:13-102
-activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:322:13-107
+activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:326:9-330:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:329:13-49
@@ -695,18 +709,18 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:330:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:327:13-107
-activity#com.payment.simaspay.Referral_and_CloseAccount.CloseAccountSuccessActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:331:9-335:66
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:334:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:333:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:335:13-54
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:332:13-102
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:327:13-102
 activity#com.payment.simaspay.AgentTransfer.AgentTransferHomeActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:332:9-336:66
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:335:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:334:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:336:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:333:13-88
+activity#com.payment.simaspay.AgentTransfer.TransferDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:337:9-341:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:340:13-49
@@ -715,8 +729,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:341:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:338:13-88
-activity#com.payment.simaspay.AgentTransfer.TransferDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:338:13-86
+activity#com.payment.simaspay.AgentTransfer.TransferConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:342:9-346:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:345:13-49
@@ -725,8 +739,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:346:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:343:13-86
-activity#com.payment.simaspay.AgentTransfer.TransferConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:343:13-91
+activity#com.payment.simaspay.AgentTransfer.TranaferSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:347:9-351:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:350:13-49
@@ -735,8 +749,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:351:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:348:13-91
-activity#com.payment.simaspay.AgentTransfer.TranaferSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:348:13-86
+activity#com.payment.simaspay.AgentTransfer.BankDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:352:9-356:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:355:13-49
@@ -745,8 +759,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:356:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:353:13-86
-activity#com.payment.simaspay.AgentTransfer.BankDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:353:13-82
+activity#com.payment.simaspay.AgentTransfer.TransferOtherBankDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:357:9-361:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:360:13-49
@@ -755,8 +769,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:361:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:358:13-82
-activity#com.payment.simaspay.AgentTransfer.TransferOtherBankDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:358:13-95
+activity#com.payment.simaspay.AgentTransfer.TransferOtherbankConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:362:9-366:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:365:13-49
@@ -765,8 +779,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:366:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:363:13-95
-activity#com.payment.simaspay.AgentTransfer.TransferOtherbankConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:363:13-100
+activity#com.payment.simaspay.AgentTransfer.TransferOtherBankSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:367:9-371:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:370:13-49
@@ -775,8 +789,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:371:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:368:13-100
-activity#com.payment.simaspay.AgentTransfer.TransferOtherBankSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:368:13-95
+activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:372:9-376:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:375:13-49
@@ -785,8 +799,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:376:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:373:13-95
-activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:373:13-98
+activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralAccountConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:377:9-381:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:380:13-49
@@ -795,8 +809,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:381:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:378:13-98
-activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralAccountConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:378:13-110
+activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralAccountSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:382:9-386:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:385:13-49
@@ -805,18 +819,18 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:386:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:383:13-110
-activity#com.payment.simaspay.Referral_and_CloseAccount.ReferralAccountSuccessActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:387:9-391:66
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:390:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:389:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:391:13-54
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:388:13-105
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:383:13-105
 activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:388:9-392:66
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:391:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:390:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:392:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:389:13-109
+activity#com.payment.simaspay.PaymentPerchaseAccount.ProviderNamesListActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:393:9-397:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:396:13-49
@@ -825,8 +839,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:397:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:394:13-109
-activity#com.payment.simaspay.PaymentPerchaseAccount.ProviderNamesListActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:394:13-97
+activity#com.payment.simaspay.PaymentPerchaseAccount.BillersListActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:398:9-402:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:401:13-49
@@ -835,8 +849,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:402:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:399:13-97
-activity#com.payment.simaspay.PaymentPerchaseAccount.BillersListActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:399:13-91
+activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:403:9-407:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:406:13-49
@@ -845,8 +859,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:407:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:404:13-91
-activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:404:13-94
+activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:408:9-412:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:411:13-49
@@ -855,8 +869,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:412:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:409:13-94
-activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:409:13-99
+activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:413:9-417:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:416:13-49
@@ -865,8 +879,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:417:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:414:13-99
-activity#com.payment.simaspay.PaymentPerchaseAccount.PaymentSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:414:13-94
+activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseDetailsActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:418:9-422:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:421:13-49
@@ -875,8 +889,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:422:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:419:13-94
-activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseDetailsActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:419:13-95
+activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:423:9-427:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:426:13-49
@@ -885,8 +899,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:427:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:424:13-95
-activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseConfirmationActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:424:13-100
+activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseSuccessActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:428:9-432:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:431:13-49
@@ -895,8 +909,8 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:432:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:429:13-100
-activity#com.payment.simaspay.PaymentPerchaseAccount.PerchaseSuccessActivity
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:429:13-95
+activity#com.payment.simaspay.FlashizSDK.PayByQRActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:433:9-437:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:436:13-49
@@ -905,18 +919,18 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:437:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:434:13-95
-activity#com.payment.simaspay.FlashizSDK.PayByQRActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:438:9-442:66
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:441:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:440:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:442:13-54
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:439:13-75
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:434:13-75
 activity#com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:440:9-444:66
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:443:13-49
+	android:label
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:442:13-37
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:444:13-54
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:441:13-93
+activity#com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:445:9-449:66
 	android:screenOrientation
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:448:13-49
@@ -925,29 +939,262 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 	android:windowSoftInputMode
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:449:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:446:13-93
-activity#com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:450:9-454:66
-	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:453:13-49
-	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:452:13-37
-	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:454:13-54
-	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:451:13-98
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:446:13-98
 activity#com.payment.simaspay.UangkuTransfer.UangkuTransferSuccessActivity
-ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:456:9-460:66
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:451:9-455:66
 	android:screenOrientation
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:459:13-49
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:454:13-49
 	android:label
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:458:13-37
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:453:13-37
 	android:windowSoftInputMode
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:460:13-54
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:455:13-54
 	android:name
-		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:457:13-93
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:452:13-93
+activity#com.dimo.PayByQR.activity.SplashActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:458:9-463:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:21:9-25:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:461:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:460:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:463:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:25:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:462:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:459:13-68
+activity#com.dimo.PayByQR.activity.ScanQRActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:464:9-469:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:26:9-30:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:467:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:466:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:469:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:30:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:468:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:465:13-68
+activity#com.dimo.PayByQR.activity.InvoiceDetailActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:470:9-475:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:31:9-35:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:473:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:472:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:475:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:35:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:474:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:471:13-75
+activity#com.dimo.PayByQR.activity.PaymentSuccessActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:476:9-481:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:36:9-40:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:479:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:478:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:481:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:40:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:480:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:477:13-76
+activity#com.dimo.PayByQR.activity.FailedActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:482:9-487:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:41:9-45:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:485:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:484:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:487:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:45:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:486:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:483:13-68
+activity#com.dimo.PayByQR.activity.NoConnectionActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:488:9-493:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:46:9-50:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:491:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:490:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:493:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:50:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:492:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:489:13-74
+activity#com.dimo.PayByQR.activity.TipActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:494:9-499:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:51:9-55:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:497:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:496:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:499:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:55:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:498:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:495:13-65
+activity#com.dimo.PayByQR.activity.LoyaltyActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:500:9-505:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:92:9-96:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:503:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:502:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:505:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:96:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:504:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:501:13-69
+activity#com.dimo.PayByQR.activity.LoyaltyDetailActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:506:9-511:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:97:9-101:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:509:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:508:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:511:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:101:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:510:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:507:13-75
+activity#com.dimo.PayByQR.activity.OfflineQRActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:512:9-518:58
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:102:9-107:58
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:515:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:518:13-55
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:514:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:516:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:106:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:517:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:513:13-71
+activity#com.dimo.PayByQR.QrStore.view.StoreMenuActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:519:9-524:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:58:9-62:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:522:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:521:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:524:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:62:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:523:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:520:13-75
+activity#com.dimo.PayByQR.QrStore.view.StoreDetailActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:525:9-530:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:63:9-67:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:528:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:527:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:530:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:67:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:529:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:526:13-77
+activity#com.dimo.PayByQR.QrStore.view.StoreCheckout
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:531:9-536:81
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:534:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:533:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:536:13-78
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:535:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:532:13-71
+activity#com.dimo.PayByQR.QrStore.view.StoreCheckout1
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:537:9-543:58
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:68:9-73:58
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:540:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:543:13-55
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:539:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:542:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:72:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:541:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:538:13-72
+activity#com.dimo.PayByQR.QrStore.view.StoreCheckout2
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:544:9-549:58
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:74:9-79:58
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:546:13-49
+	android:windowSoftInputMode
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:549:13-55
+	android:configChanges
+		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:76:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:548:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:78:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:547:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:545:13-72
+activity#com.dimo.PayByQR.QrStore.view.StoreKonfirmasiActivity
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:550:9-555:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:80:9-84:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:553:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:552:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:555:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:84:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:554:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:551:13-81
+activity#com.dimo.PayByQR.QrStore.view.StoreMenuMerchant
+ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:556:9-561:81
+MERGED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:85:9-89:75
+	android:screenOrientation
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:559:13-49
+	android:configChanges
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:558:13-59
+	android:theme
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:561:13-78
+		REJECTED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:89:13-72
+	tools:replace
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:560:13-42
+	android:name
+		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:557:13-75
 uses-sdk
 INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:multidex:1.0.1] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:appcompat-v7:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.2.0/AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:25.2.0] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.2.0/AndroidManifest.xml:21:5-43
@@ -970,172 +1217,6 @@ MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents
 	android:minSdkVersion
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml
-activity#com.dimo.PayByQR.activity.SplashActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:21:9-25:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:24:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:23:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:25:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:22:13-68
-activity#com.dimo.PayByQR.activity.ScanQRActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:26:9-30:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:29:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:28:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:30:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:27:13-68
-activity#com.dimo.PayByQR.activity.InvoiceDetailActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:31:9-35:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:34:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:33:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:35:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:32:13-75
-activity#com.dimo.PayByQR.activity.PaymentSuccessActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:36:9-40:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:39:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:38:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:40:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:37:13-76
-activity#com.dimo.PayByQR.activity.FailedActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:41:9-45:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:44:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:43:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:45:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:42:13-68
-activity#com.dimo.PayByQR.activity.NoConnectionActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:46:9-50:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:49:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:48:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:50:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:47:13-74
-activity#com.dimo.PayByQR.activity.TipActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:51:9-55:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:54:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:53:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:55:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:52:13-65
-activity#com.dimo.PayByQR.QrStore.view.StoreMenuActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:58:9-62:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:61:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:60:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:62:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:59:13-75
-activity#com.dimo.PayByQR.QrStore.view.StoreDetailActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:63:9-67:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:66:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:65:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:67:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:64:13-77
-activity#com.dimo.PayByQR.QrStore.view.StoreCheckout1
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:68:9-73:58
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:71:13-49
-	android:windowSoftInputMode
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:73:13-55
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:70:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:72:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:69:13-72
-activity#com.dimo.PayByQR.QrStore.view.StoreCheckout2
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:74:9-79:58
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:77:13-49
-	android:windowSoftInputMode
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:79:13-55
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:76:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:78:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:75:13-72
-activity#com.dimo.PayByQR.QrStore.view.StoreKonfirmasiActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:80:9-84:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:83:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:82:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:84:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:81:13-81
-activity#com.dimo.PayByQR.QrStore.view.StoreMenuMerchant
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:85:9-89:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:88:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:87:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:89:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:86:13-75
-activity#com.dimo.PayByQR.activity.LoyaltyActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:92:9-96:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:95:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:94:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:96:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:93:13-69
-activity#com.dimo.PayByQR.activity.LoyaltyDetailActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:97:9-101:75
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:100:13-49
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:99:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:101:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:98:13-75
-activity#com.dimo.PayByQR.activity.OfflineQRActivity
-ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:102:9-107:58
-	android:screenOrientation
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:105:13-49
-	android:windowSoftInputMode
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:107:13-55
-	android:configChanges
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:104:13-59
-	android:theme
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:106:13-72
-	android:name
-		ADDED from [SimasPay:PayByQR_Android_1.1.7_Simaspay:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR_Android_1.1.7_Simaspay/unspecified/AndroidManifest.xml:103:13-71
 uses-feature#android.hardware.camera.front
 ADDED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.journeyapps/zxing-android-embedded/3.0.3/AndroidManifest.xml:29:5-31:36
 	android:required
