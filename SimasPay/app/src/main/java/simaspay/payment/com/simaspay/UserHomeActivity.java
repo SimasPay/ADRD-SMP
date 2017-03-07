@@ -298,6 +298,16 @@ public class UserHomeActivity extends AppCompatActivity {
                         }else{
                             checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
                             progbar.setVisibility(View.GONE);
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    swipe_balance.setVisibility(View.VISIBLE);
+                                    checkbalance.setVisibility(View.GONE);
+                                    progbar.setVisibility(View.GONE);
+                                    swipe_balance.startAnimation(inFromRightAnimation());
+                                }
+                            }, 5000);
                         }
 
                         //linLay.setBackgroundColor(getResources().getColor(android.R.color.transparent));

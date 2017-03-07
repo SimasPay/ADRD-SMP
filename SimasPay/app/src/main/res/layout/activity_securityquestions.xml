@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_ground"
     android:padding="10dp"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/back_btn"
@@ -17,16 +17,35 @@
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_gravity="start"
+            android:layout_alignParentLeft="true"
             android:src="@drawable/ic_arrow"/>
+
         <TextView
+            android:id="@+id/label_toolbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pertanyaan Keamanan"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"/>
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/back_btn"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo_simaspay" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,13 +53,14 @@
         android:layout_marginTop="35dp"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/desc_security_lbl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:gravity="center_horizontal"
-            android:text="Silakan pilih dan jawab \npertanyaan keamanan untuk keperluan reset mPIN Anda."/>
+            android:text="@string/id_desc_security"/>
     </LinearLayout>
 
     <LinearLayout

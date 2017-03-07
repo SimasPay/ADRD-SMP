@@ -137,7 +137,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, "TransferInquiry");
-            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, "Wallet");
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);

@@ -1,6 +1,7 @@
 package com.payment.simaspay.FlashizSDK;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -390,6 +391,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
             webServiceHttp = new WebServiceHttp(mapContainer, PayByQRActivity.this);
             inqueryResponse = webServiceHttp.getResponseSSLCertificatation();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(inqueryResponse==null||inqueryResponse.equals("")){
+                        Log.d(LOG_TAG, "inqueryResponse: "+inqueryResponse);
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                        Cancel();
+                        payByQRSDK.closeSDK();
+                    }
+                }
+            }, Constants.CONNECTION_TIMEOUT);
             return null;
         }
 
@@ -564,6 +576,18 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     PayByQRActivity.this);
 
             confirmationResponse = webServiceHttp.getResponseSSLCertificatation();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(confirmationResponse==null||confirmationResponse.equals("")){
+                        Log.d(LOG_TAG, "confirmationResponse: "+confirmationResponse);
+                        payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                        Cancel();
+                        payByQRSDK.closeSDK();
+                        dialogBuilder.dismiss();
+                    }
+                }
+            }, Constants.CONNECTION_TIMEOUT);
             return null;
         }
 
@@ -608,7 +632,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(inqueryResponse==null||inqueryResponse.equals("")){
+                    if(confirmationResponse==null||confirmationResponse.equals("")){
                         payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
                         Cancel();
                         payByQRSDK.closeSDK();
@@ -849,7 +873,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
-                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -871,7 +895,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             int msgCode = 0;
                             showOTPRequiredDialog();
                         } else {
-                            alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -881,6 +905,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             });
                             alertbox.show();
                         }
+                    }else{
+                        alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                        alertbox.setMessage(getResources().getString(R.string.bahasa_serverNotRespond));
+                        alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                                Cancel();
+                                payByQRSDK.closeSDK();
+                            }
+                        });
+                        alertbox.show();
                     }
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
@@ -1020,6 +1055,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                             });
                             alertbox.show();
                         }
+                    }else {
+                        alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                        alertbox.setMessage(getResources().getString(R.string.bahasa_serverNotRespond));
+                        alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
+                                Cancel();
+                                payByQRSDK.closeSDK();
+                            }
+                        });
+                        alertbox.show();
                     }
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());

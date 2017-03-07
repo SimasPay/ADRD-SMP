@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -39,20 +40,16 @@ public class LandingScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
     private static final String TAG = "SimasPay";
+    Functions functions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landingpage);
         context = LandingScreenActivity.this;
+        functions = new Functions(this);
+        functions.initiatedToolbar(this);
         settings = getSharedPreferences(TAG, 0);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-        }
 
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();

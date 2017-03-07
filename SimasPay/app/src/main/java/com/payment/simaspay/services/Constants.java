@@ -653,6 +653,7 @@ public class Constants {
     public static final String GETSECRET_PIN_AND_SECURITY_QUESTION_ANSWER = "ResetPinAndSQA";
     public static final String VIEW_PROFILE = "ViewProfile";
     public static final String TRANSACTION_RESENDMFAOTP="ResendMFAOTP";
+    public static final String TRANSACTION_RESENDMFAOTPNO="ResendMFAOTPNoPIN";
     public static final String MDN_VALIDATION_FORGOTPIN = "MDNvalidationforForgotPIN";
 
     public static final String TRANSACTION_BUY_VIPMEMBERSHIP = "EnableMemberShipInquiry";
@@ -750,6 +751,7 @@ public class Constants {
     public static final String PARAMETER_FROM_DATE = "fromDate";
     public static final String PARAMETER_SCTL = "sctlId";
     public static final String PARAMETER_TO_DATE = "toDate";
+    public static final String PARAMETER_FORGOTMPIN = "forgotMPIN";
     public static final String PARAMETER_CARDPAN_SUFFIX = "cardPANSuffix";
     public static final String PARAMETER_SRC_MESSAGE = "sourceMessage";
     public static final String PARAMETER_DEST_POCKET_CODE = "destPocketCode";
@@ -795,6 +797,7 @@ public class Constants {
     public static final String PARAMETER_OTHERS="others";
 
     public static final String IS_SIMASPAYACTIVITY = "true";
+    public static final String PARAMETER_CONFIRM_MPIN = "confirmPIN";
 
     //SourcePocketCode
     public static final String PARAMETER_TYPEUSER = "akun";

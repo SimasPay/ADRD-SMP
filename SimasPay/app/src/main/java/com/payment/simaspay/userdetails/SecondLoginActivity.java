@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
@@ -33,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
@@ -406,8 +408,13 @@ public class SecondLoginActivity extends AppCompatActivity {
                             Log.d(LOG_TAG, "transactionTime "+transactionTime);
                             responseCode = responseDataContainer.getResponseCode();
                             Log.d(LOG_TAG, "responseCode "+responseCode);
+                            String securityQuestion = responseDataContainer.getSecurityQuestion();
+                            Log.d(LOG_TAG, "securityQuestion "+securityQuestion);
                             //toSecurityQuestion
-
+                            Intent intent = new Intent(SecondLoginActivity.this, SecurityQuestionsActivity.class);
+                            intent.putExtra(Constants.PARAMETER_FORGOTMPIN, true );
+                            intent.putExtra("securityQuestion", securityQuestion );
+                            startActivity(intent);
                         }else{
                             AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
@@ -425,4 +432,6 @@ public class SecondLoginActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

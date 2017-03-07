@@ -190,6 +190,10 @@
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".NewMpin_Activity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name="com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"/>

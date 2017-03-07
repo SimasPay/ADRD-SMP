@@ -76,6 +76,7 @@
     <string name="aktivasi_label">Sudah memiliki kode aktivasi?</string>
     <string name="aktivasi_akun">Aktivasi Akun</string>
     <string name="eng_otprequired_title">Code Verification</string>
+    <string name="id_notif_success_mpin">mPIN Berhasil Diubah</string>
     <string name="eng_otprequired_desc_1">Please wait while we are doing automatic code verification to the number : </string>
     <string name="eng_otprequired_desc_2"> or please enter the code manually if automatic verification is failed.</string>
     <string name="eng_otpfailed">Code Verification Failed</string>
@@ -268,7 +269,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="SMS_notreceived_message">Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi SimasPay, silahkan hubungi customer support untuk keterangan lebih lanjut.</string>
     <string name="FourceUpdate">Please Update Your App.</string>
     <string name="bahasa_telepon">Nomor Handphone</string>
-    <string name="bahasa_Simpan">simpan</string>
+    <string name="bahasa_Simpan">Simpan</string>
     <string name="bahasa_pin">PIN</string>
     <integer name="pinSize">6</integer>
     <string name="bahasa_hint">telepon</string>
@@ -349,5 +350,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_6_digit_mpin_baru">Silakan tentukan 6 digit mPIN baru untuk akun Simaspay Anda</string>
     <string name="id_mpin_baru">mPIN baru</string>
     <string name="id_konfirmasi_mpin_baru">Konfirmasi mPIN baru</string>
-
+    <string name="id_desc_security">Silakan pilih dan jawab \npertanyaan keamanan untuk keperluan reset mPIN Anda.</string>
+    <string name="id_pertanyaan_keamanan">Pertanyaan Keamanan</string>
+    <string name="id_required_jawaban">Harap isi Jawaban Pertanyaan di atas</string>
 </resources>

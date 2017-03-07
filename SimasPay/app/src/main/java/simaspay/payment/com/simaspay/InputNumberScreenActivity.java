@@ -169,10 +169,22 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                         Log.d("test", "not null");
                         String mdn = responseDataContainer.getMdn();
                         String status = responseDataContainer.getStatus();
+                        String firstName = responseDataContainer.getFirstName();
+                        String lastName = responseDataContainer.getLastName();
                         Log.d("test", "mdn: "+ mdn + ", status: "+ status);
                         if(status.equals("0") || status.equals("27")){
                             settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
                             settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
+                            settings.edit().putString("firstName", firstName).apply();
+                            settings.edit().putString("lastName", lastName).apply();
+                            if(firstName==null){
+                                settings.edit().putString("fullname", lastName).apply();
+                            }else if(lastName==null){
+                                settings.edit().putString("fullname", firstName).apply();
+                            }else{
+                                settings.edit().putString("fullname", firstName + " " + lastName).apply();
+                            }
+
                             Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
