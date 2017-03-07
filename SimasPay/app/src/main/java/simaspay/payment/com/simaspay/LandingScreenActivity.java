@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.payment.simaspay.contactus.ContactUs_Activity;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.utils.Functions;
@@ -41,6 +43,7 @@ public class LandingScreenActivity extends AppCompatActivity {
     public SharedPreferences settings;
     private static final String TAG = "SimasPay";
     Functions functions;
+    TextView contact_us;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,17 @@ public class LandingScreenActivity extends AppCompatActivity {
                 //
             }
         });
+
+        contact_us=(TextView)findViewById(R.id.contact_us);
+        contact_us.setText(Html.fromHtml("<u>Hubungi Kami</u>"));
+        contact_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LandingScreenActivity.this, ContactUs_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
