@@ -1,9 +1,11 @@
 package com.payment.simaspay.FlashizSDK;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,9 @@ import com.dimo.PayByQR.EULAFragmentListener;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.SplashScreenActivity;
+import simaspay.payment.com.simaspay.TermsNConditionsActivity;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class MyCustomEULA extends Fragment implements View.OnClickListener {
 	private EULAFragmentListener mListener;
@@ -66,6 +71,24 @@ public class MyCustomEULA extends Fragment implements View.OnClickListener {
 
 		btnAccept.setOnClickListener(this);
 		btnDecline.setOnClickListener(this);
+
+		//getView().setFocusableInTouchMode(true);
+		//getView().requestFocus();
+		rootView.setOnKeyListener( new View.OnKeyListener()
+		{
+			@Override
+			public boolean onKey( View v, int keyCode, KeyEvent event )
+			{
+				if( keyCode == KeyEvent.KEYCODE_BACK )
+				{
+					getActivity().finish();
+					Intent intent = new Intent(getActivity(), UserHomeActivity.class);
+					startActivity(intent);
+					return true;
+				}
+				return false;
+			}
+		} );
 
 		return rootView;
 	}

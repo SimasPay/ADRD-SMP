@@ -187,6 +187,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     protected void onResume() {
         super.onResume();
         Log.e(LOG_TAG, "------onResume-------");
+        Cancel();
     }
 
     void Cancel() {
@@ -400,8 +401,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             mapContainer.put(Constants.PARAMETER_TIPAMOUNT, invoiceModel.tipAmount + "");
             Log.d(LOG_TAG, Constants.PARAMETER_TIPAMOUNT + ": " + invoiceModel.tipAmount);
 
+
             webServiceHttp = new WebServiceHttp(mapContainer, PayByQRActivity.this);
             inqueryResponse = webServiceHttp.getResponseSSLCertificatation();
+            /**
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -413,6 +416,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     }
                 }
             }, Constants.CONNECTION_TIMEOUT);
+             **/
             return null;
         }
 
@@ -584,6 +588,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     PayByQRActivity.this);
 
             confirmationResponse = webServiceHttp.getResponseSSLCertificatation();
+            /**
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -596,6 +601,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     }
                 }
             }, Constants.CONNECTION_TIMEOUT);
+             **/
             return null;
         }
 
