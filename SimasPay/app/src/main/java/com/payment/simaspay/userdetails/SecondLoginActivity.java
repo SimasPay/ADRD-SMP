@@ -20,7 +20,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.payment.simaspay.AgentTransfer.TransferOtherbankConfirmationActivity;
 import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
+import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
@@ -255,20 +257,20 @@ public class SecondLoginActivity extends AppCompatActivity {
 
                     sharedPreferences.edit().putString("password", rsaKey).apply();
                     sharedPreferences.edit().putString("userName", responseContainer.getName()).apply();
-                    Log.d(LOG_TAG,"responseContainer.getCustomerType():"+responseContainer.getCustomerType());
-                    Log.d(LOG_TAG,"responseContainer.getIsBank():"+responseContainer.getIsBank());
-                    Log.d(LOG_TAG,"responseContainer.getIsEmoney():"+responseContainer.getIsEmoney());
-                    Log.d(LOG_TAG,"responseContainer.getIsKyc():"+responseContainer.getIsKyc());
+                    Log.d(LOG_TAG, "responseContainer.getCustomerType():" + responseContainer.getCustomerType());
+                    Log.d(LOG_TAG, "responseContainer.getIsBank():" + responseContainer.getIsBank());
+                    Log.d(LOG_TAG, "responseContainer.getIsEmoney():" + responseContainer.getIsEmoney());
+                    Log.d(LOG_TAG, "responseContainer.getIsKyc():" + responseContainer.getIsKyc());
 
                     if (responseContainer.getCustomerType().equals("0")) {
-                        if(responseContainer.getIsBank().equals("true")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("true")) {
+                        if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "both");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BOTH_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
                             startActivityForResult(intent, 20);
-                        }else if(responseContainer.getIsBank().equals("false")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("true")){
+                        } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "emoney KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYKYC_USER).apply();
@@ -276,7 +278,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
-                        }else if(responseContainer.getIsBank().equals("false")&&responseContainer.getIsEmoney().equals("true")&&responseContainer.getIsKyc().equals("false")){
+                        } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("false")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "emoney non KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYNONKYC_USER).apply();
@@ -284,7 +286,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
                             startActivityForResult(intent, 20);
-                        }else if(responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")){
+                        } else if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_BANK_INT).apply();
                             Log.d(LOG_TAG, "bank account");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BANK_USER).apply();
@@ -299,6 +301,26 @@ public class SecondLoginActivity extends AppCompatActivity {
                         sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                         startActivityForResult(intent, 20);
                     }
+                }else if(msgCode == 2315) {
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(SecondLoginActivity.this, ChangePinActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
+                }else if(msgCode == 2182) {
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(SecondLoginActivity.this, ChangePinActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alertbox.show();
                 } else {
                     progressDialog.dismiss();
                     if (responseContainer.getMsg() == null) {

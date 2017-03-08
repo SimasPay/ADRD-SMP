@@ -9,4 +9,8 @@
     <dimen name="selected_date_day_size">100dp</dimen>
     <dimen name="selected_date_month_size">30dp</dimen>
     <dimen name="selected_date_year_size">30dp</dimen>
+    <style name="Widget.Design.TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabGravity">center</item>
+        <item name="tabMode">fixed</item>
+    </style>
 </resources>

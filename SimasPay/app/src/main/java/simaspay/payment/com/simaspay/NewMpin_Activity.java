@@ -399,8 +399,8 @@ public class NewMpin_Activity extends AppCompatActivity implements IncomingSMS.A
             } else {
                 mapContainer.put("otp", "");
             }
-            mapContainer.put(Constants.PARAMETER_NEW_PIN, newPIN);
-            mapContainer.put(Constants.PARAMETER_CONFIRM_MPIN, newPINConf);
+            mapContainer.put(Constants.PARAMETER_NEW_PIN, CryptoService.encryptWithPublicKey(module, exponent, newPIN.getBytes()));
+            mapContainer.put(Constants.PARAMETER_CONFIRM_MPIN, CryptoService.encryptWithPublicKey(module, exponent, newPINConf.getBytes()));
             Log.d(LOG_TAG, "mfaOtp " + CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     NewMpin_Activity.this);

@@ -31,6 +31,7 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.testfairy.TestFairy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +52,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TestFairy.begin(this, "9a9d8ac3647160ccec0cbc90360b1e94ccd87258");
         setContentView(R.layout.activity_splash_screen);
         settings = getSharedPreferences(TAG, 0);
         context=SplashScreenActivity.this;

@@ -3,7 +3,7 @@
     package="com.fourmob.datetimepicker" >
 
     <uses-sdk
-        android:minSdkVersion="7"
+        android:minSdkVersion="9"
         android:targetSdkVersion="25" />
 
     <application />
