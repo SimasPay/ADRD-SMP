@@ -136,7 +136,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             PayByQRProperties.setServerURLString(Constants.URL_PBQ);
             payByQRSDK.setMinimumTransaction(500);
             payByQRSDK.setIsUsingCustomDialog(false);
-            //payByQRSDK.setIsPolling(false);
+            payByQRSDK.setIsPolling(false);
 
             if (selectedLanguage.equalsIgnoreCase("ENG")) {
                 payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
@@ -440,7 +440,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     msgCode = 0;
                 }
                 if (msgCode == 631) {
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
@@ -452,8 +452,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     alertbox.show();
                 } else if (!((msgCode == 72) || (msgCode == 2109) || (msgCode == 713))) {
                     if (msgCode == 29) {
+                        if (!payByQRSDK.isPolling())
                             payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     } else {
+                        if (!payByQRSDK.isPolling())
                             payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     }
                 } else {
@@ -505,8 +507,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 public void run() {
                     if(inqueryResponse==null||inqueryResponse.equals("")){
                         payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
-                        Cancel();
-                        payByQRSDK.closeSDK();
+                        //Cancel();
+                        //payByQRSDK.closeSDK();
                     }
                 }
             }, Constants.CONNECTION_TIMEOUT);
@@ -645,9 +647,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 public void run() {
                     if(confirmationResponse==null||confirmationResponse.equals("")){
                         payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, getResources().getString(R.string.bahasa_serverNotRespond), true);
-                        Cancel();
-                        payByQRSDK.closeSDK();
-                        dialogBuilder.dismiss();
+                        //Cancel();
+                        //payByQRSDK.closeSDK();
+                        //dialogBuilder.dismiss();
                     }
                 }
             }, Constants.CONNECTION_TIMEOUT);
@@ -1020,12 +1022,12 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
                                 payByQRSDK = new
                                         PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
-                                //payByQRSDK.setIsPolling(true);
+                                payByQRSDK.setIsPolling(true);
                                 //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
                                 PayByQRProperties.setServerURLString(Constants.URL_PBQ);
                                 payByQRSDK.setMinimumTransaction(500);
                                 payByQRSDK.setIsUsingCustomDialog(false);
-                                //payByQRSDK.setIsPolling(false);
+                                payByQRSDK.setIsPolling(false);
 
                                 if (selectedLanguage.equalsIgnoreCase("ENG")) {
                                     payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
