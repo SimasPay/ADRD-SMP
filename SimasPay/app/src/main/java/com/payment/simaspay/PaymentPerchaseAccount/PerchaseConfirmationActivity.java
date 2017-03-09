@@ -340,6 +340,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                     }
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(PerchaseConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent intent = new Intent(PerchaseConfirmationActivity.this, SecondLoginActivity.class);
@@ -602,6 +603,7 @@ public class PerchaseConfirmationActivity extends AppCompatActivity implements I
                         if (responseDataContainer.getMsgCode().equals("631")) {
                             AlertDialog.Builder alertbox = new AlertDialog.Builder(PerchaseConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(PerchaseConfirmationActivity.this, SecondLoginActivity.class);

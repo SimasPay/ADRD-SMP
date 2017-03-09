@@ -339,6 +339,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 if (msgCode == 631) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(PaymentConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent intent = new Intent(PaymentConfirmationActivity.this, SecondLoginActivity.class);
@@ -613,6 +614,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                             case "631": {
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(PaymentConfirmationActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setCancelable(false);
                                 alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface arg0, int arg1) {
                                         Intent intent = new Intent(PaymentConfirmationActivity.this, SecondLoginActivity.class);

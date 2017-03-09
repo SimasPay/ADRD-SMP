@@ -449,6 +449,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     }
                     alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
@@ -569,6 +570,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             }
                             alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
@@ -864,6 +866,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             }
                             alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);

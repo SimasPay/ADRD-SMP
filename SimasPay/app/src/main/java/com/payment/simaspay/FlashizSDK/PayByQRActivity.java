@@ -91,6 +91,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     private String DIMO_PREF_USERKEY = "com.mfino.bsim.paybyqr.UserKey";
     public static final String QR_STORE_DB = "com.mfino.bsim.QrStore.db";
     private int module;
+    private Boolean isTimeout=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -440,8 +441,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     msgCode = 0;
                 }
                 if (msgCode == 631) {
+                    isTimeout=true;
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent intent = new Intent(PayByQRActivity.this, SecondLoginActivity.class);
@@ -886,7 +889,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
+                            isTimeout=true;
                             alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setCancelable(false);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -987,6 +992,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                         if (responseDataContainer.getMsgCode().equals("631")) {
                             alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     payByQRSDK.closeSDK();
@@ -1084,6 +1090,23 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isTimeout==true){
+            AlertDialog.Builder alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+            alertbox.setMessage("Please login again");
+            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    payByQRSDK.closeSDK();
+                    Intent intent = new Intent(PayByQRActivity.this, SecondLoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
+            alertbox.show();
         }
     }
 

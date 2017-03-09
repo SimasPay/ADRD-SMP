@@ -41,10 +41,13 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.userdetails.Trans_DataSelectionActivity;
+import com.payment.simaspay.userdetails.TransactionsListActivity;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,6 +69,9 @@ public class UserHomeActivity extends AppCompatActivity {
     LinearLayout daftaremoneylay;
     Functions func;
     public View swipe_balance;
+    String fromDate, toDate;
+    Calendar calendar;
+    SimpleDateFormat sdf, sdf1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,8 +161,22 @@ public class UserHomeActivity extends AppCompatActivity {
         history_transaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, Trans_DataSelectionActivity.class);
-                startActivity(intent);
+                if(label_home.equals(Constants.CONSTANT_BANK_USER)|| (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT)){
+                    Calendar calendar1 = Calendar.getInstance();
+                    sdf = new SimpleDateFormat("ddMMyyyy");
+                    sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+                    toDate = sdf.format(calendar1.getTime());
+                    calendar1.set(Calendar.DAY_OF_MONTH, 1);
+                    fromDate = sdf.format(calendar1.getTime());
+//                    new DwnLoadAsynTask().execute();
+                    Intent intent = new Intent(UserHomeActivity.this, TransactionsListActivity.class);
+                    intent.putExtra("fromDate", fromDate);
+                    intent.putExtra("toDate", toDate);
+                    startActivityForResult(intent, 10);
+                }else{
+                    Intent intent = new Intent(UserHomeActivity.this, Trans_DataSelectionActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

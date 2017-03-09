@@ -1,46 +1,46 @@
 [
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/res/drawable-v21/abc_btn_colored_material.xml"
+        "source": "/Users/widy/.android/build-cache/3580752417dbdcf90352052fc9c60a10c9278934/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/res/drawable-v21/abc_action_bar_item_background_material.xml"
+        "source": "/Users/widy/.android/build-cache/3580752417dbdcf90352052fc9c60a10c9278934/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_store_pickup_method.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR-Android-1.1.7-Simaspay/unspecified/res/drawable-v21/ripple_store_pickup_method.xml"
+        "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/drawable-v21/ripple_store_pickup_method.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/design/25.2.0/res/drawable-v21/design_bottom_navigation_item_background.xml"
+        "source": "/Users/widy/.android/build-cache/40288026cb6449c4e09a70fb0f99758388b84d0d/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_rect_border_rounded.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR-Android-1.1.7-Simaspay/unspecified/res/drawable-v21/ripple_rect_border_rounded.xml"
+        "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/drawable-v21/ripple_rect_border_rounded.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/res/drawable-v21/notification_action_background.xml"
+        "source": "/Users/widy/.android/build-cache/3580752417dbdcf90352052fc9c60a10c9278934/output/res/drawable-v21/notification_action_background.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.2.0/res/drawable-v21/abc_edit_text_material.xml"
+        "source": "/Users/widy/.android/build-cache/3580752417dbdcf90352052fc9c60a10c9278934/output/res/drawable-v21/abc_edit_text_material.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/design/25.2.0/res/drawable-v21/avd_show_password.xml"
+        "source": "/Users/widy/.android/build-cache/40288026cb6449c4e09a70fb0f99758388b84d0d/output/res/drawable-v21/avd_show_password.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/design/25.2.0/res/drawable-v21/design_password_eye.xml"
+        "source": "/Users/widy/.android/build-cache/40288026cb6449c4e09a70fb0f99758388b84d0d/output/res/drawable-v21/design_password_eye.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/design/25.2.0/res/drawable-v21/avd_hide_password.xml"
+        "source": "/Users/widy/.android/build-cache/40288026cb6449c4e09a70fb0f99758388b84d0d/output/res/drawable-v21/avd_hide_password.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_btn_qrstore.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/PayByQR-Android-1.1.7-Simaspay/unspecified/res/drawable-v21/ripple_btn_qrstore.xml"
+        "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/drawable-v21/ripple_btn_qrstore.xml"
     }
 ]

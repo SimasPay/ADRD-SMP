@@ -1,10 +1,10 @@
 [
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/com.android.support/design/25.2.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+        "source": "/Users/widy/.android/build-cache/40288026cb6449c4e09a70fb0f99758388b84d0d/output/res/layout-sw600dp-v13/design_layout_snackbar.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/date_picker_dialog.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/datetimepicker-library/unspecified/res/layout-sw600dp-v13/date_picker_dialog.xml"
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/datetimepicker-library/build/intermediates/bundles/default/res/layout-sw600dp-v13/date_picker_dialog.xml"
     }
 ]

@@ -443,6 +443,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             }
                             alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferConfirmationActivity.this, SecondLoginActivity.class);
@@ -542,6 +543,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                             }
                             alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferConfirmationActivity.this, SecondLoginActivity.class);
@@ -680,6 +682,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     //startActivityForResult(intent, 40);
                     alertbox = new AlertDialog.Builder(TransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             arg0.dismiss();

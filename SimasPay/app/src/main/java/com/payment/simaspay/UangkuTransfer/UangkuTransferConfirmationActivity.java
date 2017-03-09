@@ -458,6 +458,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             }
                             alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
@@ -551,6 +552,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             }
                             AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
@@ -737,6 +739,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     }
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setCancelable(false);
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {
                             Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);

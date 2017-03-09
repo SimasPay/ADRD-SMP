@@ -291,17 +291,19 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_TRANSFER);
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            //mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
             mapContainer.put(Constants.PARAMETER_DEST_MDN, stMDN);
-            mapContainer.put(Constants.PARAMETER_TRANSACTIONID, stTransferID);
+            mapContainer.put(Constants.PARAMETER_TRANSFER_ID, stTransferID);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, stParentTxnID);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+            mapContainer.put(Constants.PARAMETER_DEST_BankAccount, "");
+
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, func.generateRSA(otpValue));
             }else{
@@ -355,6 +357,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             }
                             alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
@@ -443,6 +446,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                         if (responseDataContainer.getMsgCode().equals("631")) {
                             alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
                                     Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);

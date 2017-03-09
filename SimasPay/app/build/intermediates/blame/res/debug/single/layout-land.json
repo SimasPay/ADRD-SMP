@@ -1,10 +1,10 @@
 [
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-land/time_picker_dialog.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/datetimepicker-library/unspecified/res/layout-land/time_picker_dialog.xml"
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/datetimepicker-library/build/intermediates/bundles/default/res/layout-land/time_picker_dialog.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-land/date_picker_dialog.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/exploded-aar/SimasPay/datetimepicker-library/unspecified/res/layout-land/date_picker_dialog.xml"
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/datetimepicker-library/build/intermediates/bundles/default/res/layout-land/date_picker_dialog.xml"
     }
 ]
