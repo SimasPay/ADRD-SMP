@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -652,6 +653,14 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), PaymentConfirmationActivity.this);
             }
         }
     }

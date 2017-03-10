@@ -402,6 +402,14 @@ public class TransferDetailsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), TransferDetailsActivity.this);
             }
         }
     }

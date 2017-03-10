@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -60,6 +61,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
     String rsaKey;
     String pin, otpValue;
     String selectedLanguage;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +80,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
 
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
         lbl_name=(TextView)findViewById(R.id.lbl_name);
         lbl_amount=(TextView)findViewById(R.id.lbl_amount);
@@ -394,6 +397,14 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), TransferBankToEmoneyConfirmationActivity.this);
             }
         }
     }

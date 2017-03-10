@@ -67,9 +67,9 @@
     <string name="waiting_sms">Mohon Menunggu</string>
     <string name="waiting_sms_2">Kami sedang melakukan\nverifikasi kode secara otomatis</string>
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
-    <string name="btn_sms_manual">Masukan Kode secara manual.</string>
+    <string name="btn_sms_manual">Masukkan Kode secara manual</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>
-    <string name="_6_digit_kode_otp">6 digit kode Simaspay</string>
+    <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
     <string name="_00_00">00:00</string>
     <string name="lanjut">Lanjut</string>
     <string name="phoneinput_label">Silahkan masukkan Nomor Handphone Anda</string>

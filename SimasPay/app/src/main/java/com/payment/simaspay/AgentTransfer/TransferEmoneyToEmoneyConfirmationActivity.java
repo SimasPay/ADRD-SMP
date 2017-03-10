@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -67,6 +68,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
     String pin, otpValue;
     String selectedLanguage;
     Functions func;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
-
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         lbl_name=(TextView)findViewById(R.id.lbl_name);
         lbl_amount=(TextView)findViewById(R.id.lbl_amount);
         lbl_mdn=(TextView)findViewById(R.id.lbl_mdn);
@@ -390,6 +392,14 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), TransferEmoneyToEmoneyConfirmationActivity.this);
             }
         }
     }
@@ -481,6 +491,14 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), TransferEmoneyToEmoneyConfirmationActivity.this);
             }
         }
     }

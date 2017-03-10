@@ -879,7 +879,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
 
 3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY."</string>
     <string name="_00_00">00:00</string>
-    <string name="_6_digit_kode_otp">6 digit kode Simaspay</string>
+    <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -993,7 +993,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="bt_store_konfirmasi">BAYAR</string>
     <string name="bt_store_lanjut">LANJUT</string>
     <string name="bt_store_start_shop">MULAI BELANJA</string>
-    <string name="btn_sms_manual">Masukan Kode secara manual.</string>
+    <string name="btn_sms_manual">Masukkan Kode secara manual</string>
     <string name="button_EULA_accept">SETUJU</string>
     <string name="button_EULA_decline">TOLAK</string>
     <string name="button_action_done">DONE</string>

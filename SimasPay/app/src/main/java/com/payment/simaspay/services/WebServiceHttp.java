@@ -254,17 +254,20 @@ public class WebServiceHttp  {
         } catch (SocketTimeoutException e) {
             contents = null;
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
-
+            e.printStackTrace();
         } catch (ConnectException e) {
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
             contents = null;
+            e.printStackTrace();
         } catch (java.net.ProtocolException e) {
+            contents = null;
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
             e.printStackTrace();
         } catch (IOException e) {
             subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").commit();
             contents = null;
-        } finally {
+            e.printStackTrace();
+        }finally{
             conn.disconnect();
         }
         return contents;

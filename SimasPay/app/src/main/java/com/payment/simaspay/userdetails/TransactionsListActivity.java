@@ -437,15 +437,11 @@ public class TransactionsListActivity extends AppCompatActivity {
                 } else if (msgCode == 38) {
                     Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
                 }
-
-
             } else {
-                /**
                  if (progressDialog != null) {
-                 progressDialog.dismiss();
+                    progressDialog.dismiss();
                  }
-                 **/
-                Utility.networkDisplayDialog(sharedPreferences.getString(
+                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), TransactionsListActivity.this);
@@ -553,11 +549,9 @@ public class TransactionsListActivity extends AppCompatActivity {
 
 
             } else {
-                /**
                  if (progressDialog != null) {
                  progressDialog.dismiss();
                  }
-                 **/
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         getResources().getString(
