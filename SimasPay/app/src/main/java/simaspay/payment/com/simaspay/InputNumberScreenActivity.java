@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -49,6 +50,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
     private static final String TAG = "SimasPay";
     private Button lanjut;
     private String phonenum, mdn;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         aktivasi_link = (TextView)findViewById(R.id.aktivasi_link);
         SpannableString content = new SpannableString("Aktivasi Akun");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
@@ -197,6 +200,12 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                     }
                 }catch (Exception e) {
                 }
+            } else {
+                progressDialog.dismiss();
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), InputNumberScreenActivity.this);
             }
 
         }

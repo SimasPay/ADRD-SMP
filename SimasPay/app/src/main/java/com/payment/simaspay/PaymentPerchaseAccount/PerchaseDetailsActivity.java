@@ -282,13 +282,10 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
 
 
     class PurchaseAccountAsynTask extends AsyncTask<Void, Void, Void> {
-
-
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
@@ -429,18 +426,13 @@ public class PerchaseDetailsActivity extends AppCompatActivity {
 
     Dialog dialogCustomWish;
     int selected_region = -1;
-
     ProductsAdapter productsAdapter;
 
     public void WorkDisplay() {
-
         dialogCustomWish = new Dialog(PerchaseDetailsActivity.this);
         dialogCustomWish.setCancelable(false);
-
         dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
         dialogCustomWish.setContentView(R.layout.province_list);
 
         Button button = (Button) dialogCustomWish.findViewById(R.id.ok);

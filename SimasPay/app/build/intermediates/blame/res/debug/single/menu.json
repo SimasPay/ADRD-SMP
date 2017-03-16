@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/menu/crop_image_menu.xml",
+        "source": "/Users/widy/.android/build-cache/fbc398e66a9ac73ac6235927e97bd8a2d4f55cbc/output/res/menu/crop_image_menu.xml"
+    },
+    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/menu/menu_splash_screen.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/menu/menu_splash_screen.xml"
     }

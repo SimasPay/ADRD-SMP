@@ -66,7 +66,7 @@ public class EncryptedResponseDataContainer {
     private String sqexist;
     private String remainbalance;
     private String maxbalance;
-
+    private String profpicString;
     private String securityQuestion;
     private String resetPinByEmail;
     private String resetPinByCSR;
@@ -275,6 +275,14 @@ public class EncryptedResponseDataContainer {
 
     public void setIsKyc(String isKyc) {
         this.isKyc = isKyc;
+    }
+
+    public String getProfpicString() {
+        return profpicString;
+    }
+
+    public void setProfpicString(String profpicString) {
+        this.profpicString = profpicString;
     }
 
     public String getIsBank() {

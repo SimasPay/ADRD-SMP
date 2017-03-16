@@ -64,6 +64,9 @@
     <string name="id_batal">Batal</string>
     <string name="id_kirim">Kirim</string>
     <string name="id_transfer">Transfer</string>
+    <string name="id_pilih_foto">Silahkan ambil Foto dari:</string>
+    <string name="id_camera">Kamera</string>
+    <string name="id_galeri">Foto Galeri</string>
     <string name="waiting_sms">Mohon Menunggu</string>
     <string name="waiting_sms_2">Kami sedang melakukan\nverifikasi kode secara otomatis</string>
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
@@ -72,6 +75,10 @@
     <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
     <string name="_00_00">00:00</string>
     <string name="lanjut">Lanjut</string>
+    <string name="debit">debit</string>
+    <string name="credit">credit</string>
+    <string name="mutasi">Mutasi</string>
+    <string name="select_image">Select Image</string>
     <string name="phoneinput_label">Silahkan masukkan Nomor Handphone Anda</string>
     <string name="aktivasi_label">Sudah memiliki kode aktivasi?</string>
     <string name="aktivasi_akun">Aktivasi Akun</string>

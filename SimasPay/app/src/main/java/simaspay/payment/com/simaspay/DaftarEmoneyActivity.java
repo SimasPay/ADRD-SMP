@@ -24,8 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.Cash_InOut.CashOutConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
@@ -343,7 +345,7 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                                 }
                             });
                             alertbox.show();
-                        }else if(msgCode==2306){
+                        } else if (msgCode == 2306) {
                             Intent intent = new Intent(DaftarEmoneyActivity.this, NotificationActivity.class);
                             intent.putExtra("status", "daftaremoney");
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -351,7 +353,7 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
 
 
                             DaftarEmoneyActivity.this.finish();
-                        }else{
+                        } else {
                             alertbox = new AlertDialog.Builder(DaftarEmoneyActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -363,9 +365,15 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                             dialogBuilder.dismiss();
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                    progressDialog.dismiss();
+                    Utility.networkDisplayDialog(sharedPreferences.getString(
+                            "ErrorMessage",
+                            getResources().getString(
+                                    R.string.bahasa_serverNotRespond)), DaftarEmoneyActivity.this);
             }
         }
     }
@@ -466,6 +474,12 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                progressDialog.dismiss();
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), DaftarEmoneyActivity.this);
             }
         }
     }
@@ -574,6 +588,12 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                progressDialog.dismiss();
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), DaftarEmoneyActivity.this);
             }
         }
     }

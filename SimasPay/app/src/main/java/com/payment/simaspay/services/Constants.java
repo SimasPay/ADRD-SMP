@@ -635,6 +635,7 @@ public class Constants {
     public static final String TRANSACTION_EMAIL_SEND = "EmailHistoryAsPDF";
     public static final String TRANSACTION_HISTORY = "History";
     public static final String TRANSACTION_TRANSFER = "Transfer";
+    public static final String UPDATE_PHOTO = "UpdateProfile";
     public static final String TRANSACTION_UANGKU = "TransferToUangku";
     public static final String TRANSACTION_CASHOUT = "CashOut";
     public static final String TRANSACTION_SUBSCRIBERREGISTRATION = "SubscriberRegistration";
@@ -718,6 +719,7 @@ public class Constants {
 
     public static final String PARAMETER_MFA_OTP = "mfaOtp";
     public static final String PARAMETER_CHANNEL_ID = "channelID";
+    public static final String PARAMETER_IMG_STRING = "profileImageString";
     public static final String PARAMETER_CATEGORY = "category";
     public static final String PARAMETER_STATE = "state";
     public static final String PARAMETER_REGIONNAME = "regionName";
@@ -801,6 +803,7 @@ public class Constants {
 
     //SourcePocketCode
     public static final String PARAMETER_TYPEUSER = "akun";
+    public static final String PARAMETER_PROFPICSTRING = "profileImageString";
     public static final String PARAMETER_AGENTTYPE = "AgentUsing";
     public static final String PARAMETER_USERTYPE = "userType";
     public static final String PARAMETER_USES_AS = "useas";
@@ -902,6 +905,7 @@ public class Constants {
     public static final int COLOUR_GRAY = 0xB5B5B5;
     public static final int COLOUR_SLATEGRAY = 0x9FB6CD;
     public static final String XML_MESSAGE = "message";
+    public static final String XML_PROFILEIMAGE = "profileImageString";
     public static final String XML_ADITIONAL_INFO = "AdditionalInfo";
     public static final String XML_NICK_NAME = "nickname";
     public static final String XML_FIRST_NAME = "firstName";

@@ -357,6 +357,14 @@ public class PaymentAndPerchaseAccountTypeActivity extends AppCompatActivity {
                         }
                     }
                 }
+            }else{
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), PaymentAndPerchaseAccountTypeActivity.this);
             }
         }
     }

@@ -11,9 +11,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
 
 /**
  * Created by Nagendra P on 1/12/2016.
@@ -58,9 +61,12 @@ public class ChangePinSuccessActivity extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=getIntent();
-                setResult(Activity.RESULT_OK,intent);
-                finish();
+                //Intent intent=getIntent();
+                //setResult(Activity.RESULT_OK,intent);
+                //finish();
+                Intent intent = new Intent(ChangePinSuccessActivity.this, SecondLoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 

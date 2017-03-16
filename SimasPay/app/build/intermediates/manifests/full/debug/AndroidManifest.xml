@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="simaspay.payment.com.simaspay"
-    android:versionCode="38"
+    android:versionCode="43"
     android:versionName="1.0.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="25" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -550,6 +552,9 @@
             android:configChanges="layoutDirection|locale"
             android:screenOrientation="portrait"
             android:theme="@style/PayByQRTheme.NoActionBar.TranslucentStatus" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:clearTaskOnLaunch="true"

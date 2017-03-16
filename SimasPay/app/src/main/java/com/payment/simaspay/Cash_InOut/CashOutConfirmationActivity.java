@@ -101,7 +101,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         confirmation = (Button) findViewById(R.id.next);
 
         back = (LinearLayout) findViewById(R.id.back_layout);
-
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN=sharedPreferences.getString("mobileNumber", "");
         String module = sharedPreferences.getString("MODULE", "NONE");
@@ -443,6 +444,12 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                progressDialog.dismiss();
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), CashOutConfirmationActivity.this);
             }
         }
     }
@@ -551,6 +558,12 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                progressDialog.dismiss();
+                Utility.networkDisplayDialog(sharedPreferences.getString(
+                        "ErrorMessage",
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond)), CashOutConfirmationActivity.this);
             }
         }
     }

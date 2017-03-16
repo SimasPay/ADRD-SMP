@@ -348,6 +348,9 @@ public class XMLParser {
 				}else if (Constants.XML_BIRTHPLACE.equals(event.getName())) {
 					pe = parser.read();
 					result.setBirthPlace(pe.getText());
+				}else if (Constants.XML_PROFILEIMAGE.equals(event.getName())) {
+					pe = parser.read();
+					result.setProfpicString(pe.getText());
 				}
 
 				traverse(parser, result); // recursion call for each <tag></tag>

@@ -1,6 +1,5 @@
 package com.payment.simaspay.userdetails;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -65,9 +64,7 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 1/29/2016.
- */
+
 public class TransactionsListActivity extends AppCompatActivity {
     private static final String LOG_TAG = "SimasPay";
     TextView title, period, terms_conditions_1;
@@ -120,21 +117,21 @@ public class TransactionsListActivity extends AppCompatActivity {
 
         if (label_home.equals(Constants.CONSTANT_EMONEYNONKYC_USER)) {
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText("Mutasi");
+            title.setText(getResources().getString(R.string.mutasi));
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
         } else if (label_home.equals(Constants.CONSTANT_BOTH_USER) || label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)) {
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText("Mutasi");
+            title.setText(getResources().getString(R.string.mutasi));
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
         } else {
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText("Mutasi");
+            title.setText(getResources().getString(R.string.mutasi));
             findViewById(R.id.period).setVisibility(View.GONE);
         }
 
@@ -218,7 +215,7 @@ public class TransactionsListActivity extends AppCompatActivity {
 
     }
 
-    class TransactionsAdapter extends BaseAdapter {
+    private class TransactionsAdapter extends BaseAdapter {
         @Override
         public Object getItem(int i) {
             return 0;
@@ -255,10 +252,10 @@ public class TransactionsListActivity extends AppCompatActivity {
 
             if (transationsListarray.get(i).getType().equals("false")) {
                 textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
-                textView2.setText("debit");
+                textView2.setText(getResources().getString(R.string.debit));
             } else {
                 textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_color));
-                textView2.setText("credit");
+                textView2.setText(getResources().getString(R.string.credit));
             }
 
             textView.setText(transationsListarray.get(i).getDate_time());
@@ -279,7 +276,7 @@ public class TransactionsListActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    class TransactionsListAsync extends AsyncTask<Void, Void, Void> {
+    private class TransactionsListAsync extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -414,7 +411,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                             TransactionsData transationsList = new TransactionsData();
                             Element e = (Element) nl.item(i);
                             transationsList.setTransactionData(parser.getValue(e,
-                                    "transactionType"));
+                                    "transactionDescription"));
                             transationsList.setAmount(parser
                                     .getValue(e, "amount"));
                             transationsList.setType(parser.getValue(e,
@@ -524,7 +521,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                             TransactionsData transationsList = new TransactionsData();
                             Element e = (Element) nl.item(i);
                             transationsList.setTransactionData(parser.getValue(e,
-                                    "transactionType"));
+                                    "transactionDescription"));
                             transationsList.setAmount(parser
                                     .getValue(e, "amount"));
                             transationsList.setType(parser.getValue(e,
@@ -561,7 +558,7 @@ public class TransactionsListActivity extends AppCompatActivity {
     }
 
 
-    class DownLoadAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class DownLoadAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {

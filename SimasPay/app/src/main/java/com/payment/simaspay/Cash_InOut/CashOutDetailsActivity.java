@@ -31,6 +31,7 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+import simaspay.payment.com.simaspay.InputNumberScreenActivity;
 import simaspay.payment.com.simaspay.R;
 
 /**
@@ -421,6 +422,12 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else {
+                    progressDialog.dismiss();
+                    Utility.networkDisplayDialog(sharedPreferences.getString(
+                            "ErrorMessage",
+                            getResources().getString(
+                                    R.string.bahasa_serverNotRespond)), CashOutDetailsActivity.this);
             }
         }
     }

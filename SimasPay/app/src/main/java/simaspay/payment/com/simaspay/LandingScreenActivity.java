@@ -24,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
 import com.payment.simaspay.contactus.ContactUs_Activity;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
@@ -71,7 +72,9 @@ public class LandingScreenActivity extends AppCompatActivity {
         activation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //
+                Intent intent = new Intent(LandingScreenActivity.this, ActivationPage_1_Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
 

@@ -262,6 +262,8 @@ public class SecondLoginActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "responseContainer.getIsEmoney():" + responseContainer.getIsEmoney());
                     Log.d(LOG_TAG, "responseContainer.getIsKyc():" + responseContainer.getIsKyc());
 
+                    sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING, responseContainer.getProfpicString()).apply();
+                    Log.d(LOG_TAG, "responseContainer.getProfpicString():" + responseContainer.getProfpicString());
                     if (responseContainer.getCustomerType().equals("0")) {
                         if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
