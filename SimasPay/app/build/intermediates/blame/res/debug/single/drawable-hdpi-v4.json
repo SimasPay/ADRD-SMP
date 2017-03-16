@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_success.png",
-        "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/drawable-hdpi-v4/ic_success.png"
-    },
-    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/googleg_disabled_color_18.png",
         "source": "/Users/widy/.android/build-cache/8c4753057553c949e356ffcf19f3e14a09d2cfc3/output/res/drawable-hdpi-v4/googleg_disabled_color_18.png"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_success.png",
+        "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/drawable-hdpi-v4/ic_success.png"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-hdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",

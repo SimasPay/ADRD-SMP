@@ -1259,7 +1259,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_empty_mpin">mPIN wajib diisi</string>
     <string name="id_forgot_mpin">Lupa mPIN</string>
     <string name="id_full_name">Nama lengkap</string>
-    <string name="id_galeri">Foto Galeri</string>
+    <string name="id_galeri">Galeri Foto</string>
     <string name="id_invalid_email">Format email salah</string>
     <string name="id_invalid_mdn_input">Nomor handphone anda tidak valid</string>
     <string name="id_invalid_mpin">mpin harus 6 digit</string>
@@ -1274,6 +1274,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_notif_success_mpin">mPIN Berhasil Diubah</string>
     <string name="id_pertanyaan_keamanan">Pertanyaan Keamanan</string>
     <string name="id_phonenumber">Nomor handphone</string>
+    <string name="id_pick_image">Pilih Foto</string>
     <string name="id_pilih_foto">Silahkan ambil Foto dari:</string>
     <string name="id_required_jawaban">Harap isi Jawaban Pertanyaan di atas</string>
     <string name="id_setuju">Setuju</string>

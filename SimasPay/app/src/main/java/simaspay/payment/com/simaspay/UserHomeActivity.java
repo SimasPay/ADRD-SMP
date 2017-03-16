@@ -597,7 +597,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         Bundle extras = data.getExtras();
-                        Bitmap selectedBitmap = extras.getParcelable("data");
+                        Bitmap selectedBitmap = (Bitmap) extras.get("data");
                         photo.setImageBitmap(selectedBitmap);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                         selectedBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
@@ -666,14 +666,23 @@ public class UserHomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, CAMERA_CAPTURE);
                 } else if (items[item].equals(getResources().getString(R.string.id_galeri))) {
-                    Intent intent = new Intent(
-                            Intent.ACTION_PICK,
-                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    intent.putExtra("crop", "true");
-                    intent.putExtra("return-data", true);
-                    intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                    startActivityForResult(intent, REQ_CODE_PICK_IMAGE);
+                    if (Build.VERSION.SDK_INT <19){
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.putExtra("crop", "true");
+                        intent.putExtra("return-data", true);
+                        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pick_image)),REQ_CODE_PICK_IMAGE);
+                    } else {
+                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
+                        intent.setType("image/*");
+                        intent.putExtra("crop", "true");
+                        intent.putExtra("return-data", true);
+                        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                        startActivityForResult(intent, REQ_CODE_PICK_IMAGE);
+                    }
                 } else if (items[item].equals(getResources().getString(R.string.id_batal))) {
                     dialog.dismiss();
                 }
@@ -844,6 +853,14 @@ public class UserHomeActivity extends AppCompatActivity {
         }
         System.out.println(inititals.toUpperCase());
         return inititals;
+    }
+
+    public static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    public static boolean isExternalStorageDocument(Uri uri) {
+        return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
 
 
