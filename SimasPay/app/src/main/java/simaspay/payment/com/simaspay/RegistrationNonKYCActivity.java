@@ -123,14 +123,24 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     fullname.setError(getResources().getString(R.string.id_invalid_name));
                     return;
                 }
-                else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+
+                /**else if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
                     email.setError(getResources().getString(R.string.id_invalid_email));
                     return;
                 }
-                else if(mpin.getText().toString().replace(" ", "").length()<6) {
+                 **/
+                else if(mpin.getText().toString().replace(" ", "").length()==0) {
+                    mpin.setError(getResources().getString(R.string.id_empty_mpin));
+                    return;
+                }
+                else if(conf_mpin.getText().toString().replace(" ", "").length()==0) {
+                    conf_mpin.setError(getResources().getString(R.string.id_empty_confmpin));
+                    return;
+                }
+                else if(mpin.getText().toString().replace(" ", "").length()<6 && mpin.getText().toString().replace(" ", "").length()>1) {
                     mpin.setError(getResources().getString(R.string.id_invalid_mpin));
                     return;
-                }else if(conf_mpin.getText().toString().replace(" ", "").length()<6) {
+                }else if(conf_mpin.getText().toString().replace(" ", "").length()<6 && conf_mpin.getText().toString().replace(" ", "").length()>1) {
                     conf_mpin.setError(getResources().getString(R.string.id_invalid_mpin));
                     return;
                 }else if(mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
@@ -149,20 +159,42 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     return;
                      **/
                 }else {
-                    pin = mpin.getText().toString();
-                    stFullname=fullname.getText().toString();
-                    stEmail=email.getText().toString();
-                    stMPIN=mpin.getText().toString();
-                    stConfMPIN=conf_mpin.getText().toString();
-                    //stAnswer=answer.getText().toString();
-                    //new reqSMSAsyncTask().execute();
-                    Intent intent = new Intent(RegistrationNonKYCActivity.this, SecurityQuestionsActivity.class);
-                    intent.putExtra("fullname", fullname.getText().toString());
-                    intent.putExtra("email", email.getText().toString());
-                    intent.putExtra("mdn", mobilenumber);
-                    intent.putExtra("mpin", mpin.getText().toString());
-                    intent.putExtra("mpin2", conf_mpin.getText().toString());
-                    startActivity(intent);
+                    if(!email.getText().toString().equals("")){
+                        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()) {
+                            email.setError(getResources().getString(R.string.id_invalid_email));
+                        }else{
+                            pin = mpin.getText().toString();
+                            stFullname=fullname.getText().toString();
+                            stEmail=email.getText().toString();
+                            stMPIN=mpin.getText().toString();
+                            stConfMPIN=conf_mpin.getText().toString();
+                            //stAnswer=answer.getText().toString();
+                            //new reqSMSAsyncTask().execute();
+                            Intent intent = new Intent(RegistrationNonKYCActivity.this, SecurityQuestionsActivity.class);
+                            intent.putExtra("fullname", fullname.getText().toString());
+                            intent.putExtra("email", email.getText().toString());
+                            intent.putExtra("mdn", mobilenumber);
+                            intent.putExtra("mpin", mpin.getText().toString());
+                            intent.putExtra("mpin2", conf_mpin.getText().toString());
+                            startActivity(intent);
+                        }
+                    }else{
+                        pin = mpin.getText().toString();
+                        stFullname=fullname.getText().toString();
+                        stEmail=email.getText().toString();
+                        stMPIN=mpin.getText().toString();
+                        stConfMPIN=conf_mpin.getText().toString();
+                        //stAnswer=answer.getText().toString();
+                        //new reqSMSAsyncTask().execute();
+                        Intent intent = new Intent(RegistrationNonKYCActivity.this, SecurityQuestionsActivity.class);
+                        intent.putExtra("fullname", fullname.getText().toString());
+                        intent.putExtra("email", email.getText().toString());
+                        intent.putExtra("mdn", mobilenumber);
+                        intent.putExtra("mpin", mpin.getText().toString());
+                        intent.putExtra("mpin2", conf_mpin.getText().toString());
+                        startActivity(intent);
+                    }
+
                     //finish();
                     //Toast.makeText(getApplicationContext(), "Validated Succesfully", Toast.LENGTH_LONG).show();
                 }

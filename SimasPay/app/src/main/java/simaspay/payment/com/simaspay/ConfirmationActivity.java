@@ -280,9 +280,10 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(ConfirmationActivity.this, LandingScreenActivity.class);
-                                    startActivity(intent);
-                                    ConfirmationActivity.this.finish();
+                                    dialogBuilder.dismiss();
+                                    //Intent intent = new Intent(ConfirmationActivity.this, LandingScreenActivity.class);
+                                    //startActivity(intent);
+                                    //ConfirmationActivity.this.finish();
                                 }
                             });
                             alertbox.show();
@@ -431,9 +432,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(ConfirmationActivity.this, LoginScreenActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            //Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            //startActivity(intent);
                             dialogBuilder.dismiss();
                         }
                     });
@@ -445,9 +446,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             settings2 = getSharedPreferences(LOG_TAG, 0);
                             settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
                             isExitActivity = true;
-                            Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
+                            //Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
+                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            //startActivity(intent);
                             dialogBuilder.dismiss();
                         }
                     });

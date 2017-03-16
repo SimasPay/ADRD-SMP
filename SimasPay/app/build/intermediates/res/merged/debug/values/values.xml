@@ -1254,7 +1254,9 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_email_address">email</string>
     <string name="id_emoney_plus">E-money Plus</string>
     <string name="id_emoney_reguler">E-money Reguler</string>
+    <string name="id_empty_confmpin">Konfirmasi mPIN wajib diisi</string>
     <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
+    <string name="id_empty_mpin">mPIN wajib diisi</string>
     <string name="id_forgot_mpin">Lupa mPIN</string>
     <string name="id_full_name">Nama lengkap</string>
     <string name="id_galeri">Foto Galeri</string>

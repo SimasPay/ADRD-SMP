@@ -32,7 +32,8 @@
 
     <string name="id_invalid_name">Nama lengkap wajib diisi</string>
     <string name="en_invalid_name">Nama lengkap wajib diisi</string>
-
+    <string name="id_empty_mpin">mPIN wajib diisi</string>
+    <string name="id_empty_confmpin">Konfirmasi mPIN wajib diisi</string>
     <string name="id_invalid_mpin">mpin harus 6 digit</string>
     <string name="en_invalid_mpin">mpin harus 6 digit</string>
 
