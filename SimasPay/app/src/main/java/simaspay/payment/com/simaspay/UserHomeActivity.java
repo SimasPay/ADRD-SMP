@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -54,6 +55,8 @@ import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -86,6 +89,7 @@ public class UserHomeActivity extends AppCompatActivity {
     SharedPreferences languageSettings, settings;
     String selectedLanguage;
     protected static final int REQ_CODE_PICK_IMAGE = 1;
+    protected static final int REQ_PICK_IMAGE = 4;
     ProgressDialog progressDialog;
     int msgCode;
     Context context;
@@ -132,15 +136,15 @@ public class UserHomeActivity extends AppCompatActivity {
 
         //Profpic / Profile Picture
         photo = (ImageView) findViewById(R.id.profile_pic);
-        initname = (TextView)findViewById(R.id.initname);
+        initname = (TextView) findViewById(R.id.initname);
         encodedImgFromAPI = sharedPreferences.getString(Constants.PARAMETER_PROFPICSTRING, "");
-        if(!encodedImgFromAPI.equals("")){
+        if (!encodedImgFromAPI.equals("")) {
             profpic = decodeBase64(encodedImgFromAPI);
-            if(profpic!=null||!profpic.equals("")){
+            if (profpic != null || !profpic.equals("")) {
                 photo.setImageBitmap(profpic);
                 initname.setVisibility(View.INVISIBLE);
             }
-        }else{
+        } else {
             String fullname = sharedPreferences.getString("fullname", "");
             initname.setText(initialName(fullname));
             initname.setVisibility(View.VISIBLE);
@@ -597,20 +601,23 @@ public class UserHomeActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     if (data != null) {
                         Bundle extras = data.getExtras();
-                        Bitmap selectedBitmap = (Bitmap) extras.get("data");
-                        photo.setImageBitmap(selectedBitmap);
-                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        selectedBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                        byte[] byteArray = byteArrayOutputStream.toByteArray();
-                        encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                        Log.d(LOG_TAG, "encoded image:" + encodedImg);
-                        new PhotoUpload().execute();
+                        if (extras != null) {
+                            //Bitmap photo = extras.getParcelable("data");
+                            Bitmap selectedBitmap = extras.getParcelable("data");
+                            photo.setImageBitmap(selectedBitmap);
+                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                            selectedBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                            byte[] byteArray = byteArrayOutputStream.toByteArray();
+                            encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                            Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                            new PhotoUpload().execute();
+                        }
+
                     }
                 }
                 break;
             case CAMERA_CAPTURE:
                 if (resultCode == Activity.RESULT_OK) {
-                    // get the Uri for the captured image
                     picUri = data.getData();
                     performCrop();
                 }
@@ -627,6 +634,36 @@ public class UserHomeActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "encoded image:" + encodedImg);
                     new PhotoUpload().execute();
                     photo.setImageBitmap(thePic);
+                }
+                break;
+            case REQ_PICK_IMAGE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Log.d(LOG_TAG,"processing image...");
+                    picUri = data.getData();
+                    performCrop();
+                    /**
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 1;
+
+                    try {
+                        final InputStream imageStream = getContentResolver().openInputStream(picUri);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream, null, options);
+                        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                        selectedImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                        byte[] byteArray = byteArrayOutputStream.toByteArray();
+                        encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                        Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                        new PhotoUpload().execute();
+                        photo.setImageBitmap(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                     **/
+                    //performCrop();
+                }else{
+                    Log.d(LOG_TAG, "get Image failed");
                 }
                 break;
         }
@@ -655,7 +692,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
     private void pickImage() {
         //Intent photoPickerIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        final CharSequence[] items = {getResources().getString(R.string.id_camera),getResources().getString(R.string.id_galeri), getResources().getString(R.string.id_batal)};
+        final CharSequence[] items = {getResources().getString(R.string.id_camera), getResources().getString(R.string.id_galeri), getResources().getString(R.string.id_batal)};
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UserHomeActivity.this);
         builder.setTitle(getResources().getString(R.string.id_pilih_foto));
         builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -666,23 +703,27 @@ public class UserHomeActivity extends AppCompatActivity {
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, CAMERA_CAPTURE);
                 } else if (items[item].equals(getResources().getString(R.string.id_galeri))) {
-                    if (Build.VERSION.SDK_INT <19){
+                    //if (Build.VERSION.SDK_INT < 19) {
+                        //Log.d(LOG_TAG,"API <19");
                         Intent intent = new Intent();
                         intent.setType("image/*");
-                        intent.putExtra("crop", "true");
-                        intent.putExtra("return-data", true);
-                        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pick_image)),REQ_CODE_PICK_IMAGE);
+                        intent.setAction(Intent.ACTION_PICK);
+                        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
+                    /**
                     } else {
-                        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                        intent.addCategory(Intent.CATEGORY_OPENABLE);
-                        intent.setType("image/*");
-                        intent.putExtra("crop", "true");
-                        intent.putExtra("return-data", true);
-                        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                        startActivityForResult(intent, REQ_CODE_PICK_IMAGE);
+                        Log.d(LOG_TAG,"API >19");
+                        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        pickImageIntent.setType("image/*");
+                        pickImageIntent.putExtra("crop", "true");
+                        pickImageIntent.putExtra("outputX", 200);
+                        pickImageIntent.putExtra("outputY", 200);
+                        pickImageIntent.putExtra("aspectX", 1);
+                        pickImageIntent.putExtra("aspectY", 1);
+                        pickImageIntent.putExtra("scale", true);
+                        pickImageIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+                        startActivityForResult(pickImageIntent, REQ_CODE_PICK_IMAGE);
                     }
+                     **/
                 } else if (items[item].equals(getResources().getString(R.string.id_batal))) {
                     dialog.dismiss();
                 }
@@ -809,8 +850,7 @@ public class UserHomeActivity extends AppCompatActivity {
         }
     }
 
-    public static Bitmap decodeBase64(String input)
-    {
+    public static Bitmap decodeBase64(String input) {
         byte[] decodedBytes = Base64.decode(input, 0);
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
@@ -844,24 +884,15 @@ public class UserHomeActivity extends AppCompatActivity {
         }
     }
 
-    private String initialName(String full_name){
+    private String initialName(String full_name) {
         Pattern p = Pattern.compile("((^| )[A-Za-z])");
         Matcher m = p.matcher(full_name);
-        String inititals="";
-        while(m.find()){
-            inititals+=m.group().trim();
+        String inititals = "";
+        while (m.find()) {
+            inititals += m.group().trim();
         }
         System.out.println(inititals.toUpperCase());
         return inititals;
     }
-
-    public static boolean isMediaDocument(Uri uri) {
-        return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
-
-    public static boolean isExternalStorageDocument(Uri uri) {
-        return "com.android.externalstorage.documents".equals(uri.getAuthority());
-    }
-
 
 }
