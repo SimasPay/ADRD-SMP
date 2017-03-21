@@ -134,7 +134,9 @@ public class Functions {
 
             if (item != null) {
                 ((ImageView) convertView.findViewById(R.id.iv_icon)).setImageDrawable(item.icon);
-                ((TextView) convertView.findViewById(R.id.tv_name)).setText(item.title);
+                TextView txv = ((TextView) convertView.findViewById(R.id.tv_name));
+                txv.setText(item.title);
+                txv.setTextColor(convertView.getResources().getColor(R.color.black));
 
                 return convertView;
             }

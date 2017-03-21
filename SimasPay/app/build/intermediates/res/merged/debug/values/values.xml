@@ -1249,6 +1249,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_checksame_mpin">Konfirmasi mPin harus sama dengan mPIN</string>
     <string name="id_confirmation">Konfirmasi</string>
     <string name="id_confirmation_mpin">Konfirmasi mPIN</string>
+    <string name="id_crop_foto">Crop foto menggunakan:</string>
     <string name="id_daftar_emoney">Daftar E-money</string>
     <string name="id_desc_security">Silakan pilih dan jawab \npertanyaan keamanan untuk keperluan reset mPIN Anda.</string>
     <string name="id_email_address">email</string>
@@ -1443,6 +1444,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="text_voucher_balance">%1$sVoucher %2$s</string>
     <string name="time_placeholder" translatable="false">--</string>
     <string name="time_separator" translatable="false">:</string>
+    <string name="timeout">Timeout</string>
     <string name="title">  SimasPay               </string>
     <string name="transaction_id">ID Transaksi: 123958</string>
     <string name="transfer_emoney">Transfer - E-money</string>

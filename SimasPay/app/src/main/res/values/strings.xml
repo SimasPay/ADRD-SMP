@@ -66,10 +66,12 @@
     <string name="id_kirim">Kirim</string>
     <string name="id_transfer">Transfer</string>
     <string name="id_pilih_foto">Silahkan ambil Foto dari:</string>
+    <string name="id_crop_foto">Crop foto menggunakan:</string>
     <string name="id_camera">Kamera</string>
     <string name="id_pick_image">Pilih Foto</string>
     <string name="id_galeri">Galeri Foto</string>
     <string name="waiting_sms">Mohon Menunggu</string>
+    <string name="timeout">Timeout</string>
     <string name="waiting_sms_2">Kami sedang melakukan\nverifikasi kode secara otomatis</string>
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
     <string name="btn_sms_manual">Masukkan Kode secara manual</string>

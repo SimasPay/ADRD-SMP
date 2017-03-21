@@ -1,24 +1,33 @@
 package simaspay.payment.com.simaspay;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -29,6 +38,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,11 +65,15 @@ import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,42 +87,36 @@ public class UserHomeActivity extends AppCompatActivity {
     private static final int EXIT = 20;
     private static final String LOG_TAG = "SimasPay";
     SharedPreferences sharedPreferences;
-    private static String mdn, mpin, nama, label_home;
-    String rsaKey;
+    private static String mdn;
+    private static String label_home;
     ProgressBar progbar;
     String accountSelected = "", sourceMDN, stMPIN;
-    private ImageButton gantimpin, switch_account, history_transaction, transfer, pembelian, pembayaran, pbq, promopbq, tariktunai, logout, daftaremoney;
     TextView checkbalance, phone_lbl, name_lbl, home_lbl;
     LinearLayout daftaremoneylay;
     Functions func;
     public View swipe_balance;
     String fromDate, toDate;
-    Calendar calendar;
     SimpleDateFormat sdf, sdf1;
     private ImageView photo;
     SharedPreferences languageSettings, settings;
     String selectedLanguage;
-    protected static final int REQ_CODE_PICK_IMAGE = 1;
-    protected static final int REQ_PICK_IMAGE = 4;
-    ProgressDialog progressDialog;
-    int msgCode;
+    private static final int PICK_FROM_CAMERA = 5;
+    private static final int CROP_FROM_CAMERA = 6;
+    private static final int PICK_FROM_FILE = 7;
     Context context;
-    private AlertDialog.Builder alertbox;
-    private static AlertDialog dialogBuilder;
-    private String encodedImg, encodedImgFromAPI;
-    final int CAMERA_CAPTURE = 2;
-    final int CROP_PIC = 3;
+    private String encodedImg;
     private Uri picUri;
-    private Bitmap profpic;
     private TextView initname;
-
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+    boolean GallaryPhotoSelected = false;
+    public static String Finalmedia = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simaspay_home);
         func = new Functions(this);
         func.initiatedToolbar(this);
-
+        cameraPermission();
         home_lbl = (TextView) findViewById(R.id.home_label);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -119,28 +127,25 @@ public class UserHomeActivity extends AppCompatActivity {
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         mdn = sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, "");
-        nama = sharedPreferences.getString("userName", "");
-        mpin = sharedPreferences.getString(Constants.PARAMETER_MPIN, "");
+        String nama = sharedPreferences.getString("userName", "");
+        String mpin = sharedPreferences.getString(Constants.PARAMETER_MPIN, "");
         label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "");
-        switch_account = (ImageButton) findViewById(R.id.switch_account);
-        logout = (ImageButton) findViewById(R.id.logout_btn);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                sharedPreferences.edit().putString(Constants.PARAMETER_USERAPIKEY, "NONE").apply();
-                startActivity(intent);
-            }
+        ImageButton switch_account = (ImageButton) findViewById(R.id.switch_account);
+        ImageButton logout = (ImageButton) findViewById(R.id.logout_btn);
+        logout.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            sharedPreferences.edit().putString(Constants.PARAMETER_USERAPIKEY, "NONE").apply();
+            startActivity(intent);
         });
 
         //Profpic / Profile Picture
         photo = (ImageView) findViewById(R.id.profile_pic);
         initname = (TextView) findViewById(R.id.initname);
-        encodedImgFromAPI = sharedPreferences.getString(Constants.PARAMETER_PROFPICSTRING, "");
+        String encodedImgFromAPI = sharedPreferences.getString(Constants.PARAMETER_PROFPICSTRING, "");
         if (!encodedImgFromAPI.equals("")) {
-            profpic = decodeBase64(encodedImgFromAPI);
-            if (profpic != null || !profpic.equals("")) {
+            Bitmap profpic = decodeBase64(encodedImgFromAPI);
+            if (profpic != null) {
                 photo.setImageBitmap(profpic);
                 initname.setVisibility(View.INVISIBLE);
             }
@@ -148,195 +153,165 @@ public class UserHomeActivity extends AppCompatActivity {
             String fullname = sharedPreferences.getString("fullname", "");
             initname.setText(initialName(fullname));
             initname.setVisibility(View.VISIBLE);
-            photo.setImageDrawable(getResources().getDrawable(R.drawable.circle_bg));
+            photo.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.circle_bg));
+
         }
-        photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pickImage();
-            }
-        });
+        photo.setOnClickListener(view -> pickImage());
 
         phone_lbl = (TextView) findViewById(R.id.mobilephone_lbl);
-        transfer = (ImageButton) findViewById(R.id.transfer_btn);
-        tariktunai = (ImageButton) findViewById(R.id.tariktunai_btn);
-        if (label_home.equals(Constants.CONSTANT_BANK_USER)) {
-            home_lbl.setText(getResources().getString(R.string.bank));
-            phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
-            switch_account.setVisibility(View.GONE);
-            tariktunai.setEnabled(false);
-            tariktunai.setAlpha((float) 0.2);
-            LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
-            tariktunailay.setVisibility(View.INVISIBLE);
-            accountSelected = Constants.CONSTANT_BANK_USER;
-        } else if (label_home.equals(Constants.CONSTANT_EMONEYNONKYC_USER)) {
-            home_lbl.setText(getResources().getString(R.string.id_emoney_reguler));
-            phone_lbl.setText(mdn);
-            switch_account.setVisibility(View.GONE);
-            transfer.setEnabled(false);
-            tariktunai.setEnabled(false);
-            transfer.setAlpha((float) 0.2);
-            tariktunai.setAlpha((float) 0.2);
-            LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
-            tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
-            LinearLayout transferlay = (LinearLayout) findViewById(R.id.transferlay);
-            transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
-            accountSelected = Constants.CONSTANT_EMONEY_REGULER;
-        } else if (label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)) {
-            home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
-            phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
-            switch_account.setVisibility(View.GONE);
-            accountSelected = Constants.CONSTANT_EMONEY_PLUS;
-        } else if (label_home.equals(Constants.CONSTANT_BOTH_USER)) {
-            String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS, "");
-            accountSelected = account;
-            if (account.equals(Constants.CONSTANT_BANK_USER)) {
+        ImageButton transfer = (ImageButton) findViewById(R.id.transfer_btn);
+        ImageButton tariktunai = (ImageButton) findViewById(R.id.tariktunai_btn);
+        switch (label_home) {
+            case Constants.CONSTANT_BANK_USER: {
                 home_lbl.setText(getResources().getString(R.string.bank));
                 phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
+                switch_account.setVisibility(View.GONE);
+                tariktunai.setEnabled(false);
+                tariktunai.setAlpha((float) 0.2);
                 LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
                 tariktunailay.setVisibility(View.INVISIBLE);
-            } else {
+                accountSelected = Constants.CONSTANT_BANK_USER;
+                break;
+            }
+            case Constants.CONSTANT_EMONEYNONKYC_USER: {
+                home_lbl.setText(getResources().getString(R.string.id_emoney_reguler));
+                phone_lbl.setText(mdn);
+                switch_account.setVisibility(View.GONE);
+                transfer.setEnabled(false);
+                tariktunai.setEnabled(false);
+                transfer.setAlpha((float) 0.2);
+                tariktunai.setAlpha((float) 0.2);
+                LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
+                LinearLayout transferlay = (LinearLayout) findViewById(R.id.transferlay);
+                transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
+                accountSelected = Constants.CONSTANT_EMONEY_REGULER;
+                break;
+            }
+            case Constants.CONSTANT_EMONEYKYC_USER:
                 home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
                 phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
-            }
-            switch_account.setVisibility(View.VISIBLE);
+                switch_account.setVisibility(View.GONE);
+                accountSelected = Constants.CONSTANT_EMONEY_PLUS;
+                break;
+            case Constants.CONSTANT_BOTH_USER:
+                String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS, "");
+                accountSelected = account;
+                if (account.equals(Constants.CONSTANT_BANK_USER)) {
+                    home_lbl.setText(getResources().getString(R.string.bank));
+                    phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
+                    LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                    tariktunailay.setVisibility(View.INVISIBLE);
+                } else {
+                    home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
+                    phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+                }
+                switch_account.setVisibility(View.VISIBLE);
+                break;
         }
         Log.d("data", "mdn: " + mdn + ", mpin: " + mpin);
         sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
 
-        switch_account.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //switch account
-                Intent intent = new Intent(UserHomeActivity.this, NumberSwitchingActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        switch_account.setOnClickListener(view -> {
+            //switch account
+            Intent intent = new Intent(UserHomeActivity.this, NumberSwitchingActivity.class);
+            startActivity(intent);
+            finish();
         });
 
-        history_transaction = (ImageButton) findViewById(R.id.transaksi_btn);
-        history_transaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (label_home.equals(Constants.CONSTANT_BANK_USER) || (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT)) {
-                    Calendar calendar1 = Calendar.getInstance();
-                    sdf = new SimpleDateFormat("ddMMyyyy");
-                    sdf1 = new SimpleDateFormat("dd/MM/yyyy");
-                    toDate = sdf.format(calendar1.getTime());
-                    calendar1.set(Calendar.DAY_OF_MONTH, 1);
-                    fromDate = sdf.format(calendar1.getTime());
+        ImageButton history_transaction = (ImageButton) findViewById(R.id.transaksi_btn);
+        history_transaction.setOnClickListener(view -> {
+            if (label_home.equals(Constants.CONSTANT_BANK_USER) || (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT)) {
+                Calendar calendar1 = Calendar.getInstance();
+                sdf = new SimpleDateFormat("ddMMyyyy", Locale.getDefault());
+                sdf1 = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                toDate = sdf.format(calendar1.getTime());
+                calendar1.set(Calendar.DAY_OF_MONTH, 1);
+                fromDate = sdf.format(calendar1.getTime());
 //                    new DwnLoadAsynTask().execute();
-                    Intent intent = new Intent(UserHomeActivity.this, TransactionsListActivity.class);
-                    intent.putExtra("fromDate", fromDate);
-                    intent.putExtra("toDate", toDate);
-                    startActivityForResult(intent, 10);
-                } else {
-                    Intent intent = new Intent(UserHomeActivity.this, Trans_DataSelectionActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-        pembelian = (ImageButton) findViewById(R.id.pembelian_btn);
-        pembelian.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
-                intent.putExtra("accounttype", false);
+                Intent intent = new Intent(UserHomeActivity.this, TransactionsListActivity.class);
+                intent.putExtra("fromDate", fromDate);
+                intent.putExtra("toDate", toDate);
+                startActivityForResult(intent, 10);
+            } else {
+                Intent intent = new Intent(UserHomeActivity.this, Trans_DataSelectionActivity.class);
                 startActivity(intent);
             }
         });
 
-        pembayaran = (ImageButton) findViewById(R.id.pembayaran_btn);
-        pembayaran.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
-                intent.putExtra("accounttype", true);
-                startActivity(intent);
-            }
+        ImageButton pembelian = (ImageButton) findViewById(R.id.pembelian_btn);
+        pembelian.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+            intent.putExtra("accounttype", false);
+            startActivity(intent);
         });
 
-        pbq = (ImageButton) findViewById(R.id.pbq_btn);
-        pbq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
-                intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
-                startActivity(intent);
-            }
+        ImageButton pembayaran = (ImageButton) findViewById(R.id.pembayaran_btn);
+        pembayaran.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+            intent.putExtra("accounttype", true);
+            startActivity(intent);
         });
 
-        promopbq = (ImageButton) findViewById(R.id.promo_pbq_btn);
-        promopbq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
-                intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
-                startActivity(intent);
-            }
+        ImageButton pbq = (ImageButton) findViewById(R.id.pbq_btn);
+        pbq.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
+            intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
+            startActivity(intent);
+        });
+
+        ImageButton promopbq = (ImageButton) findViewById(R.id.promo_pbq_btn);
+        promopbq.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
+            intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
+            startActivity(intent);
         });
 
         daftaremoneylay = (LinearLayout) findViewById(R.id.daftar_emoney);
-        daftaremoney = (ImageButton) findViewById(R.id.daftar_emoney_btn);
+        ImageButton daftaremoney = (ImageButton) findViewById(R.id.daftar_emoney_btn);
         if (sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "").equals(Constants.CONSTANT_BANK_USER)) {
             daftaremoneylay.setVisibility(View.VISIBLE);
-            daftaremoney.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
-                    startActivity(intent);
-                }
+            daftaremoney.setOnClickListener(view -> {
+                Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
+                startActivity(intent);
             });
         } else {
             daftaremoneylay.setVisibility(View.INVISIBLE);
         }
 
         daftaremoney = (ImageButton) findViewById(R.id.daftar_emoney_btn);
-        daftaremoney.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
-                startActivity(intent);
-            }
+        daftaremoney.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
+            startActivity(intent);
         });
 
-        transfer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
-                intent.putExtra("simaspayuser", false);
-                intent.putExtra("agentornot", false);
-                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
-                startActivityForResult(intent, 20);
-            }
+        transfer.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, NewTransferHomeActivity.class);
+            intent.putExtra("simaspayuser", false);
+            intent.putExtra("agentornot", false);
+            sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
+            startActivityForResult(intent, 20);
         });
 
-        tariktunai.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
-                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
-                startActivity(intent);
-            }
+        tariktunai.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, NewWithdrawHomeActivity.class);
+            sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
+            startActivity(intent);
         });
 
-        gantimpin = (ImageButton) findViewById(R.id.gantimpin_btn);
-        gantimpin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(UserHomeActivity.this, ChangePinActivity.class);
-                intent.putExtra("simaspayuser", false);
-                intent.putExtra("agentornot", false);
-                sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
-                startActivityForResult(intent, 20);
-            }
+        ImageButton gantimpin = (ImageButton) findViewById(R.id.gantimpin_btn);
+        gantimpin.setOnClickListener(view -> {
+            Intent intent = new Intent(UserHomeActivity.this, ChangePinActivity.class);
+            intent.putExtra("simaspayuser", false);
+            intent.putExtra("agentornot", false);
+            sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
+            startActivityForResult(intent, 20);
         });
 
 
         progbar = (ProgressBar) findViewById(R.id.progressbar);
         progbar.setVisibility(View.GONE);
-        swipe_balance = (View) findViewById(R.id.swipe_balance);
+        swipe_balance = findViewById(R.id.swipe_balance);
         name_lbl = (TextView) findViewById(R.id.fullname_lbl);
         name_lbl.setText(nama);
         checkbalance = (TextView) findViewById(R.id.check_balance_lbl);
@@ -367,7 +342,7 @@ public class UserHomeActivity extends AppCompatActivity {
                             progbar.setVisibility(View.GONE);
                         }
                         swipe_balance.setVisibility(View.GONE);
-                        if (isNetworkAvailable() == true) {
+                        if (isNetworkAvailable()) {
                             checkbalance.setText("");
                             progbar.setVisibility(View.VISIBLE);
                             new CheckBalanceAsynTask().execute();
@@ -375,14 +350,11 @@ public class UserHomeActivity extends AppCompatActivity {
                             checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
                             progbar.setVisibility(View.GONE);
                             final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    swipe_balance.setVisibility(View.VISIBLE);
-                                    checkbalance.setVisibility(View.GONE);
-                                    progbar.setVisibility(View.GONE);
-                                    swipe_balance.startAnimation(inFromRightAnimation());
-                                }
+                            handler.postDelayed(() -> {
+                                swipe_balance.setVisibility(View.VISIBLE);
+                                checkbalance.setVisibility(View.GONE);
+                                progbar.setVisibility(View.GONE);
+                                swipe_balance.startAnimation(inFromRightAnimation());
                             }, 5000);
                         }
 
@@ -413,12 +385,12 @@ public class UserHomeActivity extends AppCompatActivity {
         return inFromRight;
     }
 
-    class CheckBalanceAsynTask extends AsyncTask<Void, Void, Void> {
+    private class CheckBalanceAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<String, String>();
+            Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
@@ -483,107 +455,37 @@ public class UserHomeActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    if (responseContainer != null) {
+                        msgCode = Integer.parseInt(responseContainer
+                                .getMsgCode());
+                    }
+                    if (msgCode == 631) {
+                        checkbalance.setText(getResources().getString(R.string.timeout));
+                    } else if (msgCode == 571) {
+                        checkbalance.setText(responseContainer.getMsg());
+                    } else if (msgCode == 274 || msgCode == 4) {
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                            checkbalance.setText(Html.fromHtml("<small>Rp </small><big>" + responseContainer.getAmount() + "</big>", Html.FROM_HTML_MODE_LEGACY));
+                        } else {
+                            checkbalance.setText(Html.fromHtml("<small>Rp </small><big>" + responseContainer.getAmount() + "</big>"));
+                        }
+                    }
                 } catch (Exception e) {
-                    msgCode = 0;
+                    Log.d(LOG_TAG, e.toString());
                 }
-                if (msgCode == 631) {
-                    checkbalance.setText("Timeout");
-                } else if (msgCode == 571) {
-                    checkbalance.setText("Requested  account with the given cardpan is not available");
-                } else if (msgCode == 274 || msgCode == 4) {
-                    //checkbalance.setText("Rp "+ responseContainer.getAmount() +"");
-                    checkbalance.setText(Html.fromHtml("<small>Rp </small><big>" + responseContainer.getAmount() + "</big>"));
-                }
+
             } else {
                 checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
             }
             final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    swipe_balance.setVisibility(View.VISIBLE);
-                    checkbalance.setVisibility(View.GONE);
-                    progbar.setVisibility(View.GONE);
-                    swipe_balance.startAnimation(inFromRightAnimation());
-                }
+            handler.postDelayed(() -> {
+                swipe_balance.setVisibility(View.VISIBLE);
+                checkbalance.setVisibility(View.GONE);
+                progbar.setVisibility(View.GONE);
+                swipe_balance.startAnimation(inFromRightAnimation());
             }, 5000);
         }
     }
-
-    /**
-     * class reqCheckBalance extends AsyncTask<Void, Void, Void> {
-     * String response;
-     *
-     * @Override protected Void doInBackground(Void... params) {
-     * rsaKey=func.generateRSA(mpin);
-     * Map<String, String> mapContainer = new HashMap<>();
-     * String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
-     * accountSelected=account;
-     * if(account.equals(Constants.CONSTANT_BANK_USER)){
-     * Log.d(LOG_TAG, "bank");
-     * mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
-     * mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
-     * }else{
-     * mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-     * mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
-     * }
-     * mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_CHECKBALANCE);
-     * mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
-     * mapContainer.put("authenticationKey", "");
-     * mapContainer.put("sourceMDN", mdn);
-     * mapContainer.put("sourcePIN", rsaKey);
-     * mapContainer.put("bankID", "");
-     * mapContainer.put("channelID", "7");
-     * Log.e("-----",""+mapContainer.toString());
-     * <p>
-     * WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-     * UserHomeActivity.this);
-     * response = webServiceHttp.getResponseSSLCertificatation();
-     * return null;
-     * }
-     * @Override protected void onPreExecute() {
-     * super.onPreExecute();
-     * if(checkbalance.getText().equals("")||checkbalance.getText()==null){
-     * progbar.setVisibility(View.VISIBLE);
-     * }else{
-     * progbar.setVisibility(View.GONE);
-     * }
-     * }
-     * @Override protected void onPostExecute(Void aVoid) {
-     * super.onPostExecute(aVoid);
-     * progbar.setVisibility(View.GONE);
-     * if (response != null) {
-     * Log.e("-------", "=====" + response);
-     * XMLParser obj = new XMLParser();
-     * EncryptedResponseDataContainer responseDataContainer = null;
-     * try {
-     * responseDataContainer = obj.parse(response);
-     * } catch (Exception e) {
-     * Log.e(LOG_TAG, e.toString());
-     * }
-     * try {
-     * if (responseDataContainer != null) {
-     * if (responseDataContainer.getMsgCode().equals("631")) {
-     * checkbalance.setText("Timeout");
-     * } else if (responseDataContainer.getMsgCode().equals("274") || responseDataContainer.getMsgCode().equals("4")) {
-     * checkbalance.setText("Rp "+ responseDataContainer.getAmount() +"");
-     * }else{
-     * Log.d("test", "not null");
-     * String amount = responseDataContainer.getAmount();
-     * checkbalance.setText("Rp "+ amount +"");
-     * }
-     * }
-     * }catch (Exception e) {
-     * Log.d(LOG_TAG, "ERROR: " + e.toString());
-     * }
-     * }else{
-     * checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
-     * }
-     * }
-     * }
-     **/
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -597,74 +499,84 @@ public class UserHomeActivity extends AppCompatActivity {
                     finish();
                 }
                 break;
-            case REQ_CODE_PICK_IMAGE:
-                if (resultCode == RESULT_OK) {
-                    if (data != null) {
-                        Bundle extras = data.getExtras();
-                        if (extras != null) {
-                            //Bitmap photo = extras.getParcelable("data");
-                            Bitmap selectedBitmap = extras.getParcelable("data");
-                            photo.setImageBitmap(selectedBitmap);
-                            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                            selectedBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                            byte[] byteArray = byteArrayOutputStream.toByteArray();
-                            encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                            Log.d(LOG_TAG, "encoded image:" + encodedImg);
-                            new PhotoUpload().execute();
+            case PICK_FROM_CAMERA:
+                Log.i(LOG_TAG, "Inside PICK_FROM_CAMERA");
+                String path = picUri.getPath();
+                Log.i(LOG_TAG, "After capture path " + path);
+                doCrop();
+
+                break;
+
+            case PICK_FROM_FILE:
+                picUri = data.getData();
+                String path_photo = picUri.getPath();
+                Log.i(LOG_TAG,
+                        "picUri " + picUri);
+                Log.i(LOG_TAG,
+                        "After Crop mImageCaptureUri, path photo " + path_photo);
+                GallaryPhotoSelected = true;
+                doCrop();
+
+                break;
+
+            case CROP_FROM_CAMERA:
+                if(data.getExtras()!=null){
+                    Bundle extras = data.getExtras();
+                    Log.d(LOG_TAG, "extras: "+extras);
+                    String selectedImagePath = picUri.getPath();
+                    Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
+                    Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
+                    if (GallaryPhotoSelected) {
+                        //selectedImagePath = getRealPathFromURI(picUri);
+                        Log.i(LOG_TAG, "Absolute Path " + selectedImagePath);
+                        GallaryPhotoSelected = true;
+                    }
+
+                    Finalmedia = selectedImagePath;
+
+                    if (extras != null) {
+                        // Bitmap photo = extras.getParcelable("data");
+                        Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
+                        Bitmap photobp = (Bitmap) extras.get("data");
+
+                        selectedImagePath = String.valueOf(System.currentTimeMillis())
+                                + ".jpg";
+
+                        Log.i(LOG_TAG, "new selectedImagePath before file "
+                                + selectedImagePath);
+
+                        File file = new File(Environment.getExternalStorageDirectory(),
+                                selectedImagePath);
+
+                        try {
+                            file.createNewFile();
+                            FileOutputStream fos = new FileOutputStream(file);
+                            if (photobp != null)
+                                photobp.compress(Bitmap.CompressFormat.JPEG, 95, fos);
+                        } catch (IOException e) {
+                            Toast.makeText(this,
+                                    "Sorry, Camera Crashed-Please Report as Crash A.",
+                                    Toast.LENGTH_LONG).show();
                         }
 
-                    }
-                }
-                break;
-            case CAMERA_CAPTURE:
-                if (resultCode == Activity.RESULT_OK) {
-                    picUri = data.getData();
-                    performCrop();
-                }
-                break;
-            case CROP_PIC:
-                if (resultCode == Activity.RESULT_OK) {
-                    Bundle extras = data.getExtras();
-                    // get the cropped bitmap
-                    Bitmap thePic = extras.getParcelable("data");
-                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    thePic.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-                    byte[] byteArray = byteArrayOutputStream.toByteArray();
-                    encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    Log.d(LOG_TAG, "encoded image:" + encodedImg);
-                    new PhotoUpload().execute();
-                    photo.setImageBitmap(thePic);
-                }
-                break;
-            case REQ_PICK_IMAGE:
-                if (resultCode == Activity.RESULT_OK) {
-                    Log.d(LOG_TAG,"processing image...");
-                    picUri = data.getData();
-                    performCrop();
-                    /**
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    options.inSampleSize = 1;
+                        selectedImagePath = Environment.getExternalStorageDirectory()
+                                + "/" + selectedImagePath;
+                        Log.i(LOG_TAG, "After File Created  " + selectedImagePath);
 
-                    try {
-                        final InputStream imageStream = getContentResolver().openInputStream(picUri);
-                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream, null, options);
+                        Bitmap thePic = decodeFile(selectedImagePath);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                        selectedImage.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                        if (thePic != null)
+                            thePic.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
                         encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
                         Log.d(LOG_TAG, "encoded image:" + encodedImg);
                         new PhotoUpload().execute();
-                        photo.setImageBitmap(selectedImage);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                        photo.setImageBitmap(thePic);
                     }
-                     **/
-                    //performCrop();
                 }else{
-                    Log.d(LOG_TAG, "get Image failed");
+                    Log.d(LOG_TAG, "extras null!");
                 }
+            default:
                 break;
         }
     }
@@ -691,48 +603,48 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     private void pickImage() {
-        //Intent photoPickerIntent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        final CharSequence[] items = {getResources().getString(R.string.id_camera), getResources().getString(R.string.id_galeri), getResources().getString(R.string.id_batal)};
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UserHomeActivity.this);
-        builder.setTitle(getResources().getString(R.string.id_pilih_foto));
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
+        final String[] items = new String[] { getResources().getString(R.string.id_camera),
+                getResources().getString(R.string.id_galeri) };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.select_dialog_item, items);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
 
-                if (items[item].equals(getResources().getString(R.string.id_camera))) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, CAMERA_CAPTURE);
-                } else if (items[item].equals(getResources().getString(R.string.id_galeri))) {
-                    //if (Build.VERSION.SDK_INT < 19) {
-                        //Log.d(LOG_TAG,"API <19");
-                        Intent intent = new Intent();
-                        intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_PICK);
-                        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
-                    /**
-                    } else {
-                        Log.d(LOG_TAG,"API >19");
-                        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        pickImageIntent.setType("image/*");
-                        pickImageIntent.putExtra("crop", "true");
-                        pickImageIntent.putExtra("outputX", 200);
-                        pickImageIntent.putExtra("outputY", 200);
-                        pickImageIntent.putExtra("aspectX", 1);
-                        pickImageIntent.putExtra("aspectY", 1);
-                        pickImageIntent.putExtra("scale", true);
-                        pickImageIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-                        startActivityForResult(pickImageIntent, REQ_CODE_PICK_IMAGE);
-                    }
-                     **/
-                } else if (items[item].equals(getResources().getString(R.string.id_batal))) {
-                    dialog.dismiss();
+        builder.setTitle(getResources().getString(R.string.id_pilih_foto));
+        builder.setAdapter(adapter, (dialog, item) -> {
+            if (item == 0) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                picUri = Uri.fromFile(new File(Environment
+                        .getExternalStorageDirectory(), "tmp_avatar_"
+                        + String.valueOf(System.currentTimeMillis())
+                        + ".jpg"));
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        picUri);
+
+                try {
+                    intent.putExtra("return-data", true);
+
+                    startActivityForResult(intent, PICK_FROM_CAMERA);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
                 }
+            } else { // pick from file
+                Intent intent = new Intent();
+
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+
+                startActivityForResult(Intent.createChooser(intent,
+                        "Complete action using"), PICK_FROM_FILE);
             }
         });
-        builder.show();
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
-    class PhotoUpload extends AsyncTask<Void, Void, Void> {
+    private class PhotoUpload extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -790,6 +702,7 @@ public class UserHomeActivity extends AppCompatActivity {
                             msgCode = 0;
                         }
 
+                        AlertDialog.Builder alertbox;
                         if (msgCode == 631) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -805,7 +718,6 @@ public class UserHomeActivity extends AppCompatActivity {
                                 }
                             });
                             alertbox.show();
-                            dialogBuilder.dismiss();
                         } else if (msgCode == 2143) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -819,20 +731,14 @@ public class UserHomeActivity extends AppCompatActivity {
                                 }
                             });
                             alertbox.show();
-                            dialogBuilder.dismiss();
                         } else {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
                             alertbox = new AlertDialog.Builder(UserHomeActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
                             alertbox.show();
-                            dialogBuilder.dismiss();
                         }
                     }
                 } catch (Exception e) {
@@ -855,35 +761,6 @@ public class UserHomeActivity extends AppCompatActivity {
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
-    private void performCrop() {
-        // take care of exceptions
-        try {
-            // call the standard crop action intent (the user device may not
-            // support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            // indicate image type and Uri
-            cropIntent.setDataAndType(picUri, "image/*");
-            // set crop properties
-            cropIntent.putExtra("crop", "true");
-            // indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            // indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
-            // retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            // start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, CROP_PIC);
-        }
-        // respond to users whose devices do not support the crop action
-        catch (ActivityNotFoundException anfe) {
-            Toast toast = Toast
-                    .makeText(this, "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
-
     private String initialName(String full_name) {
         Pattern p = Pattern.compile("((^| )[A-Za-z])");
         Matcher m = p.matcher(full_name);
@@ -893,6 +770,165 @@ public class UserHomeActivity extends AppCompatActivity {
         }
         System.out.println(inititals.toUpperCase());
         return inititals;
+    }
+
+    private void cameraPermission() {
+        if (ContextCompat.checkSelfPermission(UserHomeActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(UserHomeActivity.this,
+                    Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(UserHomeActivity.this,
+                        new String[]{Manifest.permission.CAMERA},
+                        MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(LOG_TAG, "permission granted");
+                } else {
+                    Log.d(LOG_TAG, "permission denied");
+                }
+            }
+        }
+    }
+
+    public static Bitmap decodeFile(String path) {
+        int orientation;
+        try {
+            if (path == null) {
+                return null;
+            }
+            // decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            // Find the correct scale value. It should be the power of 2.
+            final int REQUIRED_SIZE = 70;
+            int width_tmp = o.outWidth, height_tmp = o.outHeight;
+            int scale = 1;
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            Bitmap bm = BitmapFactory.decodeFile(path, o2);
+            Bitmap bitmap = bm;
+
+            ExifInterface exif = new ExifInterface(path);
+
+            orientation = exif
+                    .getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+
+            Log.e("ExifInteface .........", "rotation =" + orientation);
+            Log.e("orientation", "" + orientation);
+            Matrix m = new Matrix();
+
+            if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
+                m.postRotate(180);
+                Log.e("in orientation", "" + orientation);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
+                        bm.getHeight(), m, true);
+                return bitmap;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
+                m.postRotate(90);
+                Log.e("in orientation", "" + orientation);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
+                        bm.getHeight(), m, true);
+                return bitmap;
+            } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
+                m.postRotate(270);
+                Log.e("in orientation", "" + orientation);
+                bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
+                        bm.getHeight(), m, true);
+                return bitmap;
+            }
+            return bitmap;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+
+    private void doCrop() {
+        final ArrayList<Functions.CropOption> cropOptions = new ArrayList<Functions.CropOption>();
+
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setType("image/*");
+
+        List<ResolveInfo> list = getPackageManager().queryIntentActivities(
+                intent, 0);
+
+        int size = list.size();
+
+        if (size == 0) {
+            Toast.makeText(this, "Can not find image crop app",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            intent.setData(picUri);
+            intent.setClassName("com.android.camera",
+                    "com.android.camera.CropImage");
+            intent.putExtra("outputX", 100);
+            intent.putExtra("outputY", 100);
+            intent.putExtra("aspectX", 1);
+            intent.putExtra("aspectY", 1);
+            intent.putExtra("scale", true);
+            intent.putExtra("return-data", true);
+            // startActivityForResult(intent, CROP_FROM_CAMERA);
+
+            if (size == 1) {
+                Intent i = new Intent(intent);
+                ResolveInfo res = list.get(0);
+
+                i.setComponent(new ComponentName(res.activityInfo.packageName,
+                        res.activityInfo.name));
+                startActivityForResult(i, PICK_FROM_CAMERA);
+            } else {
+                for (ResolveInfo res : list) {
+                    final Functions.CropOption co = new Functions.CropOption();
+
+                    co.title = getPackageManager().getApplicationLabel(
+                            res.activityInfo.applicationInfo);
+                    co.icon = getPackageManager().getApplicationIcon(
+                            res.activityInfo.applicationInfo);
+                    co.appIntent = new Intent(intent);
+
+                    co.appIntent
+                            .setComponent(new ComponentName(
+                                    res.activityInfo.packageName,
+                                    res.activityInfo.name));
+
+                    cropOptions.add(co);
+                }
+
+                Functions.CropOptionAdapter adapter = new Functions.CropOptionAdapter(
+                        getApplicationContext(), cropOptions);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
+                builder.setTitle(getResources().getString(R.string.id_crop_foto));
+                builder.setAdapter(adapter,
+                        (dialog, item) -> startActivityForResult(
+                                cropOptions.get(item).appIntent,
+                                CROP_FROM_CAMERA));
+
+                builder.setOnCancelListener(dialog -> {
+
+                    if (picUri != null) {
+                        getContentResolver().delete(picUri, null,
+                                null);
+                        picUri = null;
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        }
     }
 
 }

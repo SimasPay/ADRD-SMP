@@ -56,9 +56,9 @@ public class MyCustomEULA extends Fragment implements View.OnClickListener {
 				.findViewById(R.id.terms_conditions_1);
 
 		disclosure
-				.setText("1. Pay by QR merupakan layanan pembayaran berbasis kode QR atas pembelanjaan di pedagang/merchant yang berpartisipasi, dimana dalam pelaksanaannya pengguna UANGKU melakukan pemindaian kode QR uang tersedia pada pedagang/merchant menggunakan aplikasi UANGKU.");
+				.setText("1. Pay by QR merupakan layanan pembayaran berbasis kode QR atas pembelanjaan di pedagang/merchant yang berpartisipasi, dimana dalam pelaksanaannya pengguna Simaspay melakukan pemindaian kode QR uang tersedia pada pedagang/merchant menggunakan aplikasi Simaspay.");
 
-		textView.setText("2. Segala ketentuan mengenai layanan pembayaran pedagang/merchant dengan Pay by QR mengacu kepada Syarat dan Ketentuan Penggunaan UANGKU.");
+		textView.setText("2. Segala ketentuan mengenai layanan pembayaran pedagang/merchant dengan Pay by QR mengacu kepada Syarat dan Ketentuan Penggunaan Aplikasi Simaspay.");
 
 		disclosure.setTypeface(Utility.RegularTextFormat(getActivity()));
 		textView.setTypeface(Utility.RegularTextFormat(getActivity()));

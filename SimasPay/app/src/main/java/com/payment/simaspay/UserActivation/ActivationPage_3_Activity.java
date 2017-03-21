@@ -2,56 +2,62 @@ package com.payment.simaspay.UserActivation;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyConfirmationActivity;
+import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 12/30/2015.
- */
-public class ActivationPage_3_Activity extends Activity {
-
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor editor;
-
+public class ActivationPage_3_Activity extends AppCompatActivity {
+    SharedPreferences sharedPreferences, languageSettings;
     TextView text_1, text_2, text_3, text_4;
-
-
     EditText e_pin, e_con_mPin;
-
     Button lanjut;
-
     String pin, ConfirmPin, otpValue, mailedOtp;
-
     String EncryptedPin, Encrypted_ConfirmPin, encryptedOtp, EncryptedMailedOtp;
+    String selectedLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pin_confirmation);
+
         sharedPreferences = getSharedPreferences("SimasPay", MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -257,4 +263,6 @@ public class ActivationPage_3_Activity extends Activity {
             }
         }
     }
+
+
 }

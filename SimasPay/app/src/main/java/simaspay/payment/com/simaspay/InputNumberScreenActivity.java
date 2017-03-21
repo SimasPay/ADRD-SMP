@@ -1,25 +1,21 @@
 package simaspay.payment.com.simaspay;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,7 +36,7 @@ import java.util.Map;
  * 09
  */
 
-public class InputNumberScreenActivity extends AppCompatActivity {
+public class InputNumberScreenActivity extends Activity {
     Context context;
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
