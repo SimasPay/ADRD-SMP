@@ -93,15 +93,15 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Masukkan Nomor Handphone Tujuan.", UangkuTransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), UangkuTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-14 angka.", UangkuTransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_no_rek_validation_msg), UangkuTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog("Nomor rekening yang Anda masukkan harus 10-14 angka.", UangkuTransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_no_rek_validation_msg), UangkuTransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", UangkuTransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), UangkuTransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", UangkuTransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);
                 }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), UangkuTransferDetailsActivity.this);
                 } else {

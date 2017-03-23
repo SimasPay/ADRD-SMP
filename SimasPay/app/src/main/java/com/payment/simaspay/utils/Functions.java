@@ -6,21 +6,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.ContextCompat;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +24,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.PaymentPurchaseAccount.PaymentConfirmationActivity;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 
 import java.io.File;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 /**
  * Created by widy on 3/5/17.
@@ -46,18 +43,19 @@ import static com.payment.simaspay.services.Constants.LOG_TAG;
  */
 
 public class Functions {
-    SharedPreferences sharedPreferences;
-    Context context;
-    String rsaKey;
+    private SharedPreferences sharedPreferences;
+    private Context context;
+    private String rsaKey;
     private Uri mImageCaptureUri;
-    private ImageView mImageView;
     private static final int PICK_FROM_CAMERA = 1;
-    private static final int CROP_FROM_CAMERA = 2;
     private static final int PICK_FROM_FILE = 3;
+    private String selectedLanguage;
 
     public Functions(Context context) {
         this.context = context;
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        SharedPreferences languageSettings = context.getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
     }
 
     public String generateRSA(String pin){
@@ -82,31 +80,6 @@ public class Functions {
         }
     }
 
-    public static Bitmap getRoundedRectBitmap(Bitmap bitmap, int pixels) {
-        Bitmap result = null;
-        try {
-            result = Bitmap.createBitmap(950, 950, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(result);
-
-            int color = 0xff424242;
-            Paint paint = new Paint();
-            Rect rect = new Rect(0, 0, 650, 650);
-
-            paint.setAntiAlias(true);
-            canvas.drawARGB(0, 0, 0, 0);
-            paint.setColor(color);
-            canvas.drawCircle(300, 300, 300, paint);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-            canvas.drawBitmap(bitmap, rect, rect, paint);
-
-        } catch (NullPointerException e) {
-            Log.d(LOG_TAG, "error: "+e.toString());
-        } catch (OutOfMemoryError o) {
-            Log.d(LOG_TAG, "error: "+o.toString());
-        }
-        return result;
-    }
-
     public static class CropOption {
         public CharSequence title;
         public Drawable icon;
@@ -125,8 +98,9 @@ public class Functions {
             mInflater	= LayoutInflater.from(context);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup group) {
+        public View getView(int position, View convertView, @NonNull ViewGroup group) {
             if (convertView == null)
                 convertView = mInflater.inflate(R.layout.crop_selector, null);
 
@@ -141,7 +115,7 @@ public class Functions {
                 return convertView;
             }
 
-            return null;
+            return convertView;
         }
     }
 
@@ -180,6 +154,101 @@ public class Functions {
 
         final AlertDialog dialog = builder.create();
     }
+
+    public void errorEmptyOTP() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+        builder.setCancelable(false);
+        if (selectedLanguage.equalsIgnoreCase("ENG")) {
+            builder.setTitle(context.getResources().getString(R.string.eng_otpfailed));
+            builder.setMessage(context.getResources().getString(R.string.en_otp_empty_failed)).setCancelable(false)
+                    .setPositiveButton("OK", (dialog, id) -> {
+                        ((Activity) context).finish();
+                    });
+        } else {
+            builder.setTitle(context.getResources().getString(R.string.bahasa_otpfailed));
+            builder.setMessage(context.getResources().getString(R.string.id_otp_empty_failed)).setCancelable(false)
+                    .setPositiveButton("OK", (dialog, id) -> ((Activity) context).finish());
+        }
+        AlertDialog alertError = builder.create();
+        alertError.show();
+    }
+
+    public void errorNullResponseConfirmation(){
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+        alertbox.setTitle("ErrorMessage");
+        alertbox.setMessage(context.getResources().getString(
+                R.string.bahasa_serverNotRespond));
+        alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+            ((Activity) context).finish();
+            Intent intent = new Intent(context, UserHomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        });
+        alertbox.show();
+    }
+
+    public void errorElseResponseConfirmation(String message){
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+        alertbox.setTitle("ErrorMessage");
+        alertbox.setMessage(message);
+        alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+            ((Activity) context).finish();
+            Intent intent = new Intent(context, UserHomeActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        });
+        alertbox.show();
+    }
+
+    public void errorTimeoutResponseConfirmation(String message){
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+        alertbox.setTitle("ErrorMessage");
+        alertbox.setMessage(message);
+        alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+            ((Activity) context).finish();
+            Intent intent = new Intent(context, SecondLoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intent);
+        });
+        alertbox.show();
+    }
+
+    public void errorOTP() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+        builder.setCancelable(false);
+        if (selectedLanguage.equalsIgnoreCase("ENG")) {
+            builder.setTitle(context.getResources().getString(R.string.eng_otpfailed));
+            builder.setMessage(context.getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
+                    .setPositiveButton("OK", (dialog, id) -> {
+                        dialog.dismiss();
+                    });
+        } else {
+            builder.setTitle(context.getResources().getString(R.string.bahasa_otpfailed));
+            builder.setMessage(context.getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
+                    .setPositiveButton("OK", (dialog, id) -> {
+                        dialog.dismiss();
+                    });
+        }
+        AlertDialog alertError = builder.create();
+        if (!((Activity) context).isFinishing()) {
+            alertError.show();
+        }
+    }
+
+    public static String formatRupiah(String harga){
+        double hx = Double.parseDouble(harga);
+
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
+        return kursIndonesia.format(hx);
+    }
+
 
 
 }

@@ -2,7 +2,6 @@ package com.payment.simaspay.AgentTransfer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,8 +12,6 @@ import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,26 +22,21 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.ConfirmationActivity;
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by widy on 1/25/17.
@@ -53,19 +45,16 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
     String sourceMDN, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
-    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber,destinationMDN,transferID,parentTxnID,mfaMode, responseCode;
+    String message, transactionTime, responseCode, mfaMode;
     TextView lbl_name, lbl_mdn, lbl_amount, notice;
     Button benar_btn, salah_btn;
-    private AlertDialog.Builder alertbox;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
-    private static AlertDialog dialogBuilder, alertError;
-    static boolean isExitActivity = false;
+    private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
     Context context;
-    SharedPreferences settings, settings2, languageSettings;
-    String rsaKey;
-    String pin, otpValue;
+    SharedPreferences settings, languageSettings;
+    String otpValue;
     String selectedLanguage;
     Functions func;
     SharedPreferences sharedPreferences;
@@ -76,7 +65,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         setContentView(R.layout.activity_emoney_confirmation);
         func=new Functions(this);
         func.initiatedToolbar(this);
-        if (Build.VERSION.SDK_INT > 9) {
+        if (Build.VERSION.SDK_INT >= 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -118,20 +107,12 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             notice.setVisibility(View.GONE);
         }
 
-        lbl_amount.setText(formatRupiah(stAmount));
-        benar_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new requestOTPAsyncTask().execute();
-                //showOTPRequiredDialog();
-            }
+        lbl_amount.setText(Functions.formatRupiah(stAmount));
+        benar_btn.setOnClickListener(view -> {
+            new requestOTPAsyncTask().execute();
+            //showOTPRequiredDialog();
         });
-        salah_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        salah_btn.setOnClickListener(view -> finish());
     }
 
 
@@ -157,15 +138,10 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -184,45 +160,35 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    new TransferConfirmationAsyncTask().execute();
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                if(otpValue==null||otpValue.equals("")){
+                    otpValue=edt.getText().toString();
                 }
+                new TransferConfirmationAsyncTask().execute();
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -231,19 +197,9 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
+                    myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
@@ -256,44 +212,15 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         dialogBuilder.show();
     }
 
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
-    }
-
-    class TransferConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class TransferConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<String, String>();
+            Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_TRANSFER);
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-            //mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
             mapContainer.put(Constants.PARAMETER_DEST_MDN, stMDN);
@@ -306,10 +233,15 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             mapContainer.put(Constants.PARAMETER_DEST_BankAccount, "");
 
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                mapContainer.put(Constants.PARAMETER_MFA_OTP, func.generateRSA(otpValue));
-            }else{
-                mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
+            if(getIntent().getExtras()!=null) {
+                mfaMode = getIntent().getExtras().getString("mfaMode");
+                if (mfaMode != null) {
+                    if (mfaMode.equalsIgnoreCase("OTP")) {
+                        mapContainer.put(Constants.PARAMETER_MFA_OTP, func.generateRSA(otpValue));
+                    } else {
+                        mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
+                    }
+                }
             }
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     TransferEmoneyToEmoneyConfirmationActivity.this);
@@ -345,7 +277,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        int msgCode = 0;
+                        int msgCode;
 
                         try {
                             msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
@@ -357,17 +289,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
+                            func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                         }else if(msgCode==293||msgCode==678){
                             Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, TransferBankToEmoneyNotificationActivity.class);
                             intent.putExtra("destmdn", stMDN);
@@ -378,14 +300,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             startActivity(intent);
                             TransferEmoneyToEmoneyConfirmationActivity.this.finish();
                         }else{
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
+                            func.errorElseResponseConfirmation(responseDataContainer.getMsg());
                             dialogBuilder.dismiss();
                         }
                     }
@@ -396,10 +311,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), TransferEmoneyToEmoneyConfirmationActivity.this);
+                func.errorNullResponseConfirmation();
             }
         }
     }
@@ -453,39 +365,37 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (responseDataContainer.getMsgCode().equals("631")) {
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
+                        AlertDialog.Builder alertbox;
+                        switch (responseDataContainer.getMsgCode()) {
+                            case "631":
+                                alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setCancelable(false);
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                     Intent intent = new Intent(TransferEmoneyToEmoneyConfirmationActivity.this, SecondLoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
-                        }else if(responseDataContainer.getMsgCode().equals("2171")){
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
-                            responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
-                            Log.d("test", "not null");
-                            int msgCode = 0;
+                                });
+                                alertbox.show();
+                                break;
+                            case "2171":
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message" + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                responseCode = responseDataContainer.getResponseCode();
+                                Log.d(LOG_TAG, "responseCode" + responseCode);
+                                Log.d("test", "not null");
 
-                            showOTPRequiredDialog();
-                        }else{
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                   arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                            dialogBuilder.dismiss();
+                                showOTPRequiredDialog();
+                                break;
+                            default:
+                                alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
+                                alertbox.show();
+                                dialogBuilder.dismiss();
+                                break;
                         }
                     }
                 }catch (Exception e) {
@@ -503,17 +413,5 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         }
     }
 
-    public static String formatRupiah(String harga){
-        double hx = Double.parseDouble(harga);
 
-        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
-        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
-
-        formatRp.setCurrencySymbol("Rp. ");
-        formatRp.setMonetaryDecimalSeparator(',');
-        formatRp.setGroupingSeparator('.');
-
-        kursIndonesia.setDecimalFormatSymbols(formatRp);
-        return kursIndonesia.format(hx);
-    }
 }

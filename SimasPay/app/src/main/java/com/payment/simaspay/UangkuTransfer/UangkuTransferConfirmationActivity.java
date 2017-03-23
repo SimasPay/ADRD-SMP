@@ -3,7 +3,6 @@ package com.payment.simaspay.UangkuTransfer;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -16,15 +15,11 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -36,8 +31,6 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -47,23 +40,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 
 public class UangkuTransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
-
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, product_field;
     Button cancel, confirmation;
     LinearLayout back;
-    boolean Timervalueout;
     SharedPreferences sharedPreferences;
     private EditText edt;
     String otpValue = "";
     private static final String LOG_TAG = "SimasPay";
     String OTP;
-    private static AlertDialog dialogBuilder, alertError;
+    private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
-    SharedPreferences settings, settings2, languageSettings;
+    SharedPreferences settings, languageSettings;
     String selectedLanguage;
     ProgressDialog progressDialog;
     int msgCode;
@@ -72,6 +62,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,49 +139,30 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         cancel.setTypeface(Utility.Robot_Regular(UangkuTransferConfirmationActivity.this));
         confirmation.setTypeface(Utility.Robot_Regular(UangkuTransferConfirmationActivity.this));
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UangkuTransferConfirmationActivity.this.finish();
-            }
-        });
+        cancel.setOnClickListener(view -> UangkuTransferConfirmationActivity.this.finish());
 
-        confirmation.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
-                if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-//                    if (Timervalueout) {
-//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), UangkuTransferConfirmationActivity.this);
-//                    } else {
-                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                != PackageManager.PERMISSION_GRANTED) {
+        confirmation.setOnClickListener(view -> {
+            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                int currentapiVersion = Build.VERSION.SDK_INT;
+                if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+                    if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                            != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
 
-                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                    109);
-                        } else {
-                            new requestOTPAsyncTask().execute();
-                        }
+                        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
+                                109);
                     } else {
                         new requestOTPAsyncTask().execute();
                     }
-//                    }
                 } else {
-                    //nonOTP
+                    new requestOTPAsyncTask().execute();
                 }
-
+//                    }
             }
+
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UangkuTransferConfirmationActivity.this.finish();
-            }
-        });
+        back.setOnClickListener(view -> UangkuTransferConfirmationActivity.this.finish());
     }
 
     @Override
@@ -198,9 +170,9 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
+                Log.d(LOG_TAG, "permission granted");
             } else {
-
+                Log.d(LOG_TAG, "permission rejected");
             }
         }
     }
@@ -220,15 +192,10 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sharedPreferences.getString("mobileNumber", "")+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -247,49 +214,37 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    otpValue=edt.getText().toString();
-                    if(otpValue==null){
-                        otpValue=edt.getText().toString();
-                    }
-                    if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
-                        new InterBankLakuPandaiAsynTask().execute();
-                    }else{
-                        new TransferemoneyUangkuConfirmationAsyncTask().execute();
-                    }
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                otpValue=edt.getText().toString();
+                if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
+                    new InterBankLakuPandaiAsynTask().execute();
+                }else{
+                    new TransferemoneyUangkuConfirmationAsyncTask().execute();
                 }
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -298,70 +253,23 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    if(otpValue==null){
-                        otpValue=edt.getText().toString();
-                    }
-
+                    myTimer.cancel();
                     if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         new InterBankLakuPandaiAsynTask().execute();
                     }else{
                         new TransferemoneyUangkuConfirmationAsyncTask().execute();
                     }
-                    //new TransferEmoneyConfirmationActivity.TransferConfirmationAsyncTask().execute();
                 }
             }
         });
         dialogBuilder.show();
     }
 
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
-    }
-
-    class TransferemoneyUangkuConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class TransferemoneyUangkuConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -383,16 +291,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             Log.d(LOG_TAG,"authenticationKey ");
             mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
             Log.d(LOG_TAG,"sourceMDN "+sharedPreferences.getString("mobileNumber", ""));
-            //mapContainer.put("sourcePIN", sharedPreferences.getString("mobileNumber", ""));
-            //Log.d(LOG_TAG,"sourcePIN "+sharedPreferences.getString("mobileNumber", ""));
-            //mapContainer.put("destMDN", "");
-            //Log.d(LOG_TAG,"destMDN "+"");
-            //mapContainer.put("destBankAccount", stMDN);
-            //Log.d(LOG_TAG,"destBankAccount "+stMDN);
             mapContainer.put("transferID", stTransferID);
             Log.d(LOG_TAG,"transferID "+stTransferID);
-            //mapContainer.put("bankID", "");
-            //Log.d(LOG_TAG,"bankID ");
             mapContainer.put("parentTxnID", stParentTxnID);
             Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
@@ -401,8 +301,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             Log.d(LOG_TAG,"channelID 7");
             mapContainer.put("sourcePocketCode", "1");
             Log.d(LOG_TAG,"sourcePocketCode 1");
-            //mapContainer.put("destPocketCode", "2");
-            //Log.d(LOG_TAG,"destPocketCode 2");
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             }else{
@@ -456,17 +354,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
+                            func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                             dialogBuilder.dismiss();
                         }else if(msgCode==2176){
                             Intent intent = new Intent(UangkuTransferConfirmationActivity.this, UangkuTransferSuccessActivity.class);
@@ -479,20 +367,15 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             startActivityForResult(intent, 10);
                             finish();
                         }else{
-                            alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
+                            func.errorElseResponseConfirmation(responseDataContainer.getMsg());
                             dialogBuilder.dismiss();
                         }
                     }
                 }catch (Exception e) {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
+            }else{
+                func.errorNullResponseConfirmation();
             }
         }
     }
@@ -550,17 +433,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
+                            func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                             dialogBuilder.dismiss();
                         } else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
@@ -576,11 +449,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         }else{
                             alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    finish();
-                                }
-                            });
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> finish());
                             alertbox.show();
                             dialogBuilder.dismiss();
                         }
@@ -592,64 +461,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         }
     }
 
-
-
-
-   /* public void SMSAlert(final String string) {
-
-        dialogCustomWish = new Dialog(context);
-        dialogCustomWish.setCancelable(false);
-
-        dialogCustomWish.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogCustomWish.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-        View view = LayoutInflater.from(context).inflate(R.layout.sms_alert, null);
-        dialogCustomWish.setContentView(R.layout.sms_alert);
-
-        Button button = (Button) dialogCustomWish.findViewById(R.id.ok);
-        Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
-        TextView textView = (TextView) dialogCustomWish.findViewById(R.id.number);
-        TextView textView_1 = (TextView) dialogCustomWish.findViewById(R.id.number_1);
-        button.setTypeface(Utility.RegularTextFormat(context));
-        button1.setTypeface(Utility.RegularTextFormat(context));
-        textView.setTypeface(Utility.RegularTextFormat(context));
-        textView_1.setText("Kode OTP dan link telah dikirimkan ke nomor " + getIntent().getExtras().getString("Acc_Number") + ". Masukkan kode tersebut atau akses link yang tersedia.");
-
-
-        EditText editText = (EditText) dialogCustomWish.findViewById(R.id.otpCode);
-        editText.setHint("6 digit kode OTP");
-        editText.setText(otpValue);
-        editText.setClickable(false);
-        editText.setFocusable(false);
-        textView_1.setTypeface(Utility.Robot_Regular(context));
-
-
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                dialogCustomWish.dismiss();
-
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogCustomWish.dismiss();
-
-                handler12.postDelayed(runnable12, 1000);
-
-            }
-        });
-        dialogCustomWish.show();
-
-
-    }*/
-
-
-
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
@@ -657,7 +468,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         otpValue=otp;
     }
 
-    class InterBankLakuPandaiAsynTask extends AsyncTask<Void, Void, Void> {
+    private class InterBankLakuPandaiAsynTask extends AsyncTask<Void, Void, Void> {
 
         String response;
 
@@ -737,17 +548,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setMessage(responseContainer.getMsg());
-                    alertbox.setCancelable(false);
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(UangkuTransferConfirmationActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                    });
-                    alertbox.show();
+                    func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
                     dialogBuilder.dismiss();
                 } else if (msgCode == 293 || msgCode == 81 || msgCode == 305 || msgCode == 2176) {
                     if (progressDialog != null) {
@@ -767,26 +568,17 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         progressDialog.dismiss();
                     }
                     if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(
-                                sharedPreferences.getString(
-                                        "ErrorMessage",
-                                        getResources()
-                                                .getString(
-                                                        R.string.server_error_message)),
-                                UangkuTransferConfirmationActivity.this);
+                        func.errorNullResponseConfirmation();
                     } else {
-                        Utility.networkDisplayDialog(
-                                responseContainer.getMsg(), UangkuTransferConfirmationActivity.this);
+                        func.errorElseResponseConfirmation(responseContainer.getMsg());
                     }
                 }
             } else {
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), UangkuTransferConfirmationActivity.this);
+                func.errorNullResponseConfirmation();
+                alertbox.show();
             }
         }
     }

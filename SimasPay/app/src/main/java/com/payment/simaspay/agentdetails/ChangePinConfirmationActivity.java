@@ -3,7 +3,6 @@ package com.payment.simaspay.agentdetails;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -15,15 +14,12 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -36,6 +32,7 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -57,27 +54,24 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
     private AlertDialog.Builder alertbox;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
-    private static AlertDialog dialogBuilder, alertError;
-    static boolean isExitActivity = false;
+    private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
-    SharedPreferences settings, settings2, languageSettings;
+    SharedPreferences settings, languageSettings;
     String selectedLanguage;
     Context context;
     WebServiceHttp webServiceHttp;
     String confirmationResponse;
     String encryptedOtp;
     int msgCode=0;
+    Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changempinconfirmation);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func=new Functions(this);
+        func.initiatedToolbar(this);
 
         context=ChangePinConfirmationActivity.this;
         IncomingSMS.setListener(ChangePinConfirmationActivity.this);
@@ -122,38 +116,29 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         title.setTypeface(Utility.RegularTextFormat(ChangePinConfirmationActivity.this));
         simpan.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
         cancel.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
-        simpan.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View v) {
-                    if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) {
+        simpan.setOnClickListener(v -> {
+                if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                    int currentapiVersion = Build.VERSION.SDK_INT;
+                    if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
 
-                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                        109);
-                            } else {
-                                new requestOTPAsyncTask().execute();
-                            }
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
+                                    109);
                         } else {
                             new requestOTPAsyncTask().execute();
                         }
-                    }else{
-                        new ChangePinConfirmationAsyncTask().execute();
+                    } else {
+                        new requestOTPAsyncTask().execute();
                     }
+                }else{
+                    new ChangePinConfirmationAsyncTask().execute();
+                }
 
-            }
         });
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        cancel.setOnClickListener(v -> finish());
     }
 
     @Override
@@ -163,7 +148,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         otpValue=otp;
     }
 
-    class ChangePinConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class ChangePinConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -229,7 +214,9 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     progressDialog.dismiss();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
+                    if (responseContainer != null) {
+                        msgCode = Integer.parseInt(responseContainer.getMsgCode());
+                    }
                     Log.d(LOG_TAG,"msgCode: "+msgCode);
                 } catch (Exception e) {
                     msgCode = 0;
@@ -242,24 +229,17 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setMessage(responseContainer.getMsg());
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(ChangePinConfirmationActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                    });
-                    alertbox.show();
+                    func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
                 }else {
-                    if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(sharedPreferences.getString(
-                                "ErrorMessage",
-                                getResources().getString(
-                                        R.string.bahasa_serverNotRespond)), ChangePinConfirmationActivity.this);
-                    } else {
-                        Utility.networkDisplayDialog(responseContainer.getMsg(), ChangePinConfirmationActivity.this);
+                    if (responseContainer != null) {
+                        if (responseContainer.getMsg() == null) {
+                            Utility.networkDisplayDialog(sharedPreferences.getString(
+                                    "ErrorMessage",
+                                    getResources().getString(
+                                            R.string.bahasa_serverNotRespond)), ChangePinConfirmationActivity.this);
+                        } else {
+                            Utility.networkDisplayDialog(responseContainer.getMsg(), ChangePinConfirmationActivity.this);
+                        }
                     }
                 }
             }else{
@@ -309,15 +289,10 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -336,46 +311,36 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    new ChangePinConfirmationAsyncTask().execute();
-                    dialogBuilder.dismiss();
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                if(otpValue==null||otpValue.equals("")){
+                    otpValue=edt.getText().toString();
                 }
+                new ChangePinConfirmationAsyncTask().execute();
+                dialogBuilder.dismiss();
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -384,19 +349,9 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
+                    myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
@@ -407,40 +362,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             }
         });
         dialogBuilder.show();
-    }
-
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            finish();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            finish();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
     }
 
     class requestOTPAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -491,47 +412,47 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     Log.e(LOG_TAG, e.toString());
                 }
                 try {
-                    msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
+                    if (responseDataContainer != null) {
+                        msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
+                    }
                 } catch (Exception e) {
                     msgCode = 0;
                 }
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (responseDataContainer.getMsgCode().equals("631")) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                            alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
+                        switch (responseDataContainer.getMsgCode()) {
+                            case "631":
+                                if (progressDialog != null) {
+                                    progressDialog.dismiss();
+                                }
+                                alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                     arg0.dismiss();
                                     Intent intent = new Intent(ChangePinConfirmationActivity.this, SecondLoginActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
-                        } else if(responseDataContainer.getMsgCode().equals("2171")){
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
-                            responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
-                            Log.d("test", "not null");
-                            showOTPRequiredDialog();
-                        }else{
-                            alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                            dialogBuilder.dismiss();
+                                });
+                                alertbox.show();
+                                break;
+                            case "2171":
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message" + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                responseCode = responseDataContainer.getResponseCode();
+                                Log.d(LOG_TAG, "responseCode" + responseCode);
+                                Log.d("test", "not null");
+                                showOTPRequiredDialog();
+                                break;
+                            default:
+                                alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
+                                alertbox.show();
+                                dialogBuilder.dismiss();
+                                break;
                         }
                     }
                 }catch (Exception e) {

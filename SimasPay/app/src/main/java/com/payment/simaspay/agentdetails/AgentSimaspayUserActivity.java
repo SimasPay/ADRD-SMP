@@ -17,7 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
-import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
+import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.BalanceSheetActivity;
 import com.payment.simaspay.AgentTransfer.TransferHomeActivity;
@@ -173,7 +173,7 @@ public class AgentSimaspayUserActivity extends Activity {
         pembelian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AgentSimaspayUserActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                Intent intent = new Intent(AgentSimaspayUserActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
                 intent.putExtra("accounttype", false);
                 startActivity(intent);
             }
@@ -181,7 +181,7 @@ public class AgentSimaspayUserActivity extends Activity {
         pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AgentSimaspayUserActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                Intent intent = new Intent(AgentSimaspayUserActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
                 intent.putExtra("accounttype", true);
                 startActivity(intent);
             }

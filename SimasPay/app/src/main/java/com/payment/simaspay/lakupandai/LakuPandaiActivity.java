@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -17,13 +16,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.payment.simaspay.AgentTransfer.TransferHomeActivity;
 import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.FlashizSDK.UserAPikeyCall;
-import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
+import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.BalanceSheetActivity;
 
@@ -165,7 +163,7 @@ public class LakuPandaiActivity extends Activity {
         pembelian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LakuPandaiActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                Intent intent = new Intent(LakuPandaiActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
                 intent.putExtra("accounttype", false);
                 startActivity(intent);
             }
@@ -173,7 +171,7 @@ public class LakuPandaiActivity extends Activity {
         pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LakuPandaiActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+                Intent intent = new Intent(LakuPandaiActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
                 intent.putExtra("accounttype", true);
                 startActivity(intent);
             }

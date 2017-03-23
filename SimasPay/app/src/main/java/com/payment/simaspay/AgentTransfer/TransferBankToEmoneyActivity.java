@@ -92,6 +92,12 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {
                     tujuan.setError("Harap masukkan Nomor Handphone Tujuan");
                     return;
+                }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
+                    tujuan.setError("Nomor Handphone yang Anda masukkan harus 10-14 angka");
+                    return;
+                }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
+                    tujuan.setError("Nomor Handphone yang Anda masukkan harus 10-14 angka");
+                    return;
                 }else if(amount.getText().toString().replace(" ", "").length()==0) {
                     amount.setError("Harap masukkan jumlah yang ingin Anda transfer");
                     return;

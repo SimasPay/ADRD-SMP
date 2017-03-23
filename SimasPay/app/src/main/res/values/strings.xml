@@ -67,6 +67,11 @@
     <string name="id_transfer">Transfer</string>
     <string name="id_pilih_foto">Silahkan ambil Foto dari:</string>
     <string name="id_crop_foto">Crop foto menggunakan:</string>
+    <string name="id_no_hp_validation_msg">Nomor Handphone yang Anda masukkan harus 10-14 angka</string>
+    <string name="id_jumlah_transfer_validation">Harap masukkan jumlah yang ingin Anda transfer</string>
+    <string name="id_masukkan_no_hp">Harap masukkan Nomor Handphone Tujuan</string>
+    <string name="id_masukkan_mpin">"Harap masukkan mPIN Anda"</string>
+    <string name="id_no_rek_validation_msg">Nomor rekening yang Anda masukkan harus 10-14 angka</string>
     <string name="id_camera">Kamera</string>
     <string name="id_pick_image">Pilih Foto</string>
     <string name="id_galeri">Galeri Foto</string>
@@ -91,6 +96,8 @@
     <string name="eng_otprequired_desc_1">Please wait while we are doing automatic code verification to the number : </string>
     <string name="eng_otprequired_desc_2"> or please enter the code manually if automatic verification is failed.</string>
     <string name="eng_otpfailed">Code Verification Failed</string>
+    <string name="id_otp_empty_failed">Kode OTP tidak boleh kosong. Silakan masukkan kode OTP</string>
+    <string name="en_otp_empty_failed">OTP code cannot be empty. Please input the OTP code</string>
     <string name="eng_desc_otpfailed">Please enter the code within specified time limit."</string>
     <string name="eng_incorrectotp">You have entered incorrect code. Please try again and ensure that you  enter the correct code.</string>
     <string name="bahasa_otprequired_title">Code Verification</string>

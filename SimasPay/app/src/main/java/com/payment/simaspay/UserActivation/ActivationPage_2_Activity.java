@@ -4,11 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
@@ -16,25 +13,21 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
@@ -43,12 +36,14 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+
 import simaspay.payment.com.simaspay.R;
 
 
@@ -59,23 +54,17 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
     Button lanjut;
     Dialog dialogCustomWish;
     Context context;
-    String idnumber, otpValue, sctl;
+    String idnumber, otpValue;
     String rsaKey, mobileNumber, otp, name;
-    SharedPreferences sharedPreferences, languageSettings;
-    SharedPreferences.Editor editor;
-    private AlertDialog.Builder alertbox;
+    SharedPreferences sharedPreferences;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
-    private static AlertDialog dialogBuilder, alertError;
-    static boolean isExitActivity = false;
+    private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
-    String selectedLanguage;
     String response;
-    Button button;
-    TextView textView1;
-    ProgressBar progressBar;
-    EditText editText;
+    Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,15 +72,11 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         context = this;
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        editor = sharedPreferences.edit();
         IncomingSMS.setListener(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
-        }
+        func=new Functions(this);
+        func.initiatedToolbar(this);
+
         e_Mdn = (EditText) findViewById(R.id.hand_phno);
         e_mPin = (EditText) findViewById(R.id.otp);
         text_1 = (TextView) findViewById(R.id.text_1);
@@ -130,86 +115,75 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         lanjut = (Button) findViewById(R.id.next);
 
 
-        text_5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean networkCheck = Utility.isConnectingToInternet(context);
-                if (!networkCheck) {
-                    Utility.networkDisplayDialog(
-                            getResources().getString(
-                                    R.string.bahasa_serverNotRespond), context);
+        text_5.setOnClickListener(view -> {
+            boolean networkCheck = Utility.isConnectingToInternet(context);
+            if (!networkCheck) {
+                Utility.networkDisplayDialog(
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond), context);
 
-                } else if (e_Mdn.getText().toString().equals("")) {
-                    Utility.networkDisplayDialog("SimasPay Harap masukkan nomor handphone Anda", ActivationPage_2_Activity.this);
-                } else if (e_Mdn.getText().toString().replace(" ", "")
-                        .length() < 10) {
-                    Utility.networkDisplayDialog("SimasPay Nomor handphone yang Anda masukkan harus 10-14 angka.",
-                            ActivationPage_2_Activity.this);
-                } else {
-                    mobileNumber = e_Mdn.getText().toString();
-                    new ResendOtpAsyn().execute();
-                }
-
+            } else if (e_Mdn.getText().toString().equals("")) {
+                Utility.networkDisplayDialog("SimasPay Harap masukkan nomor handphone Anda", ActivationPage_2_Activity.this);
+            } else if (e_Mdn.getText().toString().replace(" ", "")
+                    .length() < 10) {
+                Utility.networkDisplayDialog("SimasPay Nomor handphone yang Anda masukkan harus 10-14 angka.",
+                        ActivationPage_2_Activity.this);
+            } else {
+                mobileNumber = e_Mdn.getText().toString();
+                new ResendOtpAsyn().execute();
             }
+
         });
 
         lanjut.setTypeface(Utility.Robot_Regular(ActivationPage_2_Activity.this));
 
-        lanjut.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
-                boolean networkCheck = Utility.isConnectingToInternet(context);
-                if (!networkCheck) {
-                    Utility.networkDisplayDialog(
-                            getResources().getString(
-                                    R.string.bahasa_serverNotRespond), context);
+        lanjut.setOnClickListener(view -> {
+            boolean networkCheck = Utility.isConnectingToInternet(context);
+            if (!networkCheck) {
+                Utility.networkDisplayDialog(
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond), context);
 
-                } else if (e_Mdn.getText().toString().equals("")) {
-                    Utility.networkDisplayDialog("Masukkan Nomor Handphone", ActivationPage_2_Activity.this);
-                } else if (e_Mdn.getText().toString().replace(" ", "")
-                        .length() < 10) {
-                    Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
-                            ActivationPage_2_Activity.this);
-                } else if (e_mPin.getText().toString().equals("")) {
-                    Utility.networkDisplayDialog("'SimasPay Harap masukkan kode aktivasi Anda.", ActivationPage_2_Activity.this);
-                }  else if (e_mPin.getText().toString().replace(" ", "")
-                        .length() < 6) {
-                    Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka.",
-                            ActivationPage_2_Activity.this);
-                }else {
+            } else if (e_Mdn.getText().toString().equals("")) {
+                Utility.networkDisplayDialog("Masukkan Nomor Handphone", ActivationPage_2_Activity.this);
+            } else if (e_Mdn.getText().toString().replace(" ", "")
+                    .length() < 10) {
+                Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
+                        ActivationPage_2_Activity.this);
+            } else if (e_mPin.getText().toString().equals("")) {
+                Utility.networkDisplayDialog("'SimasPay Harap masukkan kode aktivasi Anda.", ActivationPage_2_Activity.this);
+            }  else if (e_mPin.getText().toString().replace(" ", "")
+                    .length() < 6) {
+                Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka.",
+                        ActivationPage_2_Activity.this);
+            }else {
 
-                    int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                    if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                        if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                != PackageManager.PERMISSION_GRANTED) {
+                int currentapiVersion = Build.VERSION.SDK_INT;
+                if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+                    if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                            != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                            != PackageManager.PERMISSION_GRANTED) {
 
-                            requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                    109);
-                        } else {
-                            mobileNumber = e_Mdn.getText().toString();
-                            otp = e_mPin.getText().toString();
-                            new ActivationAsyn().execute();
-                        }
+                        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
+                                109);
                     } else {
                         mobileNumber = e_Mdn.getText().toString();
                         otp = e_mPin.getText().toString();
                         new ActivationAsyn().execute();
                     }
+                } else {
+                    mobileNumber = e_Mdn.getText().toString();
+                    otp = e_mPin.getText().toString();
+                    new ActivationAsyn().execute();
                 }
-
             }
         });
 
 
-        text_7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = getIntent();
-                setResult(13, i);
-                finish();
-            }
+        text_7.setOnClickListener(view -> {
+            Intent i = getIntent();
+            setResult(13, i);
+            finish();
         });
 
     }
@@ -251,12 +225,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         textView1.setTypeface(Utility.LightTextFormat(context));
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogCustomWish.dismiss();
-            }
-        });
+        button.setOnClickListener(v -> dialogCustomWish.dismiss());
         dialogCustomWish.show();
 
 
@@ -283,7 +252,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         otpValue=otp;
     }
 
-    class ActivationAsyn extends AsyncTask<Void, Void, Void> {
+    private class ActivationAsyn extends AsyncTask<Void, Void, Void> {
 
         String response;
 
@@ -343,8 +312,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -396,7 +364,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         }
     }
 
-    class ResendOtpAsyn extends AsyncTask<Void, Void, Void> {
+    private class ResendOtpAsyn extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -419,7 +387,6 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressDialog.show();
         }
 
@@ -499,8 +466,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -549,9 +515,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -576,48 +540,40 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();;
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
-                    intent1.putExtra("SctlID", idnumber);
-                    intent1.putExtra("mailedOtp", otp);
-                    intent1.putExtra("mobileNumber", mobileNumber);
-                    intent1.putExtra("otpValue", otpValue);
-                    intent1.putExtra("mfaMode", "OTP");
-                    intent1.putExtra("name", name);
-                    startActivityForResult(intent1, 20);
-                }
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                otpValue=edt.getText().toString();
+                Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
+                intent1.putExtra("SctlID", idnumber);
+                intent1.putExtra("mailedOtp", otp);
+                intent1.putExtra("mobileNumber", mobileNumber);
+                intent1.putExtra("otpValue", otpValue);
+                intent1.putExtra("mfaMode", "OTP");
+                intent1.putExtra("name", name);
+                startActivityForResult(intent1, 20);
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -626,22 +582,10 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
+                    myTimer.cancel();
+                    otpValue=edt.getText().toString();
                     Intent intent1 = new Intent(ActivationPage_2_Activity.this, ActivationPage_3_Activity.class);
                     intent1.putExtra("SctlID", idnumber);
                     intent1.putExtra("mailedOtp", otp);
@@ -655,33 +599,5 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
             }
         });
         dialogBuilder.show();
-    }
-
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ActivationPage_2_Activity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
     }
 }

@@ -1,53 +1,36 @@
 package com.payment.simaspay.AgentTransfer;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
@@ -64,27 +47,23 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
     TextView title, heading, name, name_field, bank, bank_field, number, number_field, amount, amount_field, charge, charge_field, total, total_field;
     LinearLayout backlayout;
     Button confirm, Cancel;
-    static boolean isExitActivity = false;
     LinearLayout otplay, otp2lay;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
-    SharedPreferences settings, settings2, languageSettings;
+    SharedPreferences languageSettings;
     String selectedLanguage;
-    private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
-    TimerCount timerCount;
     Context context;
-    Dialog dialogCustomWish;
     ProgressDialog progressDialog;
     String OTP;
     int msgCode;
-    boolean Timervalueout;
     boolean nextpressedornot;
     SharedPreferences sharedPreferences;
-    String otpValue="",sctl;
-    private static AlertDialog dialogBuilder, alertError;
+    String otpValue="";
+    private static AlertDialog dialogBuilder;
     Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,12 +104,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         total_field = (TextView) findViewById(R.id.total_field);
         backlayout = (LinearLayout) findViewById(R.id.back_layout);
 
-        backlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        backlayout.setOnClickListener(view -> finish());
 
         progressDialog = new ProgressDialog(TransferOtherbankConfirmationActivity.this);
         progressDialog.setCancelable(false);
@@ -166,198 +140,34 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         confirm.setTypeface(Utility.Robot_Regular(TransferOtherbankConfirmationActivity.this));
         Cancel.setTypeface(Utility.Robot_Regular(TransferOtherbankConfirmationActivity.this));
 
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            @Override
-            public void onClick(View view) {
+        confirm.setOnClickListener(view -> {
 
-                if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    nextpressedornot=true;
-//                    if (Timervalueout) {
-//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
-//                    } else {
-                        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-                        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) {
+            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                nextpressedornot=true;
+                    int currentapiVersion = Build.VERSION.SDK_INT;
+                    if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+                        if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                                != PackageManager.PERMISSION_GRANTED) {
 
-                                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                                        109);
-                            } else {
-                                new requestOTPAsyncTask().execute();
-                            }
+                            requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
+                                    109);
                         } else {
                             new requestOTPAsyncTask().execute();
                         }
-//                    }
-                } else {
-//                    if (Timervalueout) {
-//                        Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
-//                    }else{
-                        //handlerforTimer.removeCallbacks(runnableforExit);
-                    new OtherBankConfirmAsyncTask().execute();
-//                    }
-                }
-
+                    } else {
+                        new requestOTPAsyncTask().execute();
+                    }
+            } else {
+                new OtherBankConfirmAsyncTask().execute();
             }
+
         });
 
-        Cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-        //handlerforTimer.postDelayed(runnableforExit, 90000);
-        //dialogCustomWish = new Dialog(context);
+        Cancel.setOnClickListener(view -> finish());
     }
 
-    /**
-    Handler handlerforTimer = new Handler();
-    Runnable runnableforExit = new Runnable() {
-        @Override
-        public void run() {
-            try {
-                unregisterReceiver(broadcastReceiver);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            if(progressDialog!=null){
-                progressDialog.dismiss();
-            }
-            if(dialogCustomWish.isShowing()){
-                dialogCustomWish.dismiss();
-            }
-            Timervalueout = true;
-//            Utility.displayDialog(getResources().getString(R.string.SMS_notreceived_message), TransferOtherbankConfirmationActivity.this);
-
-        }
-    };
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        try {
-            unregisterReceiver(broadcastReceiver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //registerReceiver(broadcastReceiver, new IntentFilter("com.send"));
-    }
-
-    public void displayDialog(String msg, Context ctx) {
-
-
-        final Dialog dialog = new Dialog(TransferOtherbankConfirmationActivity.this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.resend_otp_dialog);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        TextView TextView1 = (TextView) dialog.findViewById(R.id.number_1);
-        TextView1.setText(msg);
-
-        TextView textView=(TextView)dialog.findViewById(R.id.number);
-
-        textView.setTypeface(Utility.Robot_Regular(ctx));
-        TextView1.setTypeface(Utility.Robot_Light(ctx));
-
-        textView.setText(ctx.getResources().getString(R.string.dailog_heading));
-
-
-        Button okay = (Button) dialog.findViewById(R.id.OK);
-        okay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Cancel();
-            }
-        });
-        dialog.show();
-    }
-    **/
-
-    /**
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            try {
-                if(intent.getExtras().getString("value").equalsIgnoreCase("0")){
-                    Cancel();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("1")) {
-                    otpValue = intent.getExtras().getString("otpValue");
-                    new OtherBankLakuPandaiAsynTask().execute();
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("2")){
-                    displayDialog("Silakan masukkan kode OTP sebelum batas waktu yang ditentukan.",TransferOtherbankConfirmationActivity.this);
-                }else if(intent.getExtras().getString("value").equalsIgnoreCase("3")){
-                    displayDialog(intent.getExtras().getString("otpValue"),TransferOtherbankConfirmationActivity.this);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
-
-
-    void Cancel(){
-        try {
-            unregisterReceiver(broadcastReceiver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            handlerforTimer.removeCallbacks(runnableforExit);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Intent intent1 = getIntent();
-        setResult(RESULT_OK, intent1);
-        finish();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            try {
-                unregisterReceiver(broadcastReceiver);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            try {
-                handlerforTimer.removeCallbacks(runnableforExit);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Intent intent = getIntent();
-            setResult(RESULT_CANCELED, intent);
-            finish();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 10) {
-            if (resultCode == RESULT_OK) {
-                
-                Intent intent = getIntent();
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        }
-    }
-    **/
-
-    class OtherBankConfirmAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class OtherBankConfirmAsyncTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -438,8 +248,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -447,17 +256,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setMessage(responseContainer.getMsg());
-                    alertbox.setCancelable(false);
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
-                    });
-                    alertbox.show();
+                    func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
                 } else if (msgCode == 293 || msgCode==81) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
@@ -477,26 +276,16 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                         progressDialog.dismiss();
                     }
                     if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(
-                                sharedPreferences.getString(
-                                        "ErrorMessage",
-                                        getResources()
-                                                .getString(
-                                                        R.string.server_error_message)),
-                                TransferOtherbankConfirmationActivity.this);
+                        func.errorNullResponseConfirmation();
                     } else {
-                        Utility.networkDisplayDialog(
-                                responseContainer.getMsg(), TransferOtherbankConfirmationActivity.this);
+                        func.errorElseResponseConfirmation(responseContainer.getMsg());
                     }
                 }
             } else {
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), TransferOtherbankConfirmationActivity.this);
+                func.errorNullResponseConfirmation();
             }
         }
     }
@@ -506,11 +295,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //handlerforTimer.removeCallbacks(runnableforExit);
-                //timerCount=new TimerCount(TransferOtherbankConfirmationActivity.this,getIntent().getExtras().getString("sctlID"));
-                //timerCount.SMSAlert("");
-            } else {
-
+                Log.d(LOG_TAG, "permission granted");
             }
         }
     }
@@ -564,6 +349,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
+                        AlertDialog.Builder alertbox;
                         if (msgCode == 631) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -571,12 +357,10 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                             });
                             alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
@@ -593,12 +377,10 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                         }else{
                             alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, UserHomeActivity.class);
-                                    startActivity(intent);
-                                    TransferOtherbankConfirmationActivity.this.finish();
-                                }
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, UserHomeActivity.class);
+                                startActivity(intent);
+                                TransferOtherbankConfirmationActivity.this.finish();
                             });
                             alertbox.show();
                         }
@@ -633,15 +415,10 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sharedPreferences.getString("mobileNumber", "")+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -660,46 +437,33 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    isExitActivity = true;
-                    otpValue=edt.getText().toString();
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    new OtherBankConfirmAsyncTask().execute();
-                }
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                otpValue=edt.getText().toString();
+                new OtherBankConfirmAsyncTask().execute();
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -708,25 +472,14 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
+                    myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
                     }
-
                     new OtherBankConfirmAsyncTask().execute();
 
                 }
@@ -736,198 +489,10 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         dialogBuilder.show();
     }
 
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
-    }
-
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
-    }
-
-
-    class TransferemoneyConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progressDialog;
-        String response;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-            sharedPreferences.edit().putString("profileId", "").apply();
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-            Map<String, String> mapContainer = new HashMap<String, String>();
-            mapContainer.put("service", "Bank");
-            Log.d(LOG_TAG,"service Wallet");
-            mapContainer.put("txnName", "InterBankTransfer");
-            Log.d(LOG_TAG,"txnName InterBankTransfer");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG,"institutionID "+Constants.CONSTANT_INSTITUTION_ID);
-            //mapContainer.put("authenticationKey", "");
-            //Log.d(LOG_TAG,"authenticationKey ");
-            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
-            Log.d(LOG_TAG,"sourceMDN "+sharedPreferences.getString("mobileNumber", ""));
-            //mapContainer.put("sourcePIN", sharedPreferences.getString("mobileNumber", ""));
-            //Log.d(LOG_TAG,"sourcePIN "+sharedPreferences.getString("mobileNumber", ""));
-            //mapContainer.put("destMDN", "");
-            //Log.d(LOG_TAG,"destMDN "+"");
-            //mapContainer.put("destBankAccount", stMDN);
-            //Log.d(LOG_TAG,"destBankAccount "+stMDN);
-            //mapContainer.put(Constants.PARAMETER_DEST_ACCOUNT_NO, getIntent().getExtras().getString("DestMDN"));
-            mapContainer.put("transferID", stTransferID);
-            Log.d(LOG_TAG,"transferID "+stTransferID);
-            //mapContainer.put("bankID", "");
-            //Log.d(LOG_TAG,"bankID ");
-            mapContainer.put("parentTxnID", stParentTxnID);
-            Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
-            mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
-            Log.d(LOG_TAG,"confirmed true");
-            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG,"channelID 7");
-            mapContainer.put("sourcePocketCode", "1");
-            Log.d(LOG_TAG,"sourcePocketCode 1");
-            //mapContainer.put("destPocketCode", "2");
-            //Log.d(LOG_TAG,"destPocketCode 2");
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
-            }else{
-                mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
-            }
-            Log.d(LOG_TAG,"mfaOtp "+CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
-            Log.d(LOG_TAG,"otp "+ otpValue);
-            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    TransferOtherbankConfirmationActivity.this);
-            response = webServiceHttp.getResponseSSLCertificatation();
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog = new ProgressDialog(TransferOtherbankConfirmationActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-            if (response != null) {
-                Log.e("-------", "=====" + response);
-                XMLParser obj = new XMLParser();
-                EncryptedResponseDataContainer responseDataContainer = null;
-                try {
-                    responseDataContainer = obj.parse(response);
-                    //Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
-
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
-                }
-                try {
-                    if (responseDataContainer != null) {
-                        Log.d("test", "not null");
-                        int msgCode = 0;
-
-                        try {
-                            msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
-                        } catch (Exception e) {
-                            msgCode = 0;
-                        }
-
-                        if (msgCode == 631) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
-                        }else if(msgCode==81){
-                            /**
-                            Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, TransferEmoneyNotificationActivity.class);
-                            intent.putExtra("destmdn", stMDN);
-                            intent.putExtra("amount", stAmount);
-                            intent.putExtra("destName", stFullname);
-                            intent.putExtra("transactionID", responseDataContainer.getSctl());
-                            startActivity(intent);
-                             **/
-                            Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, TransferOtherBankSuccessActivity.class);
-                            intent.putExtra("amount",getIntent().getExtras().getString("amount"));
-                            intent.putExtra("originalamount",getIntent().getExtras().getString("originalamount"));
-                            intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
-                            intent.putExtra("transferID",responseDataContainer.getEncryptedTransferId());
-                            intent.putExtra("sctlID",responseDataContainer.getSctl());
-                            intent.putExtra("Name",getIntent().getExtras().getString("Name"));
-                            intent.putExtra("BankName",getIntent().getExtras().getString("BankName"));
-                            intent.putExtra("BankCode",getIntent().getExtras().getString("BankCode"));
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivityForResult(intent, 10);
-                            TransferOtherbankConfirmationActivity.this.finish();
-                        }else{
-                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                            dialogBuilder.dismiss();
-                        }
-                    }
-                }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
-                }
-            }else{
-                if (progressDialog != null) {
-                    progressDialog.dismiss();
-                }
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), TransferOtherbankConfirmationActivity.this);
-            }
-        }
     }
 }

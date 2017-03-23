@@ -94,25 +94,28 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         amount.setTypeface(Utility.Robot_Light(TransferEmoneyToEmoneyActivity.this));
 
         submit.setTypeface(Utility.Robot_Regular(TransferEmoneyToEmoneyActivity.this));
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(tujuan.getText().toString().replace(" ", "").length()==0) {
-                    tujuan.setError("Harap masukkan Nomor Handphone Tujuan");
-                    return;
-                }else if(amount.getText().toString().replace(" ", "").length()==0) {
-                    amount.setError("Harap masukkan jumlah yang ingin Anda transfer");
-                    return;
-                }else if(pin.getText().toString().length()==0){
-                    pin.setError("Harap masukkan mPIN Anda");
-                    return;
-                }else{
-                    pinValue=func.generateRSA(pin.getText().toString());
-                    destmdn = (tujuan.getText().toString().replace(" ", ""));
-                    amountValue = amount.getText().toString().replace("Rp ", "");
+        submit.setOnClickListener(view -> {
+            if(tujuan.getText().toString().replace(" ", "").length()==0) {
+                tujuan.setError(getResources().getString(R.string.id_masukkan_no_hp));
+                return;
+            }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
+                tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                return;
+            }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
+                tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                return;
+            }else if(amount.getText().toString().replace(" ", "").length()==0) {
+                amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
+                return;
+            }else if(pin.getText().toString().length()==0){
+                pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                return;
+            }else{
+                pinValue=func.generateRSA(pin.getText().toString());
+                destmdn = (tujuan.getText().toString().replace(" ", ""));
+                amountValue = amount.getText().toString().replace("Rp ", "");
 
-                    new inquiryAsyncTask().execute();
-                }
+                new inquiryAsyncTask().execute();
             }
         });
     }

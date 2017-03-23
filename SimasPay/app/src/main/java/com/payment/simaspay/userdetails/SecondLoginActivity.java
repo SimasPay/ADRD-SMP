@@ -20,8 +20,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.payment.simaspay.AgentTransfer.TransferOtherbankConfirmationActivity;
-import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.AppConfigFile;
@@ -306,11 +304,9 @@ public class SecondLoginActivity extends AppCompatActivity {
                 }else if(msgCode == 2315) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(SecondLoginActivity.this, ChangePinActivity.class);
-                            startActivity(intent);
-                        }
+                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                        Intent intent = new Intent(SecondLoginActivity.this, ChangePinActivity.class);
+                        startActivity(intent);
                     });
                     alertbox.show();
                 }else if(msgCode == 2182) {

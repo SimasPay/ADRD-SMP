@@ -1,27 +1,21 @@
 package com.payment.simaspay.Cash_InOut;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -30,11 +24,11 @@ import android.widget.TextView;
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
-import com.payment.simaspay.services.TimerCount;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
@@ -44,44 +38,33 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 1/29/2016.
- */
 public class CashOutConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field;
     Button cancel, confirmation;
     LinearLayout back;
-    boolean Timervalueout;
-    String otpValue = "", sctl;
-    SharedPreferences sharedPreferences;
+    String otpValue = "";
+    SharedPreferences sharedPreferences, languageSettings;
     ProgressDialog progressDialog;
     Context context;
-    Dialog dialogCustomWish;
     String OTP;
     int msgCode;
     private static final String LOG_TAG = "SimasPay";
-    static boolean isExitActivity = false;
     LinearLayout otplay, otp2lay;
     private EditText edt;
-    SharedPreferences settings, settings2, languageSettings;
     String selectedLanguage;
     private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stCharges, stName, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
-    TimerCount timerCount;
-    private static AlertDialog dialogBuilder, alertError;
+    private static AlertDialog dialogBuilder;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
         setContentView(R.layout.commonconfirmation);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.dark_red));
-        }
+        func = new Functions(this);
+        func.initiatedToolbar(this);
 
         IncomingSMS.setListener(CashOutConfirmationActivity.this);
 
@@ -168,26 +151,11 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
 
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        cancel.setOnClickListener(view -> finish());
 
-        confirmation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new requestOTPAsyncTask().execute();
-            }
-        });
+        confirmation.setOnClickListener(view -> new requestOTPAsyncTask().execute());
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
 
     }
 
@@ -199,14 +167,12 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                 Intent intent = getIntent();
                 setResult(10, intent);
                 finish();
-            } else {
-
             }
         }
     }
 
 
-    class CashOutAsynTask extends AsyncTask<Void, Void, Void> {
+    private class CashOutAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -281,12 +247,10 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     }
                     alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
+                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                        Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     });
                     alertbox.show();
                 } else if (msgCode == 298) {
@@ -330,7 +294,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         }
     }
 
-    class CashOutConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class CashOutConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -410,16 +374,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
+                            func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                         }else if(msgCode==709){
                             Intent intent = new Intent(CashOutConfirmationActivity.this, CashoutSuccessActivity.class);
                             intent.putExtra("amount", getIntent().getExtras().getString("amount"));
@@ -431,14 +386,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                         }else{
-                            alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
+                            func.errorElseResponseConfirmation(responseDataContainer.getMsg());
                         }
                     }
                 }catch (Exception e) {
@@ -446,10 +394,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                 }
             }else {
                 progressDialog.dismiss();
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), CashOutConfirmationActivity.this);
+                func.errorNullResponseConfirmation();
             }
         }
     }
@@ -525,12 +470,10 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             }
                             alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                Intent intent = new Intent(CashOutConfirmationActivity.this, SecondLoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                             });
                             alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
@@ -547,11 +490,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                         }else{
                             alertbox = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
                             alertbox.show();
                         }
                     }
@@ -583,15 +522,10 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sharedPreferences.getString("mobileNumber", "")+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -610,7 +544,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
@@ -619,42 +553,31 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             @Override
             public void onClick(View v) {
                 dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
+                myTimer.cancel();
             }
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    isExitActivity = true;
-                    otpValue=edt.getText().toString();
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    String account = sharedPreferences.getString("useas","");
-                    if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
-                        new CashOutAsynTask().execute();
-                    }else{
-                        new CashOutConfirmationAsyncTask().execute();
-                    }
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                otpValue=edt.getText().toString();
+                if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
+                    new CashOutAsynTask().execute();
+                }else{
+                    new CashOutConfirmationAsyncTask().execute();
                 }
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -663,68 +586,21 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
+                    myTimer.cancel();
 
                     if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                         new CashOutAsynTask().execute();
                     }else{
                         new CashOutConfirmationAsyncTask().execute();
                     }
-                    //new TransferEmoneyConfirmationActivity.TransferConfirmationAsyncTask().execute();
-
                 }
 
             }
         });
         dialogBuilder.show();
-    }
-
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(CashOutConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            dialog.dismiss();
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
     }
 }

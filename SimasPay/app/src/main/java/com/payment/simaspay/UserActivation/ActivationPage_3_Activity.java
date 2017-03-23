@@ -89,30 +89,27 @@ public class ActivationPage_3_Activity extends AppCompatActivity {
 
         lanjut.setTypeface(Utility.Robot_Regular(ActivationPage_3_Activity.this));
 
-        lanjut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (e_pin.getText().toString().replace(" ", "").length() == 0) {
-                    Utility.displayDialog("Masukkan mPIN", ActivationPage_3_Activity.this);
-                } else if (e_pin.getText().toString().replace(" ", "").length() < 6) {
-                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
-                } else if (e_con_mPin.getText().toString().replace(" ", "").length() == 0) {
-                    Utility.displayDialog("Masukkan Konfirmasi mPIN", ActivationPage_3_Activity.this);
-                }else if (e_con_mPin.getText().toString().replace(" ", "").length() < 6) {
-                    Utility.displayDialog("Konfirmasi "+getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
-                } else if (!e_pin.getText().toString().equals(e_con_mPin.getText().toString())) {
-                    Utility.displayDialog("SimasPay mPIN dan konfirmasi mPIN yang Anda masukkan harus sama.", ActivationPage_3_Activity.this);
+        lanjut.setOnClickListener(view -> {
+            if (e_pin.getText().toString().replace(" ", "").length() == 0) {
+                Utility.displayDialog("Masukkan mPIN", ActivationPage_3_Activity.this);
+            } else if (e_pin.getText().toString().replace(" ", "").length() < 6) {
+                Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
+            } else if (e_con_mPin.getText().toString().replace(" ", "").length() == 0) {
+                Utility.displayDialog("Masukkan Konfirmasi mPIN", ActivationPage_3_Activity.this);
+            }else if (e_con_mPin.getText().toString().replace(" ", "").length() < 6) {
+                Utility.displayDialog("Konfirmasi "+getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
+            } else if (!e_pin.getText().toString().equals(e_con_mPin.getText().toString())) {
+                Utility.displayDialog("SimasPay mPIN dan konfirmasi mPIN yang Anda masukkan harus sama.", ActivationPage_3_Activity.this);
+            } else {
+                pin = e_pin.getText().toString();
+                ConfirmPin = e_con_mPin.getText().toString();
+                if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+                    otpValue = getIntent().getExtras().getString("otpValue");
                 } else {
-                    pin = e_pin.getText().toString();
-                    ConfirmPin = e_con_mPin.getText().toString();
-                    if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                        otpValue = getIntent().getExtras().getString("otpValue");
-                    } else {
-                        otpValue = "";
-                    }
-                    mailedOtp = getIntent().getExtras().getString("mailedOtp");
-                    new ActivationAsyn().execute();
+                    otpValue = "";
                 }
+                mailedOtp = getIntent().getExtras().getString("mailedOtp");
+                new ActivationAsyn().execute();
             }
         });
     }
@@ -140,7 +137,7 @@ public class ActivationPage_3_Activity extends AppCompatActivity {
 
     int msgCode;
 
-    class ActivationAsyn extends AsyncTask<Void, Void, Void> {
+    private class ActivationAsyn extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 

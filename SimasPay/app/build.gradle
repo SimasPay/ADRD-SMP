@@ -9,7 +9,7 @@ android {
         applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 47
+        versionCode 50
         versionName "1.0.0"
         multiDexEnabled true
         jackOptions {
@@ -56,5 +56,7 @@ dependencies {
     compile 'testfairy:testfairy-android-sdk:1.+@aar'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
+    //compile 'me.villani.lorenzo.android:android-cropimage:1.1.+'
     //compile 'com.afollestad:material-camera:0.4.4'
+    compile project(path: ':CropImageLib')
 }

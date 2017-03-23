@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="simaspay.payment.com.simaspay"
-    android:versionCode="47"
+    android:versionCode="50"
     android:versionName="1.0.0" >
 
     <uses-sdk
@@ -35,7 +35,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REAL_GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -55,16 +55,21 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:theme="@style/AppTheme" >
-        <receiver android:name="com.payment.simaspay.rec.IncomingSms" >
+        <receiver
+            android:name="com.payment.simaspay.rec.IncomingSms"
+            android:permission="android.permission.READ_SMS" >
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.payment.simaspay.receivers.IncomingSMS" >
+        <receiver
+            android:name="com.payment.simaspay.receivers.IncomingSMS"
+            android:permission="android.permission.READ_SMS" >
             <intent-filter android:priority="900" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -137,6 +142,11 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="simaspay.payment.com.simaspay.UserHomeActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.android.camera.CropImage"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
@@ -394,47 +404,47 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.ProviderNamesListActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.ProviderNamesListActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.BillersListActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.BillersListActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PaymentDetailsActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentDetailsActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PaymentConfirmationActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentConfirmationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PaymentSuccessActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentSuccessActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PerchaseDetailsActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PerchaseConfirmationActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PurchaseConfirmationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.payment.simaspay.PaymentPerchaseAccount.PerchaseSuccessActivity"
+            android:name="com.payment.simaspay.PaymentPurchaseAccount.PurchaseSuccessActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
@@ -518,11 +528,6 @@
             android:theme="@style/PayByQRTheme.NoActionBar.TranslucentStatus" />
         <activity
             android:name="com.dimo.PayByQR.QrStore.view.StoreDetailActivity"
-            android:configChanges="layoutDirection|locale"
-            android:screenOrientation="portrait"
-            android:theme="@style/PayByQRTheme.NoActionBar.TranslucentStatus" />
-        <activity
-            android:name="com.dimo.PayByQR.QrStore.view.StoreCheckout"
             android:configChanges="layoutDirection|locale"
             android:screenOrientation="portrait"
             android:theme="@style/PayByQRTheme.NoActionBar.TranslucentStatus" />

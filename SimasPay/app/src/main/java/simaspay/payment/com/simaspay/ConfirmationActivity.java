@@ -2,11 +2,8 @@ package simaspay.payment.com.simaspay;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,8 +11,6 @@ import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,9 +26,8 @@ import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -49,23 +43,24 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
     String stFullname, stEmail, stMPIN, stConfMPIN, stQuestion, stAnswer, sourceMDN;
     TextView lbl_name, lbl_email, lbl_mdn;
     Button benar_btn, salah_btn;
-    private AlertDialog.Builder alertbox;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
-    private static AlertDialog dialogBuilder, alertError;
-    static boolean isExitActivity = false;
+    private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
     Context context;
-    SharedPreferences settings2, languageSettings;
+    SharedPreferences languageSettings;
     String rsaKey;
     String pin, otpValue;
     String selectedLanguage;
+    Functions func;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        func=new Functions(this);
+        func.initiatedToolbar(this);
+        if (android.os.Build.VERSION.SDK_INT > 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -93,19 +88,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             lbl_email.setText(stEmail);
             lbl_mdn.setText(sourceMDN);
         }
-        benar_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new reqSMSAsyncTask().execute();
-            }
-        });
-        salah_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                //Intent intent = new Intent(ConfirmationActivity.this, RegistrationNonKYCActivity.class);
-                //startActivity(intent);
-            }
+        benar_btn.setOnClickListener(view -> new reqSMSAsyncTask().execute());
+        salah_btn.setOnClickListener(view -> {
+            finish();
         });
 
     }
@@ -117,7 +102,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         otpValue=otp;
     }
 
-    class reqSMSAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class reqSMSAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -176,30 +161,12 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
 
     }
 
-    class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            String deviceModel = null, osVersion = null, deviceManufacture;
-            try {
-                osVersion = android.os.Build.VERSION.RELEASE;
-                deviceModel = android.os.Build.MODEL;
-                deviceManufacture = android.os.Build.MANUFACTURER;
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-
-            PackageInfo pInfo = null;
-            try {
-                pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            } catch (PackageManager.NameNotFoundException e1) {
-                e1.printStackTrace();
-            }
-            String version = pInfo.versionName;
-
-            int verCode = pInfo.versionCode;
             SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
             sharedPreferences.edit().putString("profileId", "").apply();
             String module = sharedPreferences.getString("MODULE", "NONE");
@@ -276,16 +243,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             startActivity(intent);
                             ConfirmationActivity.this.finish();
                         }else{
-                            alertbox = new AlertDialog.Builder(ConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(ConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    dialogBuilder.dismiss();
-                                    //Intent intent = new Intent(ConfirmationActivity.this, LandingScreenActivity.class);
-                                    //startActivity(intent);
-                                    //ConfirmationActivity.this.finish();
-                                }
-                            });
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> dialogBuilder.dismiss());
                             alertbox.show();
                         }
                     }
@@ -313,9 +273,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -340,45 +298,35 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
 
             @Override
             public void onFinish() {
-                errorOTP();
+                func.errorOTP();
                 timer.setText("00:00");
             }
         };
         myTimer.start();
-        cancel_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialogBuilder.dismiss();
-                settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
-            }
+        cancel_otp.setOnClickListener(v -> {
+            dialogBuilder.dismiss();
+            myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
-        ok_otp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
-                    errorOTP();
-                } else {
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                    isExitActivity = true;
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
-                    new ConfirmationActivity.RegisterAsyncTask().execute();
+        ok_otp.setOnClickListener(v -> {
+            if (edt.getText() == null || edt.getText().toString().equals("")) {
+                func.errorEmptyOTP();
+            } else {
+                myTimer.cancel();
+                if(otpValue==null||otpValue.equals("")){
+                    otpValue=edt.getText().toString();
                 }
+                new RegisterAsyncTask().execute();
             }
         });
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
@@ -387,76 +335,17 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Check if edittext is empty
-                if (TextUtils.isEmpty(s)) {
-                    // Disable ok button
-                    //ok_otp.setEnabled(false);
-                } else {
-                    // Something into edit text. Enable the button.
-                    //ok_otp.setEnabled(true);
-                }
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
-                    if (myTimer != null) {
-                        myTimer.cancel();
-                    }
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
-                    }
+                    myTimer.cancel();
+                    otpValue=edt.getText().toString();
                     dialogBuilder.dismiss();
                     new ConfirmationActivity.RegisterAsyncTask().execute();
-                    /**
-                     isExitActivity = true;
-                     settings2 = getSharedPreferences(LOG_TAG, 0);
-                     String activityName = settings2.getString("ActivityName", "");
-                     Log.d(LOG_TAG, "ActivityName : " + activityName);
-                     if (activityName.equals("RegistrationNonKYC")) {
-                     new RegisterAsyncTask().execute();
-                     }
-                     **/
                 }
 
             }
         });
         dialogBuilder.show();
-    }
-
-    public void errorOTP() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ConfirmationActivity.this, R.style.MyAlertDialogStyle);
-        builder.setCancelable(false);
-        if (selectedLanguage.equalsIgnoreCase("ENG")) {
-            builder.setTitle(getResources().getString(R.string.eng_otpfailed));
-            builder.setMessage(getResources().getString(R.string.eng_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            //Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            //startActivity(intent);
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        } else {
-            builder.setTitle(getResources().getString(R.string.bahasa_otpfailed));
-            builder.setMessage(getResources().getString(R.string.bahasa_desc_otpfailed)).setCancelable(false)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitConfirmationScreen").apply();
-                            isExitActivity = true;
-                            //Intent intent = new Intent(ConfirmationActivity.this, SecondLoginActivity.class);
-                            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            //startActivity(intent);
-                            dialogBuilder.dismiss();
-                        }
-                    });
-        }
-        alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
     }
 
 }

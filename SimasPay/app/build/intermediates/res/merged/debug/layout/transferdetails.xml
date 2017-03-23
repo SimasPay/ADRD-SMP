@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Transfer - Bank Sinarmas"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
     </RelativeLayout>
 
     <ScrollView

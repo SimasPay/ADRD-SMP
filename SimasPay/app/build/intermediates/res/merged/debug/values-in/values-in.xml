@@ -15,6 +15,36 @@
         <item>ALAMAT</item>
         <item>TOKO</item>
     </string-array>
+    <string-array name="pref_gallery_size_choices">
+        <!-- size choice of "large" -->
+        <item>Besar</item>
+        <!-- size choice of "small" -->
+        <item>Kecil</item>
+    </string-array>
+    <string-array name="pref_gallery_slideshow_interval_choices">
+        <!-- slide show interval "N seconds" where N is 2 -->
+        <item>2 detik</item>
+        <!-- slide show interval "N seconds" where N is 3 -->
+        <item>3 detik</item>
+        <!-- slide show interval "N seconds" where N is 4 -->
+        <item>4 detik</item>
+    </string-array>
+    <string-array name="pref_gallery_slideshow_transition_choices">
+        <!-- Slide show transition to fade in and fade out -->
+        <item>Fade in &amp; out</item>
+        <!-- Slide show transition to slide in and out from the left and right -->
+        <item>Slide left - right</item>
+        <!-- Slide show transition to slide in and out from the top and bottom -->
+        <item>Slide up - down</item>
+        <!-- Slide show transition to be chosen randomly -->
+        <item>Pilihan random</item>
+    </string-array>
+    <string-array name="pref_gallery_sort_choices">
+        <!-- Preference choice to show "newest first" -->
+        <item>Paling baru</item>
+        <!-- Preference choice to show "newest last" -->
+        <item>Paling lama</item>
+    </string-array>
     <string msgid="4600421777120114993" name="abc_action_bar_home_description">"Navigasi ke beranda"</string>
     <string msgid="1397052879051804371" name="abc_action_bar_home_description_format">"%1$s, %2$s"</string>
     <string msgid="6623331958280229229" name="abc_action_bar_home_subtitle_description_format">"%1$s, %2$s, %3$s"</string>
@@ -41,6 +71,8 @@
     <string name="alertdialog_posBtn_hapus">Hapus</string>
     <string name="alertdialog_posBtn_ok">OK</string>
     <string name="alertdialog_title_info">Info</string>
+    <string name="all_images">Semua gambar</string>
+    <string name="all_videos">Semua video</string>
     <string name="bt_store_add_more">TAMBAH BARANG</string>
     <string name="bt_store_add_to_cart">TAMBAH KE KERANJANG</string>
     <string name="bt_store_checkout">PROSES KERANJANG</string>
@@ -59,6 +91,19 @@
     <string name="button_retry">Coba Lagi</string>
     <string name="button_tip">BERI TIP</string>
     <string name="button_yes">Ya</string>
+    <string name="camera_attach">Lampirkan</string>
+    <string name="camera_cancel">Batalkan</string>
+    <string name="camera_crop">Potong</string>
+    <string name="camera_label">Kamera</string>
+    <string name="camera_pick_wallpaper">Gambar</string>
+    <string name="camera_play">Mainkan</string>
+    <string name="camera_set">Set sebagai</string>
+    <string name="camera_setas_wallpaper">Wallpaper</string>
+    <string name="camera_share">Bagikan</string>
+    <string name="camera_toss">Hapus</string>
+    <string name="camerasettings">Pengaturan</string>
+    <string name="capture_picture">Menangkap gambar</string>
+    <string name="capture_video">Menangkap video</string>
     <string name="cart_name_placeholder">Qr Store</string>
     <string msgid="8585111718777012708" name="common_google_play_services_enable_button">"Aktifkan"</string>
     <string msgid="7045129128108380659" name="common_google_play_services_enable_text">"<ns1:g id="APP_NAME">%1$s</ns1:g> tidak akan berfungsi jika layanan Google Play tidak diaktifkan."</string>
@@ -77,9 +122,41 @@
     <string msgid="5201977337835724196" name="common_open_on_phone">"Buka di ponsel"</string>
     <string msgid="3441753203274453993" name="common_signin_button_text">"Masuk"</string>
     <string msgid="669893613918351210" name="common_signin_button_text_long">"Masuk dengan Google"</string>
+    <string name="confirm_delete_message">Hapus gambar ini?</string>
+    <string name="confirm_delete_multiple_message">Hapus gambar-gambar ini?</string>
+    <string name="confirm_delete_title">Hapus</string>
+    <string name="confirm_delete_video_message">Hapus video ini?</string>
+    <string name="context_menu_header">Pilihan gambar</string>
+    <string name="crop_discard_text">Buang</string>
+    <string name="crop_label">Potong</string>
+    <string name="crop_save_text">Simpan</string>
     <string msgid="3968620852217927702" name="day_picker_description">"Kisi hari pada bulan"</string>
     <string name="default_pin">0000</string>
+    <string name="delete_images_message">Menghapus gambar\u2026</string>
     <string msgid="6908431551612331381" name="deleted_key">"<ns1:g id="KEY">%1$s</ns1:g> dihapus"</string>
+    <string name="details">Detail</string>
+    <string name="details_bit_rate">Bit rate:</string>
+    <string name="details_codec">Codec:</string>
+    <string name="details_date_taken">Tanggal diambil:</string>
+    <string name="details_dimension_x"><ns1:g example="640" id="width">%1$d</ns1:g> x <ns1:g example="480" id="height">%2$d</ns1:g></string>
+    <string name="details_duration">Durasi:</string>
+    <string name="details_file_size">Ukuran file:</string>
+    <string name="details_format">Format:</string>
+    <string name="details_fps"><ns1:g example="30" id="frames">%1$d</ns1:g> fps</string>
+    <string name="details_frame_rate">Frame rate:</string>
+    <string name="details_hms"><ns1:g id="hours">%1$d</ns1:g>:<ns1:g id="minutes">%2$02d</ns1:g>:<ns1:g id="seconds">%3$02d</ns1:g></string>
+    <string name="details_image_latitude">GPS lintang:</string>
+    <string name="details_image_location">Lokasi:</string>
+    <string name="details_image_longitude">GPS bujur:</string>
+    <string name="details_image_make">Produsen:</string>
+    <string name="details_image_model">Model:</string>
+    <string name="details_image_resolution">Resolusi:</string>
+    <string name="details_image_whitebalance">Keseimbangan warna putih:</string>
+    <string name="details_kbps"><ns1:g example="192" id="speed">%1$d</ns1:g> Kbps</string>
+    <string name="details_mbps"><ns1:g example="2.3" id="speed">%1$g</ns1:g> Mbps</string>
+    <string name="details_ms"><ns1:g id="minutes">%1$02d</ns1:g>:<ns1:g id="seconds">%2$02d</ns1:g></string>
+    <string name="details_ok">OK</string>
+    <string name="details_panel_title">Detail</string>
     <string msgid="7007948707597430919" name="done_label">"Selesai"</string>
     <string name="error_JSON_parser">Mohon maaf, terjadi gangguan pada sistem kami. Mohon coba beberapa saat lagi.</string>
     <string name="error_SDK_no_listener">Gagal memulai SDK: Listener tidak ditemukan.</string>
@@ -108,6 +185,7 @@
     <string name="error_transaction_canceled">Transaksi ini telah dibatalkan. Silakan hubungi kasir untuk konfirmasi.</string>
     <string name="error_transaction_expired">QR expired dikarenakan batas waktu transaksi telah habis. Silakan minta dibuatkan QR yang baru.</string>
     <string name="error_unknown">Mohon maaf, terjadi gangguan pada sistem kami. Mohon coba beberapa saat lagi.</string>
+    <string name="file_info_title">File info:</string>
     <string name="font_helvetica">font/HelveticaNeue.ttf</string>
     <string name="font_helvetica_light">font/HelveticaNeue-Light.ttf</string>
     <string name="font_helvetica_medium">font/HelveticaNeue-Medium.ttf</string>
@@ -115,24 +193,84 @@
     <string name="font_montserrat_bold">font/Montserrat-Bold.ttf</string>
     <string name="font_montserrat_light">font/Montserrat-Light.ttf</string>
     <string name="font_montserrat_thin">font/Montserrat-Thin.ttf</string>
+    <string name="gadget_title">Frame gambar</string>
+    <string name="gallery_camera_bucket_name">Gambar</string>
+    <string name="gallery_camera_media_bucket_name">Media</string>
+    <string name="gallery_camera_videos_bucket_name">Video</string>
+    <string name="gallery_label">Galeri</string>
+    <string name="gallery_picker_label">Galeri</string>
     <string msgid="7586639618712934060" name="hour_picker_description">"Penggeser putar jam"</string>
+    <string name="image_gallery_NoImageView_text">Tidak ada media.</string>
     <string msgid="2674929164900463786" name="item_is_selected">"<ns1:g id="ITEM">%1$s</ns1:g> dipilih"</string>
+    <string name="loading_video">Menunggu video\u2026</string>
     <string msgid="6024811202872705251" name="minute_picker_description">"Penggeser putar menit"</string>
+    <string name="movieviewlabel">Film</string>
+    <string name="multiface_crop_help">Sentuh wajah untuk memulai.</string>
+    <string name="multiselect">Memilih banyak</string>
+    <string name="multiselect_cancel">Batalkan</string>
+    <string name="multiselect_delete">Hapus</string>
+    <string name="multiselect_share">Bagikan</string>
+    <string name="no_location_image">Tidak ada informasi lokasi di gambar ini.</string>
+    <string name="no_storage" product="default">Anda harus memasukkan media penyimpanan sebelum menggunakan kamera.</string>
+    <string name="no_way_to_share">Tidak ada aplikasi untuk membagikan media.</string>
+    <string name="no_way_to_share_image">Tidak ada aplikasi untuk membagikan gambar.</string>
+    <string name="no_way_to_share_video">Tidak ada aplikasi untuk membagikan video.</string>
+    <string name="not_enough_space" product="default">Media penyimpanan penuh.</string>
+    <string name="photos_gallery_title">Galeri</string>
+    <string name="pick_photos_gallery_title">Pilih gambar</string>
+    <string name="pick_videos_gallery_title">Pilih video</string>
     <string name="pilih_kota">Pilih Kota</string>
     <string name="pilih_toko">Pilih Toko</string>
+    <string name="pref_gallery_category">Pengaturan umum</string>
+    <string name="pref_gallery_confirm_delete_summary">Tampilkan konfirmasi sebelum menghapus gambar atau video</string>
+    <string name="pref_gallery_confirm_delete_title">Konfirmasi untuk menghapus</string>
+    <string name="pref_gallery_size_dialogtitle">Ukuran gambar</string>
+    <string name="pref_gallery_size_summary">Pilih ukuran gambar dan video</string>
+    <string name="pref_gallery_size_title">Ukuran</string>
+    <string name="pref_gallery_slideshow_interval_dialogtitle">Interval slideshow</string>
+    <string name="pref_gallery_slideshow_interval_summary">Pilih berapa lama media tampil di slideshow</string>
+    <string name="pref_gallery_slideshow_interval_title">Interval slideshow</string>
+    <string name="pref_gallery_slideshow_repeat_summary">Mainkan slideshow lebih dari sekali</string>
+    <string name="pref_gallery_slideshow_repeat_title">Ulangi slideshow</string>
+    <string name="pref_gallery_slideshow_shuffle_summary">Tampilkan gambar secara acak</string>
+    <string name="pref_gallery_slideshow_shuffle_title">Acak slide</string>
+    <string name="pref_gallery_slideshow_transition_dialogtitle">Transisi slideshow</string>
+    <string name="pref_gallery_slideshow_transition_summary">Pilih efek transis</string>
+    <string name="pref_gallery_slideshow_transition_title">Transisi slideshow</string>
+    <string name="pref_gallery_sort_dialogtitle">Urutkan gambar</string>
+    <string name="pref_gallery_sort_summary">Mengurutkan gambar dan video</string>
+    <string name="pref_gallery_sort_title">Urutkan berdasarkan</string>
+    <string name="pref_slideshow_category">Pengaturan slideshow</string>
+    <string name="preferences_label">Pengaturan</string>
+    <string name="preparing_sd" product="default">Menyiapkan media penyimpanan\u2026</string>
     <string name="progressdialog_message_get_invoice_detail">Memproses invoice...</string>
     <string name="progressdialog_message_get_store_item_detail">Mengambil data barang...</string>
     <string name="progressdialog_message_join_loyalty_program">Mendaftarkan program loyalti...</string>
     <string name="progressdialog_message_login_waiting">Mohon tunggu...</string>
+    <string name="resume_playing_message">Melanjutkan pemutaran video dari <ns1:g example="5:30" id="duration">%s</ns1:g>?</string>
+    <string name="resume_playing_restart">Mulai dari awal</string>
+    <string name="resume_playing_resume">Lanjutkan pemutaran</string>
+    <string name="resume_playing_title">Lanjutkan video</string>
+    <string name="rotate">Putar</string>
+    <string name="rotate_left">Putar ke kiri</string>
+    <string name="rotate_right">Putar ke kanan</string>
+    <string name="runningFaceDetection">Silakan tunggu\u2026</string>
+    <string name="savingImage">Menyimpan gambar\u2026</string>
     <string name="sdk_name">Pay By QR</string>
     <string msgid="146198913615257606" name="search_menu_title">"Telusuri"</string>
     <string msgid="3973338219107019769" name="select_day">"Pilih bulan dan hari"</string>
     <string msgid="7651068754188418859" name="select_hours">"Pilih jam"</string>
     <string msgid="8327182090226828481" name="select_minutes">"Pilih menit"</string>
     <string msgid="2603330600102539372" name="select_year">"Pilih tahun"</string>
+    <string name="sendImage">Bagikan gambar melalui</string>
+    <string name="sendVideo">Bagikan video melalui</string>
+    <string name="send_media_files">Bagikan media melalui</string>
     <string name="server_dev">https://sandbox.flashiz.co.id</string>
     <string name="server_live">https://my.flashiz.co.id</string>
     <string name="server_uat">https://uat.flashiz.co.id</string>
+    <string name="setImage">Set gambar sebagai</string>
+    <string name="show_on_map">Tunjukkan di peta</string>
+    <string name="slide_show">Slideshow</string>
     <string msgid="2869576371154716097" name="status_bar_notification_info_overflow">"999+"</string>
     <string name="text_EULA_title">SYARAT &amp; KETENTUAN</string>
     <string name="text_camera">Kamera</string>
@@ -265,5 +403,13 @@
     <string name="url_path_invoiceStatus">/banking/v1/mobile/invoice/status</string>
     <string name="url_path_joinLoyaltyProgram">/mobile/fidelitizCardCreate</string>
     <string name="url_path_login">/login/auth/connect</string>
+    <string name="video_context_menu_header">Pilihan video</string>
+    <string name="video_exceed_mms_limit">Video yang anda rekam terlalu besar untuk dikirim melalui MMS. Coba rekam dengan durasi lebih singkat.</string>
+    <string name="video_play">Mainkan</string>
+    <string name="videos_gallery_title">Galeri</string>
+    <string name="view">Tampilkan</string>
+    <string name="view_label">Tampilkan</string>
+    <string name="wait">Silakan tunggu\u2026</string>
+    <string name="wallpaper">Mengganti wallpaper\u2026</string>
     <string msgid="6963340404644587098" name="year_picker_description">"Daftar tahun"</string>
 </resources>

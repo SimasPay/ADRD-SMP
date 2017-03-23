@@ -46,11 +46,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.camera.CropImageIntentBuilder;
 import com.dimo.PayByQR.PayByQRSDK;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
 import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
-import com.payment.simaspay.PaymentPerchaseAccount.PaymentAndPerchaseAccountTypeActivity;
+import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.Constants;
@@ -66,8 +67,6 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -110,6 +109,9 @@ public class UserHomeActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
     boolean GallaryPhotoSelected = false;
     public static String Finalmedia = "";
+    private static final int REQUEST_CROP_PICTURE = 8;
+    private static final int REQUEST_PICTURE = 9;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -241,14 +243,14 @@ public class UserHomeActivity extends AppCompatActivity {
 
         ImageButton pembelian = (ImageButton) findViewById(R.id.pembelian_btn);
         pembelian.setOnClickListener(view -> {
-            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
             intent.putExtra("accounttype", false);
             startActivity(intent);
         });
 
         ImageButton pembayaran = (ImageButton) findViewById(R.id.pembayaran_btn);
         pembayaran.setOnClickListener(view -> {
-            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPerchaseAccountTypeActivity.class);
+            Intent intent = new Intent(UserHomeActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
             intent.putExtra("accounttype", true);
             startActivity(intent);
         });
@@ -460,9 +462,11 @@ public class UserHomeActivity extends AppCompatActivity {
                                 .getMsgCode());
                     }
                     if (msgCode == 631) {
-                        checkbalance.setText(getResources().getString(R.string.timeout));
+                        checkbalance.setText("");
+                        Utility.networkDisplayDialog("Timeout", UserHomeActivity.this);
                     } else if (msgCode == 571) {
-                        checkbalance.setText(responseContainer.getMsg());
+                        checkbalance.setText("");
+                        Utility.networkDisplayDialog(responseContainer.getMsg(), UserHomeActivity.this);
                     } else if (msgCode == 274 || msgCode == 4) {
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                             checkbalance.setText(Html.fromHtml("<small>Rp </small><big>" + responseContainer.getAmount() + "</big>", Html.FROM_HTML_MODE_LEGACY));
@@ -473,9 +477,9 @@ public class UserHomeActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.d(LOG_TAG, e.toString());
                 }
-
             } else {
-                checkbalance.setText(getResources().getString(R.string.id_no_inetconnectivity));
+                checkbalance.setText("");
+                Utility.networkDisplayDialog(getResources().getString(R.string.id_no_inetconnectivity), UserHomeActivity.this);
             }
             final Handler handler = new Handler();
             handler.postDelayed(() -> {
@@ -491,6 +495,7 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        File croppedImageFile = new File(getFilesDir(), "testprofpic.jpg");
         switch (requestCode) {
             case EXIT:
                 if (resultCode == Activity.RESULT_OK) {
@@ -520,9 +525,9 @@ public class UserHomeActivity extends AppCompatActivity {
                 break;
 
             case CROP_FROM_CAMERA:
-                if(data.getExtras()!=null){
-                    Bundle extras = data.getExtras();
-                    Log.d(LOG_TAG, "extras: "+extras);
+                //if(data.getExtras()!=null){
+                    //Bundle extras = data.getExtras();
+                    //Log.d(LOG_TAG, "extras: "+extras);
                     String selectedImagePath = picUri.getPath();
                     Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
                     Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
@@ -534,34 +539,12 @@ public class UserHomeActivity extends AppCompatActivity {
 
                     Finalmedia = selectedImagePath;
 
-                    if (extras != null) {
+                    //if (extras != null) {
                         // Bitmap photo = extras.getParcelable("data");
                         Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
-                        Bitmap photobp = (Bitmap) extras.get("data");
-
-                        selectedImagePath = String.valueOf(System.currentTimeMillis())
-                                + ".jpg";
-
-                        Log.i(LOG_TAG, "new selectedImagePath before file "
-                                + selectedImagePath);
-
-                        File file = new File(Environment.getExternalStorageDirectory(),
-                                selectedImagePath);
-
-                        try {
-                            file.createNewFile();
-                            FileOutputStream fos = new FileOutputStream(file);
-                            if (photobp != null)
-                                photobp.compress(Bitmap.CompressFormat.JPEG, 95, fos);
-                        } catch (IOException e) {
-                            Toast.makeText(this,
-                                    "Sorry, Camera Crashed-Please Report as Crash A.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-
-                        selectedImagePath = Environment.getExternalStorageDirectory()
-                                + "/" + selectedImagePath;
-                        Log.i(LOG_TAG, "After File Created  " + selectedImagePath);
+                        //Bitmap photobp = (Bitmap) extras.get("data");
+                        Bitmap photobp = BitmapFactory.decodeFile(picUri.getPath());
+                        //selectedImagePath = String.valueOf(System.currentTimeMillis()+ ".jpg";
 
                         Bitmap thePic = decodeFile(selectedImagePath);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -572,10 +555,31 @@ public class UserHomeActivity extends AppCompatActivity {
                         Log.d(LOG_TAG, "encoded image:" + encodedImg);
                         new PhotoUpload().execute();
                         photo.setImageBitmap(thePic);
-                    }
-                }else{
-                    Log.d(LOG_TAG, "extras null!");
-                }
+                    //}
+                //}else{
+                //    Log.d(LOG_TAG, "extras null!");
+                //}
+                break;
+            case REQUEST_PICTURE:
+                Uri croppedImage = Uri.fromFile(croppedImageFile);
+                Log.d(LOG_TAG, "picUri: "+picUri);
+                Log.d(LOG_TAG, "uri from file: "+ picUri);
+                CropImageIntentBuilder cropImage = new CropImageIntentBuilder(200, 200, croppedImage);
+                cropImage.setOutlineColor(0xFF03A9F4);
+                cropImage.setSourceImage(data.getData());
+                startActivityForResult(cropImage.getIntent(this), REQUEST_CROP_PICTURE);
+                break;
+            case REQUEST_CROP_PICTURE:
+                Bitmap profpic = BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath());
+                ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
+                if (profpic != null)
+                    profpic.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream2);
+                byte[] byteArray2 = byteArrayOutputStream2.toByteArray();
+                encodedImg = Base64.encodeToString(byteArray2, Base64.DEFAULT);
+                Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                new PhotoUpload().execute();
+                photo.setImageBitmap(profpic);
+                break;
             default:
                 break;
         }
@@ -631,12 +635,11 @@ public class UserHomeActivity extends AppCompatActivity {
                 }
             } else { // pick from file
                 Intent intent = new Intent();
-
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-
                 startActivityForResult(Intent.createChooser(intent,
                         "Complete action using"), PICK_FROM_FILE);
+                //startActivityForResult(MediaStoreUtils.getPickImageIntent(this), REQUEST_PICTURE);
             }
         });
 
