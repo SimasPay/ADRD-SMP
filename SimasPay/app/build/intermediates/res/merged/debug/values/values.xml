@@ -463,7 +463,6 @@
             
             <flag name="all" value="0x77"/>
         </attr></declare-styleable>
-    <declare-styleable name="CropImageView"><attr name="cropGuidelines"><enum name="off" value="0"/><enum name="onTouch" value="1"/><enum name="on" value="2"/></attr><attr name="cropScaleType"><enum name="fitCenter" value="0"/><enum name="center" value="1"/><enum name="centerCrop" value="2"/><enum name="centerInside" value="3"/></attr><attr name="cropShape"><enum name="rectangle" value="0"/><enum name="oval" value="1"/></attr><attr format="boolean" name="cropAutoZoomEnabled"/><attr format="integer" name="cropMaxZoom"/><attr format="boolean" name="cropMultiTouchEnabled"/><attr format="boolean" name="cropFixAspectRatio"/><attr format="integer" name="cropAspectRatioX"/><attr format="integer" name="cropAspectRatioY"/><attr format="float" name="cropInitialCropWindowPaddingRatio"/><attr format="dimension" name="cropBorderLineThickness"/><attr format="color" name="cropBorderLineColor"/><attr format="dimension" name="cropBorderCornerThickness"/><attr format="dimension" name="cropBorderCornerOffset"/><attr format="dimension" name="cropBorderCornerLength"/><attr format="color" name="cropBorderCornerColor"/><attr format="dimension" name="cropGuidelinesThickness"/><attr format="color" name="cropGuidelinesColor"/><attr format="color" name="cropBackgroundColor"/><attr format="dimension" name="cropSnapRadius"/><attr format="dimension" name="cropTouchRadius"/><attr format="boolean" name="cropShowCropOverlay"/><attr format="boolean" name="cropShowProgressBar"/><attr format="dimension" name="cropMinCropWindowWidth"/><attr format="dimension" name="cropMinCropWindowHeight"/><attr format="float" name="cropMinCropResultWidthPX"/><attr format="float" name="cropMinCropResultHeightPX"/><attr format="float" name="cropMaxCropResultWidthPX"/><attr format="float" name="cropMaxCropResultHeightPX"/></declare-styleable>
     <declare-styleable name="DesignTheme"><attr format="reference" name="bottomSheetDialogTheme"/><attr format="reference" name="bottomSheetStyle"/><attr format="color" name="textColorError"/></declare-styleable>
     <declare-styleable name="DrawerArrowToggle"><attr format="color" name="color"/><attr format="boolean" name="spinBars"/><attr format="dimension" name="drawableSize"/><attr format="dimension" name="gapBetweenBars"/><attr format="dimension" name="arrowHeadLength"/><attr format="dimension" name="arrowShaftLength"/><attr format="dimension" name="barLength"/><attr format="dimension" name="thickness"/></declare-styleable>
     <declare-styleable name="FloatingActionButton"><attr name="backgroundTint"/><attr name="backgroundTintMode"/><attr format="color" name="rippleColor"/><attr name="fabSize">
@@ -869,7 +868,6 @@
     <dimen name="txt">50dp</dimen>
     <dimen name="year_label_height">64dip</dimen>
     <dimen name="year_label_text_size">22dip</dimen>
-    <item name="crop_image_menu_crop" type="drawable"/>
     <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
     <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
     <item name="action_bar_activity_content" type="id"/>
@@ -1105,10 +1103,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="create_credentials_edit_text_password_hint">PASSWORD</string>
     <string name="credit">credit</string>
     <string name="crop_discard_text">Discard</string>
-    <string name="crop_image_activity_title"/>
-    <string name="crop_image_menu_crop">Crop</string>
-    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
-    <string name="crop_image_menu_rotate_right">Rotate</string>
     <string name="crop_label">Crop picture</string>
     <string name="crop_save_text">Save</string>
     <string name="daftar">Daftar</string>
@@ -1456,7 +1450,6 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="pembelian">Pembelian</string>
     <string name="phoneinput_label">Silahkan masukkan Nomor Handphone Anda</string>
     <string name="photos_gallery_title">Gallery</string>
-    <string name="pick_image_intent_chooser_title">Select source</string>
     <string name="pick_photos_gallery_title">Choose picture</string>
     <string name="pick_videos_gallery_title">Choose video</string>
     <string name="pilih_kota">Pilih Kota</string>

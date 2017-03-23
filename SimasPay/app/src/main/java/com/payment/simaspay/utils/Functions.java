@@ -162,12 +162,14 @@ public class Functions {
             builder.setTitle(context.getResources().getString(R.string.eng_otpfailed));
             builder.setMessage(context.getResources().getString(R.string.en_otp_empty_failed)).setCancelable(false)
                     .setPositiveButton("OK", (dialog, id) -> {
-                        ((Activity) context).finish();
+                        //((Activity) context).finish();
                     });
         } else {
             builder.setTitle(context.getResources().getString(R.string.bahasa_otpfailed));
             builder.setMessage(context.getResources().getString(R.string.id_otp_empty_failed)).setCancelable(false)
-                    .setPositiveButton("OK", (dialog, id) -> ((Activity) context).finish());
+                    .setPositiveButton("OK", (dialog, id) -> {
+                        //((Activity) context).finish()
+                    });
         }
         AlertDialog alertError = builder.create();
         alertError.show();
@@ -247,6 +249,45 @@ public class Functions {
 
         kursIndonesia.setDecimalFormatSymbols(formatRp);
         return kursIndonesia.format(hx);
+    }
+
+    private void pickImage() {
+        final String[] items = new String[] { context.getResources().getString(R.string.id_camera),
+                context.getResources().getString(R.string.id_galeri) };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
+                android.R.layout.select_dialog_item, items);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
+
+        builder.setTitle(context.getResources().getString(R.string.id_pilih_foto));
+        builder.setAdapter(adapter, (dialog, item) -> {
+            if (item == 0) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                Uri picUri = Uri.fromFile(new File(Environment
+                        .getExternalStorageDirectory(), "tmp_avatar_"
+                        + String.valueOf(System.currentTimeMillis())
+                        + ".jpg"));
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        picUri);
+
+                try {
+                    intent.putExtra("return-data", true);
+                    ((Activity) context).startActivityForResult(intent, PICK_FROM_CAMERA);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else { // pick from file
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                ((Activity) context).startActivityForResult(Intent.createChooser(intent,
+                        "Complete action using"), PICK_FROM_FILE);
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

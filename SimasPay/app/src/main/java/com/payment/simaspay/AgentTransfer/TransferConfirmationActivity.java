@@ -488,8 +488,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         func.errorElseResponseConfirmation(responseContainer.getMsg());
                         dialogBuilder.dismiss();
                     }
-                    Intent intent = new Intent(TransferConfirmationActivity.this, UserHomeActivity.class);
-                    startActivity(intent);
                 }
             } else {
                 if (progressDialog != null) {

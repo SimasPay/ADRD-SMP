@@ -46,7 +46,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.camera.CropImageIntentBuilder;
 import com.dimo.PayByQR.PayByQRSDK;
 import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
 import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
@@ -99,6 +98,9 @@ public class UserHomeActivity extends AppCompatActivity {
     private ImageView photo;
     SharedPreferences languageSettings, settings;
     String selectedLanguage;
+    final int CROP_PIC = 3;
+    final int CAMERA_CAPTURE = 2;
+    protected static final int REQ_PICK_IMAGE = 4;
     private static final int PICK_FROM_CAMERA = 5;
     private static final int CROP_FROM_CAMERA = 6;
     private static final int PICK_FROM_FILE = 7;
@@ -109,8 +111,6 @@ public class UserHomeActivity extends AppCompatActivity {
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
     boolean GallaryPhotoSelected = false;
     public static String Finalmedia = "";
-    private static final int REQUEST_CROP_PICTURE = 8;
-    private static final int REQUEST_PICTURE = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -425,7 +425,6 @@ public class UserHomeActivity extends AppCompatActivity {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 }
             }
-            //mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UserHomeActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -495,7 +494,6 @@ public class UserHomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        File croppedImageFile = new File(getFilesDir(), "testprofpic.jpg");
         switch (requestCode) {
             case EXIT:
                 if (resultCode == Activity.RESULT_OK) {
@@ -523,62 +521,62 @@ public class UserHomeActivity extends AppCompatActivity {
                 doCrop();
 
                 break;
-
+            case REQ_PICK_IMAGE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Log.d(LOG_TAG, "processing image...");
+                    picUri = data.getData();
+                    performCrop();
+                }
+                break;
+            case CAMERA_CAPTURE:
+                if (resultCode == Activity.RESULT_OK) {
+                    picUri = data.getData();
+                    performCrop();
+                }
+                break;
+            case CROP_PIC:
+                if (resultCode == Activity.RESULT_OK) {
+                    Bundle extras = data.getExtras();
+                    // get the cropped bitmap
+                    Bitmap thePic = extras.getParcelable("data");
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                    Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                    new PhotoUpload().execute();
+                    photo.setImageBitmap(thePic);
+                }
+                break;
             case CROP_FROM_CAMERA:
-                //if(data.getExtras()!=null){
-                    //Bundle extras = data.getExtras();
-                    //Log.d(LOG_TAG, "extras: "+extras);
+                if(data.getExtras()!=null){
+                    Bundle extras = data.getExtras();
+                    Log.d(LOG_TAG, "extras: "+extras);
                     String selectedImagePath = picUri.getPath();
                     Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
                     Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
                     if (GallaryPhotoSelected) {
-                        //selectedImagePath = getRealPathFromURI(picUri);
                         Log.i(LOG_TAG, "Absolute Path " + selectedImagePath);
                         GallaryPhotoSelected = true;
                     }
 
                     Finalmedia = selectedImagePath;
 
-                    //if (extras != null) {
-                        // Bitmap photo = extras.getParcelable("data");
+                    if (extras != null) {
                         Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
-                        //Bitmap photobp = (Bitmap) extras.get("data");
-                        Bitmap photobp = BitmapFactory.decodeFile(picUri.getPath());
-                        //selectedImagePath = String.valueOf(System.currentTimeMillis()+ ".jpg";
-
                         Bitmap thePic = decodeFile(selectedImagePath);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                         if (thePic != null)
-                            thePic.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                            thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
                         encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
                         Log.d(LOG_TAG, "encoded image:" + encodedImg);
                         new PhotoUpload().execute();
                         photo.setImageBitmap(thePic);
-                    //}
-                //}else{
-                //    Log.d(LOG_TAG, "extras null!");
-                //}
-                break;
-            case REQUEST_PICTURE:
-                Uri croppedImage = Uri.fromFile(croppedImageFile);
-                Log.d(LOG_TAG, "picUri: "+picUri);
-                Log.d(LOG_TAG, "uri from file: "+ picUri);
-                CropImageIntentBuilder cropImage = new CropImageIntentBuilder(200, 200, croppedImage);
-                cropImage.setOutlineColor(0xFF03A9F4);
-                cropImage.setSourceImage(data.getData());
-                startActivityForResult(cropImage.getIntent(this), REQUEST_CROP_PICTURE);
-                break;
-            case REQUEST_CROP_PICTURE:
-                Bitmap profpic = BitmapFactory.decodeFile(croppedImageFile.getAbsolutePath());
-                ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-                if (profpic != null)
-                    profpic.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream2);
-                byte[] byteArray2 = byteArrayOutputStream2.toByteArray();
-                encodedImg = Base64.encodeToString(byteArray2, Base64.DEFAULT);
-                Log.d(LOG_TAG, "encoded image:" + encodedImg);
-                new PhotoUpload().execute();
-                photo.setImageBitmap(profpic);
+                    }
+                }else{
+                    Log.d(LOG_TAG, "extras null!");
+                }
                 break;
             default:
                 break;
@@ -604,47 +602,6 @@ public class UserHomeActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
-    }
-
-    private void pickImage() {
-        final String[] items = new String[] { getResources().getString(R.string.id_camera),
-                getResources().getString(R.string.id_galeri) };
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.select_dialog_item, items);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
-
-        builder.setTitle(getResources().getString(R.string.id_pilih_foto));
-        builder.setAdapter(adapter, (dialog, item) -> {
-            if (item == 0) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                picUri = Uri.fromFile(new File(Environment
-                        .getExternalStorageDirectory(), "tmp_avatar_"
-                        + String.valueOf(System.currentTimeMillis())
-                        + ".jpg"));
-
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        picUri);
-
-                try {
-                    intent.putExtra("return-data", true);
-
-                    startActivityForResult(intent, PICK_FROM_CAMERA);
-                } catch (ActivityNotFoundException e) {
-                    e.printStackTrace();
-                }
-            } else { // pick from file
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,
-                        "Complete action using"), PICK_FROM_FILE);
-                //startActivityForResult(MediaStoreUtils.getPickImageIntent(this), REQUEST_PICTURE);
-            }
-        });
-
-        final AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     private class PhotoUpload extends AsyncTask<Void, Void, Void> {
@@ -697,7 +654,7 @@ public class UserHomeActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        int msgCode = 0;
+                        int msgCode;
 
                         try {
                             msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
@@ -710,28 +667,16 @@ public class UserHomeActivity extends AppCompatActivity {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(UserHomeActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setCancelable(false);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
+                            func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                         } else if (msgCode == 2143) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
                             alertbox = new AlertDialog.Builder(UserHomeActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                    initname.setVisibility(View.INVISIBLE);
-                                }
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                arg0.dismiss();
+                                initname.setVisibility(View.INVISIBLE);
                             });
                             alertbox.show();
                         } else {
@@ -782,6 +727,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(UserHomeActivity.this,
                     Manifest.permission.CAMERA)) {
+                Log.d(LOG_TAG, "check camera permission");
             } else {
                 ActivityCompat.requestPermissions(UserHomeActivity.this,
                         new String[]{Manifest.permission.CAMERA},
@@ -811,12 +757,8 @@ public class UserHomeActivity extends AppCompatActivity {
             if (path == null) {
                 return null;
             }
-            // decode image size
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inJustDecodeBounds = true;
-            // Find the correct scale value. It should be the power of 2.
-            final int REQUIRED_SIZE = 70;
-            int width_tmp = o.outWidth, height_tmp = o.outHeight;
             int scale = 1;
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize = scale;
@@ -883,7 +825,6 @@ public class UserHomeActivity extends AppCompatActivity {
             intent.putExtra("aspectY", 1);
             intent.putExtra("scale", true);
             intent.putExtra("return-data", true);
-            // startActivityForResult(intent, CROP_FROM_CAMERA);
 
             if (size == 1) {
                 Intent i = new Intent(intent);
@@ -931,6 +872,59 @@ public class UserHomeActivity extends AppCompatActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
             }
+        }
+    }
+
+    private void pickImage() {
+        final String[] items = new String[] { getResources().getString(R.string.id_camera),
+                getResources().getString(R.string.id_galeri) };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.select_dialog_item, items);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
+
+        builder.setTitle(getResources().getString(R.string.id_pilih_foto));
+        builder.setAdapter(adapter, (dialog, item) -> {
+            if (item == 0) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, CAMERA_CAPTURE);
+            } else { // pick from file
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
+            }
+        });
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void performCrop() {
+        // take care of exceptions
+        try {
+            // call the standard crop action intent (the user device may not
+            // support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            // indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            // set crop properties
+            cropIntent.putExtra("crop", "true");
+            // indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            // indicate output X and Y
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            // retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            // start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, CROP_PIC);
+        }
+        // respond to users whose devices do not support the crop action
+        catch (ActivityNotFoundException anfe) {
+            Toast toast = Toast
+                    .makeText(this, "This device doesn't support the crop action!", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

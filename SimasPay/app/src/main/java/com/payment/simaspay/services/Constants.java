@@ -703,6 +703,7 @@ public class Constants {
     public static final String PARAMETER_MSPID = "mspID";
     public static final String PARAMETER_AUTHENTICATION_KEY = "authenticationKey";
     public static final String CONSTANT_AUTHENTICATION_KEY = "f";
+    public static final String CONSTANT_DENOMCODE = "2";
     public static final String PARAMETER_MPIN = "mpin";
     public static final String PARAMETER_SERVICE_NAME = "service";
     public static final String PARAMETER_TRANSACTIONNAME = "txnName";

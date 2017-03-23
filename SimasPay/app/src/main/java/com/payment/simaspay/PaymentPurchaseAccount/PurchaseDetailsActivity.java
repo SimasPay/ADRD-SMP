@@ -45,19 +45,13 @@ import simaspay.payment.com.simaspay.R;
  * Created by Nagendra P on 1/29/2016.
  */
 public class PurchaseDetailsActivity extends AppCompatActivity {
-
     TextView title, pulsa_field, product, number, pin, Rp;
-
     EditText product_field, number_field, pin_field, plnamount_entryfield;
-
     Button submit, nominal_pulsa;
     private static final String LOG_TAG = "SimasPay";
     LinearLayout back;
-
     String encryptedpinValue, billNumber, amountString;
-
     SharedPreferences sharedPreferences;
-
     LinearLayout manualEnterLayout;
     String[] strings;
     String rangealert, noEntryAlert;
@@ -207,7 +201,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     Utility.displayDialog("Masukkan Nominal PLN Pulsa", PurchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() <= 0) {
                     Utility.displayDialog(noEntryAlert, PurchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() <= 10) {
+                } else if (number_field.getText().toString().length() < 10) {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() > maxLimitValue) {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
@@ -274,7 +268,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
     }
 
 
-    class PurchaseAccountAsynTask extends AsyncTask<Void, Void, Void> {
+    private class PurchaseAccountAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -311,7 +305,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_BILL_NO, billNumber);
             mapContainer.put(Constants.PARAMETER_PAYMENT_MODE, getIntent().getExtras().getString("PaymentMode"));
             mapContainer.put(Constants.PARAMETER_BILLER_CODE, getIntent().getExtras().getString("ProductCode"));
-            mapContainer.put(Constants.PARAMETER_DENOM_CODE, "2");
+            mapContainer.put(Constants.PARAMETER_DENOM_CODE, Constants.CONSTANT_DENOMCODE);
             mapContainer.put(Constants.PARAMETER_AMOUNT, amountString);
             mapContainer.put("nominalAmount", amountString);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, PurchaseDetailsActivity.this);

@@ -242,10 +242,13 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             Intent intent = new Intent(ConfirmationActivity.this, NotificationActivity.class);
                             startActivity(intent);
                             ConfirmationActivity.this.finish();
-                        }else{
+                        }else {
                             AlertDialog.Builder alertbox = new AlertDialog.Builder(ConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", (arg0, arg1) -> dialogBuilder.dismiss());
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                dialogBuilder.dismiss();
+                                finish();
+                            });
                             alertbox.show();
                         }
                     }
