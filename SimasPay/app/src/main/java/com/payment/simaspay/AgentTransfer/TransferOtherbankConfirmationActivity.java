@@ -437,6 +437,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

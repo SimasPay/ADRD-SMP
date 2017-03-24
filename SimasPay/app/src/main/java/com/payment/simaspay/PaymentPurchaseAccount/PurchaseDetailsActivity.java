@@ -192,64 +192,61 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         submit.setTypeface(Utility.Robot_Regular(PurchaseDetailsActivity.this));
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (nominal_pulsa.getText().length() <= 0 && nominal_pulsa.isShown()) {
-                    Utility.displayDialog("Masukkan Nominal Pulsa", PurchaseDetailsActivity.this);
-                } else if (plnamount_entryfield.getText().toString().length() <= 0 && plnamount_entryfield.isShown()) {
-                    Utility.displayDialog("Masukkan Nominal PLN Pulsa", PurchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() <= 0) {
-                    Utility.displayDialog(noEntryAlert, PurchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() < 10) {
-                    Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() > maxLimitValue) {
-                    Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
-                } else {
-                    billNumber = number_field.getText().toString().replace(" ", "");
-                    if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
+        submit.setOnClickListener(view -> {
+            if (nominal_pulsa.getText().length() <= 0 && nominal_pulsa.isShown()) {
+                Utility.displayDialog("Masukkan "+getIntent().getExtras().getString("NominalType"), PurchaseDetailsActivity.this);
+            } else if (plnamount_entryfield.getText().toString().length() <= 0 && plnamount_entryfield.isShown()) {
+                Utility.displayDialog("Masukkan Nominal PLN Pulsa", PurchaseDetailsActivity.this);
+            } else if (number_field.getText().toString().length() <= 0) {
+                Utility.displayDialog(noEntryAlert, PurchaseDetailsActivity.this);
+            } else if (number_field.getText().toString().length() < 10) {
+                Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
+            } else if (number_field.getText().toString().length() > maxLimitValue) {
+                Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
+            } else {
+                billNumber = number_field.getText().toString().replace(" ", "");
+                if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
 
-                        if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
-                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembelian.", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
-                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
-                        } else {
-                            amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
-                            String module = sharedPreferences.getString("MODULE", "NONE");
-                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-                            try {
-                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                        pin_field.getText().toString().getBytes());
-                            } catch (Exception e1) {
-                                e1.printStackTrace();
-                            }
-                            new PurchaseAccountAsynTask().execute();
-                        }
+                    if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
+                        Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembelian.", PurchaseDetailsActivity.this);
+                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                        Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
+                    } else if (pin_field.getText().toString().length() < 6) {
+                        Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {
-                        if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
-                            Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
-                        } else {
-                            amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
-                            String module = sharedPreferences.getString("MODULE", "NONE");
-                            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+                        amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
+                        String module = sharedPreferences.getString("MODULE", "NONE");
+                        String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
-                            try {
-                                encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                        pin_field.getText().toString().getBytes());
-                            } catch (Exception e1) {
-                                e1.printStackTrace();
-                            }
-                            new PurchaseAccountAsynTask().execute();
+                        try {
+                            encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                    pin_field.getText().toString().getBytes());
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
                         }
+                        new PurchaseAccountAsynTask().execute();
+                    }
+                } else {
+                    if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                        Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
+                    } else if (pin_field.getText().toString().length() < 6) {
+                        Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
+                    } else {
+                        amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
+                        String module = sharedPreferences.getString("MODULE", "NONE");
+                        String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                        try {
+                            encryptedpinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                    pin_field.getText().toString().getBytes());
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                        new PurchaseAccountAsynTask().execute();
                     }
                 }
-
             }
+
         });
 
 

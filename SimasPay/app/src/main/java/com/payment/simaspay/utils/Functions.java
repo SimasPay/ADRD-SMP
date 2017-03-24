@@ -177,7 +177,7 @@ public class Functions {
 
     public void errorNullResponseConfirmation(){
         AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
-        alertbox.setTitle("ErrorMessage");
+        //alertbox.setTitle("ErrorMessage");
         alertbox.setMessage(context.getResources().getString(
                 R.string.bahasa_serverNotRespond));
         alertbox.setNeutralButton("OK", (arg0, arg1) -> {
@@ -191,7 +191,7 @@ public class Functions {
 
     public void errorElseResponseConfirmation(String message){
         AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
-        alertbox.setTitle("ErrorMessage");
+        //alertbox.setTitle("ErrorMessage");
         alertbox.setMessage(message);
         alertbox.setNeutralButton("OK", (arg0, arg1) -> {
             ((Activity) context).finish();
@@ -204,7 +204,7 @@ public class Functions {
 
     public void errorTimeoutResponseConfirmation(String message){
         AlertDialog.Builder alertbox = new AlertDialog.Builder(context, R.style.MyAlertDialogStyle);
-        alertbox.setTitle("ErrorMessage");
+        //alertbox.setTitle("ErrorMessage");
         alertbox.setMessage(message);
         alertbox.setNeutralButton("OK", (arg0, arg1) -> {
             ((Activity) context).finish();

@@ -407,6 +407,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

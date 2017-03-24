@@ -6,7 +6,6 @@ import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,9 +20,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -65,7 +62,6 @@ import com.payment.simaspay.utils.OnSwipeTouchListener;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -462,7 +458,7 @@ public class UserHomeActivity extends AppCompatActivity {
                     }
                     if (msgCode == 631) {
                         checkbalance.setText("");
-                        Utility.networkDisplayDialog("Timeout", UserHomeActivity.this);
+                        func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
                     } else if (msgCode == 571) {
                         checkbalance.setText("");
                         Utility.networkDisplayDialog(responseContainer.getMsg(), UserHomeActivity.this);
@@ -876,8 +872,13 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     private void pickImage() {
-        final String[] items = new String[] { getResources().getString(R.string.id_camera),
-                getResources().getString(R.string.id_galeri) };
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
+        //}
+        /**
+        final String[] items = new String[] { getResources().getString(R.string.id_galeri) };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.select_dialog_item, items);
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyAlertDialogStyle);
@@ -892,11 +893,12 @@ public class UserHomeActivity extends AppCompatActivity {
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_PICK);
                 startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
-            }
+            //}
         });
 
         final AlertDialog dialog = builder.create();
         dialog.show();
+    **/
     }
 
     private void performCrop() {

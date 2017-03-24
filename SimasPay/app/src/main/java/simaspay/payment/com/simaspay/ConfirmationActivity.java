@@ -277,12 +277,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
         Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
@@ -301,6 +298,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

@@ -160,6 +160,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

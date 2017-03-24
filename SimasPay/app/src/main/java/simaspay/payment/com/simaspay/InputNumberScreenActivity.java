@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -68,55 +69,44 @@ public class InputNumberScreenActivity extends Activity {
         SpannableString content = new SpannableString("Aktivasi Akun");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         aktivasi_link.setText(content);
-        aktivasi_link.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                //link to ActivationScreen
-            }
+        aktivasi_link.setOnClickListener(view -> {
+            Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_1_Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
         back_btn = (ImageView)findViewById(R.id.back_btn);
-        back_btn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
-                startActivity(intent);
-                //finish();
-            }
+        back_btn.setOnClickListener(view -> {
+            Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
+            startActivity(intent);
+            //finish();
         });
         phone_number = (EditText)findViewById(R.id.hand_phno);
         if(!mdn.equals("")){
             phone_number.setText(mdn);
         }
         lanjut=(Button)findViewById(R.id.lanjut);
-        lanjut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                if(phone_number.getText().length()>=10){
-                    settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
-                    settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
-                    phonenum=phone_number.getText().toString();
-                    new mdnvalidation().execute();
-                }else if(phone_number.getText().length()==0){
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setMessage(getResources().getString(R.string.id_empty_mdn_input));
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int arg1) {
-                            dialog.dismiss();
-                        }
-                    });
-                    alertbox.show();
-                }else if(phone_number.getText().length()<10&&phone_number.getText().length()>0){
-                    AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setMessage(getResources().getString(R.string.id_invalid_mdn_input));
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int arg1) {
-                            dialog.dismiss();
-                        }
-                    });
-                    alertbox.show();
-                }
-
+        lanjut.setOnClickListener(view -> {
+            if(phone_number.getText().length()>=10){
+                settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
+                settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
+                phonenum=phone_number.getText().toString();
+                new mdnvalidation().execute();
+            }else if(phone_number.getText().length()==0){
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
+                alertbox.setMessage(getResources().getString(R.string.id_empty_mdn_input));
+                alertbox.setNeutralButton("OK", (dialog, arg1) -> dialog.dismiss());
+                alertbox.show();
+            }else if(phone_number.getText().length()<10&&phone_number.getText().length()>0){
+                AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
+                alertbox.setMessage(getResources().getString(R.string.id_invalid_mdn_input));
+                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int arg1) {
+                        dialog.dismiss();
+                    }
+                });
+                alertbox.show();
             }
+
         });
     }
 

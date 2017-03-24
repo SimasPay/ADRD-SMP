@@ -80,7 +80,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN = settings.getString("mobileNumber","");
-        stMPIN = getIntent().getExtras().getString("mpin");
+        stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
         stFullname = getIntent().getExtras().getString("Name");
         stAmount = getIntent().getExtras().getString("amount");
         stMDN = getIntent().getExtras().getString("DestMDN");
@@ -205,6 +205,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

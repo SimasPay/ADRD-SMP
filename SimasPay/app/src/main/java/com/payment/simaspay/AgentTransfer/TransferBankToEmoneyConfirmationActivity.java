@@ -62,7 +62,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emoney_confirmation);
-        func = new Functions(context);
+        func = new Functions(this);
         func.initiatedToolbar(this);
         if (android.os.Build.VERSION.SDK_INT >= 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

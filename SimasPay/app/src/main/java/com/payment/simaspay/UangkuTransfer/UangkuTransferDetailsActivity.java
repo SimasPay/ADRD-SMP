@@ -36,8 +36,6 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     ProgressDialog progressDialog;
     String pinValue, amountValue, mdn;
-    private static final String LOG_TAG = "SimasPay";
-    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
     String response;
     int msgCode;
     Functions func;
@@ -89,27 +87,24 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
         pin.setFilters(FilterArray1);
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), UangkuTransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog(getResources().getString(R.string.id_no_rek_validation_msg), UangkuTransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                    Utility.displayDialog(getResources().getString(R.string.id_no_rek_validation_msg), UangkuTransferDetailsActivity.this);
-                } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), UangkuTransferDetailsActivity.this);
-                } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);
-                }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
-                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), UangkuTransferDetailsActivity.this);
-                } else {
-                    pinValue=func.generateRSA(pin.getText().toString());
-                    mdn = (number.getText().toString().replace(" ", ""));
-                    amountValue = amount.getText().toString().replace("Rp ", "");
-                    new UangkuTransferAsynTask().execute();
-                }
+        submit.setOnClickListener(view -> {
+            if (number.getText().toString().replace(" ", "").length() <= 0) {
+                Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), UangkuTransferDetailsActivity.this);
+            } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), UangkuTransferDetailsActivity.this);
+            } else if (number.getText().toString().replace(" ", "").length() > 14) {
+                Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), UangkuTransferDetailsActivity.this);
+            } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), UangkuTransferDetailsActivity.this);
+            } else if (pin.getText().toString().length() <= 0) {
+                Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);
+            }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
+                Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), UangkuTransferDetailsActivity.this);
+            } else {
+                pinValue=func.generateRSA(pin.getText().toString());
+                mdn = (number.getText().toString().replace(" ", ""));
+                amountValue = amount.getText().toString().replace("Rp ", "");
+                new UangkuTransferAsynTask().execute();
             }
         });
 
@@ -121,7 +116,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
         });
     }
 
-    class UangkuTransferAsynTask extends AsyncTask<Void,Void,Void>{
+    private class UangkuTransferAsynTask extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... params) {
 

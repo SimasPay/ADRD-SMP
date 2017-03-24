@@ -192,10 +192,6 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout/transferotherbankconfirmation.xml"
     },
     {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout/crop_image_view.xml",
-        "source": "/Users/widy/.android/build-cache/fbc398e66a9ac73ac6235927e97bd8a2d4f55cbc/output/res/layout/crop_image_view.xml"
-    },
-    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout/activity_scan_qr.xml",
         "source": "/Users/widy/.android/build-cache/1e622b1294343cc8089494e054f42bbf42924e1b/output/res/layout/activity_scan_qr.xml"
     },
@@ -618,10 +614,6 @@
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
         "source": "/Users/widy/.android/build-cache/43568823a80dfae910725fec165f9a20711361ba/output/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout/crop_image_activity.xml",
-        "source": "/Users/widy/.android/build-cache/fbc398e66a9ac73ac6235927e97bd8a2d4f55cbc/output/res/layout/crop_image_activity.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout/act_qrstore_merchant.xml",
