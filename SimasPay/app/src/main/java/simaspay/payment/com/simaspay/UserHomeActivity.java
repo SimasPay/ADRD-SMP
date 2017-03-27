@@ -872,10 +872,24 @@ public class UserHomeActivity extends AppCompatActivity {
     }
 
     private void pickImage() {
-        Intent intent = new Intent();
+        List<Intent> targets = new ArrayList<Intent>();
+        Intent intent = new Intent(Intent.ACTION_PICK,
+        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
-        intent.setAction(Intent.ACTION_PICK);
-        startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
+        List<ResolveInfo> candidates = getPackageManager().queryIntentActivities(intent, 0);
+        for (ResolveInfo candidate : candidates) {
+            String packageName = candidate.activityInfo.packageName;
+            if (!packageName.equals("com.google.android.apps.photos") && !packageName.equals("com.google.android.apps.plus") && !packageName.equals("com.android.documentsui")) {
+                Intent iWantThis = new Intent();
+                iWantThis.setType("image/*");
+                iWantThis.setAction(Intent.ACTION_GET_CONTENT);
+                iWantThis.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                iWantThis.setPackage(packageName);
+                targets.add(iWantThis);
+            }
+        }
+        //intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(targets.remove(0), getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
         //}
         /**
         final String[] items = new String[] { getResources().getString(R.string.id_galeri) };
