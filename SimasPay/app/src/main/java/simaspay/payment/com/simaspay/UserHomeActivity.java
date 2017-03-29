@@ -35,7 +35,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -536,10 +535,13 @@ public class UserHomeActivity extends AppCompatActivity {
                     // get the cropped bitmap
                     Bitmap thePic = extras.getParcelable("data");
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                    thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+                    if(thePic!=null){
+                        thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+                    }
                     byte[] byteArray = byteArrayOutputStream.toByteArray();
                     encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
                     Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                    sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING,encodedImg).apply();
                     new PhotoUpload().execute();
                     photo.setImageBitmap(thePic);
                 }
@@ -567,6 +569,7 @@ public class UserHomeActivity extends AppCompatActivity {
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
                         encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
                         Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                        sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING,encodedImg).apply();
                         new PhotoUpload().execute();
                         photo.setImageBitmap(thePic);
                     }
@@ -891,7 +894,7 @@ public class UserHomeActivity extends AppCompatActivity {
         //intent.setAction(Intent.ACTION_PICK);
         startActivityForResult(Intent.createChooser(targets.remove(0), getResources().getString(R.string.id_pilih_foto)), REQ_PICK_IMAGE);
         //}
-        /**
+        /*
         final String[] items = new String[] { getResources().getString(R.string.id_galeri) };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.select_dialog_item, items);
@@ -912,7 +915,7 @@ public class UserHomeActivity extends AppCompatActivity {
 
         final AlertDialog dialog = builder.create();
         dialog.show();
-    **/
+        */
     }
 
     private void performCrop() {

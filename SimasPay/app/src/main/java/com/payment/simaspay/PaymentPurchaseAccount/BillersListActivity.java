@@ -246,6 +246,7 @@ public class BillersListActivity extends Activity {
 
                 if (getIntent().getExtras().getBoolean("accounttype")) {
                     Intent intent = new Intent(BillersListActivity.this, PaymentDetailsActivity.class);
+                    intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
                     intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
                     intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
                     intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));
@@ -259,6 +260,7 @@ public class BillersListActivity extends Activity {
                     startActivityForResult(intent, 10);
                 } else {
                     Intent intent = new Intent(BillersListActivity.this, PurchaseDetailsActivity.class);
+                    intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
                     intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
                     intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
                     intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));

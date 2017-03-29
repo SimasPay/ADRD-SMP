@@ -539,8 +539,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -578,7 +577,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     progressDialog.dismiss();
                 }
                 func.errorNullResponseConfirmation();
-                alertbox.show();
             }
         }
     }

@@ -74,7 +74,7 @@
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nominal Handphone"
+                android:text="Nomor Handphone"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:textSize="13dp" />
@@ -91,7 +91,8 @@
                 android:digits="1234567890"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
-                android:textSize="16dp"
+                android:drawableRight="@drawable/ic_contact_phone_black_24dp"
+                android:textSize="16sp"
                 android:text=""/>
             <TextView
                 android:id="@+id/mAMount"
