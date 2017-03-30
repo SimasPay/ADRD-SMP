@@ -1358,6 +1358,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_email_address">email</string>
     <string name="id_emoney_plus">E-money Plus</string>
     <string name="id_emoney_reguler">E-money Reguler</string>
+    <string name="id_empty_billpaymentamount">Silahkan masukkan jumlah yang ingin Dibayarkan</string>
     <string name="id_empty_confmpin">Konfirmasi mPIN wajib diisi</string>
     <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
     <string name="id_empty_mpin">mPIN wajib diisi</string>
@@ -1401,6 +1402,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="item_is_selected">%1$s selected</string>
     <string name="jumlah">Jumlah</string>
     <string name="jumlah_value">Rp 2.500.000</string>
+    <string name="kosong">Kosong</string>
     <string name="label_konfirmasi">Pastikan data berikut sudah benar</string>
     <string name="lanjut">Lanjut</string>
     <string name="library_roundedimageview_author">Vince Mi</string>

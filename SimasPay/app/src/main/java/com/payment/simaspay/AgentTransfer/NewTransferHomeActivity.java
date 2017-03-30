@@ -58,9 +58,11 @@ public class NewTransferHomeActivity extends AppCompatActivity{
                 String text = teksview.getText().toString();
                 if(text.equals(getResources().getString(R.string.bank_sinarmas))){
                     Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
+                    intent.putExtra("transfer", "sinarmas");
                     startActivity(intent);
                 }else if(text.equals(getResources().getString(R.string.bank_lainnya))){
                     Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
+                    intent.putExtra("transfer", "lainnya");
                     startActivity(intent);
                     /**
                 }else if(text.equals("Laku Pandai")){
@@ -69,17 +71,21 @@ public class NewTransferHomeActivity extends AppCompatActivity{
                      **/
                 }else if(text.equals(getResources().getString(R.string.uangku))){
                     Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
+                    intent.putExtra("transfer", "uangku");
                     startActivity(intent);
                 }else if(text.equals(getResources().getString(R.string.emoney))){
                     if(account.equals(Constants.CONSTANT_EMONEY_PLUS)||account.equals(Constants.CONSTANT_EMONEY_REGULER)){
                         Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
+                        intent.putExtra("transfer", "emoney");
                         startActivity(intent);
                     }else{
                         if(account.equals(Constants.CONSTANT_EMONEY_PLUS)||account.equals(Constants.CONSTANT_EMONEY_REGULER)){
                             Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
+                            intent.putExtra("transfer", "emoney");
                             startActivity(intent);
                         }else if(account.equals(Constants.CONSTANT_BANK_USER)){
                             Intent intent = new Intent(NewTransferHomeActivity.this, TransferBankToEmoneyActivity.class);
+                            intent.putExtra("transfer", "emoney");
                             startActivity(intent);
                         }
                     }

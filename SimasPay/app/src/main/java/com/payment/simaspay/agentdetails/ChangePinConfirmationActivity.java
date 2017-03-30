@@ -51,7 +51,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
     String otpValue="";
     String sourceMDN, stMPIN, stSctl, stMDN;
     String message, transactionTime, responseCode;
-    private AlertDialog.Builder alertbox;
     private static final String LOG_TAG = "SimasPay";
     private EditText edt;
     private static AlertDialog dialogBuilder;
@@ -93,12 +92,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         cancel=(Button)findViewById(R.id.salah_btn);
 
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
-        btnBacke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btnBacke.setOnClickListener(view -> finish());
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         String module = sharedPreferences.getString("MODULE", "NONE");
@@ -233,12 +227,9 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                 }else {
                     if (responseContainer != null) {
                         if (responseContainer.getMsg() == null) {
-                            Utility.networkDisplayDialog(sharedPreferences.getString(
-                                    "ErrorMessage",
-                                    getResources().getString(
-                                            R.string.bahasa_serverNotRespond)), ChangePinConfirmationActivity.this);
+                            func.errorNullResponseConfirmation();
                         } else {
-                            Utility.networkDisplayDialog(responseContainer.getMsg(), ChangePinConfirmationActivity.this);
+                            func.errorElseResponseConfirmation(responseContainer.getMsg());
                         }
                     }
                 }
@@ -246,10 +237,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
-                Utility.networkDisplayDialog(sharedPreferences.getString(
-                        "ErrorMessage",
-                        getResources().getString(
-                                R.string.bahasa_serverNotRespond)), ChangePinConfirmationActivity.this);
+                func.errorNullResponseConfirmation();
             }
         }
     }
@@ -427,7 +415,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                                 if (progressDialog != null) {
                                     progressDialog.dismiss();
                                 }
-                                alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                                AlertDialog.Builder alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
                                 alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                     arg0.dismiss();
@@ -448,10 +436,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                                 showOTPRequiredDialog();
                                 break;
                             default:
-                                alertbox = new AlertDialog.Builder(ChangePinConfirmationActivity.this, R.style.MyAlertDialogStyle);
-                                alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
-                                alertbox.show();
+                                func.errorElseResponseConfirmation(responseDataContainer.getMsg());
                                 dialogBuilder.dismiss();
                                 break;
                         }

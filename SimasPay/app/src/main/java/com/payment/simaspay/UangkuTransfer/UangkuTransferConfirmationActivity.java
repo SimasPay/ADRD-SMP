@@ -214,6 +214,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
             @Override
             public void onFinish() {
+                dialogBuilder.dismiss();
                 func.errorOTP();
                 timer.setText("00:00");
             }

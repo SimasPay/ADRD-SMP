@@ -64,6 +64,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
         func=new Functions(this);
         func.initiatedToolbar(this);
 
+
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
         title = (TextView) findViewById(R.id.titled);
@@ -81,7 +82,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(15);
         number.setFilters(FilterArray);
-
+        number.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         InputFilter[] FilterArray1 = new InputFilter[1];
         FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));

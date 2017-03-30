@@ -41,25 +41,24 @@
             android:textSize="24dp" />
     </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="@drawable/white_color"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp">
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="280dp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:background="@drawable/white_color"
-                android:gravity="center"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textview"
@@ -215,34 +214,33 @@
 
 
             </LinearLayout>
-
-
-            <Button
-                android:id="@+id/next"
-                android:layout_width="220dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/login_color_red"
-                android:gravity="center"
-                android:text="Benar"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="20dp" />
-
-            <Button
-                android:id="@+id/cancel"
-                android:layout_width="220dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/color_cement"
-                android:gravity="center"
-                android:text="Salah"
-                android:textAllCaps="false"
-                android:textColor="@android:color/black"
-                android:textSize="20dp" />
+            </ScrollView>
         </LinearLayout>
-    </ScrollView>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="220dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_color_red"
+        android:gravity="center"
+        android:text="@string/benar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="220dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/color_cement"
+        android:gravity="center"
+        android:text="@string/salah"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="20sp" />
 </LinearLayout>

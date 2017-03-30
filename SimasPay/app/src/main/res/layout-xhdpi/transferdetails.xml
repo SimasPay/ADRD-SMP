@@ -73,6 +73,7 @@
                 android:maxLines="1"
                 android:maxLength="14"
                 android:textColor="@android:color/black"
+                android:drawableRight="@drawable/ic_contact_phone_black_24dp"
                 android:textSize="16sp" />
 
             <TextView

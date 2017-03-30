@@ -58,16 +58,10 @@ public class ChangePinSuccessActivity extends Activity {
 
         ok.setTypeface(Utility.Robot_Regular(ChangePinSuccessActivity.this));
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent=getIntent();
-                //setResult(Activity.RESULT_OK,intent);
-                //finish();
-                Intent intent = new Intent(ChangePinSuccessActivity.this, SecondLoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
+        ok.setOnClickListener(view -> {
+            Intent intent = new Intent(ChangePinSuccessActivity.this, SecondLoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
     }

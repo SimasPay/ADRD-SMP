@@ -1,20 +1,31 @@
 package com.payment.simaspay.UangkuTransfer;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -39,7 +50,11 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
     String response;
     int msgCode;
     Functions func;
+    private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
+    static final int PICK_CONTACT=1;
+    static final int EXIT=10;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +62,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
 
         func = new Functions(this);
         func.initiatedToolbar(this);
+        getPermissionToReadUserContacts();
 
         title = (TextView) findViewById(R.id.titled);
         handphone = (TextView) findViewById(R.id.handphone);
@@ -63,6 +79,21 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
         number = (EditText) findViewById(R.id.number);
+        number.setOnTouchListener((v, event) -> {
+            //final int DRAWABLE_LEFT = 0;
+            //final int DRAWABLE_TOP = 1;
+            final int DRAWABLE_RIGHT = 2;
+            //final int DRAWABLE_BOTTOM = 3;
+
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (number.getRight() - number.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                    startActivityForResult(intent, PICK_CONTACT);
+                    return true;
+                }
+            }
+            return false;
+        });
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
 
@@ -255,10 +286,37 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 10) {
-            if (resultCode == 10) {
-                finish();
-            }
+        switch (requestCode) {
+            case (PICK_CONTACT):
+                if (resultCode == RESULT_OK) {
+                    Uri contactData = data.getData();
+                    Cursor c = managedQuery(contactData, null, null, null, null);
+                    if (c.moveToFirst()) {
+                        String id =
+                                c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts._ID));
+
+                        String hasPhone =
+                                c.getString(c.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+
+                        if (hasPhone.equalsIgnoreCase("1")) {
+                            Cursor phones = getContentResolver().query(
+                                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,
+                                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + id,
+                                    null, null);
+                            phones.moveToFirst();
+                            String phn_no = phones.getString(phones.getColumnIndex("data1"));
+                            number.setText(phn_no);
+                        }
+                    }
+                }
+                break;
+            case EXIT:
+                if (resultCode == RESULT_OK) {
+                    Intent intent = getIntent();
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+                break;
         }
     }
 
@@ -394,5 +452,48 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             }
         }
      **/
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void getPermissionToReadUserContacts() {
+        // 1) Use the support library version ContextCompat.checkSelfPermission(...) to avoid
+        // checking the build version since Context.checkSelfPermission(...) is only available
+        // in Marshmallow
+        // 2) Always check for permission (even if permission has already been granted)
+        // since the user can revoke permissions at any time through Settings
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // The permission is NOT already granted.
+            // Check if the user has been asked about this permission already and denied
+            // it. If so, we want to give more explanation about why the permission is needed.
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_CONTACTS)) {
+                // Show our own UI to explain to the user why we need to read the contacts
+                // before actually requesting the permission and showing the default UI
+            }
+
+            // Fire off an async request to actually get the permission
+            // This will show the standard permission request dialog UI
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},
+                    READ_CONTACTS_PERMISSIONS_REQUEST);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        // Make sure it's our original READ_CONTACTS request
+        if (requestCode == READ_CONTACTS_PERMISSIONS_REQUEST) {
+            if (grantResults.length == 1 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Read Contacts permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Read Contacts permission denied", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 }
 

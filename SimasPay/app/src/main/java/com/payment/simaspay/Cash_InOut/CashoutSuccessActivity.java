@@ -14,9 +14,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.payment.simaspay.PaymentPurchaseAccount.PurchaseSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 1/29/2016.
@@ -105,13 +107,10 @@ public class CashoutSuccessActivity extends AppCompatActivity {
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(10, intent);
-                finish();
-            }
+        ok.setOnClickListener(view -> {
+            Intent i = new Intent(CashoutSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         });
 
 
@@ -120,17 +119,17 @@ public class CashoutSuccessActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = getIntent();
-        setResult(10, intent);
-        finish();
+        Intent i = new Intent(CashoutSuccessActivity.this, UserHomeActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            Intent intent = getIntent();
-            setResult(10, intent);
-            finish();
+            Intent i = new Intent(CashoutSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
         return super.onKeyDown(keyCode, event);
     }

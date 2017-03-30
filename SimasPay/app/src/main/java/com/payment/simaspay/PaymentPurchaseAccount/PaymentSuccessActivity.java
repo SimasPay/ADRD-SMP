@@ -15,10 +15,8 @@ import android.widget.TextView;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
+import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 1/28/2016.
- */
 public class PaymentSuccessActivity extends AppCompatActivity {
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer_field, transferID, charges, charges_field, total, total_field;
 
@@ -117,13 +115,10 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         total.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
         total_field.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(10, intent);
-                finish();
-            }
+        ok.setOnClickListener(view1 -> {
+            Intent i = new Intent(PaymentSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         });
 
 
@@ -132,17 +127,17 @@ public class PaymentSuccessActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = getIntent();
-        setResult(10, intent);
-        finish();
+        Intent i = new Intent(PaymentSuccessActivity.this, UserHomeActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = getIntent();
-            setResult(10, intent);
-            finish();
+            Intent i = new Intent(PaymentSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
         return super.onKeyDown(keyCode, event);
     }

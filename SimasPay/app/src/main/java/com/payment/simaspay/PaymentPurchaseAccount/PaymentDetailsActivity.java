@@ -198,9 +198,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
 
                         if (amountField.getText().toString().replace(" ", "").length() == 0) {
-                            Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembayaran.", PaymentDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() <= 0) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
                         } else {

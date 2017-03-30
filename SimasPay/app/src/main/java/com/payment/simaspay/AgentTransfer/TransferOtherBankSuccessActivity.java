@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.UangkuTransfer.UangkuTransferSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
@@ -71,12 +72,7 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
         id_value.setText(getIntent().getExtras().getString("sctlID"));
 
 
-        backlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        backlayout.setOnClickListener(view -> finish());
 
         title.setTypeface(Utility.Robot_Regular(TransferOtherBankSuccessActivity.this));
         heading.setTypeface(Utility.Robot_Regular(TransferOtherBankSuccessActivity.this));
@@ -100,16 +96,10 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
 
         confirm.setTypeface(Utility.Robot_Regular(TransferOtherBankSuccessActivity.this));
 
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = getIntent();
-                //setResult(RESULT_OK, intent);
-                //finish();
-                Intent i = new Intent(TransferOtherBankSuccessActivity.this, UserHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-            }
+        confirm.setOnClickListener(view -> {
+            Intent i = new Intent(TransferOtherBankSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         });
 
 
@@ -118,9 +108,9 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = getIntent();
-            setResult(RESULT_OK, intent);
-            finish();
+            Intent i = new Intent(TransferOtherBankSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
         return super.onKeyDown(keyCode, event);
     }

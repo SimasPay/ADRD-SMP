@@ -84,16 +84,10 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         transferID.setTypeface(Utility.Robot_Light(TranaferSuccessActivity.this));
         ok.setTypeface(Utility.Robot_Regular(TranaferSuccessActivity.this));
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = getIntent();
-                //setResult(10, intent);
-                //finish();
-                Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-            }
+        ok.setOnClickListener(view -> {
+            Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         });
 
 
@@ -102,17 +96,17 @@ public class TranaferSuccessActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = getIntent();
-        setResult(10, intent);
-        finish();
+        Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            Intent intent = getIntent();
-            setResult(10, intent);
-            finish();
+            Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
         }
         return super.onKeyDown(keyCode, event);
     }

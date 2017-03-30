@@ -204,9 +204,8 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             } else {
                 billNumber = number_field.getText().toString().replace(" ", "");
                 if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
-
                     if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
-                        Utility.displayDialog("Silahkan masukkan jumlah yang ingin Pembelian.", PurchaseDetailsActivity.this);
+                        Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < 6) {

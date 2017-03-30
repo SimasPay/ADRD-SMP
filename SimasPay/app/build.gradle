@@ -9,7 +9,7 @@ android {
         applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 58
+        versionCode 62
         versionName "1.0.0"
         multiDexEnabled true
         jackOptions {
@@ -35,7 +35,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:25.3.0'
-    //compile 'com.android.support:support-v4:25.2.0'
     compile files('libs/kxml-min.jar')
     compile files('libs/mobileapplibrary2_8.jar')
     compile project(':datetimepicker-library')

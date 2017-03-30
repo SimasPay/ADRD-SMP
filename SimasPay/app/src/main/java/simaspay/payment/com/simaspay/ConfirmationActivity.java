@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,7 +62,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         setContentView(R.layout.activity_confirmation);
         func=new Functions(this);
         func.initiatedToolbar(this);
-        if (android.os.Build.VERSION.SDK_INT > 14) {
+        if (Build.VERSION.SDK_INT > 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -85,7 +87,15 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             stQuestion = (String) extras.get("question");
             stAnswer=(String) extras.get("answer");
             lbl_name.setText(stFullname);
-            lbl_email.setText(stEmail);
+            if(stEmail.equals("")||stEmail==null){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    lbl_email.setText(Html.fromHtml("<i>("+getResources().getString(R.string.kosong)+")</i>",0));
+                }else{
+                    lbl_email.setText(Html.fromHtml("<i>("+getResources().getString(R.string.kosong)+")</i>"));
+                }
+            }else{
+                lbl_email.setText(stEmail);
+            }
             lbl_mdn.setText(sourceMDN);
         }
         benar_btn.setOnClickListener(view -> new reqSMSAsyncTask().execute());

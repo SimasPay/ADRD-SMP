@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,7 +23,7 @@ public class TransferBankToEmoneyNotificationActivity extends AppCompatActivity 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfernotification);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (android.os.Build.VERSION.SDK_INT > 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
@@ -51,14 +50,11 @@ public class TransferBankToEmoneyNotificationActivity extends AppCompatActivity 
         destamount_lbl.setText(TransferBankToEmoneyConfirmationActivity.formatRupiah(destAmount));
 
         Button okbutton=(Button)findViewById(R.id.ok_btn);
-        okbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(TransferBankToEmoneyNotificationActivity.this, UserHomeActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
-                TransferBankToEmoneyNotificationActivity.this.finish();
-            }
+        okbutton.setOnClickListener(view -> {
+            Intent i = new Intent(TransferBankToEmoneyNotificationActivity.this, UserHomeActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            //TransferBankToEmoneyNotificationActivity.this.finish();
         });
 
     }

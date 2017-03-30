@@ -60,12 +60,23 @@ public class NotificationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(getIntent().getExtras().getString("status").equals("daftaremoney")||getIntent().getExtras().getString("status").equals("forgotmpin")){
-            Intent intent = new Intent(NotificationActivity.this, SecondLoginActivity.class);
-            startActivity(intent);
-            finish();
+        if(getIntent().getExtras()!=null){
+            if(getIntent().getExtras().getString("status")!=null){
+                if(getIntent().getExtras().getString("status").equals("daftaremoney")||getIntent().getExtras().getString("status").equals("forgotmpin")){
+                    Intent intent = new Intent(NotificationActivity.this, SecondLoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Intent intent = new Intent(NotificationActivity.this, LandingScreenActivity.class);
+                    startActivity(intent);
+                }
+            }else{
+                Intent intent = new Intent(NotificationActivity.this, LandingScreenActivity.class);
+                startActivity(intent);
+            }
         }else{
-            super.onBackPressed();
+            Intent intent = new Intent(NotificationActivity.this, LandingScreenActivity.class);
+            startActivity(intent);
         }
     }
 
