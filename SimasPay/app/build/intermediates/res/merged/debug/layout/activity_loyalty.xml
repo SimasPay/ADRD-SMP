@@ -50,6 +50,18 @@
             android:indeterminate="true"
             android:visibility="gone"/>
 
+        <com.dimo.PayByQR.view.DIMOTextView
+            android:id="@+id/activity_loyalty_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:transitionName="@string/transition_name_loyalty_list_title"
+            android:text="Tidak ada Promo"
+            android:textSize="16dp"
+            android:textColor="@color/loyalty_list_title"
+            android:visibility="gone"
+            app:font="@string/font_helvetica"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/activity_loyalty_recycler_view"
             android:layout_width="match_parent"

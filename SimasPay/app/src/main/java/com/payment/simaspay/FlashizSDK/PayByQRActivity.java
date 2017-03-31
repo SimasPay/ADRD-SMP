@@ -877,7 +877,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     }
 
     private class requestUserAPIKeyAsyncTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progressDialog;
+        //ProgressDialog progressDialog;
         String response;
 
         @Override
@@ -899,18 +899,18 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(PayByQRActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.show();
+            //progressDialog = new ProgressDialog(PayByQRActivity.this);
+            //progressDialog.setCancelable(false);
+            //progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            //progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            //progressDialog.show();
             super.onPreExecute();
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
+            //progressDialog.dismiss();
             if (response != null) {
                 Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();

@@ -346,12 +346,11 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                             });
                             alertbox.show();
                         } else if (msgCode == 2306) {
+                            dialogBuilder.dismiss();
                             Intent intent = new Intent(DaftarEmoneyActivity.this, NotificationActivity.class);
                             intent.putExtra("status", "daftaremoney");
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-
-
                             DaftarEmoneyActivity.this.finish();
                         } else {
                             alertbox = new AlertDialog.Builder(DaftarEmoneyActivity.this, R.style.MyAlertDialogStyle);
