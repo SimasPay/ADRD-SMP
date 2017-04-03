@@ -161,6 +161,9 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                                     null, null);
                             phones.moveToFirst();
                             String phn_no = phones.getString(phones.getColumnIndex("data1"));
+                            phn_no = phn_no.replace("-","");
+                            phn_no = phn_no.replace("+","");
+                            phn_no = phn_no.replace(" ","");
                             tujuan.setText(phn_no);
                         }
                     }

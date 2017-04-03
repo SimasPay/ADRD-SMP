@@ -232,6 +232,9 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                     null, null);
                             phones.moveToFirst();
                             String phn_no = phones.getString(phones.getColumnIndex("data1"));
+                            phn_no = phn_no.replace("-","");
+                            phn_no = phn_no.replace("+","");
+                            phn_no = phn_no.replace(" ","");
                             number.setText(phn_no);
                         }
                     }
@@ -250,7 +253,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     int msgCode;
 
-    class CashOutAsynTask extends AsyncTask<Void, Void, Void> {
+    private class CashOutAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
