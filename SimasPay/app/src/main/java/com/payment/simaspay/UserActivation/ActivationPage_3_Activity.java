@@ -99,7 +99,7 @@ public class ActivationPage_3_Activity extends AppCompatActivity {
             }else if (e_con_mPin.getText().toString().replace(" ", "").length() < 6) {
                 Utility.displayDialog("Konfirmasi "+getResources().getString(R.string.mPinLegthMessage), ActivationPage_3_Activity.this);
             } else if (!e_pin.getText().toString().equals(e_con_mPin.getText().toString())) {
-                Utility.displayDialog("SimasPay mPIN dan konfirmasi mPIN yang Anda masukkan harus sama.", ActivationPage_3_Activity.this);
+                Utility.displayDialog("mPIN dan konfirmasi mPIN yang Anda masukkan harus sama.", ActivationPage_3_Activity.this);
             } else {
                 pin = e_pin.getText().toString();
                 ConfirmPin = e_con_mPin.getText().toString();

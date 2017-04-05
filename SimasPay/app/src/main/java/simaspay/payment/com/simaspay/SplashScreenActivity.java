@@ -36,6 +36,8 @@ import com.testfairy.TestFairy;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 
 public class SplashScreenActivity extends Activity {
 
@@ -109,7 +111,7 @@ public class SplashScreenActivity extends Activity {
     }
 
 
-    class RSAEncryption extends AsyncTask<Void, Void, Void> {
+    private class RSAEncryption extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
         String response;
@@ -179,6 +181,7 @@ public class SplashScreenActivity extends Activity {
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
+                    Log.d(LOG_TAG, "error:"+e.getMessage());
                 }
                 try {
                     if (responseDataContainer != null) {

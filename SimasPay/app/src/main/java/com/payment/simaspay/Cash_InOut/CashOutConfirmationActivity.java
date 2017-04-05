@@ -561,6 +561,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
         ok_otp.setOnClickListener(v -> {
             if (edt.getText() == null || edt.getText().toString().equals("")) {
                 func.errorEmptyOTP();
+                dialogBuilder.dismiss();
             } else {
                 myTimer.cancel();
                 otpValue=edt.getText().toString();

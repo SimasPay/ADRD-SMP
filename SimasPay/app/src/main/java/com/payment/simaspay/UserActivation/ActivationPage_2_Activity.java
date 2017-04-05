@@ -123,10 +123,10 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                                 R.string.bahasa_serverNotRespond), context);
 
             } else if (e_Mdn.getText().toString().equals("")) {
-                Utility.networkDisplayDialog("SimasPay Harap masukkan nomor handphone Anda", ActivationPage_2_Activity.this);
+                Utility.networkDisplayDialog("Harap masukkan nomor handphone Anda", ActivationPage_2_Activity.this);
             } else if (e_Mdn.getText().toString().replace(" ", "")
                     .length() < 10) {
-                Utility.networkDisplayDialog("SimasPay Nomor handphone yang Anda masukkan harus 10-14 angka.",
+                Utility.networkDisplayDialog("Nomor handphone yang Anda masukkan harus 10-14 angka.",
                         ActivationPage_2_Activity.this);
             } else {
                 mobileNumber = e_Mdn.getText().toString();
@@ -151,7 +151,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                 Utility.networkDisplayDialog("Nomor Handphone harus lebih dari 10 angka",
                         ActivationPage_2_Activity.this);
             } else if (e_mPin.getText().toString().equals("")) {
-                Utility.networkDisplayDialog("'SimasPay Harap masukkan kode aktivasi Anda.", ActivationPage_2_Activity.this);
+                Utility.networkDisplayDialog("'Harap masukkan kode aktivasi Anda.", ActivationPage_2_Activity.this);
             }  else if (e_mPin.getText().toString().replace(" ", "")
                     .length() < 6) {
                 Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka.",
@@ -320,6 +320,12 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                     if (responseContainer.getMfaMode().equalsIgnoreCase("OTP")) {
                         idnumber = responseContainer.getSctl();
                         name = responseContainer.getName();
+                        if(dialogCustomWish!=null){
+                            dialogCustomWish.dismiss();
+                        }
+                        if(progressDialog!=null){
+                            progressDialog.dismiss();
+                        }
                         showOTPRequiredDialog();
                     } else {
                         if (progressDialog != null) {
@@ -553,6 +559,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         ok_otp.setOnClickListener(v -> {
             if (edt.getText() == null || edt.getText().toString().equals("")) {
                 func.errorEmptyOTP();
+                dialogBuilder.dismiss();
             } else {
                 myTimer.cancel();
                 otpValue=edt.getText().toString();
@@ -594,6 +601,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
                     intent1.putExtra("mfaMode", "OTP");
                     intent1.putExtra("name", name);
                     startActivityForResult(intent1, 20);
+                    dialogBuilder.dismiss();
                 }
 
             }

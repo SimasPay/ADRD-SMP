@@ -228,6 +228,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         ok_otp.setOnClickListener(v -> {
             if (edt.getText() == null || edt.getText().toString().equals("")) {
                 func.errorEmptyOTP();
+                dialogBuilder.dismiss();
             } else {
                 myTimer.cancel();
                 otpValue=edt.getText().toString();
