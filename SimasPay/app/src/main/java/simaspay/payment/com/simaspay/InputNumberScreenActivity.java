@@ -13,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -21,7 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
+import com.payment.simaspay.UserActivation.ActivationPage_2_Activity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -70,9 +69,8 @@ public class InputNumberScreenActivity extends Activity {
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         aktivasi_link.setText(content);
         aktivasi_link.setOnClickListener(view -> {
-            Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_1_Activity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_2_Activity.class);
+            startActivityForResult(intent, 10);
         });
         back_btn = (ImageView)findViewById(R.id.back_btn);
         back_btn.setOnClickListener(view -> {

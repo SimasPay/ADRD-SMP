@@ -1,38 +1,18 @@
 package simaspay.payment.com.simaspay;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
+import com.payment.simaspay.UserActivation.ActivationPage_2_Activity;
 import com.payment.simaspay.contactus.ContactUs_Activity;
-import com.payment.simaspay.services.WebServiceHttp;
-import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by widy on 1/9/17.
@@ -72,9 +52,8 @@ public class LandingScreenActivity extends AppCompatActivity {
         activation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LandingScreenActivity.this, ActivationPage_1_Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                Intent intent = new Intent(LandingScreenActivity.this, ActivationPage_2_Activity.class);
+                startActivityForResult(intent, 10);
             }
         });
 
