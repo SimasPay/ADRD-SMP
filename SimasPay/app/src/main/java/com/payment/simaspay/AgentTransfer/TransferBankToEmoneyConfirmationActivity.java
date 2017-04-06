@@ -158,6 +158,8 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        ok_otp.setEnabled(false);
+        ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {
             if (edt.getText() == null || edt.getText().toString().equals("")) {
                 func.errorEmptyOTP();
@@ -173,11 +175,6 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
         edt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().trim().length()==0){
-                    ok_otp.setEnabled(false);
-                } else {
-                    ok_otp.setEnabled(true);
-                }
             }
 
             @Override
@@ -186,6 +183,8 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
 
             @Override
             public void afterTextChanged(Editable s) {
+                ok_otp.setEnabled(true);
+                ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();

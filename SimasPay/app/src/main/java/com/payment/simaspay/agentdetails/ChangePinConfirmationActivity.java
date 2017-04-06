@@ -310,6 +310,8 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             myTimer.cancel();
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        ok_otp.setEnabled(false);
+        ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {
             if (edt.getText() == null || edt.getText().toString().equals("")) {
                 func.errorEmptyOTP();
@@ -334,10 +336,17 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if(s.toString().trim().length()==0){
+                    ok_otp.setEnabled(false);
+                } else {
+                    ok_otp.setEnabled(true);
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                ok_otp.setEnabled(true);
+                ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() > 5) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();

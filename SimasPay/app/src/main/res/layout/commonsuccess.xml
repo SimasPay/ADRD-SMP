@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/details_background"
     android:orientation="vertical">
 
@@ -243,6 +244,30 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
+
+    <!--<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <at.markushi.ui.CircleButton
+            android:layout_width="34dip"
+            android:layout_height="34dip"
+            android:src="@drawable/ic_action_tick"
+            app:cb_color="@android:color/transparent"
+            app:cb_pressedRingWidth="8dip" />
+
+        <TextView
+            android:id="@+id/label_fav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/id_simpan_favorit"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>-->
 
 
     <Button

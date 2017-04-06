@@ -122,13 +122,31 @@ public class TransactionsListActivity extends AppCompatActivity {
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
-        } else if (label_home.equals(Constants.CONSTANT_BOTH_USER) || label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)) {
+        } else if (label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)){
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText(getResources().getString(R.string.mutasi));
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
+        } else if(label_home.equals(Constants.CONSTANT_BOTH_USER)){
+            String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS, "");
+            if (account.equals(Constants.CONSTANT_BANK_USER)) {
+                dwn_layout.setVisibility(View.INVISIBLE);
+                title.setText(getResources().getString(R.string.mutasi));
+                findViewById(R.id.period).setVisibility(View.GONE);
+            } else {
+                dwn_layout.setVisibility(View.VISIBLE);
+                title.setText(getResources().getString(R.string.mutasi));
+                findViewById(R.id.period).setVisibility(View.VISIBLE);
+                String fromDate = getIntent().getExtras().getString("fromDate");
+                String toDate = getIntent().getExtras().getString("toDate");
+                terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
+            }
+        } else if(label_home.equals(Constants.CONSTANT_BANK_USER)) {
+            dwn_layout.setVisibility(View.INVISIBLE);
+            title.setText(getResources().getString(R.string.mutasi));
+            findViewById(R.id.period).setVisibility(View.GONE);
         } else {
             dwn_layout.setVisibility(View.VISIBLE);
             title.setText(getResources().getString(R.string.mutasi));
@@ -166,8 +184,11 @@ public class TransactionsListActivity extends AppCompatActivity {
                 finish();
             }
         });
+        new TransactionsListAsync().execute();
 
 
+
+        /**
         if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
             new TransactionsListAsync().execute();
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -180,7 +201,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     int lastIndexInScreen = visibleItemCount + firstVisibleItem;
                     if (totalItemCount == totaloCountValue) {
-
+                        Log.d(LOG_TAG, "totalItemCount :"+totalItemCount);
                     } else {
                         if (lastIndexInScreen >= totalItemCount && !isLoading) {
                             isLoading = true;
@@ -211,6 +232,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                 }
             });
         }
+         **/
 
 
     }
@@ -319,8 +341,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 Log.d(LOG_TAG, "sourcePocketCode, " + Constants.POCKET_CODE_BANK_SINARMAS);
             } else if (sharedPreferences.getInt("userType", -1) == 0) {
-                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                Log.d(LOG_TAG, "service, " + "Wallet");
+                mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
+                Log.d(LOG_TAG, "service, " + Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_BANK);
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
@@ -330,8 +352,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_EMONEY);
                 } else {
-                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
-                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ", " + Constants.SERVICE_WALLET);
+                    mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
+                    Log.d(LOG_TAG, Constants.PARAMETER_SERVICE_NAME + ", " + Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     Log.d(LOG_TAG, Constants.PARAMETER_SRC_POCKET_CODE + ", " + Constants.POCKET_CODE_BANK);
                 }
@@ -431,6 +453,32 @@ public class TransactionsListActivity extends AppCompatActivity {
                             transactionsAdapter.notifyDataSetChanged();
                         }
                     }
+                } else if(msgCode == 67) {
+                    totaloCountValue = responseContainer.getTotalRecords();
+                    isLoading = false;
+                    HistroyParser parser = new HistroyParser();
+                    Document doc = parser.getDomElement(response);
+
+                    NodeList nl = doc
+                            .getElementsByTagName("transactionDetail");
+                    if (nl.getLength() > 0) {
+                        Log.d(LOG_TAG, "jumlah transaksi:"+nl.getLength());
+                        for (int i = 0; i < nl.getLength(); i++) {
+                            TransactionsData transationsList = new TransactionsData();
+                            Element e = (Element) nl.item(i);
+                            transationsList.setTransactionData(parser.getValue(e,
+                                    "transactionType"));
+                            transationsList.setAmount(parser
+                                    .getValue(e, "amount"));
+                            transationsList.setType(parser.getValue(e,
+                                    "isCredit"));
+                            transationsList.setDate_time(parser
+                                    .getValue(e, "transactionTime"));
+                            transationsListarray.add(transationsList);
+                        }
+                    }
+                    transactionsAdapter = new TransactionsAdapter();
+                    listView.setAdapter(transactionsAdapter);
                 } else if (msgCode == 38) {
                     Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
                 }

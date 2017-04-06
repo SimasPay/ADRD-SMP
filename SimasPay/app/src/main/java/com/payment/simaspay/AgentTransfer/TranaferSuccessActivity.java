@@ -69,7 +69,6 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         heading.setText("Transfer Berhasil!");
 
         ok = (Button) findViewById(R.id.ok);
-
         title.setTypeface(Utility.Robot_Regular(TranaferSuccessActivity.this));
         heading.setTypeface(Utility.Robot_Regular(TranaferSuccessActivity.this));
         name.setTypeface(Utility.Robot_Regular(TranaferSuccessActivity.this));
