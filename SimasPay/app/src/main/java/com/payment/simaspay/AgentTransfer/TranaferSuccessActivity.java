@@ -1,13 +1,8 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,17 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
-import com.payment.simaspay.services.WebServiceHttp;
-import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
@@ -125,8 +110,6 @@ public class TranaferSuccessActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 
     @Override
