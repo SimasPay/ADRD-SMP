@@ -329,12 +329,15 @@ public class TransactionsListActivity extends AppCompatActivity {
                     mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
                     Log.d(LOG_TAG, "toDate, " + getIntent().getExtras().getString("toDate"));
                 }
+            } else if(sharedPreferences.getInt("userType", -1) == 3) {
+                mapContainer.put(Constants.PARAMETER_FROM_DATE, getIntent().getExtras().getString("fromDate"));
+                Log.d(LOG_TAG, "fromDate, " + getIntent().getExtras().getString("fromDate"));
+                mapContainer.put(Constants.PARAMETER_TO_DATE, getIntent().getExtras().getString("toDate"));
+                Log.d(LOG_TAG, "toDate, " + getIntent().getExtras().getString("toDate"));
             }
-
 
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             Log.d(LOG_TAG, "institutionID, " + Constants.CONSTANT_INSTITUTION_ID);
-            //mapContainer.put(Constants.PARAMETER_PAGE_NUMBER, "" + pageNumber);
             if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 Log.d(LOG_TAG, "service, " + "Wallet");

@@ -377,4 +377,5 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_tambah_daftar_favorit">Tambah ke Daftar Favorit</string>
     <string name="id_nomor_tujuan">Nomor Tujuan</string>
     <string name="id_desc">Deskripsi</string>
+    <string name="status">Status</string>
 </resources>

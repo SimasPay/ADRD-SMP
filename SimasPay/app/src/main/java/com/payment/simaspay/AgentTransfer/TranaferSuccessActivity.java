@@ -1,30 +1,47 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
+import com.payment.simaspay.services.WebServiceHttp;
+import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 1/28/2016.
- */
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
+
 public class TranaferSuccessActivity extends AppCompatActivity {
-
-    TextView title, heading, name, name_field, number, number_field, amount, amount_field,products,other_products,transfer_field,transferID;
-
+    TextView title, label_fav, heading, name, name_field, number, number_field, amount, amount_field,products,other_products,transfer_field,transferID;
     Button ok;
+    CheckBox favBtn;
+    Boolean isSetFav=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +53,18 @@ public class TranaferSuccessActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
+
+        label_fav=(TextView)findViewById(R.id.label_fav);
+        label_fav.setVisibility(View.GONE);
+        favBtn=(CheckBox)findViewById(R.id.checkfav);
+        favBtn.setVisibility(View.GONE);
+        favBtn.setOnClickListener(arg0 -> {
+            if(!favBtn.isChecked()){
+                isSetFav=false;
+            } else{
+                isSetFav=true;
+            }
+        });
 
         title = (TextView) findViewById(R.id.title);
         heading = (TextView) findViewById(R.id.textview);
@@ -84,9 +113,17 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         ok.setTypeface(Utility.Robot_Regular(TranaferSuccessActivity.this));
 
         ok.setOnClickListener(view -> {
-            Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            if(favBtn.isChecked()){
+                Log.d(LOG_TAG, "checked");
+                Intent intent = new Intent(TranaferSuccessActivity.this, FavouriteInputActivity.class);
+                intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
+                startActivityForResult(intent, 10);
+            }else{
+                Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
         });
 
 
@@ -109,4 +146,5 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

@@ -1,7 +1,9 @@
 package simaspay.payment.com.simaspay;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -12,8 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
-import com.payment.simaspay.AgentTransfer.TransferOtherbankConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -25,6 +25,8 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 /**
  * Created by widy on 4/6/17.
  * 06
@@ -32,8 +34,15 @@ import java.util.Map;
 
 public class FavouriteInputActivity extends AppCompatActivity {
     Functions func;
+    SharedPreferences sharedPreferences;
+    ProgressDialog progressDialog;
+    int msgCode;
+    String sourceMDN, stCatID, stMPIN, stFavNumber, message, transactionTime, responseCode;
+    SharedPreferences settings, languageSettings;
+    String selectedLanguage;
+    String favCat="";
 
-
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +50,22 @@ public class FavouriteInputActivity extends AppCompatActivity {
         func=new Functions(this);
         func.initiatedToolbar(this);
 
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+        settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        sourceMDN = settings.getString("mobileNumber","");
+        stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
+
         TextView title=(TextView)findViewById(R.id.titled);
         EditText number=(EditText) findViewById(R.id.number);
         EditText desc=(EditText)findViewById(R.id.desc);
+
+        if(getIntent().getExtras()!=null){
+            number.setText(getIntent().getExtras().getString("DestMDN"));
+            favCat=getIntent().getExtras().getString("favCat");
+        }
+
 
         ImageView back_btn=(ImageView)findViewById(R.id.btnBacke);
         back_btn.setOnClickListener(view -> {
@@ -59,36 +81,35 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
     }
 
-    /**class submitFavAsyncTask extends AsyncTask<Void, Void, Void> {
+    class submitFavAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            service=Account&txnName=AddFavorite&institutionID=simaspay&authenticationKey=&channelID=7&sourceMDN=629652687725&sourcePIN=xxxx&favoriteCategoryID=2&favoriteCode=&favoriteLabel=Recharge&favoriteValue=629000050650
-
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", "AddFavorite");
             mapContainer.put("service", "Account");
+            mapContainer.put("txnName", "AddFavorite");
             mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", stMPIN);
-            mapContainer.put("sctlId", stSctl);
-            mapContainer.put("favoriteCategoryID", "2");
-            mapContainer.put("favoriteCode", "2");
+            mapContainer.put("favoriteCategoryID", stCatID);
+            mapContainer.put("favoriteCode", "");
+            mapContainer.put("favoriteLabel", "Recharge");
+            mapContainer.put("favoriteValue", stFavNumber);
             mapContainer.put("channelID", "7");
 
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    TransferOtherbankConfirmationActivity.this);
+                    FavouriteInputActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
             return null;
         }
 
         @Override
         protected void onPreExecute() {
-            progressDialog = new ProgressDialog(TransferOtherbankConfirmationActivity.this);
+            progressDialog = new ProgressDialog(FavouriteInputActivity.this);
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
@@ -117,11 +138,11 @@ public class FavouriteInputActivity extends AppCompatActivity {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(FavouriteInputActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setCancelable(false);
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
-                                Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, SecondLoginActivity.class);
+                                Intent intent = new Intent(FavouriteInputActivity.this, SecondLoginActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             });
@@ -134,16 +155,14 @@ public class FavouriteInputActivity extends AppCompatActivity {
                             responseCode = responseDataContainer.getResponseCode();
                             Log.d(LOG_TAG, "responseCode"+responseCode);
                             Log.d("test", "not null");
-                            int msgCode = 0;
-
-                            showOTPRequiredDialog();
+                            msgCode = 0;
                         }else{
-                            alertbox = new AlertDialog.Builder(TransferOtherbankConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox = new AlertDialog.Builder(FavouriteInputActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
-                                Intent intent = new Intent(TransferOtherbankConfirmationActivity.this, UserHomeActivity.class);
+                                Intent intent = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
                                 startActivity(intent);
-                                TransferOtherbankConfirmationActivity.this.finish();
+                                FavouriteInputActivity.this.finish();
                             });
                             alertbox.show();
                         }
@@ -158,10 +177,9 @@ public class FavouriteInputActivity extends AppCompatActivity {
                 Utility.networkDisplayDialog(sharedPreferences.getString(
                         "ErrorMessage",
                         getResources().getString(
-                                R.string.bahasa_serverNotRespond)), TransferOtherbankConfirmationActivity.this);
+                                R.string.bahasa_serverNotRespond)), FavouriteInputActivity.this);
             }
         }
     }
-        **/
 
 }

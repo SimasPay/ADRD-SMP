@@ -31,9 +31,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Status"
+            android:text="@string/status"
             android:textColor="@android:color/white"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -58,13 +58,14 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:contentDescription="@null"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:src="@drawable/img_greencheck_small"
                     android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/textview"
@@ -75,7 +76,7 @@
                     android:gravity="center"
                     android:text="Setor Tunai Berhasil"
                     android:textColor="@android:color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:id="@+id/ID_layout"
@@ -245,19 +246,17 @@
         </ScrollView>
     </LinearLayout>
 
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="34dip"
-            android:layout_height="34dip"
-            android:src="@drawable/ic_action_tick"
-            app:cb_color="@android:color/transparent"
-            app:cb_pressedRingWidth="8dip" />
+        <CheckBox
+            android:id="@+id/checkfav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/label_fav"
@@ -267,7 +266,7 @@
             android:layout_gravity="center_vertical"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
-    </LinearLayout>-->
+    </LinearLayout>
 
 
     <Button

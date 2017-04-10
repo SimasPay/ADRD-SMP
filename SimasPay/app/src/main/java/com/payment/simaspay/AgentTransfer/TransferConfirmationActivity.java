@@ -63,6 +63,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     Context context;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     Functions func;
+    String typeTransferCat="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -379,24 +380,29 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
+                typeTransferCat="B2B";
             } else if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
+                typeTransferCat="B2B";
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
+                    typeTransferCat="B2E";
                 } else {
+                    typeTransferCat="B2B";
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
                 }
             } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                typeTransferCat="B2E";
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
@@ -465,6 +471,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("favCat", typeTransferCat);
                     startActivityForResult(intent, 10);
                     dialogBuilder.dismiss();
                 } else if (msgCode == 703) {
@@ -477,6 +484,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("favCat", typeTransferCat);
                     startActivityForResult(intent, 10);
                     dialogBuilder.dismiss();
                 } else {
