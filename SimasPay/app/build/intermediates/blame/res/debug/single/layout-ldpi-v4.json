@@ -20,6 +20,10 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-ldpi/transferhome.xml"
     },
     {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-ldpi-v4/activity_emoney_confirmation.xml",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-ldpi/activity_emoney_confirmation.xml"
+    },
+    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-ldpi-v4/agent_simaspay_user.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-ldpi/agent_simaspay_user.xml"
     },

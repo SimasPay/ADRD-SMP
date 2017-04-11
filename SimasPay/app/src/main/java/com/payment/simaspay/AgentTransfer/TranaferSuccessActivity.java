@@ -113,8 +113,6 @@ public class TranaferSuccessActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 
     @Override
