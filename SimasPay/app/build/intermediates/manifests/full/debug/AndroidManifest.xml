@@ -131,6 +131,10 @@
             android:label="SimasPay"
             android:screenOrientation="portrait" />
         <activity
+            android:name="simaspay.payment.com.simaspay.FavouriteInputActivity"
+            android:label="SimasPay"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="simaspay.payment.com.simaspay.SecurityQuestionsActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"

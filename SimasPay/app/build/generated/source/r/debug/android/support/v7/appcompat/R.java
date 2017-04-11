@@ -586,7 +586,7 @@ public final class R {
         public static final int ifRoom = 0x7f110051;
         public static final int image = 0x7f110065;
         public static final int info = 0x7f1102fd;
-        public static final int line1 = 0x7f110238;
+        public static final int line1 = 0x7f11023a;
         public static final int line3 = 0x7f110302;
         public static final int listMode = 0x7f11001f;
         public static final int list_item = 0x7f110067;
@@ -634,7 +634,7 @@ public final class R {
         public static final int submit_area = 0x7f11008e;
         public static final int tabMode = 0x7f110021;
         public static final int text = 0x7f110159;
-        public static final int text2 = 0x7f11023e;
+        public static final int text2 = 0x7f110240;
         public static final int textSpacerNoButtons = 0x7f110071;
         public static final int textSpacerNoTitle = 0x7f110070;
         public static final int time = 0x7f1102fb;

@@ -56,9 +56,9 @@ public class FavouriteInputActivity extends AppCompatActivity {
         sourceMDN = settings.getString("mobileNumber","");
         stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
 
-        TextView title=(TextView)findViewById(R.id.titled);
+        //TextView title=(TextView)findViewById(R.id.titled);
         EditText number=(EditText) findViewById(R.id.number);
-        EditText desc=(EditText)findViewById(R.id.desc);
+        //EditText desc=(EditText)findViewById(R.id.desc);
 
         if(getIntent().getExtras()!=null){
             number.setText(getIntent().getExtras().getString("DestMDN"));
@@ -78,12 +78,12 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
-
+            new submitFavAsyncTask().execute();
         });
 
     }
 
-    class submitFavAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class submitFavAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
