@@ -6,19 +6,25 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
 import com.payment.simaspay.PaymentPurchaseAccount.PurchaseSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
+import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
+
+import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 /**
  * Created by Nagendra P on 1/29/2016.
@@ -26,7 +32,8 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 public class CashoutSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer, transferID;
-
+    CheckBox favBtn;
+    Boolean isSetFav=false;
     Button ok;
 
     @Override
@@ -72,6 +79,18 @@ public class CashoutSuccessActivity extends AppCompatActivity {
         transferID.setTypeface(Utility.Robot_Light(CashoutSuccessActivity.this));
         ok.setTypeface(Utility.Robot_Regular(CashoutSuccessActivity.this));
 
+        TextView label_fav=(TextView)findViewById(R.id.label_fav);
+        //label_fav.setVisibility(View.GONE);
+        favBtn=(CheckBox)findViewById(R.id.checkfav);
+        //favBtn.setVisibility(View.GONE);
+        favBtn.setOnClickListener(arg0 -> {
+            if(!favBtn.isChecked()){
+                isSetFav=false;
+            } else{
+                isSetFav=true;
+            }
+        });
+
         SharedPreferences sharedPreferences= getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         String account = sharedPreferences.getString("useas","");
         if(account.equals("Bank")) {
@@ -108,9 +127,20 @@ public class CashoutSuccessActivity extends AppCompatActivity {
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
 
         ok.setOnClickListener(view -> {
-            Intent i = new Intent(CashoutSuccessActivity.this, UserHomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            if(favBtn.isChecked()){
+                Log.d(LOG_TAG, "checked");
+                if(getIntent().getExtras()!=null){
+                    Intent intent = new Intent(CashoutSuccessActivity.this, FavouriteInputActivity.class);
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
+                    intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
+                    startActivityForResult(intent, 10);
+                }
+            }else{
+                Intent i = new Intent(CashoutSuccessActivity.this, UserHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
         });
 
 

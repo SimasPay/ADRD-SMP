@@ -61,6 +61,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     Functions func;
+    int idTransferCat;
+    String typeTransferCat="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -495,21 +497,31 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             }
             if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                typeTransferCat="B2B";
+                idTransferCat=6;
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                typeTransferCat="B2B";
+                idTransferCat=6;
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
                 if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
+                    typeTransferCat="E2B";
+                    idTransferCat=12;
                 } else {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
+                    typeTransferCat="B2B";
+                    idTransferCat=6;
                 }
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
+                typeTransferCat="E2B";
+                idTransferCat=12;
             }
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UangkuTransferConfirmationActivity.this);
 
@@ -560,6 +572,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 10);
                     finish();

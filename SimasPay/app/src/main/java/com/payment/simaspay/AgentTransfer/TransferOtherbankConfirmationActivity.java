@@ -56,7 +56,8 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
     Context context;
     ProgressDialog progressDialog;
     String OTP;
-    int msgCode;
+    int msgCode, idTransferCat;
+    String typeTransferCat="";
     boolean nextpressedornot;
     SharedPreferences sharedPreferences;
     String otpValue="";
@@ -190,28 +191,38 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
+                typeTransferCat="IBTB2B";
+                idTransferCat=4;
             }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANKSINARMAS_INT){
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
+                typeTransferCat="IBTB2B";
+                idTransferCat=4;
             }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_LAKUPANDAI_INT) {
                 if(sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE,-1)==Constants.CONSTANT_EMONEY_INT){
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
+                    typeTransferCat="IBTE2B";
+                    idTransferCat=10;
                 }else{
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
+                    typeTransferCat="IBTB2B";
+                    idTransferCat=4;
                 }
             }else if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_EMONEY_INT) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, getIntent().getExtras().getString("BankCode"));
+                typeTransferCat="IBTE2B";
+                idTransferCat=10;
             }
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 OTP = func.generateRSA(otpValue);
@@ -270,6 +281,8 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     intent.putExtra("Name",getIntent().getExtras().getString("Name"));
                     intent.putExtra("BankName",getIntent().getExtras().getString("BankName"));
                     intent.putExtra("BankCode",getIntent().getExtras().getString("BankCode"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

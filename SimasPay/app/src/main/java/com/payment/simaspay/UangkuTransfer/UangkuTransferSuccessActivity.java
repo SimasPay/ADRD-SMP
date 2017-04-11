@@ -4,18 +4,24 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
 import com.payment.simaspay.Cash_InOut.CashoutSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
+import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
+
+import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 /**
  * Created by Nagendra P on 2/3/2016.
@@ -23,7 +29,8 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 public class UangkuTransferSuccessActivity extends Activity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, other_products, transfer_field, transferID;
-
+    CheckBox favBtn;
+    Boolean isSetFav=false;
     Button ok;
 
     @Override
@@ -50,6 +57,18 @@ public class UangkuTransferSuccessActivity extends Activity {
         transferID = (TextView) findViewById(R.id.transferID);
         transfer_field = (TextView) findViewById(R.id.transfer_field);
         findViewById(R.id.ID_layout).setVisibility(View.VISIBLE);
+
+        TextView label_fav=(TextView)findViewById(R.id.label_fav);
+        //label_fav.setVisibility(View.GONE);
+        favBtn=(CheckBox)findViewById(R.id.checkfav);
+        //favBtn.setVisibility(View.GONE);
+        favBtn.setOnClickListener(arg0 -> {
+            if(!favBtn.isChecked()){
+                isSetFav=false;
+            } else{
+                isSetFav=true;
+            }
+        });
 
         products.setVisibility(View.VISIBLE);
         other_products.setVisibility(View.VISIBLE);
@@ -86,9 +105,20 @@ public class UangkuTransferSuccessActivity extends Activity {
         ok.setTypeface(Utility.Robot_Regular(UangkuTransferSuccessActivity.this));
 
         ok.setOnClickListener(view -> {
-            Intent i = new Intent(UangkuTransferSuccessActivity.this, UserHomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            if(favBtn.isChecked()){
+                Log.d(LOG_TAG, "checked");
+                if(getIntent().getExtras()!=null){
+                    Intent intent = new Intent(UangkuTransferSuccessActivity.this, FavouriteInputActivity.class);
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
+                    intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
+                    startActivityForResult(intent, 10);
+                }
+            }else{
+                Intent i = new Intent(UangkuTransferSuccessActivity.this, UserHomeActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
+            }
         });
 
         transferID.setText(getIntent().getExtras().getString("sctlID"));

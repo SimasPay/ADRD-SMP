@@ -60,6 +60,8 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
     String selectedLanguage;
     String sourceMDN, stMPIN, stSctl, stTransferID, stParentTxnID, stAmount, stCharges, stName;
     Functions func;
+    int idTransferCat;
+    String typeTransferCat="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -186,12 +188,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
 
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -248,20 +245,30 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
             if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                typeTransferCat="B2Purchase";
+                idTransferCat=2;
             } else if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                typeTransferCat="B2Purchase";
+                idTransferCat=2;
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    typeTransferCat="E2Purchase";
+                    idTransferCat=8;
                 } else {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    typeTransferCat="B2Purchase";
+                    idTransferCat=2;
                 }
             } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BUY);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                typeTransferCat="E2Purchase";
+                idTransferCat=8;
             }
 
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -331,6 +338,8 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
@@ -344,6 +353,8 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

@@ -1,13 +1,8 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,17 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
-import com.payment.simaspay.services.WebServiceHttp;
-import com.payment.simaspay.services.XMLParser;
-import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-
-import org.w3c.dom.Text;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
@@ -55,9 +40,9 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         }
 
         label_fav=(TextView)findViewById(R.id.label_fav);
-        label_fav.setVisibility(View.GONE);
+        //label_fav.setVisibility(View.GONE);
         favBtn=(CheckBox)findViewById(R.id.checkfav);
-        favBtn.setVisibility(View.GONE);
+        //favBtn.setVisibility(View.GONE);
         favBtn.setOnClickListener(arg0 -> {
             if(!favBtn.isChecked()){
                 isSetFav=false;
@@ -115,10 +100,13 @@ public class TranaferSuccessActivity extends AppCompatActivity {
         ok.setOnClickListener(view -> {
             if(favBtn.isChecked()){
                 Log.d(LOG_TAG, "checked");
-                Intent intent = new Intent(TranaferSuccessActivity.this, FavouriteInputActivity.class);
-                intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
-                intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
-                startActivityForResult(intent, 10);
+                if(getIntent().getExtras()!=null){
+                    Intent intent = new Intent(TranaferSuccessActivity.this, FavouriteInputActivity.class);
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
+                    intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
+                    startActivityForResult(intent, 10);
+                }
             }else{
                 Intent i = new Intent(TranaferSuccessActivity.this, UserHomeActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

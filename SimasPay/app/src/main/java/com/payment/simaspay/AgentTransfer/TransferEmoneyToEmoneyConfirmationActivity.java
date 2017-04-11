@@ -58,6 +58,8 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
     String selectedLanguage;
     Functions func;
     SharedPreferences sharedPreferences;
+    int idTransferCat;
+    String typeTransferCat="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,6 +234,8 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+            typeTransferCat="E2E";
+            idTransferCat=7;
             mapContainer.put(Constants.PARAMETER_DEST_BankAccount, "");
 
             if(getIntent().getExtras()!=null) {
@@ -297,6 +301,8 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
+                            intent.putExtra("favCat", typeTransferCat);
+                            intent.putExtra("idFavCat", idTransferCat);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferEmoneyToEmoneyConfirmationActivity.this.finish();

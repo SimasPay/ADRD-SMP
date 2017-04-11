@@ -35,9 +35,8 @@ import static com.payment.simaspay.services.Constants.LOG_TAG;
 public class FavouriteInputActivity extends AppCompatActivity {
     Functions func;
     SharedPreferences sharedPreferences;
-    ProgressDialog progressDialog;
-    int msgCode;
-    String sourceMDN, stCatID, stMPIN, stFavNumber, message, transactionTime, responseCode;
+    int msgCode, idFavCat, stCatID;
+    String sourceMDN, stMPIN, stFavNumber, message, transactionTime, responseCode;
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
     String favCat="";
@@ -63,7 +62,10 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
         if(getIntent().getExtras()!=null){
             number.setText(getIntent().getExtras().getString("DestMDN"));
+            stFavNumber=getIntent().getExtras().getString("DestMDN");
             favCat=getIntent().getExtras().getString("favCat");
+            idFavCat=getIntent().getExtras().getInt("idFavCat");
+            stCatID=idFavCat;
         }
 
 
@@ -94,7 +96,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
             mapContainer.put("authenticationKey", "");
             mapContainer.put("sourceMDN", sourceMDN);
             mapContainer.put("sourcePIN", stMPIN);
-            mapContainer.put("favoriteCategoryID", stCatID);
+            mapContainer.put("favoriteCategoryID", String.valueOf(stCatID));
             mapContainer.put("favoriteCode", "");
             mapContainer.put("favoriteLabel", "Recharge");
             mapContainer.put("favoriteValue", stFavNumber);
@@ -147,7 +149,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
                                 startActivity(intent);
                             });
                             alertbox.show();
-                        }else if(responseDataContainer.getMsgCode().equals("2171")){
+                        }else if(responseDataContainer.getMsgCode().equals("2087")){
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
@@ -156,6 +158,14 @@ public class FavouriteInputActivity extends AppCompatActivity {
                             Log.d(LOG_TAG, "responseCode"+responseCode);
                             Log.d("test", "not null");
                             msgCode = 0;
+                            alertbox = new AlertDialog.Builder(FavouriteInputActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                Intent intent = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
+                                startActivity(intent);
+                                FavouriteInputActivity.this.finish();
+                            });
+                            alertbox.show();
                         }else{
                             alertbox = new AlertDialog.Builder(FavouriteInputActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());

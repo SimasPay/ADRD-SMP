@@ -378,4 +378,5 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="id_nomor_tujuan">Nomor Tujuan</string>
     <string name="id_desc">Deskripsi</string>
     <string name="status">Status</string>
+    <string name="ok">OK</string>
 </resources>

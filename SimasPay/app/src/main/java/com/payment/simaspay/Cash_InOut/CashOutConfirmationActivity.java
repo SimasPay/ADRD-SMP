@@ -57,6 +57,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
     String sourceMDN, stMPIN, stCharges, stName, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     private static AlertDialog dialogBuilder;
     Functions func;
+    int idTransferCat;
+    String typeTransferCat="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +209,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             }
             mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE,Constants.POCKET_CODE_EMONEY);
             mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE,Constants.POCKET_CODE_BANK_SINARMAS);
+            typeTransferCat="E2B";
+            idTransferCat=13;
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, CashOutConfirmationActivity.this);
 
             Log.e("========","========="+mapContainer.toString());
@@ -264,6 +268,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

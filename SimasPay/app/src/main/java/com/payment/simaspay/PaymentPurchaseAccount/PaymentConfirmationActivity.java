@@ -63,6 +63,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     String selectedLanguage;
     String sourceMDN, message, transactionTime, responseCode, stMPIN, stSctl, stTransferID, stParentTxnID, stAmount, stCharges, stName;
     Functions func;
+    int idTransferCat;
+    String typeTransferCat="";
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,20 +247,30 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             if (sharedPreferences.getInt("userType", -1) == 0) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                typeTransferCat="B2Payment";
+                idTransferCat=3;
             } else if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                typeTransferCat="B2Payment";
+                idTransferCat=3;
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    typeTransferCat="E2Payment";
+                    idTransferCat=9;
                 } else {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    typeTransferCat="B2Payment";
+                    idTransferCat=3;
                 }
             } else if (sharedPreferences.getInt("userType", -1) == 3) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BILLPAYMENT);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                typeTransferCat="E2Payment";
+                idTransferCat=9;
             }
 
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -326,6 +339,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
@@ -340,6 +355,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("favCat", typeTransferCat);
+                    intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

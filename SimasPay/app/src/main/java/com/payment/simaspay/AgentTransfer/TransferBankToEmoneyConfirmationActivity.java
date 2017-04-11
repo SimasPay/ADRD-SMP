@@ -56,6 +56,8 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
     SharedPreferences settings, languageSettings;
     String otpValue;
     String selectedLanguage;
+    int idTransferCat;
+    String typeTransferCat="";
     SharedPreferences sharedPreferences;
     private Functions func;
     @Override
@@ -229,16 +231,26 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
             if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                typeTransferCat="B2E";
+                idTransferCat=5;
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANKSINARMAS_INT) {
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
+                typeTransferCat="B2E";
+                idTransferCat=5;
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_LAKUPANDAI_INT) {
                 if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                    typeTransferCat="E2E";
+                    idTransferCat=7;
                 } else {
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
+                    typeTransferCat="B2E";
+                    idTransferCat=5;
                 }
             }else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT){
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
+                typeTransferCat="E2E";
+                idTransferCat=7;
             }
             mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -299,6 +311,8 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("destName", stFullname);
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
+                            intent.putExtra("favCat", typeTransferCat);
+                            intent.putExtra("idFavCat", idTransferCat);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferBankToEmoneyConfirmationActivity.this.finish();
