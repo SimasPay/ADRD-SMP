@@ -1,30 +1,21 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.Selection;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.Cash_InOut.CashOutConfirmationActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -38,11 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 1/28/2016.
- */
+
 public class TransferDetailsActivity extends AppCompatActivity {
     TextView title, handphone, jumlah, mPin, Rp;
     private static final String LOG_TAG = "SimasPay";
@@ -50,9 +38,8 @@ public class TransferDetailsActivity extends AppCompatActivity {
     EditText number, amount, pin;
     LinearLayout btnBacke;
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
-    private AlertDialog.Builder alertbox;
     Functions func;
-    ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
     int msgCode;
     SharedPreferences sharedPreferences;
     String pinValue, mdn, amountValue;
@@ -153,7 +140,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
 
 
 
-    class transferBankSinarmasAsynTask extends AsyncTask<Void, Void, Void> {
+    private class transferBankSinarmasAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -227,8 +214,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -242,7 +228,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    sharedPreferences.edit().putString("password", pinValue).commit();
+                    sharedPreferences.edit().putString("password", pinValue).apply();
                     Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
@@ -338,7 +324,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }
-                            alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface arg0, int arg1) {
@@ -372,7 +358,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
                             Log.d(LOG_TAG, "sctlID" + sctlID);
                             mfaMode = responseDataContainer.getMfaMode();
                             Log.d(LOG_TAG, "mfaMode" + mfaMode);
-                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                            if (mfaMode.equalsIgnoreCase("OTP")) {
                                 Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
                                 intent.putExtra("DestMDN", mdn);
                                 intent.putExtra("transferID", transferID);

@@ -36,8 +36,6 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
     EditText number, amount, pin, bankName_editfield;
     LinearLayout btnBacke;
     private static final String LOG_TAG = "SimasPay";
-    String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
-    private AlertDialog.Builder alertbox;
     Functions func;
     ProgressDialog progressDialog;
     int msgCode;
@@ -117,23 +115,12 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "pinValue:"+pinValue);
                     mdn = (number.getText().toString().replace(" ", ""));
                     amountValue = amount.getText().toString().replace("Rp ", "");
-
-                    //String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
-                    //if(account.equals(Constants.CONSTANT_BANK_USER)){
                     new transferOtherBankAsynTask().execute();
-                    //}else{
-                    //    new inquiryOtherBankEmoneyAsyncTask().execute();
-                    //}
                 }
 
             }
         });
-        btnBacke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btnBacke.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -222,8 +209,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -231,7 +217,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface arg0, int arg1) {

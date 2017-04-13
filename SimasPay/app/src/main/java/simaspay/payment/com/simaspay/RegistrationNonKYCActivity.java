@@ -143,13 +143,13 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                 }else if(conf_mpin.getText().toString().replace(" ", "").length()<6 && conf_mpin.getText().toString().replace(" ", "").length()>1) {
                     conf_mpin.setError(getResources().getString(R.string.id_invalid_mpin));
                     return;
-                }else if(mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
+                /**}else if(mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     mpin.setError(getResources().getString(R.string.id_validation_mpin));
                     return;
                 }else if(conf_mpin.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     mpin.setError(getResources().getString(R.string.id_validation_confmpin));
                     return;
-                }else if(!mpin.getText().toString().equals(conf_mpin.getText().toString())){
+                **/}else if(!mpin.getText().toString().equals(conf_mpin.getText().toString())){
                     Log.d(LOG_TAG, "mpin: "+mpin.getText().toString() + ", conf mpin: " +conf_mpin.getText().toString());
                     conf_mpin.setError(getResources().getString(R.string.id_checksame_mpin));
                     return;
