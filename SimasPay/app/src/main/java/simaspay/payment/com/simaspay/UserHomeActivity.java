@@ -127,8 +127,8 @@ public class UserHomeActivity extends AppCompatActivity {
         String nama = sharedPreferences.getString("userName", "");
         String mpin = sharedPreferences.getString(Constants.PARAMETER_MPIN, "");
         label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "");
-        ImageButton switch_account = (ImageButton) findViewById(R.id.switch_account);
-        ImageButton logout = (ImageButton) findViewById(R.id.logout_btn);
+        TextView switch_account = (TextView) findViewById(R.id.switch_account);
+        TextView logout = (TextView) findViewById(R.id.logout_btn);
         logout.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -382,4 +382,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="dari_daftar_favorit">Dari Daftar Favorit</string>
     <string name="ketik_manual">Ketik Manual</string>
     <string name="silahkan_pilih">Silahkan pilih</string>
+    <string name="ganti_akun">Ganti Akun</string>
+    <string name="logout">Logout</string>
 </resources>
