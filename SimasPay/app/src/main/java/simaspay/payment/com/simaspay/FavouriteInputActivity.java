@@ -12,8 +12,6 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -40,6 +38,8 @@ public class FavouriteInputActivity extends AppCompatActivity {
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
     String favCat="";
+    EditText desc, number;
+    String descript_fav;
 
     Context context;
     @Override
@@ -57,8 +57,8 @@ public class FavouriteInputActivity extends AppCompatActivity {
         stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
 
         //TextView title=(TextView)findViewById(R.id.titled);
-        EditText number=(EditText) findViewById(R.id.number);
-        //EditText desc=(EditText)findViewById(R.id.desc);
+        number=(EditText) findViewById(R.id.number);
+        desc=(EditText)findViewById(R.id.desc);
 
         if(getIntent().getExtras()!=null){
             number.setText(getIntent().getExtras().getString("DestMDN"));
@@ -78,7 +78,12 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
-            new submitFavAsyncTask().execute();
+            descript_fav=desc.getText().toString();
+            if(descript_fav.equals("")||descript_fav.length()<=2){
+                Utility.displayDialog("Harap masukkan deskripsi", FavouriteInputActivity.this);
+            }else{
+                new submitFavAsyncTask().execute();
+            }
         });
 
     }
@@ -90,17 +95,17 @@ public class FavouriteInputActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("service", "Account");
-            mapContainer.put("txnName", "AddFavorite");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sourceMDN);
-            mapContainer.put("sourcePIN", stMPIN);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, "AddFavorite");
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, stMPIN);
             mapContainer.put("favoriteCategoryID", String.valueOf(stCatID));
             mapContainer.put("favoriteCode", "");
-            mapContainer.put("favoriteLabel", "Recharge");
-            mapContainer.put("favoriteValue", stFavNumber);
-            mapContainer.put("channelID", "7");
+            mapContainer.put("favoriteLabel", descript_fav.trim());
+            mapContainer.put("favoriteValue", stFavNumber.trim());
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, "7");
 
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,

@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.payment.simaspay.services.Constants;
@@ -21,9 +22,11 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +43,11 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
     private AlertDialog.Builder alertbox;
     Functions func;
     ProgressDialog progressDialog;
-    int msgCode;
+    int msgCode, stCatID;
+    Spinner spinner_fav;
+    String selectedItem;
+    String selectedValue;
+    ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
     SharedPreferences sharedPreferences;
     String pinValue, mdn, amountValue;
 
@@ -97,36 +104,27 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
 
 
 
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
-                } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
-                } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
-                }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
-                } else {
-                    pinValue = func.generateRSA(pin.getText().toString());
-                    Log.d(LOG_TAG, "pinValue:"+pinValue);
-                    mdn = (number.getText().toString().replace(" ", ""));
-                    amountValue = amount.getText().toString().replace("Rp ", "");
-
-                    //String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
-                    //if(account.equals(Constants.CONSTANT_BANK_USER)){
-                    new transferOtherBankAsynTask().execute();
-                    //}else{
-                    //    new inquiryOtherBankEmoneyAsyncTask().execute();
-                    //}
-                }
-
+        submit.setOnClickListener(view -> {
+            if (number.getText().toString().replace(" ", "").length() <= 0) {
+                Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
+            } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+            } else if (number.getText().toString().replace(" ", "").length() > 15) {
+                Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+            } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
+            } else if (pin.getText().toString().length() <= 0) {
+                Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
+            }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
+            } else {
+                pinValue = func.generateRSA(pin.getText().toString());
+                Log.d(LOG_TAG, "pinValue:"+pinValue);
+                mdn = (number.getText().toString().replace(" ", ""));
+                amountValue = amount.getText().toString().replace("Rp ", "");
+                new transferOtherBankAsynTask().execute();
             }
+
         });
         btnBacke.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +146,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
         }
     }
 
-    class transferOtherBankAsynTask extends AsyncTask<Void, Void, Void> {
+    private class transferOtherBankAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override

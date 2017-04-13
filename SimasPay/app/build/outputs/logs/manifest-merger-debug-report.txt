@@ -140,25 +140,26 @@ MERGED from [com.android.support:percent:25.3.1] /Users/widy/.android/build-cach
 MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/.android/build-cache/686907247c65453d2c01f58cdd1d2d22d3dce9f7/output/AndroidManifest.xml:47:5-55:19
 MERGED from [com.android.support:cardview-v7:25.3.1] /Users/widy/.android/build-cache/2b78e0538cd819b6e4b6fa85939999a20749f767/output/AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:design:25.3.1] /Users/widy/.android/build-cache/9dc88feee5992f82f9f8deb22fb2d1c39afc4043/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:26:5-20
-MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:transition:25.3.1] /Users/widy/.android/build-cache/c73b34534fb2c69590a1ed36b58140e6ff97a439/output/AndroidManifest.xml:26:5-20
 MERGED from [com.google.android.gms:play-services-location:10.2.1] /Users/widy/.android/build-cache/fce06cefcdab7e2fd37b0a0f296fdace2929c30d/output/AndroidManifest.xml:4:5-19
 MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/widy/.android/build-cache/5c13442e589a3bdf910719e532a789f97be7a638/output/AndroidManifest.xml:24:5-19
 MERGED from [com.google.android.gms:play-services-base:10.2.1] /Users/widy/.android/build-cache/95d959b900d3a0947b977cf7bac185938070a2f6/output/AndroidManifest.xml:18:5-20:19
 MERGED from [com.google.android.gms:play-services-tasks:10.2.1] /Users/widy/.android/build-cache/153915a1a4cf4efad45d47a0d00bb35eeaac4259/output/AndroidManifest.xml:4:5-19
 MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.android/build-cache/075d89eec6dbabdffa423166d8b320d967bc793e/output/AndroidManifest.xml:19:5-21:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] /Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/AndroidManifest.xml:9:5-20
+MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/85544883b346684b3e119e91ad00e07ac88db216/output/AndroidManifest.xml:18:5-108:19
+MERGED from [testfairy:testfairy-android-sdk:1.4.14] /Users/widy/.android/build-cache/0947cc55619be56f69061a7b76732f35909d56af/output/AndroidManifest.xml:17:5-25:19
+MERGED from [de.hdodenhof:circleimageview:2.1.0] /Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/AndroidManifest.xml:9:5-20
+MERGED from [com.weiwangcn.betterspinner:library-material:1.1.0] /Users/widy/.android/build-cache/a06152fafebcc0fc2d97e1d244bb6a217fb51946/output/AndroidManifest.xml:11:5-14:19
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-v4:25.3.1] /Users/widy/.android/build-cache/6a3cf09c8f99d5cb24cbdd4a0b76dcdc17e891f9/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-fragment:25.3.1] /Users/widy/.android/build-cache/a69e5a43a8510196fe0e5cef248c2a9f9cbae65c/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-media-compat:25.3.1] /Users/widy/.android/build-cache/0f36407443a6a48e20b5f2bc2ca95b056431d3a6/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-ui:25.3.1] /Users/widy/.android/build-cache/26a4cfbaf31fe6ad1aba747dae6380f2b90b3b2f/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-utils:25.3.1] /Users/widy/.android/build-cache/1b6ab4b341d1efdba058c728ced3dc79649eece8/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-compat:25.3.1] /Users/widy/.android/build-cache/7b104b0a66809101604b6025d4fd5c8e9f9c62f9/output/AndroidManifest.xml:29:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] /Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/AndroidManifest.xml:9:5-20
-MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/85544883b346684b3e119e91ad00e07ac88db216/output/AndroidManifest.xml:18:5-108:19
-MERGED from [testfairy:testfairy-android-sdk:1.4.14] /Users/widy/.android/build-cache/0947cc55619be56f69061a7b76732f35909d56af/output/AndroidManifest.xml:17:5-25:19
-MERGED from [de.hdodenhof:circleimageview:2.1.0] /Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:40:9-41
 	tools:overrideLibrary
@@ -1230,9 +1231,6 @@ MERGED from [com.android.support:percent:25.3.1] /Users/widy/.android/build-cach
 MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/.android/build-cache/686907247c65453d2c01f58cdd1d2d22d3dce9f7/output/AndroidManifest.xml:19:5-21:41
 MERGED from [com.android.support:cardview-v7:25.3.1] /Users/widy/.android/build-cache/2b78e0538cd819b6e4b6fa85939999a20749f767/output/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:design:25.3.1] /Users/widy/.android/build-cache/9dc88feee5992f82f9f8deb22fb2d1c39afc4043/output/AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/widy/.android/build-cache/28131e6927167602928e7dd9829e2696b342c755/output/AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:transition:25.3.1] /Users/widy/.android/build-cache/c73b34534fb2c69590a1ed36b58140e6ff97a439/output/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:10.2.1] /Users/widy/.android/build-cache/fce06cefcdab7e2fd37b0a0f296fdace2929c30d/output/AndroidManifest.xml:3:5-43
@@ -1240,18 +1238,23 @@ MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/widy/.andr
 MERGED from [com.google.android.gms:play-services-base:10.2.1] /Users/widy/.android/build-cache/95d959b900d3a0947b977cf7bac185938070a2f6/output/AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-tasks:10.2.1] /Users/widy/.android/build-cache/153915a1a4cf4efad45d47a0d00bb35eeaac4259/output/AndroidManifest.xml:3:5-43
 MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.android/build-cache/075d89eec6dbabdffa423166d8b320d967bc793e/output/AndroidManifest.xml:17:5-43
-MERGED from [com.android.support:support-v4:25.3.1] /Users/widy/.android/build-cache/6a3cf09c8f99d5cb24cbdd4a0b76dcdc17e891f9/output/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.3.1] /Users/widy/.android/build-cache/a69e5a43a8510196fe0e5cef248c2a9f9cbae65c/output/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.3.1] /Users/widy/.android/build-cache/0f36407443a6a48e20b5f2bc2ca95b056431d3a6/output/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.3.1] /Users/widy/.android/build-cache/26a4cfbaf31fe6ad1aba747dae6380f2b90b3b2f/output/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.3.1] /Users/widy/.android/build-cache/1b6ab4b341d1efdba058c728ced3dc79649eece8/output/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.3.1] /Users/widy/.android/build-cache/7b104b0a66809101604b6025d4fd5c8e9f9c62f9/output/AndroidManifest.xml:21:5-23:58
 MERGED from [com.makeramen:roundedimageview:2.2.1] /Users/widy/.android/build-cache/f018c4b8e6949c51236d103e35efbc269369335d/output/AndroidManifest.xml:7:5-43
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] /Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/AndroidManifest.xml:5:5-7:41
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/85544883b346684b3e119e91ad00e07ac88db216/output/AndroidManifest.xml:7:5-9:41
 MERGED from [testfairy:testfairy-android-sdk:1.4.14] /Users/widy/.android/build-cache/0947cc55619be56f69061a7b76732f35909d56af/output/AndroidManifest.xml:5:5-44
 MERGED from [de.hdodenhof:circleimageview:2.1.0] /Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/AndroidManifest.xml:5:5-7:41
 MERGED from [SimasPay:CropImageLib:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/CropImage/build/intermediates/bundles/default/AndroidManifest.xml:7:5-9:41
+MERGED from [com.weiwangcn.betterspinner:library-material:1.1.0] /Users/widy/.android/build-cache/a06152fafebcc0fc2d97e1d244bb6a217fb51946/output/AndroidManifest.xml:7:5-9:41
+MERGED from [com.rengwuxian.materialedittext:library:2.0.3] /Users/widy/.android/build-cache/055d4cddd4b644ce5f6db2a684cf876dfb601cf1/output/AndroidManifest.xml:6:5-8:41
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:25.3.1] /Users/widy/.android/build-cache/6a3cf09c8f99d5cb24cbdd4a0b76dcdc17e891f9/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /Users/widy/.android/build-cache/a69e5a43a8510196fe0e5cef248c2a9f9cbae65c/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /Users/widy/.android/build-cache/0f36407443a6a48e20b5f2bc2ca95b056431d3a6/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] /Users/widy/.android/build-cache/26a4cfbaf31fe6ad1aba747dae6380f2b90b3b2f/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] /Users/widy/.android/build-cache/1b6ab4b341d1efdba058c728ced3dc79649eece8/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-compat:25.3.1] /Users/widy/.android/build-cache/7b104b0a66809101604b6025d4fd5c8e9f9c62f9/output/AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:25.3.1] /Users/widy/.android/build-cache/9dc88feee5992f82f9f8deb22fb2d1c39afc4043/output/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
@@ -1264,16 +1267,16 @@ meta-data#android.support.VERSION
 ADDED from [com.android.support:percent:25.3.1] /Users/widy/.android/build-cache/23e248e1279ed7bd1dd759d71fc2525625c77897/output/AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:cardview-v7:25.3.1] /Users/widy/.android/build-cache/2b78e0538cd819b6e4b6fa85939999a20749f767/output/AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:design:25.3.1] /Users/widy/.android/build-cache/9dc88feee5992f82f9f8deb22fb2d1c39afc4043/output/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:25:5-27:34
-MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:22:5-24:34
-MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:recyclerview-v7:25.3.1] /Users/widy/.android/build-cache/28131e6927167602928e7dd9829e2696b342c755/output/AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:transition:25.3.1] /Users/widy/.android/build-cache/c73b34534fb2c69590a1ed36b58140e6ff97a439/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-v4:25.3.1] /Users/widy/.android/build-cache/6a3cf09c8f99d5cb24cbdd4a0b76dcdc17e891f9/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-fragment:25.3.1] /Users/widy/.android/build-cache/a69e5a43a8510196fe0e5cef248c2a9f9cbae65c/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-media-compat:25.3.1] /Users/widy/.android/build-cache/0f36407443a6a48e20b5f2bc2ca95b056431d3a6/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-core-ui:25.3.1] /Users/widy/.android/build-cache/26a4cfbaf31fe6ad1aba747dae6380f2b90b3b2f/output/AndroidManifest.xml:25:5-27:34
 MERGED from [com.android.support:support-core-utils:25.3.1] /Users/widy/.android/build-cache/1b6ab4b341d1efdba058c728ced3dc79649eece8/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /Users/widy/.android/build-cache/b3817da8ff469be1cef91bececf1e90a4949f4bf/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /Users/widy/.android/build-cache/7c089dd83aeddbe9e79a2c88f457a1020b2f760c/output/AndroidManifest.xml:22:5-24:34
 MERGED from [com.android.support:support-compat:25.3.1] /Users/widy/.android/build-cache/7b104b0a66809101604b6025d4fd5c8e9f9c62f9/output/AndroidManifest.xml:25:5-27:34
 	android:value
 		ADDED from [com.android.support:percent:25.3.1] /Users/widy/.android/build-cache/23e248e1279ed7bd1dd759d71fc2525625c77897/output/AndroidManifest.xml:24:9-31

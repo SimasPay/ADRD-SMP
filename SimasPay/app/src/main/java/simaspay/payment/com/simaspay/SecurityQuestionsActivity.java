@@ -99,7 +99,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Boolean isForgot = (Boolean) extras.getBoolean(Constants.PARAMETER_FORGOTMPIN, false);
-            if (isForgot == true) {
+            if (isForgot) {
                 label_toolbar.setText("Reset mPIN");
                 daftar.setText("Konfirmasi");
             } else {

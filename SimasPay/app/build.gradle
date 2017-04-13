@@ -55,5 +55,6 @@ dependencies {
     compile 'testfairy:testfairy-android-sdk:1.+@aar'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile project(path: ':CropImageLib')
+    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
     //compile 'com.afollestad:material-camera:0.4.4'
 }

@@ -115,7 +115,7 @@
             android:paddingRight="10dp"
             android:paddingStart="10dp"
             android:maxLines="1"
-            android:maxLength="25"
+            android:maxLength="36"
             android:background="@null"/>
         <View
             android:layout_width="fill_parent"

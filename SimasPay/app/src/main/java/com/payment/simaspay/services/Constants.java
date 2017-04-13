@@ -583,6 +583,8 @@ public class Constants {
     public static String TRANSACTION_PAYMENTS="category.payments";
     public static String TRANSACTION_PURCHASES="category.purchase";
     public static String TRANSACTION_CONTACTUS_FILE="category.ContactUsfile";
+    public static String CONSTANT_GENERATE_FAVORITE_JSON="GenerateFavoriteJSON";
+    public static String PARAMETER_FAVORITE_ID="favoriteCategoryID";
     /* UpdateProfile */
     public static final String TRANSACTION_UPDATE_PROFILE = "UpdateProfile";
     public static final String PARAMETER_PROFILE_IMAGE_STRING = "profileImageString";

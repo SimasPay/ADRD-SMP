@@ -58,6 +58,39 @@
                 android:textColor="@android:color/black"
                 android:textSize="13dp" />
 
+            <RadioGroup
+                android:id="@+id/rad_tujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp">
+
+                <RadioButton
+                    android:id="@+id/favlist_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawableStart="@drawable/checkbox_selector"
+                    android:drawablePadding="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/dari_daftar_favorit" />
+
+                <RadioButton
+                    android:id="@+id/manualinput_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ketik_manual"
+                    android:background="@android:color/transparent"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawableStart="@drawable/checkbox_selector"
+                    android:drawablePadding="5dp"
+                    android:checked="true"/>
+
+            </RadioGroup>
+
             <EditText
                 android:id="@+id/number"
                 android:layout_width="match_parent"
@@ -66,12 +99,52 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
+                android:maxLines="1"
+                android:maxLength="14"
                 android:inputType="number"
                 android:digits="1234567890"
                 android:background="@drawable/edittext_background"
                 android:drawableRight="@drawable/ic_contact_phone_black_24dp"
+                android:drawableEnd="@drawable/ic_contact_phone_black_24dp"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/spinner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/spinner_background"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_fav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/spinner_background"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:contentDescription="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="10dp"
+                    android:paddingStart="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/btn_arrow_down" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/jumlah"
