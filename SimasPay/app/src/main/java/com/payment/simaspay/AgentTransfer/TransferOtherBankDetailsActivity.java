@@ -99,15 +99,15 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() > 25) {
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_mpin), TransferOtherBankDetailsActivity.this);
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
                 } else {
@@ -135,7 +135,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
         }
     }
 
-    class transferOtherBankAsynTask extends AsyncTask<Void, Void, Void> {
+    private class transferOtherBankAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
@@ -272,141 +272,4 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
             }
         }
     }
-
-    /**
-    class inquiryOtherBankEmoneyAsyncTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progressDialog;
-        String response;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("txnName", "InterBankTransferInquiry");
-            mapContainer.put("service", "Wallet");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            //mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
-            mapContainer.put("sourcePIN", pinValue);
-            mapContainer.put("destAccountNo", mdn);
-            mapContainer.put("destBankCode", getIntent().getExtras().getString("BankCode"));
-            //mapContainer.put("destBankAccount",mdn);
-            mapContainer.put("amount", amountValue);
-            mapContainer.put("channelID", "7");
-            //mapContainer.put("bankID", "");
-            mapContainer.put("sourcePocketCode", "1");
-
-            Log.e("-----", "" + mapContainer.toString());
-            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    TransferOtherBankDetailsActivity.this);
-            response = webServiceHttp.getResponseSSLCertificatation();
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog = new ProgressDialog(TransferOtherBankDetailsActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-            if (response != null) {
-                Log.e("-------", "=====" + response);
-                XMLParser obj = new XMLParser();
-                EncryptedResponseDataContainer responseDataContainer = null;
-                try {
-                    responseDataContainer = obj.parse(response);
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
-                }
-                try {
-                    msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
-                } catch (Exception e) {
-                    msgCode = 0;
-                }
-                try {
-                    if (responseDataContainer != null) {
-                        Log.d("test", "not null");
-                        if (responseDataContainer.getMsgCode().equals("631")) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                            alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                    Intent intent = new Intent(TransferOtherBankDetailsActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(intent);
-                                }
-                            });
-                            alertbox.show();
-                        } else if (responseDataContainer.getMsgCode().equals("72") || responseDataContainer.getMsgCode().equals("676")) {
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message" + message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
-                            receiverAccountName = responseDataContainer.getCustName();
-                            Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
-                            destinationBank = responseDataContainer.getDestBank();
-                            Log.d(LOG_TAG, "destinationBank" + destinationBank);
-                            destinationName = responseDataContainer.getCustName();
-                            Log.d(LOG_TAG, "destinationName" + destinationName);
-                            destinationAccountNumber = responseDataContainer.getAccountNumber();
-                            Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
-                            //destinationMDN = responseDataContainer.getDestMDN();
-                            //Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
-                            transferID = responseDataContainer.getEncryptedTransferId();
-                            Log.d(LOG_TAG, "transferID" + transferID);
-                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
-                            Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
-                            sctlID = responseDataContainer.getSctl();
-                            Log.d(LOG_TAG, "sctlID" + sctlID);
-                            mfaMode = responseDataContainer.getMfaMode();
-                            Log.d(LOG_TAG, "mfaMode" + mfaMode);
-                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
-                                Intent intent = new Intent(TransferOtherBankDetailsActivity.this, TransferOtherbankConfirmationActivity.class);
-                                intent.putExtra("DestMDN", mdn);
-                                intent.putExtra("transferID", transferID);
-                                intent.putExtra("sctlID", sctlID);
-                                intent.putExtra("destname", receiverAccountName);
-                                intent.putExtra("mpin", pinValue);
-                                intent.putExtra("ParentId", parentTxnID);
-                                intent.putExtra("mfaMode", mfaMode);
-                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
-                                intent.putExtra("Name", receiverAccountName);
-                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
-                                intent.putExtra("amount", responseDataContainer.getEncryptedDebitAmount());
-                                intent.putExtra("originalamount", responseDataContainer.getAmount());
-                                intent.putExtra("BankName", responseDataContainer.getDestBank());
-                                intent.putExtra("BankCode", getIntent().getExtras().getString("BankCode"));
-                                startActivity(intent);
-                            } else {
-                                //tanpa OTP
-                            }
-                        } else {
-                            AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferOtherBankDetailsActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                        }
-                    }
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
-                }
-            }
-        }
-    }
-        **/
 }

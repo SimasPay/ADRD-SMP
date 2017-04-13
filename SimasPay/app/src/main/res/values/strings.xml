@@ -380,4 +380,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="status">Status</string>
     <string name="ganti_akun">Ganti Akun</string>
     <string name="logout">Logout</string>
+    <string name="empty_no_rek">Harap Masukkan Nomor Rekening Tujuan Anda</string>
+    <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-25 angka</string>
+    <string name="empty_amount">Harap masukkan jumlah yang ingin Anda transfer</string>
+    <string name="empty_mpin">Harap masukkan mPIN Anda</string>
 </resources>

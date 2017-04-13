@@ -94,7 +94,7 @@
                 android:digits="1234567890"
                 android:singleLine="true"
                 android:maxLines="1"
-                android:maxLength="14"
+                android:maxLength="25"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 

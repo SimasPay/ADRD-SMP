@@ -92,15 +92,15 @@ public class TransferDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Harap Masukkan Nomor Rekening Tujuan Anda.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() > 25) {
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_mpin), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferDetailsActivity.this);
                 } else {
