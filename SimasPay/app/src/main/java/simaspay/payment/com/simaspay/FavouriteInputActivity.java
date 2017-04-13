@@ -37,7 +37,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
     String sourceMDN, stMPIN, stFavNumber, message, transactionTime, responseCode;
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
-    String favCat="";
+    String favCat="", FavCode="";
     EditText desc, number;
     String descript_fav;
 
@@ -58,6 +58,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
         //TextView title=(TextView)findViewById(R.id.titled);
         number=(EditText) findViewById(R.id.number);
+        //number.setEnabled(false);
         desc=(EditText)findViewById(R.id.desc);
 
         if(getIntent().getExtras()!=null){
@@ -66,6 +67,9 @@ public class FavouriteInputActivity extends AppCompatActivity {
             favCat=getIntent().getExtras().getString("favCat");
             idFavCat=getIntent().getExtras().getInt("idFavCat");
             stCatID=idFavCat;
+            if(getIntent().getExtras().getString("favCode")!=null){
+                FavCode=getIntent().getExtras().getString("favCode");
+            }
         }
 
 
@@ -102,7 +106,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, stMPIN);
             mapContainer.put("favoriteCategoryID", String.valueOf(stCatID));
-            mapContainer.put("favoriteCode", "");
+            mapContainer.put("favoriteCode", FavCode.trim());
             mapContainer.put("favoriteLabel", descript_fav.trim());
             mapContainer.put("favoriteValue", stFavNumber.trim());
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, "7");

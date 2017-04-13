@@ -22,9 +22,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
-/**
- * Created by Nagendra P on 1/29/2016.
- */
+
 public class PurchaseSuccessActivity extends AppCompatActivity {
     CheckBox favBtn;
     Boolean isSetFav=false;
@@ -91,7 +89,6 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
         charges_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         total_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
 
-        TextView label_fav=(TextView)findViewById(R.id.label_fav);
         favBtn=(CheckBox)findViewById(R.id.checkfav);
         favBtn.setOnClickListener(arg0 -> {
             if(!favBtn.isChecked()){
@@ -119,14 +116,21 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
         total.setTypeface(Utility.Robot_Regular(PurchaseSuccessActivity.this));
         total_field.setTypeface(Utility.Robot_Light(PurchaseSuccessActivity.this));
 
+        Log.d(LOG_TAG, "favCat:"+getIntent().getExtras().getString("favCat")+", idFavCat: "+getIntent().getExtras().getInt("idFavCat"));
+        if(getIntent().getExtras().getString("favCode")!=null){
+            Log.d(LOG_TAG, "favCode:"+getIntent().getExtras().getString("favCode"));
+        }
         ok.setOnClickListener(view1 -> {
             if(favBtn.isChecked()){
                 Log.d(LOG_TAG, "checked");
                 if(getIntent().getExtras()!=null){
                     Intent intent = new Intent(PurchaseSuccessActivity.this, FavouriteInputActivity.class);
-                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("invoiceNo"));
                     intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
                     intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
+                    if(getIntent().getExtras().getString("favCode")!=null){
+                        intent.putExtra("favCode", getIntent().getExtras().getString("favCode"));
+                    }
                     startActivityForResult(intent, 10);
                 }
             }else{

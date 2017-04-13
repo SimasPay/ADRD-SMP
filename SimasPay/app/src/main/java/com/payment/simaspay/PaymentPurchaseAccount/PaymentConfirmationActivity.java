@@ -339,6 +339,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
@@ -355,6 +356,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     intent.putExtra("totalAmount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("numberTitle", getIntent().getExtras().getString("numberTitle"));
+                    intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);

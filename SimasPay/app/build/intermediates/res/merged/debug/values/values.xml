@@ -1154,10 +1154,13 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="details_ms"><ns1:g id="minutes">%1$02d</ns1:g>:<ns1:g id="seconds">%2$02d</ns1:g></string>
     <string name="details_ok">OK</string>
     <string name="details_panel_title">Details</string>
+    <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-16 angka</string>
     <string name="dimo">Dimo</string>
     <string name="done_label">Done</string>
     <string name="emoney">E-money</string>
     <string name="empty"/>
+    <string name="empty_amount">Harap masukkan jumlah yang ingin Anda transfer</string>
+    <string name="empty_no_rek">Harap Masukkan Nomor Rekening Tujuan Anda</string>
     <string name="en_authentication_failed">Authentification process failed. Please try again</string>
     <string name="en_checksame_mpin">Konfirmasi mPin harus sama dengan mPIN</string>
     <string name="en_confirmation_mpin">Confirmation mPIN</string>
@@ -1348,6 +1351,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="gallery_camera_videos_bucket_name">Camera videos</string>
     <string name="gallery_label">Gallery</string>
     <string name="gallery_picker_label">Gallery</string>
+    <string name="ganti_akun">Ganti Akun</string>
     <string name="gantimpin">Ganti mPIN</string>
     <string name="hai_son_goku">Hai Son Goku</string>
     <string name="helpScreenTitle">Hubungi</string>
@@ -1431,6 +1435,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="library_roundedimageview_licenseId">apache_2_0</string>
     <string name="library_roundedimageview_repositoryLink">https://github.com/vinc3m1/RoundedImageView.git</string>
     <string name="loading_video">Loading video\u2026</string>
+    <string name="logout">Logout</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>
     <string name="min_transfer">Minimal Rp 100.000, harus kelipatan Rp 50.000</string>
@@ -1444,6 +1449,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="multiselect_share">Share</string>
     <string name="mutasi">Mutasi</string>
     <string name="nama_pemilik_rekening">Nama Pemilik Rekening</string>
+    <string name="nama_produk">Nama Produk</string>
     <string name="no_location_image">There\'s no location information stored in this image.</string>
     <string name="no_storage" product="default">You need to insert an SD card before using the camera.</string>
     <string name="no_storage_card">No storage card</string>
@@ -1451,6 +1457,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="no_way_to_share_image">There\'s no app available to share the picture.</string>
     <string name="no_way_to_share_video">There\'s no app available to share the video.</string>
     <string name="nohptujuan">Nomor Handphone Tujuan</string>
+    <string name="nominal_pulsa">Nominal Pulsa</string>
     <string name="not_enough_space">Not enough space</string>
     <string name="notice">*Nomor ini belum terdaftar sebagai e-money user. Kami akan mengirimkan SMS panduan download Simaspay E-money ke nomor tujuan.</string>
     <string name="number_grater14">Nomor Handphone harus kurang dari 14 angka</string>

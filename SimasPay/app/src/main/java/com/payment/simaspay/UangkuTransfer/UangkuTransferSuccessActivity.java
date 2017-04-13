@@ -12,9 +12,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
-import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
-import com.payment.simaspay.Cash_InOut.CashoutSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.FavouriteInputActivity;
@@ -109,7 +106,7 @@ public class UangkuTransferSuccessActivity extends Activity {
                 Log.d(LOG_TAG, "checked");
                 if(getIntent().getExtras()!=null){
                     Intent intent = new Intent(UangkuTransferSuccessActivity.this, FavouriteInputActivity.class);
-                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("Acc_Number"));
                     intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
                     intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
                     startActivityForResult(intent, 10);

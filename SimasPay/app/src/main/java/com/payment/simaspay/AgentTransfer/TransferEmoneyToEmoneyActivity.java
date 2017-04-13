@@ -20,9 +20,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +36,15 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.CustomSpinnerAdapter;
+import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,13 +62,19 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
     Button submit;
     EditText tujuan, amount, pin;
     LinearLayout btnBacke;
-    String pinValue, destmdn, amountValue, sourceMDN;
+    String pinValue, destmdn, amountValue, sourceMDN, stMPIN;
     String message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber,destinationMDN,transferID,parentTxnID,sctlID,mfaMode;
-    private AlertDialog.Builder alertbox;
     private Functions func;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     static final int PICK_CONTACT=1;
     static final int EXIT=10;
+    ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
+    int msgCode, stCatID;
+    Spinner spinner_fav;
+    String selectedItem="man";
+    String selectedValue;
+    SharedPreferences settings, languageSettings;
+    String selectedLanguage;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -69,10 +86,19 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         getPermissionToReadUserContacts();
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
+        selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+        settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        sourceMDN = settings.getString("mobileNumber", "");
+        stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
+
         btnBacke = (LinearLayout) findViewById(R.id.back_layout);
         btnBacke.setOnClickListener(view -> finish());
 
         title = (TextView) findViewById(R.id.titled);
+        RelativeLayout spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout.setVisibility(View.GONE);
+        spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
 
         handphone = (TextView) findViewById(R.id.noHPtujuan_lbl);
         jumlah = (TextView) findViewById(R.id.jumlah);
@@ -97,6 +123,21 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
+        radioTujuanGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            Log.d("chk", "id " + checkedId);
+            if (checkedId == R.id.favlist_option) {
+                selectedItem = "fav";
+                spinner_layout.setVisibility(View.VISIBLE);
+                tujuan.setVisibility(View.GONE);
+            } else if (checkedId == R.id.manualinput_option) {
+                selectedItem = "man";
+                spinner_layout.setVisibility(View.GONE);
+                tujuan.setVisibility(View.VISIBLE);
+            }
+        });
+
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
 
@@ -112,30 +153,52 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         pin.setTypeface(Utility.Robot_Light(TransferEmoneyToEmoneyActivity.this));
         amount.setTypeface(Utility.Robot_Light(TransferEmoneyToEmoneyActivity.this));
 
+        new getFavList().execute();
+
+        spinner_fav.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View v, int position, long id) {
+                selectedValue = ((TextView) v.findViewById(R.id.value_fav)).getText().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+
+            }
+        });
+
         submit.setTypeface(Utility.Robot_Regular(TransferEmoneyToEmoneyActivity.this));
         submit.setOnClickListener(view -> {
-            if(tujuan.getText().toString().replace(" ", "").length()==0) {
-                tujuan.setError(getResources().getString(R.string.id_masukkan_no_hp));
-                return;
-            }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
-                tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
-                return;
-            }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
-                tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
-                return;
-            }else if(amount.getText().toString().replace(" ", "").length()==0) {
-                amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
-                return;
-            }else if(pin.getText().toString().length()==0){
-                pin.setError(getResources().getString(R.string.id_masukkan_mpin));
-                return;
-            }else{
-                pinValue=func.generateRSA(pin.getText().toString());
-                destmdn = (tujuan.getText().toString().replace(" ", ""));
-                amountValue = amount.getText().toString().replace("Rp ", "");
-
-                new inquiryAsyncTask().execute();
+            if (selectedItem.equals("man")) {
+                if(tujuan.getText().toString().replace(" ", "").length()==0) {
+                    tujuan.setError(getResources().getString(R.string.id_masukkan_no_hp));
+                }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
+                    tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
+                    tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                }else if(amount.getText().toString().replace(" ", "").length()==0) {
+                    amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
+                }else if(pin.getText().toString().length()==0){
+                    pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                }else{
+                    pinValue=func.generateRSA(pin.getText().toString());
+                    destmdn = (tujuan.getText().toString().replace(" ", ""));
+                    amountValue = amount.getText().toString().replace("Rp ", "");
+                    new inquiryAsyncTask().execute();
+                }
+            } else if (selectedItem.equals("fav")) {
+                if(amount.getText().toString().replace(" ", "").length()==0) {
+                    amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
+                }else if(pin.getText().toString().length()==0){
+                    pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                }else{
+                    pinValue=func.generateRSA(pin.getText().toString());
+                    destmdn = selectedValue;
+                    amountValue = amount.getText().toString().replace("Rp ", "");
+                    new inquiryAsyncTask().execute();
+                }
             }
+
         });
     }
 
@@ -233,67 +296,73 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (responseDataContainer.getMsgCode().equals("631")) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
-                            }
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                    Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, SecondLoginActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        AlertDialog.Builder alertbox;
+                        switch (responseDataContainer.getMsgCode()) {
+                            case "631":
+                                if (progressDialog != null) {
+                                    progressDialog.dismiss();
+                                }
+                                alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                        Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, SecondLoginActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                    }
+                                });
+                                alertbox.show();
+                                break;
+                            case "72":
+                            case "676":
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message" + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                receiverAccountName = responseDataContainer.getKycName();
+                                Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
+                                destinationBank = responseDataContainer.getDestBank();
+                                Log.d(LOG_TAG, "destinationBank" + destinationBank);
+                                destinationName = responseDataContainer.getDestinationAccountName();
+                                Log.d(LOG_TAG, "destinationName" + destinationName);
+                                destinationAccountNumber = responseDataContainer.getDestinationAccountNumber();
+                                Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
+                                destinationMDN = responseDataContainer.getDestMDN();
+                                Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
+                                transferID = responseDataContainer.getEncryptedTransferId();
+                                Log.d(LOG_TAG, "transferID" + transferID);
+                                parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                                Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                                sctlID = responseDataContainer.getSctl();
+                                Log.d(LOG_TAG, "sctlID" + sctlID);
+                                mfaMode = responseDataContainer.getMfaMode();
+                                Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                                if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                    Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyToEmoneyConfirmationActivity.class);
+                                    intent.putExtra("destmdn", destmdn);
+                                    intent.putExtra("transferID", transferID);
+                                    intent.putExtra("sctlID", sctlID);
+                                    intent.putExtra("amount", amountValue);
+                                    intent.putExtra("destname", receiverAccountName);
+                                    intent.putExtra("mpin", pinValue);
+                                    intent.putExtra("parentTxnID", parentTxnID);
+                                    intent.putExtra("mfaMode", mfaMode);
                                     startActivity(intent);
+                                } else {
+                                    //tanpa OTP
                                 }
-                            });
-                            alertbox.show();
-                        } else if(responseDataContainer.getMsgCode().equals("72")||responseDataContainer.getMsgCode().equals("676")){
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
-                            receiverAccountName = responseDataContainer.getKycName();
-                            Log.d(LOG_TAG, "receiverAccountName"+receiverAccountName);
-                            destinationBank = responseDataContainer.getDestBank();
-                            Log.d(LOG_TAG, "destinationBank"+destinationBank);
-                            destinationName = responseDataContainer.getDestinationAccountName();
-                            Log.d(LOG_TAG, "destinationName"+destinationName);
-                            destinationAccountNumber = responseDataContainer.getDestinationAccountNumber();
-                            Log.d(LOG_TAG, "destinationAccountNumber"+destinationAccountNumber);
-                            destinationMDN = responseDataContainer.getDestMDN();
-                            Log.d(LOG_TAG, "destinationMDN"+destinationMDN);
-                            transferID = responseDataContainer.getEncryptedTransferId();
-                            Log.d(LOG_TAG, "transferID"+transferID);
-                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
-                            Log.d(LOG_TAG, "parentTxnID"+parentTxnID);
-                            sctlID = responseDataContainer.getSctl();
-                            Log.d(LOG_TAG, "sctlID"+sctlID);
-                            mfaMode = responseDataContainer.getMfaMode();
-                            Log.d(LOG_TAG, "mfaMode"+mfaMode);
-                            if(mfaMode.toString().equalsIgnoreCase("OTP")){
-                                Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyToEmoneyConfirmationActivity.class);
-                                intent.putExtra("destmdn", destmdn);
-                                intent.putExtra("transferID", transferID);
-                                intent.putExtra("sctlID", sctlID);
-                                intent.putExtra("amount", amountValue);
-                                intent.putExtra("destname", receiverAccountName);
-                                intent.putExtra("mpin", pinValue);
-                                intent.putExtra("parentTxnID",parentTxnID);
-                                intent.putExtra("mfaMode",mfaMode);
-                                startActivity(intent);
-                            }else{
-                                //tanpa OTP
-                            }
-                        }else{
-                            alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
+                                break;
+                            default:
+                                alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                    }
+                                });
+                                alertbox.show();
+                                break;
                         }
                     }
                 }catch (Exception e) {
@@ -351,6 +420,85 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    private class getFavList extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        String response;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            Map<String, String> mapContainer = new HashMap<>();
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.CONSTANT_GENERATE_FAVORITE_JSON);
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, stMPIN);
+            if (sharedPreferences.getInt("userType", -1) == 0) {
+                stCatID = 5;
+            } else if (sharedPreferences.getInt("userType", -1) == 1) {
+                stCatID = 5;
+            } else if (sharedPreferences.getInt("userType", -1) == 2) {
+                if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
+                    stCatID = 7;
+                } else {
+                    stCatID = 5;
+                }
+            } else if (sharedPreferences.getInt("userType", -1) == 3) {
+                stCatID = 7;
+            }
+            mapContainer.put(Constants.PARAMETER_FAVORITE_ID, String.valueOf(stCatID));
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, "7");
+
+            Log.e("-----", "" + mapContainer.toString());
+            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
+                    TransferEmoneyToEmoneyActivity.this);
+            response = webServiceHttp.getResponseSSLCertificatation();
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(TransferEmoneyToEmoneyActivity.this);
+            progressDialog.setCancelable(false);
+            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
+            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressDialog.dismiss();
+            if (response != null) {
+                Log.d(LOG_TAG, "response: " + response);
+                JSONArray jsonarra = null;
+                try {
+                    jsonarra = new JSONArray(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (jsonarra != null) {
+                    if (jsonarra.length() > 0) {
+                        for (int i = 0; i < jsonarra.length(); i++) {
+                            FavoriteData favData = new FavoriteData();
+                            try {
+                                favData.setCategoryID(jsonarra.getJSONObject(i).getString("subscriberFavoriteID"));
+                                favData.setCategoryName(jsonarra.getJSONObject(i).getString("favoriteValue"));
+                                favData.setFavoriteLabel(jsonarra.getJSONObject(i).getString("favoriteLabel"));
+                                favList2.add(favData);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
+                        spinner_fav.setAdapter(customAdapter);
+                    }
+                }
+            }
         }
     }
 }

@@ -328,6 +328,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             Log.d(LOG_TAG,"channelID 7");
+            typeTransferCat="E2B";
+            idTransferCat=13;
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             }else{
@@ -389,6 +391,8 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             intent.putExtra("sctlID", getIntent().getExtras().getString("sctlID"));
                             intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                             intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
+                            intent.putExtra("favCat", typeTransferCat);
+                            intent.putExtra("idFavCat", idTransferCat);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                         }else{

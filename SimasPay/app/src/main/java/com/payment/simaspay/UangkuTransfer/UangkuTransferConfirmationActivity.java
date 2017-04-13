@@ -304,6 +304,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             Log.d(LOG_TAG,"channelID 7");
             mapContainer.put("sourcePocketCode", "1");
             Log.d(LOG_TAG,"sourcePocketCode 1");
+            typeTransferCat="E2B";
+            idTransferCat=12;
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
             }else{
@@ -363,9 +365,12 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             Intent intent = new Intent(UangkuTransferConfirmationActivity.this, UangkuTransferSuccessActivity.class);
                             intent.putExtra("amount", stAmount);
                             intent.putExtra("Acc_Number", getIntent().getExtras().getString("Acc_Number"));
+                            intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
                             intent.putExtra("transferID", responseDataContainer.getEncryptedTransferId());
                             intent.putExtra("sctlID", responseDataContainer.getSctl());
                             intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                            intent.putExtra("favCat", typeTransferCat);
+                            intent.putExtra("idFavCat", idTransferCat);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                             finish();
@@ -569,6 +574,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     Intent intent = new Intent(UangkuTransferConfirmationActivity.this, UangkuTransferSuccessActivity.class);
                     intent.putExtra("amount", getIntent().getExtras().getString("amount"));
                     intent.putExtra("Acc_Number", getIntent().getExtras().getString("Acc_Number"));
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
                     intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));

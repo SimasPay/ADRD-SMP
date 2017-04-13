@@ -338,6 +338,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("originalAmount", responseContainer.getAmount());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                    intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);
@@ -353,6 +354,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
                     startActivityForResult(intent, 10);

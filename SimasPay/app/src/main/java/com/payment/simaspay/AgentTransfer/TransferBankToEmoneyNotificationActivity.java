@@ -74,7 +74,7 @@ public class TransferBankToEmoneyNotificationActivity extends AppCompatActivity 
                 Log.d(LOG_TAG, "checked");
                 if(getIntent().getExtras()!=null){
                     Intent intent = new Intent(TransferBankToEmoneyNotificationActivity.this, FavouriteInputActivity.class);
-                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("DestMDN",destMDN);
                     intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
                     intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
                     startActivityForResult(intent, 10);

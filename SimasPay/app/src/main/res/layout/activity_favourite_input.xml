@@ -76,6 +76,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
+                android:focusable="false"
+                android:clickable="false"
                 android:textColor="@android:color/black"
                 android:editable="false"
                 android:textSize="16sp" />
@@ -96,7 +98,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="textAutoComplete|textPersonName"
-                android:maxLength="18"
+                android:maxLength="26"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"

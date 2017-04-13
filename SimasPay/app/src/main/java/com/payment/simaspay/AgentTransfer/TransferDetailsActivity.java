@@ -47,16 +47,16 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
     EditText number, amount, pin;
     LinearLayout btnBacke;
     String sourceMDN, stMPIN, message, transactionTime, receiverAccountName, destinationBank, destinationName, destinationAccountNumber, destinationMDN, transferID, parentTxnID, sctlID, mfaMode;
-    ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
     Functions func;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     String pinValue, mdn, amountValue;
+    ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
     int msgCode, stCatID;
     Spinner spinner_fav;
-    String selectedItem;
+    String selectedItem="man";
     String selectedValue;
 
     @Override
@@ -144,15 +144,15 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         submit.setOnClickListener(view -> {
             if (selectedItem.equals("man")) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Harap Masukkan Nomor Rekening Tujuan Anda.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-15 angka.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferDetailsActivity.this);
                 } else {
@@ -168,9 +168,9 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                 }
             } else if (selectedItem.equals("fav")) {
                 if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferDetailsActivity.this);
                 } else {

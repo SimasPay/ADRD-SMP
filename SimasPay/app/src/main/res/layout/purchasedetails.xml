@@ -51,50 +51,52 @@
             android:orientation="vertical">
 
             <TextView
-            android:id="@+id/name_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nama Produk"
-            android:textColor="@android:color/black"
-            android:textSize="13dp" />
+                android:id="@+id/name_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nama_produk"
+                android:textColor="@android:color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/product_field"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/color_unknown"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
-                android:background="@drawable/color_unknown"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/pulsa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nominal Pulsa"
                 android:layout_marginTop="15dp"
+                android:text="@string/nominal_pulsa"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textStyle="bold"
+                android:textSize="13sp" />
 
             <Button
                 android:id="@+id/pulsa_field"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:layout_gravity="left|center"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:drawableRight="@drawable/down_arrow_reg"
+                android:gravity="left|center"
+                android:hint="Pilih"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
-                android:layout_gravity="left|center"
-                android:gravity="left|center"
-                android:hint="Pilih"
-                android:textColorHint="#ceced2"
                 android:textAllCaps="false"
-                android:background="@drawable/edittext_background"
-                android:drawableRight="@drawable/down_arrow_reg"
                 android:textColor="@android:color/black"
+                android:textColorHint="#ceced2"
                 android:textSize="16dp" />
 
 
@@ -122,15 +124,15 @@
                     android:id="@+id/pln_amountentry_field"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:background="@drawable/edittext_background"
+                    android:digits="1234567890"
+                    android:inputType="number"
                     android:paddingLeft="5dp"
                     android:paddingRight="10dp"
                     android:singleLine="true"
-                    android:inputType="number"
-                    android:digits="1234567890"
-                    android:background="@drawable/edittext_background"
+                    android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="16dp"
-                    android:text=""/>
+                    android:textSize="16dp" />
 
             </LinearLayout>
 
@@ -138,48 +140,120 @@
                 android:id="@+id/number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomor Handphone"
                 android:layout_marginTop="15dp"
+                android:text="@string/id_nomor_handphone"
+                android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:textSize="13sp" />
+
+            <RadioGroup
+                android:id="@+id/rad_tujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/favlist_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:background="@android:color/transparent"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/checkbox_selector"
+                    android:text="@string/dari_daftar_favorit" />
+
+                <RadioButton
+                    android:id="@+id/manualinput_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableLeft="@drawable/checkbox_selector"
+                    android:drawablePadding="5dp"
+                    android:drawableStart="@drawable/checkbox_selector"
+                    android:text="@string/ketik_manual" />
+
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/number_field"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:digits="1234567890"
+                android:drawableRight="@drawable/ic_contact_phone_black_24dp"
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:singleLine="true"
-                android:inputType="number"
-                android:digits="1234567890"
-                android:background="@drawable/edittext_background"
-                android:drawableRight="@drawable/ic_contact_phone_black_24dp"
+                android:text=""
                 android:textColor="@android:color/black"
-                android:textSize="16sp"
-                android:text=""/>
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/spinner_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/spinner_background"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinner_fav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:background="@drawable/spinner_background"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    android:paddingEnd="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingStart="10dp"
+                    android:src="@drawable/btn_arrow_down" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/mPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="mPIN"
                 android:layout_marginTop="15dp"
+                android:text="@string/mpin"
+                android:textStyle="bold"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/pin"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_background"
+                android:digits="1234567890"
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:singleLine="true"
                 android:password="true"
-                android:inputType="number"
-                android:digits="1234567890"
-                android:background="@drawable/edittext_background"
+                android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textSize="16dp" />
 
@@ -187,15 +261,14 @@
                 android:id="@+id/submit"
                 android:layout_width="220dp"
                 android:layout_height="56dp"
-                android:textSize="20dp"
-                android:textColor="@android:color/white"
-                android:text="Lanjut"
-                android:layout_marginTop="30dp"
                 android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/login_color_red"
+                android:gravity="center"
+                android:text="Lanjut"
                 android:textAllCaps="false"
-                />
+                android:textColor="@android:color/white"
+                android:textSize="20dp" />
         </LinearLayout>
 
 

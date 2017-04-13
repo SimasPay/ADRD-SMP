@@ -133,9 +133,12 @@ public class PaymentSuccessActivity extends AppCompatActivity {
                 Log.d(LOG_TAG, "checked");
                 if(getIntent().getExtras()!=null){
                     Intent intent = new Intent(PaymentSuccessActivity.this, FavouriteInputActivity.class);
-                    intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
+                    intent.putExtra("DestMDN",getIntent().getExtras().getString("invoiceNo"));
                     intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
                     intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
+                    if(getIntent().getExtras().getString("favCode")!=null){
+                        intent.putExtra("favCode", getIntent().getExtras().getString("favCode"));
+                    }
                     startActivityForResult(intent, 10);
                 }
             }else{
