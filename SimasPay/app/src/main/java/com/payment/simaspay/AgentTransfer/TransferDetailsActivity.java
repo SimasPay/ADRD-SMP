@@ -147,7 +147,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                     Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 15) {
+                } else if (number.getText().toString().replace(" ", "").length() > 25) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);

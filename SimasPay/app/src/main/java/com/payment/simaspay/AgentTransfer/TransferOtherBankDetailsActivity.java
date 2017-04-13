@@ -152,17 +152,17 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
         submit.setOnClickListener(view -> {
             if (selectedItem.equals("man")) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan nomor rekening tujuan Anda.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() > 15) {
-                    Utility.displayDialog("SimasPay Nomor rekening Bank yang Anda masukkan harus 10-15 angka.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
+                } else if (number.getText().toString().replace(" ", "").length() > 25) {
+                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferOtherBankDetailsActivity.this);
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                    Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_invalid_mpin), TransferOtherBankDetailsActivity.this);
                 } else {
                     pinValue = func.generateRSA(pin.getText().toString());
                     Log.d(LOG_TAG, "pinValue:"+pinValue);
