@@ -54,7 +54,7 @@
                 android:id="@+id/handphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomor Rekening Tujuan"
+                android:text="@string/id_nomor_rekening_tujuan"
                 android:textColor="@android:color/black"
                 android:textSize="13sp" />
 
@@ -79,10 +79,10 @@
                 android:id="@+id/jumlah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jumlah"
+                android:text="@string/jumlah"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                     android:gravity="center_vertical"
                     android:text="Rp."
                     android:textColor="@android:color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
 
                 <EditText
@@ -130,7 +130,7 @@
                 android:text="mPIN"
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/pin"
@@ -145,15 +145,15 @@
                 android:digits="1234567890"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/submit"
                 android:layout_width="220dp"
                 android:layout_height="56dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textColor="@android:color/white"
-                android:text="Lanjut"
+                android:text="@string/lanjut"
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center"
                 android:gravity="center"

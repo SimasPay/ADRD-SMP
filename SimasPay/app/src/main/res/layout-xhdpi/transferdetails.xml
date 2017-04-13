@@ -36,7 +36,7 @@
             android:gravity="center"
             android:text="Transfer - Bank Sinarmas"
             android:textColor="@android:color/white"
-            android:textSize="23dp" />
+            android:textSize="23sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -54,9 +54,9 @@
                 android:id="@+id/handphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomor Rekening Tujuan"
+                android:text="@string/id_nomor_rekening_tujuan"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/number"
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Jumlah"
+                android:text="@string/jumlah"
                 android:textColor="@android:color/black"
                 android:textSize="13dp" />
 
@@ -101,7 +101,7 @@
                     android:gravity="center_vertical"
                     android:text="Rp."
                     android:textColor="@android:color/black"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
 
                 <EditText
@@ -120,7 +120,7 @@
                     android:maxLength="18"
                     android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -131,7 +131,7 @@
                 android:layout_marginTop="15dp"
                 android:text="mPIN"
                 android:textColor="@android:color/black"
-                android:textSize="13dp" />
+                android:textSize="13sp" />
 
             <EditText
                 android:id="@+id/pin"
@@ -147,7 +147,7 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@android:color/black"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/submit"
@@ -157,10 +157,10 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/login_color_red"
                 android:gravity="center"
-                android:text="Lanjut"
+                android:text="@string/lanjut"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
 
