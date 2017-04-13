@@ -100,7 +100,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferOtherBankDetailsActivity.this);
-                } else if (number.getText().toString().replace(" ", "").length() < 10) {
+                } else if (number.getText().toString().replace(" ", "").length() < 8) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 25) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);

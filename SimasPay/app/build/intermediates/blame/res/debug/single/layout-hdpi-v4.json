@@ -8,10 +8,6 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-hdpi/registration_2.xml"
     },
     {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-hdpi-v4/transferdetails.xml",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-hdpi/transferdetails.xml"
-    },
-    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/layout-hdpi-v4/agent_simaspay_user.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/layout-hdpi/agent_simaspay_user.xml"
     },
