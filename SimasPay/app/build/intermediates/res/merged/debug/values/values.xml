@@ -1041,7 +1041,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="benar">Benar</string>
     <string name="benef">
         <html>
-        <head/>
         <body style="text-align:justify;color:gray;background-color:black;">
          "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
  </body>
@@ -1154,7 +1153,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="details_ms"><ns1:g id="minutes">%1$02d</ns1:g>:<ns1:g id="seconds">%2$02d</ns1:g></string>
     <string name="details_ok">OK</string>
     <string name="details_panel_title">Details</string>
-    <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 10-25 angka</string>
+    <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 8–25 angka</string>
     <string name="dimo">Dimo</string>
     <string name="done_label">Done</string>
     <string name="emoney">E-money</string>
