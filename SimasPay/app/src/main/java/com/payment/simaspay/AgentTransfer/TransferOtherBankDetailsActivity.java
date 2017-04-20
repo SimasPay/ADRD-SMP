@@ -127,7 +127,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
         bankName_editfield.setFocusable(false);
 
         InputFilter[] FilterArray = new InputFilter[1];
-        FilterArray[0] = new InputFilter.LengthFilter(15);
+        FilterArray[0] = new InputFilter.LengthFilter(25);
         number.setFilters(FilterArray);
 
         InputFilter[] FilterArray1 = new InputFilter[1];
