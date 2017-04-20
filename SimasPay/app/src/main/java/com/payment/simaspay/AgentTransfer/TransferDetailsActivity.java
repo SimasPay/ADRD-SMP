@@ -67,7 +67,7 @@ public class TransferDetailsActivity extends AppCompatActivity {
         pin = (EditText) findViewById(R.id.pin);
 
         InputFilter[] FilterArray = new InputFilter[1];
-        FilterArray[0] = new InputFilter.LengthFilter(15);
+        FilterArray[0] = new InputFilter.LengthFilter(25);
         number.setFilters(FilterArray);
         number.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
