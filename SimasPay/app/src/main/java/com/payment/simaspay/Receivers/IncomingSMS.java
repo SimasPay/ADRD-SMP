@@ -52,7 +52,6 @@ public class IncomingSMS extends BroadcastReceiver {
 							if (listener != null) {
                                 listener.onReadSMS(otpValue);
                             }
-							
 						}else{
 							settings.edit().putBoolean("isAutoSubmit", false).apply();
 						}
