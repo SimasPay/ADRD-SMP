@@ -597,7 +597,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             public void afterTextChanged(Editable s) {
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
