@@ -384,4 +384,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 8-25 angka</string>
     <string name="empty_amount">Harap masukkan jumlah yang ingin Anda transfer</string>
     <string name="empty_mpin">Harap masukkan mPIN Anda</string>
+    <string name="simas">simas</string>
+    <string name="pay">pay</string>
 </resources>

@@ -206,7 +206,7 @@ public class DaftarEmoneyActivity extends AppCompatActivity implements IncomingS
                     // Something into edit text. Enable the button.
                     //ok_otp.setEnabled(true);
                 }
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     if (myTimer != null) {
                         myTimer.cancel();

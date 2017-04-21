@@ -589,7 +589,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     otpValue=edt.getText().toString();

@@ -119,13 +119,13 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("service",
-                    "Account");
-            mapContainer.put("txnName",
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
+                    Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     "GenerateOTP");
-            mapContainer.put("sourceMDN",
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN,
                     sourceMDN);
-            mapContainer.put("channelID",
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     "7");
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
@@ -345,7 +345,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             public void afterTextChanged(Editable s) {
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     otpValue=edt.getText().toString();

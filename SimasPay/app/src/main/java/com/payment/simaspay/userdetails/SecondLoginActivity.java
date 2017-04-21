@@ -16,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -80,25 +79,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         sourceMDN=sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER,"");
         number.setText(sourceMDN);
 
-        forgot_mpin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               new inquiryMDNValidationAsyncTask().execute();
-            }
-        });
-
-        /**
-        String htmlString = "<u>Hubun</u>" + "g" + "<u>i Kami</u>";
-        contact_us.setText(Html.fromHtml(htmlString));
-
-        contact_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SecondLoginActivity.this, ContactUs_Activity.class);
-                startActivity(intent);
-            }
-        });
-         **/
+        forgot_mpin.setOnClickListener(view -> new inquiryMDNValidationAsyncTask().execute());
 
         e_mPin.requestFocus();
         e_mPin.addTextChangedListener(new TextWatcher() {
@@ -112,7 +93,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                 if (s.length() == 6) {
                     pin = e_mPin.getText().toString();
                     sharedPreferences.edit().putString(Constants.PARAMETER_MPIN, e_mPin.getText().toString()).apply();
-                    nextProcess();
+                    //new LoginAsynTask().execute();
                 }
             }
 
@@ -123,17 +104,12 @@ public class SecondLoginActivity extends AppCompatActivity {
         });
     }
 
-
-    void nextProcess() {
-        new LoginAsynTask().execute();
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 20) {
             if (resultCode != Activity.RESULT_OK) {
-                SecondLoginActivity.this.finish();
+                finish();
             }
         }
     }
@@ -142,20 +118,9 @@ public class SecondLoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       /* e_mPin.requestFocus();
-
-        e_mPin.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                InputMethodManager keyboard = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                keyboard.showSoftInput(e_mPin, 0);
-            }
-        },200);*/
     }
 
-    class LoginAsynTask extends AsyncTask<Void, Void, Void> {
+    private class LoginAsynTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
         String response;
@@ -164,7 +129,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            /**
+            /*
             String deviceModel = null, osVersion = null, deviceManufacture;
             try {
                 osVersion = android.os.Build.VERSION.RELEASE;
@@ -173,7 +138,7 @@ public class SecondLoginActivity extends AppCompatActivity {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-             **/
+             */
 
             PackageInfo pInfo = null;
             try {
@@ -269,7 +234,8 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BOTH_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
-                            startActivityForResult(intent, 20);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "emoney KYC");
@@ -277,7 +243,8 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
-                            startActivityForResult(intent, 20);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("false")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Log.d(LOG_TAG, "emoney non KYC");
@@ -285,7 +252,8 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
-                            startActivityForResult(intent, 20);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         } else if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_BANK_INT).apply();
                             Log.d(LOG_TAG, "bank account");
@@ -293,13 +261,15 @@ public class SecondLoginActivity extends AppCompatActivity {
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_BANK_INT).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, UserHomeActivity.class);
-                            startActivityForResult(intent, 20);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         }
                     } else if (responseContainer.getCustomerType().equals("2")) {
                         sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_LAKUPANDAI_INT).apply();
                         Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
                         sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
-                        startActivityForResult(intent, 20);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
                 }else if(msgCode == 2315) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
@@ -348,7 +318,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         }
     }
 
-    class inquiryMDNValidationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class inquiryMDNValidationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 

@@ -241,7 +241,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     ok_otp.setEnabled(true);
                     ok_otp.setTextColor(getResources().getColor(R.color.red));
                     Log.d(LOG_TAG, "otp dialog : " + edt.getText());

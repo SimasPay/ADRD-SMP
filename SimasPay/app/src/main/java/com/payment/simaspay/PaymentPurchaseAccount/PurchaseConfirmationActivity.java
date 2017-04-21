@@ -444,7 +444,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
             public void afterTextChanged(Editable s) {
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
-                if (edt.getText().length() > 5) {
+                if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     if (otpValue == null || otpValue.equals("")) {

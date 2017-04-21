@@ -546,7 +546,7 @@ public class Constants {
     //	public static String SOURCE_INSTITUTION_ID = "";
     // public static String DESTINATION_MDN_NAME = "";
     public static String RESPONSE_CODE = "00";
-
+    public static int DIGITS_OTP = 4;
     public static int MFA_CONNECTION_TIMEOUT = 90000;
     public static int CONNECTION_TIMEOUT = 30000;
     public static final String ZEROES_STRING = "000";

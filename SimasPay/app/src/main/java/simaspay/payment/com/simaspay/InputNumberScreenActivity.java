@@ -1,15 +1,15 @@
 package simaspay.payment.com.simaspay;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -31,21 +31,20 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 /**
  * Created by widy on 1/9/17.
  * 09
  */
 
-public class InputNumberScreenActivity extends Activity {
+public class InputNumberScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
-    private ImageView back_btn;
     public EditText phone_number;
-    private TextView aktivasi_link;
     private static final String TAG = "SimasPay";
-    private Button lanjut;
-    private String phonenum, mdn;
+    private String phonenum;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -54,17 +53,16 @@ public class InputNumberScreenActivity extends Activity {
         setContentView(R.layout.activity_entermobilenum);
         context = InputNumberScreenActivity.this;
         settings = getSharedPreferences(TAG, 0);
-        mdn = settings.getString("mobileNumber", "");
-        editor = settings.edit();
+        String mdn = settings.getString("mobileNumber", "");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
+            window.setStatusBarColor(ContextCompat.getColor(context, R.color.splashscreen));
         }
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        aktivasi_link = (TextView)findViewById(R.id.aktivasi_link);
+        TextView aktivasi_link = (TextView) findViewById(R.id.aktivasi_link);
         SpannableString content = new SpannableString("Aktivasi Akun");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         aktivasi_link.setText(content);
@@ -72,7 +70,7 @@ public class InputNumberScreenActivity extends Activity {
             Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_2_Activity.class);
             startActivityForResult(intent, 10);
         });
-        back_btn = (ImageView)findViewById(R.id.back_btn);
+        ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(view -> {
             Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
             startActivity(intent);
@@ -82,7 +80,7 @@ public class InputNumberScreenActivity extends Activity {
         if(!mdn.equals("")){
             phone_number.setText(mdn);
         }
-        lanjut=(Button)findViewById(R.id.lanjut);
+        Button lanjut = (Button) findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
             if(phone_number.getText().length()>=10){
                 settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
@@ -97,18 +95,14 @@ public class InputNumberScreenActivity extends Activity {
             }else if(phone_number.getText().length()<10&&phone_number.getText().length()>0){
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
                 alertbox.setMessage(getResources().getString(R.string.id_invalid_mdn_input));
-                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int arg1) {
-                        dialog.dismiss();
-                    }
-                });
+                alertbox.setNeutralButton("OK", (dialog, arg1) -> dialog.dismiss());
                 alertbox.show();
             }
 
         });
     }
 
-    class mdnvalidation extends AsyncTask<Void, Void, Void> {
+    private class mdnvalidation extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -183,6 +177,7 @@ public class InputNumberScreenActivity extends Activity {
                         }
                     }
                 }catch (Exception e) {
+                    Log.d(LOG_TAG, "error:"+e.getMessage());
                 }
             } else {
                 progressDialog.dismiss();
@@ -191,7 +186,6 @@ public class InputNumberScreenActivity extends Activity {
                         getResources().getString(
                                 R.string.bahasa_serverNotRespond)), InputNumberScreenActivity.this);
             }
-
         }
 
     }
