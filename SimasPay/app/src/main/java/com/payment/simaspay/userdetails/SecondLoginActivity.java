@@ -93,7 +93,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                 if (s.length() == 6) {
                     pin = e_mPin.getText().toString();
                     sharedPreferences.edit().putString(Constants.PARAMETER_MPIN, e_mPin.getText().toString()).apply();
-                    //new LoginAsynTask().execute();
+                    new LoginAsynTask().execute();
                 }
             }
 
@@ -128,18 +128,6 @@ public class SecondLoginActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
-            /*
-            String deviceModel = null, osVersion = null, deviceManufacture;
-            try {
-                osVersion = android.os.Build.VERSION.RELEASE;
-                deviceModel = android.os.Build.MODEL;
-                deviceManufacture = android.os.Build.MANUFACTURER;
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-             */
-
             PackageInfo pInfo = null;
             try {
                 pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);

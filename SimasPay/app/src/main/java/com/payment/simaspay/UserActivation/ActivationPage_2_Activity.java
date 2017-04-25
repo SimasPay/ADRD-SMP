@@ -153,8 +153,8 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
             } else if (e_mPin.getText().toString().equals("")) {
                 Utility.networkDisplayDialog("Harap masukkan kode aktivasi Anda", ActivationPage_2_Activity.this);
             }  else if (e_mPin.getText().toString().replace(" ", "")
-                    .length() < 6) {
-                Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 6 angka",
+                    .length() < Constants.DIGITS_OTP) {
+                Utility.networkDisplayDialog("Kode aktivasi yang Anda masukkan harus 4 angka",
                         ActivationPage_2_Activity.this);
             }else {
 
