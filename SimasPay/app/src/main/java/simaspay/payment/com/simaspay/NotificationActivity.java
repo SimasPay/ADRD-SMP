@@ -29,10 +29,10 @@ public class NotificationActivity extends AppCompatActivity {
             if(status.equals("forgotmpin")){
                 textView.setText(getResources().getString(R.string.id_notif_success_mpin));
             }else{
-                textView.setText(Html.fromHtml("<strong>Pendaftaran Berhasil!</strong><br>Selamat, Anda berhasil membuat akun e-money Simaspay"));
+                textView.setText(Html.fromHtml("<strong>"+getResources().getString(R.string.registration_success)+"</strong><br>"+getResources().getString(R.string.registration_success_body)));
             }
         }else{
-            textView.setText(Html.fromHtml("<strong>Pendaftaran Berhasil!</strong><br>Selamat, Anda berhasil membuat akun e-money Simaspay"));
+            textView.setText(Html.fromHtml("<strong>"+getResources().getString(R.string.registration_success)+"</strong><br>"+getResources().getString(R.string.registration_success_body)));
         }
         ok_btn = (Button)findViewById(R.id.ok_btn);
         ok_btn.setOnClickListener(new View.OnClickListener() {

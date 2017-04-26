@@ -83,7 +83,7 @@
     <string name="unreadable_sms">SMS tidak terbaca secara otomatis?</string>
     <string name="btn_sms_manual">Masukkan Kode secara manual</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>
-    <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
+    <string name="_6_digit_kode_otp">4 digit kode verifikasi</string>
     <string name="_00_00">00:00</string>
     <string name="lanjut">Lanjut</string>
     <string name="debit">debit</string>
@@ -386,4 +386,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="empty_mpin">Harap masukkan mPIN Anda</string>
     <string name="simas">simas</string>
     <string name="pay">pay</string>
+    <string name="registration_success">Pendaftaran Berhasil!</string>
+    <string name="registration_success_body">Selamat, Anda berhasil membuat akun e-money Simaspay</string>
 </resources>
