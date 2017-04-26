@@ -90,6 +90,16 @@ public class CashoutSuccessActivity extends AppCompatActivity {
                 isSetFav=true;
             }
         });
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
 
         SharedPreferences sharedPreferences= getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         String account = sharedPreferences.getString("useas","");

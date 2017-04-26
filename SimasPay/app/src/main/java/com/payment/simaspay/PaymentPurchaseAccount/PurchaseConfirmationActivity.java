@@ -341,6 +341,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     startActivityForResult(intent, 10);
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
@@ -357,6 +358,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

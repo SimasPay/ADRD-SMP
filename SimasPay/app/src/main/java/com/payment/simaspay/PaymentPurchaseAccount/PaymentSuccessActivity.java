@@ -69,6 +69,17 @@ public class PaymentSuccessActivity extends AppCompatActivity {
             }
         });
 
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
+
         view = (View) findViewById(R.id.line);
         transferID.setText(getIntent().getExtras().getString("sctlID"));
 

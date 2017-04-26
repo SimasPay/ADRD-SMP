@@ -434,6 +434,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", responseContainer.getName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                    intent.putExtra("selectedItem", selectedItem);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -560,6 +561,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                 intent.putExtra("Name", responseDataContainer.getName());
                                 intent.putExtra("mfaMode", responseDataContainer.getMfaMode());
                                 intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
+                                intent.putExtra("selectedItem", selectedItem);
                                 startActivityForResult(intent, 10);
                             } else {
                                 //tanpa OTP

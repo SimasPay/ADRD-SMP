@@ -51,6 +51,17 @@ public class TranaferSuccessActivity extends AppCompatActivity {
             }
         });
 
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
+
         title = (TextView) findViewById(R.id.title);
         heading = (TextView) findViewById(R.id.textview);
         name = (TextView) findViewById(R.id.name);

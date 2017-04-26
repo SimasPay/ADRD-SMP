@@ -478,6 +478,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     startActivityForResult(intent, 10);
                     dialogBuilder.dismiss();
                 } else if (msgCode == 703) {
@@ -492,6 +493,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     startActivityForResult(intent, 10);
                     dialogBuilder.dismiss();
                 } else {

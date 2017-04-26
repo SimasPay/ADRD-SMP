@@ -506,8 +506,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
                     intent.putExtra("Name", responseContainer.getCustName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
-
-
+                    intent.putExtra("selectedItem", selectedItem);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

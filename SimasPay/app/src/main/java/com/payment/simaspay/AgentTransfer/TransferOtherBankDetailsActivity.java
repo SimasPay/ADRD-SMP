@@ -319,6 +319,7 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
                     intent.putExtra("BankCode", getIntent().getExtras().getString("BankCode"));
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
                     intent.putExtra("mpin", pinValue);
+                    intent.putExtra("selectedItem", selectedItem);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

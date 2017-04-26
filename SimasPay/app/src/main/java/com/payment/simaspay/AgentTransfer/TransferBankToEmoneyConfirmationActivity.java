@@ -44,7 +44,7 @@ import simaspay.payment.com.simaspay.R;
  */
 
 public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
-    String sourceMDN, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
+    String sourceMDN, selectedItem, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
     String message, transactionTime, responseCode;
     TextView lbl_name, lbl_mdn, lbl_amount;
     Button benar_btn, salah_btn;
@@ -93,6 +93,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             stTransferID = (String) extras.get("transferID");
             stParentTxnID = (String) extras.get("parentTxnID");
             stSctl = (String) extras.get("sctlID");
+            selectedItem = (String) extras.get("selectedItem");
         }
         lbl_name.setText(stFullname);
         lbl_mdn.setText(stMDN);
@@ -313,6 +314,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
+                            intent.putExtra("selectedItem", selectedItem);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferBankToEmoneyConfirmationActivity.this.finish();

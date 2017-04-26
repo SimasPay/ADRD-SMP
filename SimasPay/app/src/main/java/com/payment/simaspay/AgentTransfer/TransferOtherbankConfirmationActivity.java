@@ -283,6 +283,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                     intent.putExtra("BankCode",getIntent().getExtras().getString("BankCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

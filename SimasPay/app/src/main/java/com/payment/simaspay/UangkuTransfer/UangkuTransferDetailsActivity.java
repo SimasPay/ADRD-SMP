@@ -326,6 +326,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     intent.putExtra("bank",responseContainer.getDestBank());
                     intent.putExtra("mfaMode",responseContainer.getMfaMode());
                     intent.putExtra("mpin", pinValue);
+                    intent.putExtra("selectedItem", selectedItem);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {

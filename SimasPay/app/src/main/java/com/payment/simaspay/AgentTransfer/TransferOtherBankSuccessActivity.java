@@ -91,7 +91,6 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
 
         id_value.setTypeface(Utility.Robot_Light(TransferOtherBankSuccessActivity.this));
         id_field.setTypeface(Utility.Robot_Regular(TransferOtherBankSuccessActivity.this));
-
         label_fav=(TextView)findViewById(R.id.label_fav);
         //label_fav.setVisibility(View.GONE);
         favBtn=(CheckBox)findViewById(R.id.checkfav);
@@ -103,6 +102,17 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
                 isSetFav=true;
             }
         });
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
+
 
         confirm = (Button) findViewById(R.id.next);
 

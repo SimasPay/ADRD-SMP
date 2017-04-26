@@ -346,6 +346,7 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                                     intent.putExtra("mpin", pinValue);
                                     intent.putExtra("parentTxnID", parentTxnID);
                                     intent.putExtra("mfaMode", mfaMode);
+                                    intent.putExtra("selectedItem", selectedItem);
                                     startActivity(intent);
                                 } else {
                                     //tanpa OTP

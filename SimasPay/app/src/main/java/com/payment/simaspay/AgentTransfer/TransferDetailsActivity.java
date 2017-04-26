@@ -316,6 +316,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("Name", responseContainer.getCustName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                    intent.putExtra("selectedItem", selectedItem);
                     startActivityForResult(intent, 10);
                 } else {
                     if (progressDialog != null) {
@@ -452,6 +453,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                                     intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
                                     intent.putExtra("transferID", transferID);
                                     intent.putExtra("Name", receiverAccountName);
+                                    intent.putExtra("selectedItem", selectedItem);
                                     startActivity(intent);
                                 } else {
                                     //tanpa OTP

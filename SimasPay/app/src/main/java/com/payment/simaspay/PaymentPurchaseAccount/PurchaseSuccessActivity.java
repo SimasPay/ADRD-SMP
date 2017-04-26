@@ -89,6 +89,7 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
         charges_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         total_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
 
+        TextView label_fav=(TextView)findViewById(R.id.label_fav);
         favBtn=(CheckBox)findViewById(R.id.checkfav);
         favBtn.setOnClickListener(arg0 -> {
             if(!favBtn.isChecked()){
@@ -97,6 +98,16 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
                 isSetFav=true;
             }
         });
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
 
         findViewById(R.id.ID_layout).setVisibility(View.VISIBLE);
 

@@ -44,7 +44,7 @@ import simaspay.payment.com.simaspay.R;
  */
 
 public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
-    String sourceMDN, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
+    String sourceMDN, selectedItem, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
     String message, transactionTime, responseCode, mfaMode;
     TextView lbl_name, lbl_mdn, lbl_amount, notice;
     Button benar_btn, salah_btn;
@@ -97,12 +97,14 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             stTransferID = (String) extras.get("transferID");
             stParentTxnID = (String) extras.get("parentTxnID");
             stSctl = (String) extras.get("sctlID");
+            selectedItem = (String) extras.get("selectedItem");
         }
         if(stFullname==null){
             lbl_name.setText("(belum terdaftar)");
             stFullname="(belum terdaftar)";
             lbl_mdn.setText(stMDN+"*");
             notice.setVisibility(View.VISIBLE);
+            selectedItem="";
         }else{
             lbl_name.setText(stFullname);
             lbl_mdn.setText(stMDN);
@@ -303,6 +305,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
+                            intent.putExtra("selectedItem", selectedItem);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferEmoneyToEmoneyConfirmationActivity.this.finish();

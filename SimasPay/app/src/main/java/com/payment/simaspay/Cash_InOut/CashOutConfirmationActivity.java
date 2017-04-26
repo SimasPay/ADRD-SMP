@@ -393,6 +393,7 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
                             intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
+                            intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                         }else{

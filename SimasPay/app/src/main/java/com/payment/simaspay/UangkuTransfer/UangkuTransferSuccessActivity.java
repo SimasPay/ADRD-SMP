@@ -67,6 +67,17 @@ public class UangkuTransferSuccessActivity extends Activity {
             }
         });
 
+        if(getIntent().getExtras()!=null){
+            String selectedItem = getIntent().getExtras().getString("selectedItem");
+            if(selectedItem.equals("man")){
+                label_fav.setVisibility(View.VISIBLE);
+                favBtn.setVisibility(View.VISIBLE);
+            }else{
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
+            }
+        }
+
         products.setVisibility(View.VISIBLE);
         other_products.setVisibility(View.VISIBLE);
         transferID.setVisibility(View.VISIBLE);

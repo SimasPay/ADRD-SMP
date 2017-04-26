@@ -371,6 +371,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
+                            intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivityForResult(intent, 10);
                             finish();
@@ -580,6 +581,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);
+                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivityForResult(intent, 10);
                     finish();

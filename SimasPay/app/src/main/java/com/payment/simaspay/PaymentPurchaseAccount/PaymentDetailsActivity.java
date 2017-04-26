@@ -498,6 +498,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
                     intent.putExtra("Name", responseContainer.getCustName());
                     intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                    intent.putExtra("selectedItem", selectedItem);
                     try {
                         intent.putExtra("numberTitle", strings[1]);
                     } catch (Exception e) {
