@@ -116,7 +116,7 @@ public class TransferOtherBankSuccessActivity extends AppCompatActivity {
                     intent.putExtra("DestMDN",getIntent().getExtras().getString("DestMDN"));
                     intent.putExtra("favCat",getIntent().getExtras().getString("favCat"));
                     intent.putExtra("idFavCat",getIntent().getExtras().getInt("idFavCat"));
-                    startActivityForResult(intent, 10);
+                    startActivity(intent);
                 }
             }else{
                 Intent i = new Intent(TransferOtherBankSuccessActivity.this, UserHomeActivity.class);

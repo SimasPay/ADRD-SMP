@@ -48,21 +48,21 @@ MERGED from [com.journeyapps:zxing-android-embedded:3.0.3] /Users/widy/.android/
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:15:9-53
 uses-permission#android.permission.READ_PHONE_STATE
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:5-75
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:12:5-75
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:12:5-75
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:17:22-72
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:5-79
 MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/widy/.android/build-cache/5c13442e589a3bdf910719e532a789f97be7a638/output/AndroidManifest.xml:19:5-78
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/98c9f1a1cbbc03e50ab530f35c8283f395048d32/output/AndroidManifest.xml:16:5-79
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:11:5-79
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:11:5-79
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:18:22-76
 uses-permission#android.permission.INTERNET
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:5-67
 MERGED from [com.google.android.gms:play-services-maps:10.2.1] /Users/widy/.android/build-cache/5c13442e589a3bdf910719e532a789f97be7a638/output/AndroidManifest.xml:20:5-66
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/98c9f1a1cbbc03e50ab530f35c8283f395048d32/output/AndroidManifest.xml:11:5-67
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:8:5-67
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:8:5-67
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:19:22-64
 uses-permission#android.permission.RECEIVE_SMS
@@ -118,7 +118,7 @@ ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/sr
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:32:5-81
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/98c9f1a1cbbc03e50ab530f35c8283f395048d32/output/AndroidManifest.xml:15:5-81
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:15:5-81
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:15:5-81
 	android:name
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:32:22-78
 uses-permission#android.permission.CALL_PHONE
@@ -148,7 +148,7 @@ MERGED from [com.google.android.gms:play-services-tasks:10.2.1] /Users/widy/.and
 MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.android/build-cache/075d89eec6dbabdffa423166d8b320d967bc793e/output/AndroidManifest.xml:19:5-21:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] /Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/AndroidManifest.xml:9:5-20
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/98c9f1a1cbbc03e50ab530f35c8283f395048d32/output/AndroidManifest.xml:18:5-108:19
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:17:5-25:19
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:17:5-25:19
 MERGED from [de.hdodenhof:circleimageview:2.1.0] /Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/AndroidManifest.xml:9:5-20
 MERGED from [com.weiwangcn.betterspinner:library-material:1.1.0] /Users/widy/.android/build-cache/a06152fafebcc0fc2d97e1d244bb6a217fb51946/output/AndroidManifest.xml:11:5-14:19
 MERGED from [com.android.support:appcompat-v7:25.3.1] /Users/widy/.android/build-cache/f0e70e190459e5c4619f463f901a80f398878bfe/output/AndroidManifest.xml:29:5-20
@@ -1242,7 +1242,7 @@ MERGED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.
 MERGED from [com.makeramen:roundedimageview:2.2.1] /Users/widy/.android/build-cache/f018c4b8e6949c51236d103e35efbc269369335d/output/AndroidManifest.xml:7:5-43
 MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha3] /Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/AndroidManifest.xml:5:5-7:41
 MERGED from [SimasPay:PayByQR-Android-1.1.7-Simaspay:unspecified] /Users/widy/.android/build-cache/98c9f1a1cbbc03e50ab530f35c8283f395048d32/output/AndroidManifest.xml:7:5-9:41
-MERGED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:5:5-44
+MERGED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:5:5-44
 MERGED from [de.hdodenhof:circleimageview:2.1.0] /Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/AndroidManifest.xml:5:5-7:41
 MERGED from [SimasPay:CropImageLib:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/CropImage/build/intermediates/bundles/default/AndroidManifest.xml:7:5-9:41
 MERGED from [com.weiwangcn.betterspinner:library-material:1.1.0] /Users/widy/.android/build-cache/a06152fafebcc0fc2d97e1d244bb6a217fb51946/output/AndroidManifest.xml:7:5-9:41
@@ -1336,16 +1336,16 @@ ADDED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.a
 	android:name
 		ADDED from [com.google.android.gms:play-services-basement:10.2.1] /Users/widy/.android/build-cache/075d89eec6dbabdffa423166d8b320d967bc793e/output/AndroidManifest.xml:20:20-65
 activity#com.testfairy.activities.ProvideFeedbackActivity
-ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:18:9-21:63
+ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:18:9-21:63
 	android:configChanges
-		ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:20:13-59
+		ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:20:13-59
 	android:theme
-		ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:21:13-60
+		ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:21:13-60
 	android:name
-		ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:19:13-76
+		ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:19:13-76
 activity#com.testfairy.activities.AutoUpdateActivity
-ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:22:9-24:62
+ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:22:9-24:62
 	android:configChanges
-		ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:24:13-59
+		ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:24:13-59
 	android:name
-		ADDED from [testfairy:testfairy-android-sdk:1.4.15] /Users/widy/.android/build-cache/23a4b365a93a2f7a268d2be56233815acc3be4f6/output/AndroidManifest.xml:23:13-71
+		ADDED from [testfairy:testfairy-android-sdk:1.4.16] /Users/widy/.android/build-cache/82774dd110c8776a02598cb0a8872699250730b7/output/AndroidManifest.xml:23:13-71

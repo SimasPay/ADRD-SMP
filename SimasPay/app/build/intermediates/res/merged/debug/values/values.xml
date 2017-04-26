@@ -940,7 +940,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
 
 3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY."</string>
     <string name="_00_00">00:00</string>
-    <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
+    <string name="_6_digit_kode_otp">4 digit kode verifikasi</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>

@@ -139,7 +139,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
                     if(getIntent().getExtras().getString("favCode")!=null){
                         intent.putExtra("favCode", getIntent().getExtras().getString("favCode"));
                     }
-                    startActivityForResult(intent, 10);
+                    startActivity(intent);
                 }
             }else{
                 Intent i = new Intent(PaymentSuccessActivity.this, UserHomeActivity.class);

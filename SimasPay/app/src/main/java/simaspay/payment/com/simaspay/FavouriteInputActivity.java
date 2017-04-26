@@ -171,8 +171,8 @@ public class FavouriteInputActivity extends AppCompatActivity {
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                 Intent intent = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                FavouriteInputActivity.this.finish();
                             });
                             alertbox.show();
                         }else{
@@ -180,8 +180,8 @@ public class FavouriteInputActivity extends AppCompatActivity {
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                 Intent intent = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
-                                FavouriteInputActivity.this.finish();
                             });
                             alertbox.show();
                         }
