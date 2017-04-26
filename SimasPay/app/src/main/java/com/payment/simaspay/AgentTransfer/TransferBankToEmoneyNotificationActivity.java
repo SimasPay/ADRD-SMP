@@ -70,6 +70,7 @@ public class TransferBankToEmoneyNotificationActivity extends AppCompatActivity 
         });
         if(getIntent().getExtras()!=null){
             String selectedItem = getIntent().getExtras().getString("selectedItem");
+            Log.d(LOG_TAG, "selectedItem "+selectedItem);
             if(selectedItem.equals("man")){
                 label_fav.setVisibility(View.VISIBLE);
                 favBtn.setVisibility(View.VISIBLE);
