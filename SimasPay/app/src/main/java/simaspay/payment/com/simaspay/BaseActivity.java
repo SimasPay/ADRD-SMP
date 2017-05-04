@@ -13,7 +13,7 @@ import com.payment.simaspay.utils.Functions;
 
 public class BaseActivity extends AppCompatActivity {
 
-    public static final long DISCONNECT_TIMEOUT = 600000; // 10 min = 10 * 60 * 1000 ms
+    public static final long DISCONNECT_TIMEOUT = 60000000; // 10 min = 10 * 60 * 1000 ms
 
     private Handler disconnectHandler = new Handler(){
         public void handleMessage(Message msg) {
@@ -23,7 +23,7 @@ public class BaseActivity extends AppCompatActivity {
     private Runnable disconnectCallback = new Runnable() {
         @Override
         public void run() {
-            Functions func = new Functions(getBaseContext());
+            Functions func = new Functions(BaseActivity.this);
             func.errorTimeoutResponseConfirmation("Please login again");
         }
     };
@@ -39,18 +39,19 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public void onUserInteraction(){
+        super.onUserInteraction();
         resetDisconnectTimer();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        resetDisconnectTimer();
+        //resetDisconnectTimer();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        stopDisconnectTimer();
+        //stopDisconnectTimer();
     }
 }
