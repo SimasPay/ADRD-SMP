@@ -74,6 +74,8 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
     String sourceMDN, stMPIN;
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
+    RelativeLayout spinner_layout;
+    int spinnerLength=0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -102,7 +104,7 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
         jumlah = (TextView) findViewById(R.id.jumlah);
         mPin = (TextView) findViewById(R.id.mPin);
         Rp = (TextView) findViewById(R.id.Rp);
-        RelativeLayout spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
 
@@ -133,6 +135,13 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
             if (checkedId == R.id.favlist_option) {
                 selectedItem = "fav";
                 spinner_layout.setVisibility(View.VISIBLE);
+                if(spinnerLength==0){
+                    spinner_fav.setEnabled(false);
+                    spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background_disabled));
+                }else{
+                    spinner_fav.setEnabled(true);
+                    spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
+                }
                 tujuan.setVisibility(View.GONE);
             } else if (checkedId == R.id.manualinput_option) {
                 selectedItem = "man";
@@ -493,6 +502,8 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                         }
                         CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
                         spinner_fav.setAdapter(customAdapter);
+                        spinnerLength=spinner_fav.getAdapter().getCount();
+                        Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
                     }
                 }
             }

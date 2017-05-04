@@ -1,249 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/back_ground"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:id="@+id/header"
-        android:layout_width="fill_parent"
-        android:layout_height="60dp"
-        android:background="@color/reg"
-        android:gravity="center">
-
-        <LinearLayout
-            android:id="@+id/back_layout"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp">
-
-            <ImageView
-                android:contentDescription="@null"
-                android:id="@+id/btnBacke"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="center"
-                android:src="@drawable/btn_back_register" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/titled"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/id_transfer_emoneytoemoney"
-            android:textColor="@android:color/white"
-            android:textSize="20sp" />
-    </RelativeLayout>
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/details_background">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Toppings"
+        android:textAllCaps="true" />
+
+    <CheckBox
+        android:id="@+id/whipped_cream_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:paddingLeft="24dp"
+        android:text="Whipped Cream"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Quantity"
+        android:textAllCaps="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:onClick="decrement"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/quantity_text_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:orientation="vertical">
+            android:layout_marginLeft="8dp"
+            android:text="0"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/noHPtujuan_lbl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/nohptujuan"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textSize="13sp" />
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:onClick="increment"
+            android:text="+" />
+    </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/rad_tujuan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="0dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="order summary"
+        android:textAllCaps="true" />
 
-                <RadioButton
-                    android:id="@+id/favlist_option"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:button="@null"
-                    android:drawableLeft="@drawable/checkbox_selector"
-                    android:drawableStart="@drawable/checkbox_selector"
-                    android:drawablePadding="5dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="@string/dari_daftar_favorit" />
+    <TextView
+        android:id="@+id/order_summary_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:text="$" />
 
-                <RadioButton
-                    android:id="@+id/manualinput_option"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ketik_manual"
-                    android:background="@android:color/transparent"
-                    android:button="@null"
-                    android:drawableLeft="@drawable/checkbox_selector"
-                    android:drawableStart="@drawable/checkbox_selector"
-                    android:drawablePadding="5dp"
-                    android:checked="true"/>
-
-            </RadioGroup>
-
-            <EditText
-                android:id="@+id/noHPtujuan_edt"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:maxLines="1"
-                android:inputType="number"
-                android:maxLength="14"
-                android:background="@drawable/edittext_background"
-                android:textColor="@android:color/black"
-                android:drawableRight="@drawable/ic_contact_phone_black_24dp"
-                android:imeOptions="actionNext"
-                android:textSize="16sp" />
-
-            <RelativeLayout
-                android:id="@+id/spinner_layout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/spinner_background"
-                android:orientation="horizontal">
-
-                <Spinner
-                    android:id="@+id/spinner_fav"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center"
-                    android:background="@drawable/spinner_background"
-                    android:gravity="center"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginStart="5dp"
-                    android:spinnerMode="dropdown" />
-
-                <ImageView
-                    android:contentDescription="@null"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:paddingLeft="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingEnd="10dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/btn_arrow_down" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:id="@+id/jumlah"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/jumlah"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:textSize="13sp" />
-
-            <LinearLayout
-                android:id="@+id/manualEnterLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_background"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/Rp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/rp"
-                    android:textColor="@android:color/black"
-                    android:textSize="15sp" />
-
-
-                <EditText
-                    android:id="@+id/amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:background="#FFFFFF"
-                    android:digits="1234567890"
-                    android:drawablePadding="10dp"
-                    android:inputType="number"
-                    android:paddingLeft="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingEnd="10dp"
-                    android:maxLines="1"
-                    android:text=""
-                    android:maxLength="16"
-                    android:imeOptions="actionNext"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/mPin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/mpin"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:textSize="13sp" />
-
-            <EditText
-                android:id="@+id/pin"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edittext_background"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:maxLines="1"
-                android:inputType="numberPassword"
-                android:digits="1234567890"
-                android:maxLength="6"
-                android:imeOptions="actionDone"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="220dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="15dp"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/login_color_red"
-                android:gravity="center"
-                android:text="@string/lanjut"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-
-    </ScrollView>
-
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:onClick="submitOrder"
+        android:text="order" />
+    </LinearLayout>
+</ScrollView>

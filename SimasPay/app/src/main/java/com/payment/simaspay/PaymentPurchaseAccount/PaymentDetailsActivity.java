@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
@@ -74,7 +75,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
     Spinner spinner_fav;
     String sourceMDN, stMPIN, selectedItem = "man";
     String selectedValue;
-
+    RelativeLayout spinner_layout;
+    int spinnerLength=0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,21 +166,32 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             }
         });
 
-        RelativeLayout spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
 
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
-        radioTujuanGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            Log.d("chk", "id " + checkedId);
-            if (checkedId == R.id.favlist_option) {
-                selectedItem = "fav";
-                spinner_layout.setVisibility(View.VISIBLE);
-                number_field.setVisibility(View.GONE);
-            } else if (checkedId == R.id.manualinput_option) {
-                selectedItem = "man";
-                spinner_layout.setVisibility(View.GONE);
-                number_field.setVisibility(View.VISIBLE);
+        radioTujuanGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                //Log.d("chk", "id " + checkedId);
+                if (checkedId == R.id.favlist_option) {
+                    selectedItem = "fav";
+                    spinner_layout.setVisibility(View.VISIBLE);
+                    Log.d(LOG_TAG, "spinner length: "+ spinnerLength);
+                    if(spinnerLength==0){
+                        spinner_fav.setEnabled(false);
+                        spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background_disabled));
+                    }else{
+                        spinner_fav.setEnabled(true);
+                        spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
+                    }
+                    number_field.setVisibility(View.GONE);
+                } else if (checkedId == R.id.manualinput_option) {
+                    selectedItem = "man";
+                    spinner_layout.setVisibility(View.GONE);
+                    number_field.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -654,7 +667,11 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                         }
                         CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
                         spinner_fav.setAdapter(customAdapter);
+                        spinnerLength=spinner_fav.getAdapter().getCount();
+                        Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
                     }
+                }else{
+                    Log.d(LOG_TAG, "fav list: NULL");
                 }
             }
         }

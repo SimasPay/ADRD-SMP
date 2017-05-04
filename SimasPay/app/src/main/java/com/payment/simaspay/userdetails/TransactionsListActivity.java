@@ -568,7 +568,6 @@ public class TransactionsListActivity extends AppCompatActivity {
                             .getElementsByTagName("transactionDetail");
                     if (nl.getLength() > 0) {
                         for (int i = 0; i < nl.getLength(); i++) {
-
                             TransactionsData transationsList = new TransactionsData();
                             Element e = (Element) nl.item(i);
                             transationsList.setTransactionData(parser.getValue(e,

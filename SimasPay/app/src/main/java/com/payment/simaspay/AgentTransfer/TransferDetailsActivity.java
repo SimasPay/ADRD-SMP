@@ -5,7 +5,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -58,7 +60,10 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
     Spinner spinner_fav;
     String selectedItem="man";
     String selectedValue;
+    RelativeLayout spinner_layout;
+    int spinnerLength=0;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +91,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         amount = (EditText) findViewById(R.id.amount);
         pin = (EditText) findViewById(R.id.pin);
 
-        RelativeLayout spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
         spinner_fav.setOnItemSelectedListener(this);
@@ -97,6 +102,13 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
             if (checkedId == R.id.favlist_option) {
                 selectedItem = "fav";
                 spinner_layout.setVisibility(View.VISIBLE);
+                if(spinnerLength==0){
+                    spinner_fav.setEnabled(false);
+                    spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background_disabled));
+                }else{
+                    spinner_fav.setEnabled(true);
+                    spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
+                }
                 number.setVisibility(View.GONE);
             } else if (checkedId == R.id.manualinput_option) {
                 selectedItem = "man";
@@ -559,6 +571,8 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                         }
                         CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
                         spinner_fav.setAdapter(customAdapter);
+                        spinnerLength=spinner_fav.getAdapter().getCount();
+                        Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
                     }
                 }
             }
