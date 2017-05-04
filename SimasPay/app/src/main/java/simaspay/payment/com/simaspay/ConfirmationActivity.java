@@ -72,6 +72,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
 
+        LinearLayout backlayout= (LinearLayout) findViewById(R.id.back_layout);
+        backlayout.setOnClickListener(view -> finish());
+
         lbl_name=(TextView)findViewById(R.id.lbl_name);
         lbl_email=(TextView)findViewById(R.id.lbl_email);
         lbl_mdn=(TextView)findViewById(R.id.lbl_phone);
