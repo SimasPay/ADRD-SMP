@@ -261,7 +261,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                 dialogBuilder.dismiss();
-                                finish();
+                                ConfirmationActivity.this.finish();
                             });
                             alertbox.show();
                         }
