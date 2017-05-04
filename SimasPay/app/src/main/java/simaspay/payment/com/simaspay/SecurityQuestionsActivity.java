@@ -168,6 +168,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
                             intent.putExtra("mpin", stMPIN);
                             intent.putExtra("mpin2", stAnswer);
                             startActivity(intent);
+                            finish();
                         }
                     }
 
@@ -271,7 +272,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
         }
     }
 
-    class inquiryForgotMPINAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class inquiryForgotMPINAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -342,7 +343,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
                             Log.d(LOG_TAG, "sctlID "+stSctlID);
                             mfaMode = responseDataContainer.getMfaMode();
                             Log.d(LOG_TAG, "mfaMode "+mfaMode);
-                            if(mfaMode.toString().equalsIgnoreCase("OTP")){
+                            if(mfaMode.equalsIgnoreCase("OTP")){
                                 Intent intent = new Intent(SecurityQuestionsActivity.this, NewMpin_Activity.class);
                                 intent.putExtra(Constants.PARAMETER_FORGOTMPIN, true );
                                 intent.putExtra("question", stQuestion);
