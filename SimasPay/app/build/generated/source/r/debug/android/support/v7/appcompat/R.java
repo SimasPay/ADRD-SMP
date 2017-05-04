@@ -633,7 +633,7 @@ public final class R {
         public static final int submenuarrow = 0x7f11007d;
         public static final int submit_area = 0x7f11008e;
         public static final int tabMode = 0x7f110021;
-        public static final int text = 0x7f110159;
+        public static final int text = 0x7f11015a;
         public static final int text2 = 0x7f11023e;
         public static final int textSpacerNoButtons = 0x7f110071;
         public static final int textSpacerNoTitle = 0x7f110070;
