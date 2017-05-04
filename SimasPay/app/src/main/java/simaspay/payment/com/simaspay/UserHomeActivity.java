@@ -76,7 +76,7 @@ import java.util.regex.Pattern;
  * 13
  */
 
-public class UserHomeActivity extends AppCompatActivity {
+public class UserHomeActivity extends BaseActivity {
     private static final int EXIT = 20;
     private static final String LOG_TAG = "SimasPay";
     SharedPreferences sharedPreferences;
@@ -580,11 +580,6 @@ public class UserHomeActivity extends AppCompatActivity {
             default:
                 break;
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
