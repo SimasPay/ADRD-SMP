@@ -3,8 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_ground"
-    android:padding="10dp"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/reg"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/back_layout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/btn_back_register" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="Konfirmasi"
+            android:textColor="@android:color/white"
+            android:textSize="24dp" />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:background="@drawable/background_round_corner"
@@ -80,8 +115,8 @@
 
         <Button
             android:id="@+id/benar_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="220dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="10dp"
@@ -95,8 +130,8 @@
             android:textSize="20sp" />
         <Button
             android:id="@+id/salah_btn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="220dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="15dp"

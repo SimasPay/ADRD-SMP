@@ -231,6 +231,9 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     });
                     alertbox.show();
                 } else if (msgCode == 29) {
+                    if (progressDialog != null) {
+                        progressDialog.dismiss();
+                    }
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {

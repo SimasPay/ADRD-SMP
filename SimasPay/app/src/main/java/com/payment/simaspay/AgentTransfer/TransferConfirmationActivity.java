@@ -41,7 +41,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
 

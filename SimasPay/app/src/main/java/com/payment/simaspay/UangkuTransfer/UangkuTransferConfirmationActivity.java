@@ -437,6 +437,9 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             func.errorTimeoutResponseConfirmation(responseDataContainer.getMsg());
                             dialogBuilder.dismiss();
                         } else if(responseDataContainer.getMsgCode().equals("2171")){
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
                             message = responseDataContainer.getMsg();
                             Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
@@ -448,6 +451,9 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
                             showOTPRequiredDialog();
                         }else{
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
                             alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> finish());

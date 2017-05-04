@@ -931,7 +931,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
 
 3. Segala ketentuan mengenai penggunaan pembayaran QR mengacu kepada ketentuan induk yang tertera pada Syarat dan Ketentuan Umum SIMASPAY."</string>
     <string name="_00_00">00:00</string>
-    <string name="_6_digit_kode_otp">6 digit kode verifikasi</string>
+    <string name="_6_digit_kode_otp">4 digit kode verifikasi</string>
     <string name="abc_action_bar_home_description">Navigate home</string>
     <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
     <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
@@ -1501,6 +1501,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="regSuccessContent1">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selamat Franky SIMASPAY Kini telah aktif. &lt;/body> &lt;/html></string>
     <string name="regSuccessContent2">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Nikmati kemududahan bertransaksi dimana saja menggunakan telepon genggam &lt;/body> &lt;/html></string>
     <string name="regSuccessContent3">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selanjutnya, silahkan mengisi saldo SIMASPAY terlebih dahulu &lt;/body> &lt;/html></string>
+    <string name="registration_success">Pendaftaran Berhasil!</string>
+    <string name="registration_success_body">Selamat, Anda berhasil membuat akun e-money Simaspay</string>
     <string name="resume_playing_message">Resume playing video from <ns1:g example="5:30" id="duration">%s</ns1:g>?</string>
     <string name="resume_playing_restart">Start over</string>
     <string name="resume_playing_resume">Resume playing</string>

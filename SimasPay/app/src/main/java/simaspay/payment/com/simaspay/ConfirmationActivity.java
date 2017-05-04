@@ -55,6 +55,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
     String pin, otpValue;
     String selectedLanguage;
     Functions func;
+    LinearLayout back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,9 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
 
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
+
+        back = (LinearLayout) findViewById(R.id.back_layout);
+        back.setOnClickListener(view -> finish());
 
         lbl_name=(TextView)findViewById(R.id.lbl_name);
         lbl_email=(TextView)findViewById(R.id.lbl_email);
@@ -257,7 +261,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                 dialogBuilder.dismiss();
-                                //finish();
+                                finish();
                             });
                             alertbox.show();
                         }

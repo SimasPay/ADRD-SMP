@@ -168,6 +168,7 @@ public class SecurityQuestionsActivity extends AppCompatActivity implements Inco
                             intent.putExtra("mpin", stMPIN);
                             intent.putExtra("mpin2", stAnswer);
                             startActivity(intent);
+                            finish();
                         }
                     }
 
