@@ -2,6 +2,7 @@ package simaspay.payment.com.simaspay;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +54,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
     Context context;
     SharedPreferences languageSettings;
     String rsaKey;
+    LinearLayout back;
     String pin, otpValue;
     String selectedLanguage;
     Functions func;
@@ -73,7 +76,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
 
         LinearLayout backlayout= (LinearLayout) findViewById(R.id.back_layout);
-        backlayout.setOnClickListener(view -> finish());
+        backlayout.setOnClickListener(view -> ConfirmationActivity.this.finish());
 
         lbl_name=(TextView)findViewById(R.id.lbl_name);
         lbl_email=(TextView)findViewById(R.id.lbl_email);
@@ -262,6 +265,17 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                                 dialogBuilder.dismiss();
                                 ConfirmationActivity.this.finish();
                             });
+                            alertbox.setOnCancelListener(dialog -> ConfirmationActivity.this.finish());
+                            alertbox.setOnKeyListener((dialog, keyCode, event) -> {
+                                if (keyCode == KeyEvent.KEYCODE_BACK &&
+                                        event.getAction() == KeyEvent.ACTION_UP &&
+                                        !event.isCanceled()) {
+                                    dialog.cancel();
+                                    ConfirmationActivity.this.finish();
+                                    return true;
+                                }
+                                return false;
+                            });
                             alertbox.show();
                         }
                     }
@@ -359,6 +373,7 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
             }
         });
         dialogBuilder.show();
+
     }
 
 }
