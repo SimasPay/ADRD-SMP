@@ -15,6 +15,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -262,6 +263,17 @@ public class ConfirmationActivity extends AppCompatActivity implements IncomingS
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> {
                                 dialogBuilder.dismiss();
                                 ConfirmationActivity.this.finish();
+                            });
+                            alertbox.setOnCancelListener(dialog -> ConfirmationActivity.this.finish());
+                            alertbox.setOnKeyListener((dialog, keyCode, event) -> {
+                                if (keyCode == KeyEvent.KEYCODE_BACK &&
+                                        event.getAction() == KeyEvent.ACTION_UP &&
+                                        !event.isCanceled()) {
+                                    dialog.cancel();
+                                    ConfirmationActivity.this.finish();
+                                    return true;
+                                }
+                                return false;
                             });
                             alertbox.show();
                         }
