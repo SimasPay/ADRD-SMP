@@ -90,7 +90,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
         e_Mdn.setTypeface(Utility.Robot_Light(ActivationPage_2_Activity.this));
         e_mPin.setTypeface(Utility.Robot_Light(ActivationPage_2_Activity.this));
 
-        e_mPin.setHint("6 digit kode aktivasi");
+        e_mPin.setHint(getResources().getString(R.string.code_activation_limit));
 
         text_1.setTypeface(Utility.LightTextFormat(ActivationPage_2_Activity.this));
         text_2.setTypeface(Utility.LightTextFormat(ActivationPage_2_Activity.this));

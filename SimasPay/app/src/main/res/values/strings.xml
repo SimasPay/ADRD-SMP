@@ -389,5 +389,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="nama_produk">Nama Produk</string>
     <string name="nominal_pulsa">Nominal Pulsa</string>
     <string name="empty_no_tujuan">Harap Masukkan Nomor Handphone Tujuan Anda</string>
+    <string name="code_activation_limit">4 digit kode aktivasi</string>
     <string name="invalid_cashout_amount">Jumlah transaksi tarik tunai minimal Rp 100.000 dan harus kelipatan Rp. 50.000</string>
 </resources>
