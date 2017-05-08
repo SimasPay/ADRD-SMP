@@ -81,14 +81,11 @@ public class ActivationPage_3_Activity extends AppCompatActivity {
         text_2.setTypeface(Utility.Robot_Regular(ActivationPage_3_Activity.this));
         text_3.setTypeface(Utility.Robot_Light(ActivationPage_3_Activity.this));
         text_4.setTypeface(Utility.Robot_Light(ActivationPage_3_Activity.this));
-
         text_2.setText(getIntent().getExtras().getString("name"));
 
 
         lanjut = (Button) findViewById(R.id.next);
-
         lanjut.setTypeface(Utility.Robot_Regular(ActivationPage_3_Activity.this));
-
         lanjut.setOnClickListener(view -> {
             if (e_pin.getText().toString().replace(" ", "").length() == 0) {
                 Utility.displayDialog("Masukkan mPIN", ActivationPage_3_Activity.this);
