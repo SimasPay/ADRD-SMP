@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -285,6 +288,10 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(TransferEmoneyToEmoneyActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(TransferEmoneyToEmoneyActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }
@@ -475,6 +482,10 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(TransferEmoneyToEmoneyActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(TransferEmoneyToEmoneyActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }

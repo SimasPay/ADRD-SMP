@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -26,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -61,9 +64,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
     Button submit;
     LinearLayout back;
     String[] strings;
-    String billNumber, pinValue, encryptedpinValue, amountValue, rangealert, noEntryAlert;
+    String billNumber, encryptedpinValue, amountValue, rangealert, noEntryAlert;
     SharedPreferences sharedPreferences;
-    int maxLimitValue = 0;
+    int minLimitValue=0, maxLimitValue = 0;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     static final int PICK_CONTACT = 1;
     static final int EXIT = 10;
@@ -71,7 +74,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
     ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
-    int msgCode, stCatID;
+    int stCatID;
     Spinner spinner_fav;
     String sourceMDN, stMPIN, selectedItem = "man";
     String selectedValue;
@@ -212,15 +215,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
         submit = (Button) findViewById(R.id.submit);
         submit.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
-        try {
-            maxLimitValue = getIntent().getExtras().getInt("maxLength");
-        } catch (Exception e) {
-            e.printStackTrace();
-            maxLimitValue = 0;
-        }
-        if (maxLimitValue == 0) {
-            maxLimitValue = 16;
-        }
+        minLimitValue = getIntent().getExtras().getInt("minLength");
+        maxLimitValue = getIntent().getExtras().getInt("maxLength");
 
 
         InputFilter[] FilterArray = new InputFilter[1];
@@ -252,7 +248,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 if (selectedItem.equals("man")) {
                     if (number_field.getText().toString().length() <= 0) {
                         Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
-                    } else if (number_field.getText().toString().length() < 10) {
+                    } else if (number_field.getText().toString().length() < minLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                     } else if (number_field.getText().toString().length() > maxLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
@@ -283,7 +279,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
                             if (pin_field.getText().toString().length() <= 0) {
                                 Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
-                            } else if (pin_field.getText().toString().length() < 6) {
+                            } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                                 Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
                             } else {
                                 amountValue = "";
@@ -304,7 +300,6 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 } else if (selectedItem.equals("fav")) {
                     billNumber = selectedValue;
                     if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
-
                         if (amountField.getText().toString().replace(" ", "").length() == 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() <= 0) {
@@ -328,7 +323,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
                         if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
                         } else {
                             amountValue = "";
@@ -457,6 +452,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(PaymentDetailsActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(PaymentDetailsActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }
@@ -634,6 +633,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(PaymentDetailsActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(PaymentDetailsActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }

@@ -2,14 +2,11 @@ package com.payment.simaspay.PojoClasses;
 
 import org.json.JSONArray;
 
-/**
- * Created by Nagendra P on 3/15/2016.
- */
 public class Payments {
 
-    String productCategory;
+    private String productCategory;
 
-    JSONArray jsonArray,productsJsonArray;
+    private JSONArray jsonArray,productsJsonArray;
 
     public String getIsPLNPrepaid() {
         return isPLNPrepaid;
@@ -19,9 +16,9 @@ public class Payments {
         this.isPLNPrepaid = isPLNPrepaid;
     }
 
-    String isPLNPrepaid;
+    private String isPLNPrepaid;
 
-    String Nominaltype;
+    private String Nominaltype;
 
     public String getNominaltype() {
         return Nominaltype;
@@ -39,9 +36,9 @@ public class Payments {
         this.productsJsonArray = productsJsonArray;
     }
 
-    String providerName,productName,productCode,paymentMode,invoiceType,DenomValues,errormessage1,errormessage;
+    private String providerName,productName,productCode,paymentMode,invoiceType,DenomValues,errormessage1,errormessage;
 
-    int maxLength;
+    private int maxLength, minLength;
 
     public String getErrormessage1() {
         return errormessage1;
@@ -65,6 +62,14 @@ public class Payments {
 
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
+    }
+
+    public int getMinLength() {
+        return minLength;
+    }
+
+    public void setMinLength(int minLength) {
+        this.minLength = minLength;
     }
 
     public String getDenomValues() {

@@ -206,7 +206,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                 if (selectedItem.equals("man")) {
                     if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                         if (number.getText().toString().replace(" ", "").length() <= 0) {
-                            Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_no_tujuan), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() < 10) {
                             Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() > 14) {
@@ -240,7 +240,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             }
                         }else if(untuk.equals("Untuk Orang Lain")){
                             if (number.getText().toString().replace(" ", "").length() <= 0) {
-                                Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
+                                Utility.displayDialog(getResources().getString(R.string.empty_no_tujuan), CashOutDetailsActivity.this);
                             } else if (number.getText().toString().replace(" ", "").length() < 10) {
                                 Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
                             } else if (number.getText().toString().replace(" ", "").length() > 14) {

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -25,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dimo.PayByQR.PayByQRProperties;
@@ -35,6 +39,7 @@ import com.dimo.PayByQR.UserAPIKeyListener;
 import com.dimo.PayByQR.model.InvoiceModel;
 import com.dimo.PayByQR.model.LoyaltyModel;
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -804,6 +809,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(PayByQRProperties.getSDKContext()).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(PayByQRProperties.getSDKContext(), R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }

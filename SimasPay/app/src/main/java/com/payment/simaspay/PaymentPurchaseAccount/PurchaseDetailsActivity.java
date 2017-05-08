@@ -3,12 +3,13 @@ package com.payment.simaspay.PaymentPurchaseAccount;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -27,7 +28,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -35,6 +35,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -61,8 +62,6 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-import static com.payment.simaspay.services.Constants.LOG_TAG;
-
 public class PurchaseDetailsActivity extends AppCompatActivity {
     TextView title, pulsa_field, product, number, pin, Rp;
     EditText product_field, number_field, pin_field, plnamount_entryfield;
@@ -74,7 +73,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
     LinearLayout manualEnterLayout;
     String[] strings;
     String rangealert, noEntryAlert;
-    int maxLimitValue = 0;
+    int minLimitValue=0, maxLimitValue = 0;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     static final int PICK_CONTACT = 1;
     static final int EXIT = 10;
@@ -82,7 +81,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
     ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
-    int msgCode, stCatID;
+    int stCatID;
     Spinner spinner_fav;
     String sourceMDN, stMPIN, selectedItem = "man";
     String selectedValue;
@@ -133,15 +132,8 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         manualEnterLayout = (LinearLayout) findViewById(R.id.manualEnterLayout);
         strings = getIntent().getExtras().getString("invoiceType").split("\\|");
         number.setText("" + strings[1]);
-        try {
-            maxLimitValue = getIntent().getExtras().getInt("maxLength");
-        } catch (Exception e) {
-            e.printStackTrace();
-            maxLimitValue = 0;
-        }
-        if (maxLimitValue == 0) {
-            maxLimitValue = 16;
-        }
+        minLimitValue = getIntent().getExtras().getInt("minLength");
+        maxLimitValue = getIntent().getExtras().getInt("maxLength");
 
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
@@ -178,9 +170,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             nominal_pulsa.setVisibility(View.VISIBLE);
             String sampleString = getIntent().getExtras().getString("DenomValues");
             String[] items = sampleString.split("\\|");
-            for (int i = 0; i < items.length; i++) {
-                Log.e("------", "=======" + items[i]);
-                arrayList.add(items[i]);
+            for (String item : items) {
+                Log.e("------", "=======" + item);
+                arrayList.add(item);
             }
         } else {
             manualEnterLayout.setVisibility(View.VISIBLE);
@@ -275,7 +267,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     Utility.displayDialog("Masukkan Nominal PLN Pulsa", PurchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() <= 0) {
                     Utility.displayDialog(noEntryAlert, PurchaseDetailsActivity.this);
-                } else if (number_field.getText().toString().length() < 10) {
+                } else if (number_field.getText().toString().length() < minLimitValue) {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() > maxLimitValue) {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
@@ -286,7 +278,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                         } else {
                             amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
@@ -304,7 +296,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     } else {
                         if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                         } else {
                             amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
@@ -328,7 +320,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                         Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < 6) {
+                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {
                         amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
@@ -346,7 +338,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                 } else {
                     if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < 6) {
+                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {
                         amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");
@@ -466,6 +458,10 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(PurchaseDetailsActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(PurchaseDetailsActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }
@@ -727,6 +723,10 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(PurchaseDetailsActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(PurchaseDetailsActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }

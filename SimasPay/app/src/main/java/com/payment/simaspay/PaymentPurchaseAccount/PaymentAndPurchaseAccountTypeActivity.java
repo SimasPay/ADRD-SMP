@@ -3,9 +3,12 @@ package com.payment.simaspay.PaymentPurchaseAccount;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.payment.simaspay.PojoClasses.AccountTypeClass;
@@ -35,9 +39,6 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 1/28/2016.
- */
 public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
 
     TextView title;
@@ -91,12 +92,16 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
 
         sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
-
-        progressDialog = new ProgressDialog(PaymentAndPurchaseAccountTypeActivity.this);
+        progressDialog = new ProgressDialog(this, R.style.MyAlertDialogStyle);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
         progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-
+        Drawable drawable = new ProgressBar(this).getIndeterminateDrawable().mutate();
+        drawable.setColorFilter(ContextCompat.getColor(this, R.color.red_sinarmas),
+                PorterDuff.Mode.SRC_IN);
+        progressDialog.setIndeterminateDrawable(drawable);
+        progressDialog.show();
 
         back = (LinearLayout) findViewById(R.id.back_layout);
         back.setOnClickListener(new View.OnClickListener() {
@@ -109,30 +114,27 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.account_type);
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (getIntent().getExtras().getBoolean("accounttype")) {
-                    Intent intent = new Intent(PaymentAndPurchaseAccountTypeActivity.this, ProviderNamesListActivity.class);
-                    intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
-                    intent.putExtra("providerNames", paymentsArrayList.get(i).getJsonArray().toString());
-                    intent.putExtra("CategoryType", paymentsArrayList.get(i).getProductCategory());
-                    startActivityForResult(intent, 10);
-                }else{
-                    Intent intent = new Intent(PaymentAndPurchaseAccountTypeActivity.this, ProviderNamesListActivity.class);
-                    intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
-                    intent.putExtra("providerNames",purchaseArrayList.get(i).getJsonArray().toString());
-                    intent.putExtra("CategoryType", purchaseArrayList.get(i).getProductCategory());
-                    startActivityForResult(intent, 10);
-                }
-
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            if (getIntent().getExtras().getBoolean("accounttype")) {
+                Intent intent = new Intent(PaymentAndPurchaseAccountTypeActivity.this, ProviderNamesListActivity.class);
+                intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
+                intent.putExtra("providerNames", paymentsArrayList.get(i).getJsonArray().toString());
+                intent.putExtra("CategoryType", paymentsArrayList.get(i).getProductCategory());
+                startActivityForResult(intent, 10);
+            }else{
+                Intent intent = new Intent(PaymentAndPurchaseAccountTypeActivity.this, ProviderNamesListActivity.class);
+                intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
+                intent.putExtra("providerNames",purchaseArrayList.get(i).getJsonArray().toString());
+                intent.putExtra("CategoryType", purchaseArrayList.get(i).getProductCategory());
+                startActivityForResult(intent, 10);
             }
+
         });
 
 
     }
 
-    class AccountTypeAdapter extends BaseAdapter {
+    private class AccountTypeAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
@@ -184,7 +186,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
 
-    class PaymentCategoryAsynTask extends AsyncTask<Void, Void, Void> {
+    private class PaymentCategoryAsynTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -276,7 +278,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
 
 
 
-    class PurchaseCategoryAsynTask extends AsyncTask<Void, Void, Void> {
+    private class PurchaseCategoryAsynTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
 

@@ -3,9 +3,12 @@ package com.payment.simaspay.userdetails;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -13,10 +16,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
@@ -189,6 +194,10 @@ public class Trans_DataSelectionActivity extends FragmentActivity implements Dat
         progressDialog.setCancelable(false);
         progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+        Drawable drawable = new ProgressBar(Trans_DataSelectionActivity.this).getIndeterminateDrawable().mutate();
+        drawable.setColorFilter(ContextCompat.getColor(Trans_DataSelectionActivity.this, R.color.red_sinarmas),
+                PorterDuff.Mode.SRC_IN);
+        progressDialog.setIndeterminateDrawable(drawable);
 
         twomonths_layout.setOnClickListener(new View.OnClickListener() {
             @Override

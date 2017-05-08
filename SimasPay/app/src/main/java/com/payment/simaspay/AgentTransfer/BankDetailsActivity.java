@@ -1,12 +1,14 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -21,8 +23,8 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.payment.simaspay.PojoClasses.BanksData;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -67,7 +69,10 @@ public class BankDetailsActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-
+        Drawable drawable = new ProgressBar(BankDetailsActivity.this).getIndeterminateDrawable().mutate();
+        drawable.setColorFilter(ContextCompat.getColor(BankDetailsActivity.this, R.color.red_sinarmas),
+                PorterDuff.Mode.SRC_IN);
+        progressDialog.setIndeterminateDrawable(drawable);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override

@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,8 +26,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -166,6 +170,10 @@ public class SplashScreenActivity extends Activity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(SplashScreenActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(SplashScreenActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }

@@ -13,6 +13,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -47,6 +49,7 @@ import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
 import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
+import com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity;
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.Constants;
@@ -626,6 +629,10 @@ public class UserHomeActivity extends BaseActivity {
             progressDialog.setCancelable(false);
             progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
             progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
+            Drawable drawable = new ProgressBar(UserHomeActivity.this).getIndeterminateDrawable().mutate();
+            drawable.setColorFilter(ContextCompat.getColor(UserHomeActivity.this, R.color.red_sinarmas),
+                    PorterDuff.Mode.SRC_IN);
+            progressDialog.setIndeterminateDrawable(drawable);
             progressDialog.show();
             super.onPreExecute();
         }
