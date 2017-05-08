@@ -202,7 +202,11 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean is50k = (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) % 50000) == 0;
+                int txtamount=0;
+                if(!amount.getText().toString().equals("")){
+                    txtamount = Integer.parseInt(amount.getText().toString().replace("Rp ", ""));
+                }
+                Boolean is50k = (txtamount % 50000) == 0;
                 if (selectedItem.equals("man")) {
                     if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                         if (number.getText().toString().replace(" ", "").length() <= 0) {
