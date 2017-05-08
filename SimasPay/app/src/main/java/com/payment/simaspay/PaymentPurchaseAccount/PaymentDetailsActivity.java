@@ -54,7 +54,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
     String[] strings;
     String billNumber, pinValue, encryptedpinValue, amountValue, rangealert, noEntryAlert;
     SharedPreferences sharedPreferences;
-    int maxLimitValue = 0;
+    int minLimitValue = 0, maxLimitValue = 0;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     static final int PICK_CONTACT=1;
     static final int EXIT=10;
@@ -151,14 +151,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
         try {
             maxLimitValue = getIntent().getExtras().getInt("maxLength");
+            minLimitValue = getIntent().getExtras().getInt("minLength");
         } catch (Exception e) {
             e.printStackTrace();
-            maxLimitValue = 0;
         }
-        if (maxLimitValue == 0) {
-            maxLimitValue = 16;
-        }
-
 
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
@@ -189,7 +185,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
                 if (number_field.getText().toString().length() <= 0) {
                     Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
-                } else if (number_field.getText().toString().length() < 10) {
+                } else if (number_field.getText().toString().length() < minLimitValue) {
                     Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                 } else if (number_field.getText().toString().length() > maxLimitValue) {
                     Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
@@ -220,7 +216,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
                         if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < 6) {
+                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
                         } else {
                             amountValue = "";

@@ -63,7 +63,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
     LinearLayout manualEnterLayout;
     String[] strings;
     String rangealert, noEntryAlert;
-    int maxLimitValue = 0;
+    int minLimitValue=0, maxLimitValue = 0;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     static final int PICK_CONTACT=1;
     static final int EXIT=10;
@@ -108,12 +108,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         number.setText("" + strings[1]);
         try {
             maxLimitValue = getIntent().getExtras().getInt("maxLength");
+            minLimitValue = getIntent().getExtras().getInt("minLength");
         } catch (Exception e) {
             e.printStackTrace();
-            maxLimitValue = 0;
-        }
-        if (maxLimitValue == 0) {
-            maxLimitValue = 16;
         }
 
         InputFilter[] FilterArray = new InputFilter[1];
@@ -197,7 +194,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                 Utility.displayDialog("Masukkan Nominal PLN Pulsa", PurchaseDetailsActivity.this);
             } else if (number_field.getText().toString().length() <= 0) {
                 Utility.displayDialog(noEntryAlert, PurchaseDetailsActivity.this);
-            } else if (number_field.getText().toString().length() < 10) {
+            } else if (number_field.getText().toString().length() < minLimitValue) {
                 Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
             } else if (number_field.getText().toString().length() > maxLimitValue) {
                 Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
@@ -208,7 +205,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                         Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < 6) {
+                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {
                         amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
@@ -226,7 +223,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                 } else {
                     if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < 6) {
+                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {
                         amountString = nominal_pulsa.getText().toString().replace("Rp. ", "");

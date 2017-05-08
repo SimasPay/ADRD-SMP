@@ -41,7 +41,7 @@ public class Payments {
 
     String providerName,productName,productCode,paymentMode,invoiceType,DenomValues,errormessage1,errormessage;
 
-    int maxLength;
+    int maxLength, minLength;
 
     public String getErrormessage1() {
         return errormessage1;
@@ -65,6 +65,14 @@ public class Payments {
 
     public void setMaxLength(int maxLength) {
         this.maxLength = maxLength;
+    }
+
+    public int getMinLength() {
+        return minLength;
+    }
+
+    public void setMinLength(int minLength) {
+        this.minLength = minLength;
     }
 
     public String getDenomValues() {

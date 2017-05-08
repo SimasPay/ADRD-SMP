@@ -219,6 +219,7 @@ public class BillersListActivity extends Activity {
                             e.printStackTrace();
                         }
                         try {
+                            payments.setMinLength(array.getJSONObject(i).getInt("minlength"));
                             payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -257,6 +258,7 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
                     intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
                     intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
+                    intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
                     startActivityForResult(intent, 10);
                 } else {
                     Intent intent = new Intent(BillersListActivity.this, PurchaseDetailsActivity.class);
@@ -272,6 +274,7 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
                     intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
                     intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
+                    intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
                     if(providerNamesList.get(i).getIsPLNPrepaid().equalsIgnoreCase("true")){
                         intent.putExtra("DenomValues","");
                     }else {

@@ -101,9 +101,9 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() < 8) {
-                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_other_bank), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 25) {
-                    Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.digit_other_bank), TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
