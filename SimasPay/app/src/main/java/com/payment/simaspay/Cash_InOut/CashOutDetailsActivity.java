@@ -40,9 +40,6 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 1/29/2016.
- */
 public class CashOutDetailsActivity extends AppCompatActivity {
     TextView title, handphone, jumlah, mPin, Rp;
     Button submit;
@@ -139,6 +136,8 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean is50k = (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) % 50000) == 0;
+                //Log.d("test","test kelipatan 50k: "+is50k);
                 if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                     if (number.getText().toString().replace(" ", "").length() <= 0) {
                         Utility.displayDialog(getResources().getString(R.string.empty_no_tujuan), CashOutDetailsActivity.this);
@@ -147,9 +146,13 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     } else if (number.getText().toString().replace(" ", "").length() > 14) {
                         Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                     } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                        Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
+                        Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout", CashOutDetailsActivity.this);
+                    } else if ((Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000)) {
+                        Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
+                    } else if (!is50k) {
+                        Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                     } else if (pin.getText().toString().length() <= 0) {
-                        Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
+                        Utility.displayDialog(getResources().getString(R.string.empty_mpin), CashOutDetailsActivity.this);
                     } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                     } else {
@@ -163,8 +166,12 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     if(untuk.equals("Untuk Saya")){
                         if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
+                        } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000){
+                            Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
+                        } else if (!is50k) {
+                            Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() <= 0) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_mpin), CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                         } else {
@@ -180,10 +187,14 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() > 14) {
                             Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
+                        } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
+                            Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
+                        } else if (!is50k) {
+                            Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                         } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() <= 0) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_mpin), CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
                         } else {
