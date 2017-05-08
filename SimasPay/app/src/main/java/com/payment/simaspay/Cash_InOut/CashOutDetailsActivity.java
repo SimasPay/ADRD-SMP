@@ -141,11 +141,11 @@ public class CashOutDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(sharedPreferences.getInt(Constants.PARAMETER_USERTYPE,-1)==Constants.CONSTANT_BANK_INT){
                     if (number.getText().toString().replace(" ", "").length() <= 0) {
-                        Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
+                        Utility.displayDialog(getResources().getString(R.string.empty_no_tujuan), CashOutDetailsActivity.this);
                     } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                        Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                        Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                     } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                        Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                        Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                     } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                         Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                     } else if (pin.getText().toString().length() <= 0) {
@@ -175,11 +175,11 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                         }
                     }else if(untuk.equals("Untuk Orang Lain")){
                         if (number.getText().toString().replace(" ", "").length() <= 0) {
-                            Utility.displayDialog("Harap masukkan nomor Handphone Anda", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_no_tujuan), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() < 10) {
-                            Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() > 14) {
-                            Utility.displayDialog("Nomor Handphone yang Anda masukkan harus 10-14 angka", CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                         } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() <= 0) {

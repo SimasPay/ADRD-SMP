@@ -389,4 +389,6 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="pay">pay</string>
     <string name="registration_success">Pendaftaran Berhasil!</string>
     <string name="registration_success_body">Selamat, Anda berhasil membuat akun e-money Simaspay</string>
+    <string name="empty_no_tujuan">Harap Masukkan Nomor Handphone Tujuan Anda</string>
+    <string name="empty_no_hp">Nomor Handphone yang Anda masukkan harus 10-14 angka</string>
 </resources>
