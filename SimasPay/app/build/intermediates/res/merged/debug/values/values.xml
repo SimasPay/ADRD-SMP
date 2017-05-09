@@ -1433,6 +1433,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="logout">Logout</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>
+    <string name="masukkan_mpin">Masukkan mPIN</string>
     <string name="min_transfer">Minimal Rp 100.000, harus kelipatan Rp 50.000</string>
     <string name="minute_picker_description">Minutes circular slider</string>
     <string name="movieviewlabel">Movies</string>

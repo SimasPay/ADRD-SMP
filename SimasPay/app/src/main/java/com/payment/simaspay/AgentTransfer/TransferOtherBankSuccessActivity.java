@@ -23,13 +23,9 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
  * Created by Nagendra P on 2/3/2016.
  */
 public class TransferOtherBankSuccessActivity extends AppCompatActivity {
-
     TextView title, heading, id_field, id_value, name, name_field, bank, bank_field, number, number_field, amount, amount_field, charge, charge_field, total, total_field;
-
     LinearLayout backlayout;
-
     Button confirm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
