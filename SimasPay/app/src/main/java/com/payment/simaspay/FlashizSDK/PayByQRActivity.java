@@ -1,6 +1,7 @@
 package com.payment.simaspay.FlashizSDK;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -109,22 +111,6 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             new requestUserAPIKeyAsyncTask().execute();
             Log.d("userAPIKEY","userAPIKey is null!");
         } else {
-            pin = sharedPreferences.getString("mpin", "");
-            Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
-            Log.d(LOG_TAG, "pin from preferences: " + pin);
-            String module = sharedPreferences.getString("MODULE", "NONE");
-            String exponent = sharedPreferences.getString("EXPONENT", "NONE");
-
-            try {
-                pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                        pin.getBytes());
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-            stMPIN = pinValue;
-
-            Log.d(LOG_TAG, "pinValue: " + pinValue);
-
             payByQRSDK = new PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
             //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
             PayByQRProperties.setServerURLString(Constants.URL_PBQ);
@@ -191,7 +177,6 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         Log.e(LOG_TAG, "------cancel: callbackSDKClosed-------");
     }
 
-
     @Override
     public void callbackAuthenticationError() {
         finish();
@@ -236,12 +221,15 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                 requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
                         109);
             } else {
-                new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------paymentInquiry-------");
+                showmPINDialog();
+                //new PaymentInquiryAsync().execute();
+                Log.e(LOG_TAG, "------showmPINDialog-------");
             }
         } else {
-            new PaymentInquiryAsync().execute();
-            Log.e(LOG_TAG, "------paymentInquiry-------");
+            showmPINDialog();
+            Log.e(LOG_TAG, "------showmPINDialog-------");
+            //new PaymentInquiryAsync().execute();
+            //Log.e(LOG_TAG, "------paymentInquiry-------");
         }
 
     }
@@ -302,8 +290,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------PaymentInquiryAsync()");
+                showmPINDialog();
+                //new PaymentInquiryAsync().execute();
+                Log.e(LOG_TAG, "------showmPINAsync()");
             }
         }
     }
@@ -653,6 +642,55 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         }
     }
 
+    private void showmPINDialog(){
+        Dialog dialog = new Dialog(PayByQRProperties.getSDKContext(), android.R.style.Theme_Light);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_mpin);
+        EditText ed_mpin = (EditText) dialog.findViewById(R.id.mpin);
+        Button bt_lanjut = (Button)dialog.findViewById(R.id.lanjut);
+        bt_lanjut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ed_mpin.getText().toString().trim().equals("")){
+                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setCancelable(false);
+                    alertbox.setMessage(getResources().getString(R.string.id_masukkan_mpin));
+                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                        arg0.dismiss();
+                    });
+                    alertbox.show();
+                }else if(ed_mpin.getText().toString().trim().length()<getResources().getInteger(R.integer.pinSize)){
+                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setCancelable(false);
+                    alertbox.setMessage(getResources().getString(R.string.mPinLegthMessage));
+                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                        arg0.dismiss();
+                    });
+                    alertbox.show();
+                }else{
+                    dialog.dismiss();
+                    pin=ed_mpin.getText().toString().trim();
+                    Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
+                    Log.d(LOG_TAG, "pin " + pin);
+                    String module = sharedPreferences.getString("MODULE", "NONE");
+                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+
+                    try {
+                        pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                                pin.getBytes());
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
+                    stMPIN = pinValue;
+                    Log.d(LOG_TAG, "pinValue: " + pinValue);
+                    new PaymentInquiryAsync().execute();
+                    Log.e(LOG_TAG, "------paymentInquiry-------");
+                }
+            }
+        });
+        dialog.show();
+    }
+
     private void showOTPRequiredDialog() {
         LayoutInflater inflater = getLayoutInflater();
         final ViewGroup nullParent = null;
@@ -775,9 +813,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     });
         }
         AlertDialog alertError = builder.create();
-        if (!isFinishing()) {
-            alertError.show();
-        }
+        alertError.show();
     }
 
     class requestOTPAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -892,12 +928,12 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("service", Constants.SERVICE_ACCOUNT);
-            mapContainer.put("txnName", Constants.TRANSACTION_USER_APIKEY);
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", sourceMDN);
-            mapContainer.put("channelID", "7");
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_USER_API_KEY, Constants.TRANSACTION_USER_APIKEY);
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
 
             Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
@@ -908,11 +944,6 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
         @Override
         protected void onPreExecute() {
-            //progressDialog = new ProgressDialog(PayByQRActivity.this);
-            //progressDialog.setCancelable(false);
-            //progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            //progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            //progressDialog.show();
             super.onPreExecute();
         }
 
@@ -944,9 +975,9 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                                     sharedPreferences.edit()
                                             .putString("userApiKey", UserApikeyresponse)
                                             .apply();
-                                    pin = sharedPreferences.getString("mpin", "");
+                                    //pin = sharedPreferences.getString("mpin", "");
                                     Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
-                                    Log.d(LOG_TAG, "pin from preferences: " + pin);
+                                    Log.d(LOG_TAG, "pin: " + pin);
                                     String module = sharedPreferences.getString("MODULE", "NONE");
                                     String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 

@@ -40,8 +40,8 @@ public final class R {
         public static final int zxing_viewfinder_view = 0x7f1103a9;
     }
     public static final class layout {
-        public static final int zxing_barcode_scanner = 0x7f0400af;
-        public static final int zxing_capture = 0x7f0400b0;
+        public static final int zxing_barcode_scanner = 0x7f0400b0;
+        public static final int zxing_capture = 0x7f0400b1;
     }
     public static final class raw {
         public static final int zxing_beep = 0x7f090002;
