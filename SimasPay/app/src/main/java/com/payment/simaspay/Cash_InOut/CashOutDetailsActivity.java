@@ -136,9 +136,15 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int amountval=0;
+                if(amount.getText().toString().replace("Rp ", "").equals("")){
+                    amountval=0;
+                }else{
+                    amountval=Integer.parseInt(amount.getText().toString().replace("Rp ", "").trim());
+                }
                 int txtamount=0;
                 if(!amount.getText().toString().equals("")){
-                    txtamount = Integer.parseInt(amount.getText().toString().replace("Rp ", ""));
+                    txtamount = amountval;
                 }
                 Boolean is50k = (txtamount % 50000) == 0;
                 //Log.d("test","test kelipatan 50k: "+is50k);
@@ -151,7 +157,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                         Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                     } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                         Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout", CashOutDetailsActivity.this);
-                    } else if ((Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000)) {
+                    } else if (amountval < 100000) {
                         Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                     } else if (!is50k) {
                         Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
@@ -170,7 +176,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     if(untuk.equals("Untuk Saya")){
                         if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
-                        } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000){
+                        } else if (amountval < 100000){
                             Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                         } else if (!is50k) {
                             Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
@@ -191,7 +197,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() > 14) {
                             Utility.displayDialog(getResources().getString(R.string.empty_no_hp), CashOutDetailsActivity.this);
-                        } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
+                        } else if (amountval < 100000) {
                             Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);
                         } else if (!is50k) {
                             Utility.displayDialog(getResources().getString(R.string.amount_invalid_cashout), CashOutDetailsActivity.this);

@@ -1147,6 +1147,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="details_panel_title">Details</string>
     <string name="digit_no_rek">Nomor rekening Bank Sinarmas yang Anda masukkan harus 8-25 angka</string>
     <string name="digit_other_bank">Nomor rekening Bank Tujuan yang Anda masukkan harus 8-25 angka</string>
+    <string name="digits_activation">4 digit kode aktivasi</string>
     <string name="dimo">Dimo</string>
     <string name="done_label">Done</string>
     <string name="emoney">E-money</string>
