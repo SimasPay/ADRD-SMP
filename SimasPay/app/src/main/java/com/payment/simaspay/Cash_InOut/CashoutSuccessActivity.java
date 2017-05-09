@@ -1,6 +1,5 @@
 package com.payment.simaspay.Cash_InOut;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -14,15 +13,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.payment.simaspay.PaymentPurchaseAccount.PurchaseSuccessActivity;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
-/**
- * Created by Nagendra P on 1/29/2016.
- */
 public class CashoutSuccessActivity extends AppCompatActivity {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer, transferID;
