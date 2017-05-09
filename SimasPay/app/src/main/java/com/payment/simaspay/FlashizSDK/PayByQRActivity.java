@@ -92,6 +92,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     private Boolean isTimeout=false;
     Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +102,15 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         func.initiatedToolbar(this);
 
         IncomingSMS.setListener(PayByQRActivity.this);
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                        109);
+            }
+        }
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -204,34 +214,13 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         finish();
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void callbackPayInvoice(InvoiceModel invoiceModel1) {
-
         invoiceID = invoiceModel1.invoiceID;
         invoiceModel = invoiceModel1;
         Log.d(LOG_TAG, "invoiceID:" + invoiceID + ", invoiceModel:" + invoiceModel);
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                        109);
-            } else {
-                showmPINDialog();
-                //new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------showmPINDialog-------");
-            }
-        } else {
-            showmPINDialog();
-            Log.e(LOG_TAG, "------showmPINDialog-------");
-            //new PaymentInquiryAsync().execute();
-            //Log.e(LOG_TAG, "------paymentInquiry-------");
-        }
-
+        showmPINDialog();
+        Log.e(LOG_TAG, "------showmPINDialog-------");
     }
 
     @Override
@@ -245,9 +234,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         } else {
             finish();
         }
-
     }
-
 
     @Override
     public Fragment callbackShowEULA() {
@@ -290,9 +277,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showmPINDialog();
-                //new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------showmPINAsync()");
+                Log.e(LOG_TAG, "------granted()");
             }
         }
     }
