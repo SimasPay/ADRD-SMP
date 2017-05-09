@@ -85,6 +85,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     private Boolean isTimeout=false;
     Functions func;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +95,17 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         func.initiatedToolbar(this);
 
         IncomingSMS.setListener(PayByQRActivity.this);
+
+        //permissionrequest
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
+                        109);
+            }
+        }
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -142,21 +154,6 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             } else {
                 payByQRSDK.startSDK(module2);
             }
-
-            /*
-            Bundle extras = getIntent().getExtras();
-            int getTypeSDK = extras.getInt(INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
-            Log.d(LOG_TAG, "getTypeSDK:" + getTypeSDK);
-            if (getTypeSDK == PayByQRSDK.MODULE_LOYALTY) {
-                PayInAppInvoiceID = getIntent().getStringExtra(INTENT_EXTRA_INVOICE_ID);
-                PayInAppURLCallback = getIntent().getStringExtra(INTENT_EXTRA_URL_CALLBACK);
-                payByQRSDK.startSDK(PayByQRSDK.MODULE_LOYALTY);
-                Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_LOYALTY);
-            } else {
-                payByQRSDK.startSDK(PayByQRSDK.MODULE_PAYMENT);
-                Log.d(LOG_TAG, "startSDK:" + PayByQRSDK.MODULE_PAYMENT);
-            }
-             */
 
             Log.e(LOG_TAG, "------start: SDK-------");
         }
@@ -218,27 +215,10 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void callbackPayInvoice(InvoiceModel invoiceModel1) {
-
         invoiceID = invoiceModel1.invoiceID;
         invoiceModel = invoiceModel1;
         Log.d(LOG_TAG, "invoiceID:" + invoiceID + ", invoiceModel:" + invoiceModel);
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion > android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if ((checkCallingOrSelfPermission(android.Manifest.permission.READ_SMS)
-                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-
-                requestPermissions(new String[]{Manifest.permission.READ_SMS, android.Manifest.permission.RECEIVE_SMS, android.Manifest.permission.SEND_SMS},
-                        109);
-            } else {
-                new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------paymentInquiry-------");
-            }
-        } else {
-            new PaymentInquiryAsync().execute();
-            Log.e(LOG_TAG, "------paymentInquiry-------");
-        }
-
+        new PaymentInquiryAsync().execute();
     }
 
     @Override
@@ -297,8 +277,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                new PaymentInquiryAsync().execute();
-                Log.e(LOG_TAG, "------PaymentInquiryAsync()");
+                Log.d(LOG_TAG, "permission granted");
             }
         }
     }
@@ -643,7 +622,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 40) {
             if (resultCode == RESULT_OK) {
-                Log.e("=======", "======" + "Nagendra Palepu");
+                Log.e("=======", "======" + "done");
             }
         }
     }

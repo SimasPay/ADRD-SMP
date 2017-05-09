@@ -246,29 +246,6 @@
         </ScrollView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/checkfav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/label_fav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/id_simpan_favorit"
-            android:layout_gravity="center_vertical"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-    </LinearLayout>
-
-
     <Button
         android:id="@+id/ok"
         android:layout_width="220dp"

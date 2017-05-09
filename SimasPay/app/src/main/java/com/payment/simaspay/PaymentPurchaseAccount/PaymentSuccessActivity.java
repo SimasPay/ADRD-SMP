@@ -19,9 +19,7 @@ import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class PaymentSuccessActivity extends AppCompatActivity {
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, transfer_field, transferID, charges, charges_field, total, total_field;
-
     Button ok;
-
     View view;
 
     @Override
