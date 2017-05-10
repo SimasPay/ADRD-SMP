@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -633,6 +634,18 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_mpin);
         EditText ed_mpin = (EditText) dialog.findViewById(R.id.mpin);
+        LinearLayout btnBacke = (LinearLayout) dialog.findViewById(R.id.back_layout);
+        btnBacke.setOnClickListener(v -> {
+            payByQRSDK.closeSDK();
+            finish();
+            dialog.dismiss();
+        });
+        ImageView btnBack = (ImageView) dialog.findViewById(R.id.btnBacke);
+        btnBack.setOnClickListener(v -> {
+            payByQRSDK.closeSDK();
+            finish();
+            dialog.dismiss();
+        });
         Button bt_lanjut = (Button)dialog.findViewById(R.id.lanjut);
         bt_lanjut.setOnClickListener(new View.OnClickListener() {
             @Override
