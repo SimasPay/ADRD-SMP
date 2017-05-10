@@ -228,7 +228,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingStart="10dp"
-                    android:src="@drawable/btn_arrow_down" />
+                    android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
             </RelativeLayout>
 

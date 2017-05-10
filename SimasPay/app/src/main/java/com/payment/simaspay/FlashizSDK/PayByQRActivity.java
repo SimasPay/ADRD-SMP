@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -633,44 +634,53 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         dialog.setContentView(R.layout.dialog_mpin);
         EditText ed_mpin = (EditText) dialog.findViewById(R.id.mpin);
         Button bt_lanjut = (Button)dialog.findViewById(R.id.lanjut);
-        bt_lanjut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ed_mpin.getText().toString().trim().equals("")){
-                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setCancelable(false);
-                    alertbox.setMessage(getResources().getString(R.string.id_masukkan_mpin));
-                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
-                        arg0.dismiss();
-                    });
-                    alertbox.show();
-                }else if(ed_mpin.getText().toString().trim().length()<getResources().getInteger(R.integer.pinSize)){
-                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
-                    alertbox.setCancelable(false);
-                    alertbox.setMessage(getResources().getString(R.string.mPinLegthMessage));
-                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
-                        arg0.dismiss();
-                    });
-                    alertbox.show();
-                }else{
-                    dialog.dismiss();
-                    pin=ed_mpin.getText().toString().trim();
-                    Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
-                    Log.d(LOG_TAG, "pin " + pin);
-                    String module = sharedPreferences.getString("MODULE", "NONE");
-                    String exponent = sharedPreferences.getString("EXPONENT", "NONE");
+        LinearLayout btnBacke = (LinearLayout) dialog.findViewById(R.id.back_layout);
+        btnBacke.setOnClickListener(v -> {
+            payByQRSDK.closeSDK();
+            finish();
+            dialog.dismiss();
+        });
+        ImageView btnBack = (ImageView) dialog.findViewById(R.id.btnBacke);
+        btnBack.setOnClickListener(v -> {
+            payByQRSDK.closeSDK();
+            finish();
+            dialog.dismiss();
+        });
+        bt_lanjut.setOnClickListener(v -> {
+            if(ed_mpin.getText().toString().equals("")){
+                alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                alertbox.setCancelable(false);
+                alertbox.setMessage(getResources().getString(R.string.id_masukkan_mpin));
+                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                    arg0.dismiss();
+                });
+                alertbox.show();
+            }else if(ed_mpin.getText().toString().length()<getResources().getInteger(R.integer.pinSize)){
+                alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
+                alertbox.setCancelable(false);
+                alertbox.setMessage(getResources().getString(R.string.mPinLegthMessage));
+                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                    arg0.dismiss();
+                });
+                alertbox.show();
+            }else{
+                dialog.dismiss();
+                pin=ed_mpin.getText().toString().trim();
+                Log.d(LOG_TAG, "userApiKey from preferences: " + userApiKey);
+                Log.d(LOG_TAG, "pin " + pin);
+                String module = sharedPreferences.getString("MODULE", "NONE");
+                String exponent = sharedPreferences.getString("EXPONENT", "NONE");
 
-                    try {
-                        pinValue = CryptoService.encryptWithPublicKey(module, exponent,
-                                pin.getBytes());
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-                    stMPIN = pinValue;
-                    Log.d(LOG_TAG, "pinValue: " + pinValue);
-                    new PaymentInquiryAsync().execute();
-                    Log.e(LOG_TAG, "------paymentInquiry-------");
+                try {
+                    pinValue = CryptoService.encryptWithPublicKey(module, exponent,
+                            pin.getBytes());
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
+                stMPIN = pinValue;
+                Log.d(LOG_TAG, "pinValue: " + pinValue);
+                new PaymentInquiryAsync().execute();
+                Log.e(LOG_TAG, "------paymentInquiry-------");
             }
         });
         dialog.show();

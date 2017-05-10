@@ -142,7 +142,7 @@
                     android:paddingRight="10dp"
                     android:paddingEnd="10dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/btn_arrow_down" />
+                    android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
 
             </RelativeLayout>
 
