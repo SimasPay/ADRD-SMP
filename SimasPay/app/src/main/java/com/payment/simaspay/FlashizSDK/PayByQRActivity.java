@@ -638,7 +638,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             @Override
             public void onClick(View v) {
                 if(ed_mpin.getText().toString().equals("")){
-                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                     alertbox.setCancelable(false);
                     alertbox.setMessage(getResources().getString(R.string.id_masukkan_mpin));
                     alertbox.setNeutralButton("OK", (arg0, arg1) -> {
@@ -646,7 +646,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     });
                     alertbox.show();
                 }else if(ed_mpin.getText().toString().length()<getResources().getInteger(R.integer.pinSize)){
-                    alertbox = new AlertDialog.Builder(PayByQRActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox = new AlertDialog.Builder(PayByQRProperties.getSDKContext(), R.style.MyAlertDialogStyle);
                     alertbox.setCancelable(false);
                     alertbox.setMessage(getResources().getString(R.string.mPinLegthMessage));
                     alertbox.setNeutralButton("OK", (arg0, arg1) -> {
