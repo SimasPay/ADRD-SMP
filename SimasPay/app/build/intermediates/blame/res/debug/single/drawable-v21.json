@@ -9,7 +9,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_store_pickup_method.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/drawable-v21/ripple_store_pickup_method.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/drawable-v21/ripple_store_pickup_method.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
@@ -17,7 +17,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_rect_border_rounded.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/drawable-v21/ripple_rect_border_rounded.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/drawable-v21/ripple_rect_border_rounded.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
@@ -41,6 +41,6 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable-v21/ripple_btn_qrstore.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/drawable-v21/ripple_btn_qrstore.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/drawable-v21/ripple_btn_qrstore.xml"
     }
 ]

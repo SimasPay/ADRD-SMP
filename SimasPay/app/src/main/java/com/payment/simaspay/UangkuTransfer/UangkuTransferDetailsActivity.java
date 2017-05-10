@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.AgentTransfer.TransferDetailsActivity;
+import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -206,7 +207,9 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     new UangkuTransferAsynTask().execute();
                 }
             } else if (selectedItem.equals("fav")) {
-                if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                if(spinnerLength<=0){
+                    Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), UangkuTransferDetailsActivity.this);
+                }else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), UangkuTransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);

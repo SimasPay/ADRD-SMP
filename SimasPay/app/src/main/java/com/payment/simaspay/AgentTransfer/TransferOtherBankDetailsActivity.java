@@ -186,10 +186,12 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
                     new transferOtherBankAsynTask().execute();
                 }
             } else if (selectedItem.equals("fav")) {
-                if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
-                    Utility.displayDialog("Harap masukkan jumlah yang ingin Anda transfer.", TransferOtherBankDetailsActivity.this);
+                if(spinnerLength<=0){
+                    Utility.displayDialog(getResources().getString(R.string.input_manual_error), TransferOtherBankDetailsActivity.this);
+                }else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                    Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
-                    Utility.displayDialog("Harap masukkan mPIN Anda.", TransferOtherBankDetailsActivity.this);
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferOtherBankDetailsActivity.this);
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), TransferOtherBankDetailsActivity.this);
                 } else {

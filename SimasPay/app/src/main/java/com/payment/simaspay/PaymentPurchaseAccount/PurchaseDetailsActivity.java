@@ -316,7 +316,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             } else if (selectedItem.equals("fav")) {
                 billNumber = selectedValue;
                 if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
-                    if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
+                    if(spinnerLength<=0){
+                        Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PurchaseDetailsActivity.this);
+                    }else if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
                         Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
@@ -336,7 +338,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                         new PurchaseAccountAsynTask().execute();
                     }
                 } else {
-                    if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    if(spinnerLength<=0){
+                        Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PurchaseDetailsActivity.this);
+                    }else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);

@@ -1419,9 +1419,13 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="id_validation_mpin">mPIN tidak boleh berupa angka yang sama atau berurutan</string>
     <string name="id_waiting_sms_lbl">Menunggu SMS Kode Verifikasi di Nomor </string>
     <string name="image_gallery_NoImageView_text">No media found.</string>
+    <string name="input_manual_error">Harap Input manual nomor rekening Anda</string>
+    <string name="input_manual_error_custom">Harap Input manual </string>
+    <string name="input_manualhp_error">Harap Input manual nomor Handphone Anda</string>
     <string name="invalid_cashout_amount">Jumlah transaksi tarik tunai minimal Rp 100.000 dan harus kelipatan Rp. 50.000</string>
     <string name="item_is_selected">%1$s selected</string>
     <string name="jumlah">Jumlah</string>
+    <string name="jumlah_cashout">Silahkan masukkan jumlah yang ingin Anda Cashout</string>
     <string name="jumlah_value">Rp 2.500.000</string>
     <string name="ketik_manual">Ketik Manual</string>
     <string name="kosong">Kosong</string>
@@ -1440,6 +1444,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="logout">Logout</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="manual_input">Input Manual Kode Verifikasi</string>
+    <string name="masukkan_desc">Harap masukkan deskripsi</string>
     <string name="masukkan_mpin">Masukkan mPIN</string>
     <string name="min_transfer">Minimal Rp 100.000, harus kelipatan Rp 50.000</string>
     <string name="minute_picker_description">Minutes circular slider</string>

@@ -183,7 +183,9 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                     }
                 }
             } else if (selectedItem.equals("fav")) {
-                if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                if(spinnerLength<=0){
+                    Utility.displayDialog(getResources().getString(R.string.input_manual_error), TransferDetailsActivity.this);
+                }else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferDetailsActivity.this);

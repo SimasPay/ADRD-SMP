@@ -114,10 +114,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
 
         tujuan = (EditText) findViewById(R.id.noHPtujuan_edt);
         tujuan.setOnTouchListener((v, event) -> {
-            //final int DRAWABLE_LEFT = 0;
-            //final int DRAWABLE_TOP = 1;
             final int DRAWABLE_RIGHT = 2;
-            //final int DRAWABLE_BOTTOM = 3;
 
             if(event.getAction() == MotionEvent.ACTION_UP) {
                 if(event.getRawX() >= (tujuan.getRight() - tujuan.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
@@ -183,15 +180,20 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         submit.setOnClickListener(view -> {
             if (selectedItem.equals("man")) {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {
-                    tujuan.setError(getResources().getString(R.string.id_masukkan_no_hp));
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), TransferEmoneyToEmoneyActivity.this);
+                    //tujuan.setError(getResources().getString(R.string.id_masukkan_no_hp));
                 }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
-                    tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                    Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferEmoneyToEmoneyActivity.this);
+                    //tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
                 }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
-                    tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                    Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferEmoneyToEmoneyActivity.this);
+                    //tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
                 }else if(amount.getText().toString().replace(" ", "").length()==0) {
-                    amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
+                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferEmoneyToEmoneyActivity.this);
+                    //amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
                 }else if(pin.getText().toString().length()==0){
-                    pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferEmoneyToEmoneyActivity.this);
+                    //pin.setError(getResources().getString(R.string.id_masukkan_mpin));
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));
@@ -199,10 +201,14 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                     new inquiryAsyncTask().execute();
                 }
             } else if (selectedItem.equals("fav")) {
-                if(amount.getText().toString().replace(" ", "").length()==0) {
-                    amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
+                if(spinnerLength<=0){
+                    Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), TransferEmoneyToEmoneyActivity.this);
+                }else if(amount.getText().toString().replace(" ", "").length()==0) {
+                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferEmoneyToEmoneyActivity.this);
+                    //amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
                 }else if(pin.getText().toString().length()==0){
-                    pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferEmoneyToEmoneyActivity.this);
+                    //pin.setError(getResources().getString(R.string.id_masukkan_mpin));
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = selectedValue;

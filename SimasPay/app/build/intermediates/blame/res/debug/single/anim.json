@@ -9,11 +9,11 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/pop_out_bottom.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/pop_out_bottom.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/pop_out_bottom.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/scale_down_to_center.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/scale_down_to_center.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/scale_down_to_center.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
@@ -21,7 +21,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/pop_in_top.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/pop_in_top.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/pop_in_top.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
@@ -53,7 +53,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/flip_to_middle.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/flip_to_middle.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/flip_to_middle.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
@@ -69,7 +69,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/success_add_to_cart.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/success_add_to_cart.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/success_add_to_cart.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
@@ -81,7 +81,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/in_from_bottom.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/in_from_bottom.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/in_from_bottom.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
@@ -89,7 +89,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/success_get_voucher.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/success_get_voucher.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/success_get_voucher.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
@@ -101,7 +101,7 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/fade_in.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/fade_in.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/fade_in.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
@@ -117,14 +117,14 @@
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/out_to_bottom.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/out_to_bottom.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/out_to_bottom.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/flip_from_middle.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/flip_from_middle.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/flip_from_middle.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/anim/fade_out.xml",
-        "source": "/Users/widy/.android/build-cache/32648b0c993524a5509efc5d1921fed3ce8fd9d4/output/res/anim/fade_out.xml"
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/anim/fade_out.xml"
     }
 ]

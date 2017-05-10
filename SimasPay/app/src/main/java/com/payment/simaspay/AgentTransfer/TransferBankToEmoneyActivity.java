@@ -184,15 +184,15 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
         submit.setOnClickListener(view -> {
             if (selectedItem.equals("man")) {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {
-                    tujuan.setError("Harap masukkan Nomor Handphone Tujuan");
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), TransferBankToEmoneyActivity.this);
                 }else if(tujuan.getText().toString().replace(" ", "").length()<10) {
-                    tujuan.setError("Nomor Handphone yang Anda masukkan harus 10-14 angka");
+                    Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferBankToEmoneyActivity.this);
                 }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
-                    tujuan.setError("Nomor Handphone yang Anda masukkan harus 10-14 angka");
+                    Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferBankToEmoneyActivity.this);
                 }else if(amount.getText().toString().replace(" ", "").length()==0) {
-                    amount.setError("Harap masukkan jumlah yang ingin Anda transfer");
+                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferBankToEmoneyActivity.this);
                 }else if(pin.getText().toString().length()==0){
-                    pin.setError("Harap masukkan mPIN Anda");
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferBankToEmoneyActivity.this);
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));
@@ -200,10 +200,14 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                     new inquiryAsyncTask().execute();
                 }
             } else if (selectedItem.equals("fav")) {
-                if(amount.getText().toString().replace(" ", "").length()==0) {
-                    amount.setError("Harap masukkan jumlah yang ingin Anda transfer");
+                if(spinnerLength<=0){
+                    Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), TransferBankToEmoneyActivity.this);
+                }else if(amount.getText().toString().replace(" ", "").length()==0) {
+                    Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferBankToEmoneyActivity.this);
+                    //amount.setError("Harap masukkan jumlah yang ingin Anda transfer");
                 }else if(pin.getText().toString().length()==0){
-                    pin.setError("Harap masukkan mPIN Anda");
+                    Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferBankToEmoneyActivity.this);
+                    //pin.setError("Harap masukkan mPIN Anda");
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = selectedValue;

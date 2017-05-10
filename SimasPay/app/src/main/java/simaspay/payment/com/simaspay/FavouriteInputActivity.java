@@ -75,16 +75,14 @@ public class FavouriteInputActivity extends AppCompatActivity {
 
         ImageView back_btn=(ImageView)findViewById(R.id.btnBacke);
         back_btn.setOnClickListener(view -> {
-            Intent i = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(i);
+            finish();
         });
 
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
             descript_fav=desc.getText().toString();
             if(descript_fav.equals("")||descript_fav.length()<=2){
-                Utility.displayDialog("Harap masukkan deskripsi", FavouriteInputActivity.this);
+                Utility.displayDialog(getResources().getString(R.string.masukkan_desc), FavouriteInputActivity.this);
             }else{
                 new submitFavAsyncTask().execute();
             }

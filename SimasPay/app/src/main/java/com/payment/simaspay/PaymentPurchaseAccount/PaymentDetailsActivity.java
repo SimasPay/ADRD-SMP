@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -300,7 +301,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 } else if (selectedItem.equals("fav")) {
                     billNumber = selectedValue;
                     if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
-                        if (amountField.getText().toString().replace(" ", "").length() == 0) {
+                        if(spinnerLength<=0){
+                            Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PaymentDetailsActivity.this);
+                        }else if (amountField.getText().toString().replace(" ", "").length() == 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PaymentDetailsActivity.this);
@@ -320,8 +323,9 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                             new BillpaymentAsynTask().execute();
                         }
                     } else {
-
-                        if (pin_field.getText().toString().length() <= 0) {
+                        if(spinnerLength<=0){
+                            Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PaymentDetailsActivity.this);
+                        }else if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
