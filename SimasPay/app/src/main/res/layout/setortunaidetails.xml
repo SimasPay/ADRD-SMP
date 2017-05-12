@@ -34,7 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Setor Tunai"
+            android:text="@string/setor_tunai"
             android:textColor="@android:color/white"
             android:textSize="19sp" />
     </RelativeLayout>

@@ -397,4 +397,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="input_manualhp_error">Harap Input manual nomor Handphone Anda</string>
     <string name="input_manual_error_custom">Harap Input manual </string>
     <string name="jumlah_cashout">Silahkan masukkan jumlah yang ingin Anda Cashout</string>
+    <string name="pastikan_data_berikut_sudah_benar">Pastikan data berikut sudah benar</string>
+    <string name="konfirmasi">Konfirmasi</string>
+    <string name="setor_tunai">Setor Tunai</string>
 </resources>

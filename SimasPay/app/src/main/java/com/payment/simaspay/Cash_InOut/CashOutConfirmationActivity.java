@@ -134,18 +134,25 @@ public class CashOutConfirmationActivity extends AppCompatActivity implements In
             amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
         }else{
             String untuk = getIntent().getExtras().getString("untuk");
-            if(untuk.equals("Untuk Saya")){
-                name.setVisibility(View.GONE);
-                name_field.setVisibility(View.GONE);
-            }else if(untuk.equals("Untuk Orang Lain")){
-                name.setVisibility(View.VISIBLE);
-                name_field.setVisibility(View.VISIBLE);
+            if (untuk != null) {
+                if(untuk.equals("Untuk Saya")){
+                    name.setText("Jenis Transaksi");
+                    name_field.setText("Tarik Tunai - "+untuk);
+                    amount.setText("Jumlah");
+                    amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
+                    number.setVisibility(View.GONE);
+                    number_field.setVisibility(View.GONE);
+                }else if(untuk.equals("Untuk Orang Lain")){
+                    number.setVisibility(View.VISIBLE);
+                    number_field.setVisibility(View.VISIBLE);
+                    name.setText("Jenis Transaksi");
+                    name_field.setText("Tarik Tunai - "+untuk);
+                    number.setText(getResources().getString(R.string.nohptujuan));
+                    number_field.setText(getIntent().getExtras().getString("DestMDN"));
+                    amount.setText("Jumlah");
+                    amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
+                }
             }
-            number.setText("Jenis Transaksi");
-            amount.setText("Jumlah");
-            //name_field.setText(getIntent().getExtras().getString("Name"));
-            number_field.setText("Tarik Tunai - "+untuk);
-            amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
         }
 
 
