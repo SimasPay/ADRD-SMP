@@ -275,9 +275,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     billNumber = number_field.getText().toString().replace(" ", "");
                     if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
                         if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
-                            Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
-                        } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.empty_nominal_pembelian), PurchaseDetailsActivity.this);
+                        } else if (pin_field.getText().toString().length() <= 0) {
+                            Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PurchaseDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                         } else {
@@ -294,8 +294,8 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                             new PurchaseAccountAsynTask().execute();
                         }
                     } else {
-                        if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                            Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
+                        if (pin_field.getText().toString().length() <= 0) {
+                            Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PurchaseDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                         } else {
@@ -316,15 +316,15 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             } else if (selectedItem.equals("fav")) {
                 billNumber = selectedValue;
                 if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
-                    if(spinnerLength<=0){
+                    if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
+                        Utility.displayDialog(getResources().getString(R.string.empty_nominal_pembelian), PurchaseDetailsActivity.this);
+                    }else if(spinnerLength<=0){
                         Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PurchaseDetailsActivity.this);
-                    }else if (plnamount_entryfield.getText().toString().replace("Rp ", "").length() == 0) {
-                        Utility.displayDialog("Silahkan masukkan nominal pembelian", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                        Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
-                    } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                    }else  if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
-                    } else {
+                    }else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
+                        Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
+                    }else {
                         amountString = plnamount_entryfield.getText().toString().replace("Rp ", "");
                         String module = sharedPreferences.getString("MODULE", "NONE");
                         String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -338,10 +338,12 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                         new PurchaseAccountAsynTask().execute();
                     }
                 } else {
-                    if(spinnerLength<=0){
+                    if (nominal_pulsa.getText().toString().replace("Rp. ", "").equals("")){
+                        Utility.displayDialog(getResources().getString(R.string.invalid_nominal_pulsa), PurchaseDetailsActivity.this);
+                    }else if(spinnerLength<=0){
                         Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PurchaseDetailsActivity.this);
-                    }else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
-                        Utility.displayDialog("Harap masukkan mPIN Anda.", PurchaseDetailsActivity.this);
+                    }else if (pin_field.getText().toString().length() <= 0) {
+                        Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PurchaseDetailsActivity.this);
                     } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                         Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PurchaseDetailsActivity.this);
                     } else {

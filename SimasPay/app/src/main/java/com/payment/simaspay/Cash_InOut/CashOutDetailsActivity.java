@@ -285,7 +285,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                 } else if (selectedItem.equals("fav")) {
                     if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                         if (spinnerLength <= 0) {
-                            Utility.displayDialog(getResources().getString(R.string.input_manual_error), CashOutDetailsActivity.this);
+                            Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), CashOutDetailsActivity.this);
                         } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                         } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
@@ -305,9 +305,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     } else {
                         String untuk = getIntent().getExtras().getString("untuk");
                         if (untuk.equals("Untuk Saya")) {
-                            if (spinnerLength <= 0) {
-                                Utility.displayDialog(getResources().getString(R.string.input_manual_error), CashOutDetailsActivity.this);
-                            } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
+                            if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                                 Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                             } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
                                 Utility.displayDialog(getResources().getString(R.string.invalid_cashout_amount), CashOutDetailsActivity.this);
@@ -325,7 +323,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             }
                         } else if (untuk.equals("Untuk Orang Lain")) {
                             if (spinnerLength <= 0) {
-                                Utility.displayDialog(getResources().getString(R.string.input_manual_error), CashOutDetailsActivity.this);
+                                Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), CashOutDetailsActivity.this);
                             } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                                 Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                             } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {

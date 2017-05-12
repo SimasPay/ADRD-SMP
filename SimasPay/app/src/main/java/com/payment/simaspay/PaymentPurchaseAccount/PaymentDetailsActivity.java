@@ -279,7 +279,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                         } else {
 
                             if (pin_field.getText().toString().length() <= 0) {
-                                Utility.displayDialog("Harap masukkan mPIN Anda.", PaymentDetailsActivity.this);
+                                Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PaymentDetailsActivity.this);
                             } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                                 Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), PaymentDetailsActivity.this);
                             } else {
@@ -301,10 +301,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 } else if (selectedItem.equals("fav")) {
                     billNumber = selectedValue;
                     if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
-                        if(spinnerLength<=0){
-                            Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PaymentDetailsActivity.this);
-                        }else if (amountField.getText().toString().replace(" ", "").length() == 0) {
+                        if (amountField.getText().toString().replace(" ", "").length() == 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
+                        }else if(spinnerLength<=0) {
+                            Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom) + " " + strings[1] + " Anda", PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {

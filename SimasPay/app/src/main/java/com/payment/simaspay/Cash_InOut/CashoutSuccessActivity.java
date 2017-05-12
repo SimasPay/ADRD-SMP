@@ -119,6 +119,8 @@ public class CashoutSuccessActivity extends AppCompatActivity {
                 number.setText("Jenis Transaksi");
                 number_field.setVisibility(View.VISIBLE);
                 number_field.setText("Tarik Tunai - "+untuk);
+                label_fav.setVisibility(View.GONE);
+                favBtn.setVisibility(View.GONE);
             }else if(untuk.equals("Untuk Orang Lain")){
                 name.setVisibility(View.GONE);
                 name_field.setVisibility(View.GONE);
