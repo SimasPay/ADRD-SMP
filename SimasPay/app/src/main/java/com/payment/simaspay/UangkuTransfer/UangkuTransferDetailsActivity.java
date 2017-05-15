@@ -187,6 +187,11 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
 
 
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(number.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), UangkuTransferDetailsActivity.this);
@@ -200,6 +205,8 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);
                 }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), UangkuTransferDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), UangkuTransferDetailsActivity.this);
                 } else {
                     pinValue=func.generateRSA(pin.getText().toString());
                     mdn = (number.getText().toString().replace(" ", ""));

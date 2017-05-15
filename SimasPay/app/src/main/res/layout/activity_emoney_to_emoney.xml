@@ -193,6 +193,7 @@
                     android:paddingStart="5dp"
                     android:paddingRight="10dp"
                     android:paddingEnd="10dp"
+                    android:imeOptions="actionNext"
                     android:maxLines="1"
                     android:text=""
                     android:maxLength="16"
@@ -223,6 +224,7 @@
                 android:inputType="numberPassword"
                 android:digits="1234567890"
                 android:maxLength="6"
+                android:imeOptions="actionDone"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 

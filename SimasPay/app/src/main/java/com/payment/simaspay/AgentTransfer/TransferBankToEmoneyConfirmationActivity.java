@@ -322,7 +322,8 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
-                            intent.putExtra("selectedItem", selectedItem);
+                            //intent.putExtra("selectedItem", selectedItem);
+                            intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferBankToEmoneyConfirmationActivity.this.finish();

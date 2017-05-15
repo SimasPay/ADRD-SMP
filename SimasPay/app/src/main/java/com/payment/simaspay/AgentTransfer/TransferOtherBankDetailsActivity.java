@@ -165,6 +165,11 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
         });
 
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(number.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferOtherBankDetailsActivity.this);
@@ -178,6 +183,8 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
                     Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferOtherBankDetailsActivity.this);
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.id_invalid_mpin), TransferOtherBankDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferOtherBankDetailsActivity.this);
                 } else {
                     pinValue = func.generateRSA(pin.getText().toString());
                     Log.d(LOG_TAG, "pinValue:"+pinValue);

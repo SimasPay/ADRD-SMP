@@ -178,6 +178,11 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
 
         submit.setTypeface(Utility.Robot_Regular(TransferEmoneyToEmoneyActivity.this));
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(tujuan.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), TransferEmoneyToEmoneyActivity.this);
@@ -194,6 +199,8 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                 }else if(pin.getText().toString().length()==0){
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferEmoneyToEmoneyActivity.this);
                     //pin.setError(getResources().getString(R.string.id_masukkan_mpin));
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferEmoneyToEmoneyActivity.this);
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));

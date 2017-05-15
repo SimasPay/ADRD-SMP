@@ -402,4 +402,5 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="pastikan_data_berikut_sudah_benar">Pastikan data berikut sudah benar</string>
     <string name="konfirmasi">Konfirmasi</string>
     <string name="setor_tunai">Setor Tunai</string>
+    <string name="same_favorit">nomor sudah terdaftar di favorit list</string>
 </resources>

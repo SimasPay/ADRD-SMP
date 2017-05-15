@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity;
+import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -203,6 +204,11 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean ada = false;
+                for (FavoriteData string : favList2) {
+                    ada = string.getCategoryName().equals(number.getText().toString());
+                    Log.d(LOG_TAG, "ada : "+ada);
+                }
                 int amountval = 0;
                 if (amount.getText().toString().replace("Rp ", "").equals("")) {
                     amountval = 0;
@@ -232,6 +238,8 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
+                        } else if (ada){
+                            Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                         } else {
                             pinValue = func.generateRSA(pin.getText().toString());
                             mdn = (number.getText().toString().replace(" ", ""));
@@ -274,6 +282,8 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                 Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), CashOutDetailsActivity.this);
                             } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                                 Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
+                            } else if (ada){
+                                Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                             } else {
                                 pinValue = func.generateRSA(pin.getText().toString());
                                 mdn = (number.getText().toString().replace(" ", ""));

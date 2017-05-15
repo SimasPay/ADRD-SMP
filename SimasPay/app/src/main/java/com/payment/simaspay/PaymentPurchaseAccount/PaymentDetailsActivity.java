@@ -173,7 +173,6 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
-
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -206,6 +205,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View v, int position, long id) {
                 selectedValue = ((TextView) v.findViewById(R.id.value_fav)).getText().toString();
+                Log.d(LOG_TAG, "selected value: "+selectedValue);
             }
 
             @Override
@@ -246,6 +246,11 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean ada = false;
+                for (FavoriteData string : favList2) {
+                    ada = string.getCategoryName().equals(number_field.getText().toString());
+                    Log.d(LOG_TAG, "ada : "+ada);
+                }
                 if (selectedItem.equals("man")) {
                     if (number_field.getText().toString().length() <= 0) {
                         Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
@@ -253,6 +258,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                     } else if (number_field.getText().toString().length() > maxLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
+                    } else if (ada){
+                        Utility.displayDialog(getResources().getString(R.string.same_favorit), PaymentDetailsActivity.this);
                     } else {
                         billNumber = number_field.getText().toString().replace(" ", "");
                         if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
@@ -301,10 +308,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 } else if (selectedItem.equals("fav")) {
                     billNumber = selectedValue;
                     if (getIntent().getExtras().getString("PaymentMode").equalsIgnoreCase("FullAmount")) {
-                        if (amountField.getText().toString().replace(" ", "").length() == 0) {
-                            Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
-                        }else if(spinnerLength<=0) {
+                        if(spinnerLength<=0) {
                             Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom) + " " + strings[1] + " Anda", PaymentDetailsActivity.this);
+                        }else if (amountField.getText().toString().replace(" ", "").length() == 0) {
+                            Utility.displayDialog(getResources().getString(R.string.id_empty_billpaymentamount), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() <= 0) {
                             Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), PaymentDetailsActivity.this);
                         } else if (pin_field.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {

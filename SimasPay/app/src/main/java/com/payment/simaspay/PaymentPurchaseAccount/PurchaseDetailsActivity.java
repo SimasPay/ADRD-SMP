@@ -62,6 +62,8 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 public class PurchaseDetailsActivity extends AppCompatActivity {
     TextView title, pulsa_field, product, number, pin, Rp;
     EditText product_field, number_field, pin_field, plnamount_entryfield;
@@ -260,6 +262,11 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         });
 
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(number_field.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if (nominal_pulsa.getText().length() <= 0 && nominal_pulsa.isShown()) {
                     Utility.displayDialog("Masukkan " + getIntent().getExtras().getString("NominalType"), PurchaseDetailsActivity.this);
@@ -271,6 +278,8 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
                 } else if (number_field.getText().toString().length() > maxLimitValue) {
                     Utility.displayDialog(rangealert, PurchaseDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), PurchaseDetailsActivity.this);
                 } else {
                     billNumber = number_field.getText().toString().replace(" ", "");
                     if (getIntent().getExtras().getString("isPlnprepaid").equalsIgnoreCase("true")) {
@@ -339,7 +348,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     }
                 } else {
                     if (nominal_pulsa.getText().toString().replace("Rp. ", "").equals("")){
-                        Utility.displayDialog(getResources().getString(R.string.invalid_nominal_pulsa), PurchaseDetailsActivity.this);
+                        Utility.displayDialog("Masukkan " + getIntent().getExtras().getString("NominalType"), PurchaseDetailsActivity.this);
                     }else if(spinnerLength<=0){
                         Utility.displayDialog(getResources().getString(R.string.input_manual_error_custom)+" "+strings[1]+" Anda", PurchaseDetailsActivity.this);
                     }else if (pin_field.getText().toString().length() <= 0) {

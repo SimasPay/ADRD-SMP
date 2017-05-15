@@ -32,6 +32,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -182,6 +183,11 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
 
         submit.setTypeface(Utility.Robot_Regular(TransferBankToEmoneyActivity.this));
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(tujuan.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_no_hp), TransferBankToEmoneyActivity.this);
@@ -193,6 +199,8 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                     Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferBankToEmoneyActivity.this);
                 }else if(pin.getText().toString().length()==0){
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferBankToEmoneyActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferBankToEmoneyActivity.this);
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));
