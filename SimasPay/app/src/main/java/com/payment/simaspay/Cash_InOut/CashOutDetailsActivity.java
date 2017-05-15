@@ -31,8 +31,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
