@@ -399,7 +399,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         }
     }
 
-    class BillpaymentAsynTask extends AsyncTask<Void, Void, Void> {
+    private class BillpaymentAsynTask extends AsyncTask<Void, Void, Void> {
 
 
         String response;
@@ -515,6 +515,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     intent.putExtra("parentTxnID", responseContainer.getEncryptedParentTxnId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("nominalamt", responseContainer.getNominalAmount());
+                    intent.putExtra("additionalInfo", responseContainer.getAditionalInfo());
                     intent.putExtra("invoiceNo", responseContainer.getInvoiceNo());
                     intent.putExtra("PaymentMode", getIntent().getExtras().getString("PaymentMode"));
                     intent.putExtra("ProductCode", getIntent().getExtras().getString("ProductCode"));

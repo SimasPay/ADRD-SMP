@@ -177,14 +177,14 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 25) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferOtherBankDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferOtherBankDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferOtherBankDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_empty_mpin), TransferOtherBankDetailsActivity.this);
                 }else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.id_invalid_mpin), TransferOtherBankDetailsActivity.this);
-                } else if (ada){
-                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferOtherBankDetailsActivity.this);
                 } else {
                     pinValue = func.generateRSA(pin.getText().toString());
                     Log.d(LOG_TAG, "pinValue:"+pinValue);

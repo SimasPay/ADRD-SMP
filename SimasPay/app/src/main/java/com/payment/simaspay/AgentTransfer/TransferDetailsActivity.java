@@ -158,6 +158,11 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         });
 
         submit.setOnClickListener(view -> {
+            Boolean ada = false;
+            for (FavoriteData string : favList2) {
+                ada = string.getCategoryName().equals(number.getText().toString());
+                Log.d(LOG_TAG, "ada : "+ada);
+            }
             if (selectedItem.equals("man")) {
                 if (number.getText().toString().replace(" ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_no_rek), TransferDetailsActivity.this);
@@ -165,6 +170,8 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 25) {
                     Utility.displayDialog(getResources().getString(R.string.digit_no_rek), TransferDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.empty_amount), TransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {

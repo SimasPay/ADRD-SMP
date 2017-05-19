@@ -199,14 +199,14 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), UangkuTransferDetailsActivity.this);
                 } else if (number.getText().toString().replace(" ", "").length() > 14) {
                     Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), UangkuTransferDetailsActivity.this);
+                } else if (ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), UangkuTransferDetailsActivity.this);
                 } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), UangkuTransferDetailsActivity.this);
                 } else if (pin.getText().toString().length() <= 0) {
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), UangkuTransferDetailsActivity.this);
                 }else if (pin.getText().toString().length() <getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), UangkuTransferDetailsActivity.this);
-                } else if (ada){
-                    Utility.displayDialog(getResources().getString(R.string.same_favorit), UangkuTransferDetailsActivity.this);
                 } else {
                     pinValue=func.generateRSA(pin.getText().toString());
                     mdn = (number.getText().toString().replace(" ", ""));

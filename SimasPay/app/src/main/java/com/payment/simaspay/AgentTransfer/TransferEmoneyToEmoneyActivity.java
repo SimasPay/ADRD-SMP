@@ -72,7 +72,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
     static final int PICK_CONTACT=1;
     static final int EXIT=10;
     ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
-    int msgCode, stCatID;
+    int stCatID;
     Spinner spinner_fav;
     String selectedItem="man";
     String selectedValue;
@@ -193,14 +193,14 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                 }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
                     Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferEmoneyToEmoneyActivity.this);
                     //tujuan.setError(getResources().getString(R.string.id_no_hp_validation_msg));
+                }else if(ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferEmoneyToEmoneyActivity.this);
                 }else if(amount.getText().toString().replace(" ", "").length()==0) {
                     Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferEmoneyToEmoneyActivity.this);
                     //amount.setError(getResources().getString(R.string.id_jumlah_transfer_validation));
                 }else if(pin.getText().toString().length()==0){
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferEmoneyToEmoneyActivity.this);
                     //pin.setError(getResources().getString(R.string.id_masukkan_mpin));
-                } else if (ada){
-                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferEmoneyToEmoneyActivity.this);
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));
@@ -267,7 +267,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
         }
     }
 
-    class inquiryAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class inquiryAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -367,7 +367,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                                 Log.d(LOG_TAG, "sctlID" + sctlID);
                                 mfaMode = responseDataContainer.getMfaMode();
                                 Log.d(LOG_TAG, "mfaMode" + mfaMode);
-                                if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                if (mfaMode.equalsIgnoreCase("OTP")) {
                                     Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyToEmoneyConfirmationActivity.class);
                                     intent.putExtra("destmdn", destmdn);
                                     intent.putExtra("transferID", transferID);
@@ -379,8 +379,6 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                                     intent.putExtra("mfaMode", mfaMode);
                                     intent.putExtra("selectedItem", selectedItem);
                                     startActivity(intent);
-                                } else {
-                                    //tanpa OTP
                                 }
                                 break;
                             default:

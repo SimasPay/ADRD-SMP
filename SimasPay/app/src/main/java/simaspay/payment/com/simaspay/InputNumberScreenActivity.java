@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
+import com.payment.simaspay.utils.Functions;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
@@ -40,7 +42,7 @@ import java.util.Map;
  * 09
  */
 
-public class InputNumberScreenActivity extends Activity {
+public class InputNumberScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
@@ -51,11 +53,14 @@ public class InputNumberScreenActivity extends Activity {
     private Button lanjut;
     private String phonenum, mdn;
     SharedPreferences sharedPreferences;
-
+    Functions functions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entermobilenum);
+        functions = new Functions(this);
+        functions.initiatedToolbar(InputNumberScreenActivity.this);
+
         context = InputNumberScreenActivity.this;
         settings = getSharedPreferences(TAG, 0);
         mdn = settings.getString("mobileNumber", "");

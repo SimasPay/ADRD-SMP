@@ -226,6 +226,8 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), CashOutDetailsActivity.this);
                         } else if (number.getText().toString().replace(" ", "").length() > 14) {
                             Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), CashOutDetailsActivity.this);
+                        } else if (ada){
+                            Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                         } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                             Utility.displayDialog(getResources().getString(R.string.jumlah_cashout), CashOutDetailsActivity.this);
                         } else if (amountval < 100000) {
@@ -236,8 +238,6 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                             Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), CashOutDetailsActivity.this);
                         } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                             Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
-                        } else if (ada){
-                            Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                         } else {
                             pinValue = func.generateRSA(pin.getText().toString());
                             mdn = (number.getText().toString().replace(" ", ""));
@@ -270,6 +270,8 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                 Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), CashOutDetailsActivity.this);
                             } else if (number.getText().toString().replace(" ", "").length() > 14) {
                                 Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), CashOutDetailsActivity.this);
+                            } else if (ada){
+                                Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                             } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                                 Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
                             } else if (amountval < 100000) {
@@ -280,8 +282,6 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                 Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), CashOutDetailsActivity.this);
                             } else if (pin.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                                 Utility.displayDialog(getResources().getString(R.string.mPinLegthMessage), CashOutDetailsActivity.this);
-                            } else if (ada){
-                                Utility.displayDialog(getResources().getString(R.string.same_favorit), CashOutDetailsActivity.this);
                             } else {
                                 pinValue = func.generateRSA(pin.getText().toString());
                                 mdn = (number.getText().toString().replace(" ", ""));

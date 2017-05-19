@@ -195,12 +195,12 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
                     Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferBankToEmoneyActivity.this);
                 }else if(tujuan.getText().toString().replace(" ", "").length()>14) {
                     Utility.displayDialog(getResources().getString(R.string.id_no_hp_validation_msg), TransferBankToEmoneyActivity.this);
+                }else if(ada){
+                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferBankToEmoneyActivity.this);
                 }else if(amount.getText().toString().replace(" ", "").length()==0) {
                     Utility.displayDialog(getResources().getString(R.string.id_jumlah_transfer_validation), TransferBankToEmoneyActivity.this);
                 }else if(pin.getText().toString().length()==0){
                     Utility.displayDialog(getResources().getString(R.string.id_masukkan_mpin), TransferBankToEmoneyActivity.this);
-                } else if (ada){
-                    Utility.displayDialog(getResources().getString(R.string.same_favorit), TransferBankToEmoneyActivity.this);
                 }else{
                     pinValue=func.generateRSA(pin.getText().toString());
                     destmdn = (tujuan.getText().toString().replace(" ", ""));

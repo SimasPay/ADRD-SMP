@@ -95,17 +95,16 @@
     <orderEntry type="library" exported="" name="kxml-min" level="project" />
     <orderEntry type="library" exported="" name="constraint-layout-solver-1.0.0-alpha3" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
-    <orderEntry type="library" exported="" name="play-services-base-10.2.4" level="project" />
     <orderEntry type="library" exported="" name="transition-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-tasks-10.2.4" level="project" />
     <orderEntry type="library" exported="" name="design-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="core-3.2.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-ui-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="play-services-location-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="constraint-layout-1.0.0-alpha3" level="project" />
     <orderEntry type="library" exported="" name="testfairy-android-sdk-1.4.17" level="project" />
-    <orderEntry type="library" exported="" name="play-services-maps-10.2.4" level="project" />
-    <orderEntry type="library" exported="" name="play-services-location-10.2.4" level="project" />
+    <orderEntry type="library" exported="" name="play-services-base-10.2.6" level="project" />
+    <orderEntry type="library" exported="" name="play-services-maps-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="PayByQR-Android-1.1.7-Simaspay-unspecified" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-25.3.1" level="project" />
@@ -117,9 +116,10 @@
     <orderEntry type="library" exported="" name="roundedimageview-2.2.1" level="project" />
     <orderEntry type="library" exported="" name="gson-2.7" level="project" />
     <orderEntry type="library" exported="" name="zxing-android-embedded-3.0.3" level="project" />
-    <orderEntry type="library" exported="" name="play-services-basement-10.2.4" level="project" />
     <orderEntry type="library" exported="" name="circleimageview-2.1.0" level="project" />
     <orderEntry type="library" exported="" name="library-2.0.3" level="project" />
+    <orderEntry type="library" exported="" name="play-services-basement-10.2.6" level="project" />
+    <orderEntry type="library" exported="" name="play-services-tasks-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-25.3.1" level="project" />
@@ -133,12 +133,5 @@
     <orderEntry type="module" module-name="datetimepicker-library" exported="" />
     <orderEntry type="module" module-name="CropImageLib" exported="" />
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-25" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-compat-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-media-compat-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-core-ui-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-core-utils-25.2.0" level="project" />
-    <orderEntry type="library" exported="" name="support-fragment-25.2.0" level="project" />
   </component>
 </module>

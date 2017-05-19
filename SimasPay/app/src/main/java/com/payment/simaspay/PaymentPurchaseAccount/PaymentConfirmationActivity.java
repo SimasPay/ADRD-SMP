@@ -18,6 +18,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
@@ -68,7 +69,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     String sourceMDN, message, transactionTime, responseCode, stMPIN, stSctl, stTransferID, stParentTxnID, stAmount, stCharges, stName;
     Functions func;
     int idTransferCat;
-    String typeTransferCat="";
+    String typeTransferCat="", AdditionalInfo="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -169,8 +170,28 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
-        charges.setText("Biaya Administrasi");
-        charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+        AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
+        if(AdditionalInfo!=null&&!AdditionalInfo.equals("")){
+            AdditionalInfo=AdditionalInfo.replace("|","<br><br><b>");
+            AdditionalInfo=AdditionalInfo.replace(": ","</b><br>");
+            AdditionalInfo=AdditionalInfo.replace("<br><br><b>PAYMENT","<br><b>PAYMENT");
+            AdditionalInfo=AdditionalInfo.replace("<br><b>                                      <br><br><b>","");
+            AdditionalInfo=AdditionalInfo.replace("PAYMENT","Payment");
+            AdditionalInfo=AdditionalInfo.replace("IDPEL","IDPel");
+            AdditionalInfo=AdditionalInfo.replace("NAME","Name");
+            AdditionalInfo=AdditionalInfo.replace("BILLING AMT","Billing Amt");
+            AdditionalInfo=AdditionalInfo.replace("ADMIN BANK","Admin Bank");
+            AdditionalInfo=AdditionalInfo.replace("TOTAL TAGIHAN","Total Tagihan");
+            Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+            charges.setVisibility(View.GONE);
+            charges_field.setText(Html.fromHtml(AdditionalInfo));
+            //charges_field.setLineSpacing();
+        }else{
+            charges.setVisibility(View.VISIBLE);
+            charges.setText("Biaya Administrasi");
+            charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+        }
+
         total.setText("Total Pendebitan");
         total_field.setText("Rp. " + getIntent().getExtras().getString("creditamt"));
 
