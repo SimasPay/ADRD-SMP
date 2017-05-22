@@ -534,8 +534,8 @@ public class UserHomeActivity extends BaseActivity {
                 break;
             case CROP_PIC:
                 if (resultCode == Activity.RESULT_OK) {
-                    Bundle extras = data.getExtras();
                     // get the cropped bitmap
+                    Bundle extras = data.getExtras();
                     Bitmap thePic = extras.getParcelable("data");
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     if(thePic!=null){

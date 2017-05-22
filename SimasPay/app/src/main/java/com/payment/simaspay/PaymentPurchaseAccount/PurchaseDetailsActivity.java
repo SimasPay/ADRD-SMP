@@ -3,6 +3,7 @@ package com.payment.simaspay.PaymentPurchaseAccount;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -266,6 +267,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             for (FavoriteData string : favList2) {
                 ada = string.getCategoryName().equals(number_field.getText().toString());
                 Log.d(LOG_TAG, "ada : "+ada);
+                if(ada){
+                    break;
+                }
             }
             if (selectedItem.equals("man")) {
                 if (nominal_pulsa.getText().length() <= 0 && nominal_pulsa.isShown()) {
@@ -752,31 +756,44 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             progressDialog.dismiss();
             if (response != null) {
                 Log.d(LOG_TAG, "response: " + response);
-                JSONArray jsonarra = null;
-                try {
-                    jsonarra = new JSONArray(response);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                if (jsonarra != null) {
-                    if (jsonarra.length() > 0) {
-                        for (int i = 0; i < jsonarra.length(); i++) {
-                            FavoriteData favData = new FavoriteData();
-                            try {
-                                if(jsonarra.getJSONObject(i).getString("favoriteCode").equals(getIntent().getExtras().getString("ProductCode"))){
-                                    favData.setCategoryID(jsonarra.getJSONObject(i).getString("subscriberFavoriteID"));
-                                    favData.setCategoryName(jsonarra.getJSONObject(i).getString("favoriteValue"));
-                                    favData.setFavoriteLabel(jsonarra.getJSONObject(i).getString("favoriteLabel"));
-                                    favList2.add(favData);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                if(response.contains("631")){
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(PurchaseDetailsActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage("Please login again");
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Intent intent = new Intent(PurchaseDetailsActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         }
-                        CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
-                        spinner_fav.setAdapter(customAdapter);
-                        spinnerLength=spinner_fav.getAdapter().getCount();
-                        Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
+                    });
+                    alertbox.show();
+                }else{
+                    JSONArray jsonarra = null;
+                    try {
+                        jsonarra = new JSONArray(response);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if (jsonarra != null) {
+                        if (jsonarra.length() > 0) {
+                            for (int i = 0; i < jsonarra.length(); i++) {
+                                FavoriteData favData = new FavoriteData();
+                                try {
+                                    if(jsonarra.getJSONObject(i).getString("favoriteCode").equals(getIntent().getExtras().getString("ProductCode"))){
+                                        favData.setCategoryID(jsonarra.getJSONObject(i).getString("subscriberFavoriteID"));
+                                        favData.setCategoryName(jsonarra.getJSONObject(i).getString("favoriteValue"));
+                                        favData.setFavoriteLabel(jsonarra.getJSONObject(i).getString("favoriteLabel"));
+                                        favList2.add(favData);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
+                            spinner_fav.setAdapter(customAdapter);
+                            spinnerLength=spinner_fav.getAdapter().getCount();
+                            Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
+                        }
                     }
                 }
             }

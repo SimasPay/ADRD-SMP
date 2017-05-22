@@ -206,6 +206,9 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                 for (FavoriteData string : favList2) {
                     ada = string.getCategoryName().equals(number.getText().toString());
                     Log.d(LOG_TAG, "ada : "+ada);
+                    if(ada){
+                        break;
+                    }
                 }
                 int amountval = 0;
                 if (amount.getText().toString().replace("Rp ", "").equals("")) {

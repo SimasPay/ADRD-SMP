@@ -187,6 +187,9 @@ public class TransferBankToEmoneyActivity extends AppCompatActivity {
             for (FavoriteData string : favList2) {
                 ada = string.getCategoryName().equals(tujuan.getText().toString());
                 Log.d(LOG_TAG, "ada : "+ada);
+                if(ada){
+                    break;
+                }
             }
             if (selectedItem.equals("man")) {
                 if(tujuan.getText().toString().replace(" ", "").length()==0) {

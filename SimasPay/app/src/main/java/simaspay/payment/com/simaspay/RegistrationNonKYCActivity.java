@@ -269,7 +269,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
 
     }
 
-    class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -415,24 +415,22 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
             public void onClick(View v) {
                 dialogBuilder.dismiss();
                 settings2 = getSharedPreferences(LOG_TAG, 0);
-                settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
-                if (myTimer != null) {
-                    myTimer.cancel();
-                }
+                settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").apply();
+                myTimer.cancel();
             }
         });
         final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (edt.getText().toString() == null || edt.getText().toString().equals("")) {
+                if (edt.getText().toString().equals("")) {
                     errorOTP();
                 } else {
                     if (myTimer != null) {
                         myTimer.cancel();
                     }
                     settings2 = getSharedPreferences(LOG_TAG, 0);
-                    settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
+                    settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").apply();
                     isExitActivity = true;
                     if(otpValue==null){
                         otpValue=edt.getText().toString();
@@ -495,7 +493,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
+                            settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").apply();
                             isExitActivity = true;
                             Intent intent = new Intent(RegistrationNonKYCActivity.this, SecondLoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -508,7 +506,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             settings2 = getSharedPreferences(LOG_TAG, 0);
-                            settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").commit();
+                            settings2.edit().putString("ActivityName", "ExitRegisterNonKYC").apply();
                             isExitActivity = true;
                             Intent intent = new Intent(RegistrationNonKYCActivity.this, SecondLoginActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
