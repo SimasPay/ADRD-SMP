@@ -461,11 +461,11 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                                 Log.d(LOG_TAG, "message" + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
                                 Log.d(LOG_TAG, "transactionTime" + transactionTime);
-                                receiverAccountName = responseDataContainer.getKycName();
+                                receiverAccountName = responseDataContainer.getCustName();
                                 Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
                                 destinationBank = responseDataContainer.getDestBank();
                                 Log.d(LOG_TAG, "destinationBank" + destinationBank);
-                                destinationName = responseDataContainer.getDestinationAccountName();
+                                destinationName = responseDataContainer.getCustName();
                                 Log.d(LOG_TAG, "destinationName" + destinationName);
                                 destinationAccountNumber = responseDataContainer.getDestinationAccountNumber();
                                 Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
