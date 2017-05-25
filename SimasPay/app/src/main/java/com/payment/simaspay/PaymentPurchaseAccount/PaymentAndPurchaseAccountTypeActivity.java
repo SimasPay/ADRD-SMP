@@ -40,23 +40,13 @@ import java.util.Map;
 import simaspay.payment.com.simaspay.R;
 
 public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
-
     TextView title;
-
     LinearLayout back;
-
     ListView listView;
-
     AccountTypeAdapter accountTypeAdapter;
-
     SharedPreferences sharedPreferences;
-
-
     ArrayList<Payments> paymentsArrayList = new ArrayList<>();
-
-
     ArrayList<Payments> purchaseArrayList = new ArrayList<>();
-
     ArrayList<AccountTypeClass> arrayList = new ArrayList<>();
 
     void AddAccountDetails(boolean value) {

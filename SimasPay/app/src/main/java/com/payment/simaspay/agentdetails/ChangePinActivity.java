@@ -126,9 +126,9 @@ public class ChangePinActivity extends AppCompatActivity {
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /**if(editText.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
+                /*if(editText.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     Utility.displayDialog(getResources().getString(R.string.id_validation_mpin), ChangePinActivity.this);
-                }else **/
+                }else */
                 if (editText.getText().toString().length() <= 0) {
                     Utility.displayDialog("Harap masukkan mPIN lama Anda.", ChangePinActivity.this);
                 } else if (editText.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
@@ -139,11 +139,11 @@ public class ChangePinActivity extends AppCompatActivity {
                     Utility.displayDialog("mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (editText2.getText().toString().length() <= 0) {
                     Utility.displayDialog("Harap masukkan Konfirmasi mPIN baru Anda.", ChangePinActivity.this);
-                /**}else if(editText1.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
+                /*}else if(editText1.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     Utility.displayDialog(getResources().getString(R.string.id_validation_mpin), ChangePinActivity.this);
                 }else if(editText2.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")){
                     Utility.displayDialog(getResources().getString(R.string.id_validation_confmpin), ChangePinActivity.this);
-                **/
+                */
                 } else if (editText2.getText().toString().length() < getResources().getInteger(R.integer.pinSize)) {
                     Utility.displayDialog("Konfirmasi mPIN baru yang Anda masukkan harus 6 angka.", ChangePinActivity.this);
                 } else if (!editText1.getText().toString().equals(editText2.getText().toString())) {

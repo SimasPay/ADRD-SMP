@@ -138,6 +138,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         minLimitValue = getIntent().getExtras().getInt("minLength");
         maxLimitValue = getIntent().getExtras().getInt("maxLength");
 
+        Log.d(LOG_TAG, "minValue: "+minLimitValue+", maxValue: "+maxLimitValue);
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
         number_field.setFilters(FilterArray);

@@ -144,6 +144,7 @@ public class BillersListActivity extends Activity {
                             e.printStackTrace();
                         }
                         try {
+                            payments.setMinLength(array.getJSONObject(i).getInt("minlength"));
                             payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
                         } catch (JSONException e) {
                             e.printStackTrace();

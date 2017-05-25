@@ -167,6 +167,24 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             e.printStackTrace();
             number.setText("Nomor Handphone");
         }
+
+        if(getIntent().getExtras().getString("PaymentMode").equals("ZeroAmount")){
+            charges.setVisibility(View.GONE);
+            name.setVisibility(View.GONE);
+            name_field.setVisibility(View.GONE);
+            number.setVisibility(View.GONE);
+            number_field.setVisibility(View.GONE);
+            amount.setVisibility(View.GONE);
+            amount_field.setVisibility(View.GONE);
+        }else{
+            charges.setVisibility(View.VISIBLE);
+            name.setVisibility(View.VISIBLE);
+            name_field.setVisibility(View.VISIBLE);
+            number.setVisibility(View.VISIBLE);
+            number_field.setVisibility(View.VISIBLE);
+            amount.setVisibility(View.VISIBLE);
+            amount_field.setVisibility(View.VISIBLE);
+        }
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));

@@ -220,6 +220,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         minLimitValue = getIntent().getExtras().getInt("minLength");
         maxLimitValue = getIntent().getExtras().getInt("maxLength");
 
+        Log.d(LOG_TAG, "minValue: "+minLimitValue+", maxValue: "+maxLimitValue);
+
 
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(maxLimitValue);
@@ -256,9 +258,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     }
                 }
                 if (selectedItem.equals("man")) {
+                    Log.d(LOG_TAG, "value numberfield: "+number_field.getText().toString());
                     if (number_field.getText().toString().length() <= 0) {
                         Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
-                    } else if (number_field.getText().toString().length() < minLimitValue) {
+                    } else if (number_field.getText().toString().length() <= minLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                     } else if (number_field.getText().toString().length() > maxLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
