@@ -1,6 +1,5 @@
 package simaspay.payment.com.simaspay;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,12 +45,9 @@ public class InputNumberScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
-    private ImageView back_btn;
     public EditText phone_number;
-    private TextView aktivasi_link;
     private static final String TAG = "SimasPay";
-    private Button lanjut;
-    private String phonenum, mdn;
+    private String phonenum;
     SharedPreferences sharedPreferences;
     Functions functions;
     @Override
@@ -63,8 +59,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
 
         context = InputNumberScreenActivity.this;
         settings = getSharedPreferences(TAG, 0);
-        mdn = settings.getString("mobileNumber", "");
-        editor = settings.edit();
+        String mdn = settings.getString("mobileNumber", "");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
@@ -73,7 +68,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        aktivasi_link = (TextView)findViewById(R.id.aktivasi_link);
+        TextView aktivasi_link = (TextView) findViewById(R.id.aktivasi_link);
         SpannableString content = new SpannableString("Aktivasi Akun");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         aktivasi_link.setText(content);
@@ -81,7 +76,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_2_Activity.class);
             startActivityForResult(intent, 10);
         });
-        back_btn = (ImageView)findViewById(R.id.back_btn);
+        ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
         back_btn.setOnClickListener(view -> {
             Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
             startActivity(intent);
@@ -91,7 +86,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         if(!mdn.equals("")){
             phone_number.setText(mdn);
         }
-        lanjut=(Button)findViewById(R.id.lanjut);
+        Button lanjut = (Button) findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
             if(phone_number.getText().length()>=10){
                 settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
@@ -117,19 +112,19 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         });
     }
 
-    class mdnvalidation extends AsyncTask<Void, Void, Void> {
+    private class mdnvalidation extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("service", "Account");
-            mapContainer.put("txnName", "SubscriberStatus");
-            mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            mapContainer.put("authenticationKey", "");
-            mapContainer.put("sourceMDN", phonenum);
-            mapContainer.put("channelID", "7");
+            mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, "SubscriberStatus");
+            mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
+            mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, phonenum);
+            mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
             Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     InputNumberScreenActivity.this);
@@ -189,13 +184,14 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             //finish();
-                        }else if(status.equals("11")){
+                        }else if(status.equals("11") || status.equals("671")){
                             Intent intent = new Intent(InputNumberScreenActivity.this, RegistrationNonKYCActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         }
                     }
                 }catch (Exception e) {
+                    Log.d(TAG, "Error : "+e.toString());
                 }
             } else {
                 progressDialog.dismiss();
