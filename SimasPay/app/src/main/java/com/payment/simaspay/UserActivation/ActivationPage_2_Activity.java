@@ -548,6 +548,7 @@ public class ActivationPage_2_Activity extends AppCompatActivity implements Inco
             public void onFinish() {
                 func.errorOTP();
                 timer.setText("00:00");
+                dialogBuilder.dismiss();
             }
         };
         myTimer.start();

@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="kxml-min" level="project" />
     <orderEntry type="library" exported="" name="constraint-layout-solver-1.0.0-alpha3" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="testfairy-android-sdk-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="transition-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="design-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="core-3.2.1" level="project" />
@@ -102,7 +103,6 @@
     <orderEntry type="library" exported="" name="cardview-v7-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-location-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="constraint-layout-1.0.0-alpha3" level="project" />
-    <orderEntry type="library" exported="" name="testfairy-android-sdk-1.4.17" level="project" />
     <orderEntry type="library" exported="" name="play-services-base-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-10.2.6" level="project" />
     <orderEntry type="library" exported="" name="PayByQR-Android-1.1.7-Simaspay-unspecified" level="project" />

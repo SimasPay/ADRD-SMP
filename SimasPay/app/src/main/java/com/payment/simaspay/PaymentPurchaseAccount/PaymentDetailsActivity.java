@@ -261,7 +261,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "value numberfield: "+number_field.getText().toString());
                     if (number_field.getText().toString().length() <= 0) {
                         Utility.displayDialog(noEntryAlert, PaymentDetailsActivity.this);
-                    } else if (number_field.getText().toString().length() <= minLimitValue) {
+                    } else if (number_field.getText().toString().length() < minLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
                     } else if (number_field.getText().toString().length() > maxLimitValue) {
                         Utility.displayDialog(rangealert, PaymentDetailsActivity.this);
