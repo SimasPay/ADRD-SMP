@@ -1,5 +1,6 @@
 package simaspay.payment.com.simaspay;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -81,10 +83,14 @@ public class FavouriteInputActivity extends AppCompatActivity {
         Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(view -> {
             descript_fav=desc.getText().toString();
-            if(descript_fav.equals("")||descript_fav.length()<=2){
+            if(descript_fav.equals("")||descript_fav.length()<=0){
                 Utility.displayDialog(getResources().getString(R.string.masukkan_desc), FavouriteInputActivity.this);
+            }else if (descript_fav.length()<3 || descript_fav.length()>10){
+                Utility.displayDialog(getResources().getString(R.string.limit_desc), FavouriteInputActivity.this);
             }else{
                 new submitFavAsyncTask().execute();
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
         });
 
@@ -171,6 +177,13 @@ public class FavouriteInputActivity extends AppCompatActivity {
                                 Intent intent = new Intent(FavouriteInputActivity.this, UserHomeActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
+                            });
+                            alertbox.show();
+                        }else if(responseDataContainer.getMsgCode().equals("2090")) {
+                            alertbox = new AlertDialog.Builder(FavouriteInputActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                arg0.dismiss();
                             });
                             alertbox.show();
                         }else{

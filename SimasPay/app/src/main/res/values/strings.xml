@@ -395,6 +395,7 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="invalid_cashout_amount">Jumlah transaksi tarik tunai minimal Rp 100.000 dan harus kelipatan Rp. 50.000</string>
     <string name="masukkan_mpin">Masukkan mPIN</string>
     <string name="masukkan_desc">Harap masukkan deskripsi</string>
+    <string name="limit_desc">Harap masukkan deskripsi min 3 sampai dengan max 10 karakter</string>
     <string name="input_manual_error">Harap Input manual nomor rekening Anda</string>
     <string name="input_manualhp_error">Harap Input manual nomor Handphone Anda</string>
     <string name="input_manual_error_custom">Harap Input manual </string>

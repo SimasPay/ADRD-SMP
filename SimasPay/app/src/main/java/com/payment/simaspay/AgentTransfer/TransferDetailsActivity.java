@@ -41,6 +41,7 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,6 +100,15 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_fav);
+            popupWindow.setHeight(500);
+        }
+        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            Log.d(LOG_TAG, "error: "+e.toString());
+        }
         spinner_fav.setOnItemSelectedListener(this);
 
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);

@@ -1443,6 +1443,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="library_roundedimageview_libraryWebsite">https://github.com/vinc3m1/RoundedImageView</string>
     <string name="library_roundedimageview_licenseId">apache_2_0</string>
     <string name="library_roundedimageview_repositoryLink">https://github.com/vinc3m1/RoundedImageView.git</string>
+    <string name="limit_desc">Harap masukkan deskripsi min 3 sampai dengan max 10 karakter</string>
     <string name="loading_video">Loading video\u2026</string>
     <string name="logout">Logout</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>

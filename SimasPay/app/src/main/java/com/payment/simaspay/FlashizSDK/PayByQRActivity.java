@@ -924,7 +924,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         protected Void doInBackground(Void... params) {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
-            mapContainer.put(Constants.PARAMETER_USER_API_KEY, Constants.TRANSACTION_USER_APIKEY);
+            mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_USER_APIKEY);
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sourceMDN);
