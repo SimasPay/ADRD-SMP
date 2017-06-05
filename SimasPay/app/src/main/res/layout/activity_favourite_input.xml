@@ -98,7 +98,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/edittext_background"
                 android:inputType="textAutoComplete|textPersonName"
-                android:maxLength="26"
+                android:maxLength="10"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
