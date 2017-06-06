@@ -17,7 +17,9 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,8 +47,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
@@ -214,19 +220,19 @@ public class CashOutDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Boolean ada = false;
                 for (FavoriteData string : favList2) {
-                    ada = string.getCategoryName().equals(number.getText().toString());
+                    ada = string.getCategoryName().equals(String.valueOf(number.getText().toString()));
                     Log.d(LOG_TAG, "ada : "+ada);
                     if(ada){
                         break;
                     }
                 }
-                int amountval = 0;
+                double amountval = 0;
                 if (amount.getText().toString().replace("Rp ", "").equals("")) {
                     amountval = 0;
                 } else {
-                    amountval = Integer.parseInt(amount.getText().toString().replace("Rp ", "").trim());
+                    amountval = Double.parseDouble(amount.getText().toString().replace("Rp ", "").trim());
                 }
-                int txtamount = 0;
+                double txtamount = 0;
                 if (!amount.getText().toString().equals("")) {
                     txtamount = amountval;
                 }
@@ -328,7 +334,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                         if (untuk.equals("Untuk Saya")) {
                             if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                                 Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
-                            } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
+                            } else if (Double.parseDouble(amount.getText().toString().replace("Rp ", "")) < 100000) {
                                 Utility.displayDialog(getResources().getString(R.string.invalid_cashout_amount), CashOutDetailsActivity.this);
                             } else if (!is50k) {
                                 Utility.displayDialog(getResources().getString(R.string.invalid_cashout_amount), CashOutDetailsActivity.this);
@@ -347,7 +353,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                                 Utility.displayDialog(getResources().getString(R.string.input_manualhp_error), CashOutDetailsActivity.this);
                             } else if (amount.getText().toString().replace("Rp ", "").length() <= 0) {
                                 Utility.displayDialog("Silahkan masukkan jumlah yang ingin Anda Cashout.", CashOutDetailsActivity.this);
-                            } else if (Integer.parseInt(amount.getText().toString().replace("Rp ", "")) < 100000) {
+                            } else if (Double.parseDouble(amount.getText().toString().replace("Rp ", "")) < 100000) {
                                 Utility.displayDialog(getResources().getString(R.string.invalid_cashout_amount), CashOutDetailsActivity.this);
                             } else if (!is50k) {
                                 Utility.displayDialog(getResources().getString(R.string.invalid_cashout_amount), CashOutDetailsActivity.this);

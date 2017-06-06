@@ -30,10 +30,10 @@
     <string name="id_no_inetconnectivity">Tidak ada koneksi internet</string>
     <string name="en_no_inetconnectivity">No internet connectivity</string>
 
-    <string name="id_invalid_name">Nama lengkap wajib diisi</string>
-    <string name="en_invalid_name">Nama lengkap wajib diisi</string>
-    <string name="id_empty_mpin">mPIN wajib diisi</string>
-    <string name="id_empty_confmpin">Konfirmasi mPIN wajib diisi</string>
+    <string name="id_invalid_name">Harap masukkan Nama lengkap Anda</string>
+    <string name="en_invalid_name">Harap masukkan Nama lengkap Anda</string>
+    <string name="id_empty_mpin">Harap masukkan mPIN Anda</string>
+    <string name="id_empty_confmpin">Harap masukkan Konfirmasi mPIN Anda</string>
     <string name="id_invalid_mpin">mpin harus 6 digit</string>
     <string name="en_invalid_mpin">mpin harus 6 digit</string>
 
