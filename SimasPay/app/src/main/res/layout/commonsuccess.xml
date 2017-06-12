@@ -201,9 +201,11 @@
                     android:layout_gravity="left|center"
                     android:layout_marginTop="5dp"
                     android:gravity="left|center"
+                    android:lineSpacingMultiplier="1.5"
+                    android:lineSpacingExtra="0dp"
                     android:text=""
                     android:textColor="@android:color/black"
-                    android:textSize="14dp"
+                    android:textSize="14sp"
                     android:visibility="gone" />
 
                 <View

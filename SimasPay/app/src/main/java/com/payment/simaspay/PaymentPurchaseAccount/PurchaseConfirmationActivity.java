@@ -66,7 +66,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
     String sourceMDN, stMPIN, stSctl, stTransferID, stParentTxnID, stAmount, stCharges, stName;
     Functions func;
     int idTransferCat;
-    String typeTransferCat="";
+    String typeTransferCat="", AdditionalInfo="";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -156,7 +156,10 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
         charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
         total.setText("Total Pendebitan");
         total_field.setText("Rp. " + getIntent().getExtras().getString("debitamt"));
-
+        AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
+        if(AdditionalInfo!=null&&!AdditionalInfo.equals("")){
+            Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+        }
 
         charges_field.setVisibility(View.VISIBLE);
         charges.setVisibility(View.VISIBLE);
@@ -346,6 +349,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("originalAmount", responseContainer.getAmount());
+                    intent.putExtra("additionalInfo", responseContainer.getAditionalInfo());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
@@ -364,6 +368,7 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
                     intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                    intent.putExtra("additionalInfo", responseContainer.getAditionalInfo());
                     intent.putExtra("favCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("favCat", typeTransferCat);
                     intent.putExtra("idFavCat", idTransferCat);

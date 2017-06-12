@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -28,6 +29,7 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
     Boolean isSetFav=false;
     TextView title, heading, name, name_field, number, number_field, amount, amount_field,transfer_field,transferID,charges,charges_field,total,total_field;
     View view;
+    String AdditionalInfo="";
     Button ok;
 
     @Override
@@ -70,18 +72,57 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
         ok = (Button) findViewById(R.id.ok);
 
         transferID.setText(getIntent().getExtras().getString("sctlID"));
+        Log.d(LOG_TAG, "additionalInfo: "+getIntent().getExtras().getString("additionalInfo"));
 
-        heading.setText("Pembelian Berhasil!");
-        name.setText("Nama Produk");
-        name_field.setText(getIntent().getExtras().getString("billerDetails"));
-        number.setText("Nominal Pulsa");
-        number_field.setText("Rp.  "+getIntent().getExtras().getString("originalAmount"));
-        amount.setText("Nomor Handphone");
-        amount_field.setText(getIntent().getExtras().getString("invoiceNo"));
-        charges.setText("Biaya Administrasi");
-        charges_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
-        total.setText("Total Pendebitan");
-        total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        if(getIntent().getExtras().getString("additionalInfo")!=null){
+            AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
+            if(!AdditionalInfo.equals("")){
+                charges.setVisibility(View.GONE);
+                name.setVisibility(View.GONE);
+                name_field.setVisibility(View.GONE);
+                number.setVisibility(View.GONE);
+                number_field.setVisibility(View.GONE);
+                amount.setVisibility(View.GONE);
+                amount_field.setVisibility(View.GONE);
+                total.setVisibility(View.GONE);
+                total_field.setVisibility(View.GONE);
+                AdditionalInfo=AdditionalInfo.replace("|","<br><br><b>");
+                AdditionalInfo=AdditionalInfo.replace(": ","</b><br>");
+                AdditionalInfo=AdditionalInfo.replace("<br><br><b>PURCHASE","<br><b>PURCHASE");
+                AdditionalInfo=AdditionalInfo.replace("<br><b>                                      <br><br><b>","");
+                AdditionalInfo=AdditionalInfo.replace("PURCHASE","Purchase");
+                AdditionalInfo=AdditionalInfo.replace("MOBILE NO","Mobile No.");
+                AdditionalInfo=AdditionalInfo.replace("DENOM","Denom");
+                AdditionalInfo=AdditionalInfo.replace("ADMIN BANK","Admin Bank");
+                AdditionalInfo=AdditionalInfo.replace("VOUCHER REF","Voucher Ref");
+                AdditionalInfo=AdditionalInfo.replace("<br><br><b>","<br>");
+                Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+                charges.setVisibility(View.GONE);
+                charges_field.setText(Html.fromHtml(AdditionalInfo));
+            }
+        }else{
+            charges.setVisibility(View.VISIBLE);
+            name.setVisibility(View.VISIBLE);
+            name_field.setVisibility(View.VISIBLE);
+            number.setVisibility(View.VISIBLE);
+            number_field.setVisibility(View.VISIBLE);
+            amount.setVisibility(View.VISIBLE);
+            amount_field.setVisibility(View.VISIBLE);
+            total.setVisibility(View.VISIBLE);
+            total_field.setVisibility(View.VISIBLE);
+            heading.setText("Pembelian Berhasil!");
+            name.setText("Nama Produk");
+            name_field.setText(getIntent().getExtras().getString("billerDetails"));
+            number.setText("Nominal Pulsa");
+            number_field.setText("Rp.  "+getIntent().getExtras().getString("originalAmount"));
+            amount.setText("Nomor Handphone");
+            amount_field.setText(getIntent().getExtras().getString("invoiceNo"));
+            charges.setText("Biaya Administrasi");
+            charges_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
+            total.setText("Total Pendebitan");
+            total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
+        }
+
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.textSize));

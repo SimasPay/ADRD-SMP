@@ -64,8 +64,6 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-import static com.payment.simaspay.services.Constants.LOG_TAG;
-
 public class PurchaseDetailsActivity extends AppCompatActivity {
     TextView title, pulsa_field, product, number, pin, Rp;
     EditText product_field, number_field, pin_field, plnamount_entryfield;
@@ -540,6 +538,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("nominalamt", responseContainer.getNominalAmount());
                     intent.putExtra("invoiceNo", responseContainer.getInvoiceNo());
+                    intent.putExtra("additionalInfo", responseContainer.getAditionalInfo());
                     intent.putExtra("PaymentMode", getIntent().getExtras().getString("PaymentMode"));
                     intent.putExtra("ProductCode", getIntent().getExtras().getString("ProductCode"));
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("CategoryType") + " - " + getIntent().getExtras().getString("ProductName"));
@@ -631,7 +630,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
 
     ArrayList<String> arrayList = new ArrayList<>();
 
-    class ProductsAdapter extends BaseAdapter {
+    private class ProductsAdapter extends BaseAdapter {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(PurchaseDetailsActivity.this).inflate(R.layout.location_row, null);
@@ -646,7 +645,7 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
 
 //            imageView.setVisibility(View.GONE);
 
-            textView.setText("Rp. " + arrayList.get(position).toString());
+            textView.setText("Rp. " + arrayList.get(position));
 
             return view;
         }

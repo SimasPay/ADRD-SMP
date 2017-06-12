@@ -41,6 +41,7 @@ import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.CustomSpinnerAdapter;
 import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
+import com.payment.simaspay.utils.NumberTextWatcherForThousand;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONArray;
@@ -177,6 +178,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
         submit = (Button) findViewById(R.id.submit);
 
         amount = (EditText) findViewById(R.id.amount);
+        //amount.addTextChangedListener(new NumberTextWatcherForThousand(amount));
         pin = (EditText) findViewById(R.id.pin);
 
 
