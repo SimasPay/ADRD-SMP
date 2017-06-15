@@ -84,21 +84,23 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
                 number_field.setVisibility(View.GONE);
                 amount.setVisibility(View.GONE);
                 amount_field.setVisibility(View.GONE);
-                total.setVisibility(View.GONE);
-                total_field.setVisibility(View.GONE);
+                total.setVisibility(View.VISIBLE);
+                total_field.setVisibility(View.VISIBLE);
                 AdditionalInfo=AdditionalInfo.replace("|","<br><br><b>");
                 AdditionalInfo=AdditionalInfo.replace(": ","</b><br>");
                 AdditionalInfo=AdditionalInfo.replace("<br><br><b>PURCHASE","<br><b>PURCHASE");
                 AdditionalInfo=AdditionalInfo.replace("<br><b>                                      <br><br><b>","");
                 AdditionalInfo=AdditionalInfo.replace("PURCHASE","Purchase");
-                AdditionalInfo=AdditionalInfo.replace("MOBILE NO","Mobile No.");
-                AdditionalInfo=AdditionalInfo.replace("DENOM","Denom");
+                AdditionalInfo=AdditionalInfo.replace("MOBILE NO","<b>Mobile No.</b>");
+                AdditionalInfo=AdditionalInfo.replace("DENOM","<b>Denom</b>");
                 AdditionalInfo=AdditionalInfo.replace("ADMIN BANK","Admin Bank");
-                AdditionalInfo=AdditionalInfo.replace("VOUCHER REF","Voucher Ref");
-                AdditionalInfo=AdditionalInfo.replace("<br><br><b>","<br>");
+                AdditionalInfo=AdditionalInfo.replace("VOUCHER REF","<b>Voucher Ref</b>");
+                //AdditionalInfo=AdditionalInfo.replace("<br><br><b>","<br>");
                 Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
                 charges.setVisibility(View.GONE);
                 charges_field.setText(Html.fromHtml(AdditionalInfo));
+                total.setText("Total Pendebitan");
+                total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
             }
         }else{
             charges.setVisibility(View.VISIBLE);
@@ -119,8 +121,6 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
             amount_field.setText(getIntent().getExtras().getString("invoiceNo"));
             charges.setText("Biaya Administrasi");
             charges_field.setText("Rp. "+getIntent().getExtras().getString("charges"));
-            total.setText("Total Pendebitan");
-            total_field.setText("Rp. "+getIntent().getExtras().getString("amount"));
         }
 
 

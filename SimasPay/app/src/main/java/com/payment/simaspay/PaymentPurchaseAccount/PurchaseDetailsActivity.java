@@ -64,6 +64,8 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 public class PurchaseDetailsActivity extends AppCompatActivity {
     TextView title, pulsa_field, product, number, pin, Rp;
     EditText product_field, number_field, pin_field, plnamount_entryfield;
@@ -222,15 +224,6 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
         spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_fav);
-            popupWindow.setHeight(500);
-        }
-        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            Log.d(LOG_TAG, "error: "+e.toString());
-        }
 
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -246,6 +239,17 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     }else{
                         spinner_fav.setEnabled(true);
                         spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
+                        try {
+                            Field popup = Spinner.class.getDeclaredField("mPopup");
+                            popup.setAccessible(true);
+                            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_fav);
+                            if(spinnerLength>2){
+                                popupWindow.setHeight(500);
+                            }
+                        }
+                        catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+                            Log.d(LOG_TAG, "error: "+e.toString());
+                        }
                     }
                     number_field.setVisibility(View.GONE);
                 } else if (checkedId == R.id.manualinput_option) {
