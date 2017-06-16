@@ -57,7 +57,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
     Button submit;
     EditText number, amount, pin;
     LinearLayout btnBacke;
-    String pinValue, mdn, amountValue;
+    String pinValue, mdn, amountValue, untuk;
     SharedPreferences sharedPreferences;
     String message, transactionTime, debitamt, creditamt, charges, transferID, parentTxnID, sctlID, mfaMode;
     private static final String LOG_TAG = "SimasPay";
@@ -120,7 +120,7 @@ public class CashOutDetailsActivity extends AppCompatActivity {
             return false;
         });
 
-        String untuk = getIntent().getExtras().getString("untuk");
+        untuk = getIntent().getExtras().getString("untuk");
         title.setText("Tarik Tunai - " + untuk);
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -545,7 +545,11 @@ public class CashOutDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             //mapContainer.put("authenticationKey", "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
-            mapContainer.put(Constants.PARAMETER_ONBEHALFOFMDN, "");
+            if (untuk.equals("Untuk Saya")) {
+                mapContainer.put(Constants.PARAMETER_ONBEHALFOFMDN, "");
+            } else if (untuk.equals("Untuk Orang Lain")) {
+                mapContainer.put(Constants.PARAMETER_ONBEHALFOFMDN, mdn);
+            }
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             //mapContainer.put("destMDN", destmdn);
             //mapContainer.put("destBankAccount", "");
@@ -589,66 +593,62 @@ public class CashOutDetailsActivity extends AppCompatActivity {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         AlertDialog.Builder alertbox;
-                        switch (responseDataContainer.getMsgCode()) {
-                            case "631":
-                                if (progressDialog != null) {
-                                    progressDialog.dismiss();
+                        if (responseDataContainer.getMsgCode().equals("631")) {
+                            if (progressDialog != null) {
+                                progressDialog.dismiss();
+                            }
+                            alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
                                 }
-                                alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
-                                alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        Intent intent = new Intent(CashOutDetailsActivity.this, SecondLoginActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                    }
-                                });
-                                alertbox.show();
-                                break;
-                            case "708":
-                                message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message" + message);
-                                transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
-                                debitamt = responseDataContainer.getEncryptedDebitAmount();
-                                creditamt = responseDataContainer.getEncryptedCreditAmount();
-                                charges = responseDataContainer.getEncryptedTransactionCharges();
-                                transferID = responseDataContainer.getEncryptedTransferId();
-                                Log.d(LOG_TAG, "transferID" + transferID);
-                                parentTxnID = responseDataContainer.getEncryptedParentTxnId();
-                                Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
-                                sctlID = responseDataContainer.getSctl();
-                                Log.d(LOG_TAG, "sctlID" + sctlID);
-                                mfaMode = responseDataContainer.getMfaMode();
-                                Log.d(LOG_TAG, "mfaMode" + mfaMode);
-                                if (mfaMode.toString().equalsIgnoreCase("OTP")) {
-                                    sharedPreferences.edit().putString("password", pinValue).apply();
-                                    Intent intent = new Intent(CashOutDetailsActivity.this, CashOutConfirmationActivity.class);
-                                    intent.putExtra("amount", responseDataContainer.getEncryptedDebitAmount());
-                                    intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
-                                    intent.putExtra("DestMDN", mdn);
-                                    intent.putExtra("transferID", responseDataContainer.getEncryptedTransferId());
-                                    intent.putExtra("ParentId", responseDataContainer.getEncryptedParentTxnId());
-                                    intent.putExtra("sctlID", responseDataContainer.getSctl());
-                                    intent.putExtra("Name", responseDataContainer.getName());
-                                    intent.putExtra("mfaMode", responseDataContainer.getMfaMode());
-                                    intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
-                                    intent.putExtra("selectedItem", selectedItem);
-                                    startActivityForResult(intent, 10);
-                                } else {
-                                    //tanpa OTP
+                            });
+                            alertbox.show();
+                        } else if (responseDataContainer.getMsgCode().equals("708")) {
+                            message = responseDataContainer.getMsg();
+                            Log.d(LOG_TAG, "message" + message);
+                            transactionTime = responseDataContainer.getTransactionTime();
+                            Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                            debitamt = responseDataContainer.getEncryptedDebitAmount();
+                            creditamt = responseDataContainer.getEncryptedCreditAmount();
+                            charges = responseDataContainer.getEncryptedTransactionCharges();
+                            transferID = responseDataContainer.getEncryptedTransferId();
+                            Log.d(LOG_TAG, "transferID" + transferID);
+                            parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                            Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                            sctlID = responseDataContainer.getSctl();
+                            Log.d(LOG_TAG, "sctlID" + sctlID);
+                            mfaMode = responseDataContainer.getMfaMode();
+                            Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                            if (mfaMode.toString().equalsIgnoreCase("OTP")) {
+                                sharedPreferences.edit().putString("password", pinValue).apply();
+                                Intent intent = new Intent(CashOutDetailsActivity.this, CashOutConfirmationActivity.class);
+                                intent.putExtra("amount", responseDataContainer.getEncryptedDebitAmount());
+                                intent.putExtra("charges", responseDataContainer.getEncryptedTransactionCharges());
+                                intent.putExtra("DestMDN", mdn);
+                                intent.putExtra("transferID", responseDataContainer.getEncryptedTransferId());
+                                intent.putExtra("ParentId", responseDataContainer.getEncryptedParentTxnId());
+                                intent.putExtra("sctlID", responseDataContainer.getSctl());
+                                intent.putExtra("Name", responseDataContainer.getName());
+                                intent.putExtra("mfaMode", responseDataContainer.getMfaMode());
+                                intent.putExtra("untuk", getIntent().getExtras().getString("untuk"));
+                                intent.putExtra("selectedItem", selectedItem);
+                                startActivityForResult(intent, 10);
+                            } else {
+                                //tanpa OTP
+                            }
+                        } else {
+                            alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
+                            alertbox.setMessage(responseDataContainer.getMsg());
+                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface arg0, int arg1) {
+                                    arg0.dismiss();
                                 }
-                                break;
-                            default:
-                                alertbox = new AlertDialog.Builder(CashOutDetailsActivity.this, R.style.MyAlertDialogStyle);
-                                alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        arg0.dismiss();
-                                    }
-                                });
-                                alertbox.show();
-                                break;
+                            });
+                            alertbox.show();
                         }
                     }
                 } catch (Exception e) {
