@@ -144,6 +144,11 @@ public class BillersListActivity extends Activity {
                             e.printStackTrace();
                         }
                         try {
+                            payments.setIsMDN(array.getJSONObject(i).getBoolean("isMDN"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
                             payments.setMinLength(array.getJSONObject(i).getInt("minlength"));
                             payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
                         } catch (JSONException e) {
@@ -175,7 +180,6 @@ public class BillersListActivity extends Activity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                         try {
                             payments.setProductCode(array.getJSONObject(i).getString("productCode"));
                         } catch (JSONException e) {
@@ -218,6 +222,11 @@ public class BillersListActivity extends Activity {
                             e.printStackTrace();
                         }
                         try {
+                            payments.setIsMDN(array.getJSONObject(i).getBoolean("isMDN"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        try {
                             payments.setMaxLength(array.getJSONObject(i).getInt("maxlength"));
                             payments.setMinLength(array.getJSONObject(i).getInt("minlength"));
                         } catch (JSONException e) {
@@ -256,6 +265,7 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
                     intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
                     intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                    intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
                     intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
                     intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
                     startActivityForResult(intent, 10);
@@ -272,6 +282,7 @@ public class BillersListActivity extends Activity {
                     intent.putExtra("NominalType", providerNamesList.get(i).getNominaltype());
                     intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
                     intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                    intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
                     intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
                     intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
                     if(providerNamesList.get(i).getIsPLNPrepaid().equalsIgnoreCase("true")){
@@ -289,7 +300,7 @@ public class BillersListActivity extends Activity {
 
     }
 
-    class AccountTypeAdapter extends BaseAdapter {
+    private class AccountTypeAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {

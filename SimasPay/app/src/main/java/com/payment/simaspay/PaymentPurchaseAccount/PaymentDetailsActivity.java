@@ -115,6 +115,12 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         product.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         product_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
         number.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
+
+        if(getIntent().getExtras().getBoolean("isMDN")){
+            number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_contact_phone_black_24dp, 0);
+        }else{
+            number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
         number_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
         number_field.setOnTouchListener((v, event) -> {
             //final int DRAWABLE_LEFT = 0;
@@ -131,6 +137,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             }
             return false;
         });
+
         pin.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         pin_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
 

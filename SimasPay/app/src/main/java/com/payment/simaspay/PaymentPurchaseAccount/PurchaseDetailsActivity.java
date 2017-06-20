@@ -115,6 +115,11 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         product_field = (EditText) findViewById(R.id.product_field);
         number = (TextView) findViewById(R.id.number);
         number_field = (EditText) findViewById(R.id.number_field);
+        if(getIntent().getExtras().getBoolean("isMDN")){
+            number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_contact_phone_black_24dp, 0);
+        }else{
+            number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        }
         number_field.setOnTouchListener((v, event) -> {
             //final int DRAWABLE_LEFT = 0;
             //final int DRAWABLE_TOP = 1;

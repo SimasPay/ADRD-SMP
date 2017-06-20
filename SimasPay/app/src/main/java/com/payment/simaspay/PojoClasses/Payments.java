@@ -20,6 +20,8 @@ public class Payments {
 
     private String Nominaltype;
 
+    private boolean ismdn;
+
     public String getNominaltype() {
         return Nominaltype;
     }
@@ -110,6 +112,14 @@ public class Payments {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public boolean getIsMDN() {
+        return ismdn;
+    }
+
+    public void setIsMDN(boolean ismdn) {
+        this.ismdn = ismdn;
     }
 
     public String getProviderName() {

@@ -118,7 +118,6 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
                 intent.putExtra("CategoryType", purchaseArrayList.get(i).getProductCategory());
                 startActivityForResult(intent, 10);
             }
-
         });
 
 
