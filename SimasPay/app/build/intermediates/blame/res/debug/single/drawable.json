@@ -236,12 +236,12 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/drawable/item_bottom.xml"
     },
     {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/background_voucher_success.xml",
-        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/drawable/background_voucher_success.xml"
-    },
-    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/rp_text.png",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/drawable/rp_text.png"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/background_voucher_success.xml",
+        "source": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/drawable/background_voucher_success.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/item_center.xml",
@@ -520,12 +520,12 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/drawable/checkbox_selector.xml"
     },
     {
-        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/btn_bayarpakaiqr.png",
-        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/drawable/btn_bayarpakaiqr.png"
-    },
-    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/common_google_signin_btn_icon_light.xml",
         "source": "/Users/widy/.android/build-cache/c4383fd15284f3c38c293a4c4efd85e8e5f62aad/output/res/drawable/common_google_signin_btn_icon_light.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/btn_bayarpakaiqr.png",
+        "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/res/drawable/btn_bayarpakaiqr.png"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/build/intermediates/res/merged/debug/drawable/abc_ratingbar_indicator_material.xml",

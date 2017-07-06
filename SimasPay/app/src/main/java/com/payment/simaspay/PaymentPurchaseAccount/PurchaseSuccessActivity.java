@@ -14,9 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import com.payment.simaspay.services.Utility;
-
 import simaspay.payment.com.simaspay.FavouriteInputActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.UserHomeActivity;
@@ -77,6 +75,7 @@ public class PurchaseSuccessActivity extends AppCompatActivity {
         if(getIntent().getExtras().getString("additionalInfo")!=null){
             AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
             if(!AdditionalInfo.equals("")){
+                heading.setText("Pembelian Berhasil!");
                 charges.setVisibility(View.GONE);
                 name.setVisibility(View.GONE);
                 name_field.setVisibility(View.GONE);

@@ -117,24 +117,25 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         number_field = (EditText) findViewById(R.id.number_field);
         if(getIntent().getExtras().getBoolean("isMDN")){
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_contact_phone_black_24dp, 0);
+            number_field.setOnTouchListener((v, event) -> {
+                //final int DRAWABLE_LEFT = 0;
+                //final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                //final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (number_field.getRight() - number_field.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                        startActivityForResult(intent, PICK_CONTACT);
+                        return true;
+                    }
+                }
+                return false;
+            });
         }else{
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
-        number_field.setOnTouchListener((v, event) -> {
-            //final int DRAWABLE_LEFT = 0;
-            //final int DRAWABLE_TOP = 1;
-            final int DRAWABLE_RIGHT = 2;
-            //final int DRAWABLE_BOTTOM = 3;
 
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (number_field.getRight() - number_field.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-                    startActivityForResult(intent, PICK_CONTACT);
-                    return true;
-                }
-            }
-            return false;
-        });
         pin = (TextView) findViewById(R.id.mPin);
         pin_field = (EditText) findViewById(R.id.pin);
         plnamount_entryfield = (EditText) findViewById(R.id.pln_amountentry_field);

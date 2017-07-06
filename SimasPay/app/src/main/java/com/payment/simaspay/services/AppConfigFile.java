@@ -18,11 +18,13 @@ public class AppConfigFile {
 
 
     //	AWS
+
     public static String requestUrl = "https://13.124.89.175:8443/webapi/sdynamic";
     public static String webAPIUrlFiles = "https://13.124.89.175:8443/webapi/sdynamic";
     public static String webAPIUrl = "https://13.124.89.175:8443/webapi/sdynamic";
     public static String pfdDownLoadURL = "https://13.124.89.175:8443/webapi/";
     public static String promoImageURLPath = "https://13.124.89.175:8443/";
+
 
     //UAT:
     /*
@@ -32,7 +34,6 @@ public class AppConfigFile {
     public static String pfdDownLoadURL = "https://simaspaydev.banksinarmas.com:8443/webapi/";
     public static String promoImageURLPath = "https://simaspaydev.banksinarmas.com:8443/";
     */
-
     //	New UAT
          /*public static String requestUrl="https://simaspaydev.banksinarmas.com/webapi/sdynamic";
 		 public static String webAPIUrlFiles="http://54.255.194.95:8443/webapi/sdynamic";
