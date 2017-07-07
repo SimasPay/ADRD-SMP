@@ -146,9 +146,6 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         charges_field.setVisibility(View.VISIBLE);
         total.setVisibility(View.VISIBLE);
         total_field.setVisibility(View.VISIBLE);
-        line.setVisibility(View.VISIBLE);
-
-
         cancel.setOnClickListener(v-> {
             finish();
         });
@@ -199,19 +196,22 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             AdditionalInfo=AdditionalInfo.replace("NAME","Name");
             AdditionalInfo=AdditionalInfo.replace("BILLING AMT","Billing Amt");
             AdditionalInfo=AdditionalInfo.replace("ADMIN BANK","Admin Bank");
-            AdditionalInfo=AdditionalInfo.replace("TOTAL TAGIHAN","Total Tagihan");
+            AdditionalInfo=AdditionalInfo.replace("TOTAL TAGIHAN","-------------------------------------------<hr><br><br>Total Tagihan");
             Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
             charges.setVisibility(View.GONE);
             charges_field.setText(Html.fromHtml(AdditionalInfo));
+            total.setVisibility(View.GONE);
+            total_field.setVisibility(View.GONE);
+            line.setVisibility(View.GONE);
             //charges_field.setLineSpacing();
         }else{
+            line.setVisibility(View.VISIBLE);
             charges.setVisibility(View.VISIBLE);
             charges.setText("Biaya Administrasi");
             charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+            total.setText("Total Pendebitan");
+            total_field.setText("Rp. " + getIntent().getExtras().getString("creditamt"));
         }
-
-        total.setText("Total Pendebitan");
-        total_field.setText("Rp. " + getIntent().getExtras().getString("creditamt"));
 
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
