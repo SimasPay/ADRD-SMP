@@ -281,10 +281,10 @@ public class TransactionsListActivity extends AppCompatActivity {
             Log.d(LOG_TAG, "transaction isCredit: " + transationsListarray.get(i).getType());
 
             if (transationsListarray.get(i).getType().equals("false")) {
-                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
+                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_color));
                 textView2.setText(getResources().getString(R.string.debit));
             } else {
-                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_color));
+                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
                 textView2.setText(getResources().getString(R.string.credit));
             }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -29,6 +30,7 @@ public class PaymentSuccessActivity extends AppCompatActivity {
     Boolean isSetFav=false;
     Button ok;
     View view;
+    String AdditionalInfo="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,13 +91,11 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         name.setText("Nama Produk");
         name_field.setText(getIntent().getExtras().getString("billerDetails"));
         try {
-
             if(getIntent().getExtras().getString("numberTitle").equalsIgnoreCase("")){
                 number.setText("Nomor Handphone");
             }else{
                 number.setText(getIntent().getExtras().getString("numberTitle"));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             number.setText("Nomor Handphone");
@@ -108,6 +108,28 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         total.setText("Total Pendebitan");
         total_field.setText("Rp. " + getIntent().getExtras().getString("totalAmount"));
 
+        AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
+        if(!AdditionalInfo.equals("")){
+            Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+            charges.setVisibility(View.GONE);
+            charges_field.setVisibility(View.VISIBLE);
+            charges_field.setText(Html.fromHtml(AdditionalInfo));
+            total.setVisibility(View.GONE);
+            total_field.setVisibility(View.GONE);
+            name.setVisibility(View.GONE);
+            name_field.setVisibility(View.GONE);
+            number.setVisibility(View.GONE);
+            number_field.setVisibility(View.GONE);
+            amount.setVisibility(View.GONE);
+            amount_field.setVisibility(View.GONE);
+        }else{
+            charges.setVisibility(View.VISIBLE);
+            charges.setText("Biaya Administrasi");
+            charges_field.setText("Rp. " + getIntent().getExtras().getString("charges"));
+            total.setText("Total Pendebitan");
+            total_field.setText("Rp. " + getIntent().getExtras().getString("creditamt"));
+        }
+
         amount_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         number_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
         name_field.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.textSize));
@@ -116,12 +138,6 @@ public class PaymentSuccessActivity extends AppCompatActivity {
 
 
         findViewById(R.id.ID_layout).setVisibility(View.VISIBLE);
-
-        charges.setVisibility(View.VISIBLE);
-        charges_field.setVisibility(View.VISIBLE);
-        total_field.setVisibility(View.VISIBLE);
-        total.setVisibility(View.VISIBLE);
-        view.setVisibility(View.VISIBLE);
 
         title.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
         heading.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
@@ -138,6 +154,8 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         charges_field.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
         total.setTypeface(Utility.Robot_Regular(PaymentSuccessActivity.this));
         total_field.setTypeface(Utility.Robot_Light(PaymentSuccessActivity.this));
+
+
 
         ok.setOnClickListener(view1 -> {
             if(favBtn.isChecked()){
