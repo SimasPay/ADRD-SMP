@@ -19,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5.0dip"
             android:gravity="center"
-            android:text="Mutasi"
+            android:text="@string/transaksi"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 

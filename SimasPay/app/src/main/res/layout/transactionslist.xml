@@ -18,9 +18,9 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Transaksi"
+            android:text="@string/transaksi"
             android:textColor="@android:color/white"
-            android:textSize="24dp" />
+            android:textSize="24sp" />
 
         <LinearLayout
             android:id="@+id/back_layout"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:gravity="left"
-            android:text="Periode:"
+            android:text="@string/periode"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
