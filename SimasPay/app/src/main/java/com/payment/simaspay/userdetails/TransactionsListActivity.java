@@ -125,14 +125,14 @@ public class TransactionsListActivity extends AppCompatActivity {
 
         if (label_home.equals(Constants.CONSTANT_EMONEYNONKYC_USER)) {
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText(getResources().getString(R.string.mutasi));
+            title.setText(getResources().getString(R.string.transaksi));
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
             terms_conditions_1.setText(fromDate.substring(0, 2) + " " + Utility.getMonth(fromDate.substring(2, 4)) + " '" + fromDate.substring(4) + " - " + toDate.substring(0, 2) + " " + Utility.getMonth(toDate.substring(2, 4)) + " '" + toDate.substring(4));
         } else if (label_home.equals(Constants.CONSTANT_EMONEYKYC_USER)){
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText(getResources().getString(R.string.mutasi));
+            title.setText(getResources().getString(R.string.transaksi));
             findViewById(R.id.period).setVisibility(View.VISIBLE);
             String fromDate = getIntent().getExtras().getString("fromDate");
             String toDate = getIntent().getExtras().getString("toDate");
@@ -141,11 +141,11 @@ public class TransactionsListActivity extends AppCompatActivity {
             String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS, "");
             if (account.equals(Constants.CONSTANT_BANK_USER)) {
                 dwn_layout.setVisibility(View.INVISIBLE);
-                title.setText(getResources().getString(R.string.mutasi));
+                title.setText(getResources().getString(R.string.transaksi));
                 findViewById(R.id.period).setVisibility(View.GONE);
             } else {
                 dwn_layout.setVisibility(View.VISIBLE);
-                title.setText(getResources().getString(R.string.mutasi));
+                title.setText(getResources().getString(R.string.transaksi));
                 findViewById(R.id.period).setVisibility(View.VISIBLE);
                 String fromDate = getIntent().getExtras().getString("fromDate");
                 String toDate = getIntent().getExtras().getString("toDate");
@@ -153,11 +153,11 @@ public class TransactionsListActivity extends AppCompatActivity {
             }
         } else if(label_home.equals(Constants.CONSTANT_BANK_USER)) {
             dwn_layout.setVisibility(View.INVISIBLE);
-            title.setText(getResources().getString(R.string.mutasi));
+            title.setText(getResources().getString(R.string.transaksi));
             findViewById(R.id.period).setVisibility(View.GONE);
         } else {
             dwn_layout.setVisibility(View.VISIBLE);
-            title.setText(getResources().getString(R.string.mutasi));
+            title.setText(getResources().getString(R.string.transaksi));
             findViewById(R.id.period).setVisibility(View.GONE);
         }
 

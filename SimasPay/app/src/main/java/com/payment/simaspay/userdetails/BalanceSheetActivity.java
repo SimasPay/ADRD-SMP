@@ -143,7 +143,7 @@ public class BalanceSheetActivity extends Activity {
         if (sharedPreferences.getInt("userType", -1) == 2){
             if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                 agent.setVisibility(View.VISIBLE);
-                textView2.setText("Mutasi");
+                textView2.setText("Transaksi");
                 white_number.setText(sharedPreferences.getString("mobileNumber", ""));
                 number.setText(sharedPreferences.getString("mobileNumber", ""));
             }else{
@@ -154,7 +154,7 @@ public class BalanceSheetActivity extends Activity {
             }
         }else{
             if(sharedPreferences.getInt("userType", -1) == 1){
-                textView2.setText("Mutasi");
+                textView2.setText("Transaksi");
                 white_number.setText(sharedPreferences.getString("mobileNumber", ""));
                 number.setText(sharedPreferences.getString("mobileNumber", ""));
             }else{
