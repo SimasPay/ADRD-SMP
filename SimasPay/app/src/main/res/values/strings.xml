@@ -11,6 +11,8 @@
     <string name="bank_lainnya">Bank Lainnya</string>
     <string name="uangku">Uangku</string>
     <string name="emoney">E-money</string>
+    <string name="string_eula"><html><p>1. Pay by QR merupakan layanan pembayaran berbasis kode QR atas pembelanjaan di pedagang/merchant yang berpartisipasi, dimana dalam pelaksanaannya pengguna Simaspay melakukan pemindaian kode QR uang tersedia pada pedagang/merchant menggunakan aplikasi Simaspay.</p><p>2. Segala ketentuan mengenai layanan pembayaran pedagang/merchant dengan Pay by QR mengacu kepada Syarat dan Ketentuan Penggunaan Aplikasi Simaspay.</p></html>
+</string>
     <string-array name="bahasa_transfer_array">
         <item>Bank Sinarmas</item>
         <item>Bank Lainnya</item>

@@ -165,22 +165,25 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             number.setText("Nomor Handphone");
         }
 
-        if(getIntent().getExtras().getString("PaymentMode").equals("ZeroAmount")){
-            charges.setVisibility(View.GONE);
-            name.setVisibility(View.GONE);
-            name_field.setVisibility(View.GONE);
-            number.setVisibility(View.GONE);
-            number_field.setVisibility(View.GONE);
-            amount.setVisibility(View.GONE);
-            amount_field.setVisibility(View.GONE);
-        }else{
-            charges.setVisibility(View.VISIBLE);
-            name.setVisibility(View.VISIBLE);
-            name_field.setVisibility(View.VISIBLE);
-            number.setVisibility(View.VISIBLE);
-            number_field.setVisibility(View.VISIBLE);
-            amount.setVisibility(View.VISIBLE);
-            amount_field.setVisibility(View.VISIBLE);
+        if(getIntent().getExtras().getString("PaymentMode").equals("ZeroAmount")||getIntent().getExtras().getString("PaymentMode").equals("FullAmount")){
+            AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
+            if(AdditionalInfo!=null&&!AdditionalInfo.equals("")) {
+                charges.setVisibility(View.GONE);
+                name.setVisibility(View.GONE);
+                name_field.setVisibility(View.GONE);
+                number.setVisibility(View.GONE);
+                number_field.setVisibility(View.GONE);
+                amount.setVisibility(View.GONE);
+                amount_field.setVisibility(View.GONE);
+            }else{
+                charges.setVisibility(View.VISIBLE);
+                name.setVisibility(View.VISIBLE);
+                name_field.setVisibility(View.VISIBLE);
+                number.setVisibility(View.VISIBLE);
+                number_field.setVisibility(View.VISIBLE);
+                amount.setVisibility(View.VISIBLE);
+                amount_field.setVisibility(View.VISIBLE);
+            }
         }
         number_field.setText(getIntent().getExtras().getString("invoiceNo"));
         amount.setText("Jumlah");
@@ -380,6 +383,27 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     } else {
                         intent.putExtra("invoiceNo", getIntent().getExtras().getString("invoiceNo"));
                     }
+                    if(responseContainer.getAditionalInfo()!=null){
+                        AdditionalInfo=responseContainer.getAditionalInfo();
+                        AdditionalInfo=AdditionalInfo.replace("|","<b><br><br>");
+                        AdditionalInfo=AdditionalInfo.replace(": ","<br></b>");
+                        AdditionalInfo=AdditionalInfo.replace("<b><br><br><b>", "</b><br><br><b>");
+                        AdditionalInfo=AdditionalInfo.replace("<br><br>PAYMENT","<br>PAYMENT");
+                        AdditionalInfo=AdditionalInfo.replace("<br><br>PEMBAYARAN","<br>Pembayaran");
+                        //AdditionalInfo=AdditionalInfo.replace("<br><b>                                      <br><br><b>","");
+                        AdditionalInfo=AdditionalInfo.replace("PAYMENT","Payment");
+                        AdditionalInfo=AdditionalInfo.replace("<br><br>ACCOUNT","Account");
+                        AdditionalInfo=AdditionalInfo.replace("RP BAYAR","Rp Bayar");
+                        AdditionalInfo=AdditionalInfo.replace("IDPEL","IDPel");
+                        AdditionalInfo=AdditionalInfo.replace("NAME","Name");
+                        AdditionalInfo=AdditionalInfo.replace("BILLING AMT","Billing Amt");
+                        AdditionalInfo=AdditionalInfo.replace("ADMIN BANK","Admin Bank");
+                        AdditionalInfo=AdditionalInfo.replace("TOTAL BILL","Total Bill");
+                        AdditionalInfo=AdditionalInfo.replace("<b>Account","<br><br><b>Account");
+                        AdditionalInfo=AdditionalInfo.replace("TOTAL TAGIHAN","-------------------------------------------<hr><br><br>Total Tagihan");
+                        Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+                    }
+
                     intent.putExtra("billerDetails", getIntent().getExtras().getString("billerDetails"));
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("originalAmount", responseContainer.getAmount());
@@ -395,6 +419,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
+                    }
+                    if(responseContainer.getAditionalInfo()!=null){
+                        AdditionalInfo=responseContainer.getAditionalInfo();
                     }
                     Intent intent = new Intent(PaymentConfirmationActivity.this, PaymentSuccessActivity.class);
                     intent.putExtra("originalAmount", responseContainer.getAmount());

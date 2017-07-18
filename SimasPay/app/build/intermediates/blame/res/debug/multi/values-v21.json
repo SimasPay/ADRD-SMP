@@ -1719,71 +1719,71 @@
                     "startLine": 225,
                     "startColumn": 4,
                     "startOffset": 16916,
-                    "endLine": 236,
+                    "endLine": 237,
                     "endColumn": 12,
-                    "endOffset": 17685
+                    "endOffset": 17780
                 },
                 "from": {
-                    "file": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/values-v21/values-v21.xml",
+                    "file": "/Users/widy/.android/build-cache/edf97fe65ceabeac85579aeff2151c51c1c593f5/output/res/values-v21/values-v21.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
-                        "endLine": 13,
+                        "endLine": 14,
                         "endColumn": 12,
-                        "endOffset": 824
+                        "endOffset": 919
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 237,
+                    "startLine": 238,
                     "startColumn": 4,
-                    "startOffset": 17690,
-                    "endLine": 245,
+                    "startOffset": 17785,
+                    "endLine": 253,
                     "endColumn": 12,
-                    "endOffset": 18257
+                    "endOffset": 18900
                 },
                 "from": {
-                    "file": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/values-v21/values-v21.xml",
+                    "file": "/Users/widy/.android/build-cache/edf97fe65ceabeac85579aeff2151c51c1c593f5/output/res/values-v21/values-v21.xml",
                     "position": {
-                        "startLine": 14,
+                        "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 829,
-                        "endLine": 22,
+                        "startOffset": 924,
+                        "endLine": 30,
                         "endColumn": 12,
-                        "endOffset": 1396
+                        "endOffset": 2039
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 246,
+                    "startLine": 254,
                     "startColumn": 4,
-                    "startOffset": 18262,
-                    "endLine": 254,
+                    "startOffset": 18905,
+                    "endLine": 263,
                     "endColumn": 12,
-                    "endOffset": 18833
+                    "endOffset": 19535
                 },
                 "from": {
-                    "file": "/Users/widy/.android/build-cache/7517854853faadfc7485cf8c8f7863dc1691434c/output/res/values-v21/values-v21.xml",
+                    "file": "/Users/widy/.android/build-cache/edf97fe65ceabeac85579aeff2151c51c1c593f5/output/res/values-v21/values-v21.xml",
                     "position": {
-                        "startLine": 23,
+                        "startLine": 31,
                         "startColumn": 4,
-                        "startOffset": 1401,
-                        "endLine": 31,
+                        "startOffset": 2044,
+                        "endLine": 40,
                         "endColumn": 12,
-                        "endOffset": 1972
+                        "endOffset": 2674
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 255,
+                    "startLine": 264,
                     "startColumn": 4,
-                    "startOffset": 18838,
+                    "startOffset": 19540,
                     "endColumn": 70,
-                    "endOffset": 18904
+                    "endOffset": 19606
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1798,11 +1798,11 @@
             },
             {
                 "to": {
-                    "startLine": 256,
+                    "startLine": 265,
                     "startColumn": 4,
-                    "startOffset": 18909,
+                    "startOffset": 19611,
                     "endColumn": 82,
-                    "endOffset": 18987
+                    "endOffset": 19689
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1817,12 +1817,12 @@
             },
             {
                 "to": {
-                    "startLine": 257,
+                    "startLine": 266,
                     "startColumn": 4,
-                    "startOffset": 18992,
-                    "endLine": 266,
+                    "startOffset": 19694,
+                    "endLine": 275,
                     "endColumn": 12,
-                    "endOffset": 19667
+                    "endOffset": 20369
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1838,11 +1838,11 @@
             },
             {
                 "to": {
-                    "startLine": 267,
+                    "startLine": 276,
                     "startColumn": 4,
-                    "startOffset": 19672,
+                    "startOffset": 20374,
                     "endColumn": 56,
-                    "endOffset": 19724
+                    "endOffset": 20426
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1857,11 +1857,11 @@
             },
             {
                 "to": {
-                    "startLine": 268,
+                    "startLine": 277,
                     "startColumn": 4,
-                    "startOffset": 19729,
+                    "startOffset": 20431,
                     "endColumn": 57,
-                    "endOffset": 19782
+                    "endOffset": 20484
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1876,12 +1876,12 @@
             },
             {
                 "to": {
-                    "startLine": 269,
+                    "startLine": 278,
                     "startColumn": 4,
-                    "startOffset": 19787,
-                    "endLine": 280,
+                    "startOffset": 20489,
+                    "endLine": 289,
                     "endColumn": 12,
-                    "endOffset": 20476
+                    "endOffset": 21178
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1897,12 +1897,12 @@
             },
             {
                 "to": {
-                    "startLine": 281,
+                    "startLine": 290,
                     "startColumn": 4,
-                    "startOffset": 20481,
-                    "endLine": 292,
+                    "startOffset": 21183,
+                    "endLine": 301,
                     "endColumn": 12,
-                    "endOffset": 21182
+                    "endOffset": 21884
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1918,11 +1918,11 @@
             },
             {
                 "to": {
-                    "startLine": 293,
+                    "startLine": 302,
                     "startColumn": 4,
-                    "startOffset": 21187,
+                    "startOffset": 21889,
                     "endColumn": 118,
-                    "endOffset": 21301
+                    "endOffset": 22003
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1937,11 +1937,11 @@
             },
             {
                 "to": {
-                    "startLine": 294,
+                    "startLine": 303,
                     "startColumn": 4,
-                    "startOffset": 21306,
+                    "startOffset": 22008,
                     "endColumn": 128,
-                    "endOffset": 21430
+                    "endOffset": 22132
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1956,12 +1956,12 @@
             },
             {
                 "to": {
-                    "startLine": 295,
+                    "startLine": 304,
                     "startColumn": 4,
-                    "startOffset": 21435,
-                    "endLine": 297,
+                    "startOffset": 22137,
+                    "endLine": 306,
                     "endColumn": 12,
-                    "endOffset": 21601
+                    "endOffset": 22303
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1977,12 +1977,12 @@
             },
             {
                 "to": {
-                    "startLine": 298,
+                    "startLine": 307,
                     "startColumn": 4,
-                    "startOffset": 21606,
-                    "endLine": 300,
+                    "startOffset": 22308,
+                    "endLine": 309,
                     "endColumn": 12,
-                    "endOffset": 21767
+                    "endOffset": 22469
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -1998,11 +1998,11 @@
             },
             {
                 "to": {
-                    "startLine": 301,
+                    "startLine": 310,
                     "startColumn": 4,
-                    "startOffset": 21772,
+                    "startOffset": 22474,
                     "endColumn": 128,
-                    "endOffset": 21896
+                    "endOffset": 22598
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2017,12 +2017,12 @@
             },
             {
                 "to": {
-                    "startLine": 302,
+                    "startLine": 311,
                     "startColumn": 4,
-                    "startOffset": 21901,
-                    "endLine": 304,
+                    "startOffset": 22603,
+                    "endLine": 313,
                     "endColumn": 12,
-                    "endOffset": 22067
+                    "endOffset": 22769
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2038,11 +2038,11 @@
             },
             {
                 "to": {
-                    "startLine": 305,
+                    "startLine": 314,
                     "startColumn": 4,
-                    "startOffset": 22072,
+                    "startOffset": 22774,
                     "endColumn": 130,
-                    "endOffset": 22198
+                    "endOffset": 22900
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2057,12 +2057,12 @@
             },
             {
                 "to": {
-                    "startLine": 306,
+                    "startLine": 315,
                     "startColumn": 4,
-                    "startOffset": 22203,
-                    "endLine": 308,
+                    "startOffset": 22905,
+                    "endLine": 317,
                     "endColumn": 12,
-                    "endOffset": 22368
+                    "endOffset": 23070
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2078,12 +2078,12 @@
             },
             {
                 "to": {
-                    "startLine": 309,
+                    "startLine": 318,
                     "startColumn": 4,
-                    "startOffset": 22373,
-                    "endLine": 311,
+                    "startOffset": 23075,
+                    "endLine": 320,
                     "endColumn": 12,
-                    "endOffset": 22543
+                    "endOffset": 23245
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2099,12 +2099,12 @@
             },
             {
                 "to": {
-                    "startLine": 312,
+                    "startLine": 321,
                     "startColumn": 4,
-                    "startOffset": 22548,
-                    "endLine": 316,
+                    "startOffset": 23250,
+                    "endLine": 325,
                     "endColumn": 12,
-                    "endOffset": 22884
+                    "endOffset": 23586
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/res/values-v21/values-v21.xml",
@@ -2120,12 +2120,12 @@
             },
             {
                 "to": {
-                    "startLine": 317,
+                    "startLine": 326,
                     "startColumn": 4,
-                    "startOffset": 22889,
-                    "endLine": 319,
+                    "startOffset": 23591,
+                    "endLine": 328,
                     "endColumn": 12,
-                    "endOffset": 23082
+                    "endOffset": 23784
                 },
                 "from": {
                     "file": "/Users/widy/.android/build-cache/63bed108f0502d6f8d99b6991265b7b7e6a71fc3/output/res/values-v21/values-v21.xml",

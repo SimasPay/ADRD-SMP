@@ -224,34 +224,43 @@
     <style name="Base.Widget.AppCompat.Toolbar.Button.Navigation" parent="android:Widget.Material.Toolbar.Button.Navigation">
     </style>
     <style name="PayByQRTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/gray_sinarmas</item>
-        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
-        <item name="colorAccent">@color/red_sinarmas</item>
-        <item name="android:windowBackground">@drawable/bg_simaspay</item>
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="colorPrimary">@color/paybyqr_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/paybyqr_colorPrimaryDark</item>
+        <item name="colorAccent">@color/paybyqr_colorSecondary</item>
+        <item name="android:windowBackground">@color/paybyqr_colorBackgroundPayment</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
 
+        <!-- enable window content transitions -->
         <item name="android:windowContentTransitions">true</item>
+        <!-- specify shared element transitions -->
         <item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>
         <item name="android:windowSharedElementExitTransition">@transition/change_image_transform</item>
     </style>
     <style name="PayByQRTheme.NoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/gray_sinarmas</item>
-        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
-        <item name="colorAccent">@color/red_sinarmas</item>
-        <item name="android:windowTranslucentStatus">false</item>
-        <item name="android:windowTranslucentNavigation">false</item>
-        <item name="android:windowBackground">@drawable/bg_simaspay</item>
+        <item name="colorPrimary">@color/paybyqr_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/paybyqr_colorPrimaryDark</item>
+        <item name="colorAccent">@color/paybyqr_colorSecondary</item>
+        <item name="android:windowBackground">@color/paybyqr_colorBackgroundPayment</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
+        <!-- enable window content transitions -->
         <item name="android:windowContentTransitions">true</item>
+        <!-- specify enter and exit transitions -->
+        <!--<item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>-->
+        <!-- specify shared element transitions -->
+        <!--<item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">@transition/change_image_transform</item>-->
     </style>
     <style name="PayByQRTheme.NoActionBar.Translucent" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/gray_sinarmas</item>
-        <item name="colorPrimaryDark">@color/gray_sinarmas</item>
-        <item name="colorAccent">@color/red_sinarmas</item>
-        <item name="android:windowBackground">@drawable/bg_simaspay</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="colorPrimary">@color/paybyqr_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/paybyqr_colorPrimaryDark</item>
+        <item name="colorAccent">@color/paybyqr_colorSecondary</item>
+        <item name="android:windowBackground">@color/paybyqr_colorBackgroundPayment</item>
+        <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
+
         <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
     <style name="Platform.AppCompat" parent="Platform.V21.AppCompat"/>
     <style name="Platform.AppCompat.Light" parent="Platform.V21.AppCompat.Light"/>

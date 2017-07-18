@@ -6,6 +6,6 @@
         android:right="1dp"
         android:top="1dp"
         android:bottom="1dp"/>
-    <stroke android:color="@color/loyalty_list_icon_border" android:width="0.5dp"/>
-    <solid android:color="@android:color/transparent" />
+    <stroke android:color="@color/paybyqr_progressBar" android:width="1dp"/>
+    <solid android:color="@android:color/white" />
 </shape>

@@ -39,10 +39,10 @@ import com.dimo.PayByQR.PayByQRSDK;
 import com.dimo.PayByQR.PayByQRSDK.SDKLocale;
 import com.dimo.PayByQR.PayByQRSDKListener;
 import com.dimo.PayByQR.UserAPIKeyListener;
+import com.dimo.PayByQR.activity.DefaultEULAFragment;
 import com.dimo.PayByQR.model.InvoiceModel;
 import com.dimo.PayByQR.model.LoyaltyModel;
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.AgentTransfer.TransferBankToEmoneyActivity;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -55,6 +55,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import simaspay.payment.com.simaspay.R;
 
@@ -127,7 +129,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
             PayByQRProperties.setServerURLString(Constants.URL_PBQ);
             payByQRSDK.setMinimumTransaction(500);
             payByQRSDK.setIsUsingCustomDialog(false);
-            payByQRSDK.setIsPolling(false);
+            //payByQRSDK.setIsPolling(false);
 
             if (selectedLanguage.equalsIgnoreCase("ENG")) {
                 payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);
@@ -193,6 +195,11 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         finish();
     }
 
+    @Override
+    public void callbackActivityResult(int i, int i1, Intent intent) {
+
+    }
+
 
     @Override
     public void callbackEULAStateChanged(boolean arg0) {
@@ -220,7 +227,19 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
         invoiceID = invoiceModel1.invoiceID;
         invoiceModel = invoiceModel1;
         Log.d(LOG_TAG, "invoiceID:" + invoiceID + ", invoiceModel:" + invoiceModel);
-        showmPINDialog();
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //show dialog here
+                        showmPINDialog();
+                    }
+                });
+            }
+        }, 500);
         Log.e(LOG_TAG, "------showmPINDialog-------");
     }
 
@@ -239,7 +258,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
     @Override
     public Fragment callbackShowEULA() {
-        return MyCustomEULA.newInstance();
+        //return MyCustomEULA.newInstance();
+        return DefaultEULAFragment.newInstance("http://banksinarmas.com/tabunganonline/simobi");
     }
 
     @Override
@@ -423,10 +443,8 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
                     alertbox.show();
                 } else if (!((msgCode == 72) || (msgCode == 2109) || (msgCode == 713))) {
                     if (msgCode == 29) {
-                        if (!payByQRSDK.isPolling())
                             payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     } else {
-                        if (!payByQRSDK.isPolling())
                             payByQRSDK.notifyTransaction(com.dimo.PayByQR.data.Constant.ERROR_CODE_PAYMENT_FAILED, responseContainer.getMsg(), true);
                     }
                 } else {
@@ -988,12 +1006,12 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
 
                                     payByQRSDK = new
                                             PayByQRSDK(PayByQRActivity.this, PayByQRActivity.this);
-                                    payByQRSDK.setIsPolling(true);
+                                    //payByQRSDK.setIsPolling(true);
                                     //payByQRSDK.setServerURL(PayByQRSDK.ServerURL.SERVER_URL_DEV);
                                     PayByQRProperties.setServerURLString(Constants.URL_PBQ);
                                     payByQRSDK.setMinimumTransaction(500);
                                     payByQRSDK.setIsUsingCustomDialog(false);
-                                    payByQRSDK.setIsPolling(false);
+                                    //payByQRSDK.setIsPolling(false);
 
                                     if (selectedLanguage.equalsIgnoreCase("ENG")) {
                                         payByQRSDK.setSDKLocale(SDKLocale.ENGLISH);

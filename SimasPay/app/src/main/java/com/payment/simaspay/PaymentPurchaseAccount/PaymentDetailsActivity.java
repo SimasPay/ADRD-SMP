@@ -535,6 +535,12 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
+                    String responseAdditional="";
+                    if(responseContainer.getAditionalInfo()==null){
+                        responseAdditional="";
+                    }else{
+                        responseAdditional=responseContainer.getAditionalInfo();
+                    }
                     Intent intent = new Intent(PaymentDetailsActivity.this, PaymentConfirmationActivity.class);
                     intent.putExtra("creditamt", responseContainer.getEncryptedDebitAmount());
                     intent.putExtra("originalAmount", responseContainer.getAmount());
@@ -543,7 +549,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     intent.putExtra("parentTxnID", responseContainer.getEncryptedParentTxnId());
                     intent.putExtra("sctlID", responseContainer.getSctl());
                     intent.putExtra("nominalamt", responseContainer.getNominalAmount());
-                    intent.putExtra("additionalInfo", responseContainer.getAditionalInfo());
+                    intent.putExtra("additionalInfo", responseAdditional);
                     intent.putExtra("invoiceNo", responseContainer.getInvoiceNo());
                     intent.putExtra("PaymentMode", getIntent().getExtras().getString("PaymentMode"));
                     intent.putExtra("ProductCode", getIntent().getExtras().getString("ProductCode"));
