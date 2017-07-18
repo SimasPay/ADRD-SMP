@@ -1219,6 +1219,7 @@ MERGED from [SimasPay:PayByQR-Android-2.1.2-Simaspay:unspecified] /Users/widy/.a
 		ADDED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml:560:13-75
 uses-sdk
 INJECTED from /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support:multidex:1.0.1] /Users/widy/.android/build-cache/468c76c38a95ec2829c52d8cdb3f3d48c357e26c/output/AndroidManifest.xml:18:5-42
 MERGED from [SimasPay:datetimepicker-library:unspecified] /Users/widy/Documents/workspace/DIMO/Simaspay-Android/SimasPay/datetimepicker-library/build/intermediates/bundles/default/AndroidManifest.xml:5:5-7:41
 MERGED from [eu.davidea:flipview:1.1.3] /Users/widy/.android/build-cache/a02184986906476433b38f20907d74361098ac1f/output/AndroidManifest.xml:8:5-10:41
 MERGED from [com.android.support:percent:26.0.0-alpha1] /Users/widy/.android/build-cache/e0e530f851cfdf08d46a9dc4325cb8ed58503a46/output/AndroidManifest.xml:20:5-44
