@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('PayByQR_Android_1.1.7_Simaspay.aar'))
