@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/background_round_corner"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="25dp"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/label_konfirmasi"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:text="@string/nama_pemilik_rekening"/>
+
+        <TextView
+            android:id="@+id/lbl_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:text="Andi Gunawan"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:text="@string/nohptujuan"/>
+
+        <TextView
+            android:id="@+id/lbl_mdn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:text="0812345678*"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:text="@string/jumlah"/>
+
+        <TextView
+            android:id="@+id/lbl_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="5dp"
+            android:text="@string/jumlah_value"/>
+
+        <TextView
+            android:id="@+id/notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:text="@string/notice"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:gravity="top">
+
+        <Button
+            android:id="@+id/benar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_color_red"
+            android:gravity="center"
+            android:text="@string/benar"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/salah_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/cancel_color_grey"
+            android:gravity="center"
+            android:text="@string/salah"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

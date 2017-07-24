@@ -1,0 +1,2 @@
+include ':app', ':datetimepicker-library', ':PayByQR-Android-2.1.2-Simaspay', ':CropImageLib'
+project(':CropImageLib').projectDir = new File('CropImage')

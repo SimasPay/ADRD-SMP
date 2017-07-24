@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CropImage/CropImageLib.iml" filepath="$PROJECT_DIR$/CropImage/CropImageLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PayByQR-Android-2.1.2-Simaspay/PayByQR-Android-2.1.2-Simaspay.iml" filepath="$PROJECT_DIR$/PayByQR-Android-2.1.2-Simaspay/PayByQR-Android-2.1.2-Simaspay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Simaspay-Android.iml" filepath="$PROJECT_DIR$/Simaspay-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/datetimepicker-library/datetimepicker-library.iml" filepath="$PROJECT_DIR$/datetimepicker-library/datetimepicker-library.iml" />
+    </modules>
+  </component>
+</project>

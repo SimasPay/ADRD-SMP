@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="start"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_arrow"/>
+
+        <TextView
+            android:id="@+id/label_toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pertanyaan Keamanan"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:layout_alignTop="@+id/back_btn"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo_simaspay" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="35dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/desc_security_lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center_horizontal"
+            android:text="@string/id_desc_security"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/background_round_corner"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:background="@null"
+            android:text="@string/en_security_questions" />
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.25dp"
+            android:background="#BEBEBE" />
+        <Spinner
+            android:id="@+id/questions_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:prompt="@string/en_security_questions"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:background="@null"
+            android:layout_marginBottom="10dp"/>
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.25dp"
+            android:background="#BEBEBE" />
+        <EditText
+            android:id="@+id/answer_ed"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="@string/en_security_answer"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingStart="10dp"
+            android:background="@null"
+            android:maxLines="1"
+            android:maxLength="25"
+            android:ems="16"
+            android:imeOptions="actionDone"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="top"
+        android:gravity="top">
+
+        <Button
+            android:id="@+id/daftar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/login_color_red"
+            android:gravity="center"
+            android:text="@string/daftar"
+            android:textAllCaps="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</LinearLayout>

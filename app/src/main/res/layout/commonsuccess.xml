@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:background="@color/reg"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/btn_back_register"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/status"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:background="@drawable/white_color"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="290dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:contentDescription="@null"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/img_greencheck_small"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="Setor Tunai Berhasil"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/ID_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/transfer_field"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="ID Transaksi : "
+                        android:textColor="@android:color/black"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/transferID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="123958"
+                        android:textColor="@android:color/black"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dip"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/line"
+                    android:layerType="software"
+                    android:orientation="vertical" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|center"
+                    android:text="Nama Pemilik Rekening"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/name_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center"
+                    android:text="BAYU SANTOSO"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|center"
+                    android:text="Nomor Handphone"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/number_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center"
+                    android:text="08881234567"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|center"
+                    android:text="Jumlah"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/amount_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center"
+                    android:text="Rp 2.500.000"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="20dp"
+                    android:gravity="left|center"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/other_products"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center"
+                    android:lineSpacingMultiplier="1.3"
+                    android:lineSpacingExtra="0dp"
+                    android:text=""
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dip"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/line"
+                    android:layerType="software"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/total"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="15dp"
+                    android:gravity="left|center"
+                    android:text="Total Pendebitan"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/total_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:gravity="left|center"
+                    android:text="Rp 2.507.500"
+                    android:textColor="@android:color/black"
+                    android:textSize="14dp"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkfav"
+            android:button="@drawable/checkbox_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/label_fav"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/id_simpan_favorit"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="220dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/login_color_red"
+        android:gravity="center"
+        android:text="@string/ok"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+</LinearLayout>
