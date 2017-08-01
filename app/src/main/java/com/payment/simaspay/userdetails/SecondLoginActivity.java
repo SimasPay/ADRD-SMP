@@ -302,6 +302,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                         startActivityForResult(intent, 20);
                     }
                 }else if(msgCode == 2315) {
+                    progressDialog.dismiss();
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", (arg0, arg1) -> {
@@ -310,6 +311,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                     });
                     alertbox.show();
                 }else if(msgCode == 2182) {
+                    progressDialog.dismiss();
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage(responseContainer.getMsg());
                     alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -393,57 +395,65 @@ public class SecondLoginActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
-                        if (responseDataContainer.getMsgCode().equals("631")) {
-                            if (progressDialog != null) {
-                                progressDialog.dismiss();
+                        switch (responseDataContainer.getMsgCode()) {
+                            case "631": {
+                                if (progressDialog != null) {
+                                    progressDialog.dismiss();
+                                }
+                                AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                    }
+                                });
+                                alertbox.show();
+                                break;
                             }
-                            AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                        } else if(responseDataContainer.getMsgCode().equals("2300")){
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message "+message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime "+transactionTime);
-                            responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode "+responseCode);
-                            AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setTitle("Reset mPIN anda");
-                            alertbox.setMessage(message);
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
-                        } else if(responseDataContainer.getMsgCode().equals("2301")){
-                            message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message "+message);
-                            transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime "+transactionTime);
-                            responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode "+responseCode);
-                            String securityQuestion = responseDataContainer.getSecurityQuestion();
-                            Log.d(LOG_TAG, "securityQuestion "+securityQuestion);
-                            //toSecurityQuestion
-                            Intent intent = new Intent(SecondLoginActivity.this, SecurityQuestionsActivity.class);
-                            intent.putExtra(Constants.PARAMETER_FORGOTMPIN, true );
-                            intent.putExtra("securityQuestion", securityQuestion );
-                            startActivity(intent);
-                        }else{
-                            AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
-                            alertbox.setMessage(responseDataContainer.getMsg());
-                            alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface arg0, int arg1) {
-                                    arg0.dismiss();
-                                }
-                            });
-                            alertbox.show();
+                            case "2300": {
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message " + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime " + transactionTime);
+                                responseCode = responseDataContainer.getResponseCode();
+                                Log.d(LOG_TAG, "responseCode " + responseCode);
+                                AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setTitle("Reset mPIN anda");
+                                alertbox.setMessage(message);
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                    }
+                                });
+                                alertbox.show();
+                                break;
+                            }
+                            case "2301":
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message " + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime " + transactionTime);
+                                responseCode = responseDataContainer.getResponseCode();
+                                Log.d(LOG_TAG, "responseCode " + responseCode);
+                                String securityQuestion = responseDataContainer.getSecurityQuestion();
+                                Log.d(LOG_TAG, "securityQuestion " + securityQuestion);
+                                //toSecurityQuestion
+                                Intent intent = new Intent(SecondLoginActivity.this, SecurityQuestionsActivity.class);
+                                intent.putExtra(Constants.PARAMETER_FORGOTMPIN, true);
+                                intent.putExtra("securityQuestion", securityQuestion);
+                                startActivity(intent);
+                                break;
+                            default: {
+                                AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
+                                alertbox.setMessage(responseDataContainer.getMsg());
+                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        arg0.dismiss();
+                                    }
+                                });
+                                alertbox.show();
+                                break;
+                            }
                         }
                     }
                 }catch (Exception e) {

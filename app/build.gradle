@@ -9,7 +9,7 @@ android {
         applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 128
+        versionCode 129
         versionName "1.0.0"
         multiDexEnabled true
         jackOptions {
