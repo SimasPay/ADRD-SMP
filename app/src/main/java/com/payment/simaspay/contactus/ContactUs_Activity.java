@@ -39,20 +39,14 @@ import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 12/22/2015.
- */
 public class ContactUs_Activity extends Activity {
 
     TextView mobile_number_1, mobile_number_2, e_mail, website, textView, textView1, textView2, heading;
-
     ImageView mobile_1, mobile_2;
     Dialog dialogCustomWish;
     Button btnBacke;
     Context context;
-
     LinearLayout layout_1, layout_2;
-
     SharedPreferences sharedPreferences;
 
 
@@ -110,6 +104,7 @@ public class ContactUs_Activity extends Activity {
         });
 
 
+        mobile_number_1.setText(getResources().getString(R.string.phone_contact_1));
         mobile_number_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +118,7 @@ public class ContactUs_Activity extends Activity {
             }
         });
 
+        mobile_number_2.setText(getResources().getString(R.string.phone_contact_2));
         mobile_number_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -162,6 +158,7 @@ public class ContactUs_Activity extends Activity {
             }
         });
 
+        e_mail.setText(getResources().getString(R.string.email_contact));
         e_mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,6 +179,7 @@ public class ContactUs_Activity extends Activity {
 
         });
 
+        website.setText(getResources().getString(R.string.website_contact));
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

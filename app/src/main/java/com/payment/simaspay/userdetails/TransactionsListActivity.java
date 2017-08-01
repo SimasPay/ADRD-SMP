@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.PojoClasses.TransactionsData;
+import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.JSONParser;
@@ -491,7 +492,16 @@ public class TransactionsListActivity extends AppCompatActivity {
                     transactionsAdapter = new TransactionsAdapter();
                     listView.setAdapter(transactionsAdapter);
                 } else if (msgCode == 38) {
-                    Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
+                    progressDialog.dismiss();
+                    //Utility.networkDisplayDialog(responseContainer.getMsg(), TransactionsListActivity.this);
+                    AlertDialog.Builder alertbox = new AlertDialog.Builder(TransactionsListActivity.this, R.style.MyAlertDialogStyle);
+                    alertbox.setMessage(responseContainer.getMsg());
+                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            finish();
+                        }
+                    });
+                    alertbox.show();
                 }
             } else {
                  if (progressDialog != null) {

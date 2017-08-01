@@ -40,29 +40,17 @@ import simaspay.payment.com.simaspay.R;
 public class Trans_DataSelectionActivity extends FragmentActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     LinearLayout back_layout;
-
     TextView title, heading, firstmonth, secondmonth, last2months, datefrom_text, dateto_text;
-
     Button datefrom_button, dateto_button, next;
-
     boolean booleanthisMonth, booleanlastmonth, booleantwomonths, booleanmanualSelection;
-
     LinearLayout current_month, onemonth, twomonths_layout, manual_selection_layout;
-
     ImageView currentMonthImage, oneMonthImage, twoMonthsImage, manualSelectionImage;
-
     String fromDate, toDate;
-
     Calendar calendar;
-
     SimpleDateFormat sdf, sdf1;
-
     public static final String DATEPICKER_TAG = "datepicker";
-
     DatePickerDialog from_datePickerDialog, to_datePickerDialog;
-
     int dateSelectionValue = -1;
-
     SharedPreferences sharedPreferences;
 
     @Override
