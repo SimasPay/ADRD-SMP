@@ -34,6 +34,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
+import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import com.testfairy.TestFairy;
 
@@ -244,9 +245,16 @@ public class SplashScreenActivity extends Activity {
                                     startActivity(intent);
                                     finish();
                                 }else{
-                                    Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    String mdn = settings.getString("mobileNumber", "");
+                                    if(!mdn.equals("")){
+                                        Intent intent = new Intent(SplashScreenActivity.this, SecondLoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }else{
+                                        Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }
                             }
                         } else {

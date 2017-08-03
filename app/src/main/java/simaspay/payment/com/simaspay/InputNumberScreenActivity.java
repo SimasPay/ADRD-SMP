@@ -179,7 +179,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                             }else{
                                 settings.edit().putString("fullname", firstName + " " + lastName).apply();
                             }
-
+                            finish();
                             Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
