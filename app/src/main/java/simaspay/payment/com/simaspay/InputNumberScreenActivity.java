@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -125,7 +124,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, phonenum);
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            Log.e("-----",""+mapContainer.toString());
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     InputNumberScreenActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -151,22 +150,22 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(TAG, e.toString());
+                    //Log.e(TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         String mdn = responseDataContainer.getMdn();
                         String status = responseDataContainer.getStatus();
                         String firstName = responseDataContainer.getFirstName();
                         String lastName = responseDataContainer.getLastName();
-                        Log.d("test", "mdn: "+ mdn + ", status: "+ status);
+                        //Log.d("test", "mdn: "+ mdn + ", status: "+ status);
                         if(status.equals("0") || status.equals("27")){
                             settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
                             settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
@@ -191,7 +190,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                         }
                     }
                 }catch (Exception e) {
-                    Log.d(TAG, "Error : "+e.toString());
+                    //Log.d(TAG, "Error : "+e.toString());
                 }
             } else {
                 progressDialog.dismiss();

@@ -1,12 +1,10 @@
 package com.payment.simaspay.services;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources.NotFoundException;
 import android.os.Handler;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,12 +39,12 @@ import simaspay.payment.com.simaspay.R;
 public class WebServiceHttp  {
 
     private final int SPLASH_DISPLAY_LENGHT = 5000;
-    Context context;
-    String params;
-    Map<String, String> mapContainer = new HashMap<String, String>();
-    StringBuilder requestUrlConstruct;
-    String param;
-    SharedPreferences subscriberKYCStatus;
+    private Context context;
+    private String params;
+    private Map<String, String> mapContainer = new HashMap<String, String>();
+    private StringBuilder requestUrlConstruct;
+    private String param;
+    private SharedPreferences subscriberKYCStatus;
 
     public WebServiceHttp(Map<String, String> mapContainer, Context context) {
         this.context = context;
@@ -71,7 +69,7 @@ public class WebServiceHttp  {
         for (Map.Entry<String, String> entry : mapContainer.entrySet()) {
             String key = entry.getKey();
             String value="";
-            Log.d("Test","key:" + entry.getKey() + ", VALUE: "+ entry.getValue());
+            //Log.d("Test","key:" + entry.getKey() + ", VALUE: "+ entry.getValue());
             if(entry.getValue()==null){
                 value = encodeString(entry.getValue());
             }else{
@@ -119,7 +117,7 @@ public class WebServiceHttp  {
                     + "="
                     + "";
         }
-        Log.e("-----",""+params.toString());
+        //Log.e("-----",""+params.toString());
         return AppConfigFile.requestUrl;
     }
 
@@ -142,13 +140,7 @@ public class WebServiceHttp  {
         try {
             ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
                     passphrase);
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        } catch (java.security.cert.CertificateException e1) {
-            e1.printStackTrace();
-        } catch (NotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
+        } catch (NoSuchAlgorithmException | java.security.cert.CertificateException | NotFoundException | IOException e1) {
             e1.printStackTrace();
         }
 
@@ -176,7 +168,9 @@ public class WebServiceHttp  {
         }
 
         try {
-            sslContext.init(null, tmf.getTrustManagers(), new SecureRandom());
+            if (sslContext != null) {
+                sslContext.init(null, tmf.getTrustManagers(), new SecureRandom());
+            }
         } catch (KeyManagementException e1) {
             e1.printStackTrace();
         }
@@ -251,20 +245,16 @@ public class WebServiceHttp  {
             }
 
 
-        } catch (SocketTimeoutException e) {
+        } catch (SocketTimeoutException | java.net.ProtocolException e) {
             contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             e.printStackTrace();
         } catch (ConnectException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             contents = null;
-            e.printStackTrace();
-        } catch (java.net.ProtocolException e) {
-            contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
             e.printStackTrace();
         } catch (IOException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").apply();
             contents = null;
             e.printStackTrace();
         }finally{
@@ -291,13 +281,7 @@ public class WebServiceHttp  {
         try {
             ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
                     passphrase);
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        } catch (java.security.cert.CertificateException e1) {
-            e1.printStackTrace();
-        } catch (NotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
+        } catch (NoSuchAlgorithmException | java.security.cert.CertificateException | IOException | NotFoundException e1) {
             e1.printStackTrace();
         }
 
@@ -401,16 +385,15 @@ public class WebServiceHttp  {
 
         } catch (SocketTimeoutException e) {
             contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
-
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
         } catch (ConnectException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             contents = null;
         } catch (java.net.ProtocolException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             e.printStackTrace();
         } catch (IOException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").commit();
+            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").apply();
             contents = null;
         } finally {
             conn.disconnect();
@@ -418,7 +401,7 @@ public class WebServiceHttp  {
         return contents;
     }
 
-    public String encodeString(String parameter) {
+    private String encodeString(String parameter) {
         String parameter1 = null;
         try {
             if (parameter.contains("@")) {

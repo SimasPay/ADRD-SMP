@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,7 +136,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
 
     @Override
     public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
     }
@@ -159,7 +157,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRM_PIN, getIntent().getExtras().getString("ConfirmPin"));
             mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, getIntent().getExtras().getString("sctlID"));
-            Log.d(LOG_TAG, "otpValue:"+otpValue);
+            //Log.d(LOG_TAG, "otpValue:"+otpValue);
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");
                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
@@ -195,14 +193,12 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }
-                Log.e(LOG_TAG, "response=====" + confirmationResponse);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
                     responseContainer = obj.parse(confirmationResponse);
-                    Log.e(LOG_TAG, "responseContainer" + responseContainer + "");
                 } catch (Exception e) {
-                    Log.d(LOG_TAG, "error: "+ e.toString());
+                    //Log.d(LOG_TAG, "error: "+ e.toString());
                 }
                 if (progressDialog != null) {
                     progressDialog.dismiss();
@@ -211,7 +207,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                     if (responseContainer != null) {
                         msgCode = Integer.parseInt(responseContainer.getMsgCode());
                     }
-                    Log.d(LOG_TAG,"msgCode: "+msgCode);
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -284,8 +279,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
-        Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
-
         // Timer
         final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
@@ -348,7 +341,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() >= Constants.DIGITS_OTP) {
-                    Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
@@ -378,8 +370,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             mapContainer.put("sourcePIN", stMPIN);
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
-
-            Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     ChangePinConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -401,13 +391,12 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
@@ -418,7 +407,6 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
                         switch (responseDataContainer.getMsgCode()) {
                             case "631":
                                 if (progressDialog != null) {
@@ -436,12 +424,12 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                                 break;
                             case "2171":
                                 message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message" + message);
+                                //Log.d(LOG_TAG, "message" + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                //Log.d(LOG_TAG, "transactionTime" + transactionTime);
                                 responseCode = responseDataContainer.getResponseCode();
-                                Log.d(LOG_TAG, "responseCode" + responseCode);
-                                Log.d("test", "not null");
+                                //Log.d(LOG_TAG, "responseCode" + responseCode);
+                                //Log.d("test", "not null");
                                 showOTPRequiredDialog();
                                 break;
                             default:
@@ -451,7 +439,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
         }

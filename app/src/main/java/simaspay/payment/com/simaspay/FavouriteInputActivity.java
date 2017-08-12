@@ -149,7 +149,7 @@ public class FavouriteInputActivity extends AppCompatActivity {
                     if (responseDataContainer != null) {
                         Log.d("test", "not null");
                         AlertDialog.Builder alertbox;
-                        if (msgCode == 631) {
+                        if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
                             }

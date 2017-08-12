@@ -16,7 +16,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +125,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
     @Override
     public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
+        //Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
     }
@@ -153,7 +152,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
-        Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
+        //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
         final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
@@ -207,7 +206,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() >= Constants.DIGITS_OTP) {
-                    Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
+                    //Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
@@ -279,19 +278,19 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
-                    Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
+                    //Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
 
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         int msgCode;
 
                         try {
@@ -323,7 +322,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
                 if (progressDialog != null) {
@@ -350,7 +349,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             mapContainer.put(Constants.PARAMETER_SCTL, stSctl);
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
 
-            Log.e("-----",""+mapContainer.toString());
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     TransferEmoneyToEmoneyConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -376,17 +375,17 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         AlertDialog.Builder alertbox;
                         switch (responseDataContainer.getMsgCode()) {
                             case "631":
@@ -402,12 +401,12 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                                 break;
                             case "2171":
                                 message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message" + message);
+                                //Log.d(LOG_TAG, "message" + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                //Log.d(LOG_TAG, "transactionTime" + transactionTime);
                                 responseCode = responseDataContainer.getResponseCode();
-                                Log.d(LOG_TAG, "responseCode" + responseCode);
-                                Log.d("test", "not null");
+                                //Log.d(LOG_TAG, "responseCode" + responseCode);
+                                //Log.d("test", "not null");
 
                                 showOTPRequiredDialog();
                                 break;
@@ -421,7 +420,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
                 if (progressDialog != null) {

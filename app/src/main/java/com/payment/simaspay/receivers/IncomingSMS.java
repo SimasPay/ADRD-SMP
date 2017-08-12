@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
 public class IncomingSMS extends BroadcastReceiver {
 
@@ -23,7 +22,7 @@ public class IncomingSMS extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.d(LOG_TAG, "onReceive");
+		//Log.d(LOG_TAG, "onReceive");
 		SharedPreferences settings = context.getSharedPreferences(LOG_TAG,	0);
 		//String sctl = settings.getString("Sctl", "");
 		final Bundle bundle = intent.getExtras();
@@ -41,14 +40,14 @@ public class IncomingSMS extends BroadcastReceiver {
 		            	messages[i] = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
 		            }
 					String message = messages[i].getMessageBody();
-					Log.d(LOG_TAG, "msg : " + message);
+					//Log.d(LOG_TAG, "msg : " + message);
 					try {
-						Log.d(LOG_TAG, "msg to lowercase:"+message.toLowerCase(Locale.getDefault()));
+						//Log.d(LOG_TAG, "msg to lowercase:"+message.toLowerCase(Locale.getDefault()));
 						if (message.toLowerCase(Locale.getDefault()).contains("kode otp simaspay anda ")
 								|| message.toLowerCase(Locale.getDefault()).contains("your simaspay code is ")) {
 							settings.edit().putBoolean("isAutoSubmit", true).apply();
 							otpValue = message.substring(message.substring(0, message.indexOf(".")).lastIndexOf(" "), message.indexOf(".")).trim();
-							Log.d(LOG_TAG, "OPT code : " + otpValue + "");
+							//Log.d(LOG_TAG, "OPT code : " + otpValue + "");
 							if (listener != null) {
                                 listener.onReadSMS(otpValue);
                             }
@@ -64,7 +63,7 @@ public class IncomingSMS extends BroadcastReceiver {
 			}
 
 		} catch (Exception e) {
-			Log.d(LOG_TAG, "Error: " + e);
+			//Log.d(LOG_TAG, "Error: " + e);
 		}
 	}
 	

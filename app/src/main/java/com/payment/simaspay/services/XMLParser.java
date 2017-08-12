@@ -10,7 +10,6 @@ import org.kxml.Xml;
 import org.kxml.parser.ParseEvent;
 import org.kxml.parser.XmlParser;
 
-//import android.util.Log;
 
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 

@@ -18,3 +18,5 @@
 -keep class com.testfairy.** { *; }
 -dontwarn com.testfairy.**
 -keepattributes Exceptions, Signature, LineNumberTable
+-dontwarn **
+-assumenosideeffects class android.util.Log { *; }

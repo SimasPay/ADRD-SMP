@@ -19,7 +19,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -255,7 +254,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
@@ -314,7 +313,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d(LOG_TAG, "permission granted");
+                //Log.d(LOG_TAG, "permission granted");
             }
         }
     }
@@ -335,7 +334,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     TransferOtherbankConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -361,17 +360,17 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         AlertDialog.Builder alertbox;
                         if (msgCode == 631) {
                             if (progressDialog != null) {
@@ -388,12 +387,12 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                             alertbox.show();
                         }else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
+                            //Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
+                            //Log.d(LOG_TAG, "transactionTime"+transactionTime);
                             responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
-                            Log.d("test", "not null");
+                            //Log.d(LOG_TAG, "responseCode"+responseCode);
+                            //Log.d("test", "not null");
                             int msgCode = 0;
 
                             showOTPRequiredDialog();
@@ -409,7 +408,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
                 if (progressDialog != null) {
@@ -445,7 +444,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
-        Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
+        //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
         final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
@@ -498,8 +497,8 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() >= Constants.DIGITS_OTP) {
-                    Log.d(LOG_TAG, "otp dialog : " + edt.getText());
-                    Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
+                    //Log.d(LOG_TAG, "otp dialog : " + edt.getText());
+                    //Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
                     myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
@@ -516,7 +515,7 @@ public class TransferOtherbankConfirmationActivity extends AppCompatActivity imp
 
     @Override
     public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
+        //Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
     }

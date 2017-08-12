@@ -19,7 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
+//import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +43,6 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.DaftarEmoneyActivity;
 import simaspay.payment.com.simaspay.R;
 
 
@@ -114,7 +113,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         amount.setText(getResources().getString(R.string.jumlah));
         amount_field.setText("Rp. " + getIntent().getExtras().getString("amount"));
 
-        Log.e("---------", "---------" + getIntent().getExtras().getString("Acc_Number"));
+        //Log.e("---------", "---------" + getIntent().getExtras().getString("Acc_Number"));
 
         products.setVisibility(View.GONE);
         product_field.setVisibility(View.GONE);
@@ -181,9 +180,9 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d(LOG_TAG, "permission granted");
+                //Log.d(LOG_TAG, "permission granted");
             } else {
-                Log.d(LOG_TAG, "permission rejected");
+                //Log.d(LOG_TAG, "permission rejected");
             }
         }
     }
@@ -210,7 +209,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
-        Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
+        //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
         final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
@@ -266,8 +265,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                 ok_otp.setEnabled(true);
                 ok_otp.setTextColor(getResources().getColor(R.color.red));
                 if (edt.getText().length() >= Constants.DIGITS_OTP) {
-                    Log.d(LOG_TAG, "otp dialog : " + edt.getText());
-                    Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
+                    //Log.d(LOG_TAG, "otp dialog : " + edt.getText());
+                    //Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     otpValue=edt.getText().toString();
                     myTimer.cancel();
                     if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
@@ -294,25 +293,25 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
             Map<String, String> mapContainer = new HashMap<String, String>();
             mapContainer.put("txnName", "TransferToUangku");
-            Log.d(LOG_TAG,"txnName TransferToUangku");
+            //Log.d(LOG_TAG,"txnName TransferToUangku");
             mapContainer.put("service", Constants.SERVICE_WALLET);
-            Log.d(LOG_TAG,"service "+Constants.SERVICE_WALLET);
+            //Log.d(LOG_TAG,"service "+Constants.SERVICE_WALLET);
             mapContainer.put("institutionID", Constants.CONSTANT_INSTITUTION_ID);
-            Log.d(LOG_TAG,"institutionID "+Constants.CONSTANT_INSTITUTION_ID);
+            //Log.d(LOG_TAG,"institutionID "+Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put("authenticationKey", "");
-            Log.d(LOG_TAG,"authenticationKey ");
+            //Log.d(LOG_TAG,"authenticationKey ");
             mapContainer.put("sourceMDN", sharedPreferences.getString("mobileNumber", ""));
-            Log.d(LOG_TAG,"sourceMDN "+sharedPreferences.getString("mobileNumber", ""));
+            //Log.d(LOG_TAG,"sourceMDN "+sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put("transferID", stTransferID);
-            Log.d(LOG_TAG,"transferID "+stTransferID);
+            //Log.d(LOG_TAG,"transferID "+stTransferID);
             mapContainer.put("parentTxnID", stParentTxnID);
-            Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
+            //Log.d(LOG_TAG,"parentTxnID "+stParentTxnID);
             mapContainer.put(Constants.PARAMETER_CONFIRMED,Constants.CONSTANT_VALUE_TRUE);
-            Log.d(LOG_TAG,"confirmed true");
+            //Log.d(LOG_TAG,"confirmed true");
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, Constants.CONSTANT_CHANNEL_ID);
-            Log.d(LOG_TAG,"channelID 7");
+            //Log.d(LOG_TAG,"channelID 7");
             mapContainer.put("sourcePocketCode", "1");
-            Log.d(LOG_TAG,"sourcePocketCode 1");
+            //Log.d(LOG_TAG,"sourcePocketCode 1");
             typeTransferCat="E2B";
             idTransferCat=12;
             if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
@@ -320,8 +319,8 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             }else{
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
-            Log.d(LOG_TAG,"mfaOtp "+CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
-            Log.d(LOG_TAG,"otp "+ otpValue);
+            //Log.d(LOG_TAG,"mfaOtp "+CryptoService.encryptWithPublicKey(module, exponent, otpValue.getBytes()));
+            //Log.d(LOG_TAG,"otp "+ otpValue);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     UangkuTransferConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -347,19 +346,19 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
-                    Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
+                    //Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
 
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         int msgCode = 0;
 
                         try {
@@ -394,7 +393,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
                 func.errorNullResponseConfirmation();
@@ -418,7 +417,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     UangkuTransferConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -444,17 +443,17 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         if (responseDataContainer.getMsgCode().equals("631")) {
                             if (progressDialog != null) {
                                 progressDialog.dismiss();
@@ -463,12 +462,12 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                             dialogBuilder.dismiss();
                         } else if(responseDataContainer.getMsgCode().equals("2171")){
                             message = responseDataContainer.getMsg();
-                            Log.d(LOG_TAG, "message"+message);
+                            //Log.d(LOG_TAG, "message"+message);
                             transactionTime = responseDataContainer.getTransactionTime();
-                            Log.d(LOG_TAG, "transactionTime"+transactionTime);
+                            //Log.d(LOG_TAG, "transactionTime"+transactionTime);
                             responseCode = responseDataContainer.getResponseCode();
-                            Log.d(LOG_TAG, "responseCode"+responseCode);
-                            Log.d("test", "not null");
+                            //Log.d(LOG_TAG, "responseCode"+responseCode);
+                            //Log.d("test", "not null");
                             int msgCode = 0;
 
                             showOTPRequiredDialog();
@@ -481,7 +480,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
         }
@@ -489,7 +488,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
     @Override
     public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
+        //Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
     }
@@ -566,7 +565,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {

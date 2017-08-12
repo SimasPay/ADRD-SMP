@@ -31,7 +31,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -49,7 +48,6 @@ import com.payment.simaspay.AgentTransfer.NewTransferHomeActivity;
 import com.payment.simaspay.AgentTransfer.NewWithdrawHomeActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
-import com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity;
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.services.Constants;
@@ -209,7 +207,6 @@ public class UserHomeActivity extends BaseActivity {
                 switch_account.setVisibility(View.VISIBLE);
                 break;
         }
-        Log.d("data", "mdn: " + mdn + ", mpin: " + mpin);
         sharedPreferences.edit().putString(Constants.PARAMETER_USES_AS, accountSelected).apply();
 
         switch_account.setOnClickListener(view -> {
@@ -415,7 +412,7 @@ public class UserHomeActivity extends BaseActivity {
                 }
             } else if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
                 if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_EMONEY_INT) {
-                    Log.d(LOG_TAG, "emoney");
+                    //Log.d(LOG_TAG, "emoney");
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                 } else if (sharedPreferences.getInt(Constants.PARAMETER_AGENTTYPE, -1) == Constants.CONSTANT_BANK_INT) {
@@ -445,7 +442,7 @@ public class UserHomeActivity extends BaseActivity {
             progbar.setVisibility(View.GONE);
             int msgCode = 0;
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
@@ -472,7 +469,7 @@ public class UserHomeActivity extends BaseActivity {
                         }
                     }
                 } catch (Exception e) {
-                    Log.d(LOG_TAG, e.toString());
+                   // Log.d(LOG_TAG, e.toString());
                 }
             } else {
                 checkbalance.setText("");
@@ -501,9 +498,9 @@ public class UserHomeActivity extends BaseActivity {
                 }
                 break;
             case PICK_FROM_CAMERA:
-                Log.i(LOG_TAG, "Inside PICK_FROM_CAMERA");
+                //Log.i(LOG_TAG, "Inside PICK_FROM_CAMERA");
                 String path = picUri.getPath();
-                Log.i(LOG_TAG, "After capture path " + path);
+                //Log.i(LOG_TAG, "After capture path " + path);
                 doCrop();
 
                 break;
@@ -511,17 +508,15 @@ public class UserHomeActivity extends BaseActivity {
             case PICK_FROM_FILE:
                 picUri = data.getData();
                 String path_photo = picUri.getPath();
-                Log.i(LOG_TAG,
-                        "picUri " + picUri);
-                Log.i(LOG_TAG,
-                        "After Crop mImageCaptureUri, path photo " + path_photo);
+                //Log.i(LOG_TAG,"picUri " + picUri);
+                //Log.i(LOG_TAG,"After Crop mImageCaptureUri, path photo " + path_photo);
                 GallaryPhotoSelected = true;
                 doCrop();
 
                 break;
             case REQ_PICK_IMAGE:
                 if (resultCode == Activity.RESULT_OK) {
-                    Log.d(LOG_TAG, "processing image...");
+                    //Log.d(LOG_TAG, "processing image...");
                     picUri = data.getData();
                     performCrop();
                 }
@@ -543,7 +538,7 @@ public class UserHomeActivity extends BaseActivity {
                     }
                     byte[] byteArray = byteArrayOutputStream.toByteArray();
                     encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                    Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                    //Log.d(LOG_TAG, "encoded image:" + encodedImg);
                     sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING,encodedImg).apply();
                     new PhotoUpload().execute();
                     photo.setImageBitmap(thePic);
@@ -552,32 +547,32 @@ public class UserHomeActivity extends BaseActivity {
             case CROP_FROM_CAMERA:
                 if(data.getExtras()!=null){
                     Bundle extras = data.getExtras();
-                    Log.d(LOG_TAG, "extras: "+extras);
+                    //Log.d(LOG_TAG, "extras: "+extras);
                     String selectedImagePath = picUri.getPath();
-                    Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
-                    Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
+                    //Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
+                    //Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
                     if (GallaryPhotoSelected) {
-                        Log.i(LOG_TAG, "Absolute Path " + selectedImagePath);
+                        //Log.i(LOG_TAG, "Absolute Path " + selectedImagePath);
                         GallaryPhotoSelected = true;
                     }
 
                     Finalmedia = selectedImagePath;
 
                     if (extras != null) {
-                        Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
+                        //Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
                         Bitmap thePic = decodeFile(selectedImagePath);
                         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                         if (thePic != null)
                             thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
                         byte[] byteArray = byteArrayOutputStream.toByteArray();
                         encodedImg = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                        Log.d(LOG_TAG, "encoded image:" + encodedImg);
+                        //Log.d(LOG_TAG, "encoded image:" + encodedImg);
                         sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING,encodedImg).apply();
                         new PhotoUpload().execute();
                         photo.setImageBitmap(thePic);
                     }
                 }else{
-                    Log.d(LOG_TAG, "extras null!");
+                    //Log.d(LOG_TAG, "extras null!");
                 }
                 break;
             default:
@@ -642,19 +637,19 @@ public class UserHomeActivity extends BaseActivity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
-                    Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
+                    //Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
 
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         int msgCode;
 
                         try {
@@ -691,7 +686,7 @@ public class UserHomeActivity extends BaseActivity {
                         }
                     }
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             } else {
                 if (progressDialog != null) {
@@ -728,7 +723,7 @@ public class UserHomeActivity extends BaseActivity {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(UserHomeActivity.this,
                     Manifest.permission.CAMERA)) {
-                Log.d(LOG_TAG, "check camera permission");
+                //Log.d(LOG_TAG, "check camera permission");
             } else {
                 ActivityCompat.requestPermissions(UserHomeActivity.this,
                         new String[]{Manifest.permission.CAMERA},
@@ -744,9 +739,9 @@ public class UserHomeActivity extends BaseActivity {
             case MY_PERMISSIONS_REQUEST_CAMERA: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.d(LOG_TAG, "permission granted");
+                    //Log.d(LOG_TAG, "permission granted");
                 } else {
-                    Log.d(LOG_TAG, "permission denied");
+                    //Log.d(LOG_TAG, "permission denied");
                 }
             }
         }
@@ -771,25 +766,25 @@ public class UserHomeActivity extends BaseActivity {
             orientation = exif
                     .getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
 
-            Log.e("ExifInteface .........", "rotation =" + orientation);
-            Log.e("orientation", "" + orientation);
+            //Log.e("ExifInteface .........", "rotation =" + orientation);
+            //Log.e("orientation", "" + orientation);
             Matrix m = new Matrix();
 
             if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
                 m.postRotate(180);
-                Log.e("in orientation", "" + orientation);
+                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;
             } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
                 m.postRotate(90);
-                Log.e("in orientation", "" + orientation);
+                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;
             } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
                 m.postRotate(270);
-                Log.e("in orientation", "" + orientation);
+                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;

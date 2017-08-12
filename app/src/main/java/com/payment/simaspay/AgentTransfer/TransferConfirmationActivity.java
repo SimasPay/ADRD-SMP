@@ -19,7 +19,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +44,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
 
@@ -195,7 +193,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         });
         edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
 
-        Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
+        //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
         final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
@@ -248,8 +246,8 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 if (edt.getText().length() >= Constants.DIGITS_OTP) {
                     ok_otp.setEnabled(true);
                     ok_otp.setTextColor(getResources().getColor(R.color.red));
-                    Log.d(LOG_TAG, "otp dialog : " + edt.getText());
-                    Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
+                    //Log.d(LOG_TAG, "otp dialog : " + edt.getText());
+                    //Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
                     if(otpValue==null||otpValue.equals("")){
                         otpValue=edt.getText().toString();
@@ -266,7 +264,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
 
     @Override
     public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
+        //Log.d(LOG_TAG, "otp from SMS: " + otp);
         edt.setText(otp);
         otpValue=otp;
     }
@@ -287,7 +285,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             mapContainer.put("sctlId", stSctl);
             mapContainer.put("channelID", "7");
 
-            Log.e("-----",""+mapContainer.toString());
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     TransferConfirmationActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -313,17 +311,17 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------", "=====" + response);
+                //Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         AlertDialog.Builder alertbox;
                         switch (responseDataContainer.getMsgCode()) {
                             case "631":
@@ -342,12 +340,12 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                                 break;
                             case "2171":
                                 message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message" + message);
+                                //Log.d(LOG_TAG, "message" + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                //Log.d(LOG_TAG, "transactionTime" + transactionTime);
                                 responseCode = responseDataContainer.getResponseCode();
-                                Log.d(LOG_TAG, "responseCode" + responseCode);
-                                Log.d("test", "not null");
+                                //Log.d(LOG_TAG, "responseCode" + responseCode);
+                                //Log.d("test", "not null");
 
                                 showOTPRequiredDialog();
                                 break;
@@ -360,7 +358,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
         }
@@ -434,7 +432,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             } else {
                 mapContainer.put(Constants.PARAMETER_MFA_OTP, "");
             }
-            Log.e("=======","--------"+mapContainer.toString());
+            //Log.e("=======","--------"+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, TransferConfirmationActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -455,7 +453,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
@@ -530,9 +528,9 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 109) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Log.d(LOG_TAG, "permission granted");
+                //Log.d(LOG_TAG, "permission granted");
             } else {
-                Log.d(LOG_TAG, "permission rejected");
+                //Log.d(LOG_TAG, "permission rejected");
             }
         }
     }

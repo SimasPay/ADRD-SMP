@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -29,7 +28,6 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -53,7 +51,7 @@ public class SplashScreenActivity extends Activity {
     TextView textView;
     RSAEncryption rsaEncryption;
     SharedPreferences sharedPreferences;
-    static Context context;
+    private Context context;
     String appID;
 
     @Override
@@ -63,7 +61,6 @@ public class SplashScreenActivity extends Activity {
         setContentView(R.layout.activity_splash_screen);
         settings = getSharedPreferences(TAG, 0);
         context=SplashScreenActivity.this;
-        editor = settings.edit();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = SplashScreenActivity.this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -78,10 +75,10 @@ public class SplashScreenActivity extends Activity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            Log.e("--------","========================Connected");
+            //Log.e("--------","========================Connected");
         } else {
             // display error
-            Log.e("--------","====================== Not==Connected");
+            //Log.e("--------","====================== Not==Connected");
         }
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -128,16 +125,16 @@ public class SplashScreenActivity extends Activity {
             Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
-            Log.d(TAG, Constants.PARAMETER_CHANNEL_ID+ ", "+Constants.CONSTANT_CHANNEL_ID);
+            //Log.d(TAG, Constants.PARAMETER_CHANNEL_ID+ ", "+Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
-            Log.d(TAG, Constants.PARAMETER_SERVICE_NAME+ ", "+Constants.SERVICE_ACCOUNT);
+            //Log.d(TAG, Constants.PARAMETER_SERVICE_NAME+ ", "+Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_GETPUBLICKEY);
-            Log.d(TAG, Constants.PARAMETER_TRANSACTIONNAME+ ", "+Constants.TRANSACTION_GETPUBLICKEY);
+            //Log.d(TAG, Constants.PARAMETER_TRANSACTIONNAME+ ", "+Constants.TRANSACTION_GETPUBLICKEY);
             mapContainer.put(Constants.PARAMETER_APPOS, Constants.OS_ANDROID);
             mapContainer.put(Constants.PARAMETER_SIMASPAYACTIVITY, Constants.IS_SIMASPAYACTIVITY);
-            Log.d(TAG, Constants.PARAMETER_APPOS+", "+Constants.OS_ANDROID);
+            //Log.d(TAG, Constants.PARAMETER_APPOS+", "+Constants.OS_ANDROID);
             PackageManager manager = context.getPackageManager();
 
             try {
@@ -147,12 +144,12 @@ public class SplashScreenActivity extends Activity {
                 e.printStackTrace();
             }
             mapContainer.put(Constants.PARAMETER_APPVERSION, version);
-            Log.d(TAG, Constants.PARAMETER_APPVERSION+", "+version);
-            Log.e("-----",""+mapContainer.toString());
+            //Log.d(TAG, Constants.PARAMETER_APPVERSION+", "+version);
+            //Log.e("-----",""+mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     SplashScreenActivity.this);
 
-            Log.e("--------","----------"+checkWriteExternalPermission());
+            //Log.e("--------","----------"+checkWriteExternalPermission());
 
 
            /* JSONParser jsonParser=new JSONParser();
@@ -184,19 +181,19 @@ public class SplashScreenActivity extends Activity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e("-------","=====SplashScreen===="+response);
+                //Log.e("-------","=====SplashScreen===="+response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.d(LOG_TAG, "error:"+e.getMessage());
+                    //Log.d(LOG_TAG, "error:"+e.getMessage());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         if (responseDataContainer.getSuccess().equals("true")) {
-                            Log.d("test", "success:true");
+                            //Log.d("test", "success:true");
                             sharedPreferences
                                     .edit()
                                     .putString("MODULE",
@@ -209,8 +206,8 @@ public class SplashScreenActivity extends Activity {
                                     .apply();
 
                             String firsttime = settings.getString("firsttime", "yes");
-                            Log.d("test", "firsttime: "+ firsttime);
-                            Log.d("test", "not null");
+                            //Log.d("test", "firsttime: "+ firsttime);
+                            //Log.d("test", "not null");
                             int msgCode = 0;
                             try {
                                 msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
@@ -219,7 +216,7 @@ public class SplashScreenActivity extends Activity {
                             }
                             if(msgCode==2310){
                                 final String appURL = responseDataContainer.getAppURL();
-                                Log.d(TAG, "appURL:"+appURL);
+                                //Log.d(TAG, "appURL:"+appURL);
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(SplashScreenActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
                                 alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -258,7 +255,7 @@ public class SplashScreenActivity extends Activity {
                                 }
                             }
                         } else {
-                            Log.d("test", "success:false");
+                            //Log.d("test", "success:false");
                             if (responseDataContainer.getMsg() != null) {
                                 Utility.ShowDialog(responseDataContainer.getMsg(), SplashScreenActivity.this);
                             } else {
@@ -319,7 +316,6 @@ public class SplashScreenActivity extends Activity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     rsaEncryption = new RSAEncryption();
                     rsaEncryption.execute();
-                } else {
                 }
                 return;
             }

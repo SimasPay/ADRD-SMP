@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -87,7 +86,7 @@ public class SecondLoginActivity extends AppCompatActivity {
             }
         });
 
-        /**
+        /*
         String htmlString = "<u>Hubun</u>" + "g" + "<u>i Kami</u>";
         contact_us.setText(Html.fromHtml(htmlString));
 
@@ -98,7 +97,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-         **/
+         */
 
         e_mPin.requestFocus();
         e_mPin.addTextChangedListener(new TextWatcher() {
@@ -142,20 +141,9 @@ public class SecondLoginActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-       /* e_mPin.requestFocus();
-
-        e_mPin.postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                InputMethodManager keyboard = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
-                keyboard.showSoftInput(e_mPin, 0);
-            }
-        },200);*/
     }
 
-    class LoginAsynTask extends AsyncTask<Void, Void, Void> {
+    private class LoginAsynTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
         String response;
@@ -164,7 +152,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            /**
+            /*
             String deviceModel = null, osVersion = null, deviceManufacture;
             try {
                 osVersion = android.os.Build.VERSION.RELEASE;
@@ -173,7 +161,7 @@ public class SecondLoginActivity extends AppCompatActivity {
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
-             **/
+             */
 
             PackageInfo pInfo = null;
             try {
@@ -181,7 +169,10 @@ public class SecondLoginActivity extends AppCompatActivity {
             } catch (PackageManager.NameNotFoundException e1) {
                 e1.printStackTrace();
             }
-            String version = pInfo.versionName;
+            String version = null;
+            if (pInfo != null) {
+                version = pInfo.versionName;
+            }
 
             int verCode = pInfo.versionCode;
             sharedPreferences.edit().putString("profileId", "").apply();
@@ -223,7 +214,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
@@ -240,7 +231,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     e_mPin.setText("");
 
-                    Log.e(LOG_TAG, "UserAPIKey: " + responseContainer.getUserApiKey());
+                    //Log.e(LOG_TAG, "UserAPIKey: " + responseContainer.getUserApiKey());
                     if (responseContainer.getUserApiKey() != null) {
                         sharedPreferences.edit()
                                 .putString("userApiKey", responseContainer.getUserApiKey())
@@ -250,29 +241,29 @@ public class SecondLoginActivity extends AppCompatActivity {
                                 .putString("userApiKey", "")
                                 .apply();
                     }
-                    Log.e("------", "userAPIKey------" + sharedPreferences.getString("userApiKey", ""));
+                    //Log.e("------", "userAPIKey------" + sharedPreferences.getString("userApiKey", ""));
 
 
                     sharedPreferences.edit().putString("password", rsaKey).apply();
                     sharedPreferences.edit().putString("userName", responseContainer.getName()).apply();
-                    Log.d(LOG_TAG, "responseContainer.getCustomerType():" + responseContainer.getCustomerType());
-                    Log.d(LOG_TAG, "responseContainer.getIsBank():" + responseContainer.getIsBank());
-                    Log.d(LOG_TAG, "responseContainer.getIsEmoney():" + responseContainer.getIsEmoney());
-                    Log.d(LOG_TAG, "responseContainer.getIsKyc():" + responseContainer.getIsKyc());
+                    //Log.d(LOG_TAG, "responseContainer.getCustomerType():" + responseContainer.getCustomerType());
+                    //Log.d(LOG_TAG, "responseContainer.getIsBank():" + responseContainer.getIsBank());
+                    //Log.d(LOG_TAG, "responseContainer.getIsEmoney():" + responseContainer.getIsEmoney());
+                    //Log.d(LOG_TAG, "responseContainer.getIsKyc():" + responseContainer.getIsKyc());
 
                     sharedPreferences.edit().putString(Constants.PARAMETER_PROFPICSTRING, responseContainer.getProfpicString()).apply();
-                    Log.d(LOG_TAG, "responseContainer.getProfpicString():" + responseContainer.getProfpicString());
+                    //Log.d(LOG_TAG, "responseContainer.getProfpicString():" + responseContainer.getProfpicString());
                     if (responseContainer.getCustomerType().equals("0")) {
                         if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
-                            Log.d(LOG_TAG, "both");
+                            //Log.d(LOG_TAG, "both");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BOTH_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             Intent intent = new Intent(SecondLoginActivity.this, NumberSwitchingActivity.class);
                             startActivityForResult(intent, 20);
                         } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
-                            Log.d(LOG_TAG, "emoney KYC");
+                            //Log.d(LOG_TAG, "emoney KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYKYC_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
@@ -280,7 +271,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                             startActivityForResult(intent, 20);
                         } else if (responseContainer.getIsBank().equals("false") && responseContainer.getIsEmoney().equals("true") && responseContainer.getIsKyc().equals("false")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_EMONEY_INT).apply();
-                            Log.d(LOG_TAG, "emoney non KYC");
+                            //Log.d(LOG_TAG, "emoney non KYC");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_EMONEYNONKYC_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_EMONEY_INT).apply();
@@ -288,7 +279,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                             startActivityForResult(intent, 20);
                         } else if (responseContainer.getIsBank().equals("true") && responseContainer.getIsEmoney().equals("false") && responseContainer.getIsKyc().equals("true")) {
                             sharedPreferences.edit().putInt(Constants.PARAMETER_USERTYPE, Constants.CONSTANT_BANK_INT).apply();
-                            Log.d(LOG_TAG, "bank account");
+                            //Log.d(LOG_TAG, "bank account");
                             sharedPreferences.edit().putString(Constants.PARAMETER_TYPEUSER, Constants.CONSTANT_BANK_USER).apply();
                             sharedPreferences.edit().putString(Constants.PARAMETER_ACCOUNTNUMBER, responseContainer.getBankAccountNumber()).apply();
                             sharedPreferences.edit().putInt(Constants.PARAMETER_AGENTTYPE, Constants.CONSTANT_BANK_INT).apply();
@@ -323,19 +314,21 @@ public class SecondLoginActivity extends AppCompatActivity {
                     alertbox.show();
                 } else {
                     progressDialog.dismiss();
-                    if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(
-                                sharedPreferences.getString(
-                                        "ErrorMessage",
-                                        getResources()
-                                                .getString(
-                                                        R.string.server_error_message)),
-                                SecondLoginActivity.this);
-                        e_mPin.setText("");
-                    } else {
-                        e_mPin.setText("");
-                        Utility.networkDisplayDialog(
-                                responseContainer.getMsg(), SecondLoginActivity.this);
+                    if (responseContainer != null) {
+                        if (responseContainer.getMsg() == null) {
+                            Utility.networkDisplayDialog(
+                                    sharedPreferences.getString(
+                                            "ErrorMessage",
+                                            getResources()
+                                                    .getString(
+                                                            R.string.server_error_message)),
+                                    SecondLoginActivity.this);
+                            e_mPin.setText("");
+                        } else {
+                            e_mPin.setText("");
+                            Utility.networkDisplayDialog(
+                                    responseContainer.getMsg(), SecondLoginActivity.this);
+                        }
                     }
                 }
 
@@ -350,7 +343,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         }
     }
 
-    class inquiryMDNValidationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class inquiryMDNValidationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
@@ -384,17 +377,17 @@ public class SecondLoginActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.e(LOG_TAG, "Response=====" + response);
+                //Log.e(LOG_TAG, "Response=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
+                    //Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
-                        Log.d("test", "not null");
+                        //Log.d("test", "not null");
                         switch (responseDataContainer.getMsgCode()) {
                             case "631": {
                                 if (progressDialog != null) {
@@ -412,11 +405,11 @@ public class SecondLoginActivity extends AppCompatActivity {
                             }
                             case "2300": {
                                 message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message " + message);
+                                //Log.d(LOG_TAG, "message " + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime " + transactionTime);
+                                //Log.d(LOG_TAG, "transactionTime " + transactionTime);
                                 responseCode = responseDataContainer.getResponseCode();
-                                Log.d(LOG_TAG, "responseCode " + responseCode);
+                                //Log.d(LOG_TAG, "responseCode " + responseCode);
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(SecondLoginActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setTitle("Reset mPIN anda");
                                 alertbox.setMessage(message);
@@ -430,13 +423,13 @@ public class SecondLoginActivity extends AppCompatActivity {
                             }
                             case "2301":
                                 message = responseDataContainer.getMsg();
-                                Log.d(LOG_TAG, "message " + message);
+                                //Log.d(LOG_TAG, "message " + message);
                                 transactionTime = responseDataContainer.getTransactionTime();
-                                Log.d(LOG_TAG, "transactionTime " + transactionTime);
+                                //Log.d(LOG_TAG, "transactionTime " + transactionTime);
                                 responseCode = responseDataContainer.getResponseCode();
-                                Log.d(LOG_TAG, "responseCode " + responseCode);
+                                //Log.d(LOG_TAG, "responseCode " + responseCode);
                                 String securityQuestion = responseDataContainer.getSecurityQuestion();
-                                Log.d(LOG_TAG, "securityQuestion " + securityQuestion);
+                                //Log.d(LOG_TAG, "securityQuestion " + securityQuestion);
                                 //toSecurityQuestion
                                 Intent intent = new Intent(SecondLoginActivity.this, SecurityQuestionsActivity.class);
                                 intent.putExtra(Constants.PARAMETER_FORGOTMPIN, true);
@@ -457,7 +450,7 @@ public class SecondLoginActivity extends AppCompatActivity {
                         }
                     }
                 }catch (Exception e) {
-                    Log.e(LOG_TAG, "error: " + e.toString());
+                    //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
         }

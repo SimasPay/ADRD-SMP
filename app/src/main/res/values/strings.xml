@@ -412,4 +412,5 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="same_favorit">nomor sudah terdaftar di favorit list</string>
     <string name="transaksi">Transaksi</string>
     <string name="periode">Periode:</string>
+    <string name="login">Login</string>
 </resources>

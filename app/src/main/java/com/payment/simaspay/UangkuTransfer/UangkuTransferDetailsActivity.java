@@ -20,7 +20,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,8 +33,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.payment.simaspay.AgentTransfer.TransferDetailsActivity;
-import com.payment.simaspay.AgentTransfer.TransferEmoneyToEmoneyActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -157,12 +154,12 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             popupWindow.setHeight(500);
         }
         catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            Log.d(LOG_TAG, "error: "+e.toString());
+            //Log.d(LOG_TAG, "error: "+e.toString());
         }
 
         RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener((group, checkedId) -> {
-            Log.d("chk", "id " + checkedId);
+            //Log.d("chk", "id " + checkedId);
             if (checkedId == R.id.favlist_option) {
                 selectedItem = "fav";
                 spinner_layout.setVisibility(View.VISIBLE);
@@ -201,7 +198,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             Boolean ada = false;
             for (FavoriteData string : favList2) {
                 ada = string.getCategoryName().equals(number.getText().toString());
-                Log.d(LOG_TAG, "ada : "+ada);
+                //Log.d(LOG_TAG, "ada : "+ada);
                 if(ada){
                     break;
                 }
@@ -291,7 +288,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION,Constants.TRANSACTION_MFA_TRANSACTION);
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UangkuTransferDetailsActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
-            Log.e("-----------","--------"+response);
+            //Log.e("-----------","--------"+response);
             return null;
         }
 
@@ -317,7 +314,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                 progressDialog.dismiss();
             }
             if (response != null) {
-                Log.e("-------", "---------" + response);
+                //Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
@@ -647,7 +644,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             mapContainer.put(Constants.PARAMETER_FAVORITE_ID, String.valueOf(stCatID));
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID, "7");
 
-            Log.e("-----", "" + mapContainer.toString());
+            //Log.e("-----", "" + mapContainer.toString());
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
                     UangkuTransferDetailsActivity.this);
             response = webServiceHttp.getResponseSSLCertificatation();
@@ -673,7 +670,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                Log.d(LOG_TAG, "response: " + response);
+                //Log.d(LOG_TAG, "response: " + response);
                 if(response.contains("631")){
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage("Please login again");
@@ -708,7 +705,7 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                             CustomSpinnerAdapter customAdapter = new CustomSpinnerAdapter(getApplicationContext(), favList2);
                             spinner_fav.setAdapter(customAdapter);
                             spinnerLength=spinner_fav.getAdapter().getCount();
-                            Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
+                            //Log.d(LOG_TAG, "spinner length: "+spinner_fav.getAdapter().getCount());
                         }
                     }
                 }
