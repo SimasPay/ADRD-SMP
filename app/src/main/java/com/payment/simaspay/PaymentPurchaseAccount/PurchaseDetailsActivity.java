@@ -3,6 +3,7 @@ package com.payment.simaspay.PaymentPurchaseAccount;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,6 +30,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -258,10 +260,18 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                         }
                     }
                     number_field.setVisibility(View.GONE);
+                    pin_field.setFocusable(true);
+                    pin_field.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(pin_field, InputMethodManager.SHOW_IMPLICIT);
                 } else if (checkedId == R.id.manualinput_option) {
                     selectedItem = "man";
                     spinner_layout.setVisibility(View.GONE);
                     number_field.setVisibility(View.VISIBLE);
+                    number_field.setFocusable(true);
+                    number_field.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(number_field, InputMethodManager.SHOW_IMPLICIT);
                 }
             }
         });

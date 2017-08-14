@@ -1,6 +1,7 @@
 package com.payment.simaspay.AgentTransfer;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -89,6 +91,32 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
         mPin = (TextView) findViewById(R.id.mPin);
         bankName = (TextView) findViewById(R.id.bankName_textView);
         Rp = (TextView) findViewById(R.id.Rp);
+        submit = (Button) findViewById(R.id.submit);
+
+        number = (EditText) findViewById(R.id.number);
+        amount = (EditText) findViewById(R.id.amount);
+        pin = (EditText) findViewById(R.id.pin);
+        bankName_editfield = (EditText) findViewById(R.id.BankName_fiels);
+
+        btnBacke = (LinearLayout) findViewById(R.id.back_layout);
+
+        title.setTypeface(Utility.Robot_Regular(TransferOtherBankDetailsActivity.this));
+        handphone.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
+        jumlah.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
+        mPin.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
+        bankName.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
+
+        submit.setTypeface(Utility.Robot_Regular(TransferOtherBankDetailsActivity.this));
+        number.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+        amount.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+        pin.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+        Rp.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+        bankName_editfield.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
+
+        bankName_editfield.setText(getIntent().getExtras().getString("BankName"));
+
+        bankName_editfield.setClickable(false);
+        bankName_editfield.setFocusable(false);
 
         spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
@@ -118,39 +146,20 @@ public class TransferOtherBankDetailsActivity extends AppCompatActivity implemen
                     spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
                 }
                 number.setVisibility(View.GONE);
+                amount.setFocusable(true);
+                amount.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(amount, InputMethodManager.SHOW_IMPLICIT);
             } else if (checkedId == R.id.manualinput_option) {
                 selectedItem = "man";
                 spinner_layout.setVisibility(View.GONE);
                 number.setVisibility(View.VISIBLE);
+                number.setFocusable(true);
+                number.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(number, InputMethodManager.SHOW_IMPLICIT);
             }
         });
-
-        submit = (Button) findViewById(R.id.submit);
-
-        number = (EditText) findViewById(R.id.number);
-        amount = (EditText) findViewById(R.id.amount);
-        pin = (EditText) findViewById(R.id.pin);
-        bankName_editfield = (EditText) findViewById(R.id.BankName_fiels);
-
-        btnBacke = (LinearLayout) findViewById(R.id.back_layout);
-
-        title.setTypeface(Utility.Robot_Regular(TransferOtherBankDetailsActivity.this));
-        handphone.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
-        jumlah.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
-        mPin.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
-        bankName.setTypeface(Utility.HelveticaNeue_Medium(TransferOtherBankDetailsActivity.this));
-
-        submit.setTypeface(Utility.Robot_Regular(TransferOtherBankDetailsActivity.this));
-        number.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
-        amount.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
-        pin.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
-        Rp.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
-        bankName_editfield.setTypeface(Utility.Robot_Light(TransferOtherBankDetailsActivity.this));
-
-        bankName_editfield.setText(getIntent().getExtras().getString("BankName"));
-
-        bankName_editfield.setClickable(false);
-        bankName_editfield.setFocusable(false);
 
         InputFilter[] FilterArray = new InputFilter[1];
         FilterArray[0] = new InputFilter.LengthFilter(25);

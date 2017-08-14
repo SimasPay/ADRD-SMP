@@ -2,6 +2,7 @@ package com.payment.simaspay.UangkuTransfer;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -171,10 +173,18 @@ public class UangkuTransferDetailsActivity extends AppCompatActivity {
                     spinner_layout.setBackground(getResources().getDrawable(R.drawable.spinner_background));
                 }
                 number.setVisibility(View.GONE);
+                amount.setFocusable(true);
+                amount.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(amount, InputMethodManager.SHOW_IMPLICIT);
             } else if (checkedId == R.id.manualinput_option) {
                 selectedItem = "man";
                 spinner_layout.setVisibility(View.GONE);
                 number.setVisibility(View.VISIBLE);
+                number.setFocusable(true);
+                number.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(number, InputMethodManager.SHOW_IMPLICIT);
             }
         });
 

@@ -2,6 +2,7 @@ package com.payment.simaspay.PaymentPurchaseAccount;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -137,7 +140,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
         number_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
-
+        number_field.setFocusable(true);
+        number_field.requestFocus();
 
         pin.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         pin_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
@@ -173,12 +177,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
 
         back = (LinearLayout) findViewById(R.id.back_layout);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
 
         spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
@@ -212,10 +211,18 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                         }
                     }
                     number_field.setVisibility(View.GONE);
+                    amountField.setFocusable(true);
+                    amountField.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(amountField, InputMethodManager.SHOW_IMPLICIT);
                 } else if (checkedId == R.id.manualinput_option) {
                     selectedItem = "man";
                     spinner_layout.setVisibility(View.GONE);
                     number_field.setVisibility(View.VISIBLE);
+                    number_field.setFocusable(true);
+                    number_field.requestFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.showSoftInput(number_field, InputMethodManager.SHOW_IMPLICIT);
                 }
             }
         });
