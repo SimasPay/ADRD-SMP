@@ -129,6 +129,7 @@
                 android:inputType="number"
                 android:digits="1234567890"
                 android:focusable="true"
+                android:editable="true"
                 android:background="@drawable/edittext_background"
                 android:textColor="@android:color/black"
                 android:drawableRight="@drawable/ic_contact_phone_black_24dp"

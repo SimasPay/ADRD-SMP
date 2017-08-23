@@ -1,5 +1,6 @@
 package com.payment.simaspay.userdetails;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -10,15 +11,23 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
@@ -33,6 +42,7 @@ import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+import simaspay.payment.com.simaspay.LandingScreenActivity;
 import simaspay.payment.com.simaspay.R;
 import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
 import simaspay.payment.com.simaspay.UserHomeActivity;
@@ -52,7 +62,11 @@ public class SecondLoginActivity extends AppCompatActivity {
     String message, transactionTime, responseCode;
     String rsaKey;
     Functions functions;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+    private static final int MY_PERMISSIONS_REQUEST_SMS = 109;
+    private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +74,11 @@ public class SecondLoginActivity extends AppCompatActivity {
         context = SecondLoginActivity.this;
         functions = new Functions(this);
         functions.initiatedToolbar(this);
+
+        //all permissions request
+        cameraPermission();
+        SMSPermission();
+        getPermissionToReadUserContacts();
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         e_mPin = (EditText) findViewById(R.id.mpin);
@@ -69,6 +88,15 @@ public class SecondLoginActivity extends AppCompatActivity {
         txt_2 = (TextView) findViewById(R.id.txt_2);
         number = (TextView) findViewById(R.id.txt_3);
 
+        Button backbutton = (Button)findViewById(R.id.btnBacke);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SecondLoginActivity.this, LandingScreenActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
 
         forgot_mpin.setTypeface(Utility.Robot_Light(SecondLoginActivity.this));
         forgot_mpin.setPaintFlags(forgot_mpin.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
@@ -101,8 +129,6 @@ public class SecondLoginActivity extends AppCompatActivity {
          */
 
         e_mPin.requestFocus();
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         e_mPin.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -459,5 +485,75 @@ public class SecondLoginActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void getPermissionToReadUserContacts() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_CONTACTS)) {
+            }
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},
+                    READ_CONTACTS_PERMISSIONS_REQUEST);
+        }
+    }
+
+    private void SMSPermission(){
+        int currentapiVersion = Build.VERSION.SDK_INT;
+        if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+            if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
+                            109);
+                }
+            }
+        }
+    }
+
+    private void cameraPermission() {
+        if (ContextCompat.checkSelfPermission(SecondLoginActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SecondLoginActivity.this,
+                    Manifest.permission.CAMERA)) {
+                //Log.d(LOG_TAG, "check camera permission");
+            } else {
+                ActivityCompat.requestPermissions(SecondLoginActivity.this,
+                        new String[]{Manifest.permission.CAMERA},
+                        MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Log.d(LOG_TAG, "permission granted");
+                } else {
+                    //Log.d(LOG_TAG, "permission denied");
+                }
+            break;
+            case MY_PERMISSIONS_REQUEST_SMS:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e(LOG_TAG, "------granted()");
+                }
+            break;
+            case READ_CONTACTS_PERMISSIONS_REQUEST:
+                if (grantResults.length == 1 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Toast.makeText(this, "Read Contacts permission granted", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(this, "Read Contacts permission denied", Toast.LENGTH_SHORT).show();
+                }
+            break;
+        }
+    }
 
 }

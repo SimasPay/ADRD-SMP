@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -38,6 +39,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import simaspay.payment.com.simaspay.R;
+
+import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 public class ContactUs_Activity extends Activity {
 
@@ -76,6 +79,7 @@ public class ContactUs_Activity extends Activity {
 
         mobile_1 = (ImageView) findViewById(R.id.image_1);
         mobile_2 = (ImageView) findViewById(R.id.image_2);
+        ImageView browser_4 = (ImageView) findViewById(R.id.image_4);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
@@ -183,11 +187,56 @@ public class ContactUs_Activity extends Activity {
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                openWebPage("https://www.banksinarmas.com");
+                /*
+                try {
+                    String url = "https://www.banksinarmas.com";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                    String urlString="https://www.banksinarmas.com";
+                    Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setPackage("com.android.chrome");
+                    try {
+                        context.startActivity(intent);
+                    } catch (ActivityNotFoundException ex) {
+                        // Chrome browser presumably not installed so allow user to choose instead
+                        intent.setPackage(null);
+                        context.startActivity(intent);
+                    }
+                }
+                */
+            }
+        });
 
-                String url = "http://www.banksinarmas.com";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(url));
-                startActivity(i);
+        browser_4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWebPage("https://www.banksinarmas.com");
+                /*
+                try {
+                    String url = "http://www.banksinarmas.com";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                    String urlString="http://www.banksinarmas.com";
+                    Intent intent=new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setPackage("com.android.chrome");
+                    try {
+                        context.startActivity(intent);
+                    } catch (ActivityNotFoundException ex) {
+                        // Chrome browser presumably not installed so allow user to choose instead
+                        intent.setPackage(null);
+                        context.startActivity(intent);
+                    }
+                }
+                */
             }
         });
 
@@ -210,7 +259,7 @@ public class ContactUs_Activity extends Activity {
 
         });
 
-        layout_2.setOnClickListener(new View.OnClickListener() {
+        /*layout_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -220,6 +269,7 @@ public class ContactUs_Activity extends Activity {
                 startActivity(i);
             }
         });
+        */
     }
 
     public void CallToCustomerCare(final String string) {
@@ -271,7 +321,7 @@ public class ContactUs_Activity extends Activity {
     String response;
     int msgCode;
 
-    class ContactUsAsyntask extends AsyncTask<Void, Void, Void> {
+    private class ContactUsAsyntask extends AsyncTask<Void, Void, Void> {
 
 
         @Override
@@ -396,6 +446,25 @@ public class ContactUs_Activity extends Activity {
                                 R.string.bahasa_serverNotRespond)), ContactUs_Activity.this);
             }
         }
+    }
+
+    public void openWebPage(String url) {
+
+        try {
+            Uri webpage = Uri.parse(url);
+
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                webpage = Uri.parse("https://" + url);
+            }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
+            }
+        } catch (ActivityNotFoundException e) {
+            Log.d(LOG_TAG, "Please try again later");
+        }
+
     }
 
 }

@@ -20,3 +20,7 @@
 -keepattributes Exceptions, Signature, LineNumberTable
 -dontwarn **
 -assumenosideeffects class android.util.Log { *; }
+-keepclassmembers class net.sourceforge.zbar.ImageScanner { *; }
+-keepclassmembers class net.sourceforge.zbar.Image { *; }
+-keepclassmembers class net.sourceforge.zbar.Symbol { *; }
+-keepclassmembers class net.sourceforge.zbar.SymbolSet { *; }

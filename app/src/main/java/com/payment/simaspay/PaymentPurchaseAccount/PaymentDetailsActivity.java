@@ -108,6 +108,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         product_field = (EditText) findViewById(R.id.product_field);
         number = (TextView) findViewById(R.id.number);
         number_field = (EditText) findViewById(R.id.number_field);
+        number_field.setFocusable(true);
+        number_field.setFocusableInTouchMode(true);
         pin = (TextView) findViewById(R.id.mPin);
         pin_field = (EditText) findViewById(R.id.pin);
         amount_Text = (TextView) findViewById(R.id.mAMount);

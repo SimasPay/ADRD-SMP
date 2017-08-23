@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources.NotFoundException;
 import android.os.Handler;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -117,7 +118,7 @@ public class WebServiceHttp  {
                     + "="
                     + "";
         }
-        //Log.e("-----",""+params.toString());
+        Log.e("-----",""+params.toString());
         return AppConfigFile.requestUrl;
     }
 

@@ -1,6 +1,7 @@
 package simaspay.payment.com.simaspay;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -31,6 +32,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -105,16 +107,18 @@ public class UserHomeActivity extends BaseActivity {
     private Uri picUri;
     private TextView initname;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+    private static final int MY_PERMISSIONS_REQUEST_SMS = 109;
+    private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     boolean GallaryPhotoSelected = false;
     public static String Finalmedia = "";
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simaspay_home);
         func = new Functions(this);
         func.initiatedToolbar(this);
-        cameraPermission();
         home_lbl = (TextView) findViewById(R.id.home_label);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -714,37 +718,6 @@ public class UserHomeActivity extends BaseActivity {
         }
         System.out.println(inititals.toUpperCase());
         return inititals;
-    }
-
-    private void cameraPermission() {
-        if (ContextCompat.checkSelfPermission(UserHomeActivity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(UserHomeActivity.this,
-                    Manifest.permission.CAMERA)) {
-                //Log.d(LOG_TAG, "check camera permission");
-            } else {
-                ActivityCompat.requestPermissions(UserHomeActivity.this,
-                        new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_CAMERA);
-            }
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //Log.d(LOG_TAG, "permission granted");
-                } else {
-                    //Log.d(LOG_TAG, "permission denied");
-                }
-            }
-        }
     }
 
     public static Bitmap decodeFile(String path) {

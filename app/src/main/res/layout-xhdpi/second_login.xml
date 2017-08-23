@@ -16,9 +16,19 @@
         android:layout_marginTop="30dp"
         android:orientation="horizontal">
 
+        <Button
+            android:id="@+id/btnBacke"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/btn_back_contact" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-20dp"
+            android:layout_marginLeft="-20dp"
             android:layout_gravity="center"
             android:src="@mipmap/logo_simaspay" />
     </LinearLayout>

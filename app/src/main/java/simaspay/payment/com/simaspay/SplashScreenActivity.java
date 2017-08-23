@@ -18,16 +18,18 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -53,7 +55,12 @@ public class SplashScreenActivity extends Activity {
     SharedPreferences sharedPreferences;
     private Context context;
     String appID;
+    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
+    private static final int MY_PERMISSIONS_REQUEST_SMS = 10;
+    private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
+    private static final int READ_PHONE_STATE_REQUEST = 109;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +89,11 @@ public class SplashScreenActivity extends Activity {
         }
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
+        //all permissions request
+        //AllPermission();
         checkPermission();
+        //cameraPermission()
+        //getPermissionToReadUserContacts();
     }
 
     @Override
@@ -299,7 +310,7 @@ public class SplashScreenActivity extends Activity {
             } else {
                 ActivityCompat.requestPermissions(SplashScreenActivity.this,
                         new String[]{Manifest.permission.READ_PHONE_STATE},
-                        109);
+                        READ_PHONE_STATE_REQUEST);
             }
         }else{
             rsaEncryption = new RSAEncryption();
@@ -310,16 +321,80 @@ public class SplashScreenActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
+        Log.d(LOG_TAG, "grant result: "+grantResults.length);
         switch (requestCode) {
-            case 109: {
+            case READ_PHONE_STATE_REQUEST:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     rsaEncryption = new RSAEncryption();
                     rsaEncryption.execute();
                 }
-                return;
-            }
+            break;
+            case MY_PERMISSIONS_REQUEST_CAMERA:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.d(LOG_TAG, "camera permission granted");
+                }
+            break;
+            case MY_PERMISSIONS_REQUEST_SMS:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e(LOG_TAG, "------sms granted()");
+                }
+                break;
+            case READ_CONTACTS_PERMISSIONS_REQUEST:
+                if (grantResults.length == 1 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e(LOG_TAG, "------read contact granted()");
+                    rsaEncryption = new RSAEncryption();
+                    rsaEncryption.execute();
+                }
+                break;
+        }
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void getPermissionToReadUserContacts() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_CONTACTS)) {
+            }
+            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},
+                    READ_CONTACTS_PERMISSIONS_REQUEST);
+        }
+    }
+
+    private void AllPermission(){
+        int currentapiVersion = Build.VERSION.SDK_INT;
+        if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
+            if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE},
+                            MY_PERMISSIONS_REQUEST_SMS);
+                }
+            }else{
+                rsaEncryption = new RSAEncryption();
+                rsaEncryption.execute();
+            }
+        }
+    }
+
+    private void cameraPermission() {
+        if (ContextCompat.checkSelfPermission(SplashScreenActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(SplashScreenActivity.this,
+                    Manifest.permission.CAMERA)) {
+                //Log.d(LOG_TAG, "check camera permission");
+            } else {
+                ActivityCompat.requestPermissions(SplashScreenActivity.this,
+                        new String[]{Manifest.permission.CAMERA},
+                        MY_PERMISSIONS_REQUEST_CAMERA);
+            }
         }
     }
 }
