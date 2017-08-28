@@ -34,6 +34,8 @@ import javax.net.ssl.X509TrustManager;
 
 import simaspay.payment.com.simaspay.R;
 
+import static com.payment.simaspay.services.Constants.LOG_TAG;
+
 //import android.util.Log;
 
 
@@ -203,6 +205,7 @@ public class WebServiceHttp  {
         try {
 
             conn = (HttpsURLConnection) url.openConnection();
+            Log.d(LOG_TAG, "urlnya: "+ url.toString());
             conn.setHostnameVerifier(new NullVerifier());
             conn.setSSLSocketFactory(sslContext.getSocketFactory());
             conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);

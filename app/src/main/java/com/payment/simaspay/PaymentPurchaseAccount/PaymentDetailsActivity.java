@@ -110,17 +110,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         number_field = (EditText) findViewById(R.id.number_field);
         number_field.setFocusable(true);
         number_field.setFocusableInTouchMode(true);
-        pin = (TextView) findViewById(R.id.mPin);
-        pin_field = (EditText) findViewById(R.id.pin);
-        amount_Text = (TextView) findViewById(R.id.mAMount);
-        rp = (TextView) findViewById(R.id.Rp);
-        amountField = (EditText) findViewById(R.id.Payment_amountentry_field);
-
-        title.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
-        product.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
-        product_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
-        number.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
-
+        number_field.requestFocus();
         if(getIntent().getExtras().getBoolean("isMDN")){
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_contact_phone_black_24dp, 0);
             number_field.setOnTouchListener((v, event) -> {
@@ -141,9 +131,18 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         }else{
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
+        pin = (TextView) findViewById(R.id.mPin);
+        pin_field = (EditText) findViewById(R.id.pin);
+        amount_Text = (TextView) findViewById(R.id.mAMount);
+        rp = (TextView) findViewById(R.id.Rp);
+        amountField = (EditText) findViewById(R.id.Payment_amountentry_field);
+
+        title.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
+        product.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
+        product_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
+        number.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
+
         number_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
-        number_field.setFocusable(true);
-        number_field.requestFocus();
 
         pin.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         pin_field.setTypeface(Utility.Robot_Light(PaymentDetailsActivity.this));
@@ -215,16 +214,12 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                     number_field.setVisibility(View.GONE);
                     amountField.setFocusable(true);
                     amountField.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(amountField, InputMethodManager.SHOW_IMPLICIT);
                 } else if (checkedId == R.id.manualinput_option) {
                     selectedItem = "man";
                     spinner_layout.setVisibility(View.GONE);
                     number_field.setVisibility(View.VISIBLE);
                     number_field.setFocusable(true);
                     number_field.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(number_field, InputMethodManager.SHOW_IMPLICIT);
                 }
             }
         });
@@ -746,5 +741,19 @@ public class PaymentDetailsActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(number_field.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(number_field.getWindowToken(), 0);
     }
 }

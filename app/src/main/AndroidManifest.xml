@@ -39,6 +39,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:hardwareAccelerated="true"
         tools:overrideLibrary="android.support.v7.appcompat"
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor">
@@ -412,8 +413,7 @@
         <activity
             android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentDetailsActivity"
             android:label="SimasPay"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.payment.simaspay.PaymentPurchaseAccount.PaymentConfirmationActivity"
             android:label="SimasPay"
@@ -427,8 +427,7 @@
         <activity
             android:name="com.payment.simaspay.PaymentPurchaseAccount.PurchaseDetailsActivity"
             android:label="SimasPay"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.payment.simaspay.PaymentPurchaseAccount.PurchaseConfirmationActivity"
             android:label="SimasPay"

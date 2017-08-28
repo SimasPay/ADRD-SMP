@@ -1,6 +1,7 @@
 package com.payment.simaspay.PaymentPurchaseAccount;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -99,6 +100,8 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.purchasedetails);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.layoutpurchase);
+        onTapOutsideBehaviour(layout);
 
         func = new Functions(this);
         func.initiatedToolbar(this);
@@ -117,6 +120,9 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
         product_field = (EditText) findViewById(R.id.product_field);
         number = (TextView) findViewById(R.id.number);
         number_field = (EditText) findViewById(R.id.number_field);
+        number_field.setFocusable(true);
+        number_field.setFocusableInTouchMode(true);
+        number_field.requestFocus();
         if(getIntent().getExtras().getBoolean("isMDN")){
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_contact_phone_black_24dp, 0);
             number_field.setOnTouchListener((v, event) -> {
@@ -262,16 +268,12 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
                     number_field.setVisibility(View.GONE);
                     pin_field.setFocusable(true);
                     pin_field.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(pin_field, InputMethodManager.SHOW_IMPLICIT);
                 } else if (checkedId == R.id.manualinput_option) {
                     selectedItem = "man";
                     spinner_layout.setVisibility(View.GONE);
                     number_field.setVisibility(View.VISIBLE);
                     number_field.setFocusable(true);
                     number_field.requestFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.showSoftInput(number_field, InputMethodManager.SHOW_IMPLICIT);
                 }
             }
         });
@@ -815,4 +817,37 @@ public class PurchaseDetailsActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void onTapOutsideBehaviour(View view) {
+        if(!(view instanceof EditText) || !(view instanceof Button)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(PurchaseDetailsActivity.this);
+                    return false;
+                }
+
+            });
+        }
+    }
+
+    private static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(number_field.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(number_field.getWindowToken(), 0);
+    }
+
+
 }

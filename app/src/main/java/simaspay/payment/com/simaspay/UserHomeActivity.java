@@ -427,6 +427,7 @@ public class UserHomeActivity extends BaseActivity {
             WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer, UserHomeActivity.this);
 
             response = webServiceHttp.getResponseSSLCertificatation();
+            Log.d(LOG_TAG, "urlnya:" + webServiceHttp.getUrl());
             return null;
         }
 
@@ -446,7 +447,7 @@ public class UserHomeActivity extends BaseActivity {
             progbar.setVisibility(View.GONE);
             int msgCode = 0;
             if (response != null) {
-                //Log.e("-------", "---------" + response);
+                Log.e("-------", "---------" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseContainer = null;
                 try {
