@@ -101,12 +101,14 @@ public class NewMpin_Activity extends AppCompatActivity implements IncomingSMS.A
                 } else if (mpin2.getText().toString().replace(" ", "").length() < 6) {
                     mpin2.setError(getResources().getString(R.string.id_invalid_mpin));
                     return;
+                    /*
                 } else if (mpin1.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")) {
                     mpin1.setError(getResources().getString(R.string.id_validation_mpin));
                     return;
                 } else if (mpin2.getText().toString().matches("^(?=\\d{6}$)(?:(.)\\1*|0?1?2?3?4?5?6?7?8?9?|9?8?7?6?5?4?3?2?1?0?)$")) {
                     mpin1.setError(getResources().getString(R.string.id_validation_confmpin));
                     return;
+                    */
                 } else if (!mpin1.getText().toString().equals(mpin2.getText().toString())) {
                     Log.d(LOG_TAG, "mpin: " + mpin1.getText().toString() + ", conf mpin: " + mpin2.getText().toString());
                     mpin2.setError(getResources().getString(R.string.id_checksame_mpin));
@@ -374,7 +376,7 @@ public class NewMpin_Activity extends AppCompatActivity implements IncomingSMS.A
         }
     }
 
-    class forgotMPINConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class forgotMPINConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
