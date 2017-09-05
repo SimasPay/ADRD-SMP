@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -31,6 +32,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
@@ -663,6 +665,7 @@ public class Utility {
         return false;
     }
 
+
     public static void ShowDialog(String str, final Context ctx) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setTitle(ctx.getResources().getString(R.string.dailog_heading));
@@ -678,6 +681,26 @@ public class Utility {
         alertdialog.show();
     }
 
+    public static void ShowDialog2(String str, final Context ctx) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle(ctx.getResources().getString(R.string.dailog_heading));
+        builder.setMessage(str);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+                final String appPackageName = "com.mfino.bsim";
+                try {
+                    ((Activity) ctx).startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    ((Activity) ctx).startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+                ((Activity) ctx).finish();
+            }
+        });
+        builder.setCancelable(false);
+        AlertDialog alertdialog = builder.create();
+        alertdialog.show();
+    }
 
 
     public static void networkDisplayDialog(String msg, Context ctx) {

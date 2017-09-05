@@ -4,16 +4,22 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources.NotFoundException;
+import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
+import com.payment.simaspay.utils.MyTrustManager;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
+import java.net.Proxy;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -22,12 +28,17 @@ import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -54,7 +65,7 @@ public class WebServiceHttp  {
         this.mapContainer = mapContainer;
         this.context = context;
         requestUrlConstruct = new StringBuilder();
-        subscriberKYCStatus = context.getSharedPreferences("LOGIN_PREFERECES",
+        subscriberKYCStatus = context.getSharedPreferences(context.getResources().getString(R.string.shared_prefvalue),
                 Context.MODE_PRIVATE);
     }
 
@@ -202,12 +213,40 @@ public class WebServiceHttp  {
         }
 
         HttpsURLConnection conn = null;
+        SSLSocketFactory sf = null;
         try {
-
-            conn = (HttpsURLConnection) url.openConnection();
-            Log.d(LOG_TAG, "urlnya: "+ url.toString());
-            conn.setHostnameVerifier(new NullVerifier());
-            conn.setSSLSocketFactory(sslContext.getSocketFactory());
+            assert url != null;
+            Log.d(LOG_TAG,"proxy settings: "+ getProxyDetails(context));
+            conn = (HttpsURLConnection) url.openConnection(Proxy.NO_PROXY);
+            try {
+                sf = new SSLSocketFactory(ksTrust);
+                sf.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+            } catch (NoSuchAlgorithmException e) {
+                Log.d(LOG_TAG, "problem no such Algorithm");
+                e.printStackTrace();
+            } catch (KeyManagementException e) {
+                Log.d(LOG_TAG, "problem key management");
+                e.printStackTrace();
+            } catch (KeyStoreException e) {
+                Log.d(LOG_TAG, "problem keystore");
+                e.printStackTrace();
+            } catch (UnrecoverableKeyException e) {
+                Log.d(LOG_TAG, "problem unrecoverable key");
+                e.printStackTrace();
+            }
+            //conn.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+            SSLContext context = null;
+            try {
+                context = SSLContext.getInstance("SSL");
+                TrustManager[] tmlist = {new MyTrustManager()};
+                context.init(null, tmlist, new java.security.SecureRandom());
+                //context.init(null, tmlist, null);
+                conn.setSSLSocketFactory(context.getSocketFactory());
+            } catch (NoSuchAlgorithmException | KeyManagementException e) {
+                e.printStackTrace();
+            }
+            //conn.setSSLSocketFactory(sslContext.getSocketFactory());
+            //conn.setSSLSocketFactory(buildSslSocketFactory(context));
             conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);
             conn.setReadTimeout(Constants.CONNECTION_TIMEOUT);
             conn.setDoOutput(true);
@@ -253,14 +292,22 @@ public class WebServiceHttp  {
             contents = null;
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             e.printStackTrace();
+            Log.d(LOG_TAG, "socket timeout or protocol problem");
         } catch (ConnectException e) {
             subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
             contents = null;
             e.printStackTrace();
+            Log.d(LOG_TAG, "connection problem");
         } catch (IOException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").apply();
             contents = null;
             e.printStackTrace();
+            Log.d(LOG_TAG, "io problem : "+ e.toString());
+            if(e.toString().contains("not verified:")){
+                subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.untrusted_connection)).apply();
+            }else{
+                subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
+
+            }
         }finally{
             conn.disconnect();
         }
@@ -420,5 +467,25 @@ public class WebServiceHttp  {
         return parameter1;
 
     }
+
+    private static String getProxyDetails(Context context) {
+        String proxyAddress = new String();
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                proxyAddress = android.net.Proxy.getHost(context);
+                if (proxyAddress == null || proxyAddress.equals("")) {
+                    return proxyAddress;
+                }
+                proxyAddress += ":" + android.net.Proxy.getPort(context);
+            } else {
+                proxyAddress = System.getProperty("http.proxyHost");
+                proxyAddress += ":" + System.getProperty("http.proxyPort");
+            }
+        } catch (Exception ex) {
+            //ignore
+        }
+        return proxyAddress;
+    }
+
 
 }

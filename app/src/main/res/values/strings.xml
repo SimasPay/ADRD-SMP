@@ -311,6 +311,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="helpScreenTitle">Hubungi</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="empty_nominal_pembelian">Silahkan masukkan nominal pembelian</string>
+    <string name="untrusted_connection">This connection is untrusted. You should update your application from Google Play.</string>
     <string name="bahasa_serverNotRespond">Tidak dapat terhubung dengan server SimasPay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.</string>
     <string name="regSuccessContent1">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Selamat Franky SIMASPAY Kini telah aktif. &lt;/body> &lt;/html></string>
     <string name="regSuccessContent2">&lt;html> &lt;head>&lt;/head> &lt;body style=text-align:justify;color:gray;background-color:black;> Nikmati kemududahan bertransaksi dimana saja menggunakan telepon genggam &lt;/body> &lt;/html></string>
