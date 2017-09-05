@@ -269,13 +269,13 @@ public class SplashScreenActivity extends Activity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                //Log.e("-------","=====SplashScreen===="+response);
+                Log.e("-------","=====SplashScreen===="+response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
                 } catch (Exception e) {
-                    //Log.d(LOG_TAG, "error:"+e.getMessage());
+                    Log.d(LOG_TAG, "error:"+e.getMessage());
                 }
                 try {
                     if (responseDataContainer != null) {

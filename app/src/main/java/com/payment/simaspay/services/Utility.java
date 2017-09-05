@@ -35,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
+import com.payment.simaspay.UserActivation.ActivationPage_2_Activity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simpaspay.constants.ValueContainer;
 
@@ -81,6 +82,8 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import simaspay.payment.com.simaspay.InputNumberScreenActivity;
+import simaspay.payment.com.simaspay.LandingScreenActivity;
 import simaspay.payment.com.simaspay.R;
 
 //import android.util.Log;
@@ -695,6 +698,23 @@ public class Utility {
                     ((Activity) ctx).startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 }
                 ((Activity) ctx).finish();
+            }
+        });
+        builder.setCancelable(false);
+        AlertDialog alertdialog = builder.create();
+        alertdialog.show();
+    }
+
+    public static void ActivationDialog(String str, final Context ctx) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+        builder.setTitle(ctx.getResources().getString(R.string.dailog_heading));
+        builder.setMessage(str);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+                Intent intent = new Intent(ctx, ActivationPage_2_Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                ((Activity) ctx).startActivity(intent);
             }
         });
         builder.setCancelable(false);

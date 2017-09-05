@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -88,8 +89,6 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         Button lanjut = (Button) findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
             if(phone_number.getText().length()>=10){
-                settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
-                settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
                 phonenum=phone_number.getText().toString();
                 new mdnvalidation().execute();
             }else if(phone_number.getText().length()==0){
@@ -150,7 +149,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                //Log.e("-------", "=====" + response);
+                Log.e("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
@@ -187,6 +186,8 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                             Intent intent = new Intent(InputNumberScreenActivity.this, RegistrationNonKYCActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                        }else if(status.equals("7")){
+                            Utility.ActivationDialog(getResources().getString(R.string.activation_needed), InputNumberScreenActivity.this);
                         }
                     }
                 }catch (Exception e) {
