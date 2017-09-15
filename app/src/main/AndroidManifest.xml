@@ -75,10 +75,11 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:host="payinapp"
                     android:scheme="Simaspay" />
+                <data
+                    android:scheme="simaspay" />
             </intent-filter>
         </activity>
         <activity

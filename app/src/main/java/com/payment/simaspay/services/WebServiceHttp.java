@@ -290,11 +290,11 @@ public class WebServiceHttp  {
 
         } catch (SocketTimeoutException | java.net.ProtocolException e) {
             contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
             e.printStackTrace();
             Log.d(LOG_TAG, "socket timeout or protocol problem");
         } catch (ConnectException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
             contents = null;
             e.printStackTrace();
             Log.d(LOG_TAG, "connection problem");
@@ -436,15 +436,15 @@ public class WebServiceHttp  {
 
         } catch (SocketTimeoutException e) {
             contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
         } catch (ConnectException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
             contents = null;
         } catch (java.net.ProtocolException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Pelanggan Yth, saat ini sedang dilakukan pemeliharaan sistem untuk aplikasi Uangku, silahkan hubungi customer support untuk keterangan lebih lanjut.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
             e.printStackTrace();
         } catch (IOException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", "Tidak dapat terhubung dengan server Uangku. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.").apply();
+            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.tidak_terhubung)).apply();
             contents = null;
         } finally {
             conn.disconnect();

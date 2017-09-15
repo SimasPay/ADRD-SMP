@@ -2,7 +2,7 @@
 <resources>
     <string name="nohptujuan">Nomor Handphone Tujuan</string>
     <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
-    <string name="id_invalid_mdn_input">Nomor handphone anda tidak valid</string>
+    <string name="id_invalid_mdn_input">Nomor handphone yang Anda masukkan harus 10-14 angka</string>
     <string name="jumlah">Jumlah</string>
     <string name="mpin">mPIN</string>
     <string name="transfer_emoney">Transfer - E-money</string>
@@ -311,6 +311,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="helpScreenTitle">Hubungi</string>
     <string name="mPinLegthMessage">mPIN yang Anda masukkan harus 6 angka.</string>
     <string name="empty_nominal_pembelian">Silahkan masukkan nominal pembelian</string>
+    <string name="tidak_terhubung">"Tidak dapat terhubung dengan server Simaspay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat."</string>
     <string name="activation_needed">Nomor Handphone Anda sudah terdaftar. Segera lakukan aktivasi melalui menu Aktivasi Akun pada saat Login. Untuk informasi lebih lanjut, hubungi 1500153.</string>
     <string name="untrusted_connection">This connection is untrusted. You should update your application from Google Play.</string>
     <string name="bahasa_serverNotRespond">Tidak dapat terhubung dengan server SimasPay. Harap periksa koneksi internet Anda dan coba kembali setelah beberapa saat.</string>
