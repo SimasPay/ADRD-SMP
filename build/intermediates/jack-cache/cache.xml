@@ -2,256 +2,250 @@
 <items version="2" >
 
     <item
-        jar="/Users/widy/.android/build-cache/055d4cddd4b644ce5f6db2a684cf876dfb601cf1/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="052802ed198178e7133de387fbc87d3f2998482a">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-426f28042f53232e024638e7ff2415c24111c43b.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/615101b1a2cec1f39cb826c8b7ec3fdd96d7b9e0/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="e176fd06c2ad5b50a2f5cb4de6000a83a7cb48f5">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-e1459515814e12ea1bd63d207dd917b954fa82d9.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/63bed108f0502d6f8d99b6991265b7b7e6a71fc3/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-5c0d922f3521cbf1c91ee619f49f04c6e616ed27.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
-        revision="25.0.3"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/gson-2.7-2b387a115e041eb67bfdbcf794280529fcadf6a8.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/e0e530f851cfdf08d46a9dc4325cb8ed58503a46/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="fb5addcf29ec0f677346aa9f740c7d56f457a6d9">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-f07aecfa8d64cf065af2dc260a72b451f8873560.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/1578901598098a05f06c8143420f6b4ed059c32b/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-cd9b99ef42ddbe849de3703c822da1d571d8db24.jar" />
-    </item>
-    <item
-        jar="/Users/widy/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
-        revision="25.0.3"
-        sha1="023ee503b631f69511e335a061ea008f8da60f40">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/support-annotations-26.0.0-alpha1-cd155650cb0f8ad9c2a18cd8376c2f3226296efd.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/e380eff5a9e67df8847d147fb6118cbc732d9a1c/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-7d3d260d655e654994208142444ea681bd0a3646.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/9288c24b80aff9e734339e26673944eb0f11a28e/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-dee51d76bf1b07e7cef11ff3436e469d157403c1.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/dc054feebb126cf4a056d5dc92ba0fe26e703c5b/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="2a2d9cd43adbe7599a78f2293273a77881c1909a">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-4662c23ba7eaf60fe7d768eeb9763dd9912cf6ff.jar" />
-    </item>
-    <item
-        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/CropImage/build/intermediates/bundles/default/classes.jar"
-        revision="25.0.3"
-        sha1="4bda6ab67e4a417e46b2390f4b691952d5cbaff5">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-387c5b87c3a0131adf091055c63249d27162c963.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/ee0fbabb2cef329626de6ba23ea64e5ed173291c/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="240e5a7c620376184f3168cfdd36315b97b1fe07">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-2bf4b604789fa4e967bda0d9c3cebf19d80ac42d.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-bbebef23e3b18eb7f17cac65e8a47e1d52dff878.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/f018c4b8e6949c51236d103e35efbc269369335d/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="814fc0c3ec69a944add398217d90077301501a74">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-dba734afdaf2b9c599997f05b4acac9677959033.jar" />
-    </item>
-    <item
-        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/libs/mobileapplibrary2_8.jar"
-        revision="25.0.3"
-        sha1="04c258d6094f78b0a8dd0a70baa8580687f3fba1">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/mobileapplibrary2_8-52c31e177ebcaf1484d384ff18f01f0ad6df4c90.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/a06152fafebcc0fc2d97e1d244bb6a217fb51946/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="8d8c5463a1a50691e2cf66cd7ce4751c8545b584">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-4c30ca593d42546b66989f7353f3d16486d18870.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        revision="25.0.3"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/picasso-2.5.2-8edc73a0865653c742ae6960e1ad6d352e54c073.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/6fc4ce20f3c39f5f16d88c2316e28a204b00753f/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="b5809f7997ffaa5e401237e5f30547d8f8b7fec6">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-19802bb4717ec1fa65d24e4fca9929d63944d7c5.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/a7a30c296ea055d1ad6cfe85e3ebfd256a45e06b/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="a71be5f29a1c1e3fd3e84472742668f101a5b936">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-33e92107e01240d6558aec0d670cd261efcf3e06.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/f73fc068baec02d55789e36347cc10c134a819d2/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-ccb60ba061f9087630cd18e2e4e95a80c8780d85.jar" />
-    </item>
-    <item
         jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/libs/kxml-min.jar"
         revision="25.0.3"
         sha1="c1b06b8ed125bd0acd3303aeb635c6f35252962c">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/kxml-min-30ce70c478a8a8aa1b976c6ae819790244eda4d3.jar" />
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/kxml-min-30ce70c478a8a8aa1b976c6ae819790244eda4d3.jar" />
     </item>
     <item
         jar="/Users/widy/.android/build-cache/1c7efe0ac8e8e982de8187cef5dfd4427fc8ad8b/output/jars/classes.jar"
         revision="25.0.3"
         sha1="650cf8686cd625acfbdd43f8ab33f6f2f057605f">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-076b168ed53942f7bb4717b05594923554cbbe55.jar" />
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-076b168ed53942f7bb4717b05594923554cbbe55.jar" />
     </item>
     <item
-        jar="/Users/widy/.android/build-cache/356ca0e93b77b6e217ef798dd55df7f3279bbde0/output/jars/classes.jar"
+        jar="/Users/widy/.android/build-cache/24151903aa6435d340aa2affc62b0761e20fa5e4/output/jars/classes.jar"
         revision="25.0.3"
-        sha1="86baa7d1051901fc1b8e7f596732f71f32175bde">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-d7b66bbe03ec625ddcaf0484ebf6c0f0fc04b095.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/a02184986906476433b38f20907d74361098ac1f/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="7038a6399b4e9235b3f427edf52ec8044fe2f5b2">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-435c66ee428ff523d319adc718ea86cca7066ad5.jar" />
-    </item>
-    <item
-        jar="/Users/widy/Library/Android/sdk/platforms/android-26/optional/org.apache.http.legacy.jar"
-        revision="25.0.3"
-        sha1="11a66d3dd39e1bf29d1e9e960da0f6d1787937b0">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackRuntimeLibraries/debug/jars/8000/40/org.apache.http.legacy-138ae1bf02345d52a32c4ba8c6b14fddcd5f455f.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/c24fedcdc23d33f694d0041d42cae9c76c359ad3/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="db939a450ea2a721db84e774bf108e20c44a8a1d">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-f9d4a003c955860d85ebdc79f10551218a147c48.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/db9c4b972c9e0314d79c3dba63a3e354f6791584/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-eab47236b2e247a92896707c5bc5dc2015a810e5.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
-        revision="25.0.3"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/library-2.4.0-898a8b237c14da75d8206791c5ce91ee6a9ef0fb.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/616efb4eea89ff393bdf576821f338519225928f/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-d0e5e2f77926c7630e04182118b77ede92fc99b9.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/b7537c33d5f03f6d782e2b0d0c4123981befc4d9/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-8b27ddbae464cb34314af31f8163e621fa8b2f71.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/6fc4ce20f3c39f5f16d88c2316e28a204b00753f/output/jars/libs/zbar.jar"
-        revision="25.0.3"
-        sha1="e671e7a14299d6f2591fc1ae672c49861d3329c6">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/zbar-56465d5711ed60b34b552859da9659b9b0a1dda2.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/5557e02ecdef98c144d28ecfc57a23f66508b121/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-6bba3c9c8ce04ff7b13570039e4a922eb7806746.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/26b10d75e68c1b5afb2d44f272c4e398b4e4088c/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="85afdbdfcaa1fee51db2d5819bbf0796dcf7f0d2">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-9162172a560549947db0275485de0abf249904da.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/0ae046f98593ca4c3811b3bd1476b2bcf967a16f/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="9935891f23923f39d002087085d9696568a9f657">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-aed1763e1dfa8fcbbb4cd48734215b0d6fc222f4.jar" />
-    </item>
-    <item
-        jar="/Users/widy/.android/build-cache/3b2b196315e54c186efe12c6a7226ee5a135bb3b/output/jars/classes.jar"
-        revision="25.0.3"
-        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-7c4c43423f087d3d342ee794117a6b1da2ddda69.jar" />
+        sha1="8d8c5463a1a50691e2cf66cd7ce4751c8545b584">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-81b0caec7c556462ef84469061849835ad43a78a.jar" />
     </item>
     <item
         jar="/Users/widy/.android/build-cache/5cb797d041b661383d8ed734548f1ba9c85c4219/output/jars/classes.jar"
         revision="25.0.3"
         sha1="952944218ecedea1554a513dec0c14d570642843">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-e2cff16b235b6edba68ed2c41194efd7dd5aff08.jar" />
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-e2cff16b235b6edba68ed2c41194efd7dd5aff08.jar" />
     </item>
     <item
-        jar="/Users/widy/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha3/constraint-layout-solver-1.0.0-alpha3.jar"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         revision="25.0.3"
-        sha1="977d57354ef7ef4faa604b802d4907728e0db889">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/constraint-layout-solver-1.0.0-alpha3-1fd5cacb3dc68380fccf8cbebe749b33a92cb110.jar" />
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/library-2.4.0-898a8b237c14da75d8206791c5ce91ee6a9ef0fb.jar" />
     </item>
     <item
-        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/bundles/default/classes.jar"
+        jar="/Users/widy/.android/build-cache/db9c4b972c9e0314d79c3dba63a3e354f6791584/output/jars/classes.jar"
         revision="25.0.3"
-        sha1="def89ffa0348c1b11ec5e326ca3dc919c16f1da3">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-19531a42b9d2f2bbb662e13cb6eed197c146f658.jar" />
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-eab47236b2e247a92896707c5bc5dc2015a810e5.jar" />
     </item>
     <item
-        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar"
+        jar="/Users/widy/.android/build-cache/616efb4eea89ff393bdf576821f338519225928f/output/jars/classes.jar"
         revision="25.0.3"
-        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/commons-codec-1.9-0d1a70f5c79e95b80b6bd07cd3385d6637ac4276.jar" />
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-d0e5e2f77926c7630e04182118b77ede92fc99b9.jar" />
     </item>
     <item
-        jar="/Users/widy/Library/Android/sdk/platforms/android-26/android.jar"
+        jar="/Users/widy/.android/build-cache/0ae046f98593ca4c3811b3bd1476b2bcf967a16f/output/jars/classes.jar"
         revision="25.0.3"
-        sha1="f7a1d587eac1c2ac69db49a223ed438c7f0f31c0">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackRuntimeLibraries/debug/jars/8000/40/android-11e14487acdde2891af18fb381c04130a68e8619.jar" />
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-aed1763e1dfa8fcbbb4cd48734215b0d6fc222f4.jar" />
     </item>
     <item
         jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
         revision="25.0.3"
         sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/core-3.2.1-5d37acb7ae7f8bb28a6609155b826d327c024109.jar" />
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/core-3.2.1-5d37acb7ae7f8bb28a6609155b826d327c024109.jar" />
     </item>
     <item
-        jar="/Users/widy/.android/build-cache/686907247c65453d2c01f58cdd1d2d22d3dce9f7/output/jars/classes.jar"
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar"
+        revision="25.0.3"
+        sha1="9ce04e34240f674bc72680f8b843b1457383161a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/commons-codec-1.9-0d1a70f5c79e95b80b6bd07cd3385d6637ac4276.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/5557e02ecdef98c144d28ecfc57a23f66508b121/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-6bba3c9c8ce04ff7b13570039e4a922eb7806746.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/3b2b196315e54c186efe12c6a7226ee5a135bb3b/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-7c4c43423f087d3d342ee794117a6b1da2ddda69.jar" />
+    </item>
+    <item
+        jar="/Users/widy/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha3/constraint-layout-solver-1.0.0-alpha3.jar"
+        revision="25.0.3"
+        sha1="977d57354ef7ef4faa604b802d4907728e0db889">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/constraint-layout-solver-1.0.0-alpha3-1fd5cacb3dc68380fccf8cbebe749b33a92cb110.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/49e9bfe2430736312320126075d1d7d722671e83/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="9e5c89dbaaf8f66488c26d7c000db7144312ea2a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-2181df22e4e43f983583844592249763f428bd1a.jar" />
+    </item>
+    <item
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/bundles/default/classes.jar"
+        revision="25.0.3"
+        sha1="def89ffa0348c1b11ec5e326ca3dc919c16f1da3">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-19531a42b9d2f2bbb662e13cb6eed197c146f658.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/6fc4ce20f3c39f5f16d88c2316e28a204b00753f/output/jars/libs/zbar.jar"
+        revision="25.0.3"
+        sha1="e671e7a14299d6f2591fc1ae672c49861d3329c6">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/zbar-56465d5711ed60b34b552859da9659b9b0a1dda2.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/c882e291d419648049d985853e747339181d8ca6/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-d2edb8bd3da6ec70094b80d7ce8e31318741ac02.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/e49f8cd8c082b7450a7fc73727d32425d64053bf/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="814fc0c3ec69a944add398217d90077301501a74">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-59a0cbca75fea663ec93ffc9315b4fad96f7f910.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/63bed108f0502d6f8d99b6991265b7b7e6a71fc3/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-5c0d922f3521cbf1c91ee619f49f04c6e616ed27.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/615101b1a2cec1f39cb826c8b7ec3fdd96d7b9e0/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="e176fd06c2ad5b50a2f5cb4de6000a83a7cb48f5">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-e1459515814e12ea1bd63d207dd917b954fa82d9.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        revision="25.0.3"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/gson-2.7-2b387a115e041eb67bfdbcf794280529fcadf6a8.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/e0e530f851cfdf08d46a9dc4325cb8ed58503a46/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="fb5addcf29ec0f677346aa9f740c7d56f457a6d9">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-f07aecfa8d64cf065af2dc260a72b451f8873560.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/c96b076ac9b30a6ba554a35dcf511484e2916e78/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="fcae52a60bc07924d370b4d376116cd8f8581f54">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-a427b2138f8f3a2342487d4028bc551aaa0a891f.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/272df41b61a262c4175abaa5a7145fb2fcea639e/output/jars/classes.jar"
         revision="25.0.3"
         sha1="eccf1a2cb72813a3099bc2618ea9d6430b92f0fc">
-        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/debug/jars/8000/1f/classes-532839e25e9ecb84c326796906ab34c45dd747ed.jar" />
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-cc91cef50b7a0e11c96ac71a6dc9792cacfc8b5f.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/9a12f3b99a7f9b67e2220472873049bb8b82f614/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="7038a6399b4e9235b3f427edf52ec8044fe2f5b2">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-48ef9c8deee5d05c533e3093757dfe77a67ddf67.jar" />
+    </item>
+    <item
+        jar="/Users/widy/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
+        revision="25.0.3"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/support-annotations-26.0.0-alpha1-cd155650cb0f8ad9c2a18cd8376c2f3226296efd.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/468c76c38a95ec2829c52d8cdb3f3d48c357e26c/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-d93b81ed67dd412013ce3fe1be870e2291bfaed7.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/e380eff5a9e67df8847d147fb6118cbc732d9a1c/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-7d3d260d655e654994208142444ea681bd0a3646.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/1578901598098a05f06c8143420f6b4ed059c32b/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-cd9b99ef42ddbe849de3703c822da1d571d8db24.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/8ae01a7dd3c4a3026954f941c80ef76dc01157dd/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-d71cc34164258dd2b184e3c12a54dd8111cbe79e.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/f932554b26ccb27711deb6816f6b0a851b95b634/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="052802ed198178e7133de387fbc87d3f2998482a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-75889f967db32c4704db8e0f2b4380bdee791143.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/6fc4ce20f3c39f5f16d88c2316e28a204b00753f/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="b5809f7997ffaa5e401237e5f30547d8f8b7fec6">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-19802bb4717ec1fa65d24e4fca9929d63944d7c5.jar" />
+    </item>
+    <item
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/CropImage/build/intermediates/bundles/default/classes.jar"
+        revision="25.0.3"
+        sha1="4bda6ab67e4a417e46b2390f4b691952d5cbaff5">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-387c5b87c3a0131adf091055c63249d27162c963.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/dfa42cb84b921a3d55c9611fefe2288df25c0d48/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-f1ce1322f97083e04ff636209fda682c7af0ecc3.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/53a4d81af63339e9460eb406db2d0e5b22f553f7/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-bbebef23e3b18eb7f17cac65e8a47e1d52dff878.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/9288c24b80aff9e734339e26673944eb0f11a28e/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-dee51d76bf1b07e7cef11ff3436e469d157403c1.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        revision="25.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/picasso-2.5.2-8edc73a0865653c742ae6960e1ad6d352e54c073.jar" />
+    </item>
+    <item
+        jar="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/libs/mobileapplibrary2_8.jar"
+        revision="25.0.3"
+        sha1="04c258d6094f78b0a8dd0a70baa8580687f3fba1">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/mobileapplibrary2_8-52c31e177ebcaf1484d384ff18f01f0ad6df4c90.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/41b587a1edd7913d3bb16bbe276e711be95c5957/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-8d03f2c64a4a02af97916a3552b59eba96a4a329.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/5b5a4959724e6813f5841d5ef08e78b2aed595d7/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="41f47bbcd281fdb1e42e220220ab3bfa1da591e0">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-dc108a52958a5192530f659b9f8fd8440abca628.jar" />
+    </item>
+    <item
+        jar="/Users/widy/.android/build-cache/f73fc068baec02d55789e36347cc10c134a819d2/output/jars/classes.jar"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/widy/Documents/workspace/DIMO/Simaspay-Android/app/build/intermediates/transforms/preJackPackagedLibraries/release/jars/8000/1f/classes-ccb60ba061f9087630cd18e2e4e95a80c8780d85.jar" />
     </item>
 
 </items>
