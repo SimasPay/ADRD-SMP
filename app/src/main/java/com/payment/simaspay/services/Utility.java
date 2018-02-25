@@ -486,9 +486,7 @@ public class Utility {
 
         Typeface typeface = Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Regular.ttf");
-
         return typeface;
-
     }
 
     public static Typeface Robot_Light(Context context) {
@@ -673,11 +671,9 @@ public class Utility {
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         builder.setTitle(ctx.getResources().getString(R.string.dailog_heading));
         builder.setMessage(str);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-                ((Activity) ctx).finish();
-            }
+        builder.setPositiveButton("OK", (dialog, id) -> {
+            dialog.cancel();
+            ((Activity) ctx).finish();
         });
         builder.setCancelable(false);
         AlertDialog alertdialog = builder.create();

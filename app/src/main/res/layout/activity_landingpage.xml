@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back_ground"
@@ -19,21 +20,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:text="simas"
+            android:text="@string/simas"
             android:visibility="gone"
             android:textColor="#CC0001"
-            android:textSize="65dp"
+            android:textSize="65sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:text="pay"
+            android:text="@string/pay"
             android:visibility="gone"
             android:textColor="@color/background_material_dark"
-            android:textSize="65dp"
-            android:textStyle="bold" />
+            android:textSize="65sp"
+            android:textStyle="bold"
+            tools:ignore="PrivateResource" />
     </LinearLayout>
 
 
@@ -43,11 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Hubungi Kami"
+        android:text="@string/hubungi_kami"
         android:layout_alignParentBottom="true"
         android:textColor="#5b5b5b"
         android:layout_marginBottom="35dp"
-        android:textSize="20dp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/activation"
@@ -56,8 +58,8 @@
         android:layout_gravity="center"
         android:textAllCaps="false"
         android:background="@drawable/color_gray"
-        android:text="Aktivasi Akun"
-        android:textSize="20dp"
+        android:text="@string/aktivasi_akun"
+        android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
@@ -73,8 +75,8 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/login_color_red"
-        android:text="Login atau Daftar"
-        android:textSize="20dp"
+        android:text="@string/login_atau_daftar"
+        android:textSize="20sp"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         android:layout_marginBottom="12dp"
@@ -85,6 +87,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="@null"
         android:layout_gravity="center"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"

@@ -2,7 +2,7 @@
 <resources>
     <string name="nohptujuan">Nomor Handphone Tujuan</string>
     <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
-    <string name="id_invalid_mdn_input">Nomor handphone yang Anda masukkan harus 10-14 angka</string>
+    <string name="id_invalid_mdn_input">Nomor handphone yang Anda masukkan harus 10&#8211;14 angka</string>
     <string name="jumlah">Jumlah</string>
     <string name="mpin">mPIN</string>
     <string name="transfer_emoney">Transfer - E-money</string>
@@ -73,11 +73,11 @@
     <string name="id_transfer">Transfer</string>
     <string name="id_pilih_foto">Silahkan ambil Foto dari:</string>
     <string name="id_crop_foto">Crop foto menggunakan:</string>
-    <string name="id_no_hp_validation_msg">Nomor Handphone yang Anda masukkan harus 10-14 angka</string>
+    <string name="id_no_hp_validation_msg">Nomor Handphone yang Anda masukkan harus 10&#8211;14 angka</string>
     <string name="id_jumlah_transfer_validation">Harap masukkan jumlah yang ingin Anda transfer</string>
     <string name="id_masukkan_no_hp">Harap masukkan Nomor Handphone Tujuan</string>
     <string name="id_masukkan_mpin">Harap masukkan mPIN Anda</string>
-    <string name="id_no_rek_validation_msg">Nomor rekening yang Anda masukkan harus 10-14 angka</string>
+    <string name="id_no_rek_validation_msg">Nomor rekening yang Anda masukkan harus 10&#8211;14 angka</string>
     <string name="id_camera">Kamera</string>
     <string name="id_pick_image">Pilih Foto</string>
     <string name="id_galeri">Galeri Foto</string>
@@ -167,7 +167,7 @@
     <string name="abs__action_bar_up_description">Navigate up</string>
     <string name="abs__action_menu_overflow_description">More options</string>
     <string name="abs__action_mode_done">Done</string>
-    <string name="abs__activity_chooser_view_see_all">See all...</string>
+    <string name="abs__activity_chooser_view_see_all">See all&#8230;</string>
     <string name="abs__activitychooserview_choose_application">Choose an application</string>
     <string name="abs__shareactionprovider_share_with">Share with</string>
     <string name="abs__shareactionprovider_share_with_application">Share with %s</string>
@@ -274,8 +274,8 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="error_no_internet_connection">You need an internet connection to use FLASHiZ. Please check your connection and try again.</string>
     <string name="error_connection_timed_out">The connection with FLASHiZ failed. Please try again.</string>
     <string name="error_invalid_credentials">The email address or password is not correct. Please try again.</string>
-    <string name="error_already_existing_account">To finalize the creation of your account, please contact contact@flashiz.com</string>
-    <string name="error_limit_of_account_reached">Your annual transaction limit was reached. Please contact contact@flashiz.com to get your account verified.</string>
+    <string name="error_already_existing_account">To finalize the creation of your account, please contact: contact@flashiz.com</string>
+    <string name="error_limit_of_account_reached">Your annual transaction limit was reached. Please contact: contact@flashiz.com to get your account verified.</string>
     <string name="error_refill_account_credit_card_failed">Credit card payment could not be completed.</string>
     <string name="error_expired_or_invalid_credit_card">Your credit card is invalid. Please use another card.</string>
     <string name="error_invalid_invoice">The QR code has not been initialised yet. Please try again.</string>
@@ -285,7 +285,7 @@ Contact our Customer Services at contact@flashiz.com"</string>
     <string name="error_get_credit_cards_failed">An error has occurred during the display of your bank cards, please try again.</string>
     <string name="error_join_rewards_program_failed">An error has occurred while you were joining the loyalty program, please try again.</string>
     <string name="error_pin_codes_entered_different">An error has occurred. Please re-enter your personal code.</string>
-    <string name="error_four_attempts_in_connection">A problem to get connected? Please contact contact@flashiz.com</string>
+    <string name="error_four_attempts_in_connection">A problem to get connected? Please contact: contact@flashiz.com</string>
     <string name="bahasa_loading">sedang proses....</string>
     <string name="title">  SimasPay               </string>
     <string name="bixTitle">SIMASPAY</string>
@@ -416,4 +416,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="transaksi">Transaksi</string>
     <string name="periode">Periode:</string>
     <string name="login">Login</string>
+    <string name="hubungi_kami">Hubungi Kami</string>
+    <string name="simas">simas</string>
+    <string name="pay">pay</string>
+    <string name="login_atau_daftar">Login atau Daftar</string>
 </resources>

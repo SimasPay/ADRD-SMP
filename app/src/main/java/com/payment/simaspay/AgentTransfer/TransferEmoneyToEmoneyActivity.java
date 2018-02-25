@@ -346,17 +346,51 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                                 }
                                 alertbox = new AlertDialog.Builder(TransferEmoneyToEmoneyActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        arg0.dismiss();
-                                        Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, SecondLoginActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                    }
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
                                 });
                                 alertbox.show();
                                 break;
                             case "72":
+                                message = responseDataContainer.getMsg();
+                                Log.d(LOG_TAG, "message" + message);
+                                transactionTime = responseDataContainer.getTransactionTime();
+                                Log.d(LOG_TAG, "transactionTime" + transactionTime);
+                                receiverAccountName = responseDataContainer.getKycName();
+                                Log.d(LOG_TAG, "receiverAccountName" + receiverAccountName);
+                                destinationBank = responseDataContainer.getDestBank();
+                                Log.d(LOG_TAG, "destinationBank" + destinationBank);
+                                destinationName = responseDataContainer.getDestinationAccountName();
+                                Log.d(LOG_TAG, "destinationName" + destinationName);
+                                destinationAccountNumber = responseDataContainer.getDestinationAccountNumber();
+                                Log.d(LOG_TAG, "destinationAccountNumber" + destinationAccountNumber);
+                                destinationMDN = responseDataContainer.getDestMDN();
+                                Log.d(LOG_TAG, "destinationMDN" + destinationMDN);
+                                transferID = responseDataContainer.getEncryptedTransferId();
+                                Log.d(LOG_TAG, "transferID" + transferID);
+                                parentTxnID = responseDataContainer.getEncryptedParentTxnId();
+                                Log.d(LOG_TAG, "parentTxnID" + parentTxnID);
+                                sctlID = responseDataContainer.getSctl();
+                                Log.d(LOG_TAG, "sctlID" + sctlID);
+                                mfaMode = responseDataContainer.getMfaMode();
+                                Log.d(LOG_TAG, "mfaMode" + mfaMode);
+                                if (mfaMode.equalsIgnoreCase("OTP")) {
+                                    Intent intent = new Intent(TransferEmoneyToEmoneyActivity.this, TransferEmoneyToEmoneyConfirmationActivity.class);
+                                    intent.putExtra("destmdn", destmdn);
+                                    intent.putExtra("transferID", transferID);
+                                    intent.putExtra("sctlID", sctlID);
+                                    intent.putExtra("amount", amountValue);
+                                    intent.putExtra("destname", receiverAccountName);
+                                    intent.putExtra("mpin", pinValue);
+                                    intent.putExtra("parentTxnID", parentTxnID);
+                                    intent.putExtra("mfaMode", mfaMode);
+                                    intent.putExtra("selectedItem", selectedItem);
+                                    startActivity(intent);
+                                }
+                                break;
                             case "676":
                                 message = responseDataContainer.getMsg();
                                 Log.d(LOG_TAG, "message" + message);
@@ -410,6 +444,7 @@ public class TransferEmoneyToEmoneyActivity extends AppCompatActivity {
                     Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
+                Log.d(LOG_TAG,"response null");
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }

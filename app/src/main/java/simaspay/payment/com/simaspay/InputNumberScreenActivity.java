@@ -1,8 +1,8 @@
 package simaspay.payment.com.simaspay;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -68,7 +68,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        TextView aktivasi_link = (TextView) findViewById(R.id.aktivasi_link);
+        TextView aktivasi_link = findViewById(R.id.aktivasi_link);
         SpannableString content = new SpannableString("Aktivasi Akun");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         aktivasi_link.setText(content);
@@ -76,17 +76,17 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             Intent intent = new Intent(InputNumberScreenActivity.this, ActivationPage_2_Activity.class);
             startActivityForResult(intent, 10);
         });
-        ImageView back_btn = (ImageView) findViewById(R.id.back_btn);
+        ImageView back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(view -> {
             Intent intent = new Intent(InputNumberScreenActivity.this, LandingScreenActivity.class);
             startActivity(intent);
             //finish();
         });
-        phone_number = (EditText)findViewById(R.id.hand_phno);
+        phone_number = findViewById(R.id.hand_phno);
         if(!mdn.equals("")){
             phone_number.setText(mdn);
         }
-        Button lanjut = (Button) findViewById(R.id.lanjut);
+        Button lanjut = findViewById(R.id.lanjut);
         lanjut.setOnClickListener(view -> {
             if(phone_number.getText().length()>=10){
                 phonenum=phone_number.getText().toString();
@@ -99,17 +99,14 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             }else if(phone_number.getText().length()<10&&phone_number.getText().length()>0){
                 AlertDialog.Builder alertbox = new AlertDialog.Builder(InputNumberScreenActivity.this, R.style.MyAlertDialogStyle);
                 alertbox.setMessage(getResources().getString(R.string.id_invalid_mdn_input));
-                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int arg1) {
-                        dialog.dismiss();
-                    }
-                });
+                alertbox.setNeutralButton("OK", (dialog, arg1) -> dialog.dismiss());
                 alertbox.show();
             }
 
         });
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class mdnvalidation extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -160,34 +157,43 @@ public class InputNumberScreenActivity extends AppCompatActivity {
                 try {
                     if (responseDataContainer != null) {
                         //Log.d("test", "not null");
-                        String mdn = responseDataContainer.getMdn();
+                        //String mdn = responseDataContainer.getMdn();
                         String status = responseDataContainer.getStatus();
                         String firstName = responseDataContainer.getFirstName();
                         String lastName = responseDataContainer.getLastName();
                         //Log.d("test", "mdn: "+ mdn + ", status: "+ status);
-                        if(status.equals("0") || status.equals("27")){
-                            settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
-                            settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
-                            settings.edit().putString("firstName", firstName).apply();
-                            settings.edit().putString("lastName", lastName).apply();
-                            if(firstName==null){
-                                settings.edit().putString("fullname", lastName).apply();
-                            }else if(lastName==null){
-                                settings.edit().putString("fullname", firstName).apply();
-                            }else{
-                                settings.edit().putString("fullname", firstName + " " + lastName).apply();
+                        switch (status) {
+                            case "0":
+                            case "27": {
+                                settings.edit().putString("phonenumber", phone_number.getText().toString()).apply();
+                                settings.edit().putString("mobileNumber", phone_number.getText().toString()).apply();
+                                settings.edit().putString("firstName", firstName).apply();
+                                settings.edit().putString("lastName", lastName).apply();
+                                if (firstName == null) {
+                                    settings.edit().putString("fullname", lastName).apply();
+                                } else if (lastName == null) {
+                                    settings.edit().putString("fullname", firstName).apply();
+                                } else {
+                                    settings.edit().putString("fullname", firstName + " " + lastName).apply();
+                                }
+                                finish();
+                                Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                //finish();
+                                break;
                             }
-                            finish();
-                            Intent intent = new Intent(InputNumberScreenActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            //finish();
-                        }else if(status.equals("11") || status.equals("671")){
-                            Intent intent = new Intent(InputNumberScreenActivity.this, RegistrationNonKYCActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }else if(status.equals("7")){
-                            Utility.ActivationDialog(getResources().getString(R.string.activation_needed), InputNumberScreenActivity.this);
+                            case "11":
+                            case "671": {
+                                Intent intent = new Intent(InputNumberScreenActivity.this, RegistrationNonKYCActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                intent.putExtra("mobilenumber", phonenum);
+                                startActivity(intent);
+                                break;
+                            }
+                            case "7":
+                                Utility.ActivationDialog(getResources().getString(R.string.activation_needed), InputNumberScreenActivity.this);
+                                break;
                         }
                     }
                 }catch (Exception e) {

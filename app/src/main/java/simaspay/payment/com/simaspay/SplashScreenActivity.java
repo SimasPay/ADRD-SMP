@@ -1,10 +1,10 @@
 package simaspay.payment.com.simaspay;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
@@ -30,6 +29,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -38,31 +38,14 @@ import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
 import com.testfairy.TestFairy;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManagerFactory;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 
 public class SplashScreenActivity extends Activity {
 
-    Handler handler = new Handler();
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
     private static final String TAG = "SimasPay";
@@ -91,41 +74,30 @@ public class SplashScreenActivity extends Activity {
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
 
-        textView = (TextView) findViewById(R.id.text);
+        textView = findViewById(R.id.text);
         textView.setTypeface(Utility.LightTextFormat(this));
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         Log.d(LOG_TAG,"proxy: "+ getProxyDetails(this));
         if(getProxyDetails(this).equals("0") || getProxyDetails(this)==null || getProxyDetails(this).equals("null:null")||getProxyDetails(this).contains("0")) {
-        /*
-        HttpsURLConnection connection = null;
-        try {
-            Log.d(LOG_TAG, "load certificate..");
-            connection = (HttpsURLConnection) new URL("https://www.banksinarmas.com").openConnection();
-            connection.setSSLSocketFactory(buildSslSocketFactory(this));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
-
             ConnectivityManager connMgr = (ConnectivityManager)
                     getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-                //Log.e("--------","========================Connected");
-            } else {
-                // display error
-                //Log.e("--------","====================== Not==Connected");
+            NetworkInfo networkInfo = null;
+            if (connMgr != null) {
+                networkInfo = connMgr.getActiveNetworkInfo();
             }
-            //all permissions request
-            //AllPermission();
+            if (networkInfo != null && networkInfo.isConnected()) {
+                Log.e("--------","========================Connected");
+            } else {
+                //display error
+                Log.e("--------","====================== Not==Connected");
+            }
             checkPermission();
-            //cameraPermission()
-            //getPermissionToReadUserContacts();
         }else{
+            Log.e(LOG_TAG,"====================== Proxy detected!");
             Utility.ShowDialog2(sharedPreferences.getString(
                     "ErrorMessage",
                     getResources().getString(
-                            R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                            R.string.untrusted_connection)), SplashScreenActivity.this);
         }
     }
 
@@ -135,57 +107,6 @@ public class SplashScreenActivity extends Activity {
 
     }
 
-    private static SSLSocketFactory buildSslSocketFactory(Context ctx) {
-        // Add support for self-signed (local) SSL certificates
-        // Based on http://developer.android.com/training/articles/security-ssl.html#UnknownCa
-        try {
-
-            // Load CAs from an InputStream
-            // (could be from a resource or ByteArrayInputStream or ...)
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            // From https://www.washington.edu/itconnect/security/ca/load-der.crt
-            InputStream is = ctx.getResources().getAssets().open("sinarmas.com.cer");
-
-            InputStream caInput = new BufferedInputStream(is);
-            Certificate ca;
-            try {
-                ca = cf.generateCertificate(caInput);
-                // System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-            } finally {
-                caInput.close();
-            }
-
-            // Create a KeyStore containing our trusted CAs
-            String keyStoreType = KeyStore.getDefaultType();
-            KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null, null);
-            keyStore.setCertificateEntry("ca", ca);
-
-            // Create a TrustManager that trusts the CAs in our KeyStore
-            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-            tmf.init(keyStore);
-
-            // Create an SSLContext that uses our TrustManager
-            SSLContext context2 = SSLContext.getInstance("TLS");
-            context2.init(null, tmf.getTrustManagers(), null);
-            return context2.getSocketFactory();
-
-        } catch (NoSuchAlgorithmException | KeyStoreException | KeyManagementException | IOException | CertificateException e) {
-            e.printStackTrace();
-            Log.d(LOG_TAG, "cert problem: "+e.toString());
-        }
-        return null;
-
-    }
-
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-
-        }
-    };
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_splash_screen, menu);
@@ -194,13 +115,11 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-
         return super.onOptionsItemSelected(item);
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     private class RSAEncryption extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
@@ -296,7 +215,7 @@ public class SplashScreenActivity extends Activity {
                             String firsttime = settings.getString("firsttime", "yes");
                             //Log.d("test", "firsttime: "+ firsttime);
                             //Log.d("test", "not null");
-                            int msgCode = 0;
+                            int msgCode;
                             try {
                                 msgCode = Integer.parseInt(responseDataContainer.getMsgCode());
                             } catch (Exception e) {
@@ -307,21 +226,19 @@ public class SplashScreenActivity extends Activity {
                                 //Log.d(TAG, "appURL:"+appURL);
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(SplashScreenActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        String[] parts = appURL.split("=");
-                                        if(parts.length>0){
-                                            appID = parts[1];
-                                        }else{
-                                            appID = getPackageName();
-                                        }
-                                        try {
-                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appID)));
-                                        } catch (android.content.ActivityNotFoundException anfe) {
-                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appID)));
-                                        }
-                                        SplashScreenActivity.this.finish();
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                                    String[] parts = appURL.split("=");
+                                    if(parts.length>0){
+                                        appID = parts[1];
+                                    }else{
+                                        appID = getPackageName();
                                     }
+                                    try {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appID)));
+                                    } catch (android.content.ActivityNotFoundException anfe) {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appID)));
+                                    }
+                                    SplashScreenActivity.this.finish();
                                 });
                                 alertbox.show();
                             }else if(msgCode==2309){
@@ -343,11 +260,11 @@ public class SplashScreenActivity extends Activity {
                                 }
                             }
                         } else {
-                            //Log.d("test", "success:false");
                             if (responseDataContainer.getMsg() != null) {
                                 Utility.ShowDialog(responseDataContainer.getMsg(), SplashScreenActivity.this);
                             } else {
                                 String errorDialog=sharedPreferences.getString("ErrorMessage", getResources().getString(R.string.bahasa_serverNotRespond));
+                                Log.d(LOG_TAG, "error message: "+ errorDialog);
                                 if(errorDialog.equals(getResources().getString(R.string.untrusted_connection))){
                                     Log.d(LOG_TAG, "untrusted");
                                     Utility.ShowDialog2(sharedPreferences.getString(
@@ -384,7 +301,7 @@ public class SplashScreenActivity extends Activity {
                     Utility.ShowDialog2(sharedPreferences.getString(
                             "ErrorMessage",
                             getResources().getString(
-                                    R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                                    R.string.untrusted_connection)), SplashScreenActivity.this);
                 }else{
                     Log.d(LOG_TAG, "else");
                     Utility.ShowDialog(sharedPreferences.getString(
@@ -395,13 +312,6 @@ public class SplashScreenActivity extends Activity {
             }
         }
     }
-
-    private boolean checkWriteExternalPermission() {
-        String permission = "java.io.Writer";
-        int res = checkCallingOrSelfPermission(permission);
-        return (res == PackageManager.PERMISSION_GRANTED);
-    }
-
 
     private void checkPermission() {
         if (ContextCompat.checkSelfPermission(SplashScreenActivity.this,
@@ -424,7 +334,7 @@ public class SplashScreenActivity extends Activity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         Log.d(LOG_TAG, "grant result: "+grantResults.length);
         switch (requestCode) {
             case READ_PHONE_STATE_REQUEST:
@@ -457,55 +367,10 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void getPermissionToReadUserContacts() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (shouldShowRequestPermissionRationale(
-                    Manifest.permission.READ_CONTACTS)) {
-            }
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS},
-                    READ_CONTACTS_PERMISSIONS_REQUEST);
-        }
-    }
-
-    private void AllPermission(){
-        int currentapiVersion = Build.VERSION.SDK_INT;
-        if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-            if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE},
-                            MY_PERMISSIONS_REQUEST_SMS);
-                }
-            }else{
-                rsaEncryption = new RSAEncryption();
-                rsaEncryption.execute();
-            }
-        }
-    }
-
-    private void cameraPermission() {
-        if (ContextCompat.checkSelfPermission(SplashScreenActivity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(SplashScreenActivity.this,
-                    Manifest.permission.CAMERA)) {
-                //Log.d(LOG_TAG, "check camera permission");
-            } else {
-                ActivityCompat.requestPermissions(SplashScreenActivity.this,
-                        new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_CAMERA);
-            }
-        }
-    }
-
     private static String getProxyDetails(Context context) {
-        String proxyAddress = new String();
+        String proxyAddress = "";
         try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                 proxyAddress = android.net.Proxy.getHost(context);
                 if (proxyAddress == null || proxyAddress.equals("")) {
                     return proxyAddress;

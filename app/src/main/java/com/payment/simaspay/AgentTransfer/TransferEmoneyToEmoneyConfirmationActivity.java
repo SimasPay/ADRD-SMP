@@ -16,6 +16,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -278,15 +279,15 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             super.onPostExecute(aVoid);
             progressDialog.dismiss();
             if (response != null) {
-                //Log.e("-------", "=====" + response);
+                Log.d("-------", "=====" + response);
                 XMLParser obj = new XMLParser();
                 EncryptedResponseDataContainer responseDataContainer = null;
                 try {
                     responseDataContainer = obj.parse(response);
-                    //Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
+                    Log.e("responseContainer", "responseContainer" + responseDataContainer + "");
 
                 } catch (Exception e) {
-                    //Log.e(LOG_TAG, e.toString());
+                    Log.e(LOG_TAG, e.toString());
                 }
                 try {
                     if (responseDataContainer != null) {
@@ -325,6 +326,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                     //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }else{
+                Log.d(LOG_TAG, "response null");
                 if (progressDialog != null) {
                     progressDialog.dismiss();
                 }

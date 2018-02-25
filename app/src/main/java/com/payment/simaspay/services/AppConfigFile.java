@@ -45,12 +45,22 @@ public class AppConfigFile {
     public static String promoImageURLPath = "https://simaspaydev.banksinarmas.com:8443/";
     */
 
+    //UAT simobi-UAT jan16-2018
+    /*
+    public static String requestUrl = "https://10.32.3.65:8443/webapi/sdynamic";
+    public static String webAPIUrlFiles = "https://10.32.3.65:8443/webapi/sdynamic";
+    public static String webAPIUrl = "https://10.32.3.65:8443/webapi/sdynamic";
+    public static String pfdDownLoadURL = "https://10.32.3.65:8443/webapi/";
+    public static String promoImageURLPath = "https://10.32.3.65:8443/";
+    */
+
     //UAT new trusted SSL 20170823
     public static String requestUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrlFiles = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String pfdDownLoadURL = "https://www.banksinarmas.com/webapidev/";
     public static String promoImageURLPath = "https://www.banksinarmas.com/";
+
 
     //	New UAT
          /*public static String requestUrl="https://simaspaydev.banksinarmas.com/webapi/sdynamic";

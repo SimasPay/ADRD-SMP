@@ -84,16 +84,20 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         IncomingSMS.setListener(RegistrationNonKYCActivity.this);
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         settings = getSharedPreferences(LOG_TAG, MODE_PRIVATE);
-        mobilenumber = settings.getString("phonenumber","");
+        if(getIntent()!=null){
+            if(getIntent().getExtras()!=null){
+                mobilenumber = getIntent().getExtras().getString("mobilenumber");
+            }
+        }
         context=RegistrationNonKYCActivity.this;
         settings2 = getSharedPreferences(LOG_TAG, 0);
         settings2.edit().putString("ActivityName", "RegistrationNonKYC").apply();
-        if (android.os.Build.VERSION.SDK_INT > 9) {
+        if (android.os.Build.VERSION.SDK_INT > 14) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
-        ImageView back_btn = (ImageView)findViewById(R.id.back_btn);
+        ImageView back_btn = findViewById(R.id.back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,16 +108,16 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
 
-        fullname=(EditText)findViewById(R.id.fullname_ed);
-        email=(EditText)findViewById(R.id.email_ed);
-        mpin=(EditText)findViewById(R.id.mpin_ed);
-        conf_mpin=(EditText)findViewById(R.id.mpin2_ed);
+        fullname= findViewById(R.id.fullname_ed);
+        email= findViewById(R.id.email_ed);
+        mpin= findViewById(R.id.mpin_ed);
+        conf_mpin= findViewById(R.id.mpin2_ed);
         //answer=(EditText)findViewById(R.id.answer_ed);
-        phonenumber=(EditText)findViewById(R.id.mdn_ed);
+        phonenumber= findViewById(R.id.mdn_ed);
         phonenumber.setText(mobilenumber);
         phonenumber.setEnabled(false);
         //questions=(Spinner)findViewById(R.id.questions_spinner);
-        lanjut=(Button)findViewById(R.id.lanjut);
+        lanjut= findViewById(R.id.lanjut);
         //new DownloadJSON().execute();
         //new QuestionsLists().execute();
         lanjut.setOnClickListener(new View.OnClickListener() {
@@ -374,12 +378,12 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        TextView waitingsms = dialoglayout.findViewById(R.id.waitingsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         waitingsms.setText(getResources().getString(R.string.id_checksame_mpin)+mobilenumber+ "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -388,12 +392,12 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                 otp2lay.setVisibility(View.VISIBLE);
             }
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
             @Override
@@ -419,7 +423,7 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
                 myTimer.cancel();
             }
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

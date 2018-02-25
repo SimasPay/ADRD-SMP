@@ -10,10 +10,10 @@ import android.util.Log;
 
 import com.payment.simaspay.utils.MyTrustManager;
 
-import java.io.BufferedInputStream;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -29,16 +29,12 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.UnrecoverableKeyException;
-import java.security.cert.Certificate;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import org.apache.http.conn.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -47,19 +43,15 @@ import simaspay.payment.com.simaspay.R;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
-//import android.util.Log;
-
 
 public class WebServiceHttp  {
 
-    private final int SPLASH_DISPLAY_LENGHT = 5000;
     private Context context;
     private String params;
-    private Map<String, String> mapContainer = new HashMap<String, String>();
+    private Map<String, String> mapContainer = new HashMap<>();
     private StringBuilder requestUrlConstruct;
-    private String param;
     private SharedPreferences subscriberKYCStatus;
-
+    private SSLContext sslContext = null;
     public WebServiceHttp(Map<String, String> mapContainer, Context context) {
         this.context = context;
         this.mapContainer = mapContainer;
@@ -70,7 +62,6 @@ public class WebServiceHttp  {
     }
 
     public WebServiceHttp(HashMap<String, String> mapContainer, Context context) {
-        this.context = context;
         this.mapContainer = mapContainer;
         this.context = context;
         requestUrlConstruct = new StringBuilder();
@@ -82,14 +73,12 @@ public class WebServiceHttp  {
 
         for (Map.Entry<String, String> entry : mapContainer.entrySet()) {
             String key = entry.getKey();
-            String value="";
-            //Log.d("Test","key:" + entry.getKey() + ", VALUE: "+ entry.getValue());
+            String value;
             if(entry.getValue()==null){
                 value = encodeString(entry.getValue());
             }else{
                 value = encodeString(entry.getValue().trim());
             }
-
             requestUrlConstruct.append(key).append("=").append(value)
                     .append("&");
         }
@@ -131,7 +120,7 @@ public class WebServiceHttp  {
                     + "="
                     + "";
         }
-        Log.e("-----",""+params.toString());
+        Log.e("-----",""+ params);
         return AppConfigFile.requestUrl;
     }
 
@@ -152,6 +141,7 @@ public class WebServiceHttp  {
         }
 
         try {
+            assert ksTrust != null;
             ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
                     passphrase);
         } catch (NoSuchAlgorithmException | java.security.cert.CertificateException | NotFoundException | IOException e1) {
@@ -168,12 +158,11 @@ public class WebServiceHttp  {
         }
 
         try {
+            assert tmf != null;
             tmf.init(ksTrust);
         } catch (KeyStoreException e1) {
             e1.printStackTrace();
         }
-
-        SSLContext sslContext = null;
 
         try {
             sslContext = SSLContext.getInstance("TLS");
@@ -201,6 +190,7 @@ public class WebServiceHttp  {
             X509TrustManager nullTrustManager = new NullTrustManager();
             TrustManager[] nullTrustManagers = {nullTrustManager};
             try {
+                assert sslContext != null;
                 sslContext.init(null, nullTrustManagers, new SecureRandom());
             } catch (KeyManagementException e) {
                 e.printStackTrace();
@@ -213,7 +203,7 @@ public class WebServiceHttp  {
         }
 
         HttpsURLConnection conn = null;
-        SSLSocketFactory sf = null;
+        SSLSocketFactory sf;
         try {
             assert url != null;
             Log.d(LOG_TAG,"proxy settings: "+ getProxyDetails(context));
@@ -235,13 +225,12 @@ public class WebServiceHttp  {
                 e.printStackTrace();
             }
             //conn.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
-            SSLContext context = null;
             try {
-                context = SSLContext.getInstance("SSL");
+                sslContext = SSLContext.getInstance("SSL");
                 TrustManager[] tmlist = {new MyTrustManager()};
-                context.init(null, tmlist, new java.security.SecureRandom());
+                sslContext.init(null, tmlist, new java.security.SecureRandom());
                 //context.init(null, tmlist, null);
-                conn.setSSLSocketFactory(context.getSocketFactory());
+                conn.setSSLSocketFactory(sslContext.getSocketFactory());
             } catch (NoSuchAlgorithmException | KeyManagementException e) {
                 e.printStackTrace();
             }
@@ -256,16 +245,13 @@ public class WebServiceHttp  {
             wr.write(params);
             wr.flush();
 
-            int rc = 0;
+            int rc;
 
             rc = conn.getResponseCode();
             if (rc == 0) {
-                new Handler().postDelayed(new Runnable() {
+                int SPLASH_DISPLAY_LENGHT = 5000;
+                new Handler().postDelayed(() -> {
 
-                    @Override
-                    public void run() {
-
-                    }
                 }, SPLASH_DISPLAY_LENGHT);
             } else {
 
@@ -273,10 +259,10 @@ public class WebServiceHttp  {
                         conn.getInputStream());
                 BufferedReader rd = new BufferedReader(resultInputStream);
                 String line;
-                StringBuffer sb = new StringBuffer("");
+                StringBuilder sb = new StringBuilder("");
 
                 while ((line = rd.readLine()) != null) {
-                    sb.append(line + "\n");
+                    sb.append(line).append("\n");
                 }
                 contents = sb.toString();
                 if (contents.contains("Your request is queued.")) {
@@ -309,148 +295,13 @@ public class WebServiceHttp  {
 
             }
         }finally{
-            conn.disconnect();
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
         return contents;
     }
 
-
-    public String getPostResponseSSLCertificatation() {
-
-        String contents = null;
-
-        char[] passphrase = "DDTCert".toCharArray();
-        KeyStore ksTrust = null;
-
-        try {
-            ksTrust = KeyStore.getInstance("BKS");
-        } catch (KeyStoreException e1) {
-
-            e1.printStackTrace();
-        }
-
-        try {
-            ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
-                    passphrase);
-        } catch (NoSuchAlgorithmException | java.security.cert.CertificateException | IOException | NotFoundException e1) {
-            e1.printStackTrace();
-        }
-
-        TrustManagerFactory tmf = null;
-
-        try {
-            tmf = TrustManagerFactory.getInstance(KeyManagerFactory
-                    .getDefaultAlgorithm());
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        }
-
-        try {
-            tmf.init(ksTrust);
-        } catch (KeyStoreException e1) {
-            e1.printStackTrace();
-        }
-
-        SSLContext sslContext = null;
-
-        try {
-            sslContext = SSLContext.getInstance("TLS");
-        } catch (NoSuchAlgorithmException e1) {
-            e1.printStackTrace();
-        }
-
-        try {
-            sslContext.init(null, tmf.getTrustManagers(), new SecureRandom());
-        } catch (KeyManagementException e1) {
-            e1.printStackTrace();
-        }
-
-        URL url = null;
-
-        try {
-            try {
-                sslContext = SSLContext.getInstance("TLS");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-
-            X509TrustManager nullTrustManager = new NullTrustManager();
-            TrustManager[] nullTrustManagers = {nullTrustManager};
-            try {
-                sslContext.init(null, nullTrustManagers, new SecureRandom());
-            } catch (KeyManagementException e) {
-                e.printStackTrace();
-            }
-
-            url = new URL(getUrl());
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        HttpsURLConnection conn = null;
-        try {
-            conn = (HttpsURLConnection) url.openConnection();
-            conn.setHostnameVerifier(new NullVerifier());
-            conn.setSSLSocketFactory(sslContext.getSocketFactory());
-            conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);
-            conn.setReadTimeout(Constants.CONNECTION_TIMEOUT);
-            conn.setDoOutput(true);
-            conn.setFixedLengthStreamingMode(params.getBytes().length);
-            OutputStreamWriter wr = new OutputStreamWriter(
-                    conn.getOutputStream());
-            wr.write(params);
-            wr.flush();
-
-            int rc = 0;
-
-            rc = conn.getResponseCode();
-            if (rc == 0) {
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-
-                    }
-                }, SPLASH_DISPLAY_LENGHT);
-            } else {
-
-                InputStreamReader resultInputStream = new InputStreamReader(
-                        conn.getInputStream());
-                BufferedReader rd = new BufferedReader(resultInputStream);
-                String line;
-                StringBuffer sb = new StringBuffer("");
-
-                while ((line = rd.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                contents = sb.toString();
-                if (contents.contains("Your request is queued.")) {
-                    contents = null;
-                }
-                rd.close();
-                resultInputStream.close();
-
-            }
-
-
-        } catch (SocketTimeoutException e) {
-            contents = null;
-            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
-        } catch (ConnectException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
-            contents = null;
-        } catch (java.net.ProtocolException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.bahasa_serverNotRespond)).apply();
-            e.printStackTrace();
-        } catch (IOException e) {
-            subscriberKYCStatus.edit().putString("ErrorMessage", context.getResources().getString(R.string.tidak_terhubung)).apply();
-            contents = null;
-        } finally {
-            conn.disconnect();
-        }
-        return contents;
-    }
 
     private String encodeString(String parameter) {
         String parameter1 = null;
@@ -469,9 +320,9 @@ public class WebServiceHttp  {
     }
 
     private static String getProxyDetails(Context context) {
-        String proxyAddress = new String();
+        String proxyAddress = "";
         try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
                 proxyAddress = android.net.Proxy.getHost(context);
                 if (proxyAddress == null || proxyAddress.equals("")) {
                     return proxyAddress;
@@ -482,7 +333,7 @@ public class WebServiceHttp  {
                 proxyAddress += ":" + System.getProperty("http.proxyPort");
             }
         } catch (Exception ex) {
-            //ignore
+            Log.d(LOG_TAG, "error: "+ex.toString());
         }
         return proxyAddress;
     }

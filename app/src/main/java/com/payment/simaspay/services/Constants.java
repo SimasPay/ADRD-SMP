@@ -9,7 +9,7 @@ public class Constants {
 
     // Language Selection
     public static String URL_PBQ = "https://sandbox.dimo.co.id";
-    public static String serverNotResponding;
+    private static String serverNotResponding;
     public static final String LOG_TAG = "SimasPay";
     public static String getServerNotResponding() {
         return serverNotResponding;
@@ -21,11 +21,11 @@ public class Constants {
 
 	/* Login Screen */
 
-    public static String loginTitle;
-    public static String pinText;
-    public static String canNotBeEmpty;
-    public static String incorrectPinLenth;
-    public static String loginBodyMsg;
+    private static String loginTitle;
+    private static String pinText;
+    private static String canNotBeEmpty;
+    private static String incorrectPinLenth;
+    private static String loginBodyMsg;
 
     public static String getLoginBodyMsg() {
         return loginBodyMsg;
@@ -71,22 +71,22 @@ public class Constants {
 
 	/* Settings Screens */
 
-    public static String setting;
-    public static String changePin;
-    public static String forgetPin;
-    public static String changeEmail;
-    public static String changeNama;
-    public static String termsAndCondition;
-    public static String privacy;
-    public static String takePhoto;
+    private static String setting;
+    private static String changePin;
+    private static String forgetPin;
+    private static String changeEmail;
+    private static String changeNama;
+    private static String termsAndCondition;
+    private static String privacy;
+    private static String takePhoto;
     public static String pin;
-    public static String newPin;
-    public static String confirmPin;
-    public static String newEmail;
-    public static String confirmEmail;
-    public static String save;
-    public static String nameChange;
-    public static String nameChangeText;
+    private static String newPin;
+    private static String confirmPin;
+    private static String newEmail;
+    private static String confirmEmail;
+    private static String save;
+    private static String nameChange;
+    private static String nameChangeText;
 
     public static String getSetting() {
         return setting;
