@@ -1,6 +1,6 @@
 package simaspay.payment.com.simaspay;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,14 +9,13 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
+import android.support.media.ExifInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -24,12 +23,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
@@ -106,9 +102,6 @@ public class UserHomeActivity extends BaseActivity {
     private String encodedImg;
     private Uri picUri;
     private TextView initname;
-    public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
-    private static final int MY_PERMISSIONS_REQUEST_SMS = 109;
-    private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     boolean GallaryPhotoSelected = false;
     public static String Finalmedia = "";
 
@@ -119,7 +112,7 @@ public class UserHomeActivity extends BaseActivity {
         setContentView(R.layout.activity_simaspay_home);
         func = new Functions(this);
         func.initiatedToolbar(this);
-        home_lbl = (TextView) findViewById(R.id.home_label);
+        home_lbl = findViewById(R.id.home_label);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -130,10 +123,9 @@ public class UserHomeActivity extends BaseActivity {
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         mdn = sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, "");
         String nama = sharedPreferences.getString("userName", "");
-        String mpin = sharedPreferences.getString(Constants.PARAMETER_MPIN, "");
         label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "");
-        TextView switch_account = (TextView) findViewById(R.id.switch_account);
-        TextView logout = (TextView) findViewById(R.id.logout_btn);
+        TextView switch_account = findViewById(R.id.switch_account);
+        TextView logout = findViewById(R.id.logout_btn);
         logout.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, SecondLoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -142,8 +134,8 @@ public class UserHomeActivity extends BaseActivity {
         });
 
         //Profpic / Profile Picture
-        photo = (ImageView) findViewById(R.id.profile_pic);
-        initname = (TextView) findViewById(R.id.initname);
+        photo = findViewById(R.id.profile_pic);
+        initname = findViewById(R.id.initname);
         String encodedImgFromAPI = sharedPreferences.getString(Constants.PARAMETER_PROFPICSTRING, "");
         if (!encodedImgFromAPI.equals("")) {
             Bitmap profpic = decodeBase64(encodedImgFromAPI);
@@ -160,9 +152,9 @@ public class UserHomeActivity extends BaseActivity {
         }
         photo.setOnClickListener(view -> pickImage());
 
-        phone_lbl = (TextView) findViewById(R.id.mobilephone_lbl);
-        ImageButton transfer = (ImageButton) findViewById(R.id.transfer_btn);
-        ImageButton tariktunai = (ImageButton) findViewById(R.id.tariktunai_btn);
+        phone_lbl = findViewById(R.id.mobilephone_lbl);
+        ImageButton transfer = findViewById(R.id.transfer_btn);
+        ImageButton tariktunai = findViewById(R.id.tariktunai_btn);
         switch (label_home) {
             case Constants.CONSTANT_BANK_USER: {
                 home_lbl.setText(getResources().getString(R.string.bank));
@@ -170,7 +162,7 @@ public class UserHomeActivity extends BaseActivity {
                 switch_account.setVisibility(View.GONE);
                 tariktunai.setEnabled(false);
                 tariktunai.setAlpha((float) 0.2);
-                LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                LinearLayout tariktunailay = findViewById(R.id.layout_tariktunai);
                 tariktunailay.setVisibility(View.INVISIBLE);
                 accountSelected = Constants.CONSTANT_BANK_USER;
                 break;
@@ -183,9 +175,9 @@ public class UserHomeActivity extends BaseActivity {
                 tariktunai.setEnabled(false);
                 transfer.setAlpha((float) 0.2);
                 tariktunai.setAlpha((float) 0.2);
-                LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                LinearLayout tariktunailay = findViewById(R.id.layout_tariktunai);
                 tariktunailay.setBackgroundResource(R.drawable.borderwhitetrans);
-                LinearLayout transferlay = (LinearLayout) findViewById(R.id.transferlay);
+                LinearLayout transferlay = findViewById(R.id.transferlay);
                 transferlay.setBackgroundResource(R.drawable.borderwhitetrans);
                 accountSelected = Constants.CONSTANT_EMONEY_REGULER;
                 break;
@@ -202,7 +194,7 @@ public class UserHomeActivity extends BaseActivity {
                 if (account.equals(Constants.CONSTANT_BANK_USER)) {
                     home_lbl.setText(getResources().getString(R.string.bank));
                     phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
-                    LinearLayout tariktunailay = (LinearLayout) findViewById(R.id.layout_tariktunai);
+                    LinearLayout tariktunailay = findViewById(R.id.layout_tariktunai);
                     tariktunailay.setVisibility(View.INVISIBLE);
                 } else {
                     home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
@@ -220,7 +212,7 @@ public class UserHomeActivity extends BaseActivity {
             finish();
         });
 
-        ImageButton history_transaction = (ImageButton) findViewById(R.id.transaksi_btn);
+        ImageButton history_transaction = findViewById(R.id.transaksi_btn);
         history_transaction.setOnClickListener(view -> {
             if (label_home.equals(Constants.CONSTANT_BANK_USER) || (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT)) {
                 Calendar calendar1 = Calendar.getInstance();
@@ -240,36 +232,36 @@ public class UserHomeActivity extends BaseActivity {
             }
         });
 
-        ImageButton pembelian = (ImageButton) findViewById(R.id.pembelian_btn);
+        ImageButton pembelian = findViewById(R.id.pembelian_btn);
         pembelian.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
             intent.putExtra("accounttype", false);
             startActivity(intent);
         });
 
-        ImageButton pembayaran = (ImageButton) findViewById(R.id.pembayaran_btn);
+        ImageButton pembayaran = findViewById(R.id.pembayaran_btn);
         pembayaran.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, PaymentAndPurchaseAccountTypeActivity.class);
             intent.putExtra("accounttype", true);
             startActivity(intent);
         });
 
-        ImageButton pbq = (ImageButton) findViewById(R.id.pbq_btn);
+        ImageButton pbq = findViewById(R.id.pbq_btn);
         pbq.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
             intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_PAYMENT);
             startActivity(intent);
         });
 
-        ImageButton promopbq = (ImageButton) findViewById(R.id.promo_pbq_btn);
+        ImageButton promopbq = findViewById(R.id.promo_pbq_btn);
         promopbq.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, PayByQRActivity.class);
             intent.putExtra(PayByQRActivity.INTENT_EXTRA_MODULE, PayByQRSDK.MODULE_LOYALTY);
             startActivity(intent);
         });
 
-        daftaremoneylay = (LinearLayout) findViewById(R.id.daftar_emoney);
-        ImageButton daftaremoney = (ImageButton) findViewById(R.id.daftar_emoney_btn);
+        daftaremoneylay = findViewById(R.id.daftar_emoney);
+        ImageButton daftaremoney = findViewById(R.id.daftar_emoney_btn);
         if (sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "").equals(Constants.CONSTANT_BANK_USER)) {
             daftaremoneylay.setVisibility(View.VISIBLE);
             daftaremoney.setOnClickListener(view -> {
@@ -280,7 +272,7 @@ public class UserHomeActivity extends BaseActivity {
             daftaremoneylay.setVisibility(View.INVISIBLE);
         }
 
-        daftaremoney = (ImageButton) findViewById(R.id.daftar_emoney_btn);
+        daftaremoney = findViewById(R.id.daftar_emoney_btn);
         daftaremoney.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
             startActivity(intent);
@@ -300,7 +292,7 @@ public class UserHomeActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        ImageButton gantimpin = (ImageButton) findViewById(R.id.gantimpin_btn);
+        ImageButton gantimpin = findViewById(R.id.gantimpin_btn);
         gantimpin.setOnClickListener(view -> {
             Intent intent = new Intent(UserHomeActivity.this, ChangePinActivity.class);
             intent.putExtra("simaspayuser", false);
@@ -310,12 +302,12 @@ public class UserHomeActivity extends BaseActivity {
         });
 
 
-        progbar = (ProgressBar) findViewById(R.id.progressbar);
+        progbar = findViewById(R.id.progressbar);
         progbar.setVisibility(View.GONE);
         swipe_balance = findViewById(R.id.swipe_balance);
-        name_lbl = (TextView) findViewById(R.id.fullname_lbl);
+        name_lbl = findViewById(R.id.fullname_lbl);
         name_lbl.setText(nama);
-        checkbalance = (TextView) findViewById(R.id.check_balance_lbl);
+        checkbalance = findViewById(R.id.check_balance_lbl);
         checkbalance.setVisibility(View.GONE);
         swipe_balance.setOnTouchListener(new OnSwipeTouchListener(UserHomeActivity.this) {
             @Override
@@ -358,8 +350,6 @@ public class UserHomeActivity extends BaseActivity {
                                 swipe_balance.startAnimation(inFromRightAnimation());
                             }, 5000);
                         }
-
-                        //linLay.setBackgroundColor(getResources().getColor(android.R.color.transparent));
                     }
 
                     @Override
@@ -368,8 +358,6 @@ public class UserHomeActivity extends BaseActivity {
                     }
                 });
                 swipe_balance.startAnimation(RightSwipe);
-
-                // Put your logic here for text visibility and for timer like progress bar for 5 second and setText
             }
         });
     }
@@ -386,6 +374,7 @@ public class UserHomeActivity extends BaseActivity {
         return inFromRight;
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class CheckBalanceAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
@@ -503,25 +492,16 @@ public class UserHomeActivity extends BaseActivity {
                 }
                 break;
             case PICK_FROM_CAMERA:
-                //Log.i(LOG_TAG, "Inside PICK_FROM_CAMERA");
-                String path = picUri.getPath();
-                //Log.i(LOG_TAG, "After capture path " + path);
                 doCrop();
-
                 break;
 
             case PICK_FROM_FILE:
                 picUri = data.getData();
-                String path_photo = picUri.getPath();
-                //Log.i(LOG_TAG,"picUri " + picUri);
-                //Log.i(LOG_TAG,"After Crop mImageCaptureUri, path photo " + path_photo);
                 GallaryPhotoSelected = true;
                 doCrop();
-
                 break;
             case REQ_PICK_IMAGE:
                 if (resultCode == Activity.RESULT_OK) {
-                    //Log.d(LOG_TAG, "processing image...");
                     picUri = data.getData();
                     performCrop();
                 }
@@ -536,7 +516,10 @@ public class UserHomeActivity extends BaseActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     // get the cropped bitmap
                     Bundle extras = data.getExtras();
-                    Bitmap thePic = extras.getParcelable("data");
+                    Bitmap thePic = null;
+                    if (extras != null) {
+                        thePic = extras.getParcelable("data");
+                    }
                     ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                     if(thePic!=null){
                         thePic.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
@@ -576,8 +559,6 @@ public class UserHomeActivity extends BaseActivity {
                         new PhotoUpload().execute();
                         photo.setImageBitmap(thePic);
                     }
-                }else{
-                    //Log.d(LOG_TAG, "extras null!");
                 }
                 break;
             default:
@@ -597,17 +578,21 @@ public class UserHomeActivity extends BaseActivity {
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        NetworkInfo activeNetworkInfo = null;
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class PhotoUpload extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<String, String>();
+            Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.UPDATE_PHOTO);
@@ -713,12 +698,12 @@ public class UserHomeActivity extends BaseActivity {
     private String initialName(String full_name) {
         Pattern p = Pattern.compile("((^| )[A-Za-z])");
         Matcher m = p.matcher(full_name);
-        String inititals = "";
+        StringBuilder inititals = new StringBuilder();
         while (m.find()) {
-            inititals += m.group().trim();
+            inititals.append(m.group().trim());
         }
-        System.out.println(inititals.toUpperCase());
-        return inititals;
+        System.out.println(inititals.toString().toUpperCase());
+        return inititals.toString();
     }
 
     public static Bitmap decodeFile(String path) {
@@ -736,29 +721,22 @@ public class UserHomeActivity extends BaseActivity {
             Bitmap bitmap = bm;
 
             ExifInterface exif = new ExifInterface(path);
-
             orientation = exif
                     .getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-
-            //Log.e("ExifInteface .........", "rotation =" + orientation);
-            //Log.e("orientation", "" + orientation);
             Matrix m = new Matrix();
 
             if ((orientation == ExifInterface.ORIENTATION_ROTATE_180)) {
                 m.postRotate(180);
-                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;
             } else if (orientation == ExifInterface.ORIENTATION_ROTATE_90) {
                 m.postRotate(90);
-                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;
             } else if (orientation == ExifInterface.ORIENTATION_ROTATE_270) {
                 m.postRotate(270);
-                //Log.e("in orientation", "" + orientation);
                 bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(),
                         bm.getHeight(), m, true);
                 return bitmap;
@@ -771,7 +749,7 @@ public class UserHomeActivity extends BaseActivity {
 
 
     private void doCrop() {
-        final ArrayList<Functions.CropOption> cropOptions = new ArrayList<Functions.CropOption>();
+        final ArrayList<Functions.CropOption> cropOptions = new ArrayList<>();
 
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setType("image/*");
@@ -784,7 +762,6 @@ public class UserHomeActivity extends BaseActivity {
         if (size == 0) {
             Toast.makeText(this, "Can not find image crop app",
                     Toast.LENGTH_SHORT).show();
-            return;
         } else {
             intent.setData(picUri);
             intent.setClassName("com.android.camera",
@@ -846,7 +823,7 @@ public class UserHomeActivity extends BaseActivity {
     }
 
     private void pickImage() {
-        List<Intent> targets = new ArrayList<Intent>();
+        List<Intent> targets = new ArrayList<>();
         Intent intent = new Intent(Intent.ACTION_PICK,
         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");

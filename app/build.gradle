@@ -2,8 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '27.0.3'
     useLibrary  'org.apache.http.legacy'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "simaspay.payment.com.simaspay"
@@ -12,8 +17,6 @@ android {
         versionCode 139
         versionName "1.0.0"
         multiDexEnabled true
-        android.compileOptions.sourceCompatibility 1.8
-        android.compileOptions.targetCompatibility 1.8
     }
     buildTypes {
         release {
@@ -25,27 +28,28 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:27.0.2'
-    compile files('libs/kxml-min.jar')
-    compile files('libs/mobileapplibrary2_8.jar')
-    compile project(':datetimepicker-library')
-    compile 'eu.davidea:flipview:1.1.3'
-    compile 'com.android.support:recyclerview-v7:27.0.2'
-    compile 'com.android.support:percent:27.0.2'
-    compile 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
-    compile 'commons-codec:commons-codec:1.9'
-    compile 'com.google.zxing:core:3.3.0'
-    compile 'com.android.support:cardview-v7:27.0.2'
-    compile 'com.android.support:design:27.0.2'
-    compile 'com.google.android.gms:play-services-location:11.8.0'
-    compile 'com.google.android.gms:play-services-maps:11.8.0'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.makeramen:roundedimageview:2.3.0'
-    compile project(':PayByQR-Android-2.1.2-Simaspay')
-    compile 'testfairy:testfairy-android-sdk:1.6.1'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile project(path: ':CropImageLib')
-    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation files('libs/kxml-min.jar')
+    implementation files('libs/mobileapplibrary2_8.jar')
+    implementation project(':datetimepicker-library')
+    implementation 'eu.davidea:flipview:1.1.3'
+    implementation 'com.android.support:recyclerview-v7:27.1.0'
+    implementation 'com.android.support:percent:27.1.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
+    implementation 'commons-codec:commons-codec:1.9'
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.android.support:cardview-v7:27.1.0'
+    implementation 'com.android.support:design:27.1.0'
+    implementation 'com.google.android.gms:play-services-location:12.0.1'
+    implementation 'com.google.android.gms:play-services-maps:12.0.1'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation project(':PayByQR-Android-2.1.2-Simaspay')
+    implementation 'testfairy:testfairy-android-sdk:1.6.3'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation project(path: ':CropImageLib')
+    implementation 'com.weiwangcn.betterspinner:library-material:1.1.0'
+    implementation "com.android.support:exifinterface:27.1.0"
 }
