@@ -1036,4 +1036,6 @@ public class Constants {
 
 
     public static final String CONSTANTS_NONE = "NONE";
+    public static final String URL_FAQ = "http://banksinarmas.com/id/simobiplus/simaspay-faq";
+    public static final String URL_TC = "http://banksinarmas.com/id/simobiplus/simaspay-syarat-dan-ketentuan";
 }

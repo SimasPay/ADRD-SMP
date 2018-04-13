@@ -1,6 +1,7 @@
 package com.payment.simaspay.userdetails;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -22,12 +23,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
@@ -81,21 +79,18 @@ public class SecondLoginActivity extends AppCompatActivity {
         getPermissionToReadUserContacts();
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        e_mPin = (EditText) findViewById(R.id.mpin);
+        e_mPin = findViewById(R.id.mpin);
 
-        forgot_mpin = (TextView) findViewById(R.id.forgot_mpin);
-        txt_1 = (TextView) findViewById(R.id.txt_1);
-        txt_2 = (TextView) findViewById(R.id.txt_2);
-        number = (TextView) findViewById(R.id.txt_3);
+        forgot_mpin = findViewById(R.id.forgot_mpin);
+        txt_1 = findViewById(R.id.txt_1);
+        txt_2 = findViewById(R.id.txt_2);
+        number = findViewById(R.id.txt_3);
 
-        Button backbutton = (Button)findViewById(R.id.btnBacke);
-        backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SecondLoginActivity.this, LandingScreenActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
+        Button backbutton = findViewById(R.id.btnBacke);
+        backbutton.setOnClickListener(view -> {
+            Intent intent = new Intent(SecondLoginActivity.this, LandingScreenActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
         });
 
         forgot_mpin.setTypeface(Utility.Robot_Light(SecondLoginActivity.this));
@@ -108,31 +103,26 @@ public class SecondLoginActivity extends AppCompatActivity {
         sourceMDN=sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER,"");
         number.setText(sourceMDN);
 
-        forgot_mpin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               new inquiryMDNValidationAsyncTask().execute();
-            }
+        forgot_mpin.setOnClickListener(view -> new inquiryMDNValidationAsyncTask().execute());
+
+        TextView tv_faq= findViewById(R.id.tv_faq);
+        tv_faq.setPaintFlags(tv_faq.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        tv_faq.setOnClickListener(view -> {
+            Intent intent = new Intent(SecondLoginActivity.this, FAQActivity.class);
+            startActivity(intent);
         });
 
-        /*
-        String htmlString = "<u>Hubun</u>" + "g" + "<u>i Kami</u>";
-        contact_us.setText(Html.fromHtml(htmlString));
-
-        contact_us.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SecondLoginActivity.this, ContactUs_Activity.class);
-                startActivity(intent);
-            }
+        TextView tv_tnc= findViewById(R.id.tv_tnc);
+        tv_tnc.setPaintFlags(tv_tnc.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        tv_tnc.setOnClickListener(view -> {
+            Intent intent = new Intent(SecondLoginActivity.this, TNCActivity.class);
+            startActivity(intent);
         });
-         */
 
         e_mPin.requestFocus();
         e_mPin.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -172,6 +162,7 @@ public class SecondLoginActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class LoginAsynTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
@@ -203,7 +194,6 @@ public class SecondLoginActivity extends AppCompatActivity {
                 version = pInfo.versionName;
             }
 
-            int verCode = pInfo.versionCode;
             sharedPreferences.edit().putString("profileId", "").apply();
 
             rsaKey = functions.generateRSA(pin);

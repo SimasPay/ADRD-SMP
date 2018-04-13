@@ -420,4 +420,8 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="simas">simas</string>
     <string name="pay">pay</string>
     <string name="login_atau_daftar">Login atau Daftar</string>
+    <string name="syarat_dan_ketentuan"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="faq">FAQ</string>
+    <string name="silakan_masukkan_mpin_untuk">Silakan masukkan mPIN untuk</string>
+    <string name="nomor_hp">nomor HP</string>
 </resources>
