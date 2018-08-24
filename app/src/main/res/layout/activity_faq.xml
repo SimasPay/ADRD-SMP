@@ -19,5 +19,15 @@
         android:background="@android:color/white"
         android:layout_alignParentBottom="true"
         android:scrollbars="vertical"
+        android:visibility="gone"
         android:layout_margin="0dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_centerVertical="true"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

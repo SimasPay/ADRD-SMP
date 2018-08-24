@@ -20,14 +20,11 @@ import android.widget.TextView;
 
 import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.lakupandai.LakupandaiTransferDetailsActivity;
-import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
-
 import simaspay.payment.com.simaspay.R;
 
-/**
- * Created by Nagendra P on 12/29/2015.
- */
+
+
 public class TransferHomeActivity extends AppCompatActivity {
     LinearLayout layout1, layout2, layout3,layout4, logOut, numberSwitching, gantiAkun_layout, whitelogOut;
     TextView textView1, textView2, textView3,textView4, simas, name, number, ganti_akun, logout_text, whiteName, white_number;
@@ -49,8 +46,9 @@ public class TransferHomeActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("SimasPay", MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        editor.apply();
 
-        simas = (TextView) findViewById(R.id.simas);
+        simas = findViewById(R.id.simas);
 
 
         String s = "simaspay";
@@ -59,32 +57,32 @@ public class TransferHomeActivity extends AppCompatActivity {
         ss1.setSpan(new ForegroundColorSpan(Color.RED), 0, 5, 0);
 
         simas.setText(ss1);
-        layout1 = (LinearLayout) findViewById(R.id.common_layout_1);
-        layout2 = (LinearLayout) findViewById(R.id.common_layout_2);
-        layout3 = (LinearLayout) findViewById(R.id.common_layout_3);
-        layout4 = (LinearLayout) findViewById(R.id.common_layout_4);
+        layout1 = findViewById(R.id.common_layout_1);
+        layout2 = findViewById(R.id.common_layout_2);
+        layout3 = findViewById(R.id.common_layout_3);
+        layout4 = findViewById(R.id.common_layout_4);
 
-        imageView1 = (ImageView) findViewById(R.id.common_image_1);
-        imageView2 = (ImageView) findViewById(R.id.common_image_2);
-        imageView3 = (ImageView) findViewById(R.id.common_image_3);
-        imageView4 = (ImageView) findViewById(R.id.common_image_4);
+        imageView1 = findViewById(R.id.common_image_1);
+        imageView2 = findViewById(R.id.common_image_2);
+        imageView3 = findViewById(R.id.common_image_3);
+        imageView4 = findViewById(R.id.common_image_4);
 
-        menu_back = (ImageView) findViewById(R.id.menu_back);
+        menu_back = findViewById(R.id.menu_back);
 
-        textView1 = (TextView) findViewById(R.id.common_text_1);
-        textView2 = (TextView) findViewById(R.id.common_text_2);
-        textView3 = (TextView) findViewById(R.id.common_text_3);
-        textView4 = (TextView) findViewById(R.id.common_text_4);
+        textView1 = findViewById(R.id.common_text_1);
+        textView2 = findViewById(R.id.common_text_2);
+        textView3 = findViewById(R.id.common_text_3);
+        textView4 = findViewById(R.id.common_text_4);
 
-        name = (TextView) findViewById(R.id.com_name);
-        number = (TextView) findViewById(R.id.com_number);
+        name = findViewById(R.id.com_name);
+        number = findViewById(R.id.com_number);
 
-        whiteName = (TextView) findViewById(R.id.userName);
-        white_number = (TextView) findViewById(R.id.userNumber);
+        whiteName = findViewById(R.id.userName);
+        white_number = findViewById(R.id.userNumber);
 
 
-        ganti_akun = (TextView) findViewById(R.id.com_ganti_akun_text);
-        logout_text = (TextView) findViewById(R.id.com_logout_text);
+        ganti_akun = findViewById(R.id.com_ganti_akun_text);
+        logout_text = findViewById(R.id.com_logout_text);
 
         textView1.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
         textView2.setTypeface(Utility.LightTextFormat(TransferHomeActivity.this));
@@ -140,37 +138,25 @@ public class TransferHomeActivity extends AppCompatActivity {
         textView3.setText("Laku Pandai");
         textView4.setText("Uangku");
 
-        layout1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TransferHomeActivity.this, TransferDetailsActivity.class);
-                startActivity(intent);
-            }
+        layout1.setOnClickListener(view -> {
+            Intent intent = new Intent(TransferHomeActivity.this, TransferDetailsActivity.class);
+            startActivity(intent);
         });
 
-        layout3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
-                startActivity(intent);
-            }
+        layout3.setOnClickListener(view -> {
+            Intent intent = new Intent(TransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
+            startActivity(intent);
         });
 
-        layout2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(TransferHomeActivity.this, BankDetailsActivity.class);
-                startActivity(intent);
-            }
+        layout2.setOnClickListener(view -> {
+            Intent intent = new Intent(TransferHomeActivity.this, BankDetailsActivity.class);
+            startActivity(intent);
         });
 
 
-        layout4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TransferHomeActivity.this, UangkuTransferDetailsActivity.class);
-                startActivity(intent);
-            }
+        layout4.setOnClickListener(v -> {
+            Intent intent = new Intent(TransferHomeActivity.this, UangkuTransferDetailsActivity.class);
+            startActivity(intent);
         });
 
         if (getIntent().getExtras().getBoolean("agentornot")) {
@@ -183,20 +169,17 @@ public class TransferHomeActivity extends AppCompatActivity {
             findViewById(R.id.agent).setVisibility(View.GONE);
         }
 
-        menu_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(Activity.RESULT_FIRST_USER, intent);
-                finish();
-            }
+        menu_back.setOnClickListener(view -> {
+            Intent intent = getIntent();
+            setResult(Activity.RESULT_FIRST_USER, intent);
+            finish();
         });
-        logOut = (LinearLayout) findViewById(R.id.logOut);
-        numberSwitching = (LinearLayout) findViewById(R.id.Number_switching);
+        logOut = findViewById(R.id.logOut);
+        numberSwitching = findViewById(R.id.Number_switching);
 
 
-        whitelogOut = (LinearLayout) findViewById(R.id.whitelogOut);
-        gantiAkun_layout = (LinearLayout) findViewById(R.id.gantiAkun_layout);
+        whitelogOut = findViewById(R.id.whitelogOut);
+        gantiAkun_layout = findViewById(R.id.gantiAkun_layout);
 
         if (getIntent().getExtras().getBoolean("simaspayuser")) {
             numberSwitching.setVisibility(View.VISIBLE);
@@ -205,44 +188,32 @@ public class TransferHomeActivity extends AppCompatActivity {
         }
 
 
-        logOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             /*  editor.putBoolean("Logout",true).commit();
-                finish();*/
-                Intent intent = getIntent();
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-            }
+        logOut.setOnClickListener(view -> {
+         /*  editor.putBoolean("Logout",true).commit();
+            finish();*/
+            Intent intent = getIntent();
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
 
-        numberSwitching.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+        numberSwitching.setOnClickListener(view -> {
+            Intent intent = getIntent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
 
 
-        whitelogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        whitelogOut.setOnClickListener(view -> {
 
-                Intent intent = getIntent();
-                setResult(Activity.RESULT_OK, intent);
-                finish();
-            }
+            Intent intent = getIntent();
+            setResult(Activity.RESULT_OK, intent);
+            finish();
         });
 
-        gantiAkun_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(Activity.RESULT_CANCELED, intent);
-                finish();
-            }
+        gantiAkun_layout.setOnClickListener(view -> {
+            Intent intent = getIntent();
+            setResult(Activity.RESULT_CANCELED, intent);
+            finish();
         });
 
     }

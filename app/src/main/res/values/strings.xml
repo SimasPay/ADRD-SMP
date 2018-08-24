@@ -20,7 +20,7 @@
     <string-array name="bahasa_transfer_array">
         <item>Bank Sinarmas</item>
         <item>Bank Lainnya</item>
-        <item>Uangku</item>
+        <!--<item>Uangku</item>-->
         <item>E-money</item>
     </string-array>
     <string-array name="withdraw_array">

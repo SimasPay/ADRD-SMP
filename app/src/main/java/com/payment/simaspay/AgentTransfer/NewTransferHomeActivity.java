@@ -6,17 +6,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.services.Constants;
 
 import simaspay.payment.com.simaspay.R;
@@ -47,59 +43,53 @@ public class NewTransferHomeActivity extends AppCompatActivity{
         sharedPreferences=getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         account=sharedPreferences.getString(Constants.PARAMETER_USES_AS,"");
         Log.d(LOG_TAG,"account as: " + account);
-        listView = (ListView) findViewById(R.id.transfer_list);
+        listView = findViewById(R.id.transfer_list);
         String[] transferString=getResources().getStringArray(R.array.bahasa_transfer_array);
         final ArrayAdapter<String> listAdapter =
                 new ArrayAdapter<String>(this, R.layout.textviewdata,R.id.textviewdata_text, transferString);
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView teksview=(TextView)view.findViewById(R.id.textviewdata_text);
-                String text = teksview.getText().toString();
-                if(text.equals(getResources().getString(R.string.bank_sinarmas))){
-                    Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
-                    intent.putExtra("transfer", "sinarmas");
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            TextView teksview= view.findViewById(R.id.textviewdata_text);
+            String text = teksview.getText().toString();
+            if(text.equals(getResources().getString(R.string.bank_sinarmas))){
+                Intent intent = new Intent(NewTransferHomeActivity.this, TransferDetailsActivity.class);
+                intent.putExtra("transfer", "sinarmas");
+                startActivity(intent);
+            }else if(text.equals(getResources().getString(R.string.bank_lainnya))){
+                Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
+                intent.putExtra("transfer", "lainnya");
+                startActivity(intent);
+                /*
+            }else if(text.equals("Laku Pandai")){
+                Intent intent = new Intent(NewTransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
+                startActivity(intent);
+                 **/
+            /*
+            }else if(text.equals(getResources().getString(R.string.uangku))){
+                Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
+                intent.putExtra("transfer", "uangku");
+                startActivity(intent);
+             **/
+            }else if(text.equals(getResources().getString(R.string.emoney))){
+                if(account.equals(Constants.CONSTANT_EMONEY_PLUS)||account.equals(Constants.CONSTANT_EMONEY_REGULER)){
+                    Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
+                    intent.putExtra("transfer", "emoney");
                     startActivity(intent);
-                }else if(text.equals(getResources().getString(R.string.bank_lainnya))){
-                    Intent intent = new Intent(NewTransferHomeActivity.this, BankDetailsActivity.class);
-                    intent.putExtra("transfer", "lainnya");
-                    startActivity(intent);
-                    /**
-                }else if(text.equals("Laku Pandai")){
-                    Intent intent = new Intent(NewTransferHomeActivity.this, LakupandaiTransferDetailsActivity.class);
-                    startActivity(intent);
-                     **/
-                }else if(text.equals(getResources().getString(R.string.uangku))){
-                    Intent intent = new Intent(NewTransferHomeActivity.this, UangkuTransferDetailsActivity.class);
-                    intent.putExtra("transfer", "uangku");
-                    startActivity(intent);
-                }else if(text.equals(getResources().getString(R.string.emoney))){
+                }else{
                     if(account.equals(Constants.CONSTANT_EMONEY_PLUS)||account.equals(Constants.CONSTANT_EMONEY_REGULER)){
                         Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
                         intent.putExtra("transfer", "emoney");
                         startActivity(intent);
-                    }else{
-                        if(account.equals(Constants.CONSTANT_EMONEY_PLUS)||account.equals(Constants.CONSTANT_EMONEY_REGULER)){
-                            Intent intent = new Intent(NewTransferHomeActivity.this, TransferEmoneyToEmoneyActivity.class);
-                            intent.putExtra("transfer", "emoney");
-                            startActivity(intent);
-                        }else if(account.equals(Constants.CONSTANT_BANK_USER)){
-                            Intent intent = new Intent(NewTransferHomeActivity.this, TransferBankToEmoneyActivity.class);
-                            intent.putExtra("transfer", "emoney");
-                            startActivity(intent);
-                        }
+                    }else if(account.equals(Constants.CONSTANT_BANK_USER)){
+                        Intent intent = new Intent(NewTransferHomeActivity.this, TransferBankToEmoneyActivity.class);
+                        intent.putExtra("transfer", "emoney");
+                        startActivity(intent);
                     }
                 }
             }
         });
 
-        LinearLayout backLin=(LinearLayout)findViewById(R.id.back_layout);
-        backLin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        LinearLayout backLin= findViewById(R.id.back_layout);
+        backLin.setOnClickListener(view -> finish());
         listView.setAdapter(listAdapter);
     }
 
