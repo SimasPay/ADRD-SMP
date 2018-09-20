@@ -14,6 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
+import com.payment.simaspay.services.Constants;
+
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 /**
@@ -64,6 +66,6 @@ public class TermsNConditionsActivity extends AppCompatActivity {
             }
         });
         settings.setDefaultTextEncodingName("utf-8");
-        content_tnc.loadUrl("http://banksinarmas.com/tabunganonline/simobi");
+        content_tnc.loadUrl(Constants.URL_TC);
     }
 }
