@@ -61,10 +61,10 @@ public class ProviderNamesListActivity extends AppCompatActivity {
         }
 
 
-        title = (TextView) findViewById(R.id.titled);
+        title = findViewById(R.id.titled);
         title.setTypeface(Utility.Robot_Regular(ProviderNamesListActivity.this));
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,7 @@ public class ProviderNamesListActivity extends AppCompatActivity {
             }
         });
 
-        listView = (ListView) findViewById(R.id.account_type);
+        listView = findViewById(R.id.account_type);
 
         if (getIntent().getExtras().getBoolean("accounttype")) {
             title.setText("Pembayaran");
@@ -191,7 +191,7 @@ public class ProviderNamesListActivity extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             View view1 = LayoutInflater.from(ProviderNamesListActivity.this).inflate(R.layout.textviewdata, null);
-            TextView textView = (TextView) view1.findViewById(R.id.textviewdata_text);
+            TextView textView = view1.findViewById(R.id.textviewdata_text);
 
             if (getIntent().getExtras().getBoolean("accounttype")) {
                 textView.setText(providerNamesList.get(i).getProviderName());

@@ -103,11 +103,11 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         sourceMDN = settings.getString("mobileNumber", "");
         stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
 
-        title = (TextView) findViewById(R.id.titled);
-        product = (TextView) findViewById(R.id.name_product);
-        product_field = (EditText) findViewById(R.id.product_field);
-        number = (TextView) findViewById(R.id.number);
-        number_field = (EditText) findViewById(R.id.number_field);
+        title = findViewById(R.id.titled);
+        product = findViewById(R.id.name_product);
+        product_field = findViewById(R.id.product_field);
+        number = findViewById(R.id.number);
+        number_field = findViewById(R.id.number_field);
         number_field.setFocusable(true);
         number_field.setFocusableInTouchMode(true);
         number_field.requestFocus();
@@ -131,11 +131,11 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         }else{
             number_field.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         }
-        pin = (TextView) findViewById(R.id.mPin);
-        pin_field = (EditText) findViewById(R.id.pin);
-        amount_Text = (TextView) findViewById(R.id.mAMount);
-        rp = (TextView) findViewById(R.id.Rp);
-        amountField = (EditText) findViewById(R.id.Payment_amountentry_field);
+        pin = findViewById(R.id.mPin);
+        pin_field = findViewById(R.id.pin);
+        amount_Text = findViewById(R.id.mAMount);
+        rp = findViewById(R.id.Rp);
+        amountField = findViewById(R.id.Payment_amountentry_field);
 
         title.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         product.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
@@ -176,15 +176,15 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         product_field.setEnabled(false);
         product_field.setClickable(false);
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
 
         back.setOnClickListener(view -> finish());
 
-        spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout = findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
-        spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
+        spinner_fav = findViewById(R.id.spinner_fav);
 
-        RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
+        RadioGroup radioTujuanGroup = findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -240,7 +240,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
             }
         });
 
-        submit = (Button) findViewById(R.id.submit);
+        submit = findViewById(R.id.submit);
         submit.setTypeface(Utility.Robot_Regular(PaymentDetailsActivity.this));
         minLimitValue = getIntent().getExtras().getInt("minLength");
         maxLimitValue = getIntent().getExtras().getInt("maxLength");

@@ -89,10 +89,10 @@ public class BillersListActivity extends Activity {
         }
 
 
-        title = (TextView) findViewById(R.id.titled);
+        title = findViewById(R.id.titled);
         title.setTypeface(Utility.Robot_Regular(BillersListActivity.this));
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +100,7 @@ public class BillersListActivity extends Activity {
             }
         });
 
-        listView = (ListView) findViewById(R.id.account_type);
+        listView = findViewById(R.id.account_type);
 
         if (getIntent().getExtras().getBoolean("accounttype")) {
             title.setText("Pembayaran");
@@ -249,52 +249,48 @@ public class BillersListActivity extends Activity {
         }
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
 
-                if (getIntent().getExtras().getBoolean("accounttype")) {
-                    Intent intent = new Intent(BillersListActivity.this, PaymentDetailsActivity.class);
-                    intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
-                    intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
-                    intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
-                    intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));
-                    intent.putExtra("ProductName", providerNamesList.get(i).getProductName());
-                    intent.putExtra("ProductCode", providerNamesList.get(i).getProductCode());
-                    intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
-                    intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
-                    intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
-                    intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
-                    intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
-                    intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
-                    intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
-                    startActivityForResult(intent, 10);
-                } else {
-                    Intent intent = new Intent(BillersListActivity.this, PurchaseDetailsActivity.class);
-                    intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
-                    intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
-                    intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
-                    intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));
-                    intent.putExtra("ProductName", providerNamesList.get(i).getProductName());
-                    intent.putExtra("ProductCode", providerNamesList.get(i).getProductCode());
-                    intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
-                    intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
-                    intent.putExtra("NominalType", providerNamesList.get(i).getNominaltype());
-                    intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
-                    intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
-                    intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
-                    intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
-                    intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
-                    if(providerNamesList.get(i).getIsPLNPrepaid().equalsIgnoreCase("true")){
-                        intent.putExtra("DenomValues","");
-                    }else {
-                        intent.putExtra("DenomValues", providerNamesList.get(i).getDenomValues());
-                    }
-                    intent.putExtra("isPlnprepaid",providerNamesList.get(i).getIsPLNPrepaid());
-                    startActivityForResult(intent, 10);
+            if (getIntent().getExtras().getBoolean("accounttype")) {
+                Intent intent = new Intent(BillersListActivity.this, PaymentDetailsActivity.class);
+                intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
+                intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
+                intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
+                intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));
+                intent.putExtra("ProductName", providerNamesList.get(i).getProductName());
+                intent.putExtra("ProductCode", providerNamesList.get(i).getProductCode());
+                intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
+                intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
+                intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
+                intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
+                intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
+                intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
+                startActivityForResult(intent, 10);
+            } else {
+                Intent intent = new Intent(BillersListActivity.this, PurchaseDetailsActivity.class);
+                intent.putExtra("productCategory", providerNamesList.get(i).getProductCategory());
+                intent.putExtra("accounttype", getIntent().getExtras().getBoolean("accounttype"));
+                intent.putExtra("ProviderName", getIntent().getExtras().getString("ProviderName"));
+                intent.putExtra("CategoryType", getIntent().getExtras().getString("CategoryType"));
+                intent.putExtra("ProductName", providerNamesList.get(i).getProductName());
+                intent.putExtra("ProductCode", providerNamesList.get(i).getProductCode());
+                intent.putExtra("PaymentMode", providerNamesList.get(i).getPaymentMode());
+                intent.putExtra("invoiceType", providerNamesList.get(i).getInvoiceType());
+                intent.putExtra("NominalType", providerNamesList.get(i).getNominaltype());
+                intent.putExtra("errormessage", providerNamesList.get(i).getErrormessage());
+                intent.putExtra("errormessage1", providerNamesList.get(i).getErrormessage1());
+                intent.putExtra("isMDN", providerNamesList.get(i).getIsMDN());
+                intent.putExtra("maxLength", providerNamesList.get(i).getMaxLength());
+                intent.putExtra("minLength", providerNamesList.get(i).getMinLength());
+                if(providerNamesList.get(i).getIsPLNPrepaid().equalsIgnoreCase("true")){
+                    intent.putExtra("DenomValues","");
+                }else {
+                    intent.putExtra("DenomValues", providerNamesList.get(i).getDenomValues());
                 }
+                intent.putExtra("isPlnprepaid",providerNamesList.get(i).getIsPLNPrepaid());
+                startActivityForResult(intent, 10);
             }
-
         });
 
 
@@ -326,7 +322,7 @@ public class BillersListActivity extends Activity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             View view1 = LayoutInflater.from(BillersListActivity.this).inflate(R.layout.textviewdata, null);
-            TextView textView = (TextView) view1.findViewById(R.id.textviewdata_text);
+            TextView textView = view1.findViewById(R.id.textviewdata_text);
 
             if (getIntent().getExtras().getBoolean("accounttype")) {
                 textView.setText(providerNamesList.get(i).getProductName());

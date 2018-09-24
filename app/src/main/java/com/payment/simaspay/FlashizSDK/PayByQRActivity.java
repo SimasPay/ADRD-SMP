@@ -259,7 +259,7 @@ public class PayByQRActivity extends AppCompatActivity implements PayByQRSDKList
     @Override
     public Fragment callbackShowEULA() {
         //return MyCustomEULA.newInstance();
-        return DefaultEULAFragment.newInstance("http://banksinarmas.com/tabunganonline/simobi");
+        return DefaultEULAFragment.newInstance(Constants.URL_TC_PBQ);
     }
 
     @Override

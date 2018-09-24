@@ -71,7 +71,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
         }
 
         AddAccountDetails(getIntent().getExtras().getBoolean("accounttype"));
-        title = (TextView) findViewById(R.id.titled);
+        title = findViewById(R.id.titled);
         title.setTypeface(Utility.Robot_Regular(PaymentAndPurchaseAccountTypeActivity.this));
 
         if (getIntent().getExtras().getBoolean("accounttype")) {
@@ -93,7 +93,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
         progressDialog.setIndeterminateDrawable(drawable);
         progressDialog.show();
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +101,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
             }
         });
 
-        listView = (ListView) findViewById(R.id.account_type);
+        listView = findViewById(R.id.account_type);
 
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
@@ -148,7 +148,7 @@ public class PaymentAndPurchaseAccountTypeActivity extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View view1 = LayoutInflater.from(PaymentAndPurchaseAccountTypeActivity.this).inflate(R.layout.textviewdata, null);
-            TextView textView = (TextView) view1.findViewById(R.id.textviewdata_text);
+            TextView textView = view1.findViewById(R.id.textviewdata_text);
             if (getIntent().getExtras().getBoolean("accounttype")) {
                 textView.setText(paymentsArrayList.get(i).getProductCategory());
             } else {

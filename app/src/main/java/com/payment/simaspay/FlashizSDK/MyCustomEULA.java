@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +16,6 @@ import com.dimo.PayByQR.EULAFragmentListener;
 import com.payment.simaspay.services.Utility;
 
 import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.SplashScreenActivity;
-import simaspay.payment.com.simaspay.TermsNConditionsActivity;
 import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class MyCustomEULA extends Fragment implements View.OnClickListener {
@@ -44,15 +41,15 @@ public class MyCustomEULA extends Fragment implements View.OnClickListener {
 		View rootView = inflater.inflate(R.layout.qr_terms_conditions,
 				container, false);
 
-		WebView tc = (WebView) rootView.findViewById(R.id.term_cond);
+		WebView tc = rootView.findViewById(R.id.term_cond);
 
-		TextView disclosure = (TextView) rootView
+		TextView disclosure = rootView
 				.findViewById(R.id.terms_conditions);
 		/*
 		 * disclosure.setText(Html.fromHtml(getResources().getString(
 		 * R.string.flashiz_tc)));
 		 */
-		TextView textView = (TextView) rootView
+		TextView textView = rootView
 				.findViewById(R.id.terms_conditions_1);
 
 		disclosure
@@ -66,29 +63,24 @@ public class MyCustomEULA extends Fragment implements View.OnClickListener {
 //		tc.loadUrl("file:///android_asset/flashiz_tc.html");
 //		tc.setBackgroundColor(0x00000000);
 
-		Button btnAccept = (Button) rootView.findViewById(R.id.agreeButton);
-		Button btnDecline = (Button) rootView.findViewById(R.id.decline);
+		Button btnAccept = rootView.findViewById(R.id.agreeButton);
+		Button btnDecline = rootView.findViewById(R.id.decline);
 
 		btnAccept.setOnClickListener(this);
 		btnDecline.setOnClickListener(this);
 
 		//getView().setFocusableInTouchMode(true);
 		//getView().requestFocus();
-		rootView.setOnKeyListener( new View.OnKeyListener()
-		{
-			@Override
-			public boolean onKey( View v, int keyCode, KeyEvent event )
-			{
-				if( keyCode == KeyEvent.KEYCODE_BACK )
-				{
-					getActivity().finish();
-					Intent intent = new Intent(getActivity(), UserHomeActivity.class);
-					startActivity(intent);
-					return true;
-				}
-				return false;
-			}
-		} );
+		rootView.setOnKeyListener((v, keyCode, event) -> {
+            if( keyCode == KeyEvent.KEYCODE_BACK )
+            {
+                getActivity().finish();
+                Intent intent = new Intent(getActivity(), UserHomeActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        });
 
 		return rootView;
 	}
