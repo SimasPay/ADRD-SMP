@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="nohptujuan">Nomor Handphone Tujuan</string>
-    <string name="id_empty_mdn_input">Harap masukkan nomor handphone</string>
-    <string name="id_invalid_mdn_input">Nomor handphone yang Anda masukkan harus 10&#8211;14 angka</string>
-    <string name="jumlah">Jumlah</string>
-    <string name="mpin">mPIN</string>
-    <string name="transfer_emoney">Transfer - E-money</string>
-    <string name="rp">Rp.</string>
-    <string name="bank_sinarmas">Bank Sinarmas</string>
-    <string name="bank_lainnya">Bank Lainnya</string>
-    <string name="uangku">Uangku</string>
-    <string name="emoney">E-money</string>
+    <string name="nohptujuan" translatable="false">Nomor Handphone Tujuan</string>
+    <string name="id_empty_mdn_input" translatable="false">Harap masukkan nomor handphone</string>
+    <string name="id_invalid_mdn_input" translatable="false">Nomor handphone yang Anda masukkan harus 10&#8211;14 angka</string>
+    <string name="jumlah" translatable="false">Jumlah</string>
+    <string name="mpin" translatable="false">mPIN</string>
+    <string name="transfer_emoney" translatable="false">Transfer - E-money</string>
+    <string name="rp" translatable="false">Rp.</string>
+    <string name="bank_sinarmas" translatable="false">Bank Sinarmas</string>
+    <string name="bank_lainnya" translatable="false">Bank Lainnya</string>
+    <string name="uangku" translatable="false">Uangku</string>
+    <string name="emoney" translatable="false">E-money</string>
     <string name="phone_contact_1">1500153</string>
     <string name="phone_contact_2">(021) 50188888</string>
-    <string name="email_contact">care@banksinarmas.com</string>
-    <string name="website_contact">www.banksinarmas.com</string>
+    <string name="email_contact" translatable="false">care@banksinarmas.com</string>
+    <string name="website_contact" translatable="false">www.banksinarmas.com</string>
     <string name="string_eula"><html><p>1. Pay by QR merupakan layanan pembayaran berbasis kode QR atas pembelanjaan di pedagang/merchant yang berpartisipasi, dimana dalam pelaksanaannya pengguna Simaspay melakukan pemindaian kode QR uang tersedia pada pedagang/merchant menggunakan aplikasi Simaspay.</p><p>2. Segala ketentuan mengenai layanan pembayaran pedagang/merchant dengan Pay by QR mengacu kepada Syarat dan Ketentuan Penggunaan Aplikasi Simaspay.</p></html>
 </string>
     <string-array name="bahasa_transfer_array">
@@ -421,7 +421,9 @@ Dengan menyetujui Syarat dan Ketentuan Pembayaran QR ini, maka saya menyatakan b
     <string name="pay">pay</string>
     <string name="login_atau_daftar">Login atau Daftar</string>
     <string name="syarat_dan_ketentuan"><![CDATA[Syarat & Ketentuan]]></string>
-    <string name="faq">FAQ</string>
-    <string name="silakan_masukkan_mpin_untuk">Silakan masukkan mPIN untuk</string>
-    <string name="nomor_hp">nomor HP</string>
+    <string name="faq" translatable="false">FAQ</string>
+    <string name="silakan_masukkan_mpin_untuk" translatable="false">Silakan masukkan mPIN untuk</string>
+    <string name="nomor_hp" translatable="false">nomor HP</string>
+    <string name="contoh_mdn" translatable="false">09876543211</string>
+    <string name="atau" translatable="false">atau</string>
 </resources>

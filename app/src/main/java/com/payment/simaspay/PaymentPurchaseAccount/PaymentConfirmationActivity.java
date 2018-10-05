@@ -190,7 +190,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         amount_field.setText("Rp. " + getIntent().getExtras().getString("originalAmount"));
         AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
         if(AdditionalInfo!=null&&!AdditionalInfo.equals("")){
-            AdditionalInfo=AdditionalInfo.replace("|","<br><br><b>");
+            AdditionalInfo=AdditionalInfo.replace("|","<br><b>");
             AdditionalInfo=AdditionalInfo.replace(": ","</b><br>");
             AdditionalInfo=AdditionalInfo.replace("<br><br><b>PAYMENT","<br><b>PAYMENT");
             AdditionalInfo=AdditionalInfo.replace("<br><b>                                      <br><br><b>","");

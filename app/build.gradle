@@ -7,6 +7,7 @@ android {
 
     lintOptions {
         checkReleaseBuilds false
+        disable 'MissingTranslation'
     }
 
     defaultConfig {
@@ -45,8 +46,8 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
-    implementation 'com.google.android.gms:play-services-location:15.0.1'
-    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'

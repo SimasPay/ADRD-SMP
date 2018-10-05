@@ -43,7 +43,7 @@
         android:layout_marginStart="30dp"
         android:text="@string/silakan_masukkan_mpin_untuk"
         android:textColor="#5b5b5b"
-        android:textSize="20sp" />
+        android:textSize="15sp" />
 
     <LinearLayout
         android:id="@+id/linlay_2"
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="@string/nomor_hp"
             android:textColor="#5b5b5b"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/txt_3"
@@ -69,9 +69,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:text="09876543211"
+            android:text="@string/contoh_mdn"
             android:textColor="#5b5b5b"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,18 +94,23 @@
         <EditText
             android:id="@+id/mpin"
             android:layout_width="fill_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
+            android:autofillHints="mPIN"
             android:background="@null"
             android:digits="1234567890"
+            android:drawableStart="@drawable/ic_mpin"
             android:drawableLeft="@drawable/ic_mpin"
             android:drawablePadding="15dp"
             android:hint="@string/mpin"
-            android:inputType="number"
+            android:inputType="numberPassword"
             android:maxLength="6"
+            android:paddingStart="10dp"
             android:paddingLeft="10dp"
-            android:password="true"
+            android:paddingEnd="10dp"
+            android:paddingRight="10dp"
             android:singleLine="true"
-            android:text="">
+            android:text=""
+            android:textSize="14sp">
 
             <requestFocus />
         </EditText>
@@ -143,6 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_weight="1"
             android:background="@color/background_floating_material_dark" />
 
@@ -155,16 +161,17 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-            android:text="atau"
+            android:text="@string/atau"
             android:textAllCaps="false"
             android:textColor="@color/background_floating_material_dark"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_weight="1"
             android:background="@color/background_floating_material_dark"/>
     </LinearLayout>
@@ -196,45 +203,53 @@
         android:text="@string/id_forgot_mpin"
         android:layout_below="@id/login"
         android:textColor="#5b5b5b"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
-    <RelativeLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:gravity="center|center_horizontal"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:id="@+id/contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/hubungi_kami"
+                android:textColor="#5b5b5b"
+                android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_faq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="@string/faq"
-            android:textColor="#5b5b5b"
-            android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tv_faq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/faq"
+                android:textColor="#5b5b5b"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_tnc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="30dp"
-            android:layout_marginEnd="30dp"
-            android:text="@string/syarat_dan_ketentuan"
-            android:textColor="#5b5b5b"
-            android:textSize="17sp"
-            tools:ignore="RelativeOverlap" />
-
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_tnc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/syarat_dan_ketentuan"
+                android:textColor="#5b5b5b"
+                android:textSize="12sp" />
+        </TableRow>
+    </TableLayout>
 
 
 </RelativeLayout>

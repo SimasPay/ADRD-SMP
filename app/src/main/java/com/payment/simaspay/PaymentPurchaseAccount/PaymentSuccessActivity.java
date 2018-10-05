@@ -43,32 +43,28 @@ public class PaymentSuccessActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.dark_red));
         }
 
-        title = (TextView) findViewById(R.id.title);
-        heading = (TextView) findViewById(R.id.textview);
-        name = (TextView) findViewById(R.id.name);
-        name_field = (TextView) findViewById(R.id.name_field);
-        number = (TextView) findViewById(R.id.number);
-        number_field = (TextView) findViewById(R.id.number_field);
-        amount = (TextView) findViewById(R.id.amount);
-        amount_field = (TextView) findViewById(R.id.amount_field);
+        title = findViewById(R.id.title);
+        heading = findViewById(R.id.textview);
+        name = findViewById(R.id.name);
+        name_field = findViewById(R.id.name_field);
+        number = findViewById(R.id.number);
+        number_field = findViewById(R.id.number_field);
+        amount = findViewById(R.id.amount);
+        amount_field = findViewById(R.id.amount_field);
 
-        charges = (TextView) findViewById(R.id.products);
-        charges_field = (TextView) findViewById(R.id.other_products);
+        charges = findViewById(R.id.products);
+        charges_field = findViewById(R.id.other_products);
 
-        total = (TextView) findViewById(R.id.total);
-        total_field = (TextView) findViewById(R.id.total_field);
+        total = findViewById(R.id.total);
+        total_field = findViewById(R.id.total_field);
 
-        transferID = (TextView) findViewById(R.id.transferID);
-        transfer_field = (TextView) findViewById(R.id.transfer_field);
+        transferID = findViewById(R.id.transferID);
+        transfer_field = findViewById(R.id.transfer_field);
 
-        TextView label_fav=(TextView)findViewById(R.id.label_fav);
-        favBtn=(CheckBox)findViewById(R.id.checkfav);
+        TextView label_fav= findViewById(R.id.label_fav);
+        favBtn= findViewById(R.id.checkfav);
         favBtn.setOnClickListener(arg0 -> {
-            if(!favBtn.isChecked()){
-                isSetFav=false;
-            } else{
-                isSetFav=true;
-            }
+            isSetFav = favBtn.isChecked();
         });
 
         if(getIntent().getExtras()!=null){
@@ -82,10 +78,10 @@ public class PaymentSuccessActivity extends AppCompatActivity {
             }
         }
 
-        view = (View) findViewById(R.id.line);
+        view = findViewById(R.id.line);
         transferID.setText(getIntent().getExtras().getString("sctlID"));
 
-        ok = (Button) findViewById(R.id.ok);
+        ok = findViewById(R.id.ok);
 
         heading.setText("Pembayaran Berhasil!");
         name.setText("Nama Produk");

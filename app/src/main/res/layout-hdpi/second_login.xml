@@ -20,16 +20,16 @@
             android:id="@+id/btnBacke"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/btn_back_contact" />
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="-20dp"
             android:layout_marginStart="-20dp"
+            android:layout_marginLeft="-20dp"
             android:src="@mipmap/logo_simaspay" />
     </LinearLayout>
 
@@ -38,9 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
         android:text="@string/silakan_masukkan_mpin_untuk"
         android:textColor="#5b5b5b"
         android:textSize="20sp" />
@@ -50,9 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_1"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -67,8 +67,8 @@
             android:id="@+id/txt_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:text="09876543211"
             android:textColor="#5b5b5b"
             android:textSize="20sp" />
@@ -80,10 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/linlay_2"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/background_round_corner"
         android:elevation="10dp"
         android:gravity="center"
@@ -118,8 +118,8 @@
         android:layout_below="@id/linlay_3"
         android:layout_gravity="center"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/login_color_red"
         android:elevation="10dp"
         android:stateListAnimator="@anim/button_state_list_animator"
@@ -151,9 +151,9 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="2dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="2dp"
             android:gravity="center"
             android:text="atau"
             android:textAllCaps="false"
@@ -166,7 +166,7 @@
             android:layout_height="0.5dp"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
-            android:background="@color/background_floating_material_dark"/>
+            android:background="@color/background_floating_material_dark" />
     </LinearLayout>
 
 
@@ -176,8 +176,8 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="25dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/color_gray"
         android:elevation="10dp"
         android:stateListAnimator="@anim/button_state_list_animator"
@@ -191,50 +191,58 @@
         android:id="@+id/forgot_mpin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/login"
         android:layout_marginTop="25dp"
         android:gravity="center"
         android:text="@string/id_forgot_mpin"
-        android:layout_below="@id/login"
         android:textColor="#5b5b5b"
         android:textSize="20sp" />
 
-    <RelativeLayout
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true"
+        android:gravity="center|center_horizontal"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:id="@+id/contact_us"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/hubungi_kami"
+                android:textColor="#5b5b5b"
+                android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_faq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:text="@string/faq"
-            android:textColor="#5b5b5b"
-            android:textSize="17sp" />
+            <TextView
+                android:id="@+id/tv_faq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/faq"
+                android:textColor="#5b5b5b"
+                android:layout_gravity="center_horizontal"
+                android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_tnc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="40dp"
-            android:layout_marginEnd="40dp"
-            android:text="@string/syarat_dan_ketentuan"
-            android:textColor="#5b5b5b"
-            android:textSize="17sp"
-            tools:ignore="RelativeOverlap" />
-
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_tnc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/syarat_dan_ketentuan"
+                android:textColor="#5b5b5b"
+                android:textSize="12sp" />
+        </TableRow>
+    </TableLayout>
 
 
 </RelativeLayout>

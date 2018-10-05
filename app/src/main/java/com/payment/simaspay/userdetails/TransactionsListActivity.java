@@ -1,5 +1,6 @@
 package com.payment.simaspay.userdetails;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -22,7 +23,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,7 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.payment.simaspay.PojoClasses.TransactionsData;
-import com.payment.simaspay.UangkuTransfer.UangkuTransferConfirmationActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.JSONParser;
@@ -99,9 +98,9 @@ public class TransactionsListActivity extends AppCompatActivity {
 
         isLoading = false;
 
-        title = (TextView) findViewById(R.id.title);
-        period = (TextView) findViewById(R.id.terms_conditions);
-        terms_conditions_1 = (TextView) findViewById(R.id.terms_conditions_1);
+        title = findViewById(R.id.title);
+        period = findViewById(R.id.terms_conditions);
+        terms_conditions_1 = findViewById(R.id.terms_conditions_1);
 
 
         progressDialog = new ProgressDialog(TransactionsListActivity.this);
@@ -114,13 +113,13 @@ public class TransactionsListActivity extends AppCompatActivity {
         progressDialog.setIndeterminateDrawable(drawable);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        listView = (ListView) findViewById(R.id.listView);
+        listView = findViewById(R.id.listView);
         listView.setSmoothScrollbarEnabled(true);
         listView.setFastScrollEnabled(true);
-        ok = (Button) findViewById(R.id.accept);
+        ok = findViewById(R.id.accept);
 
-        back_layout = (LinearLayout) findViewById(R.id.back_layout);
-        dwn_layout = (LinearLayout) findViewById(R.id.download_layout);
+        back_layout = findViewById(R.id.back_layout);
+        dwn_layout = findViewById(R.id.download_layout);
 
         String label_home = sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "");
 
@@ -162,21 +161,13 @@ public class TransactionsListActivity extends AppCompatActivity {
             findViewById(R.id.period).setVisibility(View.GONE);
         }
 
-        back_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+        back_layout.setOnClickListener(view -> {
+            Intent intent = getIntent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
 
-        dwn_layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DownLoadAsyncTask().execute();
-            }
-        });
+        dwn_layout.setOnClickListener(v -> new DownLoadAsyncTask().execute());
 
         title.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
         period.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
@@ -185,13 +176,10 @@ public class TransactionsListActivity extends AppCompatActivity {
         ok.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
 
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = getIntent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+        ok.setOnClickListener(view -> {
+            Intent intent = getIntent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
         new TransactionsListAsync().execute();
 
@@ -266,33 +254,36 @@ public class TransactionsListActivity extends AppCompatActivity {
         public View getView(int i, View view, ViewGroup viewGroup) {
 
             View view1 = LayoutInflater.from(TransactionsListActivity.this).inflate(R.layout.transacton, null);
-            TextView textView = (TextView) view1.findViewById(R.id.date);
-            TextView textView1 = (TextView) view1.findViewById(R.id.type);
-            TextView textView2 = (TextView) view1.findViewById(R.id.credit_or_debit);
-            TextView textView3 = (TextView) view1.findViewById(R.id.amount);
+            TextView tv_date = view1.findViewById(R.id.date);
+            TextView tv_type = view1.findViewById(R.id.type);
+            TextView tv_debitcredit = view1.findViewById(R.id.credit_or_debit);
+            TextView tv_amount = view1.findViewById(R.id.amount);
+            TextView tv_refID = view1.findViewById(R.id.refID);
 
-            textView.setTypeface(Utility.Robot_Light(TransactionsListActivity.this));
-            textView1.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
-            textView2.setTypeface(Utility.Robot_Light(TransactionsListActivity.this));
-            textView3.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
+            tv_date.setTypeface(Utility.Robot_Light(TransactionsListActivity.this));
+            tv_type.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
+            tv_debitcredit.setTypeface(Utility.Robot_Light(TransactionsListActivity.this));
+            tv_amount.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
+            tv_refID.setTypeface(Utility.Robot_Regular(TransactionsListActivity.this));
 
             Log.d(LOG_TAG, "transaction data: " + transationsListarray.get(i).getTransactionData());
             Log.d(LOG_TAG, "transaction time: " + transationsListarray.get(i).getDate_time());
             Log.d(LOG_TAG, "transaction amount: " + transationsListarray.get(i).getAmount());
             Log.d(LOG_TAG, "transaction isCredit: " + transationsListarray.get(i).getType());
+            Log.d(LOG_TAG, "transaction ref_id: " + transationsListarray.get(i).getRef_id());
 
             if (transationsListarray.get(i).getType().equals("false")) {
-                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_color));
-                textView2.setText(getResources().getString(R.string.debit));
+                tv_debitcredit.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_color));
+                tv_debitcredit.setText(getResources().getString(R.string.debit));
             } else {
-                textView2.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
-                textView2.setText(getResources().getString(R.string.credit));
+                tv_debitcredit.setBackgroundDrawable(getResources().getDrawable(R.drawable.green_color));
+                tv_debitcredit.setText(getResources().getString(R.string.credit));
             }
 
-            textView.setText(transationsListarray.get(i).getDate_time());
-            textView1.setText(transationsListarray.get(i).getTransactionData());
-            textView3.setText("Rp. " + transationsListarray.get(i).getAmount());
-
+            tv_date.setText(transationsListarray.get(i).getDate_time());
+            tv_type.setText(transationsListarray.get(i).getTransactionData());
+            tv_amount.setText("Rp. " + transationsListarray.get(i).getAmount());
+            tv_refID.setText("Ref ID: "+ transationsListarray.get(i).getRef_id());
             return view1;
         }
     }
@@ -452,6 +443,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                                     "isCredit"));
                             transationsList.setDate_time(parser
                                     .getValue(e, "transactionTime"));
+                            transationsList.setRef_id(parser
+                                    .getValue(e, "refID"));
                             transationsListarray.add(transationsList);
                             //Log.d(LOG_TAG,"transactionListArray:"+transationsListarray);
                         }
@@ -486,6 +479,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                                     "isCredit"));
                             transationsList.setDate_time(parser
                                     .getValue(e, "transactionTime"));
+                            transationsList.setRef_id(parser
+                                    .getValue(e, "refID"));
                             transationsListarray.add(transationsList);
                         }
                     }
@@ -515,6 +510,7 @@ public class TransactionsListActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class TransactionsListAsyncNonBank extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
@@ -596,6 +592,8 @@ public class TransactionsListActivity extends AppCompatActivity {
                                     "isCredit"));
                             transationsList.setDate_time(parser
                                     .getValue(e, "transactionTime"));
+                            transationsList.setRef_id(parser
+                                    .getValue(e, "refID"));
                             transationsListarray.add(transationsList);
                         }
 
@@ -626,6 +624,7 @@ public class TransactionsListActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     private class DownLoadAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -660,6 +659,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                 }
 
                 if (msgCode == 2051) {
+                    Log.d("test", "download url:"+ AppConfigFile.pfdDownLoadURL + responseContainer.getDownLoadUrl());
                     new DownloadPDFTask()
                             .execute(AppConfigFile.pfdDownLoadURL
                                     + responseContainer.getDownLoadUrl());
@@ -759,7 +759,7 @@ public class TransactionsListActivity extends AppCompatActivity {
                 BufferedInputStream bufferedStreamInput = new BufferedInputStream(
                         streamInput);
                 FileOutputStream outputStream = TransactionsListActivity.this
-                        .openFileOutput(mFileName, Context.MODE_WORLD_READABLE);
+                        .openFileOutput(mFileName, Context.MODE_PRIVATE);
 
                 while ((nRead = bufferedStreamInput.read(dataBuffer)) > 0)
                     outputStream.write(dataBuffer, 0, nRead);

@@ -21,6 +21,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
+import com.payment.simaspay.contactus.ContactUs_Activity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -116,6 +118,14 @@ public class SecondLoginActivity extends AppCompatActivity {
         tv_tnc.setPaintFlags(tv_tnc.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
         tv_tnc.setOnClickListener(view -> {
             Intent intent = new Intent(SecondLoginActivity.this, TNCActivity.class);
+            startActivity(intent);
+        });
+
+        TextView contact_us= findViewById(R.id.contact_us);
+        contact_us.setPaintFlags(contact_us.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        //contact_us.setText(Html.fromHtml("<u>Hubungi Kami</u>"));
+        contact_us.setOnClickListener(view -> {
+            Intent intent = new Intent(SecondLoginActivity.this, ContactUs_Activity.class);
             startActivity(intent);
         });
 
