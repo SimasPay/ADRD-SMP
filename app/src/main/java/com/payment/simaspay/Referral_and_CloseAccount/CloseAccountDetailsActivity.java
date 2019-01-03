@@ -2,15 +2,12 @@ package com.payment.simaspay.Referral_and_CloseAccount;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +24,12 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/27/2016.

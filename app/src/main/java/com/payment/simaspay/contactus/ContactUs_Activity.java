@@ -30,7 +30,7 @@ import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +38,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 

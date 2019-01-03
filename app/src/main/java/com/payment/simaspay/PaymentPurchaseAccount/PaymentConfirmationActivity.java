@@ -39,14 +39,14 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 
 public class PaymentConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
@@ -81,18 +81,18 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         func.initiatedToolbar(this);
         IncomingSMS.setListener(PaymentConfirmationActivity.this);
 
-        title = (TextView) findViewById(R.id.title);
-        heading = (TextView) findViewById(R.id.textview);
-        name = (TextView) findViewById(R.id.name);
-        name_field = (TextView) findViewById(R.id.name_field);
-        number = (TextView) findViewById(R.id.number);
-        number_field = (TextView) findViewById(R.id.number_field);
-        amount = (TextView) findViewById(R.id.amount);
-        amount_field = (TextView) findViewById(R.id.amount_field);
-        charges = (TextView) findViewById(R.id.products);
-        charges_field = (TextView) findViewById(R.id.other_products);
-        total = (TextView) findViewById(R.id.total);
-        total_field = (TextView) findViewById(R.id.total_field);
+        title = findViewById(R.id.title);
+        heading = findViewById(R.id.textview);
+        name = findViewById(R.id.name);
+        name_field = findViewById(R.id.name_field);
+        number = findViewById(R.id.number);
+        number_field = findViewById(R.id.number_field);
+        amount = findViewById(R.id.amount);
+        amount_field = findViewById(R.id.amount_field);
+        charges = findViewById(R.id.products);
+        charges_field = findViewById(R.id.other_products);
+        total = findViewById(R.id.total);
+        total_field = findViewById(R.id.total_field);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -121,10 +121,10 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
 
         line = findViewById(R.id.line);
 
-        cancel = (Button) findViewById(R.id.cancel);
-        confirmation = (Button) findViewById(R.id.next);
+        cancel = findViewById(R.id.cancel);
+        confirmation = findViewById(R.id.next);
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
 
         title.setTypeface(Utility.Robot_Regular(PaymentConfirmationActivity.this));
         heading.setTypeface(Utility.Robot_Regular(PaymentConfirmationActivity.this));
@@ -488,12 +488,12 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
         //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
         manualotp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -502,12 +502,12 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                 otp2lay.setVisibility(View.VISIBLE);
             }
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
             @Override
@@ -529,7 +529,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {

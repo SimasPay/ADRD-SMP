@@ -16,10 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
+import com.payment.simaspay.R;
 import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
-
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by widy on 2/13/17.

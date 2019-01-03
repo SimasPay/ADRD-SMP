@@ -15,7 +15,7 @@ import com.payment.simaspay.services.Utility;
 
 import org.w3c.dom.Text;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/4/2016.

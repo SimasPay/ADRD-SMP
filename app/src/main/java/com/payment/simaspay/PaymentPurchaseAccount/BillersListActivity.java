@@ -25,7 +25,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 
 public class BillersListActivity extends Activity {

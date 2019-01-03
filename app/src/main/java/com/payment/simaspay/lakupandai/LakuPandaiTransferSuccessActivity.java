@@ -11,9 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Utility;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 2/3/2016.

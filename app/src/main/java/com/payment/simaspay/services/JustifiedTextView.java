@@ -8,7 +8,7 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.view.View;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 public class JustifiedTextView extends View {
     String text;

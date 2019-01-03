@@ -16,11 +16,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.FavouriteInputActivity;
+import com.payment.simaspay.activities.UserHomeActivity;
 import com.payment.simaspay.services.Utility;
 
-import simaspay.payment.com.simaspay.FavouriteInputActivity;
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
+import java.util.regex.Pattern;
+
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
@@ -107,6 +109,8 @@ public class PaymentSuccessActivity extends AppCompatActivity {
         AdditionalInfo=getIntent().getExtras().getString("additionalInfo");
         if(!AdditionalInfo.equals("")){
             Log.d(LOG_TAG, "test AdditInfo: "+AdditionalInfo);
+            AdditionalInfo = replaceBetween(AdditionalInfo, "Account", "IDPel", "");
+            AdditionalInfo = AdditionalInfo.replace("Account","");
             charges.setVisibility(View.GONE);
             charges_field.setVisibility(View.VISIBLE);
             charges_field.setText(Html.fromHtml(AdditionalInfo));
@@ -192,5 +196,22 @@ public class PaymentSuccessActivity extends AppCompatActivity {
             startActivity(i);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public static String replaceBetween(String input,
+                                        String start, String end,
+                                        String replaceWith) {
+        return replaceBetween(input, start, end, false, false, replaceWith);
+    }
+
+    public static String replaceBetween(String input,
+                                        String start, String end,
+                                        boolean startInclusive,
+                                        boolean endInclusive,
+                                        String replaceWith) {
+        start = Pattern.quote(start);
+        end = Pattern.quote(end);
+        return input.replaceAll("(" + start + ")" + ".*" + "(" + end + ")",
+                (startInclusive ? "" : "$1") + replaceWith + (endInclusive ? "" : "$2"));
     }
 }

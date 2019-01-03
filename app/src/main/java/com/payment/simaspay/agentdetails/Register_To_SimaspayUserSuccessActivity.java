@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 
@@ -24,7 +25,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/5/2016.

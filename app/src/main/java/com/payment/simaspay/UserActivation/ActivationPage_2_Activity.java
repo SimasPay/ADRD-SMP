@@ -31,20 +31,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.R;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.R;
 
 
 public class ActivationPage_2_Activity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {

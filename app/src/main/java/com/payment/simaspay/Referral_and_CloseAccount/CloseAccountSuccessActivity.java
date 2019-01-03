@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.payment.simaspay.services.Utility;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/27/2016.

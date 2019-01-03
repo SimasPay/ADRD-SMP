@@ -20,12 +20,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 4/19/2016.

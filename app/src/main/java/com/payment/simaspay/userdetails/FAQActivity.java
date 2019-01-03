@@ -10,9 +10,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Constants;
 
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by widy on 4/12/18.

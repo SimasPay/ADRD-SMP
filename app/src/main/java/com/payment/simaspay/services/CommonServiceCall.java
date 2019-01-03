@@ -1,25 +1,17 @@
 package com.payment.simaspay.services;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Handler;
-import android.os.Message;
 //import android.util.Log;
 import android.widget.EditText;
 
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-import com.payment.simpaspay.constants.ValueContainer;
+import com.payment.simaspay.constants.ValueContainer;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 public class CommonServiceCall {
 

@@ -18,12 +18,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.lakupandai.LakupandaiTransferDetailsActivity;
 import com.payment.simaspay.services.Utility;
-import simaspay.payment.com.simaspay.R;
-
-
 
 public class TransferHomeActivity extends AppCompatActivity {
     LinearLayout layout1, layout2, layout3,layout4, logOut, numberSwitching, gantiAkun_layout, whitelogOut;

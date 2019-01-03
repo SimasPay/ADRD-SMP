@@ -14,10 +14,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * PubDialogFragment

@@ -15,17 +15,16 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/28/2016.

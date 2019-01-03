@@ -26,7 +26,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -36,7 +35,7 @@ import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simaspay.utils.CustomSpinnerAdapter;
 import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +45,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 public class TransferDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView title, handphone, jumlah, mPin, Rp;

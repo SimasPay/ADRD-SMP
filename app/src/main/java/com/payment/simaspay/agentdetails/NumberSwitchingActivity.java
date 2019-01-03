@@ -1,38 +1,23 @@
 package com.payment.simaspay.agentdetails;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.payment.simaspay.lakupandai.LakuPandaiActivity;
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.UserHomeActivity;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-import com.payment.simaspay.userdetails.SimaspayUserActivity;
 import com.payment.simaspay.utils.Functions;
-
-import simaspay.payment.com.simaspay.Agent_HomePage_Activity;
-import simaspay.payment.com.simaspay.LoginScreenActivity;
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class NumberSwitchingActivity extends AppCompatActivity {
 

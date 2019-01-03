@@ -25,15 +25,14 @@ import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
 import com.payment.simaspay.PaymentPurchaseAccount.PaymentConfirmationActivity;
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.UserHomeActivity;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
-
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 import static android.content.Context.MODE_PRIVATE;
 

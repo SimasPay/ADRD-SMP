@@ -25,7 +25,6 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -39,8 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mfino.handset.security.CryptoService;
-import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
-import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -49,7 +47,7 @@ import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.CustomSpinnerAdapter;
 import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,8 +56,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.R;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 

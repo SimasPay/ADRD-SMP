@@ -23,7 +23,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -32,12 +31,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.UserActivation.ActivationPage_2_Activity;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
-import com.payment.simpaspay.constants.ValueContainer;
+import com.payment.simaspay.constants.ValueContainer;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -46,7 +42,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -69,8 +64,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -82,9 +75,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import simaspay.payment.com.simaspay.InputNumberScreenActivity;
-import simaspay.payment.com.simaspay.LandingScreenActivity;
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 //import android.util.Log;
 

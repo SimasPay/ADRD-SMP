@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.payment.simaspay.services.Utility;
 
-import simaspay.payment.com.simaspay.FavouriteInputActivity;
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
+import com.payment.simaspay.activities.FavouriteInputActivity;
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.UserHomeActivity;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 

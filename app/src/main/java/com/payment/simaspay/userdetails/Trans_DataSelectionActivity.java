@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fourmob.datetimepicker.date.DatePickerDialog;
+import com.payment.simaspay.R;
 import com.payment.simaspay.UangkuTransfer.UangkuTransferDetailsActivity;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -32,7 +33,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 12/30/2015.

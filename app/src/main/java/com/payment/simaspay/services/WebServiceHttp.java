@@ -39,7 +39,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 

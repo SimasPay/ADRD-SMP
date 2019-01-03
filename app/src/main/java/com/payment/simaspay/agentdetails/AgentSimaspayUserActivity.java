@@ -22,7 +22,7 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.BalanceSheetActivity;
 import com.payment.simaspay.AgentTransfer.TransferHomeActivity;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 12/29/2015.

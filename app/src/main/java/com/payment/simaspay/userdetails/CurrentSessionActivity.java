@@ -6,18 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Utility;
-
-import org.w3c.dom.Text;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 12/29/2015.

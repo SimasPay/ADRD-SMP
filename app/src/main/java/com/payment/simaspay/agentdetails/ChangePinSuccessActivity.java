@@ -5,18 +5,14 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.payment.simaspay.services.Constants;
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
-
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
 
 /**
  * Created by Nagendra P on 1/12/2016.

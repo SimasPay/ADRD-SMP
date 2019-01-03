@@ -1,10 +1,8 @@
 package com.payment.simaspay.userdetails;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -24,21 +22,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.R;
 import com.payment.simaspay.UserActivation.ActivationPage_1_Activity;
-import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.contactus.ContactUs_Activity;
-import com.payment.simaspay.lakupandai.LakuPandaiActivity;
 import com.payment.simaspay.services.AppConfigFile;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 3/9/2016.

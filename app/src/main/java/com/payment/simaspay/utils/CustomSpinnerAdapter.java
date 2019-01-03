@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.payment.simaspay.R;
+
 import java.util.ArrayList;
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by widy on 4/12/17.

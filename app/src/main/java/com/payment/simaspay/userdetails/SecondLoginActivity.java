@@ -21,13 +21,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.LandingScreenActivity;
+import com.payment.simaspay.activities.SecurityQuestionsActivity;
+import com.payment.simaspay.activities.UserHomeActivity;
 import com.payment.simaspay.agentdetails.ChangePinActivity;
 import com.payment.simaspay.agentdetails.NumberSwitchingActivity;
 import com.payment.simaspay.contactus.ContactUs_Activity;
@@ -37,15 +40,10 @@ import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import simaspay.payment.com.simaspay.LandingScreenActivity;
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.SecurityQuestionsActivity;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 /**
  * Created by Nagendra P on 4/27/2016.

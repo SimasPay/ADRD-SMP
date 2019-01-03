@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.dimo.PayByQR.EULAFragmentListener;
+import com.payment.simaspay.R;
+import com.payment.simaspay.activities.UserHomeActivity;
 import com.payment.simaspay.services.Utility;
 
-import simaspay.payment.com.simaspay.R;
-import simaspay.payment.com.simaspay.UserHomeActivity;
 
 public class MyCustomEULA extends Fragment implements View.OnClickListener {
 	private EULAFragmentListener mListener;

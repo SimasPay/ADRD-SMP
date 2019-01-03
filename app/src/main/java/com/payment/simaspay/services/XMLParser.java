@@ -11,7 +11,7 @@ import org.kxml.parser.ParseEvent;
 import org.kxml.parser.XmlParser;
 
 
-import com.payment.simpaspay.constants.EncryptedResponseDataContainer;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 public class XMLParser {
 

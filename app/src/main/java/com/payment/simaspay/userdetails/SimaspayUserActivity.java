@@ -21,7 +21,7 @@ import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
 import com.payment.simaspay.services.Utility;
 
-import simaspay.payment.com.simaspay.R;
+import com.payment.simaspay.R;
 
 /**
  * Created by Nagendra P on 12/29/2015.

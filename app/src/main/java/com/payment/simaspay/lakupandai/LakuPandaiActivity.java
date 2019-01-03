@@ -22,10 +22,9 @@ import com.payment.simaspay.Cash_InOut.CashOutDetailsActivity;
 import com.payment.simaspay.FlashizSDK.PayByQRActivity;
 import com.payment.simaspay.FlashizSDK.UserAPikeyCall;
 import com.payment.simaspay.PaymentPurchaseAccount.PaymentAndPurchaseAccountTypeActivity;
+import com.payment.simaspay.R;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.userdetails.BalanceSheetActivity;
-
-import simaspay.payment.com.simaspay.R;
 
 /**
  * Created by Nagendra P on 1/13/2016.
