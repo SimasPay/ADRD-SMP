@@ -18,11 +18,11 @@ android {
     useLibrary 'org.apache.http.legacy'
     flavorDimensions 'tier'
     defaultConfig {
-        applicationId "com.payment.simaspay"
+        applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 14
         targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 128
+        versionCode 131
         versionName "1.0.0"
         multiDexEnabled true
         compileOptions {
@@ -45,7 +45,7 @@ android {
         releaseversion {
             dimension 'tier'
             minSdkVersion 14
-            applicationId 'com.payment.simaspay'
+            applicationId 'simaspay.payment.com.simaspay'
             signingConfig signingConfigs.release
             targetSdkVersion 28
         }

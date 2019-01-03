@@ -71,13 +71,9 @@ import java.util.regex.Pattern;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 import com.payment.simaspay.R;
-
-//import android.util.Log;
 
 
 public class Utility {
@@ -147,8 +143,7 @@ public class Utility {
         StringBuilder sb = new StringBuilder();
         String delimiter = "\\|";
         String temp[] = str.split(delimiter);
-        for (int i = 0; i < temp.length; i++)
-            sb.append(temp[i]).append("\n");
+        for (String aTemp : temp) sb.append(aTemp).append("\n");
         return sb.toString();
 
     }
@@ -303,8 +298,10 @@ public class Utility {
         }
 
         try {
-            ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
-                    passphrase);
+            if (ksTrust != null) {
+                ksTrust.load(context.getResources().openRawResource(R.raw.ddtcert),
+                        passphrase);
+            }
         } catch (NoSuchAlgorithmException e1) {
 
             e1.printStackTrace();
@@ -358,6 +355,7 @@ public class Utility {
 
         try {
             // Configure SSL Context
+            /*
             try {
                 sslContext = SSLContext.getInstance("TLS");
             } catch (NoSuchAlgorithmException e) {
@@ -365,7 +363,7 @@ public class Utility {
                 e.printStackTrace();
             }
 
-            X509TrustManager nullTrustManager = new NullTrustManager();
+            X509TrustManager nullTrustManager = new NullTrustManager(ksTrust);
             TrustManager[] nullTrustManagers = {nullTrustManager};
             try {
                 sslContext.init(null, nullTrustManagers, new SecureRandom());
@@ -373,11 +371,11 @@ public class Utility {
 
                 e.printStackTrace();
             }
+            */
 
             url = new URL(AppConfigFile.kycServerUrl);
 
         } catch (MalformedURLException e) {
-
             e.printStackTrace();
         }
 
@@ -386,13 +384,15 @@ public class Utility {
             // System.out.println("Testing>>requestURL"+getUrl());
 //			System.out.println("Testing>>Params" + params);
 
-            conn = (HttpsURLConnection) url.openConnection();
-            conn.setHostnameVerifier(new NullVerifier());
-            conn.setSSLSocketFactory(sslContext.getSocketFactory());
-            conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);
-            conn.setReadTimeout(Constants.CONNECTION_TIMEOUT);
-            conn.setDoOutput(true);
-            conn.setFixedLengthStreamingMode(params.getBytes().length);
+            conn = (HttpsURLConnection) (url != null ? url.openConnection() : null);
+            if (conn != null) {
+                conn.setHostnameVerifier(new NullVerifier());
+                conn.setSSLSocketFactory(sslContext.getSocketFactory());
+                conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);
+                conn.setReadTimeout(Constants.CONNECTION_TIMEOUT);
+                conn.setDoOutput(true);
+                conn.setFixedLengthStreamingMode(params.getBytes().length);
+
             OutputStreamWriter wr = new OutputStreamWriter(
                     conn.getOutputStream());
             wr.write(params);
@@ -402,10 +402,10 @@ public class Utility {
                     conn.getInputStream());
             BufferedReader rd = new BufferedReader(resultInputStream);
             String line;
-            StringBuffer sb = new StringBuffer("");
+            StringBuilder sb = new StringBuilder("");
 
             while ((line = rd.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
                 // contents +=rd.readLine();
 
 //				Log.i("Nav", "version res:: " + line);
@@ -418,7 +418,7 @@ public class Utility {
 
             // System.out.println("------------ resp  --------------------------------"+
             // rc);
-
+            }
         } catch (SocketTimeoutException e) {
             // System.out.println("Time out " );
             contents = null;
@@ -431,90 +431,59 @@ public class Utility {
             // System.out.println("ioException ");
             contents = null;
         } finally {
-            conn.disconnect();
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
 
         return contents;
     }
 
     public static Typeface LightTextFormat(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "HelveticaNeue_Light.otf");
-
-        return typeface;
-
     }
 
     public static Typeface OpemSans_Light(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "OpenSans_Light.ttf");
-
-        return typeface;
 
     }
 
     public static Typeface BoldTextFormat(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "proximanova_bold.otf");
-
-        return typeface;
-
     }
 
     public static Typeface RegularTextFormat(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Medium.ttf");
-
-        return typeface;
-
     }
 
     public static Typeface Robot_Regular(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Regular.ttf");
-        return typeface;
     }
 
     public static Typeface Robot_Light(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Light.ttf");
-
-        return typeface;
-
     }
 
     public static Typeface Robot_Bold(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Bold.ttf");
-
-        return typeface;
-
     }
 
     public static Typeface Robot_Thin(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "Roboto_Thin.ttf");
-
-        return typeface;
-
     }
 
 
     public static Typeface HelveticaNeue_Medium(Context context) {
-
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(),
+        return Typeface.createFromAsset(context.getAssets(),
                 "HelveticaNeue_Medium.otf");
-
-        return typeface;
-
     }
 
     public static void homenetworkDisplayDialog(String msg, final Context ctx) {
@@ -549,58 +518,7 @@ public class Utility {
         dialog.show();
     }
 
-    /*public static void ForceUpdate(String msg, final Context ctx) {
 
-        Utility.context = ctx;
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.fource_update);
-
-        TextView TextView = (TextView) dialog.findViewById(R.id.errorMsg);
-        TextView.setText(msg);
-
-        Button exclamationIcon = (Button) dialog
-                .findViewById(R.id.exclamationIcon);
-        // if button is clicked, close the custom dialog
-//		exclamationIcon.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                ((Activity) ctx).finish();
-            }
-        });
-
-        Button okay = (Button) dialog.findViewById(R.id.btnOk);
-
-//		Button cancel=(Button)dialog.findViewById(R.id.cancelForceUpdate);
-        // if button is clicked, close the custom dialog
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                ((Activity) ctx).finish();
-
-            }
-        });
-
-        okay.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                 try {
-                        Intent viewIntent =
-                        new Intent("android.intent.action.VIEW",
-                        Uri.parse("https://play.google.com/store/apps/details?id=com.uangku.emoney"));
-                        ((Activity) ctx).startActivity(viewIntent);
-            }catch(Exception e) {
-                Toast.makeText(ctx,"Unable to Connect Try Again...",
-                        Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-            }
-            }
-        });
-        dialog.show();
-    }*/
     public static String getHttpresponse(String params) {
         String contents = null;
 

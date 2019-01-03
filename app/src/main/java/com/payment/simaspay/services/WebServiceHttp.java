@@ -8,7 +8,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
 
-import com.payment.simaspay.utils.MyTrustManager;
+import com.payment.simaspay.utils.CustomSSLSocketFactory;
 
 import org.apache.http.conn.ssl.SSLSocketFactory;
 
@@ -35,9 +35,7 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 import com.payment.simaspay.R;
 
@@ -179,25 +177,8 @@ public class WebServiceHttp  {
         }
 
         URL url = null;
-
         try {
-            try {
-                sslContext = SSLContext.getInstance("TLS");
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
-
-            X509TrustManager nullTrustManager = new NullTrustManager();
-            TrustManager[] nullTrustManagers = {nullTrustManager};
-            try {
-                assert sslContext != null;
-                sslContext.init(null, nullTrustManagers, new SecureRandom());
-            } catch (KeyManagementException e) {
-                e.printStackTrace();
-            }
-
             url = new URL(getUrl());
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -209,8 +190,8 @@ public class WebServiceHttp  {
             Log.d(LOG_TAG,"proxy settings: "+ getProxyDetails(context));
             conn = (HttpsURLConnection) url.openConnection(Proxy.NO_PROXY);
             try {
-                sf = new SSLSocketFactory(ksTrust);
-                sf.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+                sf = new CustomSSLSocketFactory(ksTrust);
+                sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
             } catch (NoSuchAlgorithmException e) {
                 Log.d(LOG_TAG, "problem no such Algorithm");
                 e.printStackTrace();
@@ -225,15 +206,22 @@ public class WebServiceHttp  {
                 e.printStackTrace();
             }
             //conn.setHostnameVerifier(SSLSocketFactory.STRICT_HOSTNAME_VERIFIER);
+
+            //removed, google policy vulnerability
+            /*
             try {
                 sslContext = SSLContext.getInstance("SSL");
-                TrustManager[] tmlist = {new MyTrustManager()};
+                TrustManager[] tmlist = {new MyTrustManager(ksTrust)};
                 sslContext.init(null, tmlist, new java.security.SecureRandom());
                 //context.init(null, tmlist, null);
                 conn.setSSLSocketFactory(sslContext.getSocketFactory());
             } catch (NoSuchAlgorithmException | KeyManagementException e) {
                 e.printStackTrace();
+            } catch (KeyStoreException e) {
+                e.printStackTrace();
             }
+            */
+
             //conn.setSSLSocketFactory(sslContext.getSocketFactory());
             //conn.setSSLSocketFactory(buildSslSocketFactory(context));
             conn.setConnectTimeout(Constants.CONNECTION_TIMEOUT);

@@ -61,7 +61,7 @@
         </receiver>
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.payment.simaspay.activities.SplashScreenActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -82,7 +82,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TermsNConditionsActivity"
+            android:name="com.payment.simaspay.activities.TermsNConditionsActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
@@ -95,50 +95,50 @@
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".DaftarEmoneyActivity"
+            android:name="com.payment.simaspay.activities.DaftarEmoneyActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".RegistrationNonKYCActivity"
+            android:name="com.payment.simaspay.activities.RegistrationNonKYCActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".LoginScreenActivity"
+            android:name="com.payment.simaspay.activities.LoginScreenActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".LandingScreenActivity"
+            android:name="com.payment.simaspay.activities.LandingScreenActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".InputNumberScreenActivity"
+            android:name="com.payment.simaspay.activities.InputNumberScreenActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".FavouriteInputActivity"
+            android:name="com.payment.simaspay.activities.FavouriteInputActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".SecurityQuestionsActivity"
+            android:name="com.payment.simaspay.activities.SecurityQuestionsActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".ConfirmationActivity"
+            android:name="com.payment.simaspay.activities.ConfirmationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".NotificationActivity"
+            android:name="com.payment.simaspay.activities.NotificationActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".UserHomeActivity"
+            android:name="com.payment.simaspay.activities.UserHomeActivity"
             android:label="SimasPay"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
@@ -191,7 +191,7 @@
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".Agent_HomePage_Activity"
+            android:name="com.payment.simaspay.activities.Agent_HomePage_Activity"
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
@@ -203,7 +203,7 @@
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".NewMpin_Activity"
+            android:name="com.payment.simaspay.activities.NewMpin_Activity"
             android:label="SimasPay"
             android:screenOrientation="portrait"/>
         <activity

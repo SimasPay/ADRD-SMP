@@ -1,5 +1,7 @@
 package com.payment.simaspay.services;
 
+import com.payment.simaspay.utils.CustomSSLSocketFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -240,7 +242,7 @@ public class JSONParser {
 					.getDefaultType());
 			trustStore.load(null, null);
 
-			org.apache.http.conn.ssl.SSLSocketFactory sf = new CustomCertificateHandler(
+			org.apache.http.conn.ssl.SSLSocketFactory sf = new CustomSSLSocketFactory(
 					trustStore);
 			sf.setHostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
 
