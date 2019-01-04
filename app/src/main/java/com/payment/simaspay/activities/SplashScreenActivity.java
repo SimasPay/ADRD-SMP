@@ -22,6 +22,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +38,6 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.constants.EncryptedResponseDataContainer;
-import com.testfairy.TestFairy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,7 +45,7 @@ import java.util.Map;
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 
-public class SplashScreenActivity extends Activity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
@@ -64,7 +64,6 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TestFairy.begin(this, "9a9d8ac3647160ccec0cbc90360b1e94ccd87258");
         setContentView(R.layout.activity_splash_screen);
         settings = getSharedPreferences(TAG, 0);
         context = SplashScreenActivity.this;

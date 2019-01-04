@@ -18,11 +18,11 @@ android {
     useLibrary 'org.apache.http.legacy'
     flavorDimensions 'tier'
     defaultConfig {
-        applicationId "simaspay.payment.com.simaspay"
+        applicationId "sinarmas.payment.simaspay"
         minSdkVersion 14
         targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 131
+        versionCode 132
         versionName "1.0.0"
         multiDexEnabled true
         compileOptions {
@@ -45,7 +45,7 @@ android {
         releaseversion {
             dimension 'tier'
             minSdkVersion 14
-            applicationId 'simaspay.payment.com.simaspay'
+            applicationId 'sinarmas.payment.simaspay'
             signingConfig signingConfigs.release
             targetSdkVersion 28
         }
@@ -76,7 +76,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation project(':PayByQR-Android-2.1.2-Simaspay')
-    implementation 'testfairy:testfairy-android-sdk:1.8.3'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation project(path: ':CropImageLib')
     implementation 'com.weiwangcn.betterspinner:library-material:1.1.0'
