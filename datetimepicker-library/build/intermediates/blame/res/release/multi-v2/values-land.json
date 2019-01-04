@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-land/dimens.xml",
+                    "from": {
+                        "startLines": "17,18,21,22,20",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "691,738,843,898,788",
+                        "endColumns": "46,48,54,55,54",
+                        "endOffsets": "733,782,893,949,838"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,102,151,206,262",
+                        "endColumns": "46,48,54,55,54",
+                        "endOffsets": "97,146,201,257,312"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-land/dimens.xml",
+                    "from": {
+                        "startLines": "17,18,21,22,20",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "691,738,843,898,788",
+                        "endColumns": "46,48,54,55,54",
+                        "endOffsets": "733,782,893,949,838"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,102,151,206,262",
+                        "endColumns": "46,48,54,55,54",
+                        "endOffsets": "97,146,201,257,312"
+                    }
+                }
+            ]
+        }
+    ]
+}

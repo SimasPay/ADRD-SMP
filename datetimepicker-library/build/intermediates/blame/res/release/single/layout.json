@@ -4,12 +4,48 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/layout/time_picker_dialog.xml"
     },
     {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_custom_big.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_action_tombstone.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_lines_media.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_media_cancel_action.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_icon_group.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_template_icon_group.xml"
+    },
+    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/year_label_text_view.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/layout/year_label_text_view.xml"
     },
     {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_media.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_media.xml"
+    },
+    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/date_picker_dialog.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/layout/date_picker_dialog.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_action.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_part_time.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_media_action.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/time_header_label.xml",
@@ -20,8 +56,32 @@
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/layout/date_picker_done_button.xml"
     },
     {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_big_media_custom.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_big_media_custom.xml"
+    },
+    {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/date_picker_view_animator.xml",
         "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/layout/date_picker_view_animator.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_media_custom.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_big_media_narrow_custom.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/notification_template_big_media.xml",
+        "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-media-compat-28.0.0.aar/ec132cfd2d7b8c6f7688999319b6e4b0/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/layout/date_picker_selected_date.xml",

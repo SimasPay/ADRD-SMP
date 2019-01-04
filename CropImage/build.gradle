@@ -4,10 +4,11 @@ apply plugin: 'maven'
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.2.0'
     }
 }
 
@@ -16,12 +17,12 @@ repositories {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 28
     }
 }
 

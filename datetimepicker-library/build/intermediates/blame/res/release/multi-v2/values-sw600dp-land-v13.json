@@ -1,0 +1,48 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/values-sw600dp-land-v13/values-sw600dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-sw600dp-land/dimens.xml",
+                    "from": {
+                        "startLines": "25,26,22,29,28,30,27,23,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "956,1003,796,1147,1101,1193,1052,853,909",
+                        "endColumns": "46,48,56,45,45,48,48,55,46",
+                        "endOffsets": "998,1047,848,1188,1142,1237,1096,904,951"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,102,151,208,254,300,349,398,454",
+                        "endColumns": "46,48,56,45,45,48,48,55,46",
+                        "endOffsets": "97,146,203,249,295,344,393,449,496"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-sw600dp-land-v13/values-sw600dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-sw600dp-land/dimens.xml",
+                    "from": {
+                        "startLines": "25,26,22,29,28,30,27,23,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "956,1003,796,1147,1101,1193,1052,853,909",
+                        "endColumns": "46,48,56,45,45,48,48,55,46",
+                        "endOffsets": "998,1047,848,1188,1142,1237,1096,904,951"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,102,151,208,254,300,349,398,454",
+                        "endColumns": "46,48,56,45,45,48,48,55,46",
+                        "endOffsets": "97,146,203,249,295,344,393,449,496"
+                    }
+                }
+            ]
+        }
+    ]
+}

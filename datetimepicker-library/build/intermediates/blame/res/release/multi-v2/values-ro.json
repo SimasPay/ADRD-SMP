@@ -1,0 +1,82 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-ro/values-ro.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-ro/strings.xml",
+                    "from": {
+                        "startLines": "24,29,19,20,28,21,26,22,23,27,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1281,1768,809,887,1650,992,1473,1102,1189,1565,1378",
+                        "endColumns": "96,115,77,104,117,109,91,86,91,84,94",
+                        "endOffsets": "1373,1879,882,987,1763,1097,1560,1184,1276,1645,1468"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,202,314,392,497,611,721,813,900,992,1178",
+                        "endColumns": "96,111,77,104,113,109,91,86,91,84,94",
+                        "endOffsets": "197,309,387,492,606,716,808,895,987,1072,1268"
+                    }
+                },
+                {
+                    "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/values-ro/values-ro.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1077",
+                        "endColumns": "100",
+                        "endOffsets": "1173"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/values-ro/values-ro.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-ro/strings.xml",
+                    "from": {
+                        "startLines": "24,29,19,20,28,21,26,22,23,27,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1281,1768,809,887,1650,992,1473,1102,1189,1565,1378",
+                        "endColumns": "96,115,77,104,117,109,91,86,91,84,94",
+                        "endOffsets": "1373,1879,882,987,1763,1097,1560,1184,1276,1645,1468"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,202,314,392,497,611,721,813,900,992,1178",
+                        "endColumns": "96,111,77,104,113,109,91,86,91,84,94",
+                        "endOffsets": "197,309,387,492,606,716,808,895,987,1072,1268"
+                    }
+                },
+                {
+                    "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/values-ro/values-ro.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1077",
+                        "endColumns": "100",
+                        "endOffsets": "1173"
+                    }
+                }
+            ]
+        }
+    ]
+}

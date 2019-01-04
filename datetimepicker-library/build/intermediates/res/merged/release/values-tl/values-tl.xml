@@ -10,5 +10,6 @@
     <string msgid="7651068754188418859" name="select_hours">"Pumili ng mga oras"</string>
     <string msgid="8327182090226828481" name="select_minutes">"Pumili ng mga minuto"</string>
     <string msgid="2603330600102539372" name="select_year">"Pumili ng taon"</string>
+    <string msgid="7988687684186075107" name="status_bar_notification_info_overflow">"999+"</string>
     <string msgid="6963340404644587098" name="year_picker_description">"Listahan ng taon"</string>
 </resources>

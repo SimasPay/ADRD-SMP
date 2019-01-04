@@ -1,0 +1,82 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/res/merged/release/values-hr/values-hr.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/values-hr/values-hr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1084",
+                        "endColumns": "100",
+                        "endOffsets": "1180"
+                    }
+                },
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-hr/strings.xml",
+                    "from": {
+                        "startLines": "24,29,19,20,28,21,26,22,23,27,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1267,1771,809,885,1643,986,1464,1091,1177,1556,1369",
+                        "endColumns": "101,119,75,100,127,104,91,85,89,86,94",
+                        "endOffsets": "1364,1886,880,981,1766,1086,1551,1172,1262,1638,1459"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,207,323,399,500,624,729,821,907,997,1185",
+                        "endColumns": "101,115,75,100,123,104,91,85,89,86,94",
+                        "endOffsets": "202,318,394,495,619,724,816,902,992,1079,1275"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-hr/values-hr.xml",
+            "map": [
+                {
+                    "source": "/Users/widy/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/6a875ca5cfdf56a61dd45b4eed482858/res/values-hr/values-hr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "12",
+                        "startColumns": "4",
+                        "startOffsets": "1084",
+                        "endColumns": "100",
+                        "endOffsets": "1180"
+                    }
+                },
+                {
+                    "source": "/Users/widy/Documents/workspace/DIMO/Simaspay-Android/datetimepicker-library/res/values-hr/strings.xml",
+                    "from": {
+                        "startLines": "24,29,19,20,28,21,26,22,23,27,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1267,1771,809,885,1643,986,1464,1091,1177,1556,1369",
+                        "endColumns": "101,119,75,100,127,104,91,85,89,86,94",
+                        "endOffsets": "1364,1886,880,981,1766,1086,1551,1172,1262,1638,1459"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,207,323,399,500,624,729,821,907,997,1185",
+                        "endColumns": "101,115,75,100,123,104,91,85,89,86,94",
+                        "endOffsets": "202,318,394,495,619,724,816,902,992,1079,1275"
+                    }
+                }
+            ]
+        }
+    ]
+}
