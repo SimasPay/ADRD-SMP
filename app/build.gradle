@@ -8,9 +8,9 @@ android {
     signingConfigs {
         release {
             keyAlias 'bsim'
-            keyPassword 'bsim123'
-            storeFile file('/Users/widy/Documents/workspace/DIMO/bsim.keystore')
-            storePassword 'bsim123'
+            keyPassword 'bsim1234'
+            storeFile file('/Users/widy/Documents/workspace/DIMO/simaspaykeystore')
+            storePassword 'bsim1234'
         }
     }
     compileSdkVersion 28
@@ -22,8 +22,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 133
-        versionName "1.0.0"
+        versionCode 134
+        versionName "1.0.1"
         multiDexEnabled true
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8

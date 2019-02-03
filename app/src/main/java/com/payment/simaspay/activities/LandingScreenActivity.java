@@ -123,12 +123,14 @@ public class LandingScreenActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "camera permission granted");
                 }
                 break;
+                /*
             case MY_PERMISSIONS_REQUEST_SMS:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e(LOG_TAG, "------sms granted()");
                 }
                 break;
+                */
             case READ_CONTACTS_PERMISSIONS_REQUEST:
                 if (grantResults.length == 1 &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {

@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!--<uses-permission android:name="android.permission.RECEIVE_SMS"/>-->
     <uses-permission android:name="android.permission.PREVENT_POWER_KEY" />
-    <uses-permission android:name="android.permission.READ_SMS" />
+    <!--<uses-permission android:name="android.permission.READ_SMS" />-->
     <!--<uses-permission android:name="android.permission.SEND_SMS"/>-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -44,8 +44,8 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="@xml/backup_descriptor"
         tools:ignore="HardcodedDebugMode,UnusedAttribute">
+        <!--android:permission="android.permission.READ_SMS"-->
         <receiver android:name="com.payment.simaspay.rec.IncomingSms"
-            android:permission="android.permission.READ_SMS"
             tools:ignore="UnprotectedSMSBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
@@ -54,7 +54,6 @@
 
         <receiver
             android:name="com.payment.simaspay.receivers.IncomingSMS"
-            android:permission="android.permission.READ_SMS"
             tools:ignore="UnprotectedSMSBroadcastReceiver">
             <intent-filter android:priority="900" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
