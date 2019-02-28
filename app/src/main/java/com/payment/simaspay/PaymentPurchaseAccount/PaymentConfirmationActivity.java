@@ -1,6 +1,5 @@
 package com.payment.simaspay.PaymentPurchaseAccount;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +31,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.R;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -39,14 +40,12 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.payment.simaspay.R;
+import java.util.Objects;
 
 
 public class PaymentConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
@@ -232,21 +231,8 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         progressDialog.setIndeterminateDrawable(drawable);
 
         confirmation.setOnClickListener(view -> {
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                int currentapiVersion = Build.VERSION.SDK_INT;
-                if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-                    if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                            != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-
-                        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                                109);
-                    } else {
-                        new requestOTPAsyncTask().execute();
-                    }
-                } else {
-                    new requestOTPAsyncTask().execute();
-                }
+            if (Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
+                new requestOTPAsyncTask().execute();
             } else {
                 new BillPayConfirmationAsynTask().execute();
             }
@@ -381,7 +367,7 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
                     if (responseContainer.getInvoiceNo() != null) {
                         intent.putExtra("invoiceNo", responseContainer.getInvoiceNo());
                     } else {
-                        intent.putExtra("invoiceNo", getIntent().getExtras().getString("invoiceNo"));
+                        intent.putExtra("invoiceNo", Objects.requireNonNull(getIntent().getExtras()).getString("invoiceNo"));
                     }
                     if(responseContainer.getAditionalInfo()!=null){
                         AdditionalInfo=responseContainer.getAditionalInfo();
@@ -473,7 +459,11 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue = otp;
     }
 
@@ -495,12 +485,9 @@ public class PaymentConfirmationActivity extends AppCompatActivity implements In
         //TextView waitingsms = (TextView) dialoglayout.findViewById(R.id.waitingsms_lbl);
         Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         //waitingsms.setText("Menunggu SMS Kode Verifikasi di Nomor " + Html.fromHtml("<b>"+sourceMDN+"</b>") + "\n");
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = dialoglayout.findViewById(R.id.otp_value);
 

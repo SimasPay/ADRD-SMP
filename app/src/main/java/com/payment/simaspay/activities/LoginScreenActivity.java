@@ -1,5 +1,6 @@
 package com.payment.simaspay.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -40,10 +40,9 @@ import java.util.Map;
  * 12
  */
 public class LoginScreenActivity extends AppCompatActivity {
-    private static final String TAG = "SimasPay";
     EditText e_mPin;
     Button login;
-    String countryCode = "62", mobileNumber;
+    String mobileNumber;
     TextView simas;
     Context context;
     SharedPreferences sharedPreferences;
@@ -74,6 +73,7 @@ public class LoginScreenActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,23 +86,20 @@ public class LoginScreenActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.splashscreen));
         }
 
-        ImageView back_btn = (ImageView)findViewById(R.id.back_btn);
-        back_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                Intent intent = new Intent(LoginScreenActivity.this, InputNumberScreenActivity.class);
-                startActivity(intent);
-            }
+        ImageView back_btn = findViewById(R.id.back_btn);
+        back_btn.setOnClickListener(view -> {
+            finish();
+            Intent intent = new Intent(LoginScreenActivity.this, InputNumberScreenActivity.class);
+            startActivity(intent);
         });
-        sharedPreferences = getSharedPreferences(TAG, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(Constants.TAG, MODE_PRIVATE);
         final String mdn = sharedPreferences.getString("phonenumber","");
-        e_mPin = (EditText) findViewById(R.id.mpin);
-        TextView phonenumber=(TextView)findViewById(R.id.label_phone);
+        e_mPin = findViewById(R.id.mpin);
+        TextView phonenumber= findViewById(R.id.label_phone);
         phonenumber.setText("Silakan masukkan MPIN untuk \\nnomor HP "+mdn);
-        login = (Button) findViewById(R.id.login);
+        login = findViewById(R.id.login);
 
-        simas = (TextView) findViewById(R.id.simas);
+        simas = findViewById(R.id.simas);
 //        simas.setTextSize(getResources().getDimensionPixelSize(R.dimen.txt));
 
         if(sharedPreferences.getBoolean("Login",false)){
@@ -114,17 +111,17 @@ public class LoginScreenActivity extends AppCompatActivity {
 
         e_mPin.setTypeface(Utility.Robot_Light(LoginScreenActivity.this));
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        login.setOnClickListener(view -> {
 
-                boolean networkCheck = Utility.isConnectingToInternet(context);
-                if (!networkCheck) {
-                    Utility.networkDisplayDialog(
-                            getResources().getString(
-                                    R.string.bahasa_serverNotRespond), context);
+            boolean networkCheck = Utility.isConnectingToInternet(context);
+            if (!networkCheck) {
+                Utility.networkDisplayDialog(
+                        getResources().getString(
+                                R.string.bahasa_serverNotRespond), context);
 
-                } else if (mdn.equals("")) {
+            } else {
+                assert mdn != null;
+                if (mdn.equals("")) {
                     Utility.displayDialog("Masukkan Nomor Handphone", LoginScreenActivity.this);
                 } else if (mdn.replace(" ", "")
                         .length() < 10) {
@@ -153,6 +150,7 @@ public class LoginScreenActivity extends AppCompatActivity {
 
     String rsaKey;
 
+    @SuppressLint("StaticFieldLeak")
     class LoginAsynTask extends AsyncTask<Void, Void, Void> {
 
         ProgressDialog progressDialog;
@@ -190,7 +188,7 @@ public class LoginScreenActivity extends AppCompatActivity {
                 e1.printStackTrace();
             }
             Map<String, String> mapContainer = new HashMap<String, String>();
-            /**
+            /*
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME,
                     Constants.SERVICE_ACCOUNT);
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
@@ -259,23 +257,29 @@ public class LoginScreenActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    if (responseContainer != null) {
+                        msgCode = Integer.parseInt(responseContainer
+                                .getMsgCode());
+                    }
                 } catch (Exception e) {
                     msgCode = 0;
                 }
                 if (msgCode == 630) {
                     progressDialog.dismiss();
                     sharedPreferences.edit().putBoolean("Login",true).apply();
-                    Log.e("------","------"+responseContainer.getUserApiKey());
-                    if (responseContainer.getUserApiKey() != null) {
-                        sharedPreferences.edit()
-                                .putString("userApiKey", responseContainer.getUserApiKey())
-                                .apply();
-                    } else {
-                        sharedPreferences.edit()
-                                .putString("userApiKey", "")
-                                .apply();
+                    if (responseContainer != null) {
+                        Log.e("------","------"+responseContainer.getUserApiKey());
+                    }
+                    if (responseContainer != null) {
+                        if (responseContainer.getUserApiKey() != null) {
+                            sharedPreferences.edit()
+                                    .putString("userApiKey", responseContainer.getUserApiKey())
+                                    .apply();
+                        } else {
+                            sharedPreferences.edit()
+                                    .putString("userApiKey", "")
+                                    .apply();
+                        }
                     }
                     Log.e("------","------"+sharedPreferences.getString("userApiKey",""));
 
@@ -310,19 +314,21 @@ public class LoginScreenActivity extends AppCompatActivity {
                     }
                 } else {
                     progressDialog.dismiss();
-                    if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(
-                                sharedPreferences.getString(
-                                        "ErrorMessage",
-                                        getResources()
-                                                .getString(
-                                                        R.string.server_error_message)),
-                                LoginScreenActivity.this);
-                        e_mPin.setText("");
-                    } else {
-                        e_mPin.setText("");
-                        Utility.networkDisplayDialog(
-                                responseContainer.getMsg(), LoginScreenActivity.this);
+                    if (responseContainer != null) {
+                        if (responseContainer.getMsg() == null) {
+                            Utility.networkDisplayDialog(
+                                    sharedPreferences.getString(
+                                            "ErrorMessage",
+                                            getResources()
+                                                    .getString(
+                                                            R.string.server_error_message)),
+                                    LoginScreenActivity.this);
+                            e_mPin.setText("");
+                        } else {
+                            e_mPin.setText("");
+                            Utility.networkDisplayDialog(
+                                    responseContainer.getMsg(), LoginScreenActivity.this);
+                        }
                     }
                 }
 

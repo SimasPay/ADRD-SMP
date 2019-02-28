@@ -31,6 +31,7 @@ import java.security.SecureRandom;
 import java.security.UnrecoverableKeyException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
@@ -46,14 +47,13 @@ public class WebServiceHttp  {
 
     private Context context;
     private String params;
-    private Map<String, String> mapContainer = new HashMap<>();
+    private Map<String, String> mapContainer;
     private StringBuilder requestUrlConstruct;
     private SharedPreferences subscriberKYCStatus;
     private SSLContext sslContext = null;
     public WebServiceHttp(Map<String, String> mapContainer, Context context) {
         this.context = context;
         this.mapContainer = mapContainer;
-        this.context = context;
         requestUrlConstruct = new StringBuilder();
         subscriberKYCStatus = context.getSharedPreferences(context.getResources().getString(R.string.shared_prefvalue),
                 Context.MODE_PRIVATE);
@@ -73,7 +73,7 @@ public class WebServiceHttp  {
             String key = entry.getKey();
             String value;
             if(entry.getValue()==null){
-                value = encodeString(entry.getValue());
+                value = encodeString("");
             }else{
                 value = encodeString(entry.getValue().trim());
             }
@@ -82,8 +82,7 @@ public class WebServiceHttp  {
         }
 
 
-        if (subscriberKYCStatus.getString("profileId", "0").equals("0")) {
-
+        if (Objects.requireNonNull(subscriberKYCStatus.getString("profileId", "0")).equals("0")) {
             params = requestUrlConstruct.substring(0,
                     requestUrlConstruct.length() - 1)
                     + "&"
@@ -247,7 +246,7 @@ public class WebServiceHttp  {
                         conn.getInputStream());
                 BufferedReader rd = new BufferedReader(resultInputStream);
                 String line;
-                StringBuilder sb = new StringBuilder("");
+                StringBuilder sb = new StringBuilder();
 
                 while ((line = rd.readLine()) != null) {
                     sb.append(line).append("\n");

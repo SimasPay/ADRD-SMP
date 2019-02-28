@@ -1,5 +1,6 @@
 package com.payment.simaspay.activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -36,9 +37,6 @@ import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -61,9 +59,6 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
     LinearLayout otplay, otp2lay;
     Context context;
     SharedPreferences settings2, languageSettings;
-    JSONObject jsonobject;
-    JSONArray jsonarray;
-    ProgressDialog mProgressDialog;
     List<String> allQuestions = new ArrayList<String>();
     SharedPreferences sharedPreferences, settings;
     String rsaKey;
@@ -205,68 +200,15 @@ public class RegistrationNonKYCActivity extends AppCompatActivity implements Inc
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue=otp;
     }
 
-    class reqSMSAsyncTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progressDialog;
-        String response;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<>();
-            mapContainer.put("service",
-                    "Account");
-            mapContainer.put("txnName",
-                    "GenerateOTP");
-            mapContainer.put("sourceMDN",
-                    mobilenumber);
-            mapContainer.put("channelID",
-                    "7");
-            Log.e("-----",""+mapContainer.toString());
-            WebServiceHttp webServiceHttp = new WebServiceHttp(mapContainer,
-                    RegistrationNonKYCActivity.this);
-            response = webServiceHttp.getResponseSSLCertificatation();
-            return null;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog = new ProgressDialog(RegistrationNonKYCActivity.this);
-            progressDialog.setCancelable(false);
-            progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
-            progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
-            progressDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-            if (response != null) {
-                Log.e("-------", "=====" + response);
-                XMLParser obj = new XMLParser();
-                EncryptedResponseDataContainer responseDataContainer = null;
-                try {
-                    responseDataContainer = obj.parse(response);
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, e.toString());
-                }
-                try {
-                    if (responseDataContainer != null) {
-                        Log.d("test", "not null");
-                        showOTPRequiredDialog();
-                    }
-                }catch (Exception e) {
-                }
-            }
-
-        }
-
-    }
-
+    @SuppressLint("StaticFieldLeak")
     private class RegisterAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;

@@ -1,18 +1,16 @@
 package com.payment.simaspay.AgentTransfer;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -29,6 +27,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.mfino.handset.security.CryptoService;
+import com.payment.simaspay.R;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simaspay.receivers.IncomingSMS;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
@@ -36,16 +36,14 @@ import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import com.payment.simaspay.R;
-
-public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class TransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
 
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, product_field;
     private static AlertDialog dialogBuilder;
@@ -54,7 +52,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     boolean nextpressedornot;
     SharedPreferences sharedPreferences;
     LinearLayout otplay, otp2lay;
-    private static final String LOG_TAG = "SimasPay";
     String otpValue = "";
     private EditText edt;
     SharedPreferences settings, languageSettings;
@@ -62,11 +59,12 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     String OTP;
     ProgressDialog progressDialog;
     int msgCode, idTransferCat;
-    String typeTransferCat="";
+    String typeTransferCat = "";
     Context context;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     Functions func;
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,25 +80,25 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        sourceMDN = settings.getString("mobileNumber","");
+        sourceMDN = settings.getString("mobileNumber", "");
         stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
-        stFullname = getIntent().getExtras().getString("Name");
+        stFullname = Objects.requireNonNull(getIntent().getExtras()).getString("Name");
         stAmount = getIntent().getExtras().getString("amount");
         stMDN = getIntent().getExtras().getString("DestMDN");
         stTransferID = getIntent().getExtras().getString("transferID");
         stParentTxnID = getIntent().getExtras().getString("ParentId");
         stSctl = getIntent().getExtras().getString("sctlID");
 
-        title = (TextView) findViewById(R.id.title);
-        heading = (TextView) findViewById(R.id.textview);
-        name = (TextView) findViewById(R.id.name);
-        name_field = (TextView) findViewById(R.id.name_field);
-        number = (TextView) findViewById(R.id.number);
-        number_field = (TextView) findViewById(R.id.number_field);
-        amount = (TextView) findViewById(R.id.amount);
-        amount_field = (TextView) findViewById(R.id.amount_field);
-        products = (TextView) findViewById(R.id.products);
-        product_field = (TextView) findViewById(R.id.other_products);
+        title = findViewById(R.id.title);
+        heading = findViewById(R.id.textview);
+        name = findViewById(R.id.name);
+        name_field = findViewById(R.id.name_field);
+        number = findViewById(R.id.number);
+        number_field = findViewById(R.id.number_field);
+        amount = findViewById(R.id.amount);
+        amount_field = findViewById(R.id.amount_field);
+        products = findViewById(R.id.products);
+        product_field = findViewById(R.id.other_products);
 
         product_field.setVisibility(View.VISIBLE);
         products.setVisibility(View.VISIBLE);
@@ -120,10 +118,10 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         progressDialog.setMessage(getResources().getString(R.string.waitingSms));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
 
-        cancel = (Button) findViewById(R.id.cancel);
-        confirmation = (Button) findViewById(R.id.next);
+        cancel = findViewById(R.id.cancel);
+        confirmation = findViewById(R.id.next);
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
 
         title.setTypeface(Utility.Robot_Regular(TransferConfirmationActivity.this));
         heading.setTypeface(Utility.Robot_Regular(TransferConfirmationActivity.this));
@@ -142,23 +140,9 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
 
         confirmation.setOnClickListener(view -> {
             nextpressedornot = true;
-            if(getIntent().getExtras().getString("mfaMode")!=null){
-                if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-
-                    int currentapiVersion = Build.VERSION.SDK_INT;
-                    if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-                        if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                != PackageManager.PERMISSION_GRANTED) {
-
-                            requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                                    109);
-                        } else {
-                            new requestOTPAsyncTask().execute();
-                        }
-                    } else {
-                        new requestOTPAsyncTask().execute();
-                    }
+            if (getIntent().getExtras().getString("mfaMode") != null) {
+                if (Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
+                    new requestOTPAsyncTask().execute();
                 } else {
                     new InterBankBankSinarmasAsynTask().execute();
                 }
@@ -179,26 +163,24 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
                 NumberFormat f = new DecimalFormat("00");
@@ -206,6 +188,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                         f.format(millisUntilFinished / 60000) + ":" + f.format(millisUntilFinished % 60000 / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 dialogBuilder.dismiss();
@@ -218,7 +201,7 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {
@@ -226,8 +209,8 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 func.errorEmptyOTP();
             } else {
                 myTimer.cancel();
-                if(otpValue==null||otpValue.equals("")){
-                    otpValue=edt.getText().toString();
+                if (otpValue == null || otpValue.equals("")) {
+                    otpValue = edt.getText().toString();
                 }
                 new InterBankBankSinarmasAsynTask().execute();
             }
@@ -249,11 +232,11 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     //Log.d(LOG_TAG, "otp dialog : " + edt.getText());
                     //Log.d(LOG_TAG, "otp dialog length: " + edt.getText().length());
                     myTimer.cancel();
-                    if(otpValue==null||otpValue.equals("")){
-                        otpValue=edt.getText().toString();
+                    if (otpValue == null || otpValue.equals("")) {
+                        otpValue = edt.getText().toString();
                     }
                     new InterBankBankSinarmasAsynTask().execute();
-                }else{
+                } else {
                     ok_otp.setEnabled(false);
                 }
 
@@ -265,10 +248,15 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
     @Override
     public void onReadSMS(String otp) {
         //Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
-        otpValue=otp;
+        if (otp == null) {
+            edt.setText("");
+        } else {
+            edt.setText(otp);
+        }
+        otpValue = otp;
     }
 
+    @SuppressLint("StaticFieldLeak")
     class requestOTPAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -357,28 +345,29 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                                 break;
                         }
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     //Log.e(LOG_TAG, "error: " + e.toString());
                 }
             }
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class InterBankBankSinarmasAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<String, String>();
+            Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_TRANSFER);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
-            mapContainer.put(Constants.PARAMETER_TRANSFER_ID, getIntent().getExtras().getString("transferID"));
-            mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, getIntent().getExtras().getString("ParentId"));
-            mapContainer.put(Constants.PARAMETER_DEST_BankAccount, getIntent().getExtras().getString("DestMDN"));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, Objects.requireNonNull(sharedPreferences.getString("mobileNumber", "")));
+            mapContainer.put(Constants.PARAMETER_TRANSFER_ID, Objects.requireNonNull(Objects.requireNonNull(getIntent().getExtras()).getString("transferID")));
+            mapContainer.put(Constants.PARAMETER_PARENTTXN_ID, Objects.requireNonNull(getIntent().getExtras().getString("ParentId")));
+            mapContainer.put(Constants.PARAMETER_DEST_BankAccount, Objects.requireNonNull(getIntent().getExtras().getString("DestMDN")));
             mapContainer.put(Constants.PARAMTER_MFA_TRANSACTION, Constants.TRANSACTION_MFA_TRANSACTION_CONFIRM);
             mapContainer.put(Constants.PARAMETER_CONFIRMED, Constants.CONSTANT_VALUE_TRUE);
             if (sharedPreferences.getInt("userType", -1) == 0) {
@@ -386,45 +375,47 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-                typeTransferCat="B2B";
-                idTransferCat=1;
+                typeTransferCat = "B2B";
+                idTransferCat = 1;
             } else if (sharedPreferences.getInt("userType", -1) == 1) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK_SINARMAS);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-                typeTransferCat="B2B";
-                idTransferCat=1;
+                typeTransferCat = "B2B";
+                idTransferCat = 1;
             } else if (sharedPreferences.getInt("userType", -1) == 2) {
                 if (sharedPreferences.getInt("AgentUsing", -1) == 1) {
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_AGENT);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
-                    typeTransferCat="E2B";
-                    idTransferCat=11;
+                    typeTransferCat = "E2B";
+                    idTransferCat = 11;
                 } else {
-                    typeTransferCat="B2B";
-                    idTransferCat=1;
+                    typeTransferCat = "B2B";
+                    idTransferCat = 1;
                     mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                     mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                     mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
                 }
             } else if (sharedPreferences.getInt("userType", -1) == 3) {
-                typeTransferCat="E2B";
-                idTransferCat=11;
+                typeTransferCat = "E2B";
+                idTransferCat = 11;
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_EMONEY);
                 mapContainer.put(Constants.PARAMETER_DEST_POCKET_CODE, Constants.POCKET_CODE_BANK);
                 mapContainer.put(Constants.PARAMETER_DEST_BANK_CODE, Constants.POCKET_CODE_BANK_SINARMAS_BANKCODE);
             }
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
+            if (Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
                 String module = sharedPreferences.getString("MODULE", "NONE");
                 String exponent = sharedPreferences.getString("EXPONENT", "NONE");
                 try {
-                    OTP = CryptoService.encryptWithPublicKey(module, exponent,
-                            otpValue.getBytes());
+                    if (module != null && exponent != null) {
+                        OTP = CryptoService.encryptWithPublicKey(module, exponent,
+                                otpValue.getBytes());
+                    }
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -462,7 +453,9 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer.getMsgCode());
+                    if (responseContainer != null) {
+                        msgCode = Integer.parseInt(responseContainer.getMsgCode());
+                    }
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -470,48 +463,56 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
+                    if (responseContainer != null) {
+                        func.errorTimeoutResponseConfirmation(responseContainer.getMsg());
+                    }
                     dialogBuilder.dismiss();
                 } else if (msgCode == 293) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(TransferConfirmationActivity.this, TranaferSuccessActivity.class);
-                    intent.putExtra("amount", getIntent().getExtras().getString("amount"));
-                    intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
-                    intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
-                    intent.putExtra("sctlID", responseContainer.getSctl());
-                    intent.putExtra("Name", getIntent().getExtras().getString("Name"));
-                    intent.putExtra("favCat", typeTransferCat);
-                    intent.putExtra("idFavCat", idTransferCat);
-                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
-                    startActivityForResult(intent, 10);
-                    dialogBuilder.dismiss();
+                    if (responseContainer != null) {
+                        Intent intent = new Intent(TransferConfirmationActivity.this, TranaferSuccessActivity.class);
+                        intent.putExtra("amount", Objects.requireNonNull(getIntent().getExtras()).getString("amount"));
+                        intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
+                        intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
+                        intent.putExtra("sctlID", responseContainer.getSctl());
+                        intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                        intent.putExtra("favCat", typeTransferCat);
+                        intent.putExtra("idFavCat", idTransferCat);
+                        intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
+                        startActivityForResult(intent, 10);
+                        dialogBuilder.dismiss();
+                    }
                 } else if (msgCode == 703) {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    Intent intent = new Intent(TransferConfirmationActivity.this, TranaferSuccessActivity.class);
-                    intent.putExtra("amount", getIntent().getExtras().getString("amount"));
-                    intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
-                    intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
-                    intent.putExtra("sctlID", responseContainer.getSctl());
-                    intent.putExtra("Name", getIntent().getExtras().getString("Name"));
-                    intent.putExtra("favCat", typeTransferCat);
-                    intent.putExtra("idFavCat", idTransferCat);
-                    intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
-                    startActivityForResult(intent, 10);
-                    dialogBuilder.dismiss();
+                    if (responseContainer != null) {
+                        Intent intent = new Intent(TransferConfirmationActivity.this, TranaferSuccessActivity.class);
+                        intent.putExtra("amount", Objects.requireNonNull(getIntent().getExtras()).getString("amount"));
+                        intent.putExtra("DestMDN", getIntent().getExtras().getString("DestMDN"));
+                        intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
+                        intent.putExtra("sctlID", responseContainer.getSctl());
+                        intent.putExtra("Name", getIntent().getExtras().getString("Name"));
+                        intent.putExtra("favCat", typeTransferCat);
+                        intent.putExtra("idFavCat", idTransferCat);
+                        intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
+                        startActivityForResult(intent, 10);
+                        dialogBuilder.dismiss();
+                    }
                 } else {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    if (responseContainer.getMsg() == null) {
-                        func.errorNullResponseConfirmation();
-                        dialogBuilder.dismiss();
-                    } else {
-                        func.errorElseResponseConfirmation(responseContainer.getMsg());
-                        dialogBuilder.dismiss();
+                    if (responseContainer != null) {
+                        if (responseContainer.getMsg() == null) {
+                            func.errorNullResponseConfirmation();
+                            dialogBuilder.dismiss();
+                        } else {
+                            func.errorElseResponseConfirmation(responseContainer.getMsg());
+                            dialogBuilder.dismiss();
+                        }
                     }
                 }
             } else {
@@ -520,17 +521,6 @@ public class TransferConfirmationActivity extends AppCompatActivity implements I
                 }
                 func.errorNullResponseConfirmation();
                 dialogBuilder.dismiss();
-            }
-        }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 109) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //Log.d(LOG_TAG, "permission granted");
-            } else {
-                //Log.d(LOG_TAG, "permission rejected");
             }
         }
     }

@@ -2,7 +2,6 @@ package com.payment.simaspay.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -49,14 +48,13 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
-    private static final String TAG = "SimasPay";
+
     TextView textView;
     RSAEncryption rsaEncryption;
     SharedPreferences sharedPreferences;
     private Context context;
     String appID;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
-    private static final int MY_PERMISSIONS_REQUEST_SMS = 10;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     private static final int READ_PHONE_STATE_REQUEST = 109;
 
@@ -65,7 +63,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        settings = getSharedPreferences(TAG, 0);
+        settings = getSharedPreferences(Constants.TAG, 0);
         context = SplashScreenActivity.this;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = SplashScreenActivity.this.getWindow();
@@ -243,20 +241,24 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 });
                                 alertbox.show();
                             } else if (msgCode == 2309) {
-                                if (firsttime.equals("yes")) {
-                                    Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    String mdn = settings.getString("mobileNumber", "");
-                                    if (!mdn.equals("")) {
-                                        Intent intent = new Intent(SplashScreenActivity.this, SecondLoginActivity.class);
+                                if (firsttime != null) {
+                                    if (firsttime.equals("yes")) {
+                                        Intent intent = new Intent(SplashScreenActivity.this, TermsNConditionsActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
-                                        startActivity(intent);
-                                        finish();
+                                        String mdn = settings.getString("mobileNumber", "");
+                                        if (mdn != null) {
+                                            if (!mdn.equals("")) {
+                                                Intent intent = new Intent(SplashScreenActivity.this, SecondLoginActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            } else {
+                                                Intent intent = new Intent(SplashScreenActivity.this, LandingScreenActivity.class);
+                                                startActivity(intent);
+                                                finish();
+                                            }
+                                        }
                                     }
                                 }
                             } else if (responseDataContainer.getMsgCode().equals("null")) {
@@ -271,18 +273,20 @@ public class SplashScreenActivity extends AppCompatActivity {
                             } else {
                                 String errorDialog = sharedPreferences.getString("ErrorMessage", getResources().getString(R.string.bahasa_serverNotRespond));
                                 Log.d(LOG_TAG, "error message: " + errorDialog);
-                                if (errorDialog.equals(getResources().getString(R.string.untrusted_connection))) {
-                                    Log.d(LOG_TAG, "untrusted");
-                                    Utility.ShowDialog2(sharedPreferences.getString(
-                                            "ErrorMessage",
-                                            getResources().getString(
-                                                    R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
-                                } else {
-                                    Log.d(LOG_TAG, "else");
-                                    Utility.ShowDialog(sharedPreferences.getString(
-                                            "ErrorMessage",
-                                            getResources().getString(
-                                                    R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                                if (errorDialog != null) {
+                                    if (errorDialog.equals(getResources().getString(R.string.untrusted_connection))) {
+                                        Log.d(LOG_TAG, "untrusted");
+                                        Utility.ShowDialog2(sharedPreferences.getString(
+                                                "ErrorMessage",
+                                                getResources().getString(
+                                                        R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                                    } else {
+                                        Log.d(LOG_TAG, "else");
+                                        Utility.ShowDialog(sharedPreferences.getString(
+                                                "ErrorMessage",
+                                                getResources().getString(
+                                                        R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                                    }
                                 }
 
                             }
@@ -302,18 +306,20 @@ public class SplashScreenActivity extends AppCompatActivity {
                                 R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
                                 */
                 String errorDialog = sharedPreferences.getString("ErrorMessage", getResources().getString(R.string.bahasa_serverNotRespond));
-                if (errorDialog.equals(getResources().getString(R.string.untrusted_connection))) {
-                    Log.d(LOG_TAG, "untrusted");
-                    Utility.ShowDialog2(sharedPreferences.getString(
-                            "ErrorMessage",
-                            getResources().getString(
-                                    R.string.untrusted_connection)), SplashScreenActivity.this);
-                } else {
-                    Log.d(LOG_TAG, "else");
-                    Utility.ShowDialog(sharedPreferences.getString(
-                            "ErrorMessage",
-                            getResources().getString(
-                                    R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                if (errorDialog != null) {
+                    if (errorDialog.equals(getResources().getString(R.string.untrusted_connection))) {
+                        Log.d(LOG_TAG, "untrusted");
+                        Utility.ShowDialog2(sharedPreferences.getString(
+                                "ErrorMessage",
+                                getResources().getString(
+                                        R.string.untrusted_connection)), SplashScreenActivity.this);
+                    } else {
+                        Log.d(LOG_TAG, "else");
+                        Utility.ShowDialog(sharedPreferences.getString(
+                                "ErrorMessage",
+                                getResources().getString(
+                                        R.string.bahasa_serverNotRespond)), SplashScreenActivity.this);
+                    }
                 }
             }
         }
@@ -354,12 +360,6 @@ public class SplashScreenActivity extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.d(LOG_TAG, "camera permission granted");
-                }
-                break;
-            case MY_PERMISSIONS_REQUEST_SMS:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.e(LOG_TAG, "------sms granted()");
                 }
                 break;
             case READ_CONTACTS_PERMISSIONS_REQUEST:

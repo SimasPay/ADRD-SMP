@@ -82,11 +82,11 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
 
-        lbl_name=(TextView)findViewById(R.id.lbl_name);
-        lbl_amount=(TextView)findViewById(R.id.lbl_amount);
-        lbl_mdn=(TextView)findViewById(R.id.lbl_mdn);
-        benar_btn=(Button)findViewById(R.id.benar_btn);
-        salah_btn=(Button)findViewById(R.id.salah_btn);
+        lbl_name= findViewById(R.id.lbl_name);
+        lbl_amount= findViewById(R.id.lbl_amount);
+        lbl_mdn= findViewById(R.id.lbl_mdn);
+        benar_btn= findViewById(R.id.benar_btn);
+        salah_btn= findViewById(R.id.salah_btn);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             stFullname = (String) extras.get("destname");
@@ -112,7 +112,11 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue=otp;
     }
 
@@ -127,21 +131,21 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         manualotp.setOnClickListener(arg0 -> {
             otplay.setVisibility(View.GONE);
             otp2lay.setVisibility(View.VISIBLE);
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
             @Override
@@ -163,7 +167,7 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {

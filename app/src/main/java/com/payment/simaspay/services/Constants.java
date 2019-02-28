@@ -11,6 +11,7 @@ public class Constants {
     public static String URL_PBQ = "https://sandbox.dimo.co.id";
     private static String serverNotResponding;
     public static final String LOG_TAG = "SimasPay";
+    public static final String TAG = "SimasPay";
     public static String getServerNotResponding() {
         return serverNotResponding;
     }

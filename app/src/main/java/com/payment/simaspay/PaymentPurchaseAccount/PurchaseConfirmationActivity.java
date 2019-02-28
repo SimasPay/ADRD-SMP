@@ -44,6 +44,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class PurchaseConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener {
@@ -175,23 +176,9 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
 
         confirmation.setOnClickListener(view -> {
 
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                int currentapiVersion = Build.VERSION.SDK_INT;
-                if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-                    if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                            != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-
-                        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                                109);
-                    } else {
-                        new requestOTPAsyncTask().execute();
-                    }
-                } else {
-                    new requestOTPAsyncTask().execute();
-                }
+            if (Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
+                new requestOTPAsyncTask().execute();
             } else {
-                //handlerforTimer.removeCallbacks(runnableforExit);
                 new PurchaseConfirmationAsynTask().execute();
             }
 
@@ -226,7 +213,11 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
     @Override
     public void onReadSMS(String otp) {
         Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue = otp;
     }
 
@@ -410,12 +401,9 @@ public class PurchaseConfirmationActivity extends AppCompatActivity implements I
         otp2lay.setVisibility(View.GONE);
         TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
         Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
-        manualotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                otplay.setVisibility(View.GONE);
-                otp2lay.setVisibility(View.VISIBLE);
-            }
+        manualotp.setOnClickListener(arg0 -> {
+            otplay.setVisibility(View.GONE);
+            otp2lay.setVisibility(View.VISIBLE);
         });
         edt = dialoglayout.findViewById(R.id.otp_value);
 

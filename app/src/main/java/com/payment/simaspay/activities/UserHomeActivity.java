@@ -68,6 +68,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -104,7 +105,6 @@ public class UserHomeActivity extends BaseActivity {
     private String encodedImg;
     private Uri picUri;
     private TextView initname;
-    private boolean GallaryPhotoSelected = false;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -138,18 +138,20 @@ public class UserHomeActivity extends BaseActivity {
         photo = findViewById(R.id.profile_pic);
         initname = findViewById(R.id.initname);
         String encodedImgFromAPI = sharedPreferences.getString(Constants.PARAMETER_PROFPICSTRING, "");
-        if (!encodedImgFromAPI.equals("")) {
-            Bitmap profpic = decodeBase64(encodedImgFromAPI);
-            if (profpic != null) {
-                photo.setImageBitmap(profpic);
-                initname.setVisibility(View.INVISIBLE);
-            }
-        } else {
-            String fullname = sharedPreferences.getString("fullname", "");
-            initname.setText(initialName(fullname));
-            initname.setVisibility(View.VISIBLE);
-            photo.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.circle_bg));
+        if (encodedImgFromAPI != null) {
+            if (!encodedImgFromAPI.equals("")) {
+                Bitmap profpic = decodeBase64(encodedImgFromAPI);
+                if (profpic != null) {
+                    photo.setImageBitmap(profpic);
+                    initname.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                String fullname = sharedPreferences.getString("fullname", "");
+                initname.setText(initialName(fullname));
+                initname.setVisibility(View.VISIBLE);
+                photo.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.circle_bg));
 
+            }
         }
         photo.setOnClickListener(view -> pickImage());
 
@@ -192,14 +194,16 @@ public class UserHomeActivity extends BaseActivity {
             case Constants.CONSTANT_BOTH_USER:
                 String account = sharedPreferences.getString(Constants.PARAMETER_USES_AS, "");
                 accountSelected = account;
-                if (account.equals(Constants.CONSTANT_BANK_USER)) {
-                    home_lbl.setText(getResources().getString(R.string.bank));
-                    phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
-                    LinearLayout tariktunailay = findViewById(R.id.layout_tariktunai);
-                    tariktunailay.setVisibility(View.INVISIBLE);
-                } else {
-                    home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
-                    phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+                if (account != null) {
+                    if (account.equals(Constants.CONSTANT_BANK_USER)) {
+                        home_lbl.setText(getResources().getString(R.string.bank));
+                        phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_ACCOUNTNUMBER, ""));
+                        LinearLayout tariktunailay = findViewById(R.id.layout_tariktunai);
+                        tariktunailay.setVisibility(View.INVISIBLE);
+                    } else {
+                        home_lbl.setText(getResources().getString(R.string.id_emoney_plus));
+                        phone_lbl.setText(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+                    }
                 }
                 switch_account.setVisibility(View.VISIBLE);
                 break;
@@ -263,7 +267,7 @@ public class UserHomeActivity extends BaseActivity {
 
         daftaremoneylay = findViewById(R.id.daftar_emoney);
         ImageButton daftaremoney = findViewById(R.id.daftar_emoney_btn);
-        if (sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "").equals(Constants.CONSTANT_BANK_USER)) {
+        if (Objects.requireNonNull(sharedPreferences.getString(Constants.PARAMETER_TYPEUSER, "")).equals(Constants.CONSTANT_BANK_USER)) {
             daftaremoneylay.setVisibility(View.VISIBLE);
             daftaremoney.setOnClickListener(view -> {
                 Intent intent = new Intent(UserHomeActivity.this, DaftarEmoneyActivity.class);
@@ -389,7 +393,7 @@ public class UserHomeActivity extends BaseActivity {
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, mdn);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_PIN, Objects.requireNonNull(sharedPreferences.getString("password", "")));
             if (sharedPreferences.getInt(Constants.PARAMETER_USERTYPE, -1) == Constants.CONSTANT_BANK_INT) {
                 mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_BANK);
                 mapContainer.put(Constants.PARAMETER_SRC_POCKET_CODE, Constants.POCKET_CODE_BANK);
@@ -498,7 +502,6 @@ public class UserHomeActivity extends BaseActivity {
 
             case PICK_FROM_FILE:
                 picUri = data.getData();
-                GallaryPhotoSelected = true;
                 doCrop();
                 break;
             case REQ_PICK_IMAGE:
@@ -536,17 +539,7 @@ public class UserHomeActivity extends BaseActivity {
             case CROP_FROM_CAMERA:
                 if(data.getExtras()!=null){
                     Bundle extras = data.getExtras();
-                    //Log.d(LOG_TAG, "extras: "+extras);
                     String selectedImagePath = picUri.getPath();
-                    //Log.d(LOG_TAG, "CROP_FROM_CAMERA selectedImagePath: "+selectedImagePath);
-                    //Log.i(LOG_TAG, "After Crop selectedImagePath " + selectedImagePath);
-                    if (GallaryPhotoSelected) {
-                        //Log.i(LOG_TAG, "Absolute Path " + selectedImagePath);
-                        GallaryPhotoSelected = true;
-                    }
-
-                    String finalmedia = selectedImagePath;
-
                     if (extras != null) {
                         //Log.i(LOG_TAG, "Inside Extra " + selectedImagePath);
                         Bitmap thePic = decodeFile(selectedImagePath);
@@ -823,9 +816,10 @@ public class UserHomeActivity extends BaseActivity {
         }
     }
 
+    @SuppressLint("IntentReset")
     private void pickImage() {
         List<Intent> targets = new ArrayList<>();
-        Intent intent = new Intent(Intent.ACTION_PICK,
+        @SuppressLint("IntentReset") Intent intent = new Intent(Intent.ACTION_PICK,
         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         List<ResolveInfo> candidates = getPackageManager().queryIntentActivities(intent, 0);

@@ -30,11 +30,10 @@ import static com.payment.simaspay.services.Constants.LOG_TAG;
 public class LandingScreenActivity extends AppCompatActivity {
     Context context;
     public SharedPreferences settings;
-    private static final String TAG = "SimasPay";
     Functions functions;
     TextView contact_us;
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 0;
-    private static final int MY_PERMISSIONS_REQUEST_SMS = 10;
+    private static final int MY_PERMISSIONS_ALL = 10;
     private static final int READ_CONTACTS_PERMISSIONS_REQUEST = 11;
     private static final int READ_PHONE_STATE_REQUEST = 109;
 
@@ -48,7 +47,7 @@ public class LandingScreenActivity extends AppCompatActivity {
 
         AllPermissions();
 
-        settings = getSharedPreferences(TAG, 0);
+        settings = getSharedPreferences(LOG_TAG, 0);
 
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
@@ -59,20 +58,24 @@ public class LandingScreenActivity extends AppCompatActivity {
         Button login= findViewById(R.id.login);
         login.setOnClickListener(view -> {
             finish();
-            if(firsttime.equals("yes")){
-                Intent intent = new Intent(LandingScreenActivity.this, InputNumberScreenActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }else{
-                String mdn = settings.getString("mobileNumber", "");
-                if(!mdn.equals("")){
-                    Intent intent = new Intent(LandingScreenActivity.this, SecondLoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }else{
+            if (firsttime != null) {
+                if(firsttime.equals("yes")){
                     Intent intent = new Intent(LandingScreenActivity.this, InputNumberScreenActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                }else{
+                    String mdn = settings.getString("mobileNumber", "");
+                    if (mdn != null) {
+                        if(!mdn.equals("")){
+                            Intent intent = new Intent(LandingScreenActivity.this, SecondLoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(LandingScreenActivity.this, InputNumberScreenActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                        }
+                    }
                 }
             }
 
@@ -96,12 +99,12 @@ public class LandingScreenActivity extends AppCompatActivity {
     private void AllPermissions(){
         int currentapiVersion = Build.VERSION.SDK_INT;
         if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-            if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
+            if ((checkCallingOrSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE},
-                            MY_PERMISSIONS_REQUEST_SMS);
+                    requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_CONTACTS, Manifest.permission.READ_PHONE_STATE},
+                            MY_PERMISSIONS_ALL);
                 }
             }
         }
@@ -123,14 +126,12 @@ public class LandingScreenActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "camera permission granted");
                 }
                 break;
-                /*
-            case MY_PERMISSIONS_REQUEST_SMS:
+            case MY_PERMISSIONS_ALL:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.e(LOG_TAG, "------sms granted()");
+                    Log.e(LOG_TAG, "------all granted()");
                 }
                 break;
-                */
             case READ_CONTACTS_PERMISSIONS_REQUEST:
                 if (grantResults.length == 1 &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {

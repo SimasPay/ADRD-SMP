@@ -1,5 +1,6 @@
 package com.payment.simaspay.AgentTransfer;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -39,8 +40,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.payment.simaspay.R;
+
+import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 /**
  * Created by widy on 1/25/17.
@@ -52,7 +56,6 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
     String message, transactionTime, responseCode, mfaMode;
     TextView lbl_name, lbl_mdn, lbl_amount, notice;
     Button benar_btn, salah_btn;
-    private static final String LOG_TAG = "SimasPay";
     private EditText edt;
     private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
@@ -65,6 +68,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
     int idTransferCat;
     String typeTransferCat="";
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,12 +90,12 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
         selectedLanguage = languageSettings.getString("LANGUAGE", "BAHASA");
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-        lbl_name=(TextView)findViewById(R.id.lbl_name);
-        lbl_amount=(TextView)findViewById(R.id.lbl_amount);
-        lbl_mdn=(TextView)findViewById(R.id.lbl_mdn);
-        notice=(TextView)findViewById(R.id.notice);
-        benar_btn=(Button)findViewById(R.id.benar_btn);
-        salah_btn=(Button)findViewById(R.id.salah_btn);
+        lbl_name= findViewById(R.id.lbl_name);
+        lbl_amount= findViewById(R.id.lbl_amount);
+        lbl_mdn= findViewById(R.id.lbl_mdn);
+        notice= findViewById(R.id.notice);
+        benar_btn= findViewById(R.id.benar_btn);
+        salah_btn= findViewById(R.id.salah_btn);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             stFullname = (String) extras.get("destname");
@@ -118,7 +122,6 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         lbl_amount.setText(Functions.formatRupiah(stAmount));
         benar_btn.setOnClickListener(view -> {
             new requestOTPAsyncTask().execute();
-            //showOTPRequiredDialog();
         });
         salah_btn.setOnClickListener(view -> finish());
     }
@@ -126,8 +129,11 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
 
     @Override
     public void onReadSMS(String otp) {
-        //Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue=otp;
     }
 
@@ -142,23 +148,22 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         manualotp.setOnClickListener(arg0 -> {
             otplay.setVisibility(View.GONE);
             otp2lay.setVisibility(View.VISIBLE);
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
-
-        //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onTick(long millisUntilFinished) {
                 NumberFormat f = new DecimalFormat("00");
@@ -166,6 +171,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                         f.format(millisUntilFinished / 60000) + ":" + f.format(millisUntilFinished % 60000 / 1000));
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
                 dialogBuilder.dismiss();
@@ -178,7 +184,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {
@@ -221,6 +227,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         dialogBuilder.show();
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class TransferConfirmationAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -313,7 +320,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
                             intent.putExtra("transactionID", responseDataContainer.getSctl());
                             intent.putExtra("favCat", typeTransferCat);
                             intent.putExtra("idFavCat", idTransferCat);
-                            intent.putExtra("selectedItem", getIntent().getExtras().getString("selectedItem"));
+                            intent.putExtra("selectedItem", Objects.requireNonNull(getIntent().getExtras()).getString("selectedItem"));
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             TransferEmoneyToEmoneyConfirmationActivity.this.finish();
@@ -335,6 +342,7 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class requestOTPAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;

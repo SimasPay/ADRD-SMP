@@ -47,7 +47,6 @@ public class InputNumberScreenActivity extends AppCompatActivity {
     public SharedPreferences settings;
     public SharedPreferences.Editor editor;
     public EditText phone_number;
-    private static final String TAG = "SimasPay";
     private String phonenum;
     SharedPreferences sharedPreferences;
     Functions functions;
@@ -59,7 +58,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
         functions.initiatedToolbar(InputNumberScreenActivity.this);
 
         context = InputNumberScreenActivity.this;
-        settings = getSharedPreferences(TAG, 0);
+        settings = getSharedPreferences(Constants.TAG, 0);
         String mdn = settings.getString("mobileNumber", "");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -84,7 +83,7 @@ public class InputNumberScreenActivity extends AppCompatActivity {
             //finish();
         });
         phone_number = findViewById(R.id.hand_phno);
-        if(!mdn.equals("")){
+        if (mdn != null && !mdn.equals("")) {
             phone_number.setText(mdn);
         }
         Button lanjut = findViewById(R.id.lanjut);

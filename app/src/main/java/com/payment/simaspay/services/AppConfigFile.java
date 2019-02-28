@@ -55,14 +55,13 @@ public class AppConfigFile {
     */
 
     //UAT new trusted SSL 20170823---dev
-
     public static String requestUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrlFiles = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String pfdDownLoadURL = "https://www.banksinarmas.com/webapidev/";
     public static String promoImageURLPath = "https://www.banksinarmas.com/";
 
-    //new server production 20181204
+    //new server production 20181204 -current PlayStore
 	/*
 	public static String requestUrl = "https://www.banksinarmas.com/simaspayapi/sdynamic";
 	public static String webAPIUrlFiles = "https://www.banksinarmas.com/simaspayapi/sdynamic";

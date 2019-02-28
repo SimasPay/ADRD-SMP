@@ -42,6 +42,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.payment.simaspay.R;
 
@@ -53,7 +54,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     SharedPreferences sharedPreferences;
     private EditText edt;
     String otpValue = "";
-    private static final String LOG_TAG = "SimasPay";
     String OTP;
     private static AlertDialog dialogBuilder;
     LinearLayout otplay, otp2lay;
@@ -62,7 +62,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     ProgressDialog progressDialog;
     int msgCode;
     Context context;
-    private AlertDialog.Builder alertbox;
     String sourceMDN, stMPIN, stFullname, stAmount, stMDN, stTransferID, stParentTxnID, stSctl, message, transactionTime, responseCode;
     Functions func;
     int idTransferCat;
@@ -90,16 +89,16 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                 PorterDuff.Mode.SRC_IN);
         progressDialog.setIndeterminateDrawable(drawable);
 
-        title = (TextView) findViewById(R.id.title);
-        heading = (TextView) findViewById(R.id.textview);
-        name = (TextView) findViewById(R.id.name);
-        name_field = (TextView) findViewById(R.id.name_field);
-        number = (TextView) findViewById(R.id.number);
-        number_field = (TextView) findViewById(R.id.number_field);
-        amount = (TextView) findViewById(R.id.amount);
-        amount_field = (TextView) findViewById(R.id.amount_field);
-        products = (TextView) findViewById(R.id.products);
-        product_field = (TextView) findViewById(R.id.other_products);
+        title = findViewById(R.id.title);
+        heading = findViewById(R.id.textview);
+        name = findViewById(R.id.name);
+        name_field = findViewById(R.id.name_field);
+        number = findViewById(R.id.number);
+        number_field = findViewById(R.id.number_field);
+        amount = findViewById(R.id.amount);
+        amount_field = findViewById(R.id.amount_field);
+        products = findViewById(R.id.products);
+        product_field = findViewById(R.id.other_products);
 
         product_field.setVisibility(View.VISIBLE);
         products.setVisibility(View.VISIBLE);
@@ -118,10 +117,10 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         products.setVisibility(View.GONE);
         product_field.setVisibility(View.GONE);
 
-        cancel = (Button) findViewById(R.id.cancel);
-        confirmation = (Button) findViewById(R.id.next);
+        cancel = findViewById(R.id.cancel);
+        confirmation = findViewById(R.id.next);
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         languageSettings = getSharedPreferences("LANGUAGE_PREFERECES", 0);
@@ -152,39 +151,13 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         cancel.setOnClickListener(view -> UangkuTransferConfirmationActivity.this.finish());
 
         confirmation.setOnClickListener(view -> {
-            if (getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                int currentapiVersion = Build.VERSION.SDK_INT;
-                if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-                    if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                            != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                            != PackageManager.PERMISSION_GRANTED) {
-
-                        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                                109);
-                    } else {
-                        new requestOTPAsyncTask().execute();
-                    }
-                } else {
+            if (Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
                     new requestOTPAsyncTask().execute();
-                }
-//                    }
             }
 
         });
 
         back.setOnClickListener(view -> UangkuTransferConfirmationActivity.this.finish());
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 109) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                //Log.d(LOG_TAG, "permission granted");
-            } else {
-                //Log.d(LOG_TAG, "permission rejected");
-            }
-        }
     }
 
     private void showOTPRequiredDialog() {
@@ -198,21 +171,21 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         manualotp.setOnClickListener(arg0 -> {
             otplay.setVisibility(View.GONE);
             otp2lay.setVisibility(View.VISIBLE);
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         //Log.d(LOG_TAG, "otpValue : " + edt.getText().toString());
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
             @Override
@@ -234,7 +207,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {
@@ -472,7 +445,7 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
 
                             showOTPRequiredDialog();
                         }else{
-                            alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
+                            AlertDialog.Builder alertbox = new AlertDialog.Builder(UangkuTransferConfirmationActivity.this, R.style.MyAlertDialogStyle);
                             alertbox.setMessage(responseDataContainer.getMsg());
                             alertbox.setNeutralButton("OK", (arg0, arg1) -> finish());
                             alertbox.show();
@@ -489,7 +462,11 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
     @Override
     public void onReadSMS(String otp) {
         //Log.d(LOG_TAG, "otp from SMS: " + otp);
-        edt.setText(otp);
+        if(otp==null){
+            edt.setText("");
+        }else{
+            edt.setText(otp);
+        }
         otpValue=otp;
     }
 
