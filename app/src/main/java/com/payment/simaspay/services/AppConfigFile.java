@@ -61,6 +61,7 @@ public class AppConfigFile {
     public static String pfdDownLoadURL = "https://www.banksinarmas.com/webapidev/";
     public static String promoImageURLPath = "https://www.banksinarmas.com/";
 
+
     //new server production 20181204 -current PlayStore
 	/*
 	public static String requestUrl = "https://www.banksinarmas.com/simaspayapi/sdynamic";

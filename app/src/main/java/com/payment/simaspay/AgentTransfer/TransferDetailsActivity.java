@@ -1,7 +1,7 @@
 package com.payment.simaspay.AgentTransfer;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -26,6 +26,8 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.payment.simaspay.R;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
@@ -35,7 +37,6 @@ import com.payment.simaspay.userdetails.SessionTimeOutActivity;
 import com.payment.simaspay.utils.CustomSpinnerAdapter;
 import com.payment.simaspay.utils.FavoriteData;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,12 +45,12 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-import com.payment.simaspay.R;
+import static com.payment.simaspay.services.Constants.LOG_TAG;
 
 public class TransferDetailsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView title, handphone, jumlah, mPin, Rp;
-    private static final String LOG_TAG = "SimasPay";
     Button submit;
     EditText number, amount, pin;
     LinearLayout btnBacke;
@@ -58,7 +59,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
     String pinValue, mdn, amountValue;
-    ArrayList<FavoriteData> favList2 = new ArrayList<FavoriteData>();
+    ArrayList<FavoriteData> favList2 = new ArrayList<>();
     SharedPreferences settings, languageSettings;
     String selectedLanguage;
     int msgCode, stCatID;
@@ -84,23 +85,24 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         sourceMDN = settings.getString("mobileNumber", "");
         stMPIN = func.generateRSA(sharedPreferences.getString(Constants.PARAMETER_MPIN, ""));
 
-        title = (TextView) findViewById(R.id.titled);
-        handphone = (TextView) findViewById(R.id.handphone);
-        jumlah = (TextView) findViewById(R.id.jumlah);
-        mPin = (TextView) findViewById(R.id.mPin);
-        Rp = (TextView) findViewById(R.id.Rp);
+        title = findViewById(R.id.titled);
+        handphone = findViewById(R.id.handphone);
+        jumlah = findViewById(R.id.jumlah);
+        mPin = findViewById(R.id.mPin);
+        Rp = findViewById(R.id.Rp);
 
-        submit = (Button) findViewById(R.id.submit);
+        submit = findViewById(R.id.submit);
 
-        number = (EditText) findViewById(R.id.number);
-        amount = (EditText) findViewById(R.id.amount);
-        pin = (EditText) findViewById(R.id.pin);
+        number = findViewById(R.id.number);
+        amount = findViewById(R.id.amount);
+        pin = findViewById(R.id.pin);
 
-        spinner_layout = (RelativeLayout) findViewById(R.id.spinner_layout);
+        spinner_layout = findViewById(R.id.spinner_layout);
         spinner_layout.setVisibility(View.GONE);
-        spinner_fav = (Spinner) findViewById(R.id.spinner_fav);
+        spinner_fav = findViewById(R.id.spinner_fav);
         try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
+            String stpopup = "mPopup";
+            Field popup = Spinner.class.getDeclaredField(stpopup);
             popup.setAccessible(true);
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(spinner_fav);
             popupWindow.setHeight(500);
@@ -110,7 +112,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         }
         spinner_fav.setOnItemSelectedListener(this);
 
-        RadioGroup radioTujuanGroup = (RadioGroup) findViewById(R.id.rad_tujuan);
+        RadioGroup radioTujuanGroup = findViewById(R.id.rad_tujuan);
         radioTujuanGroup.setOnCheckedChangeListener((group, checkedId) -> {
             Log.d("chk", "id " + checkedId);
             if (checkedId == R.id.favlist_option) {
@@ -140,7 +142,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         FilterArray1[0] = new InputFilter.LengthFilter(getResources().getInteger(R.integer.pinSize));
         pin.setFilters(FilterArray1);
 
-        btnBacke = (LinearLayout) findViewById(R.id.back_layout);
+        btnBacke = findViewById(R.id.back_layout);
 
         title.setTypeface(Utility.Robot_Regular(TransferDetailsActivity.this));
         handphone.setTypeface(Utility.HelveticaNeue_Medium(TransferDetailsActivity.this));
@@ -168,7 +170,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         });
 
         submit.setOnClickListener(view -> {
-            Boolean ada = false;
+            boolean ada = false;
             for (FavoriteData string : favList2) {
                 ada = string.getCategoryName().equals(number.getText().toString());
                 Log.d(LOG_TAG, "label : "+string.getCategoryName());
@@ -228,12 +230,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
 
         });
 
-        btnBacke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        btnBacke.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -257,18 +254,19 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     private class transferBankSinarmasAsynTask extends AsyncTask<Void, Void, Void> {
         String response;
 
         @Override
         protected Void doInBackground(Void... params) {
-            Map<String, String> mapContainer = new HashMap<String, String>();
+            Map<String, String> mapContainer = new HashMap<>();
             mapContainer.put(Constants.PARAMETER_CHANNEL_ID,
                     Constants.CONSTANT_CHANNEL_ID);
             mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME,
                     Constants.TRANSACTION_TRANSFER_INQUIRY);
             mapContainer.put(Constants.PARAMETER_BANK_ID, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, Objects.requireNonNull(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, "")));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             mapContainer.put(Constants.PARAMETER_AMOUNT, amountValue);
             mapContainer.put(Constants.PARAMETER_DEST_BankAccount, mdn);
@@ -335,8 +333,10 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                     e.printStackTrace();
                 }
                 try {
-                    msgCode = Integer.parseInt(responseContainer
-                            .getMsgCode());
+                    if (responseContainer != null) {
+                        msgCode = Integer.parseInt(responseContainer
+                                .getMsgCode());
+                    }
                 } catch (Exception e) {
                     msgCode = 0;
                 }
@@ -351,32 +351,36 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                         progressDialog.dismiss();
                     }
                     sharedPreferences.edit().putString("password", pinValue).apply();
-                    Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
-                    intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
-                    intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
-                    intent.putExtra("DestMDN", responseContainer.getAccountNumber());
-                    intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
-                    intent.putExtra("ParentId", responseContainer.getEncryptedParentTxnId());
-                    intent.putExtra("sctlID", responseContainer.getSctl());
-                    intent.putExtra("Name", responseContainer.getCustName());
-                    intent.putExtra("mfaMode", responseContainer.getMfaMode());
-                    intent.putExtra("selectedItem", selectedItem);
-                    startActivityForResult(intent, 10);
+                    if(responseContainer!=null) {
+                        Intent intent = new Intent(TransferDetailsActivity.this, TransferConfirmationActivity.class);
+                        intent.putExtra("amount", responseContainer.getEncryptedDebitAmount());
+                        intent.putExtra("charges", responseContainer.getEncryptedTransactionCharges());
+                        intent.putExtra("DestMDN", responseContainer.getAccountNumber());
+                        intent.putExtra("transferID", responseContainer.getEncryptedTransferId());
+                        intent.putExtra("ParentId", responseContainer.getEncryptedParentTxnId());
+                        intent.putExtra("sctlID", responseContainer.getSctl());
+                        intent.putExtra("Name", responseContainer.getCustName());
+                        intent.putExtra("mfaMode", responseContainer.getMfaMode());
+                        intent.putExtra("selectedItem", selectedItem);
+                        startActivityForResult(intent, 10);
+                    }
                 } else {
                     if (progressDialog != null) {
                         progressDialog.dismiss();
                     }
-                    if (responseContainer.getMsg() == null) {
-                        Utility.networkDisplayDialog(
-                                sharedPreferences.getString(
-                                        "ErrorMessage",
-                                        getResources()
-                                                .getString(
-                                                        R.string.server_error_message)),
-                                TransferDetailsActivity.this);
-                    } else {
-                        Utility.networkDisplayDialog(
-                                responseContainer.getMsg(), TransferDetailsActivity.this);
+                    if (responseContainer != null) {
+                        if (responseContainer.getMsg() == null) {
+                            Utility.networkDisplayDialog(
+                                    sharedPreferences.getString(
+                                            "ErrorMessage",
+                                            getResources()
+                                                    .getString(
+                                                            R.string.server_error_message)),
+                                    TransferDetailsActivity.this);
+                        } else {
+                            Utility.networkDisplayDialog(
+                                    responseContainer.getMsg(), TransferDetailsActivity.this);
+                        }
                     }
                 }
             } else {
@@ -389,6 +393,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class inquiryEmoneyAsyncTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -400,7 +405,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
             mapContainer.put(Constants.PARAMETER_SERVICE_NAME, Constants.SERVICE_WALLET);
             mapContainer.put(Constants.PARAMETER_INSTITUTION_ID, Constants.CONSTANT_INSTITUTION_ID);
             mapContainer.put(Constants.PARAMETER_AUTHENTICATION_KEY, "");
-            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, ""));
+            mapContainer.put(Constants.PARAMETER_SOURCE_MDN, Objects.requireNonNull(sharedPreferences.getString(Constants.PARAMETER_PHONENUMBER, "")));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, pinValue);
             mapContainer.put(Constants.PARAMETER_DEST_MDN, "");
             mapContainer.put(Constants.PARAMETER_DEST_BankAccount, mdn);
@@ -454,13 +459,11 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                                 }
                                 AlertDialog.Builder alertbox1 = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox1.setMessage(responseDataContainer.getMsg());
-                                alertbox1.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        arg0.dismiss();
-                                        Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(intent);
-                                    }
+                                alertbox1.setNeutralButton("OK", (arg0, arg1) -> {
+                                    arg0.dismiss();
+                                    Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
                                 });
                                 alertbox1.show();
                                 break;
@@ -505,16 +508,13 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                                     startActivity(intent);
                                 } else {
                                     //tanpa OTP
+                                    Log.d(LOG_TAG, "without OTP");
                                 }
                                 break;
                             default:
                                 AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                                 alertbox.setMessage(responseDataContainer.getMsg());
-                                alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface arg0, int arg1) {
-                                        arg0.dismiss();
-                                    }
-                                });
+                                alertbox.setNeutralButton("OK", (arg0, arg1) -> arg0.dismiss());
                                 alertbox.show();
                                 break;
                         }
@@ -534,6 +534,7 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class getFavList extends AsyncTask<Void, Void, Void> {
         ProgressDialog progressDialog;
         String response;
@@ -593,12 +594,10 @@ public class TransferDetailsActivity extends AppCompatActivity implements Adapte
                 if (response.contains("631")) {
                     AlertDialog.Builder alertbox = new AlertDialog.Builder(TransferDetailsActivity.this, R.style.MyAlertDialogStyle);
                     alertbox.setMessage("Please login again");
-                    alertbox.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                        }
+                    alertbox.setNeutralButton("OK", (arg0, arg1) -> {
+                        Intent intent = new Intent(TransferDetailsActivity.this, SecondLoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     });
                     alertbox.show();
                 } else {

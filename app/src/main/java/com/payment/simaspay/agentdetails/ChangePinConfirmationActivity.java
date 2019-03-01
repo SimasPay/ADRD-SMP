@@ -39,6 +39,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 
 public class ChangePinConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
@@ -86,11 +87,11 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         progressDialog.setMessage(getResources().getString(R.string.bahasa_loading));
         progressDialog.setTitle(getResources().getString(R.string.dailog_heading));
 
-        title = (TextView) findViewById(R.id.titled);
-        simpan = (Button) findViewById(R.id.benar_btn);
-        cancel=(Button)findViewById(R.id.salah_btn);
+        title = findViewById(R.id.titled);
+        simpan = findViewById(R.id.benar_btn);
+        cancel= findViewById(R.id.salah_btn);
 
-        btnBacke = (LinearLayout) findViewById(R.id.back_layout);
+        btnBacke = findViewById(R.id.back_layout);
         btnBacke.setOnClickListener(view -> finish());
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
@@ -110,21 +111,8 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         simpan.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
         cancel.setTypeface(Utility.Robot_Regular(ChangePinConfirmationActivity.this));
         simpan.setOnClickListener(v -> {
-                if(getIntent().getExtras().getString("mfaMode").equalsIgnoreCase("OTP")) {
-                    int currentapiVersion = Build.VERSION.SDK_INT;
-                    if (currentapiVersion > Build.VERSION_CODES.LOLLIPOP) {
-                        if ((checkCallingOrSelfPermission(Manifest.permission.READ_SMS)
-                                != PackageManager.PERMISSION_GRANTED) && checkCallingOrSelfPermission(Manifest.permission.RECEIVE_SMS)
-                                != PackageManager.PERMISSION_GRANTED) {
-
-                            requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS},
-                                    109);
-                        } else {
-                            new requestOTPAsyncTask().execute();
-                        }
-                    } else {
-                        new requestOTPAsyncTask().execute();
-                    }
+                if(Objects.requireNonNull(getIntent().getExtras().getString("mfaMode")).equalsIgnoreCase("OTP")) {
+                    new requestOTPAsyncTask().execute();
                 }else{
                     new ChangePinConfirmationAsyncTask().execute();
                 }
@@ -268,19 +256,19 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
         dialogBuilder.setView(dialoglayout);
 
         // EditText OTP
-        otplay = (LinearLayout) dialoglayout.findViewById(R.id.halaman1);
-        otp2lay = (LinearLayout) dialoglayout.findViewById(R.id.halaman2);
+        otplay = dialoglayout.findViewById(R.id.halaman1);
+        otp2lay = dialoglayout.findViewById(R.id.halaman2);
         otp2lay.setVisibility(View.GONE);
-        TextView manualotp = (TextView) dialoglayout.findViewById(R.id.manualsms_lbl);
-        Button cancel_otp = (Button) dialoglayout.findViewById(R.id.cancel_otp);
+        TextView manualotp = dialoglayout.findViewById(R.id.manualsms_lbl);
+        Button cancel_otp = dialoglayout.findViewById(R.id.cancel_otp);
         manualotp.setOnClickListener(arg0 -> {
             otplay.setVisibility(View.GONE);
             otp2lay.setVisibility(View.VISIBLE);
         });
-        edt = (EditText) dialoglayout.findViewById(R.id.otp_value);
+        edt = dialoglayout.findViewById(R.id.otp_value);
 
         // Timer
-        final TextView timer = (TextView) dialoglayout.findViewById(R.id.otp_timer);
+        final TextView timer = dialoglayout.findViewById(R.id.otp_timer);
         // 120detik
         final CountDownTimer myTimer = new CountDownTimer(120000, 1000) {
             @Override
@@ -302,7 +290,7 @@ public class ChangePinConfirmationActivity extends AppCompatActivity implements 
             dialogBuilder.dismiss();
             myTimer.cancel();
         });
-        final Button ok_otp = (Button) dialoglayout.findViewById(R.id.ok_otp);
+        final Button ok_otp = dialoglayout.findViewById(R.id.ok_otp);
         ok_otp.setEnabled(false);
         ok_otp.setTextColor(getResources().getColor(R.color.dark_red));
         ok_otp.setOnClickListener(v -> {

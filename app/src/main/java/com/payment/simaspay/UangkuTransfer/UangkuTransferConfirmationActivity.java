@@ -47,7 +47,7 @@ import java.util.Objects;
 import com.payment.simaspay.R;
 
 
-public class UangkuTransferConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class UangkuTransferConfirmationActivity extends AppCompatActivity {
     TextView title, heading, name, name_field, number, number_field, amount, amount_field, products, product_field;
     Button cancel, confirmation;
     LinearLayout back;
@@ -77,8 +77,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
         func.initiatedToolbar(this);
 
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
-
-        IncomingSMS.setListener(UangkuTransferConfirmationActivity.this);
 
         progressDialog = new ProgressDialog(UangkuTransferConfirmationActivity.this);
         progressDialog.setCancelable(false);
@@ -457,17 +455,6 @@ public class UangkuTransferConfirmationActivity extends AppCompatActivity implem
                 }
             }
         }
-    }
-
-    @Override
-    public void onReadSMS(String otp) {
-        //Log.d(LOG_TAG, "otp from SMS: " + otp);
-        if(otp==null){
-            edt.setText("");
-        }else{
-            edt.setText(otp);
-        }
-        otpValue=otp;
     }
 
     private class InterBankLakuPandaiAsynTask extends AsyncTask<Void, Void, Void> {

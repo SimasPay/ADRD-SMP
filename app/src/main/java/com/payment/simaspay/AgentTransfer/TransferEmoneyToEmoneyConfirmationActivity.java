@@ -27,22 +27,20 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.payment.simaspay.receivers.IncomingSMS;
+import com.payment.simaspay.R;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SecondLoginActivity;
 import com.payment.simaspay.utils.Functions;
-import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import com.payment.simaspay.R;
 
 import static com.payment.simaspay.services.Constants.LOG_TAG;
 
@@ -51,7 +49,7 @@ import static com.payment.simaspay.services.Constants.LOG_TAG;
  * 25
  */
 
-public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivity{
     String sourceMDN, selectedItem, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
     String message, transactionTime, responseCode, mfaMode;
     TextView lbl_name, lbl_mdn, lbl_amount, notice;
@@ -81,8 +79,6 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         }
 
         context=TransferEmoneyToEmoneyConfirmationActivity.this;
-
-        IncomingSMS.setListener(TransferEmoneyToEmoneyConfirmationActivity.this);
 
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN = settings.getString("mobileNumber","");
@@ -126,16 +122,6 @@ public class TransferEmoneyToEmoneyConfirmationActivity extends AppCompatActivit
         salah_btn.setOnClickListener(view -> finish());
     }
 
-
-    @Override
-    public void onReadSMS(String otp) {
-        if(otp==null){
-            edt.setText("");
-        }else{
-            edt.setText(otp);
-        }
-        otpValue=otp;
-    }
 
     private void showOTPRequiredDialog() {
         LayoutInflater inflater = getLayoutInflater();

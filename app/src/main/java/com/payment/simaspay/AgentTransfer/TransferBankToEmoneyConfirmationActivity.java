@@ -46,7 +46,7 @@ import java.util.Map;
  * 25
  */
 
-public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity implements IncomingSMS.AutoReadSMSListener{
+public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity {
     String sourceMDN, selectedItem, stFullname, stAmount, stMPIN, stTransferID, stSctl, stParentTxnID, stMDN;
     String message, transactionTime, responseCode;
     TextView lbl_name, lbl_mdn, lbl_amount;
@@ -74,7 +74,6 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             StrictMode.setThreadPolicy(policy);
         }
         context=TransferBankToEmoneyConfirmationActivity.this;
-        IncomingSMS.setListener(TransferBankToEmoneyConfirmationActivity.this);
         settings = getSharedPreferences(getResources().getString(R.string.shared_prefvalue), MODE_PRIVATE);
         sourceMDN = settings.getString(Constants.PARAMETER_PHONENUMBER,"");
 
@@ -106,18 +105,6 @@ public class TransferBankToEmoneyConfirmationActivity extends AppCompatActivity 
             //showOTPRequiredDialog();
         });
         salah_btn.setOnClickListener(view -> finish());
-    }
-
-
-    @Override
-    public void onReadSMS(String otp) {
-        Log.d(LOG_TAG, "otp from SMS: " + otp);
-        if(otp==null){
-            edt.setText("");
-        }else{
-            edt.setText(otp);
-        }
-        otpValue=otp;
     }
 
     private void showOTPRequiredDialog() {
