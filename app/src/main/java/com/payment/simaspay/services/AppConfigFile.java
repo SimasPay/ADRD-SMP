@@ -54,21 +54,22 @@ public class AppConfigFile {
     public static String promoImageURLPath = "https://10.32.3.65:8443/";
     */
 
-    //UAT new trusted SSL 20170823---dev
+    //UAT new trusted SSL 20170823---dev 2019
+	/*
     public static String requestUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrlFiles = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String webAPIUrl = "https://www.banksinarmas.com/webapidev/sdynamic";
     public static String pfdDownLoadURL = "https://www.banksinarmas.com/webapidev/";
     public static String promoImageURLPath = "https://www.banksinarmas.com/";
-
+	*/
 
     //new server production 20181204 -current PlayStore
-	/*
 	public static String requestUrl = "https://www.banksinarmas.com/simaspayapi/sdynamic";
 	public static String webAPIUrlFiles = "https://www.banksinarmas.com/simaspayapi/sdynamic";
+	public static String webAPIUrl = "https://www.banksinarmas.com/simaspayapi/sdynamic";
 	public static String pfdDownLoadURL = "https://www.banksinarmas.com/simaspayapi/";
 	public static String promoImageURLPath = "https://www.banksinarmas.com/";
-	*/
+
 
     //	New UAT
          /*public static String requestUrl="https://simaspaydev.banksinarmas.com/webapi/sdynamic";

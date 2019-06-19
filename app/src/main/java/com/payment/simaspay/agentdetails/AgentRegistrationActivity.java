@@ -1,5 +1,6 @@
 package com.payment.simaspay.agentdetails;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -16,8 +17,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,15 +34,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
+
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 import com.payment.simaspay.PojoClasses.ArealData;
 import com.payment.simaspay.R;
+import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.payment.simaspay.services.Constants;
 import com.payment.simaspay.services.Utility;
 import com.payment.simaspay.services.WebServiceHttp;
 import com.payment.simaspay.services.XMLParser;
 import com.payment.simaspay.userdetails.SessionTimeOutActivity;
-import com.payment.simaspay.constants.EncryptedResponseDataContainer;
 import com.sleepbot.datetimepicker.time.RadialPickerLayout;
 import com.sleepbot.datetimepicker.time.TimePickerDialog;
 
@@ -186,23 +189,23 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         }
 
 
-        stage_1 = (LinearLayout) findViewById(R.id.stage1);
-        stage_2 = (LinearLayout) findViewById(R.id.stage2);
-        stage_3 = (LinearLayout) findViewById(R.id.stage3);
+        stage_1 = findViewById(R.id.stage1);
+        stage_2 = findViewById(R.id.stage2);
+        stage_3 = findViewById(R.id.stage3);
 
-        textView = (TextView) findViewById(R.id.titled);
+        textView = findViewById(R.id.titled);
 
-        reg_1 = (LinearLayout) findViewById(R.id.reg_1);
-        reg_2 = (LinearLayout) findViewById(R.id.reg_2);
-        reg_3 = (LinearLayout) findViewById(R.id.reg_3);
+        reg_1 = findViewById(R.id.reg_1);
+        reg_2 = findViewById(R.id.reg_2);
+        reg_3 = findViewById(R.id.reg_3);
 
         textView.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
 
 
-        next = (Button) findViewById(R.id.next);
+        next = findViewById(R.id.next);
         next.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
 
-        back = (LinearLayout) findViewById(R.id.back_layout);
+        back = findViewById(R.id.back_layout);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,29 +214,29 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             }
         });
 
-        stage1_textView = (TextView) findViewById(R.id.textview);
-        stage1_textView1 = (TextView) findViewById(R.id.textview1);
-        stage1_textView2 = (TextView) findViewById(R.id.textview2);
-        stage1_textView3 = (TextView) findViewById(R.id.textview3);
-        stage1_textView4 = (TextView) findViewById(R.id.textview4);
-        stage1_textView5 = (TextView) findViewById(R.id.textview5);
-        stage1_textView6 = (TextView) findViewById(R.id.textview6);
-        stage1_textView7 = (TextView) findViewById(R.id.textview7);
-        stage1_textView8 = (TextView) findViewById(R.id.textview8);
-        stage1_textView9 = (TextView) findViewById(R.id.textview9);
-        stage1_textView10 = (TextView) findViewById(R.id.textview10);
-        stage1_textView11 = (TextView) findViewById(R.id.manual_enter_from);
-        stage1_textView12 = (TextView) findViewById(R.id.stage1_text);
-        stage1_textView13 = (TextView) findViewById(R.id.textviewtanggal_lahir_text);
-        stage1_textView14 = (TextView) findViewById(R.id.textviewtanggal_lahir_alert_text);
-        stage1_textView15 = (TextView) findViewById(R.id.textview11);
-        stage1_textView16 = (TextView) findViewById(R.id.textview12);
+        stage1_textView = findViewById(R.id.textview);
+        stage1_textView1 = findViewById(R.id.textview1);
+        stage1_textView2 = findViewById(R.id.textview2);
+        stage1_textView3 = findViewById(R.id.textview3);
+        stage1_textView4 = findViewById(R.id.textview4);
+        stage1_textView5 = findViewById(R.id.textview5);
+        stage1_textView6 = findViewById(R.id.textview6);
+        stage1_textView7 = findViewById(R.id.textview7);
+        stage1_textView8 = findViewById(R.id.textview8);
+        stage1_textView9 = findViewById(R.id.textview9);
+        stage1_textView10 = findViewById(R.id.textview10);
+        stage1_textView11 = findViewById(R.id.manual_enter_from);
+        stage1_textView12 = findViewById(R.id.stage1_text);
+        stage1_textView13 = findViewById(R.id.textviewtanggal_lahir_text);
+        stage1_textView14 = findViewById(R.id.textviewtanggal_lahir_alert_text);
+        stage1_textView15 = findViewById(R.id.textview11);
+        stage1_textView16 = findViewById(R.id.textview12);
 
-        Rp=(TextView)findViewById(R.id.Rp);
+        Rp= findViewById(R.id.Rp);
 
-        tab_1_text = (TextView) findViewById(R.id.tab_1_text);
-        tab_2_text = (TextView) findViewById(R.id.tab_2_text);
-        tab_3_text = (TextView) findViewById(R.id.tab_3_text);
+        tab_1_text = findViewById(R.id.tab_1_text);
+        tab_2_text = findViewById(R.id.tab_2_text);
+        tab_3_text = findViewById(R.id.tab_3_text);
 
         tab_1_text.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
         tab_2_text.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
@@ -260,23 +263,23 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage1_textView14.setVisibility(View.GONE);
         stage1_textView16.setVisibility(View.GONE);
 
-        stage1_Name = (EditText) findViewById(R.id.editText1);
-        stage1_number = (EditText) findViewById(R.id.editText2);
-        stage1_nomorHp = (EditText) findViewById(R.id.nomor_hp);
+        stage1_Name = findViewById(R.id.editText1);
+        stage1_number = findViewById(R.id.editText2);
+        stage1_nomorHp = findViewById(R.id.nomor_hp);
         stage1_Name.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         stage1_number.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         stage1_nomorHp.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
-        limited = (LinearLayout) findViewById(R.id.limited);
-        lifelong = (LinearLayout) findViewById(R.id.lifelong);
+        limited = findViewById(R.id.limited);
+        lifelong = findViewById(R.id.lifelong);
 
-        manual_selection_checkbox = (ImageView) findViewById(R.id.manual_selection_checkbox);
-        manual_selection_checkbox2 = (ImageView) findViewById(R.id.manual_selection_checkbox2);
+        manual_selection_checkbox = findViewById(R.id.manual_selection_checkbox);
+        manual_selection_checkbox2 = findViewById(R.id.manual_selection_checkbox2);
 
-        stage1_date = (Button) findViewById(R.id.Dob);
+        stage1_date = findViewById(R.id.Dob);
         stage1_date.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
-        stage1_tanggal = (Button) findViewById(R.id.dateselect);
+        stage1_tanggal = findViewById(R.id.dateselect);
         stage1_tanggal.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         Rp.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
@@ -334,34 +337,34 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         });
 
 
-        stage2_textView = (TextView) findViewById(R.id.stage2_textview);
-        stage2_textView1 = (TextView) findViewById(R.id.stage2_textview1);
-        stage2_textView2 = (TextView) findViewById(R.id.stage2_textview2);
-        stage2_textView3 = (TextView) findViewById(R.id.stage2_textview3);
-        stage2_textView4 = (TextView) findViewById(R.id.stage2_textview4);
-        stage2_textView5 = (TextView) findViewById(R.id.stage2_textview5);
-        stage2_textView6 = (TextView) findViewById(R.id.stage2_textview6);
-        stage2_textView7 = (TextView) findViewById(R.id.stage2_textview7);
-        stage2_textView8 = (TextView) findViewById(R.id.stage2_textview8);
-        stage2_textView9 = (TextView) findViewById(R.id.stage2_textview9);
-        stage2_textView10 = (TextView) findViewById(R.id.stage2_textview10);
-        stage2_textView11 = (TextView) findViewById(R.id.stage2_textview11);
-        stage2_textView12 = (TextView) findViewById(R.id.stage2_textview12);
-        stage2_textView13 = (TextView) findViewById(R.id.stage2_textview13);
-        stage2_textView14 = (TextView) findViewById(R.id.stage2_textview14);
-        stage2_textView15 = (TextView) findViewById(R.id.stage2_textview15);
-        stage2_textView16 = (TextView) findViewById(R.id.stage2_textview16);
+        stage2_textView = findViewById(R.id.stage2_textview);
+        stage2_textView1 = findViewById(R.id.stage2_textview1);
+        stage2_textView2 = findViewById(R.id.stage2_textview2);
+        stage2_textView3 = findViewById(R.id.stage2_textview3);
+        stage2_textView4 = findViewById(R.id.stage2_textview4);
+        stage2_textView5 = findViewById(R.id.stage2_textview5);
+        stage2_textView6 = findViewById(R.id.stage2_textview6);
+        stage2_textView7 = findViewById(R.id.stage2_textview7);
+        stage2_textView8 = findViewById(R.id.stage2_textview8);
+        stage2_textView9 = findViewById(R.id.stage2_textview9);
+        stage2_textView10 = findViewById(R.id.stage2_textview10);
+        stage2_textView11 = findViewById(R.id.stage2_textview11);
+        stage2_textView12 = findViewById(R.id.stage2_textview12);
+        stage2_textView13 = findViewById(R.id.stage2_textview13);
+        stage2_textView14 = findViewById(R.id.stage2_textview14);
+        stage2_textView15 = findViewById(R.id.stage2_textview15);
+        stage2_textView16 = findViewById(R.id.stage2_textview16);
 
-        stage2_textView17 = (TextView) findViewById(R.id.stage_2_text);
-        stage2_textView18 = (TextView) findViewById(R.id.stage_2_text_2);
-        stage2_textView19 = (TextView) findViewById(R.id.stage2_textview_rw);
+        stage2_textView17 = findViewById(R.id.stage_2_text);
+        stage2_textView18 = findViewById(R.id.stage_2_text_2);
+        stage2_textView19 = findViewById(R.id.stage2_textview_rw);
 
-        stage2_textView20 = (TextView) findViewById(R.id.stage_2_text_1);
-        stage2_textView21 = (TextView) findViewById(R.id.stage_2_text_3);
-        stage2_textView22 = (TextView) findViewById(R.id.stage2_rw_textview15);
+        stage2_textView20 = findViewById(R.id.stage_2_text_1);
+        stage2_textView21 = findViewById(R.id.stage_2_text_3);
+        stage2_textView22 = findViewById(R.id.stage2_rw_textview15);
 
-        stage2_Diff_Address = (ImageView) findViewById(R.id.stage2_diff_address);
-        stage2_same_Address = (ImageView) findViewById(R.id.stage2_same_address);
+        stage2_Diff_Address = findViewById(R.id.stage2_diff_address);
+        stage2_same_Address = findViewById(R.id.stage2_same_address);
 
         findViewById(R.id.different_address).setVisibility(View.GONE);
         stage2_sameaddress = true;
@@ -423,14 +426,14 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage2_textView19.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         stage2_textView22.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
 
-        stage2_provinsi_1 = (Button) findViewById(R.id.stage2_provisi_1);
-        stage2_kota_kabu_1 = (Button) findViewById(R.id.stage2_kota_keb_1);
-        stage2_kecamatan_1 = (Button) findViewById(R.id.stage2_kecamatan_1);
-        stage2_desa_kelu_1 = (Button) findViewById(R.id.stage2_desa_kelu_1);
-        stage2_provinsi_2 = (Button) findViewById(R.id.stage2_provisi_2);
-        stage2_kota_kabu_2 = (Button) findViewById(R.id.stage2_kota_keb_2);
-        stage2_kecamatan_2 = (Button) findViewById(R.id.stage2_kecamatan_2);
-        stage2_desa_kelu_2 = (Button) findViewById(R.id.stage2_desa_kelu_2);
+        stage2_provinsi_1 = findViewById(R.id.stage2_provisi_1);
+        stage2_kota_kabu_1 = findViewById(R.id.stage2_kota_keb_1);
+        stage2_kecamatan_1 = findViewById(R.id.stage2_kecamatan_1);
+        stage2_desa_kelu_1 = findViewById(R.id.stage2_desa_kelu_1);
+        stage2_provinsi_2 = findViewById(R.id.stage2_provisi_2);
+        stage2_kota_kabu_2 = findViewById(R.id.stage2_kota_keb_2);
+        stage2_kecamatan_2 = findViewById(R.id.stage2_kecamatan_2);
+        stage2_desa_kelu_2 = findViewById(R.id.stage2_desa_kelu_2);
 
         stage2_provinsi_1.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         stage2_kota_kabu_1.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
@@ -441,16 +444,16 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage2_kecamatan_2.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         stage2_desa_kelu_2.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
-        stage2_rt_rw_1 = (EditText) findViewById(R.id.stage2_rt_rw_1);
-        stage2_kode_pos_1 = (EditText) findViewById(R.id.stage2_kode_pos_1);
-        stage2_rt_rw_2 = (EditText) findViewById(R.id.stage2_rt_rw_2);
-        stage2_kode_pos_2 = (EditText) findViewById(R.id.stage2_kode_pos_2);
-        stage2_alamat_sesuai_ktp_edit = (EditText) findViewById(R.id.stage2_alamat_sesuai_ktp_edit);
-        stage2_different_alamat_sesuai_ktp_edit = (EditText) findViewById(R.id.stage2_different_alamat_sesuai_ktp_edit);
-        stage2_name_edit = (EditText) findViewById(R.id.stage_2_editText);
-        stage2_tempat_edit = (EditText) findViewById(R.id.stage_2_editText_1);
-        stage2_rw_edit = (EditText) findViewById(R.id.stage2_rw_1);
-        stage2_rw_different_edit = (EditText) findViewById(R.id.stage2_rw_2);
+        stage2_rt_rw_1 = findViewById(R.id.stage2_rt_rw_1);
+        stage2_kode_pos_1 = findViewById(R.id.stage2_kode_pos_1);
+        stage2_rt_rw_2 = findViewById(R.id.stage2_rt_rw_2);
+        stage2_kode_pos_2 = findViewById(R.id.stage2_kode_pos_2);
+        stage2_alamat_sesuai_ktp_edit = findViewById(R.id.stage2_alamat_sesuai_ktp_edit);
+        stage2_different_alamat_sesuai_ktp_edit = findViewById(R.id.stage2_different_alamat_sesuai_ktp_edit);
+        stage2_name_edit = findViewById(R.id.stage_2_editText);
+        stage2_tempat_edit = findViewById(R.id.stage_2_editText_1);
+        stage2_rw_edit = findViewById(R.id.stage2_rw_1);
+        stage2_rw_different_edit = findViewById(R.id.stage2_rw_2);
 
         stage2_rt_rw_1.setClickable(false);
         stage2_kode_pos_1.setClickable(false);
@@ -544,16 +547,16 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
 
 //        Stage-3
-        stage3_textView = (TextView) findViewById(R.id.stage3_textview);
-        stage3_textView1 = (TextView) findViewById(R.id.stage3_textview1);
-        stage3_textView2 = (TextView) findViewById(R.id.stage3_textview2);
-        stage3_textView3 = (TextView) findViewById(R.id.stage3_textview3);
-        stage3_textView4 = (TextView) findViewById(R.id.stage3_textview4);
-        stage3_textView5 = (TextView) findViewById(R.id.stage3_textview5);
-        stage3_textView6 = (TextView) findViewById(R.id.stage3_textview6);
+        stage3_textView = findViewById(R.id.stage3_textview);
+        stage3_textView1 = findViewById(R.id.stage3_textview1);
+        stage3_textView2 = findViewById(R.id.stage3_textview2);
+        stage3_textView3 = findViewById(R.id.stage3_textview3);
+        stage3_textView4 = findViewById(R.id.stage3_textview4);
+        stage3_textView5 = findViewById(R.id.stage3_textview5);
+        stage3_textView6 = findViewById(R.id.stage3_textview6);
 //        stage3_textView7 = (TextView) findViewById(R.id.stage3_textview7);
-        stage3_textView8 = (TextView) findViewById(R.id.stage3_textview8);
-        stage3_textview9 = (TextView) findViewById(R.id.stage3_textview9);
+        stage3_textView8 = findViewById(R.id.stage3_textview8);
+        stage3_textview9 = findViewById(R.id.stage3_textview9);
 
 
         stage3_textView.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
@@ -567,16 +570,16 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         stage3_textView8.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         stage3_textview9.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
 
-        stage3_button = (Button) findViewById(R.id.stage3_button);
-        stage3_button1 = (Button) findViewById(R.id.stage3_button1);
+        stage3_button = findViewById(R.id.stage3_button);
+        stage3_button1 = findViewById(R.id.stage3_button1);
 
-        stage3_editText = (EditText) findViewById(R.id.stage3_editText);
-        stage3_editText1 = (EditText) findViewById(R.id.stage3_editText1);
-        stage3_editText2 = (EditText) findViewById(R.id.stage3_editText2);
-        stage3_editText3 = (EditText) findViewById(R.id.stage3_editText3);
-        stage3_editText4 = (EditText) findViewById(R.id.stage3_editText4);
+        stage3_editText = findViewById(R.id.stage3_editText);
+        stage3_editText1 = findViewById(R.id.stage3_editText1);
+        stage3_editText2 = findViewById(R.id.stage3_editText2);
+        stage3_editText3 = findViewById(R.id.stage3_editText3);
+        stage3_editText4 = findViewById(R.id.stage3_editText4);
 //        stage3_editText5 = (EditText) findViewById(R.id.stage3_editText5);
-        stage3_editText6 = (EditText) findViewById(R.id.stage3_editText6);
+        stage3_editText6 = findViewById(R.id.stage3_editText6);
 
         stage3_button.setTypeface(Utility.LightTextFormat(AgentRegistrationActivity.this));
         stage3_button1.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
@@ -588,9 +591,9 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 //        stage3_editText5.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
         stage3_editText6.setTypeface(Utility.Robot_Light(AgentRegistrationActivity.this));
 
-        document_image_1 = (ImageView) findViewById(R.id.document_image_1);
-        document_image_2 = (ImageView) findViewById(R.id.document_image_2);
-        document_image_3 = (ImageView) findViewById(R.id.document_image_3);
+        document_image_1 = findViewById(R.id.document_image_1);
+        document_image_2 = findViewById(R.id.document_image_2);
+        document_image_3 = findViewById(R.id.document_image_3);
 
         stage_1.setVisibility(View.VISIBLE);
         stage_2.setVisibility(View.GONE);
@@ -614,7 +617,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         reg_2.setEnabled(false);
         reg_3.setEnabled(false);
 
-        document_1 = (LinearLayout) findViewById(R.id.document_1);
+        document_1 = findViewById(R.id.document_1);
 
         document_1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -631,6 +634,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 pubDialogFragment = PubDialogFragment.newInstance(group4_1, group4_2);
                 if (pubDialogFragment != null && !pubDialogFragment.isAdded()) {
                     pubDialogFragment.setItemClickListener(new PubDialogFragment.ItemClickListener() {
+                        @TargetApi(Build.VERSION_CODES.M)
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
@@ -670,7 +674,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
             }
         });
-        document_2 = (LinearLayout) findViewById(R.id.document_2);
+        document_2 = findViewById(R.id.document_2);
 
         document_2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -687,6 +691,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 pubDialogFragment = PubDialogFragment.newInstance(group4_1, group4_2);
                 if (pubDialogFragment != null && !pubDialogFragment.isAdded()) {
                     pubDialogFragment.setItemClickListener(new PubDialogFragment.ItemClickListener() {
+                        @TargetApi(Build.VERSION_CODES.M)
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
@@ -727,7 +732,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
             }
         });
 
-        document_3 = (LinearLayout) findViewById(R.id.document_3);
+        document_3 = findViewById(R.id.document_3);
 
         document_3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -744,6 +749,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                 pubDialogFragment = PubDialogFragment.newInstance(group4_1, group4_2);
                 if (pubDialogFragment != null && !pubDialogFragment.isAdded()) {
                     pubDialogFragment.setItemClickListener(new PubDialogFragment.ItemClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.M)
                         @Override
                         public void onItemClick(View clickedView, DialogObject dialogObject, int groupIndex, int itemIndex) {
                             if (groupIndex == 0) {
@@ -1098,7 +1104,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                             mapContainer.put(Constants.PARAMETER_WORK, Subrscriber_work_otherThanlainnya);
                         }
                         mapContainer.put(Constants.PARAMETER_TRANSACTIONNAME, Constants.TRANSACTION_SUBSCRIBERREGISTRATION);
-                        mapContainer.put(Constants.PARAMETER_SUB_FIRSTNAME, ktp_Name.toString());
+                        mapContainer.put(Constants.PARAMETER_SUB_FIRSTNAME, ktp_Name);
                         mapContainer.put(Constants.PARAMETER_DEST_MDN, destNumber);
                         mapContainer.put(Constants.PARAMETER_KTPID, ktpID);
                         mapContainer.put(Constants.PARAMETER_DOB, dateofbirth);
@@ -1570,10 +1576,10 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         dialogCustomWish.setContentView(R.layout.province_list);
 
-        Button button = (Button) dialogCustomWish.findViewById(R.id.ok);
-        Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
-        TextView textView = (TextView) dialogCustomWish.findViewById(R.id.title);
-        ListView listView = (ListView) dialogCustomWish.findViewById(R.id.locationsList);
+        Button button = dialogCustomWish.findViewById(R.id.ok);
+        Button button1 = dialogCustomWish.findViewById(R.id.Cancel);
+        TextView textView = dialogCustomWish.findViewById(R.id.title);
+        ListView listView = dialogCustomWish.findViewById(R.id.locationsList);
         button.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         button1.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         textView.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
@@ -1634,8 +1640,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(AgentRegistrationActivity.this).inflate(R.layout.location_row, null);
-            TextView textView = (TextView) view.findViewById(R.id.location_text);
-            ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
+            TextView textView = view.findViewById(R.id.location_text);
+            ImageView imageView = view.findViewById(R.id.image_location);
 
             if (selected_work == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
@@ -1864,7 +1870,7 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
                     Constants.TRANSACTION_KTPVALIDATION);
             mapContainer.put(Constants.PARAMETER_SOURCE_MDN, sharedPreferences.getString("mobileNumber", ""));
             mapContainer.put(Constants.PARAMETER_SOURCE_PIN, sharedPreferences.getString("password", ""));
-            mapContainer.put(Constants.PARAMETER_SUB_FIRSTNAME, Name.toString());
+            mapContainer.put(Constants.PARAMETER_SUB_FIRSTNAME, Name);
             mapContainer.put(Constants.PARAMETER_DEST_MDN, destNumber);
             mapContainer.put(Constants.PARAMETER_KTPID, ktpID);
             mapContainer.put(Constants.PARAMETER_DOB, dateofbirth);
@@ -2123,10 +2129,10 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
 
         dialogCustomWish.setContentView(R.layout.province_list);
 
-        Button button = (Button) dialogCustomWish.findViewById(R.id.ok);
-        Button button1 = (Button) dialogCustomWish.findViewById(R.id.Cancel);
-        TextView textView = (TextView) dialogCustomWish.findViewById(R.id.title);
-        ListView listView = (ListView) dialogCustomWish.findViewById(R.id.locationsList);
+        Button button = dialogCustomWish.findViewById(R.id.ok);
+        Button button1 = dialogCustomWish.findViewById(R.id.Cancel);
+        TextView textView = dialogCustomWish.findViewById(R.id.title);
+        ListView listView = dialogCustomWish.findViewById(R.id.locationsList);
         button.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         button1.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
         textView.setTypeface(Utility.RegularTextFormat(AgentRegistrationActivity.this));
@@ -2231,8 +2237,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(AgentRegistrationActivity.this).inflate(R.layout.location_row, null);
-            TextView textView = (TextView) view.findViewById(R.id.location_text);
-            ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
+            TextView textView = view.findViewById(R.id.location_text);
+            ImageView imageView = view.findViewById(R.id.image_location);
 
             if (selectedProvice == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
@@ -2265,8 +2271,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(AgentRegistrationActivity.this).inflate(R.layout.location_row, null);
-            TextView textView = (TextView) view.findViewById(R.id.location_text);
-            ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
+            TextView textView = view.findViewById(R.id.location_text);
+            ImageView imageView = view.findViewById(R.id.image_location);
 
             if (selected_region == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
@@ -2299,8 +2305,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(AgentRegistrationActivity.this).inflate(R.layout.location_row, null);
-            TextView textView = (TextView) view.findViewById(R.id.location_text);
-            ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
+            TextView textView = view.findViewById(R.id.location_text);
+            ImageView imageView = view.findViewById(R.id.image_location);
 
             if (selectedDistrict == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));
@@ -2333,8 +2339,8 @@ public class AgentRegistrationActivity extends FragmentActivity implements DateP
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = LayoutInflater.from(AgentRegistrationActivity.this).inflate(R.layout.location_row, null);
-            TextView textView = (TextView) view.findViewById(R.id.location_text);
-            ImageView imageView = (ImageView) view.findViewById(R.id.image_location);
+            TextView textView = view.findViewById(R.id.location_text);
+            ImageView imageView = view.findViewById(R.id.image_location);
 
             if (selectedVillage == position) {
                 imageView.setImageDrawable(getResources().getDrawable(R.drawable.selected));

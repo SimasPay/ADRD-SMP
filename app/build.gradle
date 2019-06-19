@@ -21,7 +21,7 @@ android {
         applicationId "simaspay.payment.com.simaspay"
         minSdkVersion 14
         targetSdkVersion 28
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         versionCode 135
         versionName "1.0.2"
         multiDexEnabled true
@@ -53,16 +53,15 @@ android {
 }
 
 dependencies {
-    final appsupportVersion = '28.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "com.android.support:appcompat-v7:$appsupportVersion"
-    implementation "com.android.support:recyclerview-v7:$appsupportVersion"
-    implementation "com.android.support:percent:$appsupportVersion"
-    implementation "com.android.support:exifinterface:$appsupportVersion"
-    implementation "com.android.support:support-media-compat:$appsupportVersion"
-    implementation "com.android.support:support-v4:$appsupportVersion"
-    implementation "com.android.support:cardview-v7:$appsupportVersion"
-    implementation "com.android.support:design:$appsupportVersion"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.percentlayout:percentlayout:1.0.0'
+    implementation 'androidx.exifinterface:exifinterface:1.0.0'
+    implementation 'androidx.media:media:1.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation files('libs/kxml-min.jar')
     implementation files('libs/mobileapplibrary2_8.jar')
     implementation project(':datetimepicker-library')
@@ -70,13 +69,13 @@ dependencies {
     implementation 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
     implementation 'commons-codec:commons-codec:1.10'
     implementation 'com.google.zxing:core:3.3.0'
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation project(':PayByQR-Android-2.1.2-Simaspay')
-    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation project(path: ':CropImageLib')
     implementation 'com.weiwangcn.betterspinner:library-material:1.1.0'
 }

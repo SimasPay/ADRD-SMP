@@ -1,11 +1,9 @@
 package com.payment.simaspay.Cash_InOut;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
@@ -15,6 +13,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.payment.simaspay.AgentTransfer.TranaferSuccessActivity;
 import com.payment.simaspay.PaymentPurchaseAccount.PurchaseSuccessActivity;

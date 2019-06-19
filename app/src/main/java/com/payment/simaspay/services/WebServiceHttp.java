@@ -117,7 +117,8 @@ public class WebServiceHttp  {
                     + "="
                     + "";
         }
-        Log.e("-----",""+ params);
+        //buka input params
+        //Log.e("-----",""+ params);
         return AppConfigFile.requestUrl;
     }
 
